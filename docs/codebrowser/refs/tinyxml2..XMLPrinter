@@ -1,0 +1,105 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1831' c='_ZNK8tinyxml211XMLDocument5PrintEPNS_10XMLPrinterE'/>
+<inh f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='481' c='tinyxml2::XMLVisitor'/>
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2237' ll='2371'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2369' c='_ZN8tinyxml210XMLPrinterC1ERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2370' c='_ZN8tinyxml210XMLPrinteraSERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2370' c='_ZN8tinyxml210XMLPrinteraSERKS0_'/>
+<size>312</size>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2195'>/**
+	Printing functionality. The XMLPrinter gives you more
+	options than the XMLDocument::Print() method.
+
+	It can:
+	-# Print to memory.
+	-# Print to a file you provide.
+	-# Print XML without a XMLDocument.
+
+	Print to Memory
+
+	@verbatim
+	XMLPrinter printer;
+	doc.Print( &amp;printer );
+	SomeFunction( printer.CStr() );
+	@endverbatim
+
+	Print to a File
+
+	You provide the file pointer.
+	@verbatim
+	XMLPrinter printer( fp );
+	doc.Print( &amp;printer );
+	@endverbatim
+
+	Print without a XMLDocument
+
+	When loading, an XML parser is very useful. However, sometimes
+	when saving, it just gets in the way. The code is often set up
+	for streaming, and constructing the DOM is just overhead.
+
+	The Printer supports the streaming case. The following code
+	prints out a trivially simple XML file without ever creating
+	an XML document.
+
+	@verbatim
+	XMLPrinter printer( fp );
+	printer.OpenElement( &quot;foo&quot; );
+	printer.PushAttribute( &quot;foo&quot;, &quot;bar&quot; );
+	printer.CloseElement();
+	@endverbatim
+*/</doc>
+<fun r='_ZN8tinyxml210XMLPrinterC1EP8_IO_FILEbi'/>
+<fun r='_ZN8tinyxml210XMLPrinterD1Ev'/>
+<fun r='_ZN8tinyxml210XMLPrinter10PushHeaderEbb'/>
+<fun r='_ZN8tinyxml210XMLPrinter11OpenElementEPKcb'/>
+<fun r='_ZN8tinyxml210XMLPrinter13PushAttributeEPKcS2_'/>
+<fun r='_ZN8tinyxml210XMLPrinter13PushAttributeEPKci'/>
+<fun r='_ZN8tinyxml210XMLPrinter13PushAttributeEPKcj'/>
+<fun r='_ZN8tinyxml210XMLPrinter13PushAttributeEPKcl'/>
+<fun r='_ZN8tinyxml210XMLPrinter13PushAttributeEPKcm'/>
+<fun r='_ZN8tinyxml210XMLPrinter13PushAttributeEPKcb'/>
+<fun r='_ZN8tinyxml210XMLPrinter13PushAttributeEPKcd'/>
+<fun r='_ZN8tinyxml210XMLPrinter12CloseElementEb'/>
+<fun r='_ZN8tinyxml210XMLPrinter8PushTextEPKcb'/>
+<fun r='_ZN8tinyxml210XMLPrinter8PushTextEi'/>
+<fun r='_ZN8tinyxml210XMLPrinter8PushTextEj'/>
+<fun r='_ZN8tinyxml210XMLPrinter8PushTextEl'/>
+<fun r='_ZN8tinyxml210XMLPrinter8PushTextEm'/>
+<fun r='_ZN8tinyxml210XMLPrinter8PushTextEb'/>
+<fun r='_ZN8tinyxml210XMLPrinter8PushTextEf'/>
+<fun r='_ZN8tinyxml210XMLPrinter8PushTextEd'/>
+<fun r='_ZN8tinyxml210XMLPrinter11PushCommentEPKc'/>
+<fun r='_ZN8tinyxml210XMLPrinter15PushDeclarationEPKc'/>
+<fun r='_ZN8tinyxml210XMLPrinter11PushUnknownEPKc'/>
+<fun r='_ZN8tinyxml210XMLPrinter10VisitEnterERKNS_11XMLDocumentE'/>
+<fun r='_ZN8tinyxml210XMLPrinter9VisitExitERKNS_11XMLDocumentE'/>
+<fun r='_ZN8tinyxml210XMLPrinter10VisitEnterERKNS_10XMLElementEPKNS_12XMLAttributeE'/>
+<fun r='_ZN8tinyxml210XMLPrinter9VisitExitERKNS_10XMLElementE'/>
+<fun r='_ZN8tinyxml210XMLPrinter5VisitERKNS_7XMLTextE'/>
+<fun r='_ZN8tinyxml210XMLPrinter5VisitERKNS_10XMLCommentE'/>
+<fun r='_ZN8tinyxml210XMLPrinter5VisitERKNS_14XMLDeclarationE'/>
+<fun r='_ZN8tinyxml210XMLPrinter5VisitERKNS_10XMLUnknownE'/>
+<fun r='_ZNK8tinyxml210XMLPrinter4CStrEv'/>
+<fun r='_ZNK8tinyxml210XMLPrinter8CStrSizeEv'/>
+<fun r='_ZN8tinyxml210XMLPrinter11ClearBufferEb'/>
+<fun r='_ZN8tinyxml210XMLPrinter11CompactModeERKNS_10XMLElementE'/>
+<fun r='_ZN8tinyxml210XMLPrinter10PrintSpaceEi'/>
+<fun r='_ZN8tinyxml210XMLPrinter5PrintEPKcz'/>
+<fun r='_ZN8tinyxml210XMLPrinter5WriteEPKcm'/>
+<fun r='_ZN8tinyxml210XMLPrinter4PutcEc'/>
+<fun r='_ZN8tinyxml210XMLPrinter5WriteEPKc'/>
+<fun r='_ZN8tinyxml210XMLPrinter23SealElementIfJustOpenedEv'/>
+<mbr r='tinyxml2::XMLPrinter::_elementJustOpened' o='64' t='bool'/>
+<mbr r='tinyxml2::XMLPrinter::_stack' o='128' t='DynArray&lt;const char *, 10&gt;'/>
+<fun r='_ZN8tinyxml210XMLPrinter17PrepareForNewNodeEb'/>
+<fun r='_ZN8tinyxml210XMLPrinter11PrintStringEPKcb'/>
+<mbr r='tinyxml2::XMLPrinter::_firstElement' o='896' t='bool'/>
+<mbr r='tinyxml2::XMLPrinter::_fp' o='960' t='FILE *'/>
+<mbr r='tinyxml2::XMLPrinter::_depth' o='1024' t='int'/>
+<mbr r='tinyxml2::XMLPrinter::_textDepth' o='1056' t='int'/>
+<mbr r='tinyxml2::XMLPrinter::_processEntities' o='1088' t='bool'/>
+<mbr r='tinyxml2::XMLPrinter::_compactMode' o='1096' t='bool'/>
+<mbr r='tinyxml2::XMLPrinter::_entityFlag' o='1104' t='bool[64]'/>
+<mbr r='tinyxml2::XMLPrinter::_restrictedEntityFlag' o='1616' t='bool[64]'/>
+<mbr r='tinyxml2::XMLPrinter::_buffer' o='2176' t='DynArray&lt;char, 20&gt;'/>
+<fun r='_ZN8tinyxml210XMLPrinterC1ERKS0_'/>
+<fun r='_ZN8tinyxml210XMLPrinteraSERKS0_'/>

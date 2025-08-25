@@ -1,3 +1,3 @@
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='215' type='uint tMath::tClosestPower2(uint v)'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='218' type='uint tMath::tClosestPower2(uint v)'/>
 <use f='Modules/Image/Src/tTexture.cpp' l='132' u='c' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
 <use f='Modules/Image/Src/tTexture.cpp' l='136' u='c' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>

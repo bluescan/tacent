@@ -1,0 +1,15 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1343' ll='1349' type='tinyxml2::XMLError tinyxml2::XMLElement::QueryIntAttribute(const char * name, int * value) const'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1433' u='c' c='_ZNK8tinyxml210XMLElement14QueryAttributeEPKcPi'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1330'>/** Given an attribute name, QueryIntAttribute() returns
+    	XML_SUCCESS, XML_WRONG_ATTRIBUTE_TYPE if the conversion
+    	can&apos;t be performed, or XML_NO_ATTRIBUTE if the attribute
+    	doesn&apos;t exist. If successful, the result of the conversion
+    	will be written to &apos;value&apos;. If not successful, nothing will
+    	be written to &apos;value&apos;. This allows you to provide default
+    	value:
+
+    	@verbatim
+    	int value = 10;
+    	QueryIntAttribute( &quot;foo&quot;, &amp;value );		// if &quot;foo&quot; isn&apos;t found, value will still be 10
+    	@endverbatim
+    */</doc>

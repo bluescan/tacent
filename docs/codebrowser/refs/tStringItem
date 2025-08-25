@@ -74,11 +74,6 @@
 <use f='Modules/Pipeline/Src/tRule.cpp' l='127' c='_ZN9tPipeline5tRule19AddDependencyDirRecERK7tStringS3_'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='143' c='_ZN9tPipeline5tRule9OutOfDateEb'/>
 <size>48</size>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='34'/>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='45'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='60' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='108' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
-<size>48</size>
 <use f='Modules/System/Inc/System/tCmdLine.h' l='108' c='_ZN8tCmdLine6tParam3SetERK7tString'/>
 <use f='Modules/System/Inc/System/tCmdLine.h' l='118'/>
 <use f='Modules/System/Inc/System/tCmdLine.h' l='149' c='_ZNK8tCmdLine7tOption7GetArgsER5tListI11tStringItemE'/>

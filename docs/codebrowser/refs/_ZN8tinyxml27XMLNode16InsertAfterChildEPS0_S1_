@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='864' type='tinyxml2::XMLNode * tinyxml2::XMLNode::InsertAfterChild(tinyxml2::XMLNode * afterThis, tinyxml2::XMLNode * addThis)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='856'>/**
+    	Add a node after the specified child node.
+		If the child node is already part of the document,
+		it is moved from its old location to the new location.
+		Returns the addThis argument or 0 if the afterThis node
+		is not a child of this node, or if the node does not
+		belong to the same document.
+    */</doc>

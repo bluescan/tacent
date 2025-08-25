@@ -2,3 +2,13 @@
 <use f='include/c++/11/bits/hashtable_policy.h' l='709' u='r' c='_ZNSt8__detail9_Map_baseIT_T0_T1_NS_10_Select1stET2_T3_T4_T5_T6_T7_Lb1EEixERKNS_15_Hashtable_baseIS1_S2_S4_S5_S6_S7_S8_SA_E8key_typeE'/>
 <use f='include/c++/11/bits/hashtable_policy.h' l='736' u='r' c='_ZNSt8__detail9_Map_baseIT_T0_T1_NS_10_Select1stET2_T3_T4_T5_T6_T7_Lb1EEixEONS_15_Hashtable_baseIS1_S2_S4_S5_S6_S7_S8_SA_E8key_typeE'/>
 <use f='include/c++/11/bits/hashtable_policy.h' l='867' u='r' c='_ZNSt8__detail12_Insert_base11try_emplaceENS_20_Node_const_iteratorIT0_Xsr20__constant_iteratorsE5valueEXsr13__hash_cachedE5valueEEEOTL0__DpOTL0_0_'/>
+<use f='include/c++/11/bits/stl_map.h' l='501' c='_ZNSt3mapixERKT_'/>
+<use f='include/c++/11/bits/stl_map.h' l='520' c='_ZNSt3mapixEOT_'/>
+<use f='include/c++/11/bits/stl_map.h' l='696' c='_ZNSt3map11try_emplaceERKT_DpOTL0__'/>
+<use f='include/c++/11/bits/stl_map.h' l='713' c='_ZNSt3map11try_emplaceEOT_DpOTL0__'/>
+<use f='include/c++/11/bits/stl_map.h' l='758' c='_ZNSt3map11try_emplaceENSt8_Rb_treeIT_St4pairIKS1_T0_ESt10_Select1stIS5_ET1_N9__gnu_cxx14__alloc_traitsIT2_NSB_10value_typeEE6rebindIS5_E5otherEE14con9785190'/>
+<use f='include/c++/11/bits/stl_map.h' l='776' c='_ZNSt3map11try_emplaceENSt8_Rb_treeIT_St4pairIKS1_T0_ESt10_Select1stIS5_ET1_N9__gnu_cxx14__alloc_traitsIT2_NSB_10value_typeEE6rebindIS5_E5otherEE14con8886010'/>
+<use f='include/c++/11/bits/stl_map.h' l='923' c='_ZNSt3map16insert_or_assignERKT_OTL0__'/>
+<use f='include/c++/11/bits/stl_map.h' l='941' c='_ZNSt3map16insert_or_assignEOT_OTL0__'/>
+<use f='include/c++/11/bits/stl_map.h' l='981' c='_ZNSt3map16insert_or_assignENSt8_Rb_treeIT_St4pairIKS1_T0_ESt10_Select1stIS5_ET1_N9__gnu_cxx14__alloc_traitsIT2_NSB_10value_typeEE6rebindIS5_E5otherEE9890757'/>
+<use f='include/c++/11/bits/stl_map.h' l='1001' c='_ZNSt3map16insert_or_assignENSt8_Rb_treeIT_St4pairIKS1_T0_ESt10_Select1stIS5_ET1_N9__gnu_cxx14__alloc_traitsIT2_NSB_10value_typeEE6rebindIS5_E5otherEE3266545'/>

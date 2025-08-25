@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='65' type='void Imf_2_5::Name::Name(const char * text)'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='125' ll='130' type='void Imf_2_5::Name::Name(const char * text)'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='753' u='c' c='_ZN7Imf_2_56Header18findTypedAttributeEPKc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='762' u='c' c='_ZNK7Imf_2_56Header18findTypedAttributeEPKc'/>

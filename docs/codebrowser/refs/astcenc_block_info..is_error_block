@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='622' type='bool'/>
+<offset>160</offset>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='621'>/** @brief True if this block is an error block. */</doc>

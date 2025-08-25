@@ -1,0 +1,27 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='513' c='_ZN8tinyxml210XMLVisitor5VisitERKNS_10XMLCommentE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='700' c='_ZN8tinyxml27XMLNode9ToCommentEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='722' c='_ZNK8tinyxml27XMLNode9ToCommentEv'/>
+<inh f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='674' c='tinyxml2::XMLNode'/>
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1031' ll='1056'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1035' c='_ZN8tinyxml210XMLComment9ToCommentEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1038' c='_ZNK8tinyxml210XMLComment9ToCommentEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1054' c='_ZN8tinyxml210XMLCommentC1ERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1055' c='_ZN8tinyxml210XMLCommentaSERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1055' c='_ZN8tinyxml210XMLCommentaSERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1661' c='_ZN8tinyxml210XMLElement16InsertNewCommentEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1723'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1845' c='_ZN8tinyxml211XMLDocument10NewCommentEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1954'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2298' c='_ZN8tinyxml210XMLPrinter5VisitERKNS_10XMLCommentE'/>
+<size>104</size>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1030'>/** An XML Comment. */</doc>
+<fun r='_ZN8tinyxml210XMLComment9ToCommentEv'/>
+<fun r='_ZNK8tinyxml210XMLComment9ToCommentEv'/>
+<fun r='_ZNK8tinyxml210XMLComment6AcceptEPNS_10XMLVisitorE'/>
+<fun r='_ZNK8tinyxml210XMLComment12ShallowCloneEPNS_11XMLDocumentE'/>
+<fun r='_ZNK8tinyxml210XMLComment12ShallowEqualEPKNS_7XMLNodeE'/>
+<fun r='_ZN8tinyxml210XMLCommentC1EPNS_11XMLDocumentE'/>
+<fun r='_ZN8tinyxml210XMLCommentD1Ev'/>
+<fun r='_ZN8tinyxml210XMLComment9ParseDeepEPcPNS_7StrPairEPi'/>
+<fun r='_ZN8tinyxml210XMLCommentC1ERKS0_'/>
+<fun r='_ZN8tinyxml210XMLCommentaSERKS0_'/>

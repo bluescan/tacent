@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='908' type='bool tinyxml2::XMLNode::ShallowEqual(const tinyxml2::XMLNode * compare) const'/>
+<ovr f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1926' c='_ZNK8tinyxml211XMLDocument12ShallowEqualEPKNS_7XMLNodeE'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='902'>/**
+    	Test if 2 nodes are the same, but don&apos;t test children.
+    	The 2 nodes do not need to be in the same Document.
+
+    	Note: if called on a XMLDocument, this will return false.
+    */</doc>

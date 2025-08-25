@@ -21,6 +21,8 @@
 <use f='Modules/Image/Inc/Image/tFrame.h' l='158' u='r' c='_ZN6tImage6tFrame11ReverseRowsEv'/>
 <use f='Modules/Image/Inc/Image/tFrame.h' l='167' u='r' c='_ZNK6tImage6tFrame8IsOpaqueEv'/>
 <offset>320</offset>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='80' u='w' c='_ZN6tImage10tImageAPNG4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='97' u='r' c='_ZN6tImage10tImageAPNG4LoadERK7tString'/>
 <use f='Modules/Image/Src/tImageAPNG.cpp' l='288' u='r' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
 <use f='Modules/Image/Src/tImageAPNG.cpp' l='289' u='r' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
 <use f='Modules/Image/Src/tImageAPNG.cpp' l='290' u='r' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
@@ -32,6 +34,7 @@
 <use f='Modules/Image/Src/tImageDDS.cpp' l='990' u='w' c='_ZN6tImage9tImageDDS8GetFrameEb'/>
 <use f='Modules/Image/Src/tImageDDS.cpp' l='991' u='r' c='_ZN6tImage9tImageDDS8GetFrameEb'/>
 <use f='Modules/Image/Src/tImageEXR.cpp' l='222' u='w' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='265' u='r' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
 <use f='Modules/Image/Src/tImageGIF.cpp' l='74' u='w' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
 <use f='Modules/Image/Src/tImageGIF.cpp' l='80' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
 <use f='Modules/Image/Src/tImageGIF.cpp' l='324' u='r' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>

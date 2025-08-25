@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1915' type='void tinyxml2::XMLDocument::DeepCopy(tinyxml2::XMLDocument * target) const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1908'>/**
+		Copies this document to a target document.
+		The target will be completely cleared before the copy.
+		If you want to copy a sub-tree, see XMLNode::DeepClone().
+
+		NOTE: that the &apos;target&apos; must be non-null.
+	*/</doc>

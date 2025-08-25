@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfMultiPartInputFile.h' l='67' type='int Imf_2_5::MultiPartInputFile::parts() const'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='177' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>

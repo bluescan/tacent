@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='692' ll='694' type='tinyxml2::XMLElement * tinyxml2::XMLNode::ToElement()'/>
+<ovr f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1277' c='_ZN8tinyxml210XMLElement9ToElementEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2109' u='c' c='_ZN8tinyxml29XMLHandle9ToElementEv'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='691'>/// Safely cast to an Element, or null.</doc>

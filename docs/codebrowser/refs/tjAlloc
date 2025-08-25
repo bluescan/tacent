@@ -1,0 +1,16 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1545' type='unsigned char * tjAlloc(int bytes)'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='57' u='c' c='_ZN6tImage9tImageJPG4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='75' u='c' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1532'>/**
+ * Allocate an image buffer for use with TurboJPEG.  You should always use
+ * this function to allocate the JPEG destination buffer(s) for the compression
+ * and transform functions unless you are disabling automatic buffer
+ * (re)allocation (by setting #TJFLAG_NOREALLOC.)
+ *
+ * @param bytes the number of bytes to allocate
+ *
+ * @return a pointer to a newly-allocated buffer with the specified number of
+ * bytes.
+ *
+ * @sa tjFree()
+ */</doc>

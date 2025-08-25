@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='216' type='7'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='96' u='r' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='465' u='r' c='_ZNK6tImage9tImageJPG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='211'>/**
+   * RGBA pixel format.  This is the same as @ref TJPF_RGBX, except that when
+   * decompressing, the X component is guaranteed to be 0xFF, which can be
+   * interpreted as an opaque alpha channel.
+   */</doc>

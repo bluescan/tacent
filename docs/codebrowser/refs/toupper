@@ -1,5 +1,5 @@
 <dec f='include/ctype.h' l='125' type='int toupper(int __c)'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='120' u='c' c='_ZN4tStd7tStruprEPc'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='122' u='c' c='_ZN4tStd7tStruprEPDu'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='125' u='c' c='_ZN4tStd8tToUpperEc'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='126' u='c' c='_ZN4tStd7tStruprEPc'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='128' u='c' c='_ZN4tStd7tStruprEPDu'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='131' u='c' c='_ZN4tStd8tToUpperEc'/>
 <doc f='include/ctype.h' l='124'>/* Return the uppercase version of C.  */</doc>

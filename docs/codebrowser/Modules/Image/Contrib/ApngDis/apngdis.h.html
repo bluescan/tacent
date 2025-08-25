@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>apngdis.h source code [Modules/Image/Contrib/ApngDis/apngdis.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="APngDis::Image "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Image/Contrib/ApngDis/apngdis.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>Modules</a>/<a href='../..'>Image</a>/<a href='..'>Contrib</a>/<a href='./'>ApngDis</a>/<a href='apngdis.h.html'>apngdis.h</a><br><a href='/tacent/index.html'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/tacent/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* APNG Disassembler 2.9</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i> * Deconstructs APNG files into individual frames.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i> * <a href="http://apngdis.sourceforge.net">http://apngdis.sourceforge.net</a></i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i> * Copyright (c) 2010-2017 Max Stepin</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i> * maxst at users.sourceforge.net</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i> * zlib license</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i> * ------------</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i> * This software is provided 'as-is', without any express or implied</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i> * warranty.  In no event will the authors be held liable for any damages</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i> * arising from the use of this software.</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i> * Permission is granted to anyone to use this software for any purpose,</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i> * including commercial applications, and to alter it and redistribute it</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i> * freely, subject to the following restrictions:</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i> * 1. The origin of this software must not be misrepresented; you must not</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i> *    claim that you wrote the original software. If you use this software</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i> *    in a product, an acknowledgment in the product documentation would be</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td><i> *    appreciated but is not required.</i>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i> * 2. Altered source versions must be plainly marked as such, and must not be</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i> *    misrepresented as being the original software.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i> * 3. This notice may not be removed or altered from any source distribution.</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i>//////////////////////////////////////////////////////////////////////////////////////</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i>// This is a modified version of apngdis											//</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i>//																					//</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i>// The modifications were made by Tristan Grimmer and are primarily to remove		//</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i>// main so the functionality can be called directly from other source files.		//</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i>// A header file has been created to allow external access.							//</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i>//																					//</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i>// All modifications should be considered to be covered by the zlib license above.	//</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i>//////////////////////////////////////////////////////////////////////////////////////</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#pragma once</u>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#include &lt;stdio.h&gt;</u>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u>#include &lt;stdlib.h&gt;</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>#include &lt;string.h&gt;</u>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>#include &lt;vector&gt;</u>&nbsp</td></tr>
+<tr><th id="45">45</th><td>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i>// @tacent Added version string. Value taken from printf in main().</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u>#define <dfn class="macro" id="_M/APNGDIS_VERSION_STRING" data-ref="_M/APNGDIS_VERSION_STRING">APNGDIS_VERSION_STRING</dfn> "2.9"</u>&nbsp</td></tr>
+<tr><th id="48">48</th><td>&nbsp</td></tr>
+<tr><th id="49">49</th><td><i>// @tacent Put it all in a namespace.</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td><b>namespace</b> <span class="namespace">APngDis</span>&nbsp</td></tr>
+<tr><th id="51">51</th><td>{&nbsp</td></tr>
+<tr><th id="52">52</th><td>&nbsp</td></tr>
+<tr><th id="53">53</th><td>&nbsp</td></tr>
+<tr><th id="54">54</th><td><b>struct</b> <dfn class="type def" id="APngDis::Image" title='APngDis::Image' data-ref="APngDis::Image">Image</dfn>&nbsp</td></tr>
+<tr><th id="55">55</th><td>{&nbsp</td></tr>
+<tr><th id="56">56</th><td>	<b>typedef</b> <em>unsigned</em> <em>char</em> * <dfn class="typedef" id="APngDis::Image::ROW" title='APngDis::Image::ROW' data-type='unsigned char *' data-ref="APngDis::Image::ROW">ROW</dfn>;&nbsp</td></tr>
+<tr><th id="57">57</th><td>	<em>unsigned</em> <em>int</em> <dfn class="decl field" id="APngDis::Image::w" title='APngDis::Image::w' data-ref="APngDis::Image::w">w</dfn>, <dfn class="decl field" id="APngDis::Image::h" title='APngDis::Image::h' data-ref="APngDis::Image::h">h</dfn>, <dfn class="decl field" id="APngDis::Image::bpp" title='APngDis::Image::bpp' data-ref="APngDis::Image::bpp">bpp</dfn>, <dfn class="decl field" id="APngDis::Image::delay_num" title='APngDis::Image::delay_num' data-ref="APngDis::Image::delay_num">delay_num</dfn>, <dfn class="decl field" id="APngDis::Image::delay_den" title='APngDis::Image::delay_den' data-ref="APngDis::Image::delay_den">delay_den</dfn>;&nbsp</td></tr>
+<tr><th id="58">58</th><td>	<em>unsigned</em> <em>char</em> * <dfn class="decl field" id="APngDis::Image::p" title='APngDis::Image::p' data-ref="APngDis::Image::p">p</dfn>;&nbsp</td></tr>
+<tr><th id="59">59</th><td>	<a class="typedef" href="#APngDis::Image::ROW" title='APngDis::Image::ROW' data-type='unsigned char *' data-ref="APngDis::Image::ROW">ROW</a> * <dfn class="decl field" id="APngDis::Image::rows" title='APngDis::Image::rows' data-ref="APngDis::Image::rows">rows</dfn>;&nbsp</td></tr>
+<tr><th id="60">60</th><td>	<dfn class="decl def fn" id="_ZN7APngDis5ImageC1Ev" title='APngDis::Image::Image' data-ref="_ZN7APngDis5ImageC1Ev">Image</dfn>() : <a class="member field" href="#APngDis::Image::w" title='APngDis::Image::w' data-ref="APngDis::Image::w">w</a>(<var>0</var>), <a class="member field" href="#APngDis::Image::h" title='APngDis::Image::h' data-ref="APngDis::Image::h">h</a>(<var>0</var>), <a class="member field" href="#APngDis::Image::bpp" title='APngDis::Image::bpp' data-ref="APngDis::Image::bpp">bpp</a>(<var>0</var>), <a class="member field" href="#APngDis::Image::delay_num" title='APngDis::Image::delay_num' data-ref="APngDis::Image::delay_num">delay_num</a>(<var>1</var>), <a class="member field" href="#APngDis::Image::delay_den" title='APngDis::Image::delay_den' data-ref="APngDis::Image::delay_den">delay_den</a>(<var>10</var>), <a class="member field" href="#APngDis::Image::p" title='APngDis::Image::p' data-ref="APngDis::Image::p">p</a>(<var>0</var>), <a class="member field" href="#APngDis::Image::rows" title='APngDis::Image::rows' data-ref="APngDis::Image::rows">rows</a>(<var>0</var>) { }&nbsp</td></tr>
+<tr><th id="61">61</th><td>	<dfn class="decl def fn" id="_ZN7APngDis5ImageD1Ev" title='APngDis::Image::~Image' data-ref="_ZN7APngDis5ImageD1Ev">~Image</dfn>() { }&nbsp</td></tr>
+<tr><th id="62">62</th><td>	<em>void</em> <dfn class="decl def fn" id="_ZN7APngDis5Image4initEjjj" title='APngDis::Image::init' data-ref="_ZN7APngDis5Image4initEjjj">init</dfn>(<em>unsigned</em> <em>int</em> <dfn class="local col1 decl" id="1w1" title='w1' data-type='unsigned int' data-ref="1w1">w1</dfn>, <em>unsigned</em> <em>int</em> <dfn class="local col2 decl" id="2h1" title='h1' data-type='unsigned int' data-ref="2h1">h1</dfn>, <em>unsigned</em> <em>int</em> <dfn class="local col3 decl" id="3bpp1" title='bpp1' data-type='unsigned int' data-ref="3bpp1">bpp1</dfn>)&nbsp</td></tr>
+<tr><th id="63">63</th><td>	{&nbsp</td></tr>
+<tr><th id="64">64</th><td>		<a class="member field" href="#APngDis::Image::w" title='APngDis::Image::w' data-ref="APngDis::Image::w">w</a> = <a class="local col1 ref" href="#1w1" title='w1' data-ref="1w1">w1</a>; <a class="member field" href="#APngDis::Image::h" title='APngDis::Image::h' data-ref="APngDis::Image::h">h</a> = <a class="local col2 ref" href="#2h1" title='h1' data-ref="2h1">h1</a>; <a class="member field" href="#APngDis::Image::bpp" title='APngDis::Image::bpp' data-ref="APngDis::Image::bpp">bpp</a> = <a class="local col3 ref" href="#3bpp1" title='bpp1' data-ref="3bpp1">bpp1</a>;&nbsp</td></tr>
+<tr><th id="65">65</th><td>		<em>int</em> <dfn class="local col4 decl" id="4rowbytes" title='rowbytes' data-type='int' data-ref="4rowbytes">rowbytes</dfn> = <a class="member field" href="#APngDis::Image::w" title='APngDis::Image::w' data-ref="APngDis::Image::w">w</a> * <a class="member field" href="#APngDis::Image::bpp" title='APngDis::Image::bpp' data-ref="APngDis::Image::bpp">bpp</a>;&nbsp</td></tr>
+<tr><th id="66">66</th><td>		<a class="member field" href="#APngDis::Image::rows" title='APngDis::Image::rows' data-ref="APngDis::Image::rows">rows</a> = <b>new</b> <a class="typedef" href="#APngDis::Image::ROW" title='APngDis::Image::ROW' data-type='unsigned char *' data-ref="APngDis::Image::ROW">ROW</a>[<a class="member field" href="#APngDis::Image::h" title='APngDis::Image::h' data-ref="APngDis::Image::h">h</a>];&nbsp</td></tr>
+<tr><th id="67">67</th><td>		<a class="member field" href="#APngDis::Image::rows" title='APngDis::Image::rows' data-ref="APngDis::Image::rows">rows</a>[<var>0</var>] = <a class="member field" href="#APngDis::Image::p" title='APngDis::Image::p' data-ref="APngDis::Image::p">p</a> = <b>new</b> <em>unsigned</em> <em>char</em>[<a class="member field" href="#APngDis::Image::h" title='APngDis::Image::h' data-ref="APngDis::Image::h">h</a> * <a class="local col4 ref" href="#4rowbytes" title='rowbytes' data-ref="4rowbytes">rowbytes</a>];&nbsp</td></tr>
+<tr><th id="68">68</th><td>		<b>for</b> (<em>unsigned</em> <em>int</em> <dfn class="local col5 decl" id="5j" title='j' data-type='unsigned int' data-ref="5j">j</dfn>=<var>1</var>; <a class="local col5 ref" href="#5j" title='j' data-ref="5j">j</a>&lt;<a class="member field" href="#APngDis::Image::h" title='APngDis::Image::h' data-ref="APngDis::Image::h">h</a>; <a class="local col5 ref" href="#5j" title='j' data-ref="5j">j</a>++)&nbsp</td></tr>
+<tr><th id="69">69</th><td>		<a class="member field" href="#APngDis::Image::rows" title='APngDis::Image::rows' data-ref="APngDis::Image::rows">rows</a>[<a class="local col5 ref" href="#5j" title='j' data-ref="5j">j</a>] = <a class="member field" href="#APngDis::Image::rows" title='APngDis::Image::rows' data-ref="APngDis::Image::rows">rows</a>[<a class="local col5 ref" href="#5j" title='j' data-ref="5j">j</a>-<var>1</var>] + <a class="local col4 ref" href="#4rowbytes" title='rowbytes' data-ref="4rowbytes">rowbytes</a>;&nbsp</td></tr>
+<tr><th id="70">70</th><td>	}&nbsp</td></tr>
+<tr><th id="71">71</th><td>	<em>void</em> <dfn class="decl def fn" id="_ZN7APngDis5Image4freeEv" title='APngDis::Image::free' data-ref="_ZN7APngDis5Image4freeEv">free</dfn>() { <b>delete</b>[] <a class="member field" href="#APngDis::Image::rows" title='APngDis::Image::rows' data-ref="APngDis::Image::rows">rows</a>; <b>delete</b>[] <a class="member field" href="#APngDis::Image::p" title='APngDis::Image::p' data-ref="APngDis::Image::p">p</a>; }&nbsp</td></tr>
+<tr><th id="72">72</th><td>};&nbsp</td></tr>
+<tr><th id="73">73</th><td>&nbsp</td></tr>
+<tr><th id="74">74</th><td><i>// Returns -1 on error.</i>&nbsp</td></tr>
+<tr><th id="75">75</th><td><em>int</em> <dfn class="decl fn" id="_ZN7APngDis9load_apngEPKcRSt6vectorINS_5ImageESaIS3_EE" title='APngDis::load_apng' data-ref="_ZN7APngDis9load_apngEPKcRSt6vectorINS_5ImageESaIS3_EE">load_apng</dfn>(<em>const</em> <em>char</em> * <dfn class="local col6 decl" id="6szIn" title='szIn' data-type='const char *' data-ref="6szIn">szIn</dfn>, <span class="namespace">std::</span><a class="type" href="../../../../include/c++/11/bits/stl_vector.h.html#std::vector" title='std::vector' data-ref="std::vector">vector</a>&lt;<a class="type" href="#APngDis::Image" title='APngDis::Image' data-ref="APngDis::Image">Image</a>&gt;&amp; <dfn class="local col7 decl" id="7img" title='img' data-type='std::vector&lt;Image&gt; &amp;' data-ref="7img">img</dfn>);&nbsp</td></tr>
+<tr><th id="76">76</th><td>&nbsp</td></tr>
+<tr><th id="77">77</th><td>&nbsp</td></tr>
+<tr><th id="78">78</th><td>}&nbsp</td></tr>
+<tr><th id="79">79</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../Src/tImageAPNG.cpp.html'>Modules/Image/Src/tImageAPNG.cpp</a><br/>Generated on <em>2025-Aug-25</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='315' ll='322'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='497' c='spng_get_bkgd'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='520' c='spng_set_bkgd'/>
+<size>10</size>
+<mbr r='spng_bkgd::gray' o='0' t='uint16_t'/>
+<mbr r='spng_bkgd::red' o='16' t='uint16_t'/>
+<mbr r='spng_bkgd::green' o='32' t='uint16_t'/>
+<mbr r='spng_bkgd::blue' o='48' t='uint16_t'/>
+<mbr r='spng_bkgd::plte_index' o='64' t='uint16_t'/>

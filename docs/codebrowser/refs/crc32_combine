@@ -1,1 +1,1 @@
-<dec f='include/zlib.h' l='1878' type='uLong crc32_combine(uLong , uLong , off_t )'/>
+<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1877' type='uLong crc32_combine(uLong , uLong , off_t )'/>

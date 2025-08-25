@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IlmBaseConfig.h' l='31'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathNamespace.h' l='85' u='a'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathNamespace.h' l='97' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathNamespace.h' l='99' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1000' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1011' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1463' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1474' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1884' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1895' u='c'/>

@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='243' ll='247'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='487' c='spng_get_plte'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='510' c='spng_set_plte'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='309' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<size>1028</size>
+<mbr r='spng_plte::n_entries' o='0' t='uint32_t'/>
+<mbr r='spng_plte::entries' o='32' t='struct spng_plte_entry[256]'/>

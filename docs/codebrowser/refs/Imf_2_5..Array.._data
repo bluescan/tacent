@@ -1,0 +1,11 @@
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='85' u='w' c='_ZN7Imf_2_55ArrayC1Ev'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='86' u='w' c='_ZN7Imf_2_55ArrayC1El'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='87' c='_ZN7Imf_2_55ArrayD1Ev'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='94' u='r' c='_ZN7Imf_2_55ArraycvPT_Ev'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='95' u='r' c='_ZNK7Imf_2_55ArraycvPKT_Ev'/>
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='129' type='T *'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='201' c='_ZN7Imf_2_55Array11resizeEraseEl'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='203' u='w' c='_ZN7Imf_2_55Array11resizeEraseEl'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='211' c='_ZN7Imf_2_55Array17resizeEraseUnsafeEl'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='212' u='w' c='_ZN7Imf_2_55Array17resizeEraseUnsafeEl'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='214' u='w' c='_ZN7Imf_2_55Array17resizeEraseUnsafeEl'/>

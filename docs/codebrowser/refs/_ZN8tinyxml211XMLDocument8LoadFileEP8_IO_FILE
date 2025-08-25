@@ -1,0 +1,12 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1770' type='tinyxml2::XMLError tinyxml2::XMLDocument::LoadFile(FILE * )'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1759'>/**
+    	Load an XML file from disk. You are responsible
+    	for providing and closing the FILE*.
+
+        NOTE: The file should be opened as binary (&quot;rb&quot;)
+        not text in order for TinyXML-2 to correctly
+        do newline normalization.
+
+    	Returns XML_SUCCESS (0) on success, or
+    	an errorID.
+    */</doc>

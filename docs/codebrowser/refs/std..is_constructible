@@ -24,5 +24,9 @@
 <use f='include/c++/11/bits/stl_uninitialized.h' l='138' c='_ZSt18uninitialized_copyT_S_T0_'/>
 <use f='include/c++/11/bits/stl_uninitialized.h' l='211' c='_ZSt18uninitialized_fillT_S_RKT0_'/>
 <use f='include/c++/11/bits/stl_uninitialized.h' l='288' c='_ZSt20uninitialized_fill_nT_T0_RKT1_'/>
+<use f='include/c++/11/bits/stl_map.h' l='814' c='_ZNSt3map6insertEOTL0__'/>
+<use f='include/c++/11/bits/stl_map.h' l='874' c='_ZNSt3map6insertENSt8_Rb_treeIT_St4pairIKS1_T0_ESt10_Select1stIS5_ET1_N9__gnu_cxx14__alloc_traitsIT2_NSB_10value_typeEE6rebindIS5_E5otherEE14const_iteratorEOTL0__'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='550' c='_ZNSt8multimap6insertEOTL0__'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='593' c='_ZNSt8multimap6insertENSt8_Rb_treeIT_St4pairIKS1_T0_ESt10_Select1stIS5_ET1_N9__gnu_cxx14__alloc_traitsIT2_NSB_10value_typeEE6rebindIS5_E5otherEE14const_iteratorEOTL0__'/>
 <use f='include/c++/11/bits/shared_ptr.h' l='126'/>
 <use f='include/c++/11/bits/shared_ptr.h' l='690'/>

@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2700'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2691'>/*
+    * The result is a two-bit code such that a value more than 1 indicates
+    * a failure in the API just called:
+    *
+    *    0 - no warning or error
+    *    1 - warning
+    *    2 - error
+    *    3 - error preceded by warning
+    */</doc>

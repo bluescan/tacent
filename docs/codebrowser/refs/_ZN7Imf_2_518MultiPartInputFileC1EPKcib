@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfMultiPartInputFile.h' l='51' type='void Imf_2_5::MultiPartInputFile::MultiPartInputFile(const char * fileName, int numThreads = globalThreadCount(), bool reconstructChunkOffsetTable = true)'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='176' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>

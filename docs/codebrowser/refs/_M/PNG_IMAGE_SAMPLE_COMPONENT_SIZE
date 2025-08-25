@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2847'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2845'>/* Return the total number of channels in a given format: 1..4 */</doc>

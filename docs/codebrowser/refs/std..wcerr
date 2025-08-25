@@ -1,0 +1,2 @@
+<dec f='include/c++/11/iostream' l='68' type='std::wostream'/>
+<doc f='include/c++/11/iostream' l='68'>/// Linked to standard error (unbuffered)</doc>

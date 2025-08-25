@@ -1,3 +1,3 @@
-<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='286' type='int tStd::tUTF32s(char32_t * dst, const char16_t * src)'/>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='286'>// UTF-16 to UTF-32.</doc>
-<def f='Modules/Foundation/Src/tStandard.cpp' l='550' ll='560' type='int tStd::tUTF32s(char32_t * dst, const char16_t * src)'/>
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='292' type='int tStd::tUTF32s(char32_t * dst, const char16_t * src)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='292'>// UTF-16 to UTF-32.</doc>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='613' ll='623' type='int tStd::tUTF32s(char32_t * dst, const char16_t * src)'/>

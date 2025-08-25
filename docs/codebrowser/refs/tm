@@ -31,3 +31,5 @@
 <mbr r='tm::tm_isdst' o='256' t='int'/>
 <mbr r='tm::tm_gmtoff' o='320' t='long'/>
 <mbr r='tm::tm_zone' o='384' t='const char *'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='1043' c='png_convert_from_struct_tm'/>
+<size>56</size>

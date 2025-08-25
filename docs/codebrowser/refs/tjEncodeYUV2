@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1713' type='int tjEncodeYUV2(tjhandle handle, unsigned char * srcBuf, int width, int pitch, int height, int pixelFormat, unsigned char * dstBuf, int subsamp, int flags)'/>

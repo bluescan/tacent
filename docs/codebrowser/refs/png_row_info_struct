@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/LibPNG/include/png.h' l='754' ll='762'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='754'/>
+<size>24</size>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='750'>/* This is used for the transformation routines, as some of them
+ * change these values for the row.  It also should enable using
+ * the routines for other purposes.
+ */</doc>
+<mbr r='png_row_info_struct::width' o='0' t='png_uint_32'/>
+<mbr r='png_row_info_struct::rowbytes' o='64' t='size_t'/>
+<mbr r='png_row_info_struct::color_type' o='128' t='png_byte'/>
+<mbr r='png_row_info_struct::bit_depth' o='136' t='png_byte'/>
+<mbr r='png_row_info_struct::channels' o='144' t='png_byte'/>
+<mbr r='png_row_info_struct::pixel_depth' o='152' t='png_byte'/>

@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfTileDescription.h' l='68' ll='98'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfTileDescription.h' l='91' c='_ZNK7Imf_2_515TileDescriptioneqERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='393' c='_ZN7Imf_2_56Header18setTileDescriptionERKNS_15TileDescriptionE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='396' c='_ZN7Imf_2_56Header15tileDescriptionEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='398' c='_ZNK7Imf_2_56Header15tileDescriptionEv'/>
+<size>16</size>
+<mbr r='Imf_2_5::TileDescription::xSize' o='0' t='unsigned int'/>
+<mbr r='Imf_2_5::TileDescription::ySize' o='32' t='unsigned int'/>
+<mbr r='Imf_2_5::TileDescription::mode' o='64' t='Imf_2_5::LevelMode'/>
+<mbr r='Imf_2_5::TileDescription::roundingMode' o='96' t='Imf_2_5::LevelRoundingMode'/>
+<fun r='_ZN7Imf_2_515TileDescriptionC1EjjNS_9LevelModeENS_17LevelRoundingModeE'/>
+<fun r='_ZNK7Imf_2_515TileDescriptioneqERKS0_'/>

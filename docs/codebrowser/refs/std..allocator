@@ -84,6 +84,13 @@
 <use f='include/c++/11/bits/basic_string.h' l='6061'/>
 <use f='include/c++/11/bits/basic_string.h' l='6070'/>
 <use f='include/c++/11/bits/basic_string.h' l='6076'/>
+<use f='include/c++/11/bits/stl_tree.h' l='424'/>
+<use f='include/c++/11/bits/stl_map.h' l='99'/>
+<use f='include/c++/11/bits/stl_map.h' l='1420'/>
+<use f='include/c++/11/bits/stl_map.h' l='1430'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='98'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='1085'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='1095'/>
 <use f='include/c++/11/bits/stl_deque.h' l='766'/>
 <use f='include/c++/11/bits/stl_deque.h' l='2046' c='_ZNSt5deque15_M_destroy_dataENSt11_Deque_baseIT_T0_E8iteratorES4_RKSaIS1_E'/>
 <use f='include/c++/11/bits/stl_deque.h' l='2228'/>

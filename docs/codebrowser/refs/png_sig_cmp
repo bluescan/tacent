@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='913' type='int png_sig_cmp(png_const_bytep sig, size_t start, size_t num_to_check)'/>

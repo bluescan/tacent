@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='175' type='bool half::isNan() const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='675' ll='681' type='bool half::isNan() const'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='162' u='c' c='_ZN12halfFunctionC1ETL0__4halfS1_T_S2_S2_S2_'/>

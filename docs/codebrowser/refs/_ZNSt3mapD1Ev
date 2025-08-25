@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_map.h' l='302' type='void std::map::~map&lt;_Key, _Tp, _Compare, _Alloc&gt;()'/>
+<doc f='include/c++/11/bits/stl_map.h' l='297'>/**
+       *  The dtor only erases the elements, and note that if the elements
+       *  themselves are pointers, the pointed-to memory is not touched in any
+       *  way.  Managing the pointer is the user&apos;s responsibility.
+       */</doc>

@@ -6,3 +6,4 @@ _ZNSt6locale5facetC1Em|std::locale::facet::facet
 _ZNSt6locale5facetaSERKS0_|std::locale::facet::operator=
 _ZNKSt7__cxx118numpunct9falsenameEv|std::numpunct::falsename
 _ZNKSt19ostreambuf_iterator6failedEv|std::ostreambuf_iterator::failed
+_ZN9Imath_2_54Math4fabsET_|Imath_2_5::Math::fabs

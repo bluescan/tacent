@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibPNG/include/png.h' l='500' ll='507'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='500'/>
+<size>5</size>
+<mbr r='png_color_8_struct::red' o='0' t='png_byte'/>
+<mbr r='png_color_8_struct::green' o='8' t='png_byte'/>
+<mbr r='png_color_8_struct::blue' o='16' t='png_byte'/>
+<mbr r='png_color_8_struct::gray' o='24' t='png_byte'/>
+<mbr r='png_color_8_struct::alpha' o='32' t='png_byte'/>

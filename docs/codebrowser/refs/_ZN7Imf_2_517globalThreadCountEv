@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfThreading.h' l='83' type='int Imf_2_5::globalThreadCount()'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfMultiPartInputFile.h' l='52' u='c' c='_ZN7Imf_2_518MultiPartInputFileC1EPKcib'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfMultiPartInputFile.h' l='57' u='c' c='_ZN7Imf_2_518MultiPartInputFileC1ERNS_7IStreamEib'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfThreading.h' l='78'>//-----------------------------------------------------------------------------
+// Return the number of Imf-global worker threads used for parallel
+// compression and decompression of OpenEXR files.
+//-----------------------------------------------------------------------------</doc>

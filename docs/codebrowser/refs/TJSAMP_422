@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='103' type='1'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='99'>/**
+   * 4:2:2 chrominance subsampling.  The JPEG or YUV image will contain one
+   * chrominance component for every 2x1 block of pixels in the source image.
+   */</doc>

@@ -1,0 +1,2 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1972' u='c' c='_ZN8tinyxml211XMLDocument12DepthTrackerD1Ev'/>
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1978' type='void tinyxml2::XMLDocument::PopDepth()'/>

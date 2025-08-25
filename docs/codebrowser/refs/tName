@@ -71,8 +71,8 @@
 <size>32</size>
 <use f='Modules/Input/Inc/Input/tCompWheel.h' l='26' c='_ZN6tInput10tCompWheelC1ERK5tNameRSt5mutex'/>
 <size>32</size>
-<use f='Modules/Input/Inc/Input/tCont.h' l='28' c='_ZN6tInput11tControllerC1ERK5tName'/>
-<use f='Modules/Input/Inc/Input/tCont.h' l='32'/>
+<use f='Modules/Input/Inc/Input/tCont.h' l='29' c='_ZN6tInput11tControllerC1ERK5tName'/>
+<use f='Modules/Input/Inc/Input/tCont.h' l='33'/>
 <size>32</size>
 <use f='Modules/Input/Inc/Input/tContGamepad.h' l='57' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
 <size>32</size>

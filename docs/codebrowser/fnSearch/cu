@@ -1,2 +1,3 @@
+_ZNK8tinyxml28MemPoolT13CurrentAllocsEv|tinyxml2::MemPoolT::CurrentAllocs
 _ZN6tImage11tQuantizeWu3CutERNS0_5StateEPNS0_3BoxES4_|tImage::tQuantizeWu::Cut
 _ZNKSt7__cxx1110moneypunct11curr_symbolEv|std::moneypunct::curr_symbol

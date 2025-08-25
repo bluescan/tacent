@@ -27,8 +27,6 @@
 <use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='27' u='c' c='_ZN9tPipeline5tRuleC1Ev'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='116' u='c' c='_ZN9tPipeline5tRule16AddDependencyDirERK7tStringS3_'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='127' u='c' c='_ZN9tPipeline5tRule19AddDependencyDirRecERK7tStringS3_'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='25' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='70' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
 <use f='Modules/System/Src/tFile.cpp' l='2913' u='c' c='_ZN7tSystem19tFindDirsRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
 <use f='Modules/System/Src/tFile.cpp' l='2914' u='c' c='_ZN7tSystem19tFindDirsRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
 <use f='Modules/System/Src/tFile.cpp' l='3019' u='c' c='_ZN7tSystem20tFindFilesRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>

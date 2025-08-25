@@ -1,5 +1,5 @@
 <dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='180' type='float tMath::tSinFast(float x)'/>
 <use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='182' u='c' c='_ZN5tMath8tCosFastEf'/>
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='510' ll='521' type='float tMath::tSinFast(float x)'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='536' u='c' c='_ZN5tMath11tCosSinFastERfS0_f'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='513' ll='524' type='float tMath::tSinFast(float x)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='539' u='c' c='_ZN5tMath11tCosSinFastERfS0_f'/>
 <doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='180'>// For x E [0, Pi/2].</doc>

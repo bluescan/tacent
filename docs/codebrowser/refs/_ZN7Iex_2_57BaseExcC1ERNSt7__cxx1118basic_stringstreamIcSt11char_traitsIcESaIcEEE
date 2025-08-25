@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='70' type='void Iex_2_5::BaseExc::BaseExc(std::stringstream &amp; s)'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='70'>// std::string (s.str())</doc>

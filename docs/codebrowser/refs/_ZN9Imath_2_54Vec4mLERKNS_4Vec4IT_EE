@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='608' type='const Vec4&lt;T&gt; &amp; Imath_2_5::Vec4::operator*=(const Vec4&lt;T&gt; &amp; v)'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1970' ll='1979' type='const Vec4&lt;T&gt; &amp; Imath_2_5::Vec4::operator*=(const Vec4&lt;T&gt; &amp; v)'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='604'>//------------------------------
+    // Component-wise multiplication
+    //------------------------------</doc>

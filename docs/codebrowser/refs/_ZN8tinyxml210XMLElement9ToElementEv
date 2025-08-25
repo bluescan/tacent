@@ -1,0 +1,2 @@
+<inh f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='692' c='_ZN8tinyxml27XMLNode9ToElementEv'/>
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1277' ll='1279' type='tinyxml2::XMLElement * tinyxml2::XMLElement::ToElement()'/>

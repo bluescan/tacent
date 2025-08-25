@@ -1,0 +1,13 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='129' type='1'/>
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='301' ll='313'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='496' c='spng_get_text'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='519' c='spng_set_text'/>
+<size>128</size>
+<mbr r='spng_text::keyword' o='0' t='char[80]'/>
+<mbr r='spng_text::type' o='640' t='int'/>
+<mbr r='spng_text::length' o='704' t='size_t'/>
+<mbr r='spng_text::text' o='768' t='char *'/>
+<mbr r='spng_text::compression_flag' o='832' t='uint8_t'/>
+<mbr r='spng_text::compression_method' o='840' t='uint8_t'/>
+<mbr r='spng_text::language_tag' o='896' t='char *'/>
+<mbr r='spng_text::translated_keyword' o='960' t='char *'/>

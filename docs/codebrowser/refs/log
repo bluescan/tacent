@@ -1,4 +1,6 @@
 <dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='104' type='double log(double __x)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='193' u='c' c='_ZN5tMath4tLogEd'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathMath.h' l='105' u='c' c='_ZN9Imath_2_54Math3logET_'/>
 <use f='include/c++/11/bits/random.h' l='4020' u='c' c='_ZNSt22geometric_distribution10param_type13_M_initializeEv'/>
 <use f='include/c++/11/bits/random.tcc' l='1268' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>
 <use f='include/c++/11/bits/random.tcc' l='1273' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>

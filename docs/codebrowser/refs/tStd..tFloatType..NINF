@@ -1,6 +1,6 @@
-<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='365' type='7'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='366'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='715' u='r' c='_ZN4tStd13tGetFloatTypeEf'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='744' u='r' c='_ZN4tStd13tGetFloatTypeEd'/>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='365'>// Negative INFinity.</doc>
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='371' type='7'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='372'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='721' u='r' c='_ZN4tStd13tGetFloatTypeEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='750' u='r' c='_ZN4tStd13tGetFloatTypeEd'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='371'>// Negative INFinity.</doc>
 <use f='Modules/System/Src/tPrint.cpp' l='1462' c='_ZN7tSystem37HandlerHelper_HandleSpecialFloatTypesER6tArrayIcEd'/>

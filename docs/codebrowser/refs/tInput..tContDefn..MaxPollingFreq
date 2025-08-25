@@ -1,0 +1,9 @@
+<dec f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='88' type='int32'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='131' u='w' c='_ZN6tInput9tContDefn10SetGenericEv'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='149' u='w' c='_ZN6tInput9tContDefn5ClearEv'/>
+<offset>128</offset>
+<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='84'>// Polling frequency in Hz. From this an appropriate polling period can be computed. This is the &quot;max&quot; frequency in
+	// the sense that a particular controller may poll at a different frequency for buttons vs analog inputs like
+	// triggers and sticks. However, the xinput API reads everything at once so we need a polling rate that is as fast
+	// as the fastest component polling rate in the controller.</doc>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='38' u='r' c='_ZN6tInput12tContGamepad12StartPollingEi'/>

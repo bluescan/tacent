@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>math.h source code [include/c++/11/math.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/math.h'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>c++</a>/<a href='./'>11</a>/<a href='math.h.html'>math.h</a><br><a href='/tacent/index.html'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/tacent/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// -*- C++ -*- compatibility header.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2002-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">math.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is a Standard C++ Library header.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#<span data-ppcond="29">if</span> !defined <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span> || defined <span class="macro" data-ref="_M/_GLIBCXX_INCLUDE_NEXT_C_HEADERS">_GLIBCXX_INCLUDE_NEXT_C_HEADERS</span></u>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u># include_next &lt;math.h&gt;</u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#<span data-ppcond="29">else</span></u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#<span data-ppcond="33">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_MATH_H">_GLIBCXX_MATH_H</span></u>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_MATH_H" data-ref="_M/_GLIBCXX_MATH_H">_GLIBCXX_MATH_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u># include &lt;cmath&gt;</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td>&nbsp</td></tr>
+<tr><th id="38">38</th><td><b>using</b> <span class="namespace">std::</span>abs;&nbsp</td></tr>
+<tr><th id="39">39</th><td><b>using</b> <span class="namespace">std::</span>acos;&nbsp</td></tr>
+<tr><th id="40">40</th><td><b>using</b> <span class="namespace">std::</span>asin;&nbsp</td></tr>
+<tr><th id="41">41</th><td><b>using</b> <span class="namespace">std::</span>atan;&nbsp</td></tr>
+<tr><th id="42">42</th><td><b>using</b> <span class="namespace">std::</span>atan2;&nbsp</td></tr>
+<tr><th id="43">43</th><td><b>using</b> <span class="namespace">std::</span>cos;&nbsp</td></tr>
+<tr><th id="44">44</th><td><b>using</b> <span class="namespace">std::</span>sin;&nbsp</td></tr>
+<tr><th id="45">45</th><td><b>using</b> <span class="namespace">std::</span>tan;&nbsp</td></tr>
+<tr><th id="46">46</th><td><b>using</b> <span class="namespace">std::</span>cosh;&nbsp</td></tr>
+<tr><th id="47">47</th><td><b>using</b> <span class="namespace">std::</span>sinh;&nbsp</td></tr>
+<tr><th id="48">48</th><td><b>using</b> <span class="namespace">std::</span>tanh;&nbsp</td></tr>
+<tr><th id="49">49</th><td><b>using</b> <span class="namespace">std::</span>exp;&nbsp</td></tr>
+<tr><th id="50">50</th><td><b>using</b> <span class="namespace">std::</span>frexp;&nbsp</td></tr>
+<tr><th id="51">51</th><td><b>using</b> <span class="namespace">std::</span>ldexp;&nbsp</td></tr>
+<tr><th id="52">52</th><td><b>using</b> <span class="namespace">std::</span>log;&nbsp</td></tr>
+<tr><th id="53">53</th><td><b>using</b> <span class="namespace">std::</span>log10;&nbsp</td></tr>
+<tr><th id="54">54</th><td><b>using</b> <span class="namespace">std::</span>modf;&nbsp</td></tr>
+<tr><th id="55">55</th><td><b>using</b> <span class="namespace">std::</span>pow;&nbsp</td></tr>
+<tr><th id="56">56</th><td><b>using</b> <span class="namespace">std::</span>sqrt;&nbsp</td></tr>
+<tr><th id="57">57</th><td><b>using</b> <span class="namespace">std::</span>ceil;&nbsp</td></tr>
+<tr><th id="58">58</th><td><b>using</b> <span class="namespace">std::</span>fabs;&nbsp</td></tr>
+<tr><th id="59">59</th><td><b>using</b> <span class="namespace">std::</span>floor;&nbsp</td></tr>
+<tr><th id="60">60</th><td><b>using</b> <span class="namespace">std::</span>fmod;&nbsp</td></tr>
+<tr><th id="61">61</th><td>&nbsp</td></tr>
+<tr><th id="62">62</th><td><u>#<span data-ppcond="62">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#658" title="1" data-ref="_M/_GLIBCXX_USE_C99_MATH">_GLIBCXX_USE_C99_MATH</a></u>&nbsp</td></tr>
+<tr><th id="63">63</th><td><b>using</b> <span class="namespace">std::</span>fpclassify;&nbsp</td></tr>
+<tr><th id="64">64</th><td><b>using</b> <span class="namespace">std::</span>isfinite;&nbsp</td></tr>
+<tr><th id="65">65</th><td><b>using</b> <span class="namespace">std::</span>isinf;&nbsp</td></tr>
+<tr><th id="66">66</th><td><b>using</b> <span class="namespace">std::</span>isnan;&nbsp</td></tr>
+<tr><th id="67">67</th><td><b>using</b> <span class="namespace">std::</span>isnormal;&nbsp</td></tr>
+<tr><th id="68">68</th><td><b>using</b> <span class="namespace">std::</span>signbit;&nbsp</td></tr>
+<tr><th id="69">69</th><td><b>using</b> <span class="namespace">std::</span>isgreater;&nbsp</td></tr>
+<tr><th id="70">70</th><td><b>using</b> <span class="namespace">std::</span>isgreaterequal;&nbsp</td></tr>
+<tr><th id="71">71</th><td><b>using</b> <span class="namespace">std::</span>isless;&nbsp</td></tr>
+<tr><th id="72">72</th><td><b>using</b> <span class="namespace">std::</span>islessequal;&nbsp</td></tr>
+<tr><th id="73">73</th><td><b>using</b> <span class="namespace">std::</span>islessgreater;&nbsp</td></tr>
+<tr><th id="74">74</th><td><b>using</b> <span class="namespace">std::</span>isunordered;&nbsp</td></tr>
+<tr><th id="75">75</th><td><u>#<span data-ppcond="62">endif</span></u>&nbsp</td></tr>
+<tr><th id="76">76</th><td>&nbsp</td></tr>
+<tr><th id="77">77</th><td><u>#<span data-ppcond="77">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L &amp;&amp; defined(<a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1688" data-ref="_M/_GLIBCXX_USE_C99_MATH_TR1">_GLIBCXX_USE_C99_MATH_TR1</a>)</u>&nbsp</td></tr>
+<tr><th id="78">78</th><td><b>using</b> <span class="namespace">std::</span>acosh;&nbsp</td></tr>
+<tr><th id="79">79</th><td><b>using</b> <span class="namespace">std::</span>asinh;&nbsp</td></tr>
+<tr><th id="80">80</th><td><b>using</b> <span class="namespace">std::</span>atanh;&nbsp</td></tr>
+<tr><th id="81">81</th><td><b>using</b> <span class="namespace">std::</span>cbrt;&nbsp</td></tr>
+<tr><th id="82">82</th><td><b>using</b> <span class="namespace">std::</span>copysign;&nbsp</td></tr>
+<tr><th id="83">83</th><td><b>using</b> <span class="namespace">std::</span>erf;&nbsp</td></tr>
+<tr><th id="84">84</th><td><b>using</b> <span class="namespace">std::</span>erfc;&nbsp</td></tr>
+<tr><th id="85">85</th><td><b>using</b> <span class="namespace">std::</span>exp2;&nbsp</td></tr>
+<tr><th id="86">86</th><td><b>using</b> <span class="namespace">std::</span>expm1;&nbsp</td></tr>
+<tr><th id="87">87</th><td><b>using</b> <span class="namespace">std::</span>fdim;&nbsp</td></tr>
+<tr><th id="88">88</th><td><b>using</b> <span class="namespace">std::</span>fma;&nbsp</td></tr>
+<tr><th id="89">89</th><td><b>using</b> <span class="namespace">std::</span>fmax;&nbsp</td></tr>
+<tr><th id="90">90</th><td><b>using</b> <span class="namespace">std::</span>fmin;&nbsp</td></tr>
+<tr><th id="91">91</th><td><b>using</b> <span class="namespace">std::</span>hypot;&nbsp</td></tr>
+<tr><th id="92">92</th><td><b>using</b> <span class="namespace">std::</span>ilogb;&nbsp</td></tr>
+<tr><th id="93">93</th><td><b>using</b> <span class="namespace">std::</span>lgamma;&nbsp</td></tr>
+<tr><th id="94">94</th><td><b>using</b> <span class="namespace">std::</span>llrint;&nbsp</td></tr>
+<tr><th id="95">95</th><td><b>using</b> <span class="namespace">std::</span>llround;&nbsp</td></tr>
+<tr><th id="96">96</th><td><b>using</b> <span class="namespace">std::</span>log1p;&nbsp</td></tr>
+<tr><th id="97">97</th><td><b>using</b> <span class="namespace">std::</span>log2;&nbsp</td></tr>
+<tr><th id="98">98</th><td><b>using</b> <span class="namespace">std::</span>logb;&nbsp</td></tr>
+<tr><th id="99">99</th><td><b>using</b> <span class="namespace">std::</span>lrint;&nbsp</td></tr>
+<tr><th id="100">100</th><td><b>using</b> <span class="namespace">std::</span>lround;&nbsp</td></tr>
+<tr><th id="101">101</th><td><b>using</b> <span class="namespace">std::</span>nearbyint;&nbsp</td></tr>
+<tr><th id="102">102</th><td><b>using</b> <span class="namespace">std::</span>nextafter;&nbsp</td></tr>
+<tr><th id="103">103</th><td><b>using</b> <span class="namespace">std::</span>nexttoward;&nbsp</td></tr>
+<tr><th id="104">104</th><td><b>using</b> <span class="namespace">std::</span>remainder;&nbsp</td></tr>
+<tr><th id="105">105</th><td><b>using</b> <span class="namespace">std::</span>remquo;&nbsp</td></tr>
+<tr><th id="106">106</th><td><b>using</b> <span class="namespace">std::</span>rint;&nbsp</td></tr>
+<tr><th id="107">107</th><td><b>using</b> <span class="namespace">std::</span>round;&nbsp</td></tr>
+<tr><th id="108">108</th><td><b>using</b> <span class="namespace">std::</span>scalbln;&nbsp</td></tr>
+<tr><th id="109">109</th><td><b>using</b> <span class="namespace">std::</span>scalbn;&nbsp</td></tr>
+<tr><th id="110">110</th><td><b>using</b> <span class="namespace">std::</span>tgamma;&nbsp</td></tr>
+<tr><th id="111">111</th><td><b>using</b> <span class="namespace">std::</span>trunc;&nbsp</td></tr>
+<tr><th id="112">112</th><td><u>#<span data-ppcond="77">endif</span> // C++11 &amp;&amp; _GLIBCXX_USE_C99_MATH_TR1</u>&nbsp</td></tr>
+<tr><th id="113">113</th><td>&nbsp</td></tr>
+<tr><th id="114">114</th><td><i>// The mathematical special functions are only added to the global namespace</i>&nbsp</td></tr>
+<tr><th id="115">115</th><td><i>// by IS 29124, but not by C++17.</i>&nbsp</td></tr>
+<tr><th id="116">116</th><td><u>#<span data-ppcond="116">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L &amp;&amp; __STDCPP_WANT_MATH_SPEC_FUNCS__ != 0</u>&nbsp</td></tr>
+<tr><th id="117">117</th><td><b>using</b> std::assoc_laguerref;&nbsp</td></tr>
+<tr><th id="118">118</th><td><b>using</b> std::assoc_laguerrel;&nbsp</td></tr>
+<tr><th id="119">119</th><td><b>using</b> std::assoc_laguerre;&nbsp</td></tr>
+<tr><th id="120">120</th><td><b>using</b> std::assoc_legendref;&nbsp</td></tr>
+<tr><th id="121">121</th><td><b>using</b> std::assoc_legendrel;&nbsp</td></tr>
+<tr><th id="122">122</th><td><b>using</b> std::assoc_legendre;&nbsp</td></tr>
+<tr><th id="123">123</th><td><b>using</b> std::betaf;&nbsp</td></tr>
+<tr><th id="124">124</th><td><b>using</b> std::betal;&nbsp</td></tr>
+<tr><th id="125">125</th><td><b>using</b> std::beta;&nbsp</td></tr>
+<tr><th id="126">126</th><td><b>using</b> std::comp_ellint_1f;&nbsp</td></tr>
+<tr><th id="127">127</th><td><b>using</b> std::comp_ellint_1l;&nbsp</td></tr>
+<tr><th id="128">128</th><td><b>using</b> std::comp_ellint_1;&nbsp</td></tr>
+<tr><th id="129">129</th><td><b>using</b> std::comp_ellint_2f;&nbsp</td></tr>
+<tr><th id="130">130</th><td><b>using</b> std::comp_ellint_2l;&nbsp</td></tr>
+<tr><th id="131">131</th><td><b>using</b> std::comp_ellint_2;&nbsp</td></tr>
+<tr><th id="132">132</th><td><b>using</b> std::comp_ellint_3f;&nbsp</td></tr>
+<tr><th id="133">133</th><td><b>using</b> std::comp_ellint_3l;&nbsp</td></tr>
+<tr><th id="134">134</th><td><b>using</b> std::comp_ellint_3;&nbsp</td></tr>
+<tr><th id="135">135</th><td><b>using</b> std::cyl_bessel_if;&nbsp</td></tr>
+<tr><th id="136">136</th><td><b>using</b> std::cyl_bessel_il;&nbsp</td></tr>
+<tr><th id="137">137</th><td><b>using</b> std::cyl_bessel_i;&nbsp</td></tr>
+<tr><th id="138">138</th><td><b>using</b> std::cyl_bessel_jf;&nbsp</td></tr>
+<tr><th id="139">139</th><td><b>using</b> std::cyl_bessel_jl;&nbsp</td></tr>
+<tr><th id="140">140</th><td><b>using</b> std::cyl_bessel_j;&nbsp</td></tr>
+<tr><th id="141">141</th><td><b>using</b> std::cyl_bessel_kf;&nbsp</td></tr>
+<tr><th id="142">142</th><td><b>using</b> std::cyl_bessel_kl;&nbsp</td></tr>
+<tr><th id="143">143</th><td><b>using</b> std::cyl_bessel_k;&nbsp</td></tr>
+<tr><th id="144">144</th><td><b>using</b> std::cyl_neumannf;&nbsp</td></tr>
+<tr><th id="145">145</th><td><b>using</b> std::cyl_neumannl;&nbsp</td></tr>
+<tr><th id="146">146</th><td><b>using</b> std::cyl_neumann;&nbsp</td></tr>
+<tr><th id="147">147</th><td><b>using</b> std::ellint_1f;&nbsp</td></tr>
+<tr><th id="148">148</th><td><b>using</b> std::ellint_1l;&nbsp</td></tr>
+<tr><th id="149">149</th><td><b>using</b> std::ellint_1;&nbsp</td></tr>
+<tr><th id="150">150</th><td><b>using</b> std::ellint_2f;&nbsp</td></tr>
+<tr><th id="151">151</th><td><b>using</b> std::ellint_2l;&nbsp</td></tr>
+<tr><th id="152">152</th><td><b>using</b> std::ellint_2;&nbsp</td></tr>
+<tr><th id="153">153</th><td><b>using</b> std::ellint_3f;&nbsp</td></tr>
+<tr><th id="154">154</th><td><b>using</b> std::ellint_3l;&nbsp</td></tr>
+<tr><th id="155">155</th><td><b>using</b> std::ellint_3;&nbsp</td></tr>
+<tr><th id="156">156</th><td><b>using</b> std::expintf;&nbsp</td></tr>
+<tr><th id="157">157</th><td><b>using</b> std::expintl;&nbsp</td></tr>
+<tr><th id="158">158</th><td><b>using</b> std::expint;&nbsp</td></tr>
+<tr><th id="159">159</th><td><b>using</b> std::hermitef;&nbsp</td></tr>
+<tr><th id="160">160</th><td><b>using</b> std::hermitel;&nbsp</td></tr>
+<tr><th id="161">161</th><td><b>using</b> std::hermite;&nbsp</td></tr>
+<tr><th id="162">162</th><td><b>using</b> std::laguerref;&nbsp</td></tr>
+<tr><th id="163">163</th><td><b>using</b> std::laguerrel;&nbsp</td></tr>
+<tr><th id="164">164</th><td><b>using</b> std::laguerre;&nbsp</td></tr>
+<tr><th id="165">165</th><td><b>using</b> std::legendref;&nbsp</td></tr>
+<tr><th id="166">166</th><td><b>using</b> std::legendrel;&nbsp</td></tr>
+<tr><th id="167">167</th><td><b>using</b> std::legendre;&nbsp</td></tr>
+<tr><th id="168">168</th><td><b>using</b> std::riemann_zetaf;&nbsp</td></tr>
+<tr><th id="169">169</th><td><b>using</b> std::riemann_zetal;&nbsp</td></tr>
+<tr><th id="170">170</th><td><b>using</b> std::riemann_zeta;&nbsp</td></tr>
+<tr><th id="171">171</th><td><b>using</b> std::sph_besself;&nbsp</td></tr>
+<tr><th id="172">172</th><td><b>using</b> std::sph_bessell;&nbsp</td></tr>
+<tr><th id="173">173</th><td><b>using</b> std::sph_bessel;&nbsp</td></tr>
+<tr><th id="174">174</th><td><b>using</b> std::sph_legendref;&nbsp</td></tr>
+<tr><th id="175">175</th><td><b>using</b> std::sph_legendrel;&nbsp</td></tr>
+<tr><th id="176">176</th><td><b>using</b> std::sph_legendre;&nbsp</td></tr>
+<tr><th id="177">177</th><td><b>using</b> std::sph_neumannf;&nbsp</td></tr>
+<tr><th id="178">178</th><td><b>using</b> std::sph_neumannl;&nbsp</td></tr>
+<tr><th id="179">179</th><td><b>using</b> std::sph_neumann;&nbsp</td></tr>
+<tr><th id="180">180</th><td><u>#<span data-ppcond="116">endif</span> // _GLIBCXX_USE_STD_SPEC_FUNCS</u>&nbsp</td></tr>
+<tr><th id="181">181</th><td>&nbsp</td></tr>
+<tr><th id="182">182</th><td><u>#<span data-ppcond="182">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L</u>&nbsp</td></tr>
+<tr><th id="183">183</th><td><b>using</b> <span class="namespace">std::</span>lerp;&nbsp</td></tr>
+<tr><th id="184">184</th><td><u>#<span data-ppcond="182">endif</span> // C++20</u>&nbsp</td></tr>
+<tr><th id="185">185</th><td>&nbsp</td></tr>
+<tr><th id="186">186</th><td><u>#<span data-ppcond="33">endif</span> // _GLIBCXX_MATH_H</u>&nbsp</td></tr>
+<tr><th id="187">187</th><td><u>#<span data-ppcond="29">endif</span> // __cplusplus</u>&nbsp</td></tr>
+<tr><th id="188">188</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Image/Src/tImageEXR.cpp.html'>Modules/Image/Src/tImageEXR.cpp</a><br/>Generated on <em>2025-Aug-25</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

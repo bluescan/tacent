@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1636' type='tinyxml2::XMLError tinyxml2::XMLElement::QueryDoubleText(double * dval) const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1635'>/// See QueryIntText()</doc>

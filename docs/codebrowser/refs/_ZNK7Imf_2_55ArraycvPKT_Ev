@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='95' type='const T * Imf_2_5::Array::operator const type-parameter-0-0 *() const'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='102' u='c' c='_ZN3EXR16ComputeFogColourERfS0_S0_RKN7Imf_2_55ArrayINS1_4RgbaEEE'/>

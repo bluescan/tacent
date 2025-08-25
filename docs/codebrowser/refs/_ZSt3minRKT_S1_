@@ -8,6 +8,7 @@
 <use f='include/c++/11/bits/string_view.tcc' l='103' u='c' c='_ZNKSt17basic_string_view5rfindEPKT_mm'/>
 <use f='include/c++/11/bits/streambuf.tcc' l='55' u='c' c='_ZNSt15basic_streambuf6xsgetnEPT_l'/>
 <use f='include/c++/11/bits/streambuf.tcc' l='89' u='c' c='_ZNSt15basic_streambuf6xsputnEPKT_l'/>
+<use f='include/c++/11/bits/istream.tcc' l='726' u='c' c='_ZNSt13basic_istream8readsomeEPT_l'/>
 <use f='include/c++/11/bits/stl_deque.h' l='1838' u='c' c='_ZNSt5deque11_S_max_sizeERKNSt11_Deque_baseIT_T0_E14_Tp_alloc_typeE'/>
 <use f='include/c++/11/bits/deque.tcc' l='1291' u='c' c='_ZSt13__lex_cmp_ditSt15_Deque_iteratorIT_T0_T1_ES3_PKT2_S6_'/>
 <use f='include/c++/11/bits/deque.tcc' l='1354' u='c' c='_ZSt30__lexicographical_compare_aux1St15_Deque_iteratorIT_T0_T1_ES3_S_IT2_T3_T4_ES7_'/>
@@ -48,7 +49,6 @@
 <use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3913' u='c' c='_ZN5rgbcx10encode_bc4EPvPKhj'/>
 <use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3914' u='c' c='_ZN5rgbcx10encode_bc4EPvPKhj'/>
 <use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3915' u='c' c='_ZN5rgbcx10encode_bc4EPvPKhj'/>
-<use f='include/c++/11/bits/istream.tcc' l='726' u='c' c='_ZNSt13basic_istream8readsomeEPT_l'/>
 <use f='include/c++/11/bits/fstream.tcc' l='431' u='c' c='_ZNSt13basic_filebuf9underflowEv'/>
 <use f='include/c++/11/bits/fstream.tcc' l='775' u='c' c='_ZNSt13basic_filebuf6xsputnEPKT_l'/>
 <use f='include/c++/11/bits/locale_conv.h' l='495' u='c' c='_ZNSt15wbuffer_convert11_M_conv_getEv'/>

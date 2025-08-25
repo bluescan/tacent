@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='354' type='3'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='348'>/**
+   * CMYK colorspace.  When compressing the JPEG image, the C, M, Y, and K
+   * components in the source image are reordered into image planes, but no
+   * colorspace conversion or subsampling is performed.  CMYK JPEG images can
+   * only be decompressed to CMYK pixels.
+   */</doc>

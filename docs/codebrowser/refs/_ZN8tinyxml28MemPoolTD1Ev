@@ -1,0 +1,2 @@
+<inh f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='334' c='_ZN8tinyxml27MemPoolD1Ev'/>
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='351' ll='353' type='void tinyxml2::MemPoolT::~MemPoolT&lt;ITEM_SIZE&gt;()'/>

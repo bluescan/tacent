@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='500' type='unsigned int'/>
+<offset>608</offset>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='495'>/**
+	 * @brief The number of trial partitionings per search (-3partitioncandidatelimit).
+	 *
+	 * Valid values are between 1 and TUNE_MAX_PARTITIIONING_CANDIDATES.
+	 */</doc>

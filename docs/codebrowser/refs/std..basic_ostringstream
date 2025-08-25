@@ -9,8 +9,6 @@
 <inh f='include/c++/11/bits/ostream.tcc' l='382' c='std::basic_ostream'/>
 <def f='include/c++/11/bits/sstream.tcc' l='299'/>
 <use f='include/c++/11/bits/sstream.tcc' l='299'/>
-<use f='include/c++/11/bits/quoted_string.h' l='96' c='_ZNSt8__detaillsERSt13basic_ostreamIT_T0_ERKNS_14_Quoted_stringIPKS1_S1_EE'/>
-<use f='include/c++/11/bits/quoted_string.h' l='120' c='_ZNSt8__detaillsERSt13basic_ostreamIT_T0_ERKNS_14_Quoted_stringIT1_S1_EE'/>
 <size>376</size>
 <mbr r='std::basic_ostringstream::_M_stringbuf' t='std::basic_ostringstream::__stringbuf_type'/>
 <fun r='_ZNSt7__cxx1119basic_ostringstreamC1Ev'/>
@@ -35,3 +33,5 @@
 <fun r='_ZNSt7__cxx1119basic_ostringstream3strERKNS_12basic_stringIT_T0_T1_EE'/>
 <fun r='_ZNSt7__cxx1119basic_ostringstream3strERKNS_12basic_stringIT_T0_TL0__EE'/>
 <fun r='_ZNSt7__cxx1119basic_ostringstream3strEONS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/quoted_string.h' l='96' c='_ZNSt8__detaillsERSt13basic_ostreamIT_T0_ERKNS_14_Quoted_stringIPKS1_S1_EE'/>
+<use f='include/c++/11/bits/quoted_string.h' l='120' c='_ZNSt8__detaillsERSt13basic_ostreamIT_T0_ERKNS_14_Quoted_stringIT1_S1_EE'/>

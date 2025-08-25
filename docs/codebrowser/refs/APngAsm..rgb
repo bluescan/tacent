@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='50'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='57'/>
+<size>3</size>
+<mbr r='APngAsm::rgb::r' o='0' t='unsigned char'/>
+<mbr r='APngAsm::rgb::g' o='8' t='unsigned char'/>
+<mbr r='APngAsm::rgb::b' o='16' t='unsigned char'/>

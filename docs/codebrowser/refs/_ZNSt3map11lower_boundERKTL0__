@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_map.h' l='1263' ll='1266' type='decltype(std::map::iterator(this-&gt;_M_t._M_lower_bound_tr(__x))) std::map::lower_bound(const _Kt &amp; __x)'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='112' type='3'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='109'>/**
+   * Grayscale.  The JPEG or YUV image will contain no chrominance components.
+   */</doc>

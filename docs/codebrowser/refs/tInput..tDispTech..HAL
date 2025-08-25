@@ -1,5 +1,5 @@
-<dec f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='44' type='1'/>
-<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='44'>// Hall effect. No physical contact.</doc>
+<dec f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='65' type='1'/>
+<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='65'>// Hall effect. No physical contact.</doc>
 <use f='Modules/Input/Src/tControllerDefinitions.cpp' l='53' u='a' c='_ZN6tInput17tPopulateContDictEv'/>
 <use f='Modules/Input/Src/tControllerDefinitions.cpp' l='59' u='a' c='_ZN6tInput17tPopulateContDictEv'/>
 <use f='Modules/Input/Src/tControllerDefinitions.cpp' l='59' u='a' c='_ZN6tInput17tPopulateContDictEv'/>

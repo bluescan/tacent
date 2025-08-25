@@ -95,4 +95,5 @@
 // tPrintf(&quot;%064|256X or %064!32X or %064:8X&quot;, c, c);</doc>
 <doc f='Modules/System/Inc/System/tPrint.h' l='218'>// Prints to generic channel.</doc>
 <doc f='Modules/System/Inc/System/tPrint.h' l='317'>// Implementation below this line.</doc>
-<use f='Modules/Input/Src/tControllerSystem.cpp' l='140' u='c' c='_ZN6tInput17tControllerSystem6DetectEv'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='203' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Input/Src/tControllerSystem.cpp' l='115' u='c' c='_ZN6tInput17tControllerSystem6DetectEv'/>

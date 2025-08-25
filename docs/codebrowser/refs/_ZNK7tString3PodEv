@@ -3,8 +3,6 @@
 <use f='Modules/Image/Src/tTexture.cpp' l='145' u='c' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='74' u='c' c='_ZN9tPipeline5tRule13AddDependencyERK7tString'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='84' u='c' c='_ZN9tPipeline5tRule13AddDependencyEP11tStringItem'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='28' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='73' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='262' u='c' c='_ZL17OptionSortFnShortRKN8tCmdLine7tOptionES2_'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='262' u='c' c='_ZL17OptionSortFnShortRKN8tCmdLine7tOptionES2_'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='268' u='c' c='_ZL16OptionSortFnLongRKN8tCmdLine7tOptionES2_'/>

@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_map.h' l='391' ll='393' type='std::map::reverse_iterator std::map::rbegin()'/>
+<doc f='include/c++/11/bits/stl_map.h' l='386'>/**
+       *  Returns a read/write reverse iterator that points to the last pair in
+       *  the %map.  Iteration is done in descending order according to the
+       *  keys.
+       */</doc>

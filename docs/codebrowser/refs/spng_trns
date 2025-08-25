@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='249' ll='259'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='488' c='spng_get_trns'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='511' c='spng_set_trns'/>
+<size>268</size>
+<mbr r='spng_trns::gray' o='0' t='uint16_t'/>
+<mbr r='spng_trns::red' o='16' t='uint16_t'/>
+<mbr r='spng_trns::green' o='32' t='uint16_t'/>
+<mbr r='spng_trns::blue' o='48' t='uint16_t'/>
+<mbr r='spng_trns::n_type3_entries' o='64' t='uint32_t'/>
+<mbr r='spng_trns::type3_alpha' o='96' t='uint8_t[256]'/>

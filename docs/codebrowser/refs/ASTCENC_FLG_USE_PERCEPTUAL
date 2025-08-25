@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='332' type='const unsigned int'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='383' u='r'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='326'>/**
+ * @brief Enable perceptual error metrics.
+ *
+ * This mode enables perceptual compression mode, which will optimize for perceptual error rather
+ * than best PSNR. Only some input modes support perceptual error metrics.
+ */</doc>

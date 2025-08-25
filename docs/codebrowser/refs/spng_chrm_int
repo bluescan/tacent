@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='261' ll='271'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='490' c='spng_get_chrm_int'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='513' c='spng_set_chrm_int'/>
+<size>32</size>
+<mbr r='spng_chrm_int::white_point_x' o='0' t='uint32_t'/>
+<mbr r='spng_chrm_int::white_point_y' o='32' t='uint32_t'/>
+<mbr r='spng_chrm_int::red_x' o='64' t='uint32_t'/>
+<mbr r='spng_chrm_int::red_y' o='96' t='uint32_t'/>
+<mbr r='spng_chrm_int::green_x' o='128' t='uint32_t'/>
+<mbr r='spng_chrm_int::green_y' o='160' t='uint32_t'/>
+<mbr r='spng_chrm_int::blue_x' o='192' t='uint32_t'/>
+<mbr r='spng_chrm_int::blue_y' o='224' t='uint32_t'/>

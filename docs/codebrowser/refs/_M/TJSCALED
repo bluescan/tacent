@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='664'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='659'>/**
+ * Compute the scaled value of &lt;tt&gt;dimension&lt;/tt&gt; using the given scaling
+ * factor.  This macro performs the integer equivalent of &lt;tt&gt;ceil(dimension *
+ * scalingFactor)&lt;/tt&gt;.
+ */</doc>

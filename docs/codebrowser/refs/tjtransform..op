@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='600' type='int'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='389' u='w' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
+<offset>128</offset>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='597'>/**
+   * One of the @ref TJXOP &quot;transform operations&quot;
+   */</doc>

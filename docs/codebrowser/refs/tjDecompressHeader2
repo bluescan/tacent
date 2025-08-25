@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1721' type='int tjDecompressHeader2(tjhandle handle, unsigned char * jpegBuf, unsigned long jpegSize, int * width, int * height, int * jpegSubsamp)'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='329' u='c' c='_ZNK6tImage9tImageJPG29CanDoPerfectLosslessTransformENS0_9TransformE'/>

@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2075' ll='2077' type='tinyxml2::XMLHandle tinyxml2::XMLHandle::FirstChildElement(const char * name = 0)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2074'>/// Get the first child element of this handle.</doc>

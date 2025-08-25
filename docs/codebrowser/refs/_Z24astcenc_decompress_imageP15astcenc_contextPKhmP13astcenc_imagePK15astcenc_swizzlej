@@ -1,0 +1,14 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='778' type='astcenc_error astcenc_decompress_image(astcenc_context * context, const uint8_t * data, size_t data_len, astcenc_image * image_out, const astcenc_swizzle * swizzle, unsigned int thread_index)'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='766'>/**
+ * @brief Decompress an image.
+ *
+ * @param         context        Codec context.
+ * @param[in]     data           Pointer to compressed data.
+ * @param         data_len       Length of the compressed data, in bytes.
+ * @param[in,out] image_out      Output image.
+ * @param         swizzle        Decompression data swizzle, applied after decompression.
+ * @param         thread_index   Thread index [0..N-1] of calling thread.
+ *
+ * @return @c ASTCENC_SUCCESS on success, or an error if decompression failed.
+ */</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1134' u='c' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

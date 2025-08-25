@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='972' ll='974' type='std::multimap::iterator std::multimap::upper_bound(const std::multimap::key_type &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_multimap.h' l='966'>/**
+       *  @brief Finds the end of a subsequence matching given key.
+       *  @param  __x  Key of (key, value) pair to be located.
+       *  @return Iterator pointing to the first element
+       *          greater than key, or end().
+       */</doc>

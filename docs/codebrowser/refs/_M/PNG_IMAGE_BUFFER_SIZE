@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2907'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2897'>/* Return the total number of components in a single row of the image; this
+    * is the minimum &apos;row stride&apos;, the minimum count of components between each
+    * row.  For a color-mapped image this is the minimum number of bytes in a
+    * row.
+    *
+    * WARNING: this macro overflows for some images with more than one component
+    * and very large image widths.  libpng will refuse to process an image where
+    * this macro would overflow.
+    */</doc>

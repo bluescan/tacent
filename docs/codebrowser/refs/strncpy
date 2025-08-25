@@ -1,4 +1,5 @@
 <dec f='include/string.h' l='144' type='char * strncpy(char *__restrict __dest, const char *__restrict __src, size_t __n)'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='98' u='c' c='_ZN4tStd8tStrncpyEPcPKci'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='109' u='c' c='_ZN4tStd8tStrncpyEPDuPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='104' u='c' c='_ZN4tStd8tStrncpyEPcPKci'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='115' u='c' c='_ZN4tStd8tStrncpyEPDuPKDui'/>
 <doc f='include/string.h' l='143'>/* Copy no more than N characters of SRC to DEST.  */</doc>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='113' u='c' c='_ZN7Imf_2_54NameaSEPKc'/>

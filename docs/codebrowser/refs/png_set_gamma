@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='1350' type='void png_set_gamma(png_structrp png_ptr, double screen_gamma, double override_file_gamma)'/>

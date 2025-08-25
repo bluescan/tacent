@@ -1,2 +1,2 @@
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='193' type='float tMath::tSa(float x)'/>
-<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='193'>/* Unnormalized (sampling) sinc. */</doc>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='196' type='float tMath::tSa(float x)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='196'>/* Unnormalized (sampling) sinc. */</doc>

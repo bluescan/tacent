@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='127' type='T halfFunction::operator()(half x) const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='174' ll='179' type='T halfFunction::operator()(half x) const'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='267' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='268' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='269' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='123'>//-----------
+    // Evaluation
+    //-----------</doc>

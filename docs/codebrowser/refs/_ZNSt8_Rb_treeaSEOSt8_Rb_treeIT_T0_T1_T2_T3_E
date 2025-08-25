@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/stl_tree.h' l='1404' type='_Rb_tree&lt;_Key, _Val, _KeyOfValue, _Compare, _Alloc&gt; &amp; std::_Rb_tree::operator=(_Rb_tree&lt;_Key, _Val, _KeyOfValue, _Compare, _Alloc&gt; &amp;&amp; )'/>
+<def f='include/c++/11/bits/stl_tree.h' l='1688' ll='1699' type='_Rb_tree&lt;_Key, _Val, _KeyOfValue, _Compare, _Alloc&gt; &amp; std::_Rb_tree::operator=(_Rb_tree&lt;_Key, _Val, _KeyOfValue, _Compare, _Alloc&gt; &amp;&amp; __x)'/>

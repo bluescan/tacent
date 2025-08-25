@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='534' type='Header::AttributeMap::iterator'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='591' u='w' c='_ZN7Imf_2_56Header8IteratorC1Ev'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='598' u='w' c='_ZN7Imf_2_56Header8IteratorC1ERKSt17_Rb_tree_iteratorISt4pairIKNS_4NameEPNS_9AttributeEEE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='607' u='w' c='_ZN7Imf_2_56Header8IteratorppEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='616' u='w' c='_ZN7Imf_2_56Header8IteratorppEi'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='624' u='m' c='_ZNK7Imf_2_56Header8Iterator4nameEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='631' u='m' c='_ZNK7Imf_2_56Header8Iterator9attributeEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='651' u='r' c='_ZN7Imf_2_56Header13ConstIteratorC1ERKNS0_8IteratorE'/>
+<offset>0</offset>

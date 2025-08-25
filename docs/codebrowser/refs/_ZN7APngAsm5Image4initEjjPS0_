@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='80' ll='85' type='void APngAsm::Image::init(unsigned int w, unsigned int h, APngAsm::Image * image)'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='86' u='c' c='_ZN7APngAsm5Image4initEPS0_'/>

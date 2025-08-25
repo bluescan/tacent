@@ -1,1 +1,1 @@
-<dec f='include/zlib.h' l='908' type='int inflateGetDictionary(z_streamp strm, Bytef * dictionary, uInt * dictLength)'/>
+<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='907' type='int inflateGetDictionary(z_streamp strm, Bytef * dictionary, uInt * dictLength)'/>

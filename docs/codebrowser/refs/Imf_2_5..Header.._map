@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='501' type='Imf_2_5::Header::AttributeMap'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='753' u='m' c='_ZN7Imf_2_56Header18findTypedAttributeEPKc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='754' u='m' c='_ZN7Imf_2_56Header18findTypedAttributeEPKc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='762' u='m' c='_ZNK7Imf_2_56Header18findTypedAttributeEPKc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='763' u='m' c='_ZNK7Imf_2_56Header18findTypedAttributeEPKc'/>
+<offset>0</offset>

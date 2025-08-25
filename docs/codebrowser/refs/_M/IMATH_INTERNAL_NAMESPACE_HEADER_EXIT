@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathNamespace.h' l='109'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathInt64.h' l='63' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='71' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='266' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathMath.h' l='206' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='2240' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='847' u='c'/>

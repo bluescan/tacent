@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/stl_tree.h' l='1030' ll='1032' type='std::_Rb_tree::size_type std::_Rb_tree::size() const'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2173' u='c' c='_ZNSt8_Rb_tree29_M_get_insert_hint_unique_posESt23_Rb_tree_const_iteratorIT0_ERKT_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2258' u='c' c='_ZNSt8_Rb_tree28_M_get_insert_hint_equal_posESt23_Rb_tree_const_iteratorIT0_ERKT_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2511' u='c' c='_ZNSt8_Rb_tree5eraseERKT_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2513' u='c' c='_ZNSt8_Rb_tree5eraseERKT_'/>

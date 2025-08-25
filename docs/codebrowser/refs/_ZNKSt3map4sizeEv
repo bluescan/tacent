@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_map.h' l='469' ll='471' type='std::map::size_type std::map::size() const'/>
+<doc f='include/c++/11/bits/stl_map.h' l='468'>/** Returns the size of the %map.  */</doc>

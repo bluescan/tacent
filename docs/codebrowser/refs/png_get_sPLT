@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2099' type='int png_get_sPLT(png_const_structrp png_ptr, png_inforp info_ptr, png_sPLT_tpp entries)'/>

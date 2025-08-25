@@ -1,0 +1,12 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='93' type='bool Imf_2_5::IStream::read(char * c, int n)'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='242' u='c' c='_ZN7Imf_2_58StreamIO9readCharsERNS_7IStreamEPci'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='83'>//------------------------------------------------------
+    // Read from the stream:
+    //
+    // read(c,n) reads n bytes from the stream, and stores
+    // them in array c.  If the stream contains less than n
+    // bytes, or if an I/O error occurs, read(c,n) throws
+    // an exception.  If read(c,n) reads the last byte from
+    // the file it returns false, otherwise it returns true.
+    //------------------------------------------------------</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='93'>/*n*/</doc>

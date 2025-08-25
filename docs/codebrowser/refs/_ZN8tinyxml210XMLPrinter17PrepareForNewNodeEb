@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2349' type='void tinyxml2::XMLPrinter::PrepareForNewNode(bool compactMode)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2345'>/**
+       Prepares to write a new node. This includes sealing an element that was
+       just opened, and writing any whitespace necessary if not in compact mode.
+     */</doc>

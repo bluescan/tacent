@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexNamespace.h' l='106'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='53' u='c'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexNamespace.h' l='100'>//
+// There are identical pairs of HEADER/SOURCE ENTER/EXIT macros so that
+// future extension to the namespace mechanism is possible without changing
+// project source code.
+//</doc>

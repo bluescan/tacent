@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='520'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='516'>/**
+ * This option will enable lossless cropping.  See #tjTransform() for more
+ * information.
+ */</doc>

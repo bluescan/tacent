@@ -1,4 +1,5 @@
 <dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='143' type='double sqrt(double __x)'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathMath.h' l='115' u='c' c='_ZN9Imath_2_54Math4sqrtET_'/>
 <use f='include/c++/11/bits/random.tcc' l='1270' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>
 <use f='include/c++/11/bits/random.tcc' l='1273' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>
 <use f='include/c++/11/bits/random.tcc' l='1277' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='681' type='std::ostream &amp; Imath_2_5::operator&lt;&lt;(std::ostream &amp; s, const Vec2&lt;T&gt; &amp; v)'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='2189' ll='2193' type='std::ostream &amp; Imath_2_5::operator&lt;&lt;(std::ostream &amp; s, const Vec2&lt;T&gt; &amp; v)'/>

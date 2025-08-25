@@ -1,0 +1,16 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='330' ll='340'/>
+<ovr f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='347' c='tinyxml2::MemPoolT'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='347'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='968'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1256'/>
+<size>8</size>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='326'>/*
+	Parent virtual class of a pool for fast allocation
+	and deallocation of objects.
+*/</doc>
+<fun r='_ZN8tinyxml27MemPoolC1Ev'/>
+<fun r='_ZN8tinyxml27MemPoolD1Ev'/>
+<fun r='_ZNK8tinyxml27MemPool8ItemSizeEv'/>
+<fun r='_ZN8tinyxml27MemPool5AllocEv'/>
+<fun r='_ZN8tinyxml27MemPool4FreeEPv'/>
+<fun r='_ZN8tinyxml27MemPool10SetTrackedEv'/>

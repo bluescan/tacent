@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfCompression.h' l='73' type='9'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfCompression.h' l='70'>// of 32 scanlines. More efficient for partial
+                                // buffer access.</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfCompression.h' l='73'>// lossy DCT based compression, in blocks</doc>

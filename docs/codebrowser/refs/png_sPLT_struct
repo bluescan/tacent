@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibPNG/include/png.h' l='533' ll='539'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='533'/>
+<size>32</size>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='528'>/*  When the depth of the sPLT palette is 8 bits, the color and alpha samples
+ *  occupy the LSB of their respective members, and the MSB of each member
+ *  is zero-filled.  The frequency member always occupies the full 16 bits.
+ */</doc>
+<mbr r='png_sPLT_struct::name' o='0' t='png_charp'/>
+<mbr r='png_sPLT_struct::depth' o='64' t='png_byte'/>
+<mbr r='png_sPLT_struct::entries' o='128' t='png_sPLT_entryp'/>
+<mbr r='png_sPLT_struct::nentries' o='192' t='png_int_32'/>

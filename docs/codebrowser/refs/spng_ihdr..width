@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='225' type='uint32_t'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='265' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='860' u='w' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>0</offset>

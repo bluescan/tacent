@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_map.h' l='633' ll='635' type='std::map::iterator std::map::insert(std::map::const_iterator __hint, std::map::node_type &amp;&amp; __nh)'/>
+<doc f='include/c++/11/bits/stl_map.h' l='632'>/// Re-insert an extracted node.</doc>

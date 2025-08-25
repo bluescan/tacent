@@ -1,0 +1,4 @@
+<dec f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='104' type='float'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='139' u='w' c='_ZN6tInput9tContDefn10SetGenericEv'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='155' u='w' c='_ZN6tInput9tContDefn5ClearEv'/>
+<offset>320</offset>

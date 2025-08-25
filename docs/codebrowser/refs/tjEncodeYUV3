@@ -1,0 +1,50 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1045' type='int tjEncodeYUV3(tjhandle handle, const unsigned char * srcBuf, int width, int pitch, int height, int pixelFormat, unsigned char * dstBuf, int pad, int subsamp, int flags)'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='996'>/**
+ * Encode an RGB or grayscale image into a YUV planar image.  This function
+ * uses the accelerated color conversion routines in the underlying
+ * codec but does not execute any of the other steps in the JPEG compression
+ * process.
+ *
+ * @param handle a handle to a TurboJPEG compressor or transformer instance
+ *
+ * @param srcBuf pointer to an image buffer containing RGB or grayscale pixels
+ * to be encoded
+ *
+ * @param width width (in pixels) of the source image
+ *
+ * @param pitch bytes per line in the source image.  Normally, this should be
+ * &lt;tt&gt;width * #tjPixelSize[pixelFormat]&lt;/tt&gt; if the image is unpadded, or
+ * &lt;tt&gt;#TJPAD(width * #tjPixelSize[pixelFormat])&lt;/tt&gt; if each line of the image
+ * is padded to the nearest 32-bit boundary, as is the case for Windows
+ * bitmaps.  You can also be clever and use this parameter to skip lines, etc.
+ * Setting this parameter to 0 is the equivalent of setting it to
+ * &lt;tt&gt;width * #tjPixelSize[pixelFormat]&lt;/tt&gt;.
+ *
+ * @param height height (in pixels) of the source image
+ *
+ * @param pixelFormat pixel format of the source image (see @ref TJPF
+ * &quot;Pixel formats&quot;.)
+ *
+ * @param dstBuf pointer to an image buffer that will receive the YUV image.
+ * Use #tjBufSizeYUV2() to determine the appropriate size for this buffer based
+ * on the image width, height, padding, and level of chrominance subsampling.
+ * The Y, U (Cb), and V (Cr) image planes will be stored sequentially in the
+ * buffer (refer to @ref YUVnotes &quot;YUV Image Format Notes&quot;.)
+ *
+ * @param pad the width of each line in each plane of the YUV image will be
+ * padded to the nearest multiple of this number of bytes (must be a power of
+ * 2.)  To generate images suitable for X Video, &lt;tt&gt;pad&lt;/tt&gt; should be set to
+ * 4.
+ *
+ * @param subsamp the level of chrominance subsampling to be used when
+ * generating the YUV image (see @ref TJSAMP
+ * &quot;Chrominance subsampling options&quot;.)  To generate images suitable for X
+ * Video, &lt;tt&gt;subsamp&lt;/tt&gt; should be set to @ref TJSAMP_420.  This produces an
+ * image compatible with the I420 (AKA &quot;YUV420P&quot;) format.
+ *
+ * @param flags the bitwise OR of one or more of the @ref TJFLAG_ACCURATEDCT
+ * &quot;flags&quot;
+ *
+ * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr2()
+ * and #tjGetErrorCode().)
+*/</doc>

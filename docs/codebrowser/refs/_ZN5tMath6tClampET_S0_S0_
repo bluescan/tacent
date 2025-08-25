@@ -1,7 +1,7 @@
 <def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='55' type='T tMath::tClamp(T val, T min, T max)'/>
-<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='405' u='c' c='_ZN6M999E517FloatToComponentsERiS0_S0_S0_fff'/>
 <use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='406' u='c' c='_ZN6M999E517FloatToComponentsERiS0_S0_S0_fff'/>
 <use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='407' u='c' c='_ZN6M999E517FloatToComponentsERiS0_S0_S0_fff'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='408' u='c' c='_ZN6M999E517FloatToComponentsERiS0_S0_S0_fff'/>
 <use f='Modules/Math/Inc/Math/tColour.h' l='306' u='c' c='_ZN9tColour3b3SetEiii'/>
 <use f='Modules/Math/Inc/Math/tColour.h' l='306' u='c' c='_ZN9tColour3b3SetEiii'/>
 <use f='Modules/Math/Inc/Math/tColour.h' l='306' u='c' c='_ZN9tColour3b3SetEiii'/>
@@ -38,7 +38,8 @@
 <use f='Modules/Math/Inc/Math/tColour.h' l='827' u='c' c='_ZNK9tColour4f4GetBEv'/>
 <use f='Modules/Math/Inc/Math/tColour.h' l='828' u='c' c='_ZNK9tColour4f4GetAEv'/>
 <use f='Modules/Math/Inc/Math/tColour.h' l='1068' u='c' c='_ZN9tColour4b3SetERK9tColour3bi'/>
-<use f='Modules/Image/Src/tImageEXR.cpp' l='147' u='c' c='_ZN3EXR5GammaclEi'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='147' u='c' c='_ZN3EXR5GammaclE4half'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='270' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
 <use f='Modules/Image/Src/tImageWEBP.cpp' l='338' u='c' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
 <use f='Modules/Image/Src/tPicture.cpp' l='697' u='c' c='_ZN6tImage8tPicture16AdjustBrightnessEfj'/>
 <use f='Modules/Image/Src/tPicture.cpp' l='698' u='c' c='_ZN6tImage8tPicture16AdjustBrightnessEfj'/>

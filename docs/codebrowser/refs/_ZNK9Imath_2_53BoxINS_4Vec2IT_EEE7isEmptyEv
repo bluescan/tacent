@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='393' type='bool Imath_2_5::Box&lt;Vec2&lt;type-parameter-0-0&gt;&gt;::isEmpty() const'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='520' u='c' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEE4sizeEv'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='535' ll='544' type='bool Imath_2_5::Box&lt;Vec2&lt;type-parameter-0-0&gt;&gt;::isEmpty() const'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='389'>//----------------
+    //  Classification
+    //----------------</doc>

@@ -1,4 +1,5 @@
 <dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='162' type='double fabs(double __x)'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathMath.h' l='117' u='c' c='_ZN9Imath_2_54Math4fabsET_'/>
 <use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1818' u='c' c='_ZN5rgbcxL25compute_selector_factors4ERKNS_5hist4ERfS3_S3_'/>
 <use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1840' u='c' c='_ZN5rgbcxL25compute_selector_factors3ERKNS_5hist3ERfS3_S3_'/>
 <use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2029' u='c' c='_ZN5rgbcxL36compute_least_squares_endpoints4_rgbEPKNS_7color32EPKhPNS_5vec3FES6_iii'/>

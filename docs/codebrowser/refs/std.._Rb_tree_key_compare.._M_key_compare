@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/stl_tree.h' l='144' type='_Key_compare'/>
+<use f='include/c++/11/bits/stl_tree.h' l='149' u='w' c='_ZNSt20_Rb_tree_key_compareC1Ev'/>
+<use f='include/c++/11/bits/stl_tree.h' l='153' u='w' c='_ZNSt20_Rb_tree_key_compareC1ERKT_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='162' u='w' c='_ZNSt20_Rb_tree_key_compareC1EOSt20_Rb_tree_key_compareIT_E'/>

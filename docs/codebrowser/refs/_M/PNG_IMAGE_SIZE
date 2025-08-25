@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2916'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2909'>/* Return the size, in bytes, of an image buffer given a png_image and a row
+    * stride - the number of components to leave space for in each row.
+    *
+    * WARNING: this macro overflows a 32-bit integer for some large PNG images,
+    * libpng will refuse to process an image where such an overflow would occur.
+    */</doc>

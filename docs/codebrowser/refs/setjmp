@@ -1,0 +1,3 @@
+<dec f='include/setjmp.h' l='36' type='int setjmp(struct __jmp_buf_tag * __env)'/>
+<doc f='include/setjmp.h' l='34'>/* Store the calling environment in ENV, also saving the signal mask.
+   Return 0.  */</doc>

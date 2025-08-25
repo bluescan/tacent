@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='518' type='void Imf_2_5::Header::Iterator::Iterator(const Header::AttributeMap::iterator &amp; i)'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='597' ll='601' type='void Imf_2_5::Header::Iterator::Iterator(const Header::AttributeMap::iterator &amp; i)'/>

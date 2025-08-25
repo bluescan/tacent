@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='364' type='4'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='355'>/**
+   * YCCK colorspace.  YCCK (AKA &quot;YCbCrK&quot;) is not an absolute colorspace but
+   * rather a mathematical transformation of CMYK designed solely for storage
+   * and transmission.  It is to CMYK as YCbCr is to RGB.  CMYK pixels can be
+   * reversibly transformed into YCCK, and as with YCbCr, the chrominance
+   * components in the YCCK pixels can be subsampled without incurring major
+   * perceptual loss.  YCCK JPEG images can only be compressed from and
+   * decompressed to CMYK pixels.
+   */</doc>

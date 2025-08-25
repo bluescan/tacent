@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='617' type='static void tinyxml2::XMLUtil::ConvertUTF32ToUTF8(unsigned long input, char * output, int * length)'/>

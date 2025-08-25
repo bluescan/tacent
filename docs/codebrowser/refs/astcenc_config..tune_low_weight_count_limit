@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='561' type='unsigned int'/>
+<offset>864</offset>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='558'>/**
+	 * @brief The threshold below which (inclusive) we stop testing low/high/low+high cutoffs.
+	 */</doc>

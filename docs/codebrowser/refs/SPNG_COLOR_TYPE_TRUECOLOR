@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='137' type='2'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='866' u='r' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='868' u='r' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

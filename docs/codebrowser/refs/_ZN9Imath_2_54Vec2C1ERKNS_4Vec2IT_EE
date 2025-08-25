@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='96' type='void Imath_2_5::Vec2::Vec2&lt;T&gt;(const Vec2&lt;T&gt; &amp; v)'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='903' ll='909' type='void Imath_2_5::Vec2::Vec2&lt;T&gt;(const Vec2&lt;T&gt; &amp; v)'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='92'>//---------------------------------
+    // Copy constructors and assignment
+    //---------------------------------</doc>

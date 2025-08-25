@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='814' type='const tinyxml2::XMLElement * tinyxml2::XMLNode::PreviousSiblingElement(const char * name = 0) const'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='817' u='c' c='_ZN8tinyxml27XMLNode22PreviousSiblingElementEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2164' u='c' c='_ZNK8tinyxml214XMLConstHandle22PreviousSiblingElementEPKc'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='813'>/// Get the previous (left) sibling element of this node, with an optionally supplied name.</doc>

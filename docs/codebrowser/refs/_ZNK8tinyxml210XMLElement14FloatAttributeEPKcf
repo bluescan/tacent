@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1328' type='float tinyxml2::XMLElement::FloatAttribute(const char * name, float defaultValue = 0) const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1327'>/// See IntAttribute()</doc>

@@ -5,4 +5,17 @@ _ZNSt20boyer_moore_searcher12_M_is_prefixET_NS_11__diff_typeES1_|std::boyer_moor
 _ZNSt20boyer_moore_searcher16_M_suffix_lengthET_NS_11__diff_typeES1_|std::boyer_moore_searcher::_M_suffix_length
 _ZNKSt20boyer_moore_searcherclETL0__S0_|std::boyer_moore_searcher::operator()
 _ZSt9boolalphaRSt8ios_base|std::boolalpha
+_ZNK9Imath_2_53Box6centerEv|Imath_2_5::Box::center
+_ZN9Imath_2_53Box8extendByERKT_|Imath_2_5::Box::extendBy
+_ZNK9Imath_2_53Box9hasVolumeEv|Imath_2_5::Box::hasVolume
+_ZNK9Imath_2_53Box10intersectsERKT_|Imath_2_5::Box::intersects
+_ZNK9Imath_2_53Box7isEmptyEv|Imath_2_5::Box::isEmpty
+_ZNK9Imath_2_53Box10isInfiniteEv|Imath_2_5::Box::isInfinite
+_ZNK9Imath_2_53Box9majorAxisEv|Imath_2_5::Box::majorAxis
+_ZN9Imath_2_53Box9makeEmptyEv|Imath_2_5::Box::makeEmpty
+_ZN9Imath_2_53Box12makeInfiniteEv|Imath_2_5::Box::makeInfinite
+_ZNK9Imath_2_53BoxneERKNS_3BoxIT_EE|Imath_2_5::Box::operator!=
+_ZNK9Imath_2_53BoxeqERKNS_3BoxIT_EE|Imath_2_5::Box::operator==
+_ZNK9Imath_2_53Box4sizeEv|Imath_2_5::Box::size
+_ZNK8tinyxml212XMLAttribute9BoolValueEv|tinyxml2::XMLAttribute::BoolValue
 _ZN6tImage11tQuantizeWu6BottomEPNS0_3BoxEhPA33_A33_i|tImage::tQuantizeWu::Bottom

@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExport.h' l='44'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='53' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='56' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='59' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='62' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='65' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='68' u='c'/>

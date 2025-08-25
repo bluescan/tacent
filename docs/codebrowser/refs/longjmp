@@ -1,0 +1,3 @@
+<dec f='include/setjmp.h' l='54' type='void longjmp(struct __jmp_buf_tag * __env, int __val)'/>
+<doc f='include/setjmp.h' l='52'>/* Jump to the environment saved in ENV, making the
+   `setjmp&apos; call there return VAL, or 1 if VAL is 0.  */</doc>

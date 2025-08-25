@@ -1,0 +1,5 @@
+<dec f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='100' type='float'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='137' u='w' c='_ZN6tInput9tContDefn10SetGenericEv'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='153' u='w' c='_ZN6tInput9tContDefn5ClearEv'/>
+<offset>256</offset>
+<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='99'>// Trigger dead zone expressed as percent [0.0, 1.0].</doc>

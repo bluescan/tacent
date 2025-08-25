@@ -1,0 +1,6 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='211' u='w' c='_ZN8tinyxml28DynArrayC1Ev'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='279' u='r' c='_ZNK8tinyxml28DynArray8CapacityEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='305' u='r' c='_ZN8tinyxml28DynArray14EnsureCapacityEi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='315' u='w' c='_ZN8tinyxml28DynArray14EnsureCapacityEi'/>
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='321' type='int'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='321'>// objects allocated</doc>

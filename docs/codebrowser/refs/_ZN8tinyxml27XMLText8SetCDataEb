@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1005' ll='1007' type='void tinyxml2::XMLText::SetCData(bool isCData)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1004'>/// Declare whether this should be CDATA or standard text.</doc>

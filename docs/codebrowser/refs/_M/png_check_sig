@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='919'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='916'>/* Simple signature checking function.  This is the same as calling
+ * png_check_sig(sig, n) := (png_sig_cmp(sig, 0, n) == 0).
+ */</doc>

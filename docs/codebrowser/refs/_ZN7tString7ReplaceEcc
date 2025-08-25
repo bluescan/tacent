@@ -11,8 +11,6 @@
 <use f='Modules/Math/Inc/Math/tInterval.h' l='421' u='c' c='_ZN5tMath12tIntervalSet3SetERK7tString'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='52' u='c' c='_ZN9tPipeline5tRule37MaybeAddToDependenciesCaseInsensitiveERK7tString'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='58' u='c' c='_ZN9tPipeline5tRule37MaybeAddToDependenciesCaseInsensitiveERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='57' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='105' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='319' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='320' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='321' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>

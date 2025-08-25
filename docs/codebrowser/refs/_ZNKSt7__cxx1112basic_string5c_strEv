@@ -29,6 +29,10 @@
 <use f='include/c++/11/bits/locale_facets.tcc' l='697' u='c' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRf'/>
 <use f='include/c++/11/bits/locale_facets.tcc' l='712' u='c' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRd'/>
 <use f='include/c++/11/bits/locale_facets.tcc' l='744' u='c' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRe'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='737' u='c' c='_ZN7Imf_2_56Header14typedAttributeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='745' u='c' c='_ZNK7Imf_2_56Header14typedAttributeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='771' u='c' c='_ZN7Imf_2_56Header18findTypedAttributeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='779' u='c' c='_ZNK7Imf_2_56Header18findTypedAttributeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
 <use f='Modules/Image/Src/tMetaData.cpp' l='227' u='c' c='_ZN6tImage9tMetaData19SetTags_CamHardwareERKN8TinyEXIF8EXIFInfoE'/>
 <use f='Modules/Image/Src/tMetaData.cpp' l='235' u='c' c='_ZN6tImage9tMetaData19SetTags_CamHardwareERKN8TinyEXIF8EXIFInfoE'/>
 <use f='Modules/Image/Src/tMetaData.cpp' l='243' u='c' c='_ZN6tImage9tMetaData19SetTags_CamHardwareERKN8TinyEXIF8EXIFInfoE'/>

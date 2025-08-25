@@ -1,0 +1,21 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='692' type='astcenc_error astcenc_config_init(astcenc_profile profile, unsigned int block_x, unsigned int block_y, unsigned int block_z, float quality, unsigned int flags, astcenc_config * config)'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='673'>/**
+ * Populate a codec config based on default settings.
+ *
+ * Power users can edit the returned config struct to fine tune before allocating the context.
+ *
+ * @param      profile   Color profile.
+ * @param      block_x   ASTC block size X dimension.
+ * @param      block_y   ASTC block size Y dimension.
+ * @param      block_z   ASTC block size Z dimension.
+ * @param      quality   Search quality preset / effort level. Either an
+ *                       @c ASTCENC_PRE_* value, or a effort level between 0
+ *                       and 100. Performance is not linear between 0 and 100.
+
+ * @param      flags     A valid set of @c ASTCENC_FLG_* flag bits.
+ * @param[out] config    Output config struct to populate.
+ *
+ * @return @c ASTCENC_SUCCESS on success, or an error if the inputs are invalid
+ * either individually, or in combination.
+ */</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1111' u='c' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

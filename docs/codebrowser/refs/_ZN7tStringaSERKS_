@@ -63,10 +63,6 @@
 <use f='Modules/Math/Inc/Math/tInterval.h' l='222' u='c' c='_ZN5tMath9tInterval3SetERK7tString'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='40' u='c' c='_ZN9tPipeline5tRule9SetTargetERK7tString'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='100' u='c' c='_ZN9tPipeline5tRule15AddDependenciesER5tListI11tStringItemE'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='34' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='58' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='79' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='106' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
 <use f='Modules/Scene/Inc/Scene/tAttribute.h' l='60' u='c' c='_ZN6tScene10tAttributeaSERKS0_'/>
 <use f='Modules/Scene/Inc/Scene/tObject.h' l='39' u='c' c='_ZN6tScene7tObjectaSERKS0_'/>
 <use f='Modules/Scene/Src/tMaterial.cpp' l='241' u='c' c='_ZN6tScene9tMaterialaSERKS0_'/>

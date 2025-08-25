@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='628' type='bool'/>
+<offset>176</offset>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='627'>/** @brief True if this block is an HDR block. */</doc>

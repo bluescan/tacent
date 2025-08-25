@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2062' ll='2063' type='void tinyxml2::XMLHandle::XMLHandle(const tinyxml2::XMLHandle &amp; ref)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2061'>/// Copy constructor</doc>

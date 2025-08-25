@@ -1,5 +1,5 @@
-<dec f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='387' type='int M999E5::FloorLog2(float f)'/>
-<def f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='394' ll='400' type='int M999E5::FloorLog2(float f)'/>
-<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='409' u='c' c='_ZN6M999E517FloatToComponentsERiS0_S0_S0_fff'/>
-<doc f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='385'>// Original note: &quot;Ok, FloorLog2 is not correct for the denorm and zero values, but we are going to do a max of
+<dec f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='388' type='int M999E5::FloorLog2(float f)'/>
+<def f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='395' ll='401' type='int M999E5::FloorLog2(float f)'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='410' u='c' c='_ZN6M999E517FloatToComponentsERiS0_S0_S0_fff'/>
+<doc f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='386'>// Original note: &quot;Ok, FloorLog2 is not correct for the denorm and zero values, but we are going to do a max of
 	// this value with the minimum rgb9e5 exponent that will hide these problem cases.&quot;</doc>

@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='204' type='unsigned short half::bits() const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='736' ll='740' type='unsigned short half::bits() const'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='178' u='c' c='_ZNK12halfFunctionclE4half'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='200'>//--------------------------------------
+    // Access to the internal representation
+    //--------------------------------------</doc>

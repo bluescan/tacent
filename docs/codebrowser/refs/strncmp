@@ -1,3 +1,4 @@
 <dec f='include/string.h' l='159' type='int strncmp(const char * __s1, const char * __s2, size_t __n)'/>
 <use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='63' u='c' c='_ZN4tStd8tStrncmpEPKcS1_i'/>
 <doc f='include/string.h' l='158'>/* Compare N characters of S1 and S2.  */</doc>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='606' u='c' c='_ZN8tinyxml27XMLUtil11StringEqualEPKcS2_i'/>

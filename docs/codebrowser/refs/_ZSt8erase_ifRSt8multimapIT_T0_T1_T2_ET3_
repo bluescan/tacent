@@ -1,0 +1,1 @@
+<def f='include/c++/11/map' l='102' ll='104' type='typename multimap&lt;_Key, _Tp, _Compare, _Alloc&gt;::size_type std::erase_if(multimap&lt;_Key, _Tp, _Compare, _Alloc&gt; &amp; __cont, _Predicate __pred)'/>

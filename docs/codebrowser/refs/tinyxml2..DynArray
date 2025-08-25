@@ -1,0 +1,28 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='206' ll='323'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='451'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1949'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2342'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2366'/>
+<fun r='_ZN8tinyxml28DynArrayC1Ev'/>
+<fun r='_ZN8tinyxml28DynArrayD1Ev'/>
+<fun r='_ZN8tinyxml28DynArray5ClearEv'/>
+<fun r='_ZN8tinyxml28DynArray4PushET_'/>
+<fun r='_ZN8tinyxml28DynArray7PushArrEi'/>
+<fun r='_ZN8tinyxml28DynArray3PopEv'/>
+<fun r='_ZN8tinyxml28DynArray6PopArrEi'/>
+<fun r='_ZNK8tinyxml28DynArray5EmptyEv'/>
+<fun r='_ZN8tinyxml28DynArrayixEi'/>
+<fun r='_ZNK8tinyxml28DynArrayixEi'/>
+<fun r='_ZNK8tinyxml28DynArray7PeekTopEv'/>
+<fun r='_ZNK8tinyxml28DynArray4SizeEv'/>
+<fun r='_ZNK8tinyxml28DynArray8CapacityEv'/>
+<fun r='_ZN8tinyxml28DynArray10SwapRemoveEi'/>
+<fun r='_ZNK8tinyxml28DynArray3MemEv'/>
+<fun r='_ZN8tinyxml28DynArray3MemEv'/>
+<fun r='_ZN8tinyxml28DynArrayC1ERKNS_8DynArrayIT_XT0_EEE'/>
+<fun r='_ZN8tinyxml28DynArrayaSERKNS_8DynArrayIT_XT0_EEE'/>
+<fun r='_ZN8tinyxml28DynArray14EnsureCapacityEi'/>
+<mbr r='tinyxml2::DynArray::_mem' t='T *'/>
+<mbr r='tinyxml2::DynArray::_pool' t='T[INITIAL_SIZE]'/>
+<mbr r='tinyxml2::DynArray::_allocated' t='int'/>
+<mbr r='tinyxml2::DynArray::_size' t='int'/>

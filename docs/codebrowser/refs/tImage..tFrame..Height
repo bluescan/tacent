@@ -19,9 +19,11 @@
 <use f='Modules/Image/Inc/Image/tFrame.h' l='166' u='r' c='_ZNK6tImage6tFrame8IsOpaqueEv'/>
 <offset>224</offset>
 <use f='Modules/Image/Inc/Image/tPicture.h' l='447' u='r' c='_ZN6tImage8tPicture3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='79' u='w' c='_ZN6tImage10tImageAPNG4LoadERK7tString'/>
 <use f='Modules/Image/Src/tImageAPNG.cpp' l='246' u='r' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
 <use f='Modules/Image/Src/tImageAPNG.cpp' l='251' u='r' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
 <use f='Modules/Image/Src/tImageAPNG.cpp' l='275' u='r' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='279' u='r' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
 <use f='Modules/Image/Src/tImageASTC.cpp' l='242' u='r' c='_ZN6tImage10tImageASTC3SetEPNS_6tFrameEb'/>
 <use f='Modules/Image/Src/tImageASTC.cpp' l='280' u='w' c='_ZN6tImage10tImageASTC8GetFrameEb'/>
 <use f='Modules/Image/Src/tImageASTC.cpp' l='291' u='r' c='_ZN6tImage10tImageASTC8GetFrameEb'/>

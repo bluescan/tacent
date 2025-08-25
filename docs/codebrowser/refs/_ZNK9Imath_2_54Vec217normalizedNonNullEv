@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='238' type='Vec2&lt;T&gt; Imath_2_5::Vec2::normalizedNonNull() const'/>
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='741' type='Vec2&lt;short&gt; Imath_2_5::Vec2&lt;short&gt;::normalizedNonNull() const'/>
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='765' type='Vec2&lt;int&gt; Imath_2_5::Vec2&lt;int&gt;::normalizedNonNull() const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1274' ll='1281' type='Vec2&lt;T&gt; Imath_2_5::Vec2::normalizedNonNull() const'/>

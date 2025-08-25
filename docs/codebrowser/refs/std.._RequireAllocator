@@ -20,4 +20,12 @@
 <use f='include/c++/11/bits/basic_string.h' l='6063'/>
 <use f='include/c++/11/bits/basic_string.h' l='6071'/>
 <use f='include/c++/11/bits/basic_string.h' l='6077'/>
+<use f='include/c++/11/bits/stl_map.h' l='1423'/>
+<use f='include/c++/11/bits/stl_map.h' l='1432'/>
+<use f='include/c++/11/bits/stl_map.h' l='1439'/>
+<use f='include/c++/11/bits/stl_map.h' l='1445'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='1088'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='1097'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='1104'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='1110'/>
 <use f='include/c++/11/bits/stl_deque.h' l='2230'/>

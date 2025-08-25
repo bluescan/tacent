@@ -170,8 +170,8 @@
 <tr><th id="156">156</th><td>      <dfn class="decl def fn" id="_ZNSt9allocatorC1Ev" title='std::allocator::allocator&lt;type-parameter-0-0&gt;' data-ref="_ZNSt9allocatorC1Ev">allocator</dfn>() <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#199" title="noexcept" data-ref="_M/_GLIBCXX_NOTHROW">_GLIBCXX_NOTHROW</a> { }&nbsp</td></tr>
 <tr><th id="157">157</th><td>&nbsp</td></tr>
 <tr><th id="158">158</th><td>      <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a>&nbsp</td></tr>
-<tr><th id="159">159</th><td>      <dfn class="decl def fn" id="_ZNSt9allocatorC1ERKSaIT_E" title='std::allocator::allocator&lt;type-parameter-0-0&gt;' data-ref="_ZNSt9allocatorC1ERKSaIT_E">allocator</dfn>(<em>const</em> allocator&amp; <dfn class="local col1 decl" id="5881__a" title='__a' data-type='const allocator&lt;type-parameter-0-0&gt; &amp;' data-ref="5881__a">__a</dfn>) <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#199" title="noexcept" data-ref="_M/_GLIBCXX_NOTHROW">_GLIBCXX_NOTHROW</a>&nbsp</td></tr>
-<tr><th id="160">160</th><td>      : <a class="type" href="../../../x86_64-linux-gnu/c++/11/bits/c++allocator.h.html#std::__allocator_base" title='std::__allocator_base' data-ref="std::__allocator_base">__allocator_base</a>&lt;_Tp&gt;(<a class="local col1 ref" href="#5881__a" title='__a' data-ref="5881__a">__a</a>) { }&nbsp</td></tr>
+<tr><th id="159">159</th><td>      <dfn class="decl def fn" id="_ZNSt9allocatorC1ERKSaIT_E" title='std::allocator::allocator&lt;type-parameter-0-0&gt;' data-ref="_ZNSt9allocatorC1ERKSaIT_E">allocator</dfn>(<em>const</em> allocator&amp; <dfn class="local col5 decl" id="5885__a" title='__a' data-type='const allocator&lt;type-parameter-0-0&gt; &amp;' data-ref="5885__a">__a</dfn>) <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#199" title="noexcept" data-ref="_M/_GLIBCXX_NOTHROW">_GLIBCXX_NOTHROW</a>&nbsp</td></tr>
+<tr><th id="160">160</th><td>      : <a class="type" href="../../../x86_64-linux-gnu/c++/11/bits/c++allocator.h.html#std::__allocator_base" title='std::__allocator_base' data-ref="std::__allocator_base">__allocator_base</a>&lt;_Tp&gt;(<a class="local col5 ref" href="#5885__a" title='__a' data-ref="5885__a">__a</a>) { }&nbsp</td></tr>
 <tr><th id="161">161</th><td>&nbsp</td></tr>
 <tr><th id="162">162</th><td><u>#<span data-ppcond="162">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
 <tr><th id="163">163</th><td>      <i>// Avoid implicit deprecation.</i>&nbsp</td></tr>
@@ -190,27 +190,27 @@
 <tr><th id="176">176</th><td><u>#<span data-ppcond="176">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L</u>&nbsp</td></tr>
 <tr><th id="177">177</th><td>      [[nodiscard,__gnu__::__always_inline__]]&nbsp</td></tr>
 <tr><th id="178">178</th><td>      <b>constexpr</b> _Tp*&nbsp</td></tr>
-<tr><th id="179">179</th><td>      <dfn class="decl def fn" id="_ZNSt9allocator8allocateEm" title='std::allocator::allocate' data-ref="_ZNSt9allocator8allocateEm">allocate</dfn>(<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col2 decl" id="5882__n" title='__n' data-type='std::size_t' data-ref="5882__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="179">179</th><td>      <dfn class="decl def fn" id="_ZNSt9allocator8allocateEm" title='std::allocator::allocate' data-ref="_ZNSt9allocator8allocateEm">allocate</dfn>(<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col6 decl" id="5886__n" title='__n' data-type='std::size_t' data-ref="5886__n">__n</dfn>)&nbsp</td></tr>
 <tr><th id="180">180</th><td>      {&nbsp</td></tr>
 <tr><th id="181">181</th><td><u>#<span data-ppcond="181">ifdef</span> <a class="macro" href="../type_traits.html#3415" data-ref="_M/__cpp_lib_is_constant_evaluated">__cpp_lib_is_constant_evaluated</a></u>&nbsp</td></tr>
 <tr><th id="182">182</th><td>	<b>if</b> (<span class="namespace">std::</span><a class="ref fn" href="../type_traits.html#_ZSt21is_constant_evaluatedv" title='std::is_constant_evaluated' data-ref="_ZSt21is_constant_evaluatedv">is_constant_evaluated</a>())&nbsp</td></tr>
-<tr><th id="183">183</th><td>	  <b>return</b> <b>static_cast</b>&lt;_Tp*&gt;(::<span class='ref fn' title='operator new' data-ref="_Znwm"><b>operator</b> <b>new</b></span>(<a class="local col2 ref" href="#5882__n" title='__n' data-ref="5882__n">__n</a> * <b>sizeof</b>(_Tp)));&nbsp</td></tr>
+<tr><th id="183">183</th><td>	  <b>return</b> <b>static_cast</b>&lt;_Tp*&gt;(::<span class='ref fn' title='operator new' data-ref="_Znwm"><b>operator</b> <b>new</b></span>(<a class="local col6 ref" href="#5886__n" title='__n' data-ref="5886__n">__n</a> * <b>sizeof</b>(_Tp)));&nbsp</td></tr>
 <tr><th id="184">184</th><td><u>#<span data-ppcond="181">endif</span></u>&nbsp</td></tr>
-<tr><th id="185">185</th><td>	<b>return</b> <a class="type" href="../../../x86_64-linux-gnu/c++/11/bits/c++allocator.h.html#std::__allocator_base" title='std::__allocator_base' data-ref="std::__allocator_base">__allocator_base</a>&lt;_Tp&gt;::allocate(<a class="local col2 ref" href="#5882__n" title='__n' data-ref="5882__n">__n</a>, <var>0</var>);&nbsp</td></tr>
+<tr><th id="185">185</th><td>	<b>return</b> <a class="type" href="../../../x86_64-linux-gnu/c++/11/bits/c++allocator.h.html#std::__allocator_base" title='std::__allocator_base' data-ref="std::__allocator_base">__allocator_base</a>&lt;_Tp&gt;::allocate(<a class="local col6 ref" href="#5886__n" title='__n' data-ref="5886__n">__n</a>, <var>0</var>);&nbsp</td></tr>
 <tr><th id="186">186</th><td>      }&nbsp</td></tr>
 <tr><th id="187">187</th><td>&nbsp</td></tr>
 <tr><th id="188">188</th><td>      [[__gnu__::__always_inline__]]&nbsp</td></tr>
 <tr><th id="189">189</th><td>      <b>constexpr</b> <em>void</em>&nbsp</td></tr>
-<tr><th id="190">190</th><td>      <dfn class="decl def fn" id="_ZNSt9allocator10deallocateEPT_m" title='std::allocator::deallocate' data-ref="_ZNSt9allocator10deallocateEPT_m">deallocate</dfn>(_Tp* <dfn class="local col3 decl" id="5883__p" title='__p' data-type='_Tp *' data-ref="5883__p">__p</dfn>, <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col4 decl" id="5884__n" title='__n' data-type='std::size_t' data-ref="5884__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="190">190</th><td>      <dfn class="decl def fn" id="_ZNSt9allocator10deallocateEPT_m" title='std::allocator::deallocate' data-ref="_ZNSt9allocator10deallocateEPT_m">deallocate</dfn>(_Tp* <dfn class="local col7 decl" id="5887__p" title='__p' data-type='_Tp *' data-ref="5887__p">__p</dfn>, <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col8 decl" id="5888__n" title='__n' data-type='std::size_t' data-ref="5888__n">__n</dfn>)&nbsp</td></tr>
 <tr><th id="191">191</th><td>      {&nbsp</td></tr>
 <tr><th id="192">192</th><td><u>#<span data-ppcond="192">ifdef</span> <a class="macro" href="../type_traits.html#3415" data-ref="_M/__cpp_lib_is_constant_evaluated">__cpp_lib_is_constant_evaluated</a></u>&nbsp</td></tr>
 <tr><th id="193">193</th><td>	<b>if</b> (<span class="namespace">std::</span><a class="ref fn" href="../type_traits.html#_ZSt21is_constant_evaluatedv" title='std::is_constant_evaluated' data-ref="_ZSt21is_constant_evaluatedv">is_constant_evaluated</a>())&nbsp</td></tr>
 <tr><th id="194">194</th><td>	  {&nbsp</td></tr>
-<tr><th id="195">195</th><td>	    ::<b>operator</b> <b>delete</b>(<a class="local col3 ref" href="#5883__p" title='__p' data-ref="5883__p">__p</a>);&nbsp</td></tr>
+<tr><th id="195">195</th><td>	    ::<b>operator</b> <b>delete</b>(<a class="local col7 ref" href="#5887__p" title='__p' data-ref="5887__p">__p</a>);&nbsp</td></tr>
 <tr><th id="196">196</th><td>	    <b>return</b>;&nbsp</td></tr>
 <tr><th id="197">197</th><td>	  }&nbsp</td></tr>
 <tr><th id="198">198</th><td><u>#<span data-ppcond="192">endif</span></u>&nbsp</td></tr>
-<tr><th id="199">199</th><td>	<a class="type" href="../../../x86_64-linux-gnu/c++/11/bits/c++allocator.h.html#std::__allocator_base" title='std::__allocator_base' data-ref="std::__allocator_base">__allocator_base</a>&lt;_Tp&gt;::deallocate(<a class="local col3 ref" href="#5883__p" title='__p' data-ref="5883__p">__p</a>, <a class="local col4 ref" href="#5884__n" title='__n' data-ref="5884__n">__n</a>);&nbsp</td></tr>
+<tr><th id="199">199</th><td>	<a class="type" href="../../../x86_64-linux-gnu/c++/11/bits/c++allocator.h.html#std::__allocator_base" title='std::__allocator_base' data-ref="std::__allocator_base">__allocator_base</a>&lt;_Tp&gt;::deallocate(<a class="local col7 ref" href="#5887__p" title='__p' data-ref="5887__p">__p</a>, <a class="local col8 ref" href="#5888__n" title='__n' data-ref="5888__n">__n</a>);&nbsp</td></tr>
 <tr><th id="200">200</th><td>      }&nbsp</td></tr>
 <tr><th id="201">201</th><td><u>#<span data-ppcond="176">endif</span> // C++20</u>&nbsp</td></tr>
 <tr><th id="202">202</th><td>&nbsp</td></tr>
@@ -288,11 +288,11 @@
 <tr><th id="274">274</th><td>    <b>struct</b> <dfn class="type def" id="std::__alloc_swap" title='std::__alloc_swap' data-ref="std::__alloc_swap">__alloc_swap</dfn>&lt;_Alloc, <b>false</b>&gt;&nbsp</td></tr>
 <tr><th id="275">275</th><td>    {&nbsp</td></tr>
 <tr><th id="276">276</th><td>      <em>static</em> <em>void</em>&nbsp</td></tr>
-<tr><th id="277">277</th><td>      <dfn class="decl def fn" id="_ZNSt12__alloc_swapIT_Lb0EE8_S_do_itERS0_S2_" title='std::__alloc_swap&lt;type-parameter-0-0, false&gt;::_S_do_it' data-ref="_ZNSt12__alloc_swapIT_Lb0EE8_S_do_itERS0_S2_">_S_do_it</dfn>(_Alloc&amp; <dfn class="local col5 decl" id="5885__one" title='__one' data-type='_Alloc &amp;' data-ref="5885__one">__one</dfn>, _Alloc&amp; <dfn class="local col6 decl" id="5886__two" title='__two' data-type='_Alloc &amp;' data-ref="5886__two">__two</dfn>) <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#186" title="noexcept" data-ref="_M/_GLIBCXX_NOEXCEPT">_GLIBCXX_NOEXCEPT</a>&nbsp</td></tr>
+<tr><th id="277">277</th><td>      <dfn class="decl def fn" id="_ZNSt12__alloc_swapIT_Lb0EE8_S_do_itERS0_S2_" title='std::__alloc_swap&lt;type-parameter-0-0, false&gt;::_S_do_it' data-ref="_ZNSt12__alloc_swapIT_Lb0EE8_S_do_itERS0_S2_">_S_do_it</dfn>(_Alloc&amp; <dfn class="local col9 decl" id="5889__one" title='__one' data-type='_Alloc &amp;' data-ref="5889__one">__one</dfn>, _Alloc&amp; <dfn class="local col0 decl" id="5890__two" title='__two' data-type='_Alloc &amp;' data-ref="5890__two">__two</dfn>) <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#186" title="noexcept" data-ref="_M/_GLIBCXX_NOEXCEPT">_GLIBCXX_NOEXCEPT</a>&nbsp</td></tr>
 <tr><th id="278">278</th><td>      {&nbsp</td></tr>
 <tr><th id="279">279</th><td>	<i>// Precondition: swappable allocators.</i>&nbsp</td></tr>
-<tr><th id="280">280</th><td>	<b>if</b> (<a class="local col5 ref" href="#5885__one" title='__one' data-ref="5885__one">__one</a> != <a class="local col6 ref" href="#5886__two" title='__two' data-ref="5886__two">__two</a>)&nbsp</td></tr>
-<tr><th id="281">281</th><td>	  swap(<a class="local col5 ref" href="#5885__one" title='__one' data-ref="5885__one">__one</a>, <a class="local col6 ref" href="#5886__two" title='__two' data-ref="5886__two">__two</a>);&nbsp</td></tr>
+<tr><th id="280">280</th><td>	<b>if</b> (<a class="local col9 ref" href="#5889__one" title='__one' data-ref="5889__one">__one</a> != <a class="local col0 ref" href="#5890__two" title='__two' data-ref="5890__two">__two</a>)&nbsp</td></tr>
+<tr><th id="281">281</th><td>	  swap(<a class="local col9 ref" href="#5889__one" title='__one' data-ref="5889__one">__one</a>, <a class="local col0 ref" href="#5890__two" title='__two' data-ref="5890__two">__two</a>);&nbsp</td></tr>
 <tr><th id="282">282</th><td>      }&nbsp</td></tr>
 <tr><th id="283">283</th><td>    };&nbsp</td></tr>
 <tr><th id="284">284</th><td>&nbsp</td></tr>
@@ -309,8 +309,8 @@
 <tr><th id="295">295</th><td>    <b>struct</b> <dfn class="type def" id="std::__alloc_neq" title='std::__alloc_neq' data-ref="std::__alloc_neq">__alloc_neq</dfn>&lt;_Alloc, <b>false</b>&gt;&nbsp</td></tr>
 <tr><th id="296">296</th><td>    {&nbsp</td></tr>
 <tr><th id="297">297</th><td>      <em>static</em> <em>bool</em>&nbsp</td></tr>
-<tr><th id="298">298</th><td>      <dfn class="decl def fn" id="_ZNSt11__alloc_neqIT_Lb0EE8_S_do_itERKS0_S3_" title='std::__alloc_neq&lt;type-parameter-0-0, false&gt;::_S_do_it' data-ref="_ZNSt11__alloc_neqIT_Lb0EE8_S_do_itERKS0_S3_">_S_do_it</dfn>(<em>const</em> _Alloc&amp; <dfn class="local col7 decl" id="5887__one" title='__one' data-type='const _Alloc &amp;' data-ref="5887__one">__one</dfn>, <em>const</em> _Alloc&amp; <dfn class="local col8 decl" id="5888__two" title='__two' data-type='const _Alloc &amp;' data-ref="5888__two">__two</dfn>)&nbsp</td></tr>
-<tr><th id="299">299</th><td>      { <b>return</b> <a class="local col7 ref" href="#5887__one" title='__one' data-ref="5887__one">__one</a> != <a class="local col8 ref" href="#5888__two" title='__two' data-ref="5888__two">__two</a>; }&nbsp</td></tr>
+<tr><th id="298">298</th><td>      <dfn class="decl def fn" id="_ZNSt11__alloc_neqIT_Lb0EE8_S_do_itERKS0_S3_" title='std::__alloc_neq&lt;type-parameter-0-0, false&gt;::_S_do_it' data-ref="_ZNSt11__alloc_neqIT_Lb0EE8_S_do_itERKS0_S3_">_S_do_it</dfn>(<em>const</em> _Alloc&amp; <dfn class="local col1 decl" id="5891__one" title='__one' data-type='const _Alloc &amp;' data-ref="5891__one">__one</dfn>, <em>const</em> _Alloc&amp; <dfn class="local col2 decl" id="5892__two" title='__two' data-type='const _Alloc &amp;' data-ref="5892__two">__two</dfn>)&nbsp</td></tr>
+<tr><th id="299">299</th><td>      { <b>return</b> <a class="local col1 ref" href="#5891__one" title='__one' data-ref="5891__one">__one</a> != <a class="local col2 ref" href="#5892__two" title='__two' data-ref="5892__two">__two</a>; }&nbsp</td></tr>
 <tr><th id="300">300</th><td>    };&nbsp</td></tr>
 <tr><th id="301">301</th><td>&nbsp</td></tr>
 <tr><th id="302">302</th><td><u>#<span data-ppcond="302">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
@@ -324,14 +324,14 @@
 <tr><th id="310">310</th><td>    <b>struct</b> <dfn class="type def" id="std::__shrink_to_fit_aux" title='std::__shrink_to_fit_aux' data-ref="std::__shrink_to_fit_aux">__shrink_to_fit_aux</dfn>&lt;_Tp, <b>true</b>&gt;&nbsp</td></tr>
 <tr><th id="311">311</th><td>    {&nbsp</td></tr>
 <tr><th id="312">312</th><td>      <em>static</em> <em>bool</em>&nbsp</td></tr>
-<tr><th id="313">313</th><td>      <dfn class="decl def fn" id="_ZNSt19__shrink_to_fit_auxIT_Lb1EE8_S_do_itERS0_" title='std::__shrink_to_fit_aux&lt;type-parameter-0-0, true&gt;::_S_do_it' data-ref="_ZNSt19__shrink_to_fit_auxIT_Lb1EE8_S_do_itERS0_">_S_do_it</dfn>(_Tp&amp; <dfn class="local col9 decl" id="5889__c" title='__c' data-type='_Tp &amp;' data-ref="5889__c">__c</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="313">313</th><td>      <dfn class="decl def fn" id="_ZNSt19__shrink_to_fit_auxIT_Lb1EE8_S_do_itERS0_" title='std::__shrink_to_fit_aux&lt;type-parameter-0-0, true&gt;::_S_do_it' data-ref="_ZNSt19__shrink_to_fit_auxIT_Lb1EE8_S_do_itERS0_">_S_do_it</dfn>(_Tp&amp; <dfn class="local col3 decl" id="5893__c" title='__c' data-type='_Tp &amp;' data-ref="5893__c">__c</dfn>) <b>noexcept</b>&nbsp</td></tr>
 <tr><th id="314">314</th><td>      {&nbsp</td></tr>
 <tr><th id="315">315</th><td><u>#<span data-ppcond="315">if</span> <span class="macro" title="199711L" data-ref="_M/__cpp_exceptions">__cpp_exceptions</span></u>&nbsp</td></tr>
 <tr><th id="316">316</th><td>	<b>try</b>&nbsp</td></tr>
 <tr><th id="317">317</th><td>	  {&nbsp</td></tr>
-<tr><th id="318">318</th><td>	    _Tp(__make_move_if_noexcept_iterator(<a class="local col9 ref" href="#5889__c" title='__c' data-ref="5889__c">__c</a>.begin()),&nbsp</td></tr>
-<tr><th id="319">319</th><td>		__make_move_if_noexcept_iterator(<a class="local col9 ref" href="#5889__c" title='__c' data-ref="5889__c">__c</a>.end()),&nbsp</td></tr>
-<tr><th id="320">320</th><td>		<a class="local col9 ref" href="#5889__c" title='__c' data-ref="5889__c">__c</a>.get_allocator()).swap(<a class="local col9 ref" href="#5889__c" title='__c' data-ref="5889__c">__c</a>);&nbsp</td></tr>
+<tr><th id="318">318</th><td>	    _Tp(__make_move_if_noexcept_iterator(<a class="local col3 ref" href="#5893__c" title='__c' data-ref="5893__c">__c</a>.begin()),&nbsp</td></tr>
+<tr><th id="319">319</th><td>		__make_move_if_noexcept_iterator(<a class="local col3 ref" href="#5893__c" title='__c' data-ref="5893__c">__c</a>.end()),&nbsp</td></tr>
+<tr><th id="320">320</th><td>		<a class="local col3 ref" href="#5893__c" title='__c' data-ref="5893__c">__c</a>.get_allocator()).swap(<a class="local col3 ref" href="#5893__c" title='__c' data-ref="5893__c">__c</a>);&nbsp</td></tr>
 <tr><th id="321">321</th><td>	    <b>return</b> <b>true</b>;&nbsp</td></tr>
 <tr><th id="322">322</th><td>	  }&nbsp</td></tr>
 <tr><th id="323">323</th><td>	<b>catch</b>(...)&nbsp</td></tr>
@@ -349,6 +349,6 @@
 <tr><th id="335">335</th><td><u>#<span data-ppcond="43">endif</span></u>&nbsp</td></tr>
 <tr><th id="336">336</th><td></td></tr>
 </table><hr/><p id='footer'>
-Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-25</em><br />Powered by Woboq Code Browser 2.1
 <br/></p>
 </div></body></html>

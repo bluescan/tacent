@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='958' ll='961' type='decltype(std::multimap::const_iterator(this-&gt;_M_t._M_lower_bound_tr(__x))) std::multimap::lower_bound(const _Kt &amp; __x) const'/>

@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='362' ll='366'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='505' c='spng_get_offs'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='528' c='spng_set_offs'/>
+<size>12</size>
+<mbr r='spng_offs::x' o='0' t='int32_t'/>
+<mbr r='spng_offs::y' o='32' t='int32_t'/>
+<mbr r='spng_offs::unit_specifier' o='64' t='uint8_t'/>

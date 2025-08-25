@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/pnglibconf.h' l='33'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='1769' u='a'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/pnglibconf.h' l='32'>/*#undef PNG_ERROR_NUMBERS_SUPPORTED*/</doc>

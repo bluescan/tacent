@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='187' ll='216'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='692' c='_Z19astcenc_config_init15astcenc_profilejjjfjP14astcenc_config'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='719' c='_Z21astcenc_context_allocPK14astcenc_configjPP15astcenc_context'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='742' c='_Z22astcenc_compress_imageP15astcenc_contextP13astcenc_imagePK15astcenc_swizzlePhmj'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='763' c='_Z22astcenc_compress_resetP15astcenc_context'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='778' c='_Z24astcenc_decompress_imageP15astcenc_contextPKhmP13astcenc_imagePK15astcenc_swizzlej'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='799' c='_Z24astcenc_decompress_resetP15astcenc_context'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='824' c='_Z22astcenc_get_block_infoP15astcenc_contextPKhP18astcenc_block_info'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='837' c='_Z24astcenc_get_error_string13astcenc_error'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='184'>/**
+ * @brief A codec API error code.
+ */</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1109' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

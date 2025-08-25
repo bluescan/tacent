@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='99' type='bool Imf_2_5::operator==(const Imf_2_5::Name &amp; x, const Imf_2_5::Name &amp; y)'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='133' ll='137' type='bool Imf_2_5::operator==(const Imf_2_5::Name &amp; x, const Imf_2_5::Name &amp; y)'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='143' u='c' c='_ZN7Imf_2_5neERKNS_4NameES2_'/>

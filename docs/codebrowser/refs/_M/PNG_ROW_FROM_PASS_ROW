@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2472'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2468'>/* For the reader row callbacks (both progressive and sequential) it is
+ * necessary to find the row in the output image given a row in an interlaced
+ * image, so two more macros:
+ */</doc>

@@ -1,0 +1,11 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='885' type='tinyxml2::XMLNode * tinyxml2::XMLNode::ShallowClone(tinyxml2::XMLDocument * document) const'/>
+<ovr f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1923' c='_ZNK8tinyxml211XMLDocument12ShallowCloneEPS0_'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='876'>/**
+    	Make a copy of this node, but not its children.
+    	You may pass in a Document pointer that will be
+    	the owner of the new Node. If the &apos;document&apos; is
+    	null, then the node returned will be allocated
+    	from the current Document. (this-&gt;GetDocument())
+
+    	Note: if called on a XMLDocument, this will return null.
+    */</doc>

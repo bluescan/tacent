@@ -1,0 +1,34 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='517' c='_ZN8tinyxml210XMLVisitor5VisitERKNS_10XMLUnknownE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='712' c='_ZN8tinyxml27XMLNode9ToUnknownEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='731' c='_ZNK8tinyxml27XMLNode9ToUnknownEv'/>
+<inh f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='674' c='tinyxml2::XMLNode'/>
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1105' ll='1130'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1109' c='_ZN8tinyxml210XMLUnknown9ToUnknownEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1112' c='_ZNK8tinyxml210XMLUnknown9ToUnknownEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1128' c='_ZN8tinyxml210XMLUnknownC1ERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1129' c='_ZN8tinyxml210XMLUnknownaSERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1129' c='_ZN8tinyxml210XMLUnknownaSERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1667' c='_ZN8tinyxml210XMLElement16InsertNewUnknownEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1725'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1869' c='_ZN8tinyxml211XMLDocument10NewUnknownEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2116' c='_ZN8tinyxml29XMLHandle9ToUnknownEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2183' c='_ZNK8tinyxml214XMLConstHandle9ToUnknownEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2300' c='_ZN8tinyxml210XMLPrinter5VisitERKNS_10XMLUnknownE'/>
+<size>104</size>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1098'>/** Any tag that TinyXML-2 doesn&apos;t recognize is saved as an
+	unknown. It is a tag of text, but should not be modified.
+	It will be written back to the XML, unchanged, when the file
+	is saved.
+
+	DTD tags get thrown into XMLUnknowns.
+*/</doc>
+<fun r='_ZN8tinyxml210XMLUnknown9ToUnknownEv'/>
+<fun r='_ZNK8tinyxml210XMLUnknown9ToUnknownEv'/>
+<fun r='_ZNK8tinyxml210XMLUnknown6AcceptEPNS_10XMLVisitorE'/>
+<fun r='_ZNK8tinyxml210XMLUnknown12ShallowCloneEPNS_11XMLDocumentE'/>
+<fun r='_ZNK8tinyxml210XMLUnknown12ShallowEqualEPKNS_7XMLNodeE'/>
+<fun r='_ZN8tinyxml210XMLUnknownC1EPNS_11XMLDocumentE'/>
+<fun r='_ZN8tinyxml210XMLUnknownD1Ev'/>
+<fun r='_ZN8tinyxml210XMLUnknown9ParseDeepEPcPNS_7StrPairEPi'/>
+<fun r='_ZN8tinyxml210XMLUnknownC1ERKS0_'/>
+<fun r='_ZN8tinyxml210XMLUnknownaSERKS0_'/>

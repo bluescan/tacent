@@ -1,0 +1,14 @@
+<inh f='include/c++/11/bits/stl_tree.h' l='101' c='std::_Rb_tree_node_base'/>
+<def f='include/c++/11/bits/stl_tree.h' l='216' ll='241'/>
+<use f='include/c++/11/bits/stl_tree.h' l='218'/>
+<use f='include/c++/11/bits/stl_tree.h' l='267'/>
+<use f='include/c++/11/bits/stl_tree.h' l='341'/>
+<use f='include/c++/11/bits/stl_tree.h' l='428'/>
+<use f='include/c++/11/bits/stl_tree.h' l='435'/>
+<use f='include/c++/11/bits/stl_tree.h' l='436'/>
+<use f='include/c++/11/bits/stl_tree.h' l='594' c='_ZNSt8_Rb_tree17_M_construct_nodeEPSt13_Rb_tree_nodeIT0_EDpOTL0__'/>
+<use f='include/c++/11/bits/stl_tree.h' l='601' c='_ZNSt8_Rb_tree17_M_construct_nodeEPSt13_Rb_tree_nodeIT0_EDpOTL0__'/>
+<use f='include/c++/11/bits/stl_tree.h' l='624' c='_ZNSt8_Rb_tree15_M_destroy_nodeEPSt13_Rb_tree_nodeIT0_E'/>
+<mbr r='std::_Rb_tree_node::_M_storage' t='__gnu_cxx::__aligned_membuf&lt;_Val&gt;'/>
+<fun r='_ZNSt13_Rb_tree_node9_M_valptrEv'/>
+<fun r='_ZNKSt13_Rb_tree_node9_M_valptrEv'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfLineOrder.h' l='56' type='2'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfLineOrder.h' l='56'>// only for tiled files; tiles are written</doc>

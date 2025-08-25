@@ -1,0 +1,33 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='551' ll='646'/>
+<size>1</size>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='548'>/*
+	Utility functionality.
+*/</doc>
+<fun r='_ZN8tinyxml27XMLUtil14SkipWhiteSpaceEPKcPi'/>
+<fun r='_ZN8tinyxml27XMLUtil14SkipWhiteSpaceEPcPi'/>
+<fun r='_ZN8tinyxml27XMLUtil12IsWhiteSpaceEc'/>
+<fun r='_ZN8tinyxml27XMLUtil15IsNameStartCharEh'/>
+<fun r='_ZN8tinyxml27XMLUtil10IsNameCharEh'/>
+<fun r='_ZN8tinyxml27XMLUtil11IsPrefixHexEPKc'/>
+<fun r='_ZN8tinyxml27XMLUtil11StringEqualEPKcS2_i'/>
+<fun r='_ZN8tinyxml27XMLUtil18IsUTF8ContinuationEc'/>
+<fun r='_ZN8tinyxml27XMLUtil7ReadBOMEPKcPb'/>
+<fun r='_ZN8tinyxml27XMLUtil15GetCharacterRefEPKcPcPi'/>
+<fun r='_ZN8tinyxml27XMLUtil18ConvertUTF32ToUTF8EmPcPi'/>
+<fun r='_ZN8tinyxml27XMLUtil5ToStrEiPci'/>
+<fun r='_ZN8tinyxml27XMLUtil5ToStrEjPci'/>
+<fun r='_ZN8tinyxml27XMLUtil5ToStrEbPci'/>
+<fun r='_ZN8tinyxml27XMLUtil5ToStrEfPci'/>
+<fun r='_ZN8tinyxml27XMLUtil5ToStrEdPci'/>
+<fun r='_ZN8tinyxml27XMLUtil5ToStrElPci'/>
+<fun r='_ZN8tinyxml27XMLUtil5ToStrEmPci'/>
+<fun r='_ZN8tinyxml27XMLUtil5ToIntEPKcPi'/>
+<fun r='_ZN8tinyxml27XMLUtil10ToUnsignedEPKcPj'/>
+<fun r='_ZN8tinyxml27XMLUtil6ToBoolEPKcPb'/>
+<fun r='_ZN8tinyxml27XMLUtil7ToFloatEPKcPf'/>
+<fun r='_ZN8tinyxml27XMLUtil8ToDoubleEPKcPd'/>
+<fun r='_ZN8tinyxml27XMLUtil7ToInt64EPKcPl'/>
+<fun r='_ZN8tinyxml27XMLUtil12ToUnsigned64EPKcPm'/>
+<fun r='_ZN8tinyxml27XMLUtil20SetBoolSerializationEPKcS2_'/>
+<smbr r='tinyxml2::XMLUtil::writeBoolTrue' t='const char *'/>
+<smbr r='tinyxml2::XMLUtil::writeBoolFalse' t='const char *'/>

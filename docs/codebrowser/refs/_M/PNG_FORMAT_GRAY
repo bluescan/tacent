@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2794'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2790'>/* Commonly used formats have predefined macros.
+ *
+ * First the single byte (sRGB) formats:
+ */</doc>

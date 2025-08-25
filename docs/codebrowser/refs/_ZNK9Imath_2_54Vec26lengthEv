@@ -1,0 +1,24 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='229' type='T Imath_2_5::Vec2::length() const'/>
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='723' type='short Imath_2_5::Vec2&lt;short&gt;::length() const'/>
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='747' type='int Imath_2_5::Vec2&lt;int&gt;::length() const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1185' ll='1195' type='T Imath_2_5::Vec2::length() const'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1208' u='c' c='_ZN9Imath_2_54Vec29normalizeEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1229' u='c' c='_ZN9Imath_2_54Vec212normalizeExcEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1244' u='c' c='_ZN9Imath_2_54Vec216normalizeNonNullEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1254' u='c' c='_ZNK9Imath_2_54Vec210normalizedEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1266' u='c' c='_ZNK9Imath_2_54Vec213normalizedExcEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1279' u='c' c='_ZNK9Imath_2_54Vec217normalizedNonNullEv'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='220'>//----------------------------------------------------------------
+    // Length and normalization:  If v.length() is 0.0, v.normalize()
+    // and v.normalized() produce a null vector; v.normalizeExc() and
+    // v.normalizedExc() throw a NullVecExc.
+    // v.normalizeNonNull() and v.normalizedNonNull() are slightly
+    // faster than the other normalization routines, but if v.length()
+    // is 0.0, the result is undefined.
+    //----------------------------------------------------------------</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='716'>//-------------------------------------------
+// Specializations for VecN&lt;short&gt;, VecN&lt;int&gt;
+//-------------------------------------------
+
+// Vec2&lt;short&gt;</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='744'>// Vec2&lt;int&gt;</doc>

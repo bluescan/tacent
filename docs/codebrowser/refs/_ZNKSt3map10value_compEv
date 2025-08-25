@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/stl_map.h' l='1149' ll='1151' type='std::map::value_compare std::map::value_comp() const'/>
+<doc f='include/c++/11/bits/stl_map.h' l='1145'>/**
+       *  Returns a value comparison object, built from the key comparison
+       *  object out of which the %map was constructed.
+       */</doc>

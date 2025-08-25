@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='85' type='void Imf_2_5::Array::Array&lt;T&gt;()'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='172' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='173' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='174' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='81'>//-----------------------------
+    // Constructors and destructors
+    //-----------------------------</doc>

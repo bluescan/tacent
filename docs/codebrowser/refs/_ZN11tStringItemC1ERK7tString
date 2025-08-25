@@ -4,8 +4,6 @@
 <use f='Modules/Foundation/Src/tString.cpp' l='748' u='c' c='_ZN4tStd8tExplodeER5tListI11tStringItemERK7tStringc'/>
 <use f='Modules/System/Inc/System/tFile.h' l='863' u='c' c='_ZN7tSystem11tExtensions3AddEPKc'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='66' u='c' c='_ZN9tPipeline5tRule37MaybeAddToDependenciesCaseInsensitiveERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='60' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='108' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
 <use f='Modules/System/Inc/System/tCmdLine.h' l='108' u='c' c='_ZN8tCmdLine6tParam3SetERK7tString'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='242' u='c' c='_ZN8tCmdLine10ExpandArgsER5tListI11tStringItemE'/>
 <use f='Modules/System/Src/tFile.cpp' l='1950' u='c' c='_ZN7tSystem14tGetExtensionsER5tListI11tStringItemENS_9tFileTypeE'/>

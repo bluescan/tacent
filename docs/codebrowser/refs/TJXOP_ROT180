@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='488' type='6'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='484'>/**
+   * Rotate image 180 degrees.  This transform is imperfect if there are any
+   * partial MCU blocks in the image (see #TJXOPT_PERFECT.)
+   */</doc>

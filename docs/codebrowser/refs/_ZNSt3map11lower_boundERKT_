@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/stl_map.h' l='1257' ll='1259' type='std::map::iterator std::map::lower_bound(const std::map::key_type &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_map.h' l='1246'>/**
+       *  @brief Finds the beginning of a subsequence matching given key.
+       *  @param  __x  Key of (key, value) pair to be located.
+       *  @return  Iterator pointing to first element equal to or greater
+       *           than key, or end().
+       *
+       *  This function returns the first element of a subsequence of elements
+       *  that matches the given key.  If unsuccessful it returns an iterator
+       *  pointing to the first element that has a greater value than given key
+       *  or end() if no such element exists.
+       */</doc>

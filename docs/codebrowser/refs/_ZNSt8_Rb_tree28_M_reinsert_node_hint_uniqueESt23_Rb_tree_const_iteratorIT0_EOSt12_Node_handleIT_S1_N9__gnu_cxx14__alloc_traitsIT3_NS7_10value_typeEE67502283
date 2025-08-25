@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_tree.h' l='1489' ll='1508' type='std::_Rb_tree::iterator std::_Rb_tree::_M_reinsert_node_hint_unique(std::_Rb_tree::const_iterator __hint, std::_Rb_tree::node_type &amp;&amp; __nh)'/>
+<doc f='include/c++/11/bits/stl_tree.h' l='1488'>/// Re-insert an extracted node.</doc>

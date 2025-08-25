@@ -1,0 +1,4 @@
+<dec f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='82' type='const char *'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='130' u='w' c='_ZN6tInput9tContDefn10SetGenericEv'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='148' u='w' c='_ZN6tInput9tContDefn5ClearEv'/>
+<offset>64</offset>

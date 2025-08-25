@@ -2,4 +2,4 @@
 <def f='Modules/Image/Src/tImageEXR.cpp' l='63' ll='66' type='float EXR::KneeFun(double x, double f)'/>
 <use f='Modules/Image/Src/tImageEXR.cpp' l='72' u='c' c='_ZN3EXR11FindKneeFunEff'/>
 <use f='Modules/Image/Src/tImageEXR.cpp' l='81' u='c' c='_ZN3EXR11FindKneeFunEff'/>
-<use f='Modules/Image/Src/tImageEXR.cpp' l='145' u='c' c='_ZN3EXR5GammaclEi'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='145' u='c' c='_ZN3EXR5GammaclE4half'/>

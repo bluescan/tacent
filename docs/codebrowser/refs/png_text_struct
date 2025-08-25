@@ -1,0 +1,27 @@
+<def f='Modules/Image/Contrib/LibPNG/include/png.h' l='562' ll='578'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='562'/>
+<size>56</size>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='545'>/* png_text holds the contents of a text/ztxt/itxt chunk in a PNG file,
+ * and whether that contents is compressed or not.  The &quot;key&quot; field
+ * points to a regular zero-terminated C string.  The &quot;text&quot; fields can be a
+ * regular C string, an empty string, or a NULL pointer.
+ * However, the structure returned by png_get_text() will always contain
+ * the &quot;text&quot; field as a regular zero-terminated C string (possibly
+ * empty), never a NULL pointer, so it can be safely used in printf() and
+ * other string-handling functions.  Note that the &quot;itxt_length&quot;, &quot;lang&quot;, and
+ * &quot;lang_key&quot; members of the structure only exist when the library is built
+ * with iTXt chunk support.  Prior to libpng-1.4.0 the library was built by
+ * default without iTXt support. Also note that when iTXt *is* supported,
+ * the &quot;lang&quot; and &quot;lang_key&quot; fields contain NULL pointers when the
+ * &quot;compression&quot; field contains * PNG_TEXT_COMPRESSION_NONE or
+ * PNG_TEXT_COMPRESSION_zTXt. Note that the &quot;compression value&quot; is not the
+ * same as what appears in the PNG tEXt/zTXt/iTXt chunk&apos;s &quot;compression flag&quot;
+ * which is always 0 or 1, or its &quot;compression method&quot; which is always 0.
+ */</doc>
+<mbr r='png_text_struct::compression' o='0' t='int'/>
+<mbr r='png_text_struct::key' o='64' t='png_charp'/>
+<mbr r='png_text_struct::text' o='128' t='png_charp'/>
+<mbr r='png_text_struct::text_length' o='192' t='size_t'/>
+<mbr r='png_text_struct::itxt_length' o='256' t='size_t'/>
+<mbr r='png_text_struct::lang' o='320' t='png_charp'/>
+<mbr r='png_text_struct::lang_key' o='384' t='png_charp'/>

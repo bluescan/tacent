@@ -36,6 +36,9 @@
 <ovr f='include/c++/11/stdexcept' l='219' c='std::runtime_error'/>
 <use f='include/c++/11/stdexcept' l='219'/>
 <size>8</size>
+<ovr f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='60' c='Iex_2_5::BaseExc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='60'/>
+<size>8</size>
 <ovr f='include/c++/11/ext/concurrence.h' l='64' c='__gnu_cxx::__concurrence_lock_error'/>
 <use f='include/c++/11/ext/concurrence.h' l='64'/>
 <ovr f='include/c++/11/ext/concurrence.h' l='72' c='__gnu_cxx::__concurrence_unlock_error'/>

@@ -1,1 +1,1 @@
-<dec f='include/zlib.h' l='1520' type='int gzungetc(int c, gzFile file)'/>
+<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1519' type='int gzungetc(int c, gzFile file)'/>

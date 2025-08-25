@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='526' type='const char * Imf_2_5::Header::Iterator::name() const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='621' ll='625' type='const char * Imf_2_5::Header::Iterator::name() const'/>

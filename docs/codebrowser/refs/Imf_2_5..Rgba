@@ -1,0 +1,17 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfRgba.h' l='55' ll='64'/>
+<use f='Modules/Image/Contrib/OpenEXR/loadImage.h' l='96' c='_ZN3EXR9loadImageEPKcS1_S1_biiiRiRN7Imf_2_56HeaderERNS3_5ArrayINS3_4RgbaEEERNS6_IPfEERNS6_IjEEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='52' c='_ZN3EXR16ComputeFogColourERfS0_S0_RKN7Imf_2_55ArrayINS1_4RgbaEEE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='92' c='_ZN3EXR16ComputeFogColourERfS0_S0_RKN7Imf_2_55ArrayINS1_4RgbaEEE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='102' c='_ZN3EXR16ComputeFogColourERfS0_S0_RKN7Imf_2_55ArrayINS1_4RgbaEEE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='172' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='264' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<size>8</size>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfRgba.h' l='51'>//
+// RGBA pixel
+//</doc>
+<mbr r='Imf_2_5::Rgba::r' o='0' t='half'/>
+<mbr r='Imf_2_5::Rgba::g' o='16' t='half'/>
+<mbr r='Imf_2_5::Rgba::b' o='32' t='half'/>
+<mbr r='Imf_2_5::Rgba::a' o='48' t='half'/>
+<fun r='_ZN7Imf_2_54RgbaC1Ev'/>
+<fun r='_ZN7Imf_2_54RgbaC1E4halfS1_S1_S1_'/>

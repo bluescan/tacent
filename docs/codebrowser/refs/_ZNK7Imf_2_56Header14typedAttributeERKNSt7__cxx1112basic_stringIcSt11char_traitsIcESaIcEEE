@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='221' type='const T &amp; Imf_2_5::Header::typedAttribute(const std::string &amp; name) const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='742' ll='746' type='const T &amp; Imf_2_5::Header::typedAttribute(const std::string &amp; name) const'/>

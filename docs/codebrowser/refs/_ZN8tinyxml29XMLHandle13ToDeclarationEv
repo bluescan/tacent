@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2120' ll='2122' type='tinyxml2::XMLDeclaration * tinyxml2::XMLHandle::ToDeclaration()'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2119'>/// Safe cast to XMLDeclaration. This can return null.</doc>

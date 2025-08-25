@@ -1,0 +1,15 @@
+<inh f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='179' c='Iex_2_5::MathExc'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='62' macro='1'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='62' c='_ZN9Imath_2_513SingMatrixExcC1ERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='62' c='_ZN9Imath_2_513SingMatrixExcC1EOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='62' c='_ZN9Imath_2_513SingMatrixExcaSERS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='62' c='_ZN9Imath_2_513SingMatrixExcaSERS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='62' c='_ZN9Imath_2_513SingMatrixExcaSEOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='62' c='_ZN9Imath_2_513SingMatrixExcaSEOS0_'/>
+<size>72</size>
+<fun r='_ZN9Imath_2_513SingMatrixExcC1Ev'/>
+<fun r='_ZN9Imath_2_513SingMatrixExcC1EPKc'/>
+<fun r='_ZN9Imath_2_513SingMatrixExcC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN9Imath_2_513SingMatrixExcC1ERNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN9Imath_2_513SingMatrixExcC1ERKS0_'/>
+<fun r='_ZN9Imath_2_513SingMatrixExcC1EOS0_'/>

@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Contrib/ApngDis/apngdis.h' l='59' type='APngDis::Image::ROW *'/>
+<use f='Modules/Image/Contrib/ApngDis/apngdis.h' l='60' u='w' c='_ZN7APngDis5ImageC1Ev'/>
+<use f='Modules/Image/Contrib/ApngDis/apngdis.h' l='66' u='w' c='_ZN7APngDis5Image4initEjjj'/>
+<use f='Modules/Image/Contrib/ApngDis/apngdis.h' l='67' u='r' c='_ZN7APngDis5Image4initEjjj'/>
+<use f='Modules/Image/Contrib/ApngDis/apngdis.h' l='69' u='r' c='_ZN7APngDis5Image4initEjjj'/>
+<use f='Modules/Image/Contrib/ApngDis/apngdis.h' l='69' u='r' c='_ZN7APngDis5Image4initEjjj'/>
+<use f='Modules/Image/Contrib/ApngDis/apngdis.h' l='71' u='r' c='_ZN7APngDis5Image4freeEv'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='96' u='r' c='_ZN6tImage10tImageAPNG4LoadERK7tString'/>
+<offset>256</offset>

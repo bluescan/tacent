@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='99' type='void half::half()'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='551' u='c' c='_ZNK4half5roundEj'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='565' u='c' c='_ZNK4halfngEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='703' u='c' c='_ZN4half6posInfEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='712' u='c' c='_ZN4half6negInfEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='721' u='c' c='_ZN4half4qNanEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='730' u='c' c='_ZN4half4sNanEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='159' u='c' c='_ZN12halfFunctionC1ETL0__4halfS1_T_S2_S2_S2_'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='95'>//-------------
+    // Constructors
+    //-------------</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='99'>// no initialization</doc>

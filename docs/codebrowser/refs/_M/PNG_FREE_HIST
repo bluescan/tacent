@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='1745'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='1744'>/* Flags for png_ptr-&gt;free_me and info_ptr-&gt;free_me */</doc>

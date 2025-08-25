@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='574' type='png_charp'/>
+<offset>320</offset>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='574'>/* language code, 0-79 characters
+                              or a NULL pointer */</doc>

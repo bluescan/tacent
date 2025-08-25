@@ -5,7 +5,7 @@
 	// The constructors that do take a length may contain multiple nulls in the src string.
 	// You can create a UTF-8 tString from an ASCII string (char*) since all ASCII strings are valid UTF-8.
 	// Constructors taking char8_t, char16_t, or chat32_t pointers assume the src is UTF encoded.</doc>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='143' u='c' c='_ZN4tStd7tStrtobEPKc'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='206' u='c' c='_ZN4tStd7tStrtobEPKc'/>
 <use f='Modules/Foundation/Src/tVersion.cpp' l='41' u='c' c='_ZN8tVersion6ParserC1EPKc'/>
 <use f='Modules/System/Inc/System/tPrint.h' l='276' u='c' c='_Z8tsrPrintb'/>
 <use f='Modules/System/Inc/System/tFile.h' l='146' u='c' c='_ZN7tSystem13tGetLinuxPathERK7tStringS2_'/>
@@ -83,9 +83,6 @@
 <use f='Modules/Math/Src/tColour.cpp' l='416' u='c' c='_ZN5tMath10tGetColourEPKc'/>
 <use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='84' u='c' c='_ZN9tPipeline5tRule9AddDepDirERK7tStringS3_'/>
 <use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='85' u='c' c='_ZN9tPipeline5tRule12AddDepDirRecERK7tStringS3_'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='39' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='84' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='85' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
 <use f='Modules/Scene/Src/tWorld.cpp' l='244' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='63' u='c' c='_ZN8tCmdLine6tParamC1EiPKcS2_b'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='71' u='c' c='_ZN8tCmdLine7tOptionC1EPKccS2_ib'/>

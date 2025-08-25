@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_map.h' l='1233' ll='1235' type='bool std::map::contains(const std::map::key_type &amp; __x) const'/>
+<doc f='include/c++/11/bits/stl_map.h' l='1228'>/**
+       *  @brief  Finds whether an element with the given key exists.
+       *  @param  __x  Key of (key, value) pairs to be located.
+       *  @return  True if there is an element with the specified key.
+       */</doc>

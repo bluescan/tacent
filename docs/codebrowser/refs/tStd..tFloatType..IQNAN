@@ -1,6 +1,6 @@
-<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='362' type='5'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='363'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='706' u='r' c='_ZN4tStd13tGetFloatTypeEf'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='735' u='r' c='_ZN4tStd13tGetFloatTypeEd'/>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='362'>// Indefinite QNAN. For AMD64 processors only a single NQNAN is used for Indefinite. </doc>
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='368' type='5'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='369'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='712' u='r' c='_ZN4tStd13tGetFloatTypeEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='741' u='r' c='_ZN4tStd13tGetFloatTypeEd'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='368'>// Indefinite QNAN. For AMD64 processors only a single NQNAN is used for Indefinite. </doc>
 <use f='Modules/System/Src/tPrint.cpp' l='1458' c='_ZN7tSystem37HandlerHelper_HandleSpecialFloatTypesER6tArrayIcEd'/>

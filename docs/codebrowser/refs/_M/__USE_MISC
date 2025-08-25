@@ -134,6 +134,7 @@
 <use f='include/signal.h' l='320' u='a'/>
 <use f='include/signal.h' l='338' u='a'/>
 <use f='include/signal.h' l='343' u='a'/>
+<use f='include/setjmp.h' l='57' u='a'/>
 <use f='include/x86_64-linux-gnu/sys/stat.h' l='103' u='a'/>
 <use f='include/x86_64-linux-gnu/sys/stat.h' l='115' u='a'/>
 <use f='include/x86_64-linux-gnu/sys/stat.h' l='136' u='a'/>

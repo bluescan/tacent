@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='657'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='654'>/**
+ * Pad the given width to the nearest 32-bit boundary
+ */</doc>

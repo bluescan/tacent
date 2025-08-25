@@ -1,6 +1,7 @@
-<def f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='99' ll='117'/>
+<def f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='100' ll='118'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='119'/>
 <size>4</size>
-<doc f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='94'>// This is a packed format that stores 3 unsigned floats in 32 bits. The first two floats (MSBs) are 11 bits each and
+<doc f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='95'>// This is a packed format that stores 3 unsigned floats in 32 bits. The first two floats (MSBs) are 11 bits each and
 // the third (LSBs) is 10 bits. They all have no sign bit and the exponent bitdepth is 5 for all three. Denorm numbers
 // are supported. This class is primarily for decoding and encoding the packed format into 3 regular 32-bit floats.
 // tPackedF11F11F10 must remain pod. No virtual function table etc. C++ defaults are used for op=, copy cons, etc. That

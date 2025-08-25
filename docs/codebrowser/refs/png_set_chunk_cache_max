@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2365' type='void png_set_chunk_cache_max(png_structrp png_ptr, png_uint_32 user_chunk_cache_max)'/>

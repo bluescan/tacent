@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='1337'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='1334'>/* The threshold on gamma processing is configurable but hard-wired into the
+ * library.  The following is the floating point variant.
+ */</doc>

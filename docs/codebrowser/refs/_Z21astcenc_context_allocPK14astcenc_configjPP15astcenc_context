@@ -1,0 +1,20 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='719' type='astcenc_error astcenc_context_alloc(const astcenc_config * config, unsigned int thread_count, astcenc_context ** context)'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='701'>/**
+ * @brief Allocate a new codec context based on a config.
+ *
+ * This function allocates all of the memory resources and threads needed by the codec. This can be
+ * slow, so it is recommended that contexts are reused to serially compress or decompress multiple
+ * images to amortize setup cost.
+ *
+ * Contexts can be allocated to support only decompression using the @c ASTCENC_FLG_DECOMPRESS_ONLY
+ * flag when creating the configuration. The compression functions will fail if invoked. For a
+ * decompress-only library build the @c ASTCENC_FLG_DECOMPRESS_ONLY flag must be set when creating
+ * any context.
+ *
+ * @param[in]  config         Codec config.
+ * @param      thread_count   Thread count to configure for.
+ * @param[out] context        Location to store an opaque context pointer.
+ *
+ * @return @c ASTCENC_SUCCESS on success, or an error if context creation failed.
+ */</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1119' u='c' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

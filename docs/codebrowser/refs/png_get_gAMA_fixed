@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='1993' type='png_uint_32 png_get_gAMA_fixed(png_const_structrp png_ptr, png_const_inforp info_ptr, png_fixed_point * int_file_gamma)'/>

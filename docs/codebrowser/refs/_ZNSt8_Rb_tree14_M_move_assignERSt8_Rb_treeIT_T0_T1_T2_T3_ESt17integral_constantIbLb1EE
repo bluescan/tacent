@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/stl_tree.h' l='1429' type='void std::_Rb_tree::_M_move_assign(_Rb_tree&lt;_Key, _Val, _KeyOfValue, _Compare, _Alloc&gt; &amp; , std::true_type )'/>
+<def f='include/c++/11/bits/stl_tree.h' l='1655' ll='1666' type='void std::_Rb_tree::_M_move_assign(_Rb_tree&lt;_Key, _Val, _KeyOfValue, _Compare, _Alloc&gt; &amp; __x, std::true_type )'/>
+<doc f='include/c++/11/bits/stl_tree.h' l='1427'>// Move assignment from container with equal allocator.</doc>

@@ -1,0 +1,14 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfNamespace.h' l='109'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfRgba.h' l='93' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfForward.h' l='124' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='286' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfLineOrder.h' l='63' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfCompression.h' l='81' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='154' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfTileDescription.h' l='101' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfInt64.h' l='52' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='783' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='266' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfGenericInputFile.h' l='58' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfThreading.h' l='93' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfMultiPartInputFile.h' l='135' u='c'/>

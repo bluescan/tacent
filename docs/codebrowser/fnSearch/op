@@ -465,6 +465,104 @@ _ZNK6tImage10tMetaDatumeqERKS0_|tImage::tMetaDatum::operator==
 _ZNK6tImage8tPictureneERKS0_|tImage::tPicture::operator!=
 _ZNK6tImage8tPictureeqERKS0_|tImage::tPicture::operator==
 _ZN6tImage8tPictureixEi|tImage::tPicture::operator[]
+_ZStanSt4byteS_|std::operator&
+_ZStaNRSt4byteS_|std::operator&=
+_ZSteoSt4byteS_|std::operator^
+_ZSteORSt4byteS_|std::operator^=
+_ZStorSt4byteS_|std::operator|
+_ZStoRRSt4byteS_|std::operator|=
+_ZStcoSt4byte|std::operator~
+_ZNK9Imath_2_53BoxneERKNS_3BoxIT_EE|Imath_2_5::Box::operator!=
+_ZNK9Imath_2_53BoxeqERKNS_3BoxIT_EE|Imath_2_5::Box::operator==
+_ZNK9Imath_2_54Vec2neERKNS_4Vec2ITL0__EE|Imath_2_5::Vec2::operator!=
+_ZNK9Imath_2_54Vec2rmERKNS_4Vec2IT_EE|Imath_2_5::Vec2::operator%
+_ZNK9Imath_2_54Vec2mlERKNS_4Vec2IT_EE|Imath_2_5::Vec2::operator*
+_ZN9Imath_2_54Vec2mLERKNS_4Vec2IT_EE|Imath_2_5::Vec2::operator*=
+_ZNK9Imath_2_54Vec2plERKNS_4Vec2IT_EE|Imath_2_5::Vec2::operator+
+_ZN9Imath_2_54Vec2pLERKNS_4Vec2IT_EE|Imath_2_5::Vec2::operator+=
+_ZNK9Imath_2_54Vec2miERKNS_4Vec2IT_EE|Imath_2_5::Vec2::operator-
+_ZN9Imath_2_54Vec2mIERKNS_4Vec2IT_EE|Imath_2_5::Vec2::operator-=
+_ZNK9Imath_2_54Vec2dvERKNS_4Vec2IT_EE|Imath_2_5::Vec2::operator/
+_ZN9Imath_2_54Vec2dVERKNS_4Vec2IT_EE|Imath_2_5::Vec2::operator/=
+_ZN9Imath_2_54Vec2aSERKNS_4Vec2IT_EE|Imath_2_5::Vec2::operator=
+_ZNK9Imath_2_54Vec2eqERKNS_4Vec2ITL0__EE|Imath_2_5::Vec2::operator==
+_ZN9Imath_2_54Vec2ixEi|Imath_2_5::Vec2::operator[]
+_ZNK9Imath_2_54Vec2eoERKNS_4Vec2IT_EE|Imath_2_5::Vec2::operator^
+_ZNK9Imath_2_54Vec3neERKNS_4Vec3ITL0__EE|Imath_2_5::Vec3::operator!=
+_ZNK9Imath_2_54Vec3rmERKNS_4Vec3IT_EE|Imath_2_5::Vec3::operator%
+_ZN9Imath_2_54Vec3rMERKNS_4Vec3IT_EE|Imath_2_5::Vec3::operator%=
+_ZNK9Imath_2_54Vec3mlERKNS_4Vec3IT_EE|Imath_2_5::Vec3::operator*
+_ZN9Imath_2_54Vec3mLERKNS_4Vec3IT_EE|Imath_2_5::Vec3::operator*=
+_ZNK9Imath_2_54Vec3plERKNS_4Vec3IT_EE|Imath_2_5::Vec3::operator+
+_ZN9Imath_2_54Vec3pLERKNS_4Vec3IT_EE|Imath_2_5::Vec3::operator+=
+_ZNK9Imath_2_54Vec3miERKNS_4Vec3IT_EE|Imath_2_5::Vec3::operator-
+_ZN9Imath_2_54Vec3mIERKNS_4Vec3IT_EE|Imath_2_5::Vec3::operator-=
+_ZNK9Imath_2_54Vec3dvERKNS_4Vec3IT_EE|Imath_2_5::Vec3::operator/
+_ZN9Imath_2_54Vec3dVERKNS_4Vec3IT_EE|Imath_2_5::Vec3::operator/=
+_ZN9Imath_2_54Vec3aSERKNS_4Vec3IT_EE|Imath_2_5::Vec3::operator=
+_ZNK9Imath_2_54Vec3eqERKNS_4Vec3ITL0__EE|Imath_2_5::Vec3::operator==
+_ZN9Imath_2_54Vec3ixEi|Imath_2_5::Vec3::operator[]
+_ZNK9Imath_2_54Vec3eoERKNS_4Vec3IT_EE|Imath_2_5::Vec3::operator^
+_ZNK9Imath_2_54Vec4neERKNS_4Vec4ITL0__EE|Imath_2_5::Vec4::operator!=
+_ZNK9Imath_2_54Vec4mlERKNS_4Vec4IT_EE|Imath_2_5::Vec4::operator*
+_ZN9Imath_2_54Vec4mLERKNS_4Vec4IT_EE|Imath_2_5::Vec4::operator*=
+_ZNK9Imath_2_54Vec4plERKNS_4Vec4IT_EE|Imath_2_5::Vec4::operator+
+_ZN9Imath_2_54Vec4pLERKNS_4Vec4IT_EE|Imath_2_5::Vec4::operator+=
+_ZNK9Imath_2_54Vec4miERKNS_4Vec4IT_EE|Imath_2_5::Vec4::operator-
+_ZN9Imath_2_54Vec4mIERKNS_4Vec4IT_EE|Imath_2_5::Vec4::operator-=
+_ZNK9Imath_2_54Vec4dvERKNS_4Vec4IT_EE|Imath_2_5::Vec4::operator/
+_ZN9Imath_2_54Vec4dVERKNS_4Vec4IT_EE|Imath_2_5::Vec4::operator/=
+_ZN9Imath_2_54Vec4aSERKNS_4Vec4IT_EE|Imath_2_5::Vec4::operator=
+_ZNK9Imath_2_54Vec4eqERKNS_4Vec4ITL0__EE|Imath_2_5::Vec4::operator==
+_ZN9Imath_2_54Vec4ixEi|Imath_2_5::Vec4::operator[]
+_ZNK9Imath_2_54Vec4eoERKNS_4Vec4IT_EE|Imath_2_5::Vec4::operator^
+_ZN9Imath_2_5mlET_RKNS_4Vec2IS0_EE|Imath_2_5::operator*
+_ZN7Imf_2_57Array2DaSERKNS_7Array2DIT_EE|Imf_2_5::Array2D::operator=
+_ZN7Imf_2_57Array2DixEl|Imf_2_5::Array2D::operator[]
+_ZNK7Imf_2_55ArraycvPKT_Ev|Imf_2_5::Array::operator const type-parameter-0-0 *
+_ZN7Imf_2_55ArraycvPT_Ev|Imf_2_5::Array::operator type-parameter-0-0 *
+_ZN7Imf_2_55ArrayaSERKNS_5ArrayIT_EE|Imf_2_5::Array::operator=
+_ZN7Imf_2_56Header13ConstIteratorppEv|Imf_2_5::Header::ConstIterator::operator++
+_ZN7Imf_2_56Header8IteratorppEv|Imf_2_5::Header::Iterator::operator++
+_ZN7Imf_2_57IStreamaSERKS0_|Imf_2_5::IStream::operator=
+_ZN7Imf_2_518MultiPartInputFileaSERKS0_|Imf_2_5::MultiPartInputFile::operator=
+_ZNK7Imf_2_54NamedeEv|Imf_2_5::Name::operator*
+_ZN7Imf_2_54NameaSEPKc|Imf_2_5::Name::operator=
+_ZN7Imf_2_57OStreamaSERKS0_|Imf_2_5::OStream::operator=
+_ZNK7Imf_2_515TileDescriptioneqERKS0_|Imf_2_5::TileDescription::operator==
+_ZN7Imf_2_5neERKNS_4NameES2_|Imf_2_5::operator!=
+_ZN7Imf_2_5eqERKNS_4NameES2_|Imf_2_5::operator==
+_ZNK4halfcvfEv|half::operator float
+_ZN4halfmLES_|half::operator*=
+_ZN4halfpLES_|half::operator+=
+_ZNK4halfngEv|half::operator-
+_ZN4halfmIES_|half::operator-=
+_ZN4halfdVES_|half::operator/=
+_ZN4halfaSERKS_|half::operator=
+_ZNK12halfFunctionclE4half|halfFunction::operator()
+_ZN12halfFunctionaSERK12halfFunctionIT_E|halfFunction::operator=
+_ZNKSt8_Rb_tree11_Alloc_nodeclEOTL0__|std::_Rb_tree::_Alloc_node::operator()
+_ZNSt8_Rb_tree20_Reuse_or_alloc_nodeclEOTL0__|std::_Rb_tree::_Reuse_or_alloc_node::operator()
+_ZNSt8_Rb_treeaSEOSt8_Rb_treeIT_T0_T1_T2_T3_E|std::_Rb_tree::operator=
+_ZNKSt23_Rb_tree_const_iteratordeEv|std::_Rb_tree_const_iterator::operator*
+_ZNSt23_Rb_tree_const_iteratorppEv|std::_Rb_tree_const_iterator::operator++
+_ZNSt23_Rb_tree_const_iteratormmEv|std::_Rb_tree_const_iterator::operator--
+_ZNKSt17_Rb_tree_iteratordeEv|std::_Rb_tree_iterator::operator*
+_ZNSt17_Rb_tree_iteratorppEv|std::_Rb_tree_iterator::operator++
+_ZNSt17_Rb_tree_iteratormmEv|std::_Rb_tree_iterator::operator--
+_ZNSt14basic_iostreamaSERKSt14basic_iostreamIT_T0_E|std::basic_iostream::operator=
+_ZNSt13basic_istreamaSERKSt13basic_istreamIT_T0_E|std::basic_istream::operator=
+_ZNKSt13basic_istream6sentrycvbEv|std::basic_istream::sentry::operator bool
+_ZNSt7__cxx1119basic_istringstreamaSERKNS_19basic_istringstreamIT_T0_T1_EE|std::basic_istringstream::operator=
+_ZNSt7__cxx1119basic_ostringstreamaSERKNS_19basic_ostringstreamIT_T0_T1_EE|std::basic_ostringstream::operator=
+_ZNSt7__cxx1115basic_stringbufaSERKNS_15basic_stringbufIT_T0_T1_EE|std::basic_stringbuf::operator=
+_ZNSt7__cxx1118basic_stringstreamaSERKNS_18basic_stringstreamIT_T0_T1_EE|std::basic_stringstream::operator=
+_ZNSt3mapaSERKSt3mapIT_T0_T1_T2_E|std::map::operator=
+_ZNSt3mapixERKT_|std::map::operator[]
+_ZNKSt3map13value_compareclERKSt4pairIKT_T0_ES7_|std::map::value_compare::operator()
+_ZNSt8multimapaSERKSt8multimapIT_T0_T1_T2_E|std::multimap::operator=
+_ZNKSt8multimap13value_compareclERKSt4pairIKT_T0_ES7_|std::multimap::value_compare::operator()
+_ZSteqRKSt17_Rb_tree_iteratorIT_ES4_|std::operator==
 _ZNK11tExpressioncvbEv|tExpression::operator bool
 _ZNK11tExpressioncvdEv|tExpression::operator double
 _ZNK11tExpressioncvfEv|tExpression::operator float
@@ -480,6 +578,9 @@ _ZNK11tExpressioncvN5tMath8tVector3EEv|tExpression::operator tVector3
 _ZNK11tExpressioncvN5tMath8tVector4EEv|tExpression::operator tVector4
 _ZNK11tExpressioncvjEv|tExpression::operator unsigned int
 _ZNK6tImage6tLayereqERKS0_|tImage::tLayer::operator==
+_ZN8tinyxml28DynArrayixEi|tinyxml2::DynArray::operator[]
+_ZN8tinyxml214XMLConstHandleaSERKS0_|tinyxml2::XMLConstHandle::operator=
+_ZN8tinyxml29XMLHandleaSERKS0_|tinyxml2::XMLHandle::operator=
 _ZNSt11_Deque_base16_Deque_impl_dataaSERKS0_|std::_Deque_base::_Deque_impl_data::operator=
 _ZNKSt15_Deque_iteratordeEv|std::_Deque_iterator::operator*
 _ZNSt15_Deque_iteratorppEv|std::_Deque_iterator::operator++
@@ -540,6 +641,8 @@ _ZNK5rgbcx7color32ixEj|rgbcx::color32::operator[]
 _ZNK5rgbcx5hist3eqERKS0_|rgbcx::hist3::operator==
 _ZNK5rgbcx5hist4eqERKS0_|rgbcx::hist4::operator==
 _ZNK6tImage8tTextureeqERKS0_|tImage::tTexture::operator==
+_ZN6tInputeqERKNS_7tVidPidES2_|tInput::operator==
+_ZN6tInput7tVidPidcvjEv|tInput::tVidPid::operator unsigned int
 _ZNSt16_Sp_counted_baseaSERKSt16_Sp_counted_baseIXT_EE|std::_Sp_counted_base::operator=
 _ZNSt15_Sp_counted_ptraSERKSt15_Sp_counted_ptrIT_XT0_EE|std::_Sp_counted_ptr::operator=
 _ZNKSt14_Sp_owner_lessclERKT_S2_|std::_Sp_owner_less::operator()
@@ -550,7 +653,6 @@ _ZNSt23enable_shared_from_thisaSERKSt23enable_shared_from_thisIT_E|std::enable_s
 _ZSteqRKSt14__shared_countIXT_EES3_|std::operator==
 _ZNSt10shared_ptraSERKSt10shared_ptrIT_E|std::shared_ptr::operator=
 _ZNSt8weak_ptraSERKSt8weak_ptrIT_E|std::weak_ptr::operator=
-_ZN6tInputeqERKNS_7tVidPidES2_|tInput::operator==
 _ZNK6tScene7tObjectneERKS0_|tScene::tObject::operator!=
 _ZN6tScene7tObjectaSERKS0_|tScene::tObject::operator=
 _ZNK6tScene7tObjecteqERKS0_|tScene::tObject::operator==
@@ -566,15 +668,8 @@ _ZNSt13basic_fstream4openEPKcSt13_Ios_Openmode|std::basic_fstream::open
 _ZNSt13basic_fstreamaSERKSt13basic_fstreamIT_T0_E|std::basic_fstream::operator=
 _ZNSt14basic_ifstream4openEPKcSt13_Ios_Openmode|std::basic_ifstream::open
 _ZNSt14basic_ifstreamaSERKSt14basic_ifstreamIT_T0_E|std::basic_ifstream::operator=
-_ZNSt14basic_iostreamaSERKSt14basic_iostreamIT_T0_E|std::basic_iostream::operator=
-_ZNSt13basic_istreamaSERKSt13basic_istreamIT_T0_E|std::basic_istream::operator=
-_ZNKSt13basic_istream6sentrycvbEv|std::basic_istream::sentry::operator bool
-_ZNSt7__cxx1119basic_istringstreamaSERKNS_19basic_istringstreamIT_T0_T1_EE|std::basic_istringstream::operator=
 _ZNSt14basic_ofstream4openEPKcSt13_Ios_Openmode|std::basic_ofstream::open
 _ZNSt14basic_ofstreamaSERKSt14basic_ofstreamIT_T0_E|std::basic_ofstream::operator=
-_ZNSt7__cxx1119basic_ostringstreamaSERKNS_19basic_ostringstreamIT_T0_T1_EE|std::basic_ostringstream::operator=
-_ZNSt7__cxx1115basic_stringbufaSERKNS_15basic_stringbufIT_T0_T1_EE|std::basic_stringbuf::operator=
-_ZNSt7__cxx1118basic_stringstreamaSERKNS_18basic_stringstreamIT_T0_T1_EE|std::basic_stringstream::operator=
 _ZNSt10filesystem7__cxx1115directory_entryaSERKS1_|std::filesystem::directory_entry::operator=
 _ZNKSt10filesystem7__cxx1115directory_entryeqERKS1_|std::filesystem::directory_entry::operator==
 _ZNSt10filesystem7__cxx1118directory_iteratorppEi|std::filesystem::directory_iterator::operator++

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/Linux/jconfig.h' l='45'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/Linux/jconfig.h' l='44'>/* Define if you need to include &lt;sys/types.h&gt; to get size_t. */</doc>

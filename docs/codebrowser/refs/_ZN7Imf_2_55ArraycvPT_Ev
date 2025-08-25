@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='94' type='T * Imf_2_5::Array::operator type-parameter-0-0 *()'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='264' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='90'>//-----------------------------
+    // Access to the array elements
+    //-----------------------------</doc>

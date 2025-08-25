@@ -1,8 +1,8 @@
-<dec f='include/zconf.h' l='508'/>
-<use f='include/zlib.h' l='1821' u='c'/>
-<use f='include/zlib.h' l='1841' u='c'/>
-<use f='include/zlib.h' l='1841' u='c'/>
-<use f='include/zlib.h' l='1842' u='c'/>
-<use f='include/zlib.h' l='1843' u='c'/>
-<use f='include/zlib.h' l='1844' u='c'/>
-<use f='include/zlib.h' l='1845' u='c'/>
+<dec f='Modules/Image/Contrib/ZLib/include/zconf.h' l='510'/>
+<use f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1820' u='c'/>
+<use f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1840' u='c'/>
+<use f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1840' u='c'/>
+<use f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1841' u='c'/>
+<use f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1842' u='c'/>
+<use f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1843' u='c'/>
+<use f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1844' u='c'/>

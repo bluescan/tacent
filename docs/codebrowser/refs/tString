@@ -266,7 +266,7 @@
 <size>32</size>
 <use f='Modules/Foundation/Src/tPlatform.cpp' l='39' c='_Z12tGetPlatformRK7tString'/>
 <size>32</size>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='143' c='_ZN4tStd7tStrtobEPKc'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='206' c='_ZN4tStd7tStrtobEPKc'/>
 <size>32</size>
 <use f='Modules/Foundation/Src/tString.cpp' l='67' c='_ZNK7tString4LeftEc'/>
 <use f='Modules/Foundation/Src/tString.cpp' l='71' c='_ZNK7tString4LeftEc'/>
@@ -810,21 +810,6 @@
 <use f='Modules/Pipeline/Src/tRule.cpp' l='125' c='_ZN9tPipeline5tRule19AddDependencyDirRecERK7tStringS3_'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='125' c='_ZN9tPipeline5tRule19AddDependencyDirRecERK7tStringS3_'/>
 <use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='73' c='_ZN9tPipeline5tRule19AddDependencyDirRecERK7tStringS3_'/>
-<size>32</size>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='30' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='33'/>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='41' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='44'/>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='56' c='_ZN14tSolutionErrorC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='23' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='37' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='39' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='53' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='68' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='82' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='84' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='85' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='101' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
 <size>32</size>
 <use f='Modules/Scene/Inc/Scene/tAttribute.h' l='62'/>
 <size>32</size>

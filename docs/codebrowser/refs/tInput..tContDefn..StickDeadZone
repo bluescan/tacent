@@ -1,0 +1,5 @@
+<dec f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='97' type='float'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='136' u='w' c='_ZN6tInput9tContDefn10SetGenericEv'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='152' u='w' c='_ZN6tInput9tContDefn5ClearEv'/>
+<offset>224</offset>
+<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='96'>// Stick dead zone expressed as a percent [0.0,1.0]. Assumes multiple sticks have the same deat-zone.</doc>

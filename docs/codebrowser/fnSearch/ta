@@ -40,6 +40,8 @@ _ZN5tMath7tARect23SetERKS0_|tMath::tARect2::Set
 _ZN5tMath7tARect29TransformERKNS_8tMatrix2E|tMath::tARect2::Transform
 _ZN5tMath7tARect2C1Ev|tMath::tARect2::tARect2
 _ZN6tImage5tASTC28GetFormatFromBlockDimensionsEii|tImage::tASTC::GetFormatFromBlockDimensions
+_ZN9Imath_2_54Math3tanET_|Imath_2_5::Math::tan
+_ZN9Imath_2_54Math4tanhET_|Imath_2_5::Math::tanh
 _ZN5tMath5tABox9TransformERKNS_8tMatrix4E|tMath::tABox::Transform
 _ZN5tMath14tApproachAngleERffff|tMath::tApproachAngle
 _ZN5tMath20tApproachOrientationERNS_5tQuatERKS0_ff|tMath::tApproachOrientation

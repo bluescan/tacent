@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_map.h' l='240' ll='241' type='void std::map::map&lt;_Key, _Tp, _Compare, _Alloc&gt;(const map&lt;_Key, _Tp, _Compare, _Alloc&gt; &amp; __m, const std::map::allocator_type &amp; __a)'/>
+<doc f='include/c++/11/bits/stl_map.h' l='239'>/// Allocator-extended copy constructor.</doc>

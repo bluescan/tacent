@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='413' type='Vec3&lt;T&gt; Imath_2_5::Vec3::operator-() const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1559' ll='1564' type='Vec3&lt;T&gt; Imath_2_5::Vec3::operator-() const'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='409'>//------------------------------------
+    // Component-wise multiplication by -1
+    //------------------------------------</doc>

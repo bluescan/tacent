@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='472' type='int spng_decode_row(spng_ctx * ctx, void * out, size_t len)'/>

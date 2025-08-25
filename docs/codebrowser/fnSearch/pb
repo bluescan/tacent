@@ -1,5 +1,5 @@
 _ZNSt15basic_streambuf9pbackfailENT0_8int_typeE|std::basic_streambuf::pbackfail
 _ZNKSt15basic_streambuf5pbaseEv|std::basic_streambuf::pbase
 _ZNSt15basic_streambuf5pbumpEi|std::basic_streambuf::pbump
-_ZNSt13basic_filebuf9pbackfailENT0_8int_typeE|std::basic_filebuf::pbackfail
 _ZNSt7__cxx1115basic_stringbuf9pbackfailENT0_8int_typeE|std::basic_stringbuf::pbackfail
+_ZNSt13basic_filebuf9pbackfailENT0_8int_typeE|std::basic_filebuf::pbackfail

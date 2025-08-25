@@ -149,6 +149,14 @@ _ZNK6tImage9tImageDDS16GetCubemapLayersEP5tListINS_6tLayerEEj|tImage::tImageDDS:
 _ZN6tImage9tImageDDS8GetFrameEb|tImage::tImageDDS::GetFrame
 _ZNK6tImage9tImageDDS9GetLayersER5tListINS_6tLayerEE|tImage::tImageDDS::GetLayers
 _ZN6tImage9tImageDDS12GetStateDescENS0_8StateBitE|tImage::tImageDDS::GetStateDesc
+_ZNK9Imath_2_54Vec28getValueERTL0__S2_|Imath_2_5::Vec2::getValue
+_ZNK9Imath_2_54Vec38getValueERTL0__S2_S2_|Imath_2_5::Vec3::getValue
+_ZNKSt8_Rb_tree13get_allocatorEv|std::_Rb_tree::get_allocator
+_ZNSt13basic_istream3getEPT_l|std::basic_istream::get
+_ZNSt13basic_istream7getlineEPT_l|std::basic_istream::getline
+_ZNKSt7__cxx1115basic_stringbuf13get_allocatorEv|std::basic_stringbuf::get_allocator
+_ZNKSt3map13get_allocatorEv|std::map::get_allocator
+_ZNKSt8multimap13get_allocatorEv|std::multimap::get_allocator
 _ZN6tImage9tImageEXR8GetFrameEb|tImage::tImageEXR::GetFrame
 _ZN6tImage9tImageGIF8GetFrameEb|tImage::tImageGIF::GetFrame
 _ZN6tImage9tImageHDR8GetFrameEb|tImage::tImageHDR::GetFrame
@@ -196,6 +204,10 @@ _ZNK6tImage13tPaletteImage11GetDataSizeEv|tImage::tPaletteImage::GetDataSize
 _ZNK6tImage13tPaletteImage14GetPaletteSizeEv|tImage::tPaletteImage::GetPaletteSize
 _ZN6tImage8tPicture14GenerateLayersER5tListINS_6tLayerEENS_15tResampleFilterENS_17tResampleEdgeModeEb|tImage::tPicture::GenerateLayers
 _ZNK6tImage8tPicture15GetBordersSizesERK9tColour4bjRiS4_S4_S4_|tImage::tPicture::GetBordersSizes
+_ZNK8tinyxml212XMLAttribute10GetLineNumEv|tinyxml2::XMLAttribute::GetLineNum
+_ZNK8tinyxml27XMLNode11GetDocumentEv|tinyxml2::XMLNode::GetDocument
+_ZNK8tinyxml27XMLNode10GetLineNumEv|tinyxml2::XMLNode::GetLineNum
+_ZNK8tinyxml27XMLNode11GetUserDataEv|tinyxml2::XMLNode::GetUserData
 _ZN6tImage9tQuantize13GetMethodNameENS0_6MethodE|tImage::tQuantize::GetMethodName
 _ZN6tImage12tQuantizeNeu12getColourMapERNS0_5StateEP9tColour3b|tImage::tQuantizeNeu::getColourMap
 _ZN6tImage12tQuantizeNeu10getNetworkERNS0_5StateEii|tImage::tQuantizeNeu::getNetwork
@@ -248,9 +260,6 @@ _ZNK6tScene6tWorld12GetNumModelsERK7tString|tScene::tWorld::GetNumModels
 _ZNK6tScene6tWorld11GetNumPathsERK7tString|tScene::tWorld::GetNumPaths
 _ZNK6tScene6tWorld16GetNumSelectionsERK7tString|tScene::tWorld::GetNumSelections
 _ZNK6tScene6tWorld15GetNumSkeletonsERK7tString|tScene::tWorld::GetNumSkeletons
-_ZNSt13basic_istream3getEPT_l|std::basic_istream::get
-_ZNSt13basic_istream7getlineEPT_l|std::basic_istream::getline
-_ZNKSt7__cxx1115basic_stringbuf13get_allocatorEv|std::basic_stringbuf::get_allocator
 _ZNKSt10filesystem7__cxx114path14generic_stringERKT1_|std::filesystem::path::generic_string
 _ZNKSt10filesystem7__cxx114path17generic_u16stringEv|std::filesystem::path::generic_u16string
 _ZNKSt10filesystem7__cxx114path17generic_u32stringEv|std::filesystem::path::generic_u32string

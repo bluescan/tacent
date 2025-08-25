@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfCompression.h' l='55' type='2'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfCompression.h' l='55'>// zlib compression, one scan line at a time</doc>

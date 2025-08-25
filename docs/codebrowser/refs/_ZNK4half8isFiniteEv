@@ -1,0 +1,25 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='171' type='bool half::isFinite() const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='643' ll='648' type='bool half::isFinite() const'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='105' u='c' c='_ZN3EXR16ComputeFogColourERfS0_S0_RKN7Imf_2_55ArrayINS1_4RgbaEEE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='106' u='c' c='_ZN3EXR16ComputeFogColourERfS0_S0_RKN7Imf_2_55ArrayINS1_4RgbaEEE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='107' u='c' c='_ZN3EXR16ComputeFogColourERfS0_S0_RKN7Imf_2_55ArrayINS1_4RgbaEEE'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='150'>//--------------------------------------------------------------------
+    // Classification:
+    //
+    //	h.isFinite()		returns true if h is a normalized number,
+    //				a denormalized number or zero
+    //
+    //	h.isNormalized()	returns true if h is a normalized number
+    //
+    //	h.isDenormalized()	returns true if h is a denormalized number
+    //
+    //	h.isZero()		returns true if h is zero
+    //
+    //	h.isNan()		returns true if h is a NAN
+    //
+    //	h.isInfinity()		returns true if h is a positive
+    //				or a negative infinity
+    //
+    //	h.isNegative()		returns true if the sign bit of h
+    //				is set (negative)
+    //--------------------------------------------------------------------</doc>

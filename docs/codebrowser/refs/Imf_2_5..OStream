@@ -1,0 +1,24 @@
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='491' c='_ZNK7Imf_2_56Header7writeToERNS_7OStreamEb'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='163' ll='224'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='218' c='_ZN7Imf_2_57OStreamC1ERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='219' c='_ZN7Imf_2_57OStreamaSERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='219' c='_ZN7Imf_2_57OStreamaSERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='220' c='_ZN7Imf_2_57OStreamC1EOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='221' c='_ZN7Imf_2_57OStreamaSEOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='221' c='_ZN7Imf_2_57OStreamaSEOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='234' c='_ZN7Imf_2_58StreamIO10writeCharsERNS_7OStreamEPKci'/>
+<size>40</size>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='159'>//-----------------------------------------------------------
+// class OStream -- an abstract base class for output streams
+//-----------------------------------------------------------</doc>
+<fun r='_ZN7Imf_2_57OStreamD1Ev'/>
+<fun r='_ZN7Imf_2_57OStream5writeEPKci'/>
+<fun r='_ZN7Imf_2_57OStream5tellpEv'/>
+<fun r='_ZN7Imf_2_57OStream5seekpEm'/>
+<fun r='_ZNK7Imf_2_57OStream8fileNameEv'/>
+<fun r='_ZN7Imf_2_57OStreamC1EPKc'/>
+<fun r='_ZN7Imf_2_57OStreamC1ERKS0_'/>
+<fun r='_ZN7Imf_2_57OStreamaSERKS0_'/>
+<fun r='_ZN7Imf_2_57OStreamC1EOS0_'/>
+<fun r='_ZN7Imf_2_57OStreamaSEOS0_'/>
+<mbr r='Imf_2_5::OStream::_fileName' o='64' t='std::string'/>

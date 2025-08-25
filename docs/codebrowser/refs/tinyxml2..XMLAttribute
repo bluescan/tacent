@@ -1,0 +1,74 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='496' c='_ZN8tinyxml210XMLVisitor10VisitEnterERKNS_10XMLElementEPKNS_12XMLAttributeE'/>
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1140' ll='1257'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1154' c='_ZNK8tinyxml212XMLAttribute4NextEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1246' c='_ZN8tinyxml212XMLAttributeC1ERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1247' c='_ZN8tinyxml212XMLAttributeaSERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1255'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1344' c='_ZNK8tinyxml210XMLElement17QueryIntAttributeEPKcPi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1353' c='_ZNK8tinyxml210XMLElement22QueryUnsignedAttributeEPKcPj'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1362' c='_ZNK8tinyxml210XMLElement19QueryInt64AttributeEPKcPl'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1371' c='_ZNK8tinyxml210XMLElement24QueryUnsigned64AttributeEPKcPm'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1380' c='_ZNK8tinyxml210XMLElement18QueryBoolAttributeEPKcPb'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1388' c='_ZNK8tinyxml210XMLElement20QueryDoubleAttributeEPKcPd'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1396' c='_ZNK8tinyxml210XMLElement19QueryFloatAttributeEPKcPf'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1405' c='_ZNK8tinyxml210XMLElement20QueryStringAttributeEPKcPS2_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1466' c='_ZN8tinyxml210XMLElement12SetAttributeEPKcS2_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1471' c='_ZN8tinyxml210XMLElement12SetAttributeEPKci'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1476' c='_ZN8tinyxml210XMLElement12SetAttributeEPKcj'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1482' c='_ZN8tinyxml210XMLElement12SetAttributeEPKcl'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1488' c='_ZN8tinyxml210XMLElement12SetAttributeEPKcm'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1494' c='_ZN8tinyxml210XMLElement12SetAttributeEPKcb'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1499' c='_ZN8tinyxml210XMLElement12SetAttributeEPKcd'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1504' c='_ZN8tinyxml210XMLElement12SetAttributeEPKcf'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1514' c='_ZNK8tinyxml210XMLElement14FirstAttributeEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1518' c='_ZNK8tinyxml210XMLElement13FindAttributeEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1691' c='_ZN8tinyxml210XMLElement21FindOrCreateAttributeEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1693' c='_ZN8tinyxml210XMLElement15DeleteAttributeEPNS_12XMLAttributeE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1694' c='_ZN8tinyxml210XMLElement15CreateAttributeEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1701'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1952'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2294' c='_ZN8tinyxml210XMLPrinter10VisitEnterERKNS_10XMLElementEPKNS_12XMLAttributeE'/>
+<size>80</size>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1134'>/** An attribute is a name-value pair. Elements have an arbitrary
+	number of attributes, each with a unique name.
+
+	@note The attributes are not XMLNodes. You may only query the
+	Next() attribute in a list.
+*/</doc>
+<fun r='_ZNK8tinyxml212XMLAttribute4NameEv'/>
+<fun r='_ZNK8tinyxml212XMLAttribute5ValueEv'/>
+<fun r='_ZNK8tinyxml212XMLAttribute10GetLineNumEv'/>
+<fun r='_ZNK8tinyxml212XMLAttribute4NextEv'/>
+<fun r='_ZNK8tinyxml212XMLAttribute8IntValueEv'/>
+<fun r='_ZNK8tinyxml212XMLAttribute10Int64ValueEv'/>
+<fun r='_ZNK8tinyxml212XMLAttribute15Unsigned64ValueEv'/>
+<fun r='_ZNK8tinyxml212XMLAttribute13UnsignedValueEv'/>
+<fun r='_ZNK8tinyxml212XMLAttribute9BoolValueEv'/>
+<fun r='_ZNK8tinyxml212XMLAttribute11DoubleValueEv'/>
+<fun r='_ZNK8tinyxml212XMLAttribute10FloatValueEv'/>
+<fun r='_ZNK8tinyxml212XMLAttribute13QueryIntValueEPi'/>
+<fun r='_ZNK8tinyxml212XMLAttribute18QueryUnsignedValueEPj'/>
+<fun r='_ZNK8tinyxml212XMLAttribute15QueryInt64ValueEPl'/>
+<fun r='_ZNK8tinyxml212XMLAttribute20QueryUnsigned64ValueEPm'/>
+<fun r='_ZNK8tinyxml212XMLAttribute14QueryBoolValueEPb'/>
+<fun r='_ZNK8tinyxml212XMLAttribute16QueryDoubleValueEPd'/>
+<fun r='_ZNK8tinyxml212XMLAttribute15QueryFloatValueEPf'/>
+<fun r='_ZN8tinyxml212XMLAttribute12SetAttributeEPKc'/>
+<fun r='_ZN8tinyxml212XMLAttribute12SetAttributeEi'/>
+<fun r='_ZN8tinyxml212XMLAttribute12SetAttributeEj'/>
+<fun r='_ZN8tinyxml212XMLAttribute12SetAttributeEl'/>
+<fun r='_ZN8tinyxml212XMLAttribute12SetAttributeEm'/>
+<fun r='_ZN8tinyxml212XMLAttribute12SetAttributeEb'/>
+<fun r='_ZN8tinyxml212XMLAttribute12SetAttributeEd'/>
+<fun r='_ZN8tinyxml212XMLAttribute12SetAttributeEf'/>
+<fun r='_ZN8tinyxml212XMLAttributeC1Ev'/>
+<fun r='_ZN8tinyxml212XMLAttributeD1Ev'/>
+<fun r='_ZN8tinyxml212XMLAttributeC1ERKS0_'/>
+<fun r='_ZN8tinyxml212XMLAttributeaSERKS0_'/>
+<fun r='_ZN8tinyxml212XMLAttribute7SetNameEPKc'/>
+<fun r='_ZN8tinyxml212XMLAttribute9ParseDeepEPcbPi'/>
+<mbr r='tinyxml2::XMLAttribute::_name' o='64' t='tinyxml2::StrPair'/>
+<mbr r='tinyxml2::XMLAttribute::_value' o='256' t='tinyxml2::StrPair'/>
+<mbr r='tinyxml2::XMLAttribute::_parseLineNum' o='448' t='int'/>
+<mbr r='tinyxml2::XMLAttribute::_next' o='512' t='tinyxml2::XMLAttribute *'/>
+<mbr r='tinyxml2::XMLAttribute::_memPool' o='576' t='tinyxml2::MemPool *'/>

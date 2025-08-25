@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfTileDescription.h' l='75' type='Imf_2_5::LevelRoundingMode'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfTileDescription.h' l='85' u='w' c='_ZN7Imf_2_515TileDescriptionC1EjjNS_9LevelModeENS_17LevelRoundingModeE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfTileDescription.h' l='96' u='r' c='_ZNK7Imf_2_515TileDescriptioneqERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfTileDescription.h' l='96' u='r' c='_ZNK7Imf_2_515TileDescriptioneqERKS0_'/>
+<offset>96</offset>

@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathMath.h' l='105' type='static T Imath_2_5::Math::log(T x)'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='65' u='c' c='_ZN3EXR7KneeFunEdd'/>

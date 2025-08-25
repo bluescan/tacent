@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='89' type='const int'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='90' u='r'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='94'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='85'>//---------------
+    // Maximum length
+    //---------------</doc>

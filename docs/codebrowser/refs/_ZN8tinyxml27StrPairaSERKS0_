@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='196' type='void tinyxml2::StrPair::operator=(const tinyxml2::StrPair &amp; other)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='196'>// not supported, use TransferTo()</doc>

@@ -1,5 +1,5 @@
 <dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='183' type='void tMath::tCosSin(float &amp; cos, float &amp; sin, float x)'/>
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='524' ll='530' type='void tMath::tCosSin(float &amp; c, float &amp; s, float x)'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='527' ll='533' type='void tMath::tCosSin(float &amp; c, float &amp; s, float x)'/>
 <use f='Modules/Math/Src/tRandom.cpp' l='229' u='c' c='_ZN5tMath7tRandom17tGetPointOnSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>
 <use f='Modules/Math/Src/tRandom.cpp' l='230' u='c' c='_ZN5tMath7tRandom17tGetPointOnSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>
 <use f='Modules/Math/Src/tRandom.cpp' l='287' u='c' c='_ZN5tMath7tRandom17tGetPointInSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>

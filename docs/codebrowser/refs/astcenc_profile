@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='221' ll='230'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='400'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='607'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='693' c='_Z19astcenc_config_init15astcenc_profilejjjfjP14astcenc_config'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='218'>/**
+ * @brief A codec color profile.
+ */</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1075' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='564' type='int'/>
+<offset>0</offset>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='564'>/* compression value:
+                             -1: tEXt, none
+                              0: zTXt, deflate
+                              1: iTXt, none
+                              2: iTXt, deflate  */</doc>

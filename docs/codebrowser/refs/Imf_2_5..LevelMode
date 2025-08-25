@@ -1,0 +1,3 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfTileDescription.h' l='49' ll='56'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfTileDescription.h' l='74'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfTileDescription.h' l='79' c='_ZN7Imf_2_515TileDescriptionC1EjjNS_9LevelModeENS_17LevelRoundingModeE'/>

@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='117' type='Imath_2_5::Int64 Imf_2_5::IStream::tellg()'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='111'>//--------------------------------------------------------
+    // Get the current reading position, in bytes from the
+    // beginning of the file.  If the next call to read() will
+    // read the first byte in the file, tellg() returns 0.
+    //--------------------------------------------------------</doc>

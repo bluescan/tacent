@@ -1,0 +1,1 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1440' ll='1442' type='tinyxml2::XMLError tinyxml2::XMLElement::QueryAttribute(const char * name, int64_t * value) const'/>

@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='440' type='1'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='120' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='437'>/**
+   * The error was fatal and non-recoverable.
+   */</doc>

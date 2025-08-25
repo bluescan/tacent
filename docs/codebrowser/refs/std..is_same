@@ -43,6 +43,9 @@
 <use f='include/c++/11/bits/unique_ptr.h' l='697'/>
 <use f='include/c++/11/bits/unique_ptr.h' l='698'/>
 <use f='include/c++/11/bits/std_thread.h' l='118'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1094'/>
+<use f='include/c++/11/bits/stl_map.h' l='123'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='122'/>
 <use f='include/c++/11/bits/stl_deque.h' l='162'/>
 <use f='include/c++/11/bits/stl_deque.h' l='163'/>
 <use f='include/c++/11/bits/stl_deque.h' l='779'/>

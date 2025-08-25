@@ -102,6 +102,17 @@ _ZN6tImage9tImageBMP19ReadRow_IndexedRLE8EP8_IO_FILEPhPNS0_13PaletteColourE|tIma
 _ZN6tImage9tImageBMP16ReadRow_Pixels16EP8_IO_FILEPh|tImage::tImageBMP::ReadRow_Pixels16
 _ZN6tImage9tImageBMP16ReadRow_Pixels24EP8_IO_FILEPh|tImage::tImageBMP::ReadRow_Pixels24
 _ZN6tImage9tImageBMP16ReadRow_Pixels32EP8_IO_FILEPh|tImage::tImageBMP::ReadRow_Pixels32
+_ZN7Imf_2_57Array2D11resizeEraseEll|Imf_2_5::Array2D::resizeErase
+_ZN7Imf_2_57Array2D17resizeEraseUnsafeEll|Imf_2_5::Array2D::resizeEraseUnsafe
+_ZN7Imf_2_55Array11resizeEraseEl|Imf_2_5::Array::resizeErase
+_ZN7Imf_2_55Array17resizeEraseUnsafeEl|Imf_2_5::Array::resizeEraseUnsafe
+_ZN7Imf_2_59CharPtrIO9readCharsERPKcPci|Imf_2_5::CharPtrIO::readChars
+_ZN7Imf_2_58StreamIO9readCharsERNS_7IStreamEPci|Imf_2_5::StreamIO::readChars
+_ZNSt8_Rb_tree4rendEv|std::_Rb_tree::rend
+_ZNSt13basic_istream4readEPT_l|std::basic_istream::read
+_ZNSt13basic_istream8readsomeEPT_l|std::basic_istream::readsome
+_ZNSt3map4rendEv|std::map::rend
+_ZNSt8multimap4rendEv|std::multimap::rend
 _ZN6tImage9tImageHDR19ReadRadianceColoursEP9tColour4bi|tImage::tImageHDR::ReadRadianceColours
 _ZN6tImage9tImageTGA15ReadColourBytesER9tColour4bPKhib|tImage::tImageTGA::ReadColourBytes
 _ZN11tExprWriter3RemEPKc|tExprWriter::Rem
@@ -143,8 +154,6 @@ _ZN6tInput12tCompTrigger5ResetEv|tInput::tCompTrigger::Reset
 _ZSt24reinterpret_pointer_castRKSt12__shared_ptrIT0_XT1_EE|std::reinterpret_pointer_cast
 _ZN7tSystem6tTimer5ResetEb|tSystem::tTimer::Reset
 _ZN6tScene5tMesh14ReverseWindingEv|tScene::tMesh::ReverseWinding
-_ZNSt13basic_istream4readEPT_l|std::basic_istream::read
-_ZNSt13basic_istream8readsomeEPT_l|std::basic_istream::readsome
 _ZNSt10filesystem7__cxx1115directory_entry7refreshEv|std::filesystem::directory_entry::refresh
 _ZNSt10filesystem7__cxx1115directory_entry16replace_filenameERKNS0_4pathE|std::filesystem::directory_entry::replace_filename
 _ZNSt10filesystem7__cxx1128recursive_directory_iteratorppEi|std::filesystem::recursive_directory_iterator::operator++

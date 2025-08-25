@@ -1,0 +1,9 @@
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='48' u='w' c='_ZN6tInput7tVidPidC1Ev'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='49' u='w' c='_ZN6tInput7tVidPidC1Ett'/>
+<dec f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='50' type='uint16'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='54' u='r' c='_ZN6tInput7tVidPidcvjEv'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='55' u='r' c='_ZNK6tInput7tVidPidcvjEv'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='57' u='r' c='_ZN6tInputeqERKNS_7tVidPidES2_'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='57' u='r' c='_ZN6tInputeqERKNS_7tVidPidES2_'/>
+<offset>0</offset>
+<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='50'>// Vendor ID.</doc>

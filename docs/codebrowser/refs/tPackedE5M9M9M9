@@ -1,6 +1,7 @@
-<def f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='174' ll='192'/>
+<def f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='175' ll='193'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='194'/>
 <size>4</size>
-<doc f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='172'>// This is a packed is exactly the same as the above except the the first 5 MS bits represent the exponent rather than
+<doc f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='173'>// This is a packed is exactly the same as the above except the the first 5 MS bits represent the exponent rather than
 // it going at the end. All other comments apply.</doc>
 <use f='Modules/Image/Src/tPixelUtil.cpp' l='590' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
 <size>4</size>

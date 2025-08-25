@@ -1,6 +1,6 @@
-<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='99' type='char * tStd::tStrchr(const char * s, int c)'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='165' u='c' c='_ZN4tStd7tStrtofEPKc'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='186' u='c' c='_ZN4tStd7tStrtodEPKc'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='105' type='char * tStd::tStrchr(const char * s, int c)'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='228' u='c' c='_ZN4tStd7tStrtofEPKc'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='249' u='c' c='_ZN4tStd7tStrtodEPKc'/>
 <use f='Modules/Image/Src/tImageHDR.cpp' l='324' u='c' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
 <use f='Modules/Image/Src/tImageHDR.cpp' l='325' u='c' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
 <use f='Modules/System/Src/tScript.cpp' l='648' u='c' c='_ZN11tExprWriter9WriteAtomEPKc'/>

@@ -1,0 +1,28 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='54' ll='95'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='73' c='_ZN7Imf_2_54NameaSEPKc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='99' c='_ZN7Imf_2_5eqERKNS_4NameES2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='99' c='_ZN7Imf_2_5eqERKNS_4NameES2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='101' c='_ZN7Imf_2_5neERKNS_4NameES2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='101' c='_ZN7Imf_2_5neERKNS_4NameES2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='103' c='_ZN7Imf_2_5ltERKNS_4NameES2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='103' c='_ZN7Imf_2_5ltERKNS_4NameES2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='110' c='_ZN7Imf_2_54NameaSEPKc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='134' c='_ZN7Imf_2_5eqERKNS_4NameES2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='134' c='_ZN7Imf_2_5eqERKNS_4NameES2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='141' c='_ZN7Imf_2_5neERKNS_4NameES2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='141' c='_ZN7Imf_2_5neERKNS_4NameES2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='148' c='_ZN7Imf_2_5ltERKNS_4NameES2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='148' c='_ZN7Imf_2_5ltERKNS_4NameES2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='234'/>
+<size>256</size>
+<fun r='_ZN7Imf_2_54NameC1Ev'/>
+<fun r='_ZN7Imf_2_54NameC1EPKc'/>
+<fun r='_ZN7Imf_2_54NameaSEPKc'/>
+<fun r='_ZNK7Imf_2_54Name4textEv'/>
+<fun r='_ZNK7Imf_2_54NamedeEv'/>
+<smbr r='Imf_2_5::Name::SIZE' t='const int'/>
+<smbr r='Imf_2_5::Name::MAX_LENGTH' t='const int'/>
+<mbr r='Imf_2_5::Name::_text' o='0' t='char[256]'/>
+<fun r='_ZN7Imf_2_54NameaSEPKc'/>
+<fun r='_ZN7Imf_2_54NameC1Ev'/>
+<fun r='_ZN7Imf_2_54NameC1EPKc'/>

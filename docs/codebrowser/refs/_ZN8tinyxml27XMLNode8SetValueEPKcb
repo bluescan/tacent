@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='749' type='void tinyxml2::XMLNode::SetValue(const char * val, bool staticMem = false)'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1274' u='c' c='_ZN8tinyxml210XMLElement7SetNameEPKcb'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='746'>/** Set the Value of an XML node.
+    	@sa Value()
+    */</doc>

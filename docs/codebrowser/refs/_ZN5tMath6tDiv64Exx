@@ -1,2 +1,2 @@
 <dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='106' type='tMath::tDiv64t tMath::tDiv64(int64 numerator, int64 denominator)'/>
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='319' ll='326' type='tMath::tDiv64t tMath::tDiv64(int64 numerator, int64 denominator)'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='322' ll='329' type='tMath::tDiv64t tMath::tDiv64(int64 numerator, int64 denominator)'/>

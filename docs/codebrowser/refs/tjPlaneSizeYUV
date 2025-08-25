@@ -1,0 +1,22 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='958' type='unsigned long tjPlaneSizeYUV(int componentID, int width, int stride, int height, int subsamp)'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='937'>/**
+ * The size of the buffer (in bytes) required to hold a YUV image plane with
+ * the given parameters.
+ *
+ * @param componentID ID number of the image plane (0 = Y, 1 = U/Cb, 2 = V/Cr)
+ *
+ * @param width width (in pixels) of the YUV image.  NOTE: this is the width of
+ * the whole image, not the plane width.
+ *
+ * @param stride bytes per line in the image plane.  Setting this to 0 is the
+ * equivalent of setting it to the plane width.
+ *
+ * @param height height (in pixels) of the YUV image.  NOTE: this is the height
+ * of the whole image, not the plane height.
+ *
+ * @param subsamp level of chrominance subsampling in the image (see
+ * @ref TJSAMP &quot;Chrominance subsampling options&quot;.)
+ *
+ * @return the size of the buffer (in bytes) required to hold the YUV image
+ * plane, or -1 if the arguments are out of bounds.
+ */</doc>

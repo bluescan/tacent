@@ -1,0 +1,11 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1163' type='tjscalingfactor * tjGetScalingFactors(int * numscalingfactors)'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1153'>/**
+ * Returns a list of fractional scaling factors that the JPEG decompressor in
+ * this implementation of TurboJPEG supports.
+ *
+ * @param numscalingfactors pointer to an integer variable that will receive
+ * the number of elements in the list
+ *
+ * @return a pointer to a list of fractional scaling factors, or NULL if an
+ * error is encountered (see #tjGetErrorStr2().)
+*/</doc>

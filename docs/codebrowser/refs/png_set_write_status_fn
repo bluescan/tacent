@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='1600' type='void png_set_write_status_fn(png_structrp png_ptr, png_write_status_ptr write_row_fn)'/>

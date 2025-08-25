@@ -10,5 +10,3 @@
 <use f='Modules/Image/Src/tResample.cpp' l='275' u='c' c='_ZN6tImage15KernelFilterBoxEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
 <use f='Modules/Math/Inc/Math/tInterval.h' l='377' u='c' c='_ZN5tMath9tInterval6ExtendERKS0_b'/>
 <use f='Modules/Math/Inc/Math/tInterval.h' l='390' u='c' c='_ZN5tMath9tInterval11EncapsulateERKS0_'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='90' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='113' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>

@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2321' ll='2325' type='void tinyxml2::XMLPrinter::ClearBuffer(bool resetToFirstElement = true)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2317'>/**
+    	If in print to memory mode, reset the buffer to the
+    	beginning.
+    */</doc>

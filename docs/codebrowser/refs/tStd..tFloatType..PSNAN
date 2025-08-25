@@ -1,5 +1,5 @@
-<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='358' type='1'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='697' u='r' c='_ZN4tStd13tGetFloatTypeEf'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='726' u='r' c='_ZN4tStd13tGetFloatTypeEd'/>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='358'>// Positive Signaling Not-A-Number. This must be the first NAN type.</doc>
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='364' type='1'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='703' u='r' c='_ZN4tStd13tGetFloatTypeEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='732' u='r' c='_ZN4tStd13tGetFloatTypeEd'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='364'>// Positive Signaling Not-A-Number. This must be the first NAN type.</doc>
 <use f='Modules/System/Src/tPrint.cpp' l='1456' c='_ZN7tSystem37HandlerHelper_HandleSpecialFloatTypesER6tArrayIcEd'/>

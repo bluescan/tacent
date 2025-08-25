@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='470' type='static T Imath_2_5::Vec3::baseTypeMax()'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1377' u='c' c='_ZN9Imath_2_54Vec3C1ERKNS_4Vec4ITL0__EENS_12InfExceptionE'/>

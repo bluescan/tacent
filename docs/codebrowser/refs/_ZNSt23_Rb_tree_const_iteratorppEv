@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/stl_tree.h' l='365' ll='370' type='std::_Rb_tree_const_iterator::_Self &amp; std::_Rb_tree_const_iterator::operator++()'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='659' u='c' c='_ZN7Imf_2_56Header13ConstIteratorppEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='668' u='c' c='_ZN7Imf_2_56Header13ConstIteratorppEi'/>

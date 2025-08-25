@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2463'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2458'>/* Hence two macros to determine the number of rows or columns in a given
+ * pass of an image given its height or width.  In fact these macros may
+ * return non-zero even though the sub-image is empty, because the other
+ * dimension may be empty for a small image.
+ */</doc>

@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='272' ll='275' type='int tinyxml2::DynArray::Size() const'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2315' u='c' c='_ZNK8tinyxml210XMLPrinter8CStrSizeEv'/>

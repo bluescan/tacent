@@ -1,0 +1,17 @@
+<inh f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='60' c='Iex_2_5::BaseExc'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='196' macro='1'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='196' c='_ZN7Iex_2_57TypeExcC1ERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='196' c='_ZN7Iex_2_57TypeExcC1EOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='196' c='_ZN7Iex_2_57TypeExcaSERS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='196' c='_ZN7Iex_2_57TypeExcaSERS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='196' c='_ZN7Iex_2_57TypeExcaSEOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='196' c='_ZN7Iex_2_57TypeExcaSEOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='713' c='_ZN7Imf_2_56Header14typedAttributeEPKc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='727' c='_ZNK7Imf_2_56Header14typedAttributeEPKc'/>
+<size>72</size>
+<fun r='_ZN7Iex_2_57TypeExcC1Ev'/>
+<fun r='_ZN7Iex_2_57TypeExcC1EPKc'/>
+<fun r='_ZN7Iex_2_57TypeExcC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Iex_2_57TypeExcC1ERNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Iex_2_57TypeExcC1ERKS0_'/>
+<fun r='_ZN7Iex_2_57TypeExcC1EOS0_'/>

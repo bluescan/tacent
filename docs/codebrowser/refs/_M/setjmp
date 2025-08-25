@@ -1,0 +1,3 @@
+<dec f='include/setjmp.h' l='49'/>
+<doc f='include/setjmp.h' l='47'>/* Do not save the signal mask.  This is equivalent to the `_setjmp&apos;
+   BSD function.  */</doc>

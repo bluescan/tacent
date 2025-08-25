@@ -1,0 +1,242 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>pnglibconf.h source code [Modules/Image/Contrib/LibPNG/include/pnglibconf.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Image/Contrib/LibPNG/include/pnglibconf.h'; var root_path = '../../../../..'; var data_path = '../../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../../..'>Modules</a>/<a href='../../..'>Image</a>/<a href='../..'>Contrib</a>/<a href='..'>LibPNG</a>/<a href='./'>include</a>/<a href='pnglibconf.h.html'>pnglibconf.h</a><br><a href='/tacent/index.html'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/tacent/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* pnglibconf.h - library build configuration */</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>/* libpng version 1.6.42 */</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>/* Copyright (c) 2018-2024 Cosmin Truta */</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>/* Copyright (c) 1998-2002,2004,2006-2018 Glenn Randers-Pehrson */</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>/* This code is released under the libpng license. */</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>/* For conditions of distribution and use, see the disclaimer */</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>/* and license in png.h */</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>/* pnglibconf.h */</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>/* Machine generated file: DO NOT EDIT */</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>/* Derived from: scripts/pnglibconf.dfa */</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><u>#<span data-ppcond="15">ifndef</span> <span class="macro" data-ref="_M/PNGLCONF_H">PNGLCONF_H</span></u>&nbsp</td></tr>
+<tr><th id="16">16</th><td><u>#define <dfn class="macro" id="_M/PNGLCONF_H" data-ref="_M/PNGLCONF_H">PNGLCONF_H</dfn></u>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>/* options */</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#define <dfn class="macro" id="_M/PNG_16BIT_SUPPORTED" data-ref="_M/PNG_16BIT_SUPPORTED">PNG_16BIT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#define <dfn class="macro" id="_M/PNG_ALIGNED_MEMORY_SUPPORTED" data-ref="_M/PNG_ALIGNED_MEMORY_SUPPORTED">PNG_ALIGNED_MEMORY_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>/*#undef PNG_ARM_NEON_API_SUPPORTED*/</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>/*#undef PNG_ARM_NEON_CHECK_SUPPORTED*/</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><u>#define <dfn class="macro" id="_M/PNG_BENIGN_ERRORS_SUPPORTED" data-ref="_M/PNG_BENIGN_ERRORS_SUPPORTED">PNG_BENIGN_ERRORS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#define <dfn class="macro" id="_M/PNG_BENIGN_READ_ERRORS_SUPPORTED" data-ref="_M/PNG_BENIGN_READ_ERRORS_SUPPORTED">PNG_BENIGN_READ_ERRORS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="24">24</th><td><i>/*#undef PNG_BENIGN_WRITE_ERRORS_SUPPORTED*/</i>&nbsp</td></tr>
+<tr><th id="25">25</th><td><u>#define <dfn class="macro" id="_M/PNG_BUILD_GRAYSCALE_PALETTE_SUPPORTED" data-ref="_M/PNG_BUILD_GRAYSCALE_PALETTE_SUPPORTED">PNG_BUILD_GRAYSCALE_PALETTE_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="26">26</th><td><u>#define <dfn class="macro" id="_M/PNG_CHECK_FOR_INVALID_INDEX_SUPPORTED" data-ref="_M/PNG_CHECK_FOR_INVALID_INDEX_SUPPORTED">PNG_CHECK_FOR_INVALID_INDEX_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="27">27</th><td><u>#define <dfn class="macro" id="_M/PNG_COLORSPACE_SUPPORTED" data-ref="_M/PNG_COLORSPACE_SUPPORTED">PNG_COLORSPACE_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="28">28</th><td><u>#define <dfn class="macro" id="_M/PNG_CONSOLE_IO_SUPPORTED" data-ref="_M/PNG_CONSOLE_IO_SUPPORTED">PNG_CONSOLE_IO_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#define <dfn class="macro" id="_M/PNG_CONVERT_tIME_SUPPORTED" data-ref="_M/PNG_CONVERT_tIME_SUPPORTED">PNG_CONVERT_tIME_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i>/*#undef PNG_DISABLE_ADLER32_CHECK_SUPPORTED*/</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/PNG_EASY_ACCESS_SUPPORTED" data-ref="_M/PNG_EASY_ACCESS_SUPPORTED">PNG_EASY_ACCESS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i>/*#undef PNG_ERROR_NUMBERS_SUPPORTED*/</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#define <dfn class="macro" id="_M/PNG_ERROR_TEXT_SUPPORTED" data-ref="_M/PNG_ERROR_TEXT_SUPPORTED">PNG_ERROR_TEXT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#define <dfn class="macro" id="_M/PNG_FIXED_POINT_SUPPORTED" data-ref="_M/PNG_FIXED_POINT_SUPPORTED">PNG_FIXED_POINT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#define <dfn class="macro" id="_M/PNG_FLOATING_ARITHMETIC_SUPPORTED" data-ref="_M/PNG_FLOATING_ARITHMETIC_SUPPORTED">PNG_FLOATING_ARITHMETIC_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#define <dfn class="macro" id="_M/PNG_FLOATING_POINT_SUPPORTED" data-ref="_M/PNG_FLOATING_POINT_SUPPORTED">PNG_FLOATING_POINT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#define <dfn class="macro" id="_M/PNG_FORMAT_AFIRST_SUPPORTED" data-ref="_M/PNG_FORMAT_AFIRST_SUPPORTED">PNG_FORMAT_AFIRST_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#define <dfn class="macro" id="_M/PNG_FORMAT_BGR_SUPPORTED" data-ref="_M/PNG_FORMAT_BGR_SUPPORTED">PNG_FORMAT_BGR_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#define <dfn class="macro" id="_M/PNG_GAMMA_SUPPORTED" data-ref="_M/PNG_GAMMA_SUPPORTED">PNG_GAMMA_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#define <dfn class="macro" id="_M/PNG_GET_PALETTE_MAX_SUPPORTED" data-ref="_M/PNG_GET_PALETTE_MAX_SUPPORTED">PNG_GET_PALETTE_MAX_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#define <dfn class="macro" id="_M/PNG_HANDLE_AS_UNKNOWN_SUPPORTED" data-ref="_M/PNG_HANDLE_AS_UNKNOWN_SUPPORTED">PNG_HANDLE_AS_UNKNOWN_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u>#define <dfn class="macro" id="_M/PNG_INCH_CONVERSIONS_SUPPORTED" data-ref="_M/PNG_INCH_CONVERSIONS_SUPPORTED">PNG_INCH_CONVERSIONS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>#define <dfn class="macro" id="_M/PNG_INFO_IMAGE_SUPPORTED" data-ref="_M/PNG_INFO_IMAGE_SUPPORTED">PNG_INFO_IMAGE_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>#define <dfn class="macro" id="_M/PNG_IO_STATE_SUPPORTED" data-ref="_M/PNG_IO_STATE_SUPPORTED">PNG_IO_STATE_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i>/*#undef PNG_MIPS_MMI_API_SUPPORTED*/</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i>/*#undef PNG_MIPS_MMI_CHECK_SUPPORTED*/</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i>/*#undef PNG_MIPS_MSA_API_SUPPORTED*/</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i>/*#undef PNG_MIPS_MSA_CHECK_SUPPORTED*/</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#define <dfn class="macro" id="_M/PNG_MNG_FEATURES_SUPPORTED" data-ref="_M/PNG_MNG_FEATURES_SUPPORTED">PNG_MNG_FEATURES_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="50">50</th><td><u>#define <dfn class="macro" id="_M/PNG_POINTER_INDEXING_SUPPORTED" data-ref="_M/PNG_POINTER_INDEXING_SUPPORTED">PNG_POINTER_INDEXING_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i>/*#undef PNG_POWERPC_VSX_API_SUPPORTED*/</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i>/*#undef PNG_POWERPC_VSX_CHECK_SUPPORTED*/</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><u>#define <dfn class="macro" id="_M/PNG_PROGRESSIVE_READ_SUPPORTED" data-ref="_M/PNG_PROGRESSIVE_READ_SUPPORTED">PNG_PROGRESSIVE_READ_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="54">54</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_16BIT_SUPPORTED" data-ref="_M/PNG_READ_16BIT_SUPPORTED">PNG_READ_16BIT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="55">55</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_ALPHA_MODE_SUPPORTED" data-ref="_M/PNG_READ_ALPHA_MODE_SUPPORTED">PNG_READ_ALPHA_MODE_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="56">56</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_ANCILLARY_CHUNKS_SUPPORTED" data-ref="_M/PNG_READ_ANCILLARY_CHUNKS_SUPPORTED">PNG_READ_ANCILLARY_CHUNKS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="57">57</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_BACKGROUND_SUPPORTED" data-ref="_M/PNG_READ_BACKGROUND_SUPPORTED">PNG_READ_BACKGROUND_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="58">58</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_BGR_SUPPORTED" data-ref="_M/PNG_READ_BGR_SUPPORTED">PNG_READ_BGR_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="59">59</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_CHECK_FOR_INVALID_INDEX_SUPPORTED" data-ref="_M/PNG_READ_CHECK_FOR_INVALID_INDEX_SUPPORTED">PNG_READ_CHECK_FOR_INVALID_INDEX_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="60">60</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_COMPOSITE_NODIV_SUPPORTED" data-ref="_M/PNG_READ_COMPOSITE_NODIV_SUPPORTED">PNG_READ_COMPOSITE_NODIV_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="61">61</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_COMPRESSED_TEXT_SUPPORTED" data-ref="_M/PNG_READ_COMPRESSED_TEXT_SUPPORTED">PNG_READ_COMPRESSED_TEXT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="62">62</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_EXPAND_16_SUPPORTED" data-ref="_M/PNG_READ_EXPAND_16_SUPPORTED">PNG_READ_EXPAND_16_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="63">63</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_EXPAND_SUPPORTED" data-ref="_M/PNG_READ_EXPAND_SUPPORTED">PNG_READ_EXPAND_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="64">64</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_FILLER_SUPPORTED" data-ref="_M/PNG_READ_FILLER_SUPPORTED">PNG_READ_FILLER_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="65">65</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_GAMMA_SUPPORTED" data-ref="_M/PNG_READ_GAMMA_SUPPORTED">PNG_READ_GAMMA_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="66">66</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_GET_PALETTE_MAX_SUPPORTED" data-ref="_M/PNG_READ_GET_PALETTE_MAX_SUPPORTED">PNG_READ_GET_PALETTE_MAX_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="67">67</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_GRAY_TO_RGB_SUPPORTED" data-ref="_M/PNG_READ_GRAY_TO_RGB_SUPPORTED">PNG_READ_GRAY_TO_RGB_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="68">68</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_INTERLACING_SUPPORTED" data-ref="_M/PNG_READ_INTERLACING_SUPPORTED">PNG_READ_INTERLACING_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="69">69</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_INT_FUNCTIONS_SUPPORTED" data-ref="_M/PNG_READ_INT_FUNCTIONS_SUPPORTED">PNG_READ_INT_FUNCTIONS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="70">70</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_INVERT_ALPHA_SUPPORTED" data-ref="_M/PNG_READ_INVERT_ALPHA_SUPPORTED">PNG_READ_INVERT_ALPHA_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="71">71</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_INVERT_SUPPORTED" data-ref="_M/PNG_READ_INVERT_SUPPORTED">PNG_READ_INVERT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="72">72</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_OPT_PLTE_SUPPORTED" data-ref="_M/PNG_READ_OPT_PLTE_SUPPORTED">PNG_READ_OPT_PLTE_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="73">73</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_PACKSWAP_SUPPORTED" data-ref="_M/PNG_READ_PACKSWAP_SUPPORTED">PNG_READ_PACKSWAP_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="74">74</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_PACK_SUPPORTED" data-ref="_M/PNG_READ_PACK_SUPPORTED">PNG_READ_PACK_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="75">75</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_QUANTIZE_SUPPORTED" data-ref="_M/PNG_READ_QUANTIZE_SUPPORTED">PNG_READ_QUANTIZE_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="76">76</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_RGB_TO_GRAY_SUPPORTED" data-ref="_M/PNG_READ_RGB_TO_GRAY_SUPPORTED">PNG_READ_RGB_TO_GRAY_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="77">77</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_SCALE_16_TO_8_SUPPORTED" data-ref="_M/PNG_READ_SCALE_16_TO_8_SUPPORTED">PNG_READ_SCALE_16_TO_8_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="78">78</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_SHIFT_SUPPORTED" data-ref="_M/PNG_READ_SHIFT_SUPPORTED">PNG_READ_SHIFT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="79">79</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_STRIP_16_TO_8_SUPPORTED" data-ref="_M/PNG_READ_STRIP_16_TO_8_SUPPORTED">PNG_READ_STRIP_16_TO_8_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="80">80</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_STRIP_ALPHA_SUPPORTED" data-ref="_M/PNG_READ_STRIP_ALPHA_SUPPORTED">PNG_READ_STRIP_ALPHA_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="81">81</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_SUPPORTED" data-ref="_M/PNG_READ_SUPPORTED">PNG_READ_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="82">82</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_SWAP_ALPHA_SUPPORTED" data-ref="_M/PNG_READ_SWAP_ALPHA_SUPPORTED">PNG_READ_SWAP_ALPHA_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="83">83</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_SWAP_SUPPORTED" data-ref="_M/PNG_READ_SWAP_SUPPORTED">PNG_READ_SWAP_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="84">84</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_TEXT_SUPPORTED" data-ref="_M/PNG_READ_TEXT_SUPPORTED">PNG_READ_TEXT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="85">85</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_TRANSFORMS_SUPPORTED" data-ref="_M/PNG_READ_TRANSFORMS_SUPPORTED">PNG_READ_TRANSFORMS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="86">86</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_UNKNOWN_CHUNKS_SUPPORTED" data-ref="_M/PNG_READ_UNKNOWN_CHUNKS_SUPPORTED">PNG_READ_UNKNOWN_CHUNKS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="87">87</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_USER_CHUNKS_SUPPORTED" data-ref="_M/PNG_READ_USER_CHUNKS_SUPPORTED">PNG_READ_USER_CHUNKS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="88">88</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_USER_TRANSFORM_SUPPORTED" data-ref="_M/PNG_READ_USER_TRANSFORM_SUPPORTED">PNG_READ_USER_TRANSFORM_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="89">89</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_bKGD_SUPPORTED" data-ref="_M/PNG_READ_bKGD_SUPPORTED">PNG_READ_bKGD_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="90">90</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_cHRM_SUPPORTED" data-ref="_M/PNG_READ_cHRM_SUPPORTED">PNG_READ_cHRM_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="91">91</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_eXIf_SUPPORTED" data-ref="_M/PNG_READ_eXIf_SUPPORTED">PNG_READ_eXIf_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="92">92</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_gAMA_SUPPORTED" data-ref="_M/PNG_READ_gAMA_SUPPORTED">PNG_READ_gAMA_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="93">93</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_hIST_SUPPORTED" data-ref="_M/PNG_READ_hIST_SUPPORTED">PNG_READ_hIST_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="94">94</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_iCCP_SUPPORTED" data-ref="_M/PNG_READ_iCCP_SUPPORTED">PNG_READ_iCCP_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="95">95</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_iTXt_SUPPORTED" data-ref="_M/PNG_READ_iTXt_SUPPORTED">PNG_READ_iTXt_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="96">96</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_oFFs_SUPPORTED" data-ref="_M/PNG_READ_oFFs_SUPPORTED">PNG_READ_oFFs_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="97">97</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_pCAL_SUPPORTED" data-ref="_M/PNG_READ_pCAL_SUPPORTED">PNG_READ_pCAL_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="98">98</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_pHYs_SUPPORTED" data-ref="_M/PNG_READ_pHYs_SUPPORTED">PNG_READ_pHYs_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="99">99</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_sBIT_SUPPORTED" data-ref="_M/PNG_READ_sBIT_SUPPORTED">PNG_READ_sBIT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="100">100</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_sCAL_SUPPORTED" data-ref="_M/PNG_READ_sCAL_SUPPORTED">PNG_READ_sCAL_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="101">101</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_sPLT_SUPPORTED" data-ref="_M/PNG_READ_sPLT_SUPPORTED">PNG_READ_sPLT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="102">102</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_sRGB_SUPPORTED" data-ref="_M/PNG_READ_sRGB_SUPPORTED">PNG_READ_sRGB_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="103">103</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_tEXt_SUPPORTED" data-ref="_M/PNG_READ_tEXt_SUPPORTED">PNG_READ_tEXt_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="104">104</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_tIME_SUPPORTED" data-ref="_M/PNG_READ_tIME_SUPPORTED">PNG_READ_tIME_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="105">105</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_tRNS_SUPPORTED" data-ref="_M/PNG_READ_tRNS_SUPPORTED">PNG_READ_tRNS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="106">106</th><td><u>#define <dfn class="macro" id="_M/PNG_READ_zTXt_SUPPORTED" data-ref="_M/PNG_READ_zTXt_SUPPORTED">PNG_READ_zTXt_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="107">107</th><td><u>#define <dfn class="macro" id="_M/PNG_SAVE_INT_32_SUPPORTED" data-ref="_M/PNG_SAVE_INT_32_SUPPORTED">PNG_SAVE_INT_32_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="108">108</th><td><u>#define <dfn class="macro" id="_M/PNG_SAVE_UNKNOWN_CHUNKS_SUPPORTED" data-ref="_M/PNG_SAVE_UNKNOWN_CHUNKS_SUPPORTED">PNG_SAVE_UNKNOWN_CHUNKS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="109">109</th><td><u>#define <dfn class="macro" id="_M/PNG_SEQUENTIAL_READ_SUPPORTED" data-ref="_M/PNG_SEQUENTIAL_READ_SUPPORTED">PNG_SEQUENTIAL_READ_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="110">110</th><td><u>#define <dfn class="macro" id="_M/PNG_SETJMP_SUPPORTED" data-ref="_M/PNG_SETJMP_SUPPORTED">PNG_SETJMP_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="111">111</th><td><u>#define <dfn class="macro" id="_M/PNG_SET_OPTION_SUPPORTED" data-ref="_M/PNG_SET_OPTION_SUPPORTED">PNG_SET_OPTION_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="112">112</th><td><u>#define <dfn class="macro" id="_M/PNG_SET_UNKNOWN_CHUNKS_SUPPORTED" data-ref="_M/PNG_SET_UNKNOWN_CHUNKS_SUPPORTED">PNG_SET_UNKNOWN_CHUNKS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="113">113</th><td><u>#define <dfn class="macro" id="_M/PNG_SET_USER_LIMITS_SUPPORTED" data-ref="_M/PNG_SET_USER_LIMITS_SUPPORTED">PNG_SET_USER_LIMITS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="114">114</th><td><u>#define <dfn class="macro" id="_M/PNG_SIMPLIFIED_READ_AFIRST_SUPPORTED" data-ref="_M/PNG_SIMPLIFIED_READ_AFIRST_SUPPORTED">PNG_SIMPLIFIED_READ_AFIRST_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="115">115</th><td><u>#define <dfn class="macro" id="_M/PNG_SIMPLIFIED_READ_BGR_SUPPORTED" data-ref="_M/PNG_SIMPLIFIED_READ_BGR_SUPPORTED">PNG_SIMPLIFIED_READ_BGR_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="116">116</th><td><u>#define <dfn class="macro" id="_M/PNG_SIMPLIFIED_READ_SUPPORTED" data-ref="_M/PNG_SIMPLIFIED_READ_SUPPORTED">PNG_SIMPLIFIED_READ_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="117">117</th><td><u>#define <dfn class="macro" id="_M/PNG_SIMPLIFIED_WRITE_AFIRST_SUPPORTED" data-ref="_M/PNG_SIMPLIFIED_WRITE_AFIRST_SUPPORTED">PNG_SIMPLIFIED_WRITE_AFIRST_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="118">118</th><td><u>#define <dfn class="macro" id="_M/PNG_SIMPLIFIED_WRITE_BGR_SUPPORTED" data-ref="_M/PNG_SIMPLIFIED_WRITE_BGR_SUPPORTED">PNG_SIMPLIFIED_WRITE_BGR_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="119">119</th><td><u>#define <dfn class="macro" id="_M/PNG_SIMPLIFIED_WRITE_STDIO_SUPPORTED" data-ref="_M/PNG_SIMPLIFIED_WRITE_STDIO_SUPPORTED">PNG_SIMPLIFIED_WRITE_STDIO_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="120">120</th><td><u>#define <dfn class="macro" id="_M/PNG_SIMPLIFIED_WRITE_SUPPORTED" data-ref="_M/PNG_SIMPLIFIED_WRITE_SUPPORTED">PNG_SIMPLIFIED_WRITE_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="121">121</th><td><u>#define <dfn class="macro" id="_M/PNG_STDIO_SUPPORTED" data-ref="_M/PNG_STDIO_SUPPORTED">PNG_STDIO_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="122">122</th><td><u>#define <dfn class="macro" id="_M/PNG_STORE_UNKNOWN_CHUNKS_SUPPORTED" data-ref="_M/PNG_STORE_UNKNOWN_CHUNKS_SUPPORTED">PNG_STORE_UNKNOWN_CHUNKS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="123">123</th><td><u>#define <dfn class="macro" id="_M/PNG_TEXT_SUPPORTED" data-ref="_M/PNG_TEXT_SUPPORTED">PNG_TEXT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="124">124</th><td><u>#define <dfn class="macro" id="_M/PNG_TIME_RFC1123_SUPPORTED" data-ref="_M/PNG_TIME_RFC1123_SUPPORTED">PNG_TIME_RFC1123_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="125">125</th><td><u>#define <dfn class="macro" id="_M/PNG_UNKNOWN_CHUNKS_SUPPORTED" data-ref="_M/PNG_UNKNOWN_CHUNKS_SUPPORTED">PNG_UNKNOWN_CHUNKS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="126">126</th><td><u>#define <dfn class="macro" id="_M/PNG_USER_CHUNKS_SUPPORTED" data-ref="_M/PNG_USER_CHUNKS_SUPPORTED">PNG_USER_CHUNKS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="127">127</th><td><u>#define <dfn class="macro" id="_M/PNG_USER_LIMITS_SUPPORTED" data-ref="_M/PNG_USER_LIMITS_SUPPORTED">PNG_USER_LIMITS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="128">128</th><td><u>#define <dfn class="macro" id="_M/PNG_USER_MEM_SUPPORTED" data-ref="_M/PNG_USER_MEM_SUPPORTED">PNG_USER_MEM_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="129">129</th><td><u>#define <dfn class="macro" id="_M/PNG_USER_TRANSFORM_INFO_SUPPORTED" data-ref="_M/PNG_USER_TRANSFORM_INFO_SUPPORTED">PNG_USER_TRANSFORM_INFO_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="130">130</th><td><u>#define <dfn class="macro" id="_M/PNG_USER_TRANSFORM_PTR_SUPPORTED" data-ref="_M/PNG_USER_TRANSFORM_PTR_SUPPORTED">PNG_USER_TRANSFORM_PTR_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="131">131</th><td><u>#define <dfn class="macro" id="_M/PNG_WARNINGS_SUPPORTED" data-ref="_M/PNG_WARNINGS_SUPPORTED">PNG_WARNINGS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="132">132</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_16BIT_SUPPORTED" data-ref="_M/PNG_WRITE_16BIT_SUPPORTED">PNG_WRITE_16BIT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="133">133</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_ANCILLARY_CHUNKS_SUPPORTED" data-ref="_M/PNG_WRITE_ANCILLARY_CHUNKS_SUPPORTED">PNG_WRITE_ANCILLARY_CHUNKS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="134">134</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_BGR_SUPPORTED" data-ref="_M/PNG_WRITE_BGR_SUPPORTED">PNG_WRITE_BGR_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="135">135</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_CHECK_FOR_INVALID_INDEX_SUPPORTED" data-ref="_M/PNG_WRITE_CHECK_FOR_INVALID_INDEX_SUPPORTED">PNG_WRITE_CHECK_FOR_INVALID_INDEX_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="136">136</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_COMPRESSED_TEXT_SUPPORTED" data-ref="_M/PNG_WRITE_COMPRESSED_TEXT_SUPPORTED">PNG_WRITE_COMPRESSED_TEXT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="137">137</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_CUSTOMIZE_COMPRESSION_SUPPORTED" data-ref="_M/PNG_WRITE_CUSTOMIZE_COMPRESSION_SUPPORTED">PNG_WRITE_CUSTOMIZE_COMPRESSION_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="138">138</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_CUSTOMIZE_ZTXT_COMPRESSION_SUPPORTED" data-ref="_M/PNG_WRITE_CUSTOMIZE_ZTXT_COMPRESSION_SUPPORTED">PNG_WRITE_CUSTOMIZE_ZTXT_COMPRESSION_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="139">139</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_FILLER_SUPPORTED" data-ref="_M/PNG_WRITE_FILLER_SUPPORTED">PNG_WRITE_FILLER_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="140">140</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_FILTER_SUPPORTED" data-ref="_M/PNG_WRITE_FILTER_SUPPORTED">PNG_WRITE_FILTER_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="141">141</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_FLUSH_SUPPORTED" data-ref="_M/PNG_WRITE_FLUSH_SUPPORTED">PNG_WRITE_FLUSH_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="142">142</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_GET_PALETTE_MAX_SUPPORTED" data-ref="_M/PNG_WRITE_GET_PALETTE_MAX_SUPPORTED">PNG_WRITE_GET_PALETTE_MAX_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="143">143</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_INTERLACING_SUPPORTED" data-ref="_M/PNG_WRITE_INTERLACING_SUPPORTED">PNG_WRITE_INTERLACING_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="144">144</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_INT_FUNCTIONS_SUPPORTED" data-ref="_M/PNG_WRITE_INT_FUNCTIONS_SUPPORTED">PNG_WRITE_INT_FUNCTIONS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="145">145</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_INVERT_ALPHA_SUPPORTED" data-ref="_M/PNG_WRITE_INVERT_ALPHA_SUPPORTED">PNG_WRITE_INVERT_ALPHA_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="146">146</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_INVERT_SUPPORTED" data-ref="_M/PNG_WRITE_INVERT_SUPPORTED">PNG_WRITE_INVERT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="147">147</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_OPTIMIZE_CMF_SUPPORTED" data-ref="_M/PNG_WRITE_OPTIMIZE_CMF_SUPPORTED">PNG_WRITE_OPTIMIZE_CMF_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="148">148</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_PACKSWAP_SUPPORTED" data-ref="_M/PNG_WRITE_PACKSWAP_SUPPORTED">PNG_WRITE_PACKSWAP_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="149">149</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_PACK_SUPPORTED" data-ref="_M/PNG_WRITE_PACK_SUPPORTED">PNG_WRITE_PACK_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="150">150</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_SHIFT_SUPPORTED" data-ref="_M/PNG_WRITE_SHIFT_SUPPORTED">PNG_WRITE_SHIFT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="151">151</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_SUPPORTED" data-ref="_M/PNG_WRITE_SUPPORTED">PNG_WRITE_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="152">152</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_SWAP_ALPHA_SUPPORTED" data-ref="_M/PNG_WRITE_SWAP_ALPHA_SUPPORTED">PNG_WRITE_SWAP_ALPHA_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="153">153</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_SWAP_SUPPORTED" data-ref="_M/PNG_WRITE_SWAP_SUPPORTED">PNG_WRITE_SWAP_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="154">154</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_TEXT_SUPPORTED" data-ref="_M/PNG_WRITE_TEXT_SUPPORTED">PNG_WRITE_TEXT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="155">155</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_TRANSFORMS_SUPPORTED" data-ref="_M/PNG_WRITE_TRANSFORMS_SUPPORTED">PNG_WRITE_TRANSFORMS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="156">156</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_UNKNOWN_CHUNKS_SUPPORTED" data-ref="_M/PNG_WRITE_UNKNOWN_CHUNKS_SUPPORTED">PNG_WRITE_UNKNOWN_CHUNKS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="157">157</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_USER_TRANSFORM_SUPPORTED" data-ref="_M/PNG_WRITE_USER_TRANSFORM_SUPPORTED">PNG_WRITE_USER_TRANSFORM_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="158">158</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_WEIGHTED_FILTER_SUPPORTED" data-ref="_M/PNG_WRITE_WEIGHTED_FILTER_SUPPORTED">PNG_WRITE_WEIGHTED_FILTER_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="159">159</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_bKGD_SUPPORTED" data-ref="_M/PNG_WRITE_bKGD_SUPPORTED">PNG_WRITE_bKGD_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="160">160</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_cHRM_SUPPORTED" data-ref="_M/PNG_WRITE_cHRM_SUPPORTED">PNG_WRITE_cHRM_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="161">161</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_eXIf_SUPPORTED" data-ref="_M/PNG_WRITE_eXIf_SUPPORTED">PNG_WRITE_eXIf_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="162">162</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_gAMA_SUPPORTED" data-ref="_M/PNG_WRITE_gAMA_SUPPORTED">PNG_WRITE_gAMA_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="163">163</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_hIST_SUPPORTED" data-ref="_M/PNG_WRITE_hIST_SUPPORTED">PNG_WRITE_hIST_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="164">164</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_iCCP_SUPPORTED" data-ref="_M/PNG_WRITE_iCCP_SUPPORTED">PNG_WRITE_iCCP_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="165">165</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_iTXt_SUPPORTED" data-ref="_M/PNG_WRITE_iTXt_SUPPORTED">PNG_WRITE_iTXt_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="166">166</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_oFFs_SUPPORTED" data-ref="_M/PNG_WRITE_oFFs_SUPPORTED">PNG_WRITE_oFFs_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="167">167</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_pCAL_SUPPORTED" data-ref="_M/PNG_WRITE_pCAL_SUPPORTED">PNG_WRITE_pCAL_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="168">168</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_pHYs_SUPPORTED" data-ref="_M/PNG_WRITE_pHYs_SUPPORTED">PNG_WRITE_pHYs_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="169">169</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_sBIT_SUPPORTED" data-ref="_M/PNG_WRITE_sBIT_SUPPORTED">PNG_WRITE_sBIT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="170">170</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_sCAL_SUPPORTED" data-ref="_M/PNG_WRITE_sCAL_SUPPORTED">PNG_WRITE_sCAL_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="171">171</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_sPLT_SUPPORTED" data-ref="_M/PNG_WRITE_sPLT_SUPPORTED">PNG_WRITE_sPLT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="172">172</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_sRGB_SUPPORTED" data-ref="_M/PNG_WRITE_sRGB_SUPPORTED">PNG_WRITE_sRGB_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="173">173</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_tEXt_SUPPORTED" data-ref="_M/PNG_WRITE_tEXt_SUPPORTED">PNG_WRITE_tEXt_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="174">174</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_tIME_SUPPORTED" data-ref="_M/PNG_WRITE_tIME_SUPPORTED">PNG_WRITE_tIME_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="175">175</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_tRNS_SUPPORTED" data-ref="_M/PNG_WRITE_tRNS_SUPPORTED">PNG_WRITE_tRNS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="176">176</th><td><u>#define <dfn class="macro" id="_M/PNG_WRITE_zTXt_SUPPORTED" data-ref="_M/PNG_WRITE_zTXt_SUPPORTED">PNG_WRITE_zTXt_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="177">177</th><td><u>#define <dfn class="macro" id="_M/PNG_bKGD_SUPPORTED" data-ref="_M/PNG_bKGD_SUPPORTED">PNG_bKGD_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="178">178</th><td><u>#define <dfn class="macro" id="_M/PNG_cHRM_SUPPORTED" data-ref="_M/PNG_cHRM_SUPPORTED">PNG_cHRM_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="179">179</th><td><u>#define <dfn class="macro" id="_M/PNG_eXIf_SUPPORTED" data-ref="_M/PNG_eXIf_SUPPORTED">PNG_eXIf_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="180">180</th><td><u>#define <dfn class="macro" id="_M/PNG_gAMA_SUPPORTED" data-ref="_M/PNG_gAMA_SUPPORTED">PNG_gAMA_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="181">181</th><td><u>#define <dfn class="macro" id="_M/PNG_hIST_SUPPORTED" data-ref="_M/PNG_hIST_SUPPORTED">PNG_hIST_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="182">182</th><td><u>#define <dfn class="macro" id="_M/PNG_iCCP_SUPPORTED" data-ref="_M/PNG_iCCP_SUPPORTED">PNG_iCCP_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="183">183</th><td><u>#define <dfn class="macro" id="_M/PNG_iTXt_SUPPORTED" data-ref="_M/PNG_iTXt_SUPPORTED">PNG_iTXt_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="184">184</th><td><u>#define <dfn class="macro" id="_M/PNG_oFFs_SUPPORTED" data-ref="_M/PNG_oFFs_SUPPORTED">PNG_oFFs_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="185">185</th><td><u>#define <dfn class="macro" id="_M/PNG_pCAL_SUPPORTED" data-ref="_M/PNG_pCAL_SUPPORTED">PNG_pCAL_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="186">186</th><td><u>#define <dfn class="macro" id="_M/PNG_pHYs_SUPPORTED" data-ref="_M/PNG_pHYs_SUPPORTED">PNG_pHYs_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="187">187</th><td><u>#define <dfn class="macro" id="_M/PNG_sBIT_SUPPORTED" data-ref="_M/PNG_sBIT_SUPPORTED">PNG_sBIT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="188">188</th><td><u>#define <dfn class="macro" id="_M/PNG_sCAL_SUPPORTED" data-ref="_M/PNG_sCAL_SUPPORTED">PNG_sCAL_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="189">189</th><td><u>#define <dfn class="macro" id="_M/PNG_sPLT_SUPPORTED" data-ref="_M/PNG_sPLT_SUPPORTED">PNG_sPLT_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="190">190</th><td><u>#define <dfn class="macro" id="_M/PNG_sRGB_SUPPORTED" data-ref="_M/PNG_sRGB_SUPPORTED">PNG_sRGB_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="191">191</th><td><u>#define <dfn class="macro" id="_M/PNG_tEXt_SUPPORTED" data-ref="_M/PNG_tEXt_SUPPORTED">PNG_tEXt_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="192">192</th><td><u>#define <dfn class="macro" id="_M/PNG_tIME_SUPPORTED" data-ref="_M/PNG_tIME_SUPPORTED">PNG_tIME_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="193">193</th><td><u>#define <dfn class="macro" id="_M/PNG_tRNS_SUPPORTED" data-ref="_M/PNG_tRNS_SUPPORTED">PNG_tRNS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="194">194</th><td><u>#define <dfn class="macro" id="_M/PNG_zTXt_SUPPORTED" data-ref="_M/PNG_zTXt_SUPPORTED">PNG_zTXt_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="195">195</th><td><i>/* end of options */</i>&nbsp</td></tr>
+<tr><th id="196">196</th><td><i>/* settings */</i>&nbsp</td></tr>
+<tr><th id="197">197</th><td><u>#define <dfn class="macro" id="_M/PNG_API_RULE" data-ref="_M/PNG_API_RULE">PNG_API_RULE</dfn> 0</u>&nbsp</td></tr>
+<tr><th id="198">198</th><td><u>#define <dfn class="macro" id="_M/PNG_DEFAULT_READ_MACROS" data-ref="_M/PNG_DEFAULT_READ_MACROS">PNG_DEFAULT_READ_MACROS</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="199">199</th><td><u>#define <dfn class="macro" id="_M/PNG_GAMMA_THRESHOLD_FIXED" data-ref="_M/PNG_GAMMA_THRESHOLD_FIXED">PNG_GAMMA_THRESHOLD_FIXED</dfn> 5000</u>&nbsp</td></tr>
+<tr><th id="200">200</th><td><u>#define <dfn class="macro" id="_M/PNG_IDAT_READ_SIZE" data-ref="_M/PNG_IDAT_READ_SIZE">PNG_IDAT_READ_SIZE</dfn> PNG_ZBUF_SIZE</u>&nbsp</td></tr>
+<tr><th id="201">201</th><td><u>#define <dfn class="macro" id="_M/PNG_INFLATE_BUF_SIZE" data-ref="_M/PNG_INFLATE_BUF_SIZE">PNG_INFLATE_BUF_SIZE</dfn> 1024</u>&nbsp</td></tr>
+<tr><th id="202">202</th><td><u>#define <dfn class="macro" id="_M/PNG_LINKAGE_API" data-ref="_M/PNG_LINKAGE_API">PNG_LINKAGE_API</dfn> extern</u>&nbsp</td></tr>
+<tr><th id="203">203</th><td><u>#define <dfn class="macro" id="_M/PNG_LINKAGE_CALLBACK" data-ref="_M/PNG_LINKAGE_CALLBACK">PNG_LINKAGE_CALLBACK</dfn> extern</u>&nbsp</td></tr>
+<tr><th id="204">204</th><td><u>#define <dfn class="macro" id="_M/PNG_LINKAGE_DATA" data-ref="_M/PNG_LINKAGE_DATA">PNG_LINKAGE_DATA</dfn> extern</u>&nbsp</td></tr>
+<tr><th id="205">205</th><td><u>#define <dfn class="macro" id="_M/PNG_LINKAGE_FUNCTION" data-ref="_M/PNG_LINKAGE_FUNCTION">PNG_LINKAGE_FUNCTION</dfn> extern</u>&nbsp</td></tr>
+<tr><th id="206">206</th><td><u>#define <dfn class="macro" id="_M/PNG_MAX_GAMMA_8" data-ref="_M/PNG_MAX_GAMMA_8">PNG_MAX_GAMMA_8</dfn> 11</u>&nbsp</td></tr>
+<tr><th id="207">207</th><td><u>#define <dfn class="macro" id="_M/PNG_QUANTIZE_BLUE_BITS" data-ref="_M/PNG_QUANTIZE_BLUE_BITS">PNG_QUANTIZE_BLUE_BITS</dfn> 5</u>&nbsp</td></tr>
+<tr><th id="208">208</th><td><u>#define <dfn class="macro" id="_M/PNG_QUANTIZE_GREEN_BITS" data-ref="_M/PNG_QUANTIZE_GREEN_BITS">PNG_QUANTIZE_GREEN_BITS</dfn> 5</u>&nbsp</td></tr>
+<tr><th id="209">209</th><td><u>#define <dfn class="macro" id="_M/PNG_QUANTIZE_RED_BITS" data-ref="_M/PNG_QUANTIZE_RED_BITS">PNG_QUANTIZE_RED_BITS</dfn> 5</u>&nbsp</td></tr>
+<tr><th id="210">210</th><td><u>#define <dfn class="macro" id="_M/PNG_TEXT_Z_DEFAULT_COMPRESSION" data-ref="_M/PNG_TEXT_Z_DEFAULT_COMPRESSION">PNG_TEXT_Z_DEFAULT_COMPRESSION</dfn> (-1)</u>&nbsp</td></tr>
+<tr><th id="211">211</th><td><u>#define <dfn class="macro" id="_M/PNG_TEXT_Z_DEFAULT_STRATEGY" data-ref="_M/PNG_TEXT_Z_DEFAULT_STRATEGY">PNG_TEXT_Z_DEFAULT_STRATEGY</dfn> 0</u>&nbsp</td></tr>
+<tr><th id="212">212</th><td><u>#define <dfn class="macro" id="_M/PNG_USER_CHUNK_CACHE_MAX" data-ref="_M/PNG_USER_CHUNK_CACHE_MAX">PNG_USER_CHUNK_CACHE_MAX</dfn> 1000</u>&nbsp</td></tr>
+<tr><th id="213">213</th><td><u>#define <dfn class="macro" id="_M/PNG_USER_CHUNK_MALLOC_MAX" data-ref="_M/PNG_USER_CHUNK_MALLOC_MAX">PNG_USER_CHUNK_MALLOC_MAX</dfn> 8000000</u>&nbsp</td></tr>
+<tr><th id="214">214</th><td><u>#define <dfn class="macro" id="_M/PNG_USER_HEIGHT_MAX" data-ref="_M/PNG_USER_HEIGHT_MAX">PNG_USER_HEIGHT_MAX</dfn> 1000000</u>&nbsp</td></tr>
+<tr><th id="215">215</th><td><u>#define <dfn class="macro" id="_M/PNG_USER_WIDTH_MAX" data-ref="_M/PNG_USER_WIDTH_MAX">PNG_USER_WIDTH_MAX</dfn> 1000000</u>&nbsp</td></tr>
+<tr><th id="216">216</th><td><u>#define <dfn class="macro" id="_M/PNG_ZBUF_SIZE" data-ref="_M/PNG_ZBUF_SIZE">PNG_ZBUF_SIZE</dfn> 8192</u>&nbsp</td></tr>
+<tr><th id="217">217</th><td><u>#define <dfn class="macro" id="_M/PNG_ZLIB_VERNUM" data-ref="_M/PNG_ZLIB_VERNUM">PNG_ZLIB_VERNUM</dfn> 0x12b0</u>&nbsp</td></tr>
+<tr><th id="218">218</th><td><u>#define <dfn class="macro" id="_M/PNG_Z_DEFAULT_COMPRESSION" data-ref="_M/PNG_Z_DEFAULT_COMPRESSION">PNG_Z_DEFAULT_COMPRESSION</dfn> (-1)</u>&nbsp</td></tr>
+<tr><th id="219">219</th><td><u>#define <dfn class="macro" id="_M/PNG_Z_DEFAULT_NOFILTER_STRATEGY" data-ref="_M/PNG_Z_DEFAULT_NOFILTER_STRATEGY">PNG_Z_DEFAULT_NOFILTER_STRATEGY</dfn> 0</u>&nbsp</td></tr>
+<tr><th id="220">220</th><td><u>#define <dfn class="macro" id="_M/PNG_Z_DEFAULT_STRATEGY" data-ref="_M/PNG_Z_DEFAULT_STRATEGY">PNG_Z_DEFAULT_STRATEGY</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="221">221</th><td><u>#define <dfn class="macro" id="_M/PNG_sCAL_PRECISION" data-ref="_M/PNG_sCAL_PRECISION">PNG_sCAL_PRECISION</dfn> 5</u>&nbsp</td></tr>
+<tr><th id="222">222</th><td><u>#define <dfn class="macro" id="_M/PNG_sRGB_PROFILE_CHECKS" data-ref="_M/PNG_sRGB_PROFILE_CHECKS">PNG_sRGB_PROFILE_CHECKS</dfn> 2</u>&nbsp</td></tr>
+<tr><th id="223">223</th><td><i>/* end of settings */</i>&nbsp</td></tr>
+<tr><th id="224">224</th><td><u>#<span data-ppcond="15">endif</span> /* PNGLCONF_H */</u>&nbsp</td></tr>
+<tr><th id="225">225</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Src/tPicture.cpp.html'>Modules/Image/Src/tPicture.cpp</a><br/>Generated on <em>2025-Aug-25</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

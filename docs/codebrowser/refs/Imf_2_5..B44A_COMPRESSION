@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfCompression.h' l='66' type='7'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfCompression.h' l='64'>// fixed compression rate</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfCompression.h' l='66'>// lossy 4-by-4 pixel block compression,</doc>

@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/stl_tree.h' l='361' ll='363' type='std::_Rb_tree_const_iterator::pointer std::_Rb_tree_const_iterator::operator-&gt;() const'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='676' u='c' c='_ZNK7Imf_2_56Header13ConstIterator4nameEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='683' u='c' c='_ZNK7Imf_2_56Header13ConstIterator9attributeEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='763' u='c' c='_ZNK7Imf_2_56Header18findTypedAttributeEPKc'/>

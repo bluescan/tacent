@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='415' type='float'/>
+<offset>160</offset>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='414'>/** @brief The red component weight scale for error weighting (-cw). */</doc>

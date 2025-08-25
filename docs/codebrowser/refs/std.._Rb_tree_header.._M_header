@@ -1,0 +1,20 @@
+<dec f='include/c++/11/bits/stl_tree.h' l='170' type='std::_Rb_tree_node_base'/>
+<use f='include/c++/11/bits/stl_tree.h' l='175' u='m' c='_ZNSt15_Rb_tree_headerC1Ev'/>
+<use f='include/c++/11/bits/stl_tree.h' l='182' u='m' c='_ZNSt15_Rb_tree_headerC1EOS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='186' u='m' c='_ZNSt15_Rb_tree_headerC1EOS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='195' u='m' c='_ZNSt15_Rb_tree_header12_M_move_dataERS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='195' u='m' c='_ZNSt15_Rb_tree_header12_M_move_dataERS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='196' u='m' c='_ZNSt15_Rb_tree_header12_M_move_dataERS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='196' u='m' c='_ZNSt15_Rb_tree_header12_M_move_dataERS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='197' u='m' c='_ZNSt15_Rb_tree_header12_M_move_dataERS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='197' u='m' c='_ZNSt15_Rb_tree_header12_M_move_dataERS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='198' u='m' c='_ZNSt15_Rb_tree_header12_M_move_dataERS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='198' u='m' c='_ZNSt15_Rb_tree_header12_M_move_dataERS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='199' u='m' c='_ZNSt15_Rb_tree_header12_M_move_dataERS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='199' u='a' c='_ZNSt15_Rb_tree_header12_M_move_dataERS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='208' u='m' c='_ZNSt15_Rb_tree_header8_M_resetEv'/>
+<use f='include/c++/11/bits/stl_tree.h' l='209' u='m' c='_ZNSt15_Rb_tree_header8_M_resetEv'/>
+<use f='include/c++/11/bits/stl_tree.h' l='209' u='a' c='_ZNSt15_Rb_tree_header8_M_resetEv'/>
+<use f='include/c++/11/bits/stl_tree.h' l='210' u='m' c='_ZNSt15_Rb_tree_header8_M_resetEv'/>
+<use f='include/c++/11/bits/stl_tree.h' l='210' u='a' c='_ZNSt15_Rb_tree_header8_M_resetEv'/>
+<offset>0</offset>

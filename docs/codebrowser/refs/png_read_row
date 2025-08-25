@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='1378' type='void png_read_row(png_structrp png_ptr, png_bytep row, png_bytep display_row)'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2419'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2418'>/* The flags returned by png_get_io_state() are the following: */</doc>

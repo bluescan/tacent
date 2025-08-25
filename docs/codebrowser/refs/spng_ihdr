@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='223' ll='232'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='486' c='spng_get_ihdr'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='509' c='spng_set_ihdr'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='240' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='859' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<size>16</size>
+<mbr r='spng_ihdr::width' o='0' t='uint32_t'/>
+<mbr r='spng_ihdr::height' o='32' t='uint32_t'/>
+<mbr r='spng_ihdr::bit_depth' o='64' t='uint8_t'/>
+<mbr r='spng_ihdr::color_type' o='72' t='uint8_t'/>
+<mbr r='spng_ihdr::compression_method' o='80' t='uint8_t'/>
+<mbr r='spng_ihdr::filter_method' o='88' t='uint8_t'/>
+<mbr r='spng_ihdr::interlace_method' o='96' t='uint8_t'/>

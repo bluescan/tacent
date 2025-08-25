@@ -25,6 +25,8 @@ _ZNK12tStringUTF325CharsEv|tStringUTF32::Chars
 _ZNK12tStringUTF323ChrEv|tStringUTF32::Chr
 _ZNK12tChunkReader5ChunkEv|tChunkReader::Chunk
 _ZN12tChunkWriter9ChunkInfoC1Ev|tChunkWriter::ChunkInfo::ChunkInfo
+_ZN7Imf_2_59CharPtrIO9readCharsERPKcPci|Imf_2_5::CharPtrIO::readChars
+_ZN7Imf_2_59CharPtrIO10writeCharsERPcPKci|Imf_2_5::CharPtrIO::writeChars
 _ZNKSt24chi_squared_distribution3maxEv|std::chi_squared_distribution::max
 _ZNKSt24chi_squared_distribution3minEv|std::chi_squared_distribution::min
 _ZNKSt24chi_squared_distribution1nEv|std::chi_squared_distribution::n

@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2951'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2941'>/* On write emphasise speed over compression; the resultant PNG file will be
+    * larger but will be produced significantly faster, particular for large
+    * images.  Do not use this option for images which will be distributed, only
+    * used it when producing intermediate files that will be read back in
+    * repeatedly.  For a typical 24-bit image the option will double the read
+    * speed at the cost of increasing the image size by 25%, however for many
+    * more compressible images the PNG file can be 10 times larger with only a
+    * slight speed gain.
+    */</doc>

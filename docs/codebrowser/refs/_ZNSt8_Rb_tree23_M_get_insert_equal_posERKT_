@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/stl_tree.h' l='832' type='pair&lt;std::_Rb_tree::_Base_ptr, std::_Rb_tree::_Base_ptr&gt; std::_Rb_tree::_M_get_insert_equal_pos(const std::_Rb_tree::key_type &amp; __k)'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1478' u='c' c='_ZNSt8_Rb_tree22_M_reinsert_node_equalEOSt12_Node_handleIT_T0_N9__gnu_cxx14__alloc_traitsIT3_NS5_10value_typeEE6rebindISt13_Rb_tree_nodeIS2_EE5otherEE'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1589' u='c' c='_ZNSt8_Rb_tree14_M_merge_equalERSt8_Rb_treeIT_T0_T1_TL0__T3_E'/>
+<def f='include/c++/11/bits/stl_tree.h' l='2087' ll='2106' type='pair&lt;typename _Rb_tree&lt;_Key, _Val, _KeyOfValue, _Compare, _Alloc&gt;::_Base_ptr, typename _Rb_tree&lt;_Key, _Val, _KeyOfValue, _Compare, _Alloc&gt;::_Base_ptr&gt; std::_Rb_tree::_M_get_insert_equal_pos(const std::_Rb_tree::key_type &amp; __k)'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2151' u='c' c='_ZNSt8_Rb_tree15_M_insert_equalEOTL0__'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2262' u='c' c='_ZNSt8_Rb_tree28_M_get_insert_hint_equal_posESt23_Rb_tree_const_iteratorIT0_ERKT_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2278' u='c' c='_ZNSt8_Rb_tree28_M_get_insert_hint_equal_posESt23_Rb_tree_const_iteratorIT0_ERKT_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2414' u='c' c='_ZNSt8_Rb_tree16_M_emplace_equalEDpOTL0__'/>

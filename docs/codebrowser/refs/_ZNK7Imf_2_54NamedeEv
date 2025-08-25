@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='82' ll='83' type='const char * Imf_2_5::Name::operator*() const'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='136' u='c' c='_ZN7Imf_2_5eqERKNS_4NameES2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='136' u='c' c='_ZN7Imf_2_5eqERKNS_4NameES2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='150' u='c' c='_ZN7Imf_2_5ltERKNS_4NameES2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='150' u='c' c='_ZN7Imf_2_5ltERKNS_4NameES2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='624' u='c' c='_ZNK7Imf_2_56Header8Iterator4nameEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='676' u='c' c='_ZNK7Imf_2_56Header13ConstIterator4nameEv'/>

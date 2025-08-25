@@ -20,6 +20,7 @@ _ZNK7tString7AsInt64Ei|tString::AsInt64
 _ZNK7tString6AsUIntEi|tString::AsUInt
 _ZNK7tString8AsUInt32Ei|tString::AsUInt32
 _ZNK7tString8AsUInt64Ei|tString::AsUInt64
+_ZN9Imath_2_54Math4asinET_|Imath_2_5::Math::asin
 _ZNSt5deque6assignEmRKT_|std::deque::assign
 _ZNSt10filesystem7__cxx1115directory_entry6assignERKNS0_4pathE|std::filesystem::directory_entry::assign
 _ZNSt10filesystem7__cxx114path6assignERKT_|std::filesystem::path::assign

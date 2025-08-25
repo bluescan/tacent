@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='90' type='Iex_2_5::BaseExc &amp; Iex_2_5::BaseExc::assign(std::stringstream &amp; s)'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='86'>//--------------------------------------------------
+    // Convenient methods to change the exception&apos;s text
+    //--------------------------------------------------</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='90'>// assign (s.str())</doc>

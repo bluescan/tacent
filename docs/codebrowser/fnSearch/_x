@@ -1,0 +1,4 @@
+_ZN8tinyxml212XMLAttributeD1Ev|tinyxml2::XMLAttribute::~XMLAttribute
+_ZN8tinyxml210XMLPrinterD1Ev|tinyxml2::XMLPrinter::~XMLPrinter
+_ZN8tinyxml27XMLTextD1Ev|tinyxml2::XMLText::~XMLText
+_ZN8tinyxml210XMLVisitorD1Ev|tinyxml2::XMLVisitor::~XMLVisitor

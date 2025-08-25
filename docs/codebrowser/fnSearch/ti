@@ -218,6 +218,8 @@ _ZN6tImage9tImageDDS3SetEP9tColour4biib|tImage::tImageDDS::Set
 _ZN6tImage9tImageDDS18StealCubemapLayersEP5tListINS_6tLayerEEj|tImage::tImageDDS::StealCubemapLayers
 _ZN6tImage9tImageDDS11StealLayersER5tListINS_6tLayerEE|tImage::tImageDDS::StealLayers
 _ZN6tImage9tImageDDSC1Ev|tImage::tImageDDS::tImageDDS
+_ZN7Imf_2_515TileDescriptionC1EjjNS_9LevelModeENS_17LevelRoundingModeE|Imf_2_5::TileDescription::TileDescription
+_ZNK7Imf_2_515TileDescriptioneqERKS0_|Imf_2_5::TileDescription::operator==
 _ZN6tImage9tImageEXR8GetFrameEb|tImage::tImageEXR::GetFrame
 _ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE|tImage::tImageEXR::Load
 _ZN6tImage9tImageEXR3SetER5tListINS_6tFrameEEb|tImage::tImageEXR::Set

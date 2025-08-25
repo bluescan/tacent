@@ -1,0 +1,13 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='167' type='void Imf_2_5::Array2D::resizeErase(long sizeX, long sizeY)'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='261' ll='270' type='void Imf_2_5::Array2D::resizeErase(long sizeX, long sizeY)'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='155'>//------------------------------------------------------
+    // Resize and clear the array (the contents of the array
+    // are not preserved across the resize operation).
+    //
+    // resizeEraseUnsafe() is more memory efficient than
+    // resizeErase() because it deletes the old memory block
+    // before allocating a new one, but if allocating the
+    // new block throws an exception, resizeEraseUnsafe()
+    // leaves the array in an unusable state.
+    //
+    //------------------------------------------------------</doc>

@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1851' type='tinyxml2::XMLText * tinyxml2::XMLDocument::NewText(const char * text)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1846'>/**
+    	Create a new Text associated with
+    	this Document. The memory for the Text
+    	is managed by the Document.
+    */</doc>

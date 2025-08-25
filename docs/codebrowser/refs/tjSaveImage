@@ -1,0 +1,33 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1628' type='int tjSaveImage(const char * filename, unsigned char * buffer, int width, int pitch, int height, int pixelFormat, int flags)'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1596'>/**
+ * Save an uncompressed image from memory to disk.
+ *
+ * @param filename name of a file to which to save the uncompressed image.
+ * The image will be stored in Windows BMP or PBMPLUS (PPM/PGM) format,
+ * depending on the file extension.
+ *
+ * @param buffer pointer to an image buffer containing RGB, grayscale, or
+ * CMYK pixels to be saved
+ *
+ * @param width width (in pixels) of the uncompressed image
+ *
+ * @param pitch bytes per line in the image buffer.  Setting this parameter to
+ * 0 is the equivalent of setting it to
+ * &lt;tt&gt;width * #tjPixelSize[pixelFormat]&lt;/tt&gt;.
+ *
+ * @param height height (in pixels) of the uncompressed image
+ *
+ * @param pixelFormat pixel format of the image buffer (see @ref TJPF
+ * &quot;Pixel formats&quot;.)  If this parameter is set to @ref TJPF_GRAY, then the
+ * image will be stored in PGM or 8-bit (indexed color) BMP format.  Otherwise,
+ * the image will be stored in PPM or 24-bit BMP format.  If this parameter
+ * is set to @ref TJPF_CMYK, then the CMYK pixels will be converted to RGB
+ * using a quick &amp; dirty algorithm that is suitable only for testing (proper
+ * conversion between CMYK and other formats requires a color management
+ * system.)
+ *
+ * @param flags the bitwise OR of one or more of the @ref TJFLAG_BOTTOMUP
+ * &quot;flags&quot;.
+ *
+ * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr2().)
+ */</doc>

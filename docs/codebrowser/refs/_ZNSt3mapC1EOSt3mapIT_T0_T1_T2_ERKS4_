@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_map.h' l='244' ll='247' type='void std::map::map&lt;_Key, _Tp, _Compare, _Alloc&gt;(map&lt;_Key, _Tp, _Compare, _Alloc&gt; &amp;&amp; __m, const std::map::allocator_type &amp; __a)'/>
+<doc f='include/c++/11/bits/stl_map.h' l='243'>/// Allocator-extended move constructor.</doc>

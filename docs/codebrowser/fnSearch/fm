@@ -2,3 +2,4 @@ _ZSt3fmafff|std::fma
 _ZSt4fmaxff|std::fmax
 _ZSt4fminff|std::fmin
 _ZSt4fmodff|std::fmod
+_ZN9Imath_2_54Math4fmodET_S1_|Imath_2_5::Math::fmod

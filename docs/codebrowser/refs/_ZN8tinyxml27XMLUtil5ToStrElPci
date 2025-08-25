@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='625' type='static void tinyxml2::XMLUtil::ToStr(int64_t v, char * buffer, int bufferSize)'/>

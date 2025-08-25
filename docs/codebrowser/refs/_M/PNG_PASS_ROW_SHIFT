@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2455'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2451'>/* Two macros to help evaluate the number of rows or columns in each
+ * pass.  This is expressed as a shift - effectively log2 of the number or
+ * rows or columns in each 8x8 tile of the original image.
+ */</doc>

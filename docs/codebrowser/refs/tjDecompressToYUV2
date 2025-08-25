@@ -1,0 +1,47 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1268' type='int tjDecompressToYUV2(tjhandle handle, const unsigned char * jpegBuf, unsigned long jpegSize, unsigned char * dstBuf, int width, int pad, int height, int flags)'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1222'>/**
+ * Decompress a JPEG image to a YUV planar image.  This function performs JPEG
+ * decompression but leaves out the color conversion step, so a planar YUV
+ * image is generated instead of an RGB image.
+ *
+ * @param handle a handle to a TurboJPEG decompressor or transformer instance
+ *
+ * @param jpegBuf pointer to a buffer containing the JPEG image to decompress
+ *
+ * @param jpegSize size of the JPEG image (in bytes)
+ *
+ * @param dstBuf pointer to an image buffer that will receive the YUV image.
+ * Use #tjBufSizeYUV2() to determine the appropriate size for this buffer based
+ * on the image width, height, padding, and level of subsampling.  The Y,
+ * U (Cb), and V (Cr) image planes will be stored sequentially in the buffer
+ * (refer to @ref YUVnotes &quot;YUV Image Format Notes&quot;.)
+ *
+ * @param width desired width (in pixels) of the YUV image.  If this is
+ * different than the width of the JPEG image being decompressed, then
+ * TurboJPEG will use scaling in the JPEG decompressor to generate the largest
+ * possible image that will fit within the desired width.  If &lt;tt&gt;width&lt;/tt&gt; is
+ * set to 0, then only the height will be considered when determining the
+ * scaled image size.  If the scaled width is not an even multiple of the MCU
+ * block width (see #tjMCUWidth), then an intermediate buffer copy will be
+ * performed within TurboJPEG.
+ *
+ * @param pad the width of each line in each plane of the YUV image will be
+ * padded to the nearest multiple of this number of bytes (must be a power of
+ * 2.)  To generate images suitable for X Video, &lt;tt&gt;pad&lt;/tt&gt; should be set to
+ * 4.
+ *
+ * @param height desired height (in pixels) of the YUV image.  If this is
+ * different than the height of the JPEG image being decompressed, then
+ * TurboJPEG will use scaling in the JPEG decompressor to generate the largest
+ * possible image that will fit within the desired height.  If &lt;tt&gt;height&lt;/tt&gt;
+ * is set to 0, then only the width will be considered when determining the
+ * scaled image size.  If the scaled height is not an even multiple of the MCU
+ * block height (see #tjMCUHeight), then an intermediate buffer copy will be
+ * performed within TurboJPEG.
+ *
+ * @param flags the bitwise OR of one or more of the @ref TJFLAG_ACCURATEDCT
+ * &quot;flags&quot;
+ *
+ * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr2()
+ * and #tjGetErrorCode().)
+ */</doc>

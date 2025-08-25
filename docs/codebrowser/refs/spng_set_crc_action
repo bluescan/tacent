@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='460' type='int spng_set_crc_action(spng_ctx * ctx, int critical, int ancillary)'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='231' u='c' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>

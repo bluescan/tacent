@@ -1,0 +1,3 @@
+<dec f='Modules/Input/Inc/Input/tContGamepad.h' l='97' type='void tInput::tContGamepad::ClearDefinition()'/>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='61' u='c' c='_ZN6tInput12tContGamepad11StopPollingEv'/>
+<def f='Modules/Input/Src/tContGamepad.cpp' l='196' ll='199' type='void tInput::tContGamepad::ClearDefinition()'/>

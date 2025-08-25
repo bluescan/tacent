@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='1025' ll='1028' type='decltype(pair&lt;std::multimap::iterator, std::multimap::iterator&gt;(this-&gt;_M_t._M_equal_range_tr(__x))) std::multimap::equal_range(const _Kt &amp; __x)'/>

@@ -1,0 +1,24 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1308' type='const char * tinyxml2::XMLElement::Attribute(const char * name, const char * value = 0) const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1285'>/** Given an attribute name, Attribute() returns the value
+    	for the attribute of that name, or null if none
+    	exists. For example:
+
+    	@verbatim
+    	const char* value = ele-&gt;Attribute( &quot;foo&quot; );
+    	@endverbatim
+
+    	The &apos;value&apos; parameter is normally null. However, if specified,
+    	the attribute will only be returned if the &apos;name&apos; and &apos;value&apos;
+    	match. This allow you to write code:
+
+    	@verbatim
+    	if ( ele-&gt;Attribute( &quot;foo&quot;, &quot;bar&quot; ) ) callFooIsBar();
+    	@endverbatim
+
+    	rather than:
+    	@verbatim
+    	if ( ele-&gt;Attribute( &quot;foo&quot; ) ) {
+    		if ( strcmp( ele-&gt;Attribute( &quot;foo&quot; ), &quot;bar&quot; ) == 0 ) callFooIsBar();
+    	}
+    	@endverbatim
+    */</doc>

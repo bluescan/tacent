@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='798' type='const tinyxml2::XMLElement * tinyxml2::XMLNode::LastChildElement(const char * name = 0) const'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='801' u='c' c='_ZN8tinyxml27XMLNode16LastChildElementEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2158' u='c' c='_ZNK8tinyxml214XMLConstHandle16LastChildElementEPKc'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='795'>/** Get the last child element or optionally the last child
+        element with the specified name.
+    */</doc>

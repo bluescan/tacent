@@ -1,0 +1,22 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='3108'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='3086'>/* Write the image to the given memory buffer.  The function both writes the
+    * whole PNG data stream to *memory and updates *memory_bytes with the count
+    * of bytes written.
+    *
+    * &apos;memory&apos; may be NULL.  In this case *memory_bytes is not read however on
+    * success the number of bytes which would have been written will still be
+    * stored in *memory_bytes.  On failure *memory_bytes will contain 0.
+    *
+    * If &apos;memory&apos; is not NULL it must point to memory[*memory_bytes] of
+    * writeable memory.
+    *
+    * If the function returns success memory[*memory_bytes] (if &apos;memory&apos; is not
+    * NULL) contains the written PNG data.  *memory_bytes will always be less
+    * than or equal to the original value.
+    *
+    * If the function returns false and *memory_bytes was not changed an error
+    * occurred during write.  If *memory_bytes was changed, or is not 0 if
+    * &apos;memory&apos; was NULL, the write would have succeeded but for the memory
+    * buffer being too small.  *memory_bytes contains the required number of
+    * bytes and will be bigger that the original value.
+    */</doc>

@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='183' type='void Imf_2_5::OStream::write(const char * c, int n)'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='236' u='c' c='_ZN7Imf_2_58StreamIO10writeCharsERNS_7OStreamEPKci'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='175'>//----------------------------------------------------------
+    // Write to the stream:
+    //
+    // write(c,n) takes n bytes from array c, and stores them
+    // in the stream.  If an I/O error occurs, write(c,n) throws
+    // an exception.
+    //----------------------------------------------------------</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='183'>/*n*/</doc>

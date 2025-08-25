@@ -167,6 +167,14 @@
 <fun r='_ZNSt13basic_ostream5tellpEv'/>
 <fun r='_ZNSt13basic_ostream5seekpENT0_8pos_typeE'/>
 <fun r='_ZNSt13basic_ostream5seekpENT0_8off_typeESt12_Ios_Seekdir'/>
+<use f='include/c++/11/istream' l='892'/>
+<use f='include/c++/11/istream' l='906'/>
+<ovr f='include/c++/11/bits/istream.tcc' l='1097' c='std::basic_iostream'/>
+<ovr f='include/c++/11/bits/istream.tcc' l='1119' c='std::basic_iostream'/>
+<use f='include/c++/11/sstream' l='758'/>
+<use f='include/c++/11/sstream' l='774'/>
+<ovr f='include/c++/11/bits/sstream.tcc' l='293' c='std::basic_ostringstream'/>
+<ovr f='include/c++/11/bits/sstream.tcc' l='299' c='std::basic_ostringstream'/>
 <use f='include/c++/11/bits/random.h' l='390' c='_ZStlsRSt13basic_ostreamITL0_3_TL0_4_ERKSt26linear_congruential_engineITL0__XTL0_0_EXTL0_1_EXTL0_2_EE'/>
 <use f='include/c++/11/bits/random.h' l='391' c='_ZStlsRSt13basic_ostreamITL0_3_TL0_4_ERKSt26linear_congruential_engineITL0__XTL0_0_EXTL0_1_EXTL0_2_EE'/>
 <use f='include/c++/11/bits/random.h' l='612' c='_ZStlsRSt13basic_ostreamITL0_13_TL0_14_ERKSt23mersenne_twister_engineITL0__XTL0_0_EXTL0_1_EXTL0_2_EXTL0_3_EXTL0_4_EXTL0_5_EXTL0_6_EXTL0_7_EXTL0_8_EXTL12126796'/>
@@ -297,18 +305,10 @@
 <use f='include/c++/11/bits/stream_iterator.h' l='187'/>
 <use f='include/c++/11/bits/shared_ptr.h' l='69' c='_ZStlsRSt13basic_ostreamIT_T0_ERKSt12__shared_ptrIT1_XT2_EE'/>
 <use f='include/c++/11/bits/shared_ptr.h' l='70' c='_ZStlsRSt13basic_ostreamIT_T0_ERKSt12__shared_ptrIT1_XT2_EE'/>
-<use f='include/c++/11/istream' l='892'/>
-<use f='include/c++/11/istream' l='906'/>
-<ovr f='include/c++/11/bits/istream.tcc' l='1097' c='std::basic_iostream'/>
-<ovr f='include/c++/11/bits/istream.tcc' l='1119' c='std::basic_iostream'/>
 <use f='include/c++/11/fstream' l='758'/>
 <use f='include/c++/11/fstream' l='770'/>
 <ovr f='include/c++/11/bits/fstream.tcc' l='1088' c='std::basic_ofstream'/>
 <ovr f='include/c++/11/bits/fstream.tcc' l='1094' c='std::basic_ofstream'/>
-<use f='include/c++/11/sstream' l='758'/>
-<use f='include/c++/11/sstream' l='774'/>
-<ovr f='include/c++/11/bits/sstream.tcc' l='293' c='std::basic_ostringstream'/>
-<ovr f='include/c++/11/bits/sstream.tcc' l='299' c='std::basic_ostringstream'/>
 <use f='include/c++/11/bits/quoted_string.h' l='92' c='_ZNSt8__detaillsERSt13basic_ostreamIT_T0_ERKNS_14_Quoted_stringIPKS1_S1_EE'/>
 <use f='include/c++/11/bits/quoted_string.h' l='93' c='_ZNSt8__detaillsERSt13basic_ostreamIT_T0_ERKNS_14_Quoted_stringIPKS1_S1_EE'/>
 <use f='include/c++/11/bits/quoted_string.h' l='116' c='_ZNSt8__detaillsERSt13basic_ostreamIT_T0_ERKNS_14_Quoted_stringIT1_S1_EE'/>

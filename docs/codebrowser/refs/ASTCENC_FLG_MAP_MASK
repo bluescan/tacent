@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='315' type='const unsigned int'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='379' u='r'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='309'>/**
+ * @brief Enable mask map compression.
+ *
+ * Input data will be treated a multi-layer mask map, where is is desirable for the color components
+ * to be treated independently for the purposes of error analysis.
+ */</doc>

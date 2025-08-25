@@ -1,0 +1,14 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='510'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='378' u='c'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='498'>/**
+ * This option will cause #tjTransform() to return an error if the transform is
+ * not perfect.  Lossless transforms operate on MCU blocks, whose size depends
+ * on the level of chrominance subsampling used (see #tjMCUWidth
+ * and #tjMCUHeight.)  If the image&apos;s width or height is not evenly divisible
+ * by the MCU block size, then there will be partial MCU blocks on the right
+ * and/or bottom edges.  It is not possible to move these partial MCU blocks to
+ * the top or left of the image, so any transform that would require that is
+ * &quot;imperfect.&quot;  If this option is not specified, then any partial MCU blocks
+ * that cannot be transformed will be left in place, which will create
+ * odd-looking strips on the right or bottom edge of the image.
+ */</doc>

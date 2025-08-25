@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='317' ll='318' type='multimap&lt;_Key, _Tp, _Compare, _Alloc&gt; &amp; std::multimap::operator=(multimap&lt;_Key, _Tp, _Compare, _Alloc&gt; &amp;&amp; )'/>
+<doc f='include/c++/11/bits/stl_multimap.h' l='316'>/// Move assignment operator.</doc>

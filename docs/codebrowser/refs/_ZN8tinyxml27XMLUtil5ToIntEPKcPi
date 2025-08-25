@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='629' type='static bool tinyxml2::XMLUtil::ToInt(const char * str, int * value)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='628'>// converts strings to primitive types</doc>

@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='303'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='299'>// HALF_RADIX raised to the power of
+					// one less than that integer is a
+					// normalized half</doc>

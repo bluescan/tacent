@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='528' type='int spng_set_offs(spng_ctx * ctx, struct spng_offs * offs)'/>
+<doc f='Modules/Image/Contrib/LibSPNG/spng.h' l='527'>/* Official extensions */</doc>

@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfThreading.h' l='90' type='void Imf_2_5::setGlobalThreadCount(int count)'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='168' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfThreading.h' l='86'>//-----------------------------------------------------------------------------
+// Change the number of Imf-global worker threads
+//-----------------------------------------------------------------------------</doc>

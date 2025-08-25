@@ -1,0 +1,44 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1591' type='unsigned char * tjLoadImage(const char * filename, int * width, int align, int * height, int * pixelFormat, int flags)'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1548'>/**
+ * Load an uncompressed image from disk into memory.
+ *
+ * @param filename name of a file containing an uncompressed image in Windows
+ * BMP or PBMPLUS (PPM/PGM) format
+ *
+ * @param width pointer to an integer variable that will receive the width (in
+ * pixels) of the uncompressed image
+ *
+ * @param align row alignment of the image buffer to be returned (must be a
+ * power of 2.)  For instance, setting this parameter to 4 will cause all rows
+ * in the image buffer to be padded to the nearest 32-bit boundary, and setting
+ * this parameter to 1 will cause all rows in the image buffer to be unpadded.
+ *
+ * @param height pointer to an integer variable that will receive the height
+ * (in pixels) of the uncompressed image
+ *
+ * @param pixelFormat pointer to an integer variable that specifies or will
+ * receive the pixel format of the uncompressed image buffer.  The behavior of
+ * #tjLoadImage() will vary depending on the value of &lt;tt&gt;*pixelFormat&lt;/tt&gt;
+ * passed to the function:
+ * - @ref TJPF_UNKNOWN : The uncompressed image buffer returned by the function
+ * will use the most optimal pixel format for the file type, and
+ * &lt;tt&gt;*pixelFormat&lt;/tt&gt; will contain the ID of this pixel format upon
+ * successful return from the function.
+ * - @ref TJPF_GRAY : Only PGM files and 8-bit BMP files with a grayscale
+ * colormap can be loaded.
+ * - @ref TJPF_CMYK : The RGB or grayscale pixels stored in the file will be
+ * converted using a quick &amp; dirty algorithm that is suitable only for testing
+ * purposes (proper conversion between CMYK and other formats requires a color
+ * management system.)
+ * - Other @ref TJPF &quot;pixel formats&quot; : The uncompressed image buffer will use
+ * the specified pixel format, and pixel format conversion will be performed if
+ * necessary.
+ *
+ * @param flags the bitwise OR of one or more of the @ref TJFLAG_BOTTOMUP
+ * &quot;flags&quot;.
+ *
+ * @return a pointer to a newly-allocated buffer containing the uncompressed
+ * image, converted to the chosen pixel format and with the chosen row
+ * alignment, or NULL if an error occurred (see #tjGetErrorStr2().)  This
+ * buffer should be freed using #tjFree().
+ */</doc>

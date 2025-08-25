@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='479' type='unsigned int'/>
+<offset>512</offset>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='473'>/**
+	 * @brief The maximum iterative refinements applied (-refinementlimit).
+	 *
+	 * Valid values are between 1 and N; there is no technical upper limit
+	 * but little benefit is expected after N=4.
+	 */</doc>

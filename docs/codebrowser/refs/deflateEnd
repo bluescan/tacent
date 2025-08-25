@@ -1,1 +1,1 @@
-<dec f='include/zlib.h' l='363' type='int deflateEnd(z_streamp strm)'/>
+<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='363' type='int deflateEnd(z_streamp strm)'/>

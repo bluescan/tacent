@@ -1,0 +1,24 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1698' type='unsigned long TJBUFSIZE(int width, int height)'/>
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='913' type='unsigned long tjBufSize(int width, int height, int jpegSubsamp)'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='891'>/**
+ * The maximum size of the buffer (in bytes) required to hold a JPEG image with
+ * the given parameters.  The number of bytes returned by this function is
+ * larger than the size of the uncompressed source image.  The reason for this
+ * is that the JPEG format uses 16-bit coefficients, and it is thus possible
+ * for a very high-quality JPEG image with very high-frequency content to
+ * expand rather than compress when converted to the JPEG format.  Such images
+ * represent a very rare corner case, but since there is no way to predict the
+ * size of a JPEG image prior to compression, the corner case has to be
+ * handled.
+ *
+ * @param width width (in pixels) of the image
+ *
+ * @param height height (in pixels) of the image
+ *
+ * @param jpegSubsamp the level of chrominance subsampling to be used when
+ * generating the JPEG image (see @ref TJSAMP
+ * &quot;Chrominance subsampling options&quot;.)
+ *
+ * @return the maximum size of the buffer (in bytes) required to hold the
+ * image, or -1 if the arguments are out of bounds.
+ */</doc>

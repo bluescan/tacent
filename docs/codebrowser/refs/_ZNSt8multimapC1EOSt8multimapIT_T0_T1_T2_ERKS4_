@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='241' ll='244' type='void std::multimap::multimap&lt;_Key, _Tp, _Compare, _Alloc&gt;(multimap&lt;_Key, _Tp, _Compare, _Alloc&gt; &amp;&amp; __m, const std::multimap::allocator_type &amp; __a)'/>
+<doc f='include/c++/11/bits/stl_multimap.h' l='240'>/// Allocator-extended move constructor.</doc>

@@ -1,4 +1,4 @@
 <dec f='include/string.h' l='141' type='char * strcpy(char *__restrict __dest, const char *__restrict __src)'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='97' u='c' c='_ZN4tStd7tStrcpyEPcPKc'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='108' u='c' c='_ZN4tStd7tStrcpyEPDuPKDu'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='103' u='c' c='_ZN4tStd7tStrcpyEPcPKc'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='114' u='c' c='_ZN4tStd7tStrcpyEPDuPKDu'/>
 <doc f='include/string.h' l='140'>/* Copy SRC to DEST.  */</doc>

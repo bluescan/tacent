@@ -1,0 +1,2 @@
+<def f='include/c++/11/cstddef' l='136' ll='138' type='std::byte std::operator|(std::byte __l, std::byte __r)'/>
+<use f='include/c++/11/cstddef' l='170' u='c' c='_ZStoRRSt4byteS_'/>

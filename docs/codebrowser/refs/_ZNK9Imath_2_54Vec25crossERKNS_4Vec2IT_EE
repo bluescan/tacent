@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='172' type='T Imath_2_5::Vec2::cross(const Vec2&lt;T&gt; &amp; v) const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1031' ll='1037' type='T Imath_2_5::Vec2::cross(const Vec2&lt;T&gt; &amp; v) const'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='167'>//------------------------------------------------
+    // Right-handed cross product, i.e. z component of
+    // Vec3 (this-&gt;x, this-&gt;y, 0) % Vec3 (v.x, v.y, 0)
+    //------------------------------------------------</doc>

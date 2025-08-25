@@ -1,5 +1,5 @@
 <use f='Modules/Input/Inc/Input/tContGamepad.h' l='44' u='w' c='_ZN6tInput12tContGamepadC1EOS0_'/>
 <use f='Modules/Input/Inc/Input/tContGamepad.h' l='63' u='w' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
 <dec f='Modules/Input/Inc/Input/tContGamepad.h' l='79' type='tInput::tCompTrigger'/>
-<offset>6464</offset>
-<use f='Modules/Input/Src/tContGamepad.cpp' l='146' u='m' c='_ZN6tInput12tContGamepad6UpdateEv'/>
+<offset>6912</offset>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='149' u='m' c='_ZN6tInput12tContGamepad6UpdateEv'/>

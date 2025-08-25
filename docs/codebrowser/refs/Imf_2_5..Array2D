@@ -1,0 +1,31 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='134' ll='189'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='221' c='_ZN7Imf_2_57Array2DC1Ev'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='230' c='_ZN7Imf_2_57Array2DC1Ell'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='239' c='_ZN7Imf_2_57Array2DD1Ev'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='247' c='_ZN7Imf_2_57Array2DixEl'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='255' c='_ZNK7Imf_2_57Array2DixEl'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='263' c='_ZN7Imf_2_57Array2D11resizeEraseEll'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='275' c='_ZN7Imf_2_57Array2D17resizeEraseUnsafeEll'/>
+<fun r='_ZN7Imf_2_57Array2DC1Ev'/>
+<fun r='_ZN7Imf_2_57Array2DC1Ell'/>
+<fun r='_ZN7Imf_2_57Array2DD1Ev'/>
+<fun r='_ZN7Imf_2_57Array2DixEl'/>
+<fun r='_ZNK7Imf_2_57Array2DixEl'/>
+<fun r='_ZN7Imf_2_57Array2D11resizeEraseEll'/>
+<fun r='_ZN7Imf_2_57Array2D17resizeEraseUnsafeEll'/>
+<fun r='_ZNK7Imf_2_57Array2D6heightEv'/>
+<fun r='_ZNK7Imf_2_57Array2D5widthEv'/>
+<fun r='_ZN7Imf_2_57Array2DC1ERKNS_7Array2DIT_EE'/>
+<fun r='_ZN7Imf_2_57Array2DaSERKNS_7Array2DIT_EE'/>
+<fun r='_ZN7Imf_2_57Array2DC1EONS_7Array2DIT_EE'/>
+<fun r='_ZN7Imf_2_57Array2DaSEONS_7Array2DIT_EE'/>
+<mbr r='Imf_2_5::Array2D::_sizeX' t='long'/>
+<mbr r='Imf_2_5::Array2D::_sizeY' t='long'/>
+<mbr r='Imf_2_5::Array2D::_data' t='T *'/>
+<fun r='_ZN7Imf_2_57Array2DC1Ev'/>
+<fun r='_ZN7Imf_2_57Array2DC1Ell'/>
+<fun r='_ZN7Imf_2_57Array2DD1Ev'/>
+<fun r='_ZN7Imf_2_57Array2DixEl'/>
+<fun r='_ZNK7Imf_2_57Array2DixEl'/>
+<fun r='_ZN7Imf_2_57Array2D11resizeEraseEll'/>
+<fun r='_ZN7Imf_2_57Array2D17resizeEraseUnsafeEll'/>

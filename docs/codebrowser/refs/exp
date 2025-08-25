@@ -1,5 +1,6 @@
 <dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='95' type='double exp(double __x)'/>
 <use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='191' u='c' c='_ZN5tMath4tExpEd'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathMath.h' l='104' u='c' c='_ZN9Imath_2_54Math3expET_'/>
 <use f='include/c++/11/bits/random.tcc' l='1280' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>
 <use f='include/c++/11/bits/random.tcc' l='1281' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>
 <use f='include/c++/11/bits/random.tcc' l='1286' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>

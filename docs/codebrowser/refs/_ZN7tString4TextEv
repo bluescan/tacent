@@ -2,8 +2,6 @@
 <doc f='Modules/Foundation/Inc/Foundation/tString.h' l='236'>// Accesses the raw UTF-8 codeunits represented by the &apos;official&apos; unsigned UTF-8 character datatype char8_t.
 	// Except for Charz nullptr is not returned although they may return a pointer to an empty string.</doc>
 <use f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='514' u='c' c='_ZNK8tFixIntU11GetAsStringEi'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='38' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='83' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
 <use f='Modules/System/Inc/System/tRegex.h' l='113' u='c' c='_ZNK7tSystem6tRegex5Match9GetStringERK7tString'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='295' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='369' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>

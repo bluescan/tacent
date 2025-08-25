@@ -1,0 +1,641 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>pngconf.h source code [Modules/Image/Contrib/LibPNG/include/pngconf.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Image/Contrib/LibPNG/include/pngconf.h'; var root_path = '../../../../..'; var data_path = '../../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../../..'>Modules</a>/<a href='../../..'>Image</a>/<a href='../..'>Contrib</a>/<a href='..'>LibPNG</a>/<a href='./'>include</a>/<a href='pngconf.h.html'>pngconf.h</a><br><a href='/tacent/index.html'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/tacent/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>/* pngconf.h - machine-configurable file for libpng</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i> * libpng version 1.6.42</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i> * Copyright (c) 2018-2024 Cosmin Truta</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i> * Copyright (c) 1998-2002,2004,2006-2016,2018 Glenn Randers-Pehrson</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i> * Copyright (c) 1996-1997 Andreas Dilger</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i> * Copyright (c) 1995-1996 Guy Eric Schalnat, Group 42, Inc.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i> * This code is released under the libpng license.</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i> * For conditions of distribution and use, see the disclaimer</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i> * and license in png.h</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i> * Any machine specific code is near the front of this file, so if you</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i> * are configuring libpng for a machine, you may want to read the section</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i> * starting here down to where it starts to typedef png_color, png_text,</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i> * and png_info.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td>&nbsp</td></tr>
+<tr><th id="21">21</th><td><u>#<span data-ppcond="21">ifndef</span> <span class="macro" data-ref="_M/PNGCONF_H">PNGCONF_H</span></u>&nbsp</td></tr>
+<tr><th id="22">22</th><td><u>#define <dfn class="macro" id="_M/PNGCONF_H" data-ref="_M/PNGCONF_H">PNGCONF_H</dfn></u>&nbsp</td></tr>
+<tr><th id="23">23</th><td>&nbsp</td></tr>
+<tr><th id="24">24</th><td><u>#<span data-ppcond="24">ifndef</span> <span class="macro" data-ref="_M/PNG_BUILDING_SYMBOL_TABLE">PNG_BUILDING_SYMBOL_TABLE</span> /* else includes may cause problems */</u>&nbsp</td></tr>
+<tr><th id="25">25</th><td>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i>/* From libpng 1.6.0 libpng requires an ANSI X3.159-1989 ("ISOC90") compliant C</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i> * compiler for correct compilation.  The following header files are required by</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i> * the standard.  If your compiler doesn't provide these header files, or they</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i> * do not match the standard, you will need to provide/improve them.</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#include &lt;limits.h&gt;</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td><u>#include &lt;stddef.h&gt;</u>&nbsp</td></tr>
+<tr><th id="33">33</th><td>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i>/* Library header files.  These header files are all defined by ISOC90; libpng</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i> * expects conformant implementations, however, an ISOC90 conformant system need</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i> * not provide these header files if the functionality cannot be implemented.</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i> * In this case it will be necessary to disable the relevant parts of libpng in</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i> * the build of pnglibconf.h.</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i> * Prior to 1.6.0 string.h was included here; the API changes in 1.6.0 to not</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i> * include this unnecessary header file.</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>#<span data-ppcond="44">ifdef</span> <a class="macro" href="pnglibconf.h.html#121" data-ref="_M/PNG_STDIO_SUPPORTED">PNG_STDIO_SUPPORTED</a></u>&nbsp</td></tr>
+<tr><th id="45">45</th><td>   <i>/* Required for the definition of FILE: */</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u>#  include &lt;stdio.h&gt;</u>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u>#<span data-ppcond="44">endif</span></u>&nbsp</td></tr>
+<tr><th id="48">48</th><td>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#<span data-ppcond="49">ifdef</span> <a class="macro" href="pnglibconf.h.html#110" data-ref="_M/PNG_SETJMP_SUPPORTED">PNG_SETJMP_SUPPORTED</a></u>&nbsp</td></tr>
+<tr><th id="50">50</th><td>   <i>/* Required for the definition of jmp_buf and the declaration of longjmp: */</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td><u>#  include &lt;setjmp.h&gt;</u>&nbsp</td></tr>
+<tr><th id="52">52</th><td><u>#<span data-ppcond="49">endif</span></u>&nbsp</td></tr>
+<tr><th id="53">53</th><td>&nbsp</td></tr>
+<tr><th id="54">54</th><td><u>#<span data-ppcond="54">ifdef</span> <a class="macro" href="pnglibconf.h.html#29" data-ref="_M/PNG_CONVERT_tIME_SUPPORTED">PNG_CONVERT_tIME_SUPPORTED</a></u>&nbsp</td></tr>
+<tr><th id="55">55</th><td>   <i>/* Required for struct tm: */</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td><u>#  include &lt;time.h&gt;</u>&nbsp</td></tr>
+<tr><th id="57">57</th><td><u>#<span data-ppcond="54">endif</span></u>&nbsp</td></tr>
+<tr><th id="58">58</th><td>&nbsp</td></tr>
+<tr><th id="59">59</th><td><u>#<span data-ppcond="24">endif</span> /* PNG_BUILDING_SYMBOL_TABLE */</u>&nbsp</td></tr>
+<tr><th id="60">60</th><td>&nbsp</td></tr>
+<tr><th id="61">61</th><td><i>/* Prior to 1.6.0, it was possible to turn off 'const' in declarations,</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i> * using PNG_NO_CONST.  This is no longer supported.</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td><u>#define <dfn class="macro" id="_M/PNG_CONST" data-ref="_M/PNG_CONST">PNG_CONST</dfn> const /* backward compatibility only */</u>&nbsp</td></tr>
+<tr><th id="65">65</th><td>&nbsp</td></tr>
+<tr><th id="66">66</th><td><i>/* This controls optimization of the reading of 16-bit and 32-bit</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td><i> * values from PNG files.  It can be set on a per-app-file basis: it</i>&nbsp</td></tr>
+<tr><th id="68">68</th><td><i> * just changes whether a macro is used when the function is called.</i>&nbsp</td></tr>
+<tr><th id="69">69</th><td><i> * The library builder sets the default; if read functions are not</i>&nbsp</td></tr>
+<tr><th id="70">70</th><td><i> * built into the library the macro implementation is forced on.</i>&nbsp</td></tr>
+<tr><th id="71">71</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="72">72</th><td><u>#<span data-ppcond="72">ifndef</span> <a class="macro" href="pnglibconf.h.html#69" data-ref="_M/PNG_READ_INT_FUNCTIONS_SUPPORTED">PNG_READ_INT_FUNCTIONS_SUPPORTED</a></u>&nbsp</td></tr>
+<tr><th id="73">73</th><td><u>#  define PNG_USE_READ_MACROS</u>&nbsp</td></tr>
+<tr><th id="74">74</th><td><u>#<span data-ppcond="72">endif</span></u>&nbsp</td></tr>
+<tr><th id="75">75</th><td><u>#<span data-ppcond="75">if</span> !defined(<span class="macro" data-ref="_M/PNG_NO_USE_READ_MACROS">PNG_NO_USE_READ_MACROS</span>) &amp;&amp; !defined(<span class="macro" data-ref="_M/PNG_USE_READ_MACROS">PNG_USE_READ_MACROS</span>)</u>&nbsp</td></tr>
+<tr><th id="76">76</th><td><u>#  <span data-ppcond="76">if</span> <a class="macro" href="pnglibconf.h.html#198" title="1" data-ref="_M/PNG_DEFAULT_READ_MACROS">PNG_DEFAULT_READ_MACROS</a></u>&nbsp</td></tr>
+<tr><th id="77">77</th><td><u>#    define <dfn class="macro" id="_M/PNG_USE_READ_MACROS" data-ref="_M/PNG_USE_READ_MACROS">PNG_USE_READ_MACROS</dfn></u>&nbsp</td></tr>
+<tr><th id="78">78</th><td><u>#  <span data-ppcond="76">endif</span></u>&nbsp</td></tr>
+<tr><th id="79">79</th><td><u>#<span data-ppcond="75">endif</span></u>&nbsp</td></tr>
+<tr><th id="80">80</th><td>&nbsp</td></tr>
+<tr><th id="81">81</th><td><i>/* COMPILER SPECIFIC OPTIONS.</i>&nbsp</td></tr>
+<tr><th id="82">82</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="83">83</th><td><i> * These options are provided so that a variety of difficult compilers</i>&nbsp</td></tr>
+<tr><th id="84">84</th><td><i> * can be used.  Some are fixed at build time (e.g. PNG_API_RULE</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td><i> * below) but still have compiler specific implementations, others</i>&nbsp</td></tr>
+<tr><th id="86">86</th><td><i> * may be changed on a per-file basis when compiling against libpng.</i>&nbsp</td></tr>
+<tr><th id="87">87</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td>&nbsp</td></tr>
+<tr><th id="89">89</th><td><i>/* The PNGARG macro was used in versions of libpng prior to 1.6.0 to protect</i>&nbsp</td></tr>
+<tr><th id="90">90</th><td><i> * against legacy (pre ISOC90) compilers that did not understand function</i>&nbsp</td></tr>
+<tr><th id="91">91</th><td><i> * prototypes.  It is not required for modern C compilers.</i>&nbsp</td></tr>
+<tr><th id="92">92</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="93">93</th><td><u>#<span data-ppcond="93">ifndef</span> <span class="macro" data-ref="_M/PNGARG">PNGARG</span></u>&nbsp</td></tr>
+<tr><th id="94">94</th><td><u>#  define <dfn class="macro" id="_M/PNGARG" data-ref="_M/PNGARG">PNGARG</dfn>(arglist) arglist</u>&nbsp</td></tr>
+<tr><th id="95">95</th><td><u>#<span data-ppcond="93">endif</span></u>&nbsp</td></tr>
+<tr><th id="96">96</th><td>&nbsp</td></tr>
+<tr><th id="97">97</th><td><i>/* Function calling conventions.</i>&nbsp</td></tr>
+<tr><th id="98">98</th><td><i> * =============================</i>&nbsp</td></tr>
+<tr><th id="99">99</th><td><i> * Normally it is not necessary to specify to the compiler how to call</i>&nbsp</td></tr>
+<tr><th id="100">100</th><td><i> * a function - it just does it - however on x86 systems derived from</i>&nbsp</td></tr>
+<tr><th id="101">101</th><td><i> * Microsoft and Borland C compilers ('IBM PC', 'DOS', 'Windows' systems</i>&nbsp</td></tr>
+<tr><th id="102">102</th><td><i> * and some others) there are multiple ways to call a function and the</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td><i> * default can be changed on the compiler command line.  For this reason</i>&nbsp</td></tr>
+<tr><th id="104">104</th><td><i> * libpng specifies the calling convention of every exported function and</i>&nbsp</td></tr>
+<tr><th id="105">105</th><td><i> * every function called via a user supplied function pointer.  This is</i>&nbsp</td></tr>
+<tr><th id="106">106</th><td><i> * done in this file by defining the following macros:</i>&nbsp</td></tr>
+<tr><th id="107">107</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="108">108</th><td><i> * PNGAPI    Calling convention for exported functions.</i>&nbsp</td></tr>
+<tr><th id="109">109</th><td><i> * PNGCBAPI  Calling convention for user provided (callback) functions.</i>&nbsp</td></tr>
+<tr><th id="110">110</th><td><i> * PNGCAPI   Calling convention used by the ANSI-C library (required</i>&nbsp</td></tr>
+<tr><th id="111">111</th><td><i> *           for longjmp callbacks and sometimes used internally to</i>&nbsp</td></tr>
+<tr><th id="112">112</th><td><i> *           specify the calling convention for zlib).</i>&nbsp</td></tr>
+<tr><th id="113">113</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="114">114</th><td><i> * These macros should never be overridden.  If it is necessary to</i>&nbsp</td></tr>
+<tr><th id="115">115</th><td><i> * change calling convention in a private build this can be done</i>&nbsp</td></tr>
+<tr><th id="116">116</th><td><i> * by setting PNG_API_RULE (which defaults to 0) to one of the values</i>&nbsp</td></tr>
+<tr><th id="117">117</th><td><i> * below to select the correct 'API' variants.</i>&nbsp</td></tr>
+<tr><th id="118">118</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="119">119</th><td><i> * PNG_API_RULE=0 Use PNGCAPI - the 'C' calling convention - throughout.</i>&nbsp</td></tr>
+<tr><th id="120">120</th><td><i> *                This is correct in every known environment.</i>&nbsp</td></tr>
+<tr><th id="121">121</th><td><i> * PNG_API_RULE=1 Use the operating system convention for PNGAPI and</i>&nbsp</td></tr>
+<tr><th id="122">122</th><td><i> *                the 'C' calling convention (from PNGCAPI) for</i>&nbsp</td></tr>
+<tr><th id="123">123</th><td><i> *                callbacks (PNGCBAPI).  This is no longer required</i>&nbsp</td></tr>
+<tr><th id="124">124</th><td><i> *                in any known environment - if it has to be used</i>&nbsp</td></tr>
+<tr><th id="125">125</th><td><i> *                please post an explanation of the problem to the</i>&nbsp</td></tr>
+<tr><th id="126">126</th><td><i> *                libpng mailing list.</i>&nbsp</td></tr>
+<tr><th id="127">127</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="128">128</th><td><i> * These cases only differ if the operating system does not use the C</i>&nbsp</td></tr>
+<tr><th id="129">129</th><td><i> * calling convention, at present this just means the above cases</i>&nbsp</td></tr>
+<tr><th id="130">130</th><td><i> * (x86 DOS/Windows systems) and, even then, this does not apply to</i>&nbsp</td></tr>
+<tr><th id="131">131</th><td><i> * Cygwin running on those systems.</i>&nbsp</td></tr>
+<tr><th id="132">132</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="133">133</th><td><i> * Note that the value must be defined in pnglibconf.h so that what</i>&nbsp</td></tr>
+<tr><th id="134">134</th><td><i> * the application uses to call the library matches the conventions</i>&nbsp</td></tr>
+<tr><th id="135">135</th><td><i> * set when building the library.</i>&nbsp</td></tr>
+<tr><th id="136">136</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="137">137</th><td>&nbsp</td></tr>
+<tr><th id="138">138</th><td><i>/* Symbol export</i>&nbsp</td></tr>
+<tr><th id="139">139</th><td><i> * =============</i>&nbsp</td></tr>
+<tr><th id="140">140</th><td><i> * When building a shared library it is almost always necessary to tell</i>&nbsp</td></tr>
+<tr><th id="141">141</th><td><i> * the compiler which symbols to export.  The png.h macro 'PNG_EXPORT'</i>&nbsp</td></tr>
+<tr><th id="142">142</th><td><i> * is used to mark the symbols.  On some systems these symbols can be</i>&nbsp</td></tr>
+<tr><th id="143">143</th><td><i> * extracted at link time and need no special processing by the compiler,</i>&nbsp</td></tr>
+<tr><th id="144">144</th><td><i> * on other systems the symbols are flagged by the compiler and just</i>&nbsp</td></tr>
+<tr><th id="145">145</th><td><i> * the declaration requires a special tag applied (unfortunately) in a</i>&nbsp</td></tr>
+<tr><th id="146">146</th><td><i> * compiler dependent way.  Some systems can do either.</i>&nbsp</td></tr>
+<tr><th id="147">147</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="148">148</th><td><i> * A small number of older systems also require a symbol from a DLL to</i>&nbsp</td></tr>
+<tr><th id="149">149</th><td><i> * be flagged to the program that calls it.  This is a problem because</i>&nbsp</td></tr>
+<tr><th id="150">150</th><td><i> * we do not know in the header file included by application code that</i>&nbsp</td></tr>
+<tr><th id="151">151</th><td><i> * the symbol will come from a shared library, as opposed to a statically</i>&nbsp</td></tr>
+<tr><th id="152">152</th><td><i> * linked one.  For this reason the application must tell us by setting</i>&nbsp</td></tr>
+<tr><th id="153">153</th><td><i> * the magic flag PNG_USE_DLL to turn on the special processing before</i>&nbsp</td></tr>
+<tr><th id="154">154</th><td><i> * it includes png.h.</i>&nbsp</td></tr>
+<tr><th id="155">155</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="156">156</th><td><i> * Four additional macros are used to make this happen:</i>&nbsp</td></tr>
+<tr><th id="157">157</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="158">158</th><td><i> * PNG_IMPEXP The magic (if any) to cause a symbol to be exported from</i>&nbsp</td></tr>
+<tr><th id="159">159</th><td><i> *            the build or imported if PNG_USE_DLL is set - compiler</i>&nbsp</td></tr>
+<tr><th id="160">160</th><td><i> *            and system specific.</i>&nbsp</td></tr>
+<tr><th id="161">161</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="162">162</th><td><i> * PNG_EXPORT_TYPE(type) A macro that pre or appends PNG_IMPEXP to</i>&nbsp</td></tr>
+<tr><th id="163">163</th><td><i> *                       'type', compiler specific.</i>&nbsp</td></tr>
+<tr><th id="164">164</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="165">165</th><td><i> * PNG_DLL_EXPORT Set to the magic to use during a libpng build to</i>&nbsp</td></tr>
+<tr><th id="166">166</th><td><i> *                make a symbol exported from the DLL.  Not used in the</i>&nbsp</td></tr>
+<tr><th id="167">167</th><td><i> *                public header files; see pngpriv.h for how it is used</i>&nbsp</td></tr>
+<tr><th id="168">168</th><td><i> *                in the libpng build.</i>&nbsp</td></tr>
+<tr><th id="169">169</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="170">170</th><td><i> * PNG_DLL_IMPORT Set to the magic to force the libpng symbols to come</i>&nbsp</td></tr>
+<tr><th id="171">171</th><td><i> *                from a DLL - used to define PNG_IMPEXP when</i>&nbsp</td></tr>
+<tr><th id="172">172</th><td><i> *                PNG_USE_DLL is set.</i>&nbsp</td></tr>
+<tr><th id="173">173</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="174">174</th><td>&nbsp</td></tr>
+<tr><th id="175">175</th><td><i>/* System specific discovery.</i>&nbsp</td></tr>
+<tr><th id="176">176</th><td><i> * ==========================</i>&nbsp</td></tr>
+<tr><th id="177">177</th><td><i> * This code is used at build time to find PNG_IMPEXP, the API settings</i>&nbsp</td></tr>
+<tr><th id="178">178</th><td><i> * and PNG_EXPORT_TYPE(), it may also set a macro to indicate the DLL</i>&nbsp</td></tr>
+<tr><th id="179">179</th><td><i> * import processing is possible.  On Windows systems it also sets</i>&nbsp</td></tr>
+<tr><th id="180">180</th><td><i> * compiler-specific macros to the values required to change the calling</i>&nbsp</td></tr>
+<tr><th id="181">181</th><td><i> * conventions of the various functions.</i>&nbsp</td></tr>
+<tr><th id="182">182</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="183">183</th><td><u>#<span data-ppcond="183">if</span> defined(<span class="macro" data-ref="_M/_WIN32">_WIN32</span>) || defined(<span class="macro" data-ref="_M/__WIN32__">__WIN32__</span>) || defined(<span class="macro" data-ref="_M/__NT__">__NT__</span>) || \</u>&nbsp</td></tr>
+<tr><th id="184">184</th><td><u>    defined(<span class="macro" data-ref="_M/__CYGWIN__">__CYGWIN__</span>)</u>&nbsp</td></tr>
+<tr><th id="185">185</th><td>  <i>/* Windows system (DOS doesn't support DLLs).  Includes builds under Cygwin or</i>&nbsp</td></tr>
+<tr><th id="186">186</th><td><i>   * MinGW on any architecture currently supported by Windows.  Also includes</i>&nbsp</td></tr>
+<tr><th id="187">187</th><td><i>   * Watcom builds but these need special treatment because they are not</i>&nbsp</td></tr>
+<tr><th id="188">188</th><td><i>   * compatible with GCC or Visual C because of different calling conventions.</i>&nbsp</td></tr>
+<tr><th id="189">189</th><td><i>   */</i>&nbsp</td></tr>
+<tr><th id="190">190</th><td><u>#  if PNG_API_RULE == 2</u>&nbsp</td></tr>
+<tr><th id="191">191</th><td>   <i>/* If this line results in an error, either because __watcall is not</i>&nbsp</td></tr>
+<tr><th id="192">192</th><td><i>    * understood or because of a redefine just below you cannot use *this*</i>&nbsp</td></tr>
+<tr><th id="193">193</th><td><i>    * build of the library with the compiler you are using.  *This* build was</i>&nbsp</td></tr>
+<tr><th id="194">194</th><td><i>    * build using Watcom and applications must also be built using Watcom!</i>&nbsp</td></tr>
+<tr><th id="195">195</th><td><i>    */</i>&nbsp</td></tr>
+<tr><th id="196">196</th><td><u>#    define PNGCAPI __watcall</u>&nbsp</td></tr>
+<tr><th id="197">197</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="198">198</th><td>&nbsp</td></tr>
+<tr><th id="199">199</th><td><u>#  if defined(__GNUC__) || (defined(_MSC_VER) &amp;&amp; (_MSC_VER &gt;= 800))</u>&nbsp</td></tr>
+<tr><th id="200">200</th><td><u>#    define PNGCAPI __cdecl</u>&nbsp</td></tr>
+<tr><th id="201">201</th><td><u>#    if PNG_API_RULE == 1</u>&nbsp</td></tr>
+<tr><th id="202">202</th><td>   <i>/* If this line results in an error __stdcall is not understood and</i>&nbsp</td></tr>
+<tr><th id="203">203</th><td><i>    * PNG_API_RULE should not have been set to '1'.</i>&nbsp</td></tr>
+<tr><th id="204">204</th><td><i>    */</i>&nbsp</td></tr>
+<tr><th id="205">205</th><td><u>#      define PNGAPI __stdcall</u>&nbsp</td></tr>
+<tr><th id="206">206</th><td><u>#    endif</u>&nbsp</td></tr>
+<tr><th id="207">207</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="208">208</th><td>   <i>/* An older compiler, or one not detected (erroneously) above,</i>&nbsp</td></tr>
+<tr><th id="209">209</th><td><i>    * if necessary override on the command line to get the correct</i>&nbsp</td></tr>
+<tr><th id="210">210</th><td><i>    * variants for the compiler.</i>&nbsp</td></tr>
+<tr><th id="211">211</th><td><i>    */</i>&nbsp</td></tr>
+<tr><th id="212">212</th><td><u>#    ifndef PNGCAPI</u>&nbsp</td></tr>
+<tr><th id="213">213</th><td><u>#      define PNGCAPI _cdecl</u>&nbsp</td></tr>
+<tr><th id="214">214</th><td><u>#    endif</u>&nbsp</td></tr>
+<tr><th id="215">215</th><td><u>#    if PNG_API_RULE == 1 &amp;&amp; !defined(PNGAPI)</u>&nbsp</td></tr>
+<tr><th id="216">216</th><td><u>#      define PNGAPI _stdcall</u>&nbsp</td></tr>
+<tr><th id="217">217</th><td><u>#    endif</u>&nbsp</td></tr>
+<tr><th id="218">218</th><td><u>#  endif /* compiler/api */</u>&nbsp</td></tr>
+<tr><th id="219">219</th><td>&nbsp</td></tr>
+<tr><th id="220">220</th><td>  <i>/* NOTE: PNGCBAPI always defaults to PNGCAPI. */</i>&nbsp</td></tr>
+<tr><th id="221">221</th><td>&nbsp</td></tr>
+<tr><th id="222">222</th><td><u>#  if defined(PNGAPI) &amp;&amp; !defined(PNG_USER_PRIVATEBUILD)</u>&nbsp</td></tr>
+<tr><th id="223">223</th><td><u>#     error "PNG_USER_PRIVATEBUILD must be defined if PNGAPI is changed"</u>&nbsp</td></tr>
+<tr><th id="224">224</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="225">225</th><td>&nbsp</td></tr>
+<tr><th id="226">226</th><td><u>#  if (defined(_MSC_VER) &amp;&amp; _MSC_VER &lt; 800) ||\</u>&nbsp</td></tr>
+<tr><th id="227">227</th><td><u>      (defined(__BORLANDC__) &amp;&amp; __BORLANDC__ &lt; 0x500)</u>&nbsp</td></tr>
+<tr><th id="228">228</th><td>   <i>/* older Borland and MSC</i>&nbsp</td></tr>
+<tr><th id="229">229</th><td><i>    * compilers used '__export' and required this to be after</i>&nbsp</td></tr>
+<tr><th id="230">230</th><td><i>    * the type.</i>&nbsp</td></tr>
+<tr><th id="231">231</th><td><i>    */</i>&nbsp</td></tr>
+<tr><th id="232">232</th><td><u>#    ifndef PNG_EXPORT_TYPE</u>&nbsp</td></tr>
+<tr><th id="233">233</th><td><u>#      define PNG_EXPORT_TYPE(type) type PNG_IMPEXP</u>&nbsp</td></tr>
+<tr><th id="234">234</th><td><u>#    endif</u>&nbsp</td></tr>
+<tr><th id="235">235</th><td><u>#    define PNG_DLL_EXPORT __export</u>&nbsp</td></tr>
+<tr><th id="236">236</th><td><u>#  else /* newer compiler */</u>&nbsp</td></tr>
+<tr><th id="237">237</th><td><u>#    define PNG_DLL_EXPORT __declspec(dllexport)</u>&nbsp</td></tr>
+<tr><th id="238">238</th><td><u>#    ifndef PNG_DLL_IMPORT</u>&nbsp</td></tr>
+<tr><th id="239">239</th><td><u>#      define PNG_DLL_IMPORT __declspec(dllimport)</u>&nbsp</td></tr>
+<tr><th id="240">240</th><td><u>#    endif</u>&nbsp</td></tr>
+<tr><th id="241">241</th><td><u>#  endif /* compiler */</u>&nbsp</td></tr>
+<tr><th id="242">242</th><td>&nbsp</td></tr>
+<tr><th id="243">243</th><td><u>#<span data-ppcond="183">else</span> /* !Windows */</u>&nbsp</td></tr>
+<tr><th id="244">244</th><td><u>#  <span data-ppcond="244">if</span> (defined(<span class="macro" data-ref="_M/__IBMC__">__IBMC__</span>) || defined(<span class="macro" data-ref="_M/__IBMCPP__">__IBMCPP__</span>)) &amp;&amp; defined(<span class="macro" data-ref="_M/__OS2__">__OS2__</span>)</u>&nbsp</td></tr>
+<tr><th id="245">245</th><td><u>#    define PNGAPI _System</u>&nbsp</td></tr>
+<tr><th id="246">246</th><td><u>#  <span data-ppcond="244">else</span> /* !Windows/x86 &amp;&amp; !OS/2 */</u>&nbsp</td></tr>
+<tr><th id="247">247</th><td>   <i>/* Use the defaults, or define PNG*API on the command line (but</i>&nbsp</td></tr>
+<tr><th id="248">248</th><td><i>    * this will have to be done for every compile!)</i>&nbsp</td></tr>
+<tr><th id="249">249</th><td><i>    */</i>&nbsp</td></tr>
+<tr><th id="250">250</th><td><u>#  <span data-ppcond="244">endif</span> /* other system, !OS/2 */</u>&nbsp</td></tr>
+<tr><th id="251">251</th><td><u>#<span data-ppcond="183">endif</span> /* !Windows/x86 */</u>&nbsp</td></tr>
+<tr><th id="252">252</th><td>&nbsp</td></tr>
+<tr><th id="253">253</th><td><i>/* Now do all the defaulting . */</i>&nbsp</td></tr>
+<tr><th id="254">254</th><td><u>#<span data-ppcond="254">ifndef</span> <span class="macro" data-ref="_M/PNGCAPI">PNGCAPI</span></u>&nbsp</td></tr>
+<tr><th id="255">255</th><td><u>#  define <dfn class="macro" id="_M/PNGCAPI" data-ref="_M/PNGCAPI">PNGCAPI</dfn></u>&nbsp</td></tr>
+<tr><th id="256">256</th><td><u>#<span data-ppcond="254">endif</span></u>&nbsp</td></tr>
+<tr><th id="257">257</th><td><u>#<span data-ppcond="257">ifndef</span> <span class="macro" data-ref="_M/PNGCBAPI">PNGCBAPI</span></u>&nbsp</td></tr>
+<tr><th id="258">258</th><td><u>#  define <dfn class="macro" id="_M/PNGCBAPI" data-ref="_M/PNGCBAPI">PNGCBAPI</dfn> PNGCAPI</u>&nbsp</td></tr>
+<tr><th id="259">259</th><td><u>#<span data-ppcond="257">endif</span></u>&nbsp</td></tr>
+<tr><th id="260">260</th><td><u>#<span data-ppcond="260">ifndef</span> <span class="macro" data-ref="_M/PNGAPI">PNGAPI</span></u>&nbsp</td></tr>
+<tr><th id="261">261</th><td><u>#  define <dfn class="macro" id="_M/PNGAPI" data-ref="_M/PNGAPI">PNGAPI</dfn> PNGCAPI</u>&nbsp</td></tr>
+<tr><th id="262">262</th><td><u>#<span data-ppcond="260">endif</span></u>&nbsp</td></tr>
+<tr><th id="263">263</th><td>&nbsp</td></tr>
+<tr><th id="264">264</th><td><i>/* PNG_IMPEXP may be set on the compilation system command line or (if not set)</i>&nbsp</td></tr>
+<tr><th id="265">265</th><td><i> * then in an internal header file when building the library, otherwise (when</i>&nbsp</td></tr>
+<tr><th id="266">266</th><td><i> * using the library) it is set here.</i>&nbsp</td></tr>
+<tr><th id="267">267</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="268">268</th><td><u>#<span data-ppcond="268">ifndef</span> <span class="macro" data-ref="_M/PNG_IMPEXP">PNG_IMPEXP</span></u>&nbsp</td></tr>
+<tr><th id="269">269</th><td><u>#  <span data-ppcond="269">if</span> defined(<span class="macro" data-ref="_M/PNG_USE_DLL">PNG_USE_DLL</span>) &amp;&amp; defined(<span class="macro" data-ref="_M/PNG_DLL_IMPORT">PNG_DLL_IMPORT</span>)</u>&nbsp</td></tr>
+<tr><th id="270">270</th><td>   <i>/* This forces use of a DLL, disallowing static linking */</i>&nbsp</td></tr>
+<tr><th id="271">271</th><td><u>#    define PNG_IMPEXP PNG_DLL_IMPORT</u>&nbsp</td></tr>
+<tr><th id="272">272</th><td><u>#  <span data-ppcond="269">endif</span></u>&nbsp</td></tr>
+<tr><th id="273">273</th><td>&nbsp</td></tr>
+<tr><th id="274">274</th><td><u>#  <span data-ppcond="274">ifndef</span> <span class="macro" data-ref="_M/PNG_IMPEXP">PNG_IMPEXP</span></u>&nbsp</td></tr>
+<tr><th id="275">275</th><td><u>#    define <dfn class="macro" id="_M/PNG_IMPEXP" data-ref="_M/PNG_IMPEXP">PNG_IMPEXP</dfn></u>&nbsp</td></tr>
+<tr><th id="276">276</th><td><u>#  <span data-ppcond="274">endif</span></u>&nbsp</td></tr>
+<tr><th id="277">277</th><td><u>#<span data-ppcond="268">endif</span></u>&nbsp</td></tr>
+<tr><th id="278">278</th><td>&nbsp</td></tr>
+<tr><th id="279">279</th><td><i>/* In 1.5.2 the definition of PNG_FUNCTION has been changed to always treat</i>&nbsp</td></tr>
+<tr><th id="280">280</th><td><i> * 'attributes' as a storage class - the attributes go at the start of the</i>&nbsp</td></tr>
+<tr><th id="281">281</th><td><i> * function definition, and attributes are always appended regardless of the</i>&nbsp</td></tr>
+<tr><th id="282">282</th><td><i> * compiler.  This considerably simplifies these macros but may cause problems</i>&nbsp</td></tr>
+<tr><th id="283">283</th><td><i> * if any compilers both need function attributes and fail to handle them as</i>&nbsp</td></tr>
+<tr><th id="284">284</th><td><i> * a storage class (this is unlikely.)</i>&nbsp</td></tr>
+<tr><th id="285">285</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="286">286</th><td><u>#<span data-ppcond="286">ifndef</span> <span class="macro" data-ref="_M/PNG_FUNCTION">PNG_FUNCTION</span></u>&nbsp</td></tr>
+<tr><th id="287">287</th><td><u>#  define <dfn class="macro" id="_M/PNG_FUNCTION" data-ref="_M/PNG_FUNCTION">PNG_FUNCTION</dfn>(type, name, args, attributes) attributes type name args</u>&nbsp</td></tr>
+<tr><th id="288">288</th><td><u>#<span data-ppcond="286">endif</span></u>&nbsp</td></tr>
+<tr><th id="289">289</th><td>&nbsp</td></tr>
+<tr><th id="290">290</th><td><u>#<span data-ppcond="290">ifndef</span> <span class="macro" data-ref="_M/PNG_EXPORT_TYPE">PNG_EXPORT_TYPE</span></u>&nbsp</td></tr>
+<tr><th id="291">291</th><td><u>#  define <dfn class="macro" id="_M/PNG_EXPORT_TYPE" data-ref="_M/PNG_EXPORT_TYPE">PNG_EXPORT_TYPE</dfn>(type) PNG_IMPEXP type</u>&nbsp</td></tr>
+<tr><th id="292">292</th><td><u>#<span data-ppcond="290">endif</span></u>&nbsp</td></tr>
+<tr><th id="293">293</th><td>&nbsp</td></tr>
+<tr><th id="294">294</th><td>   <i>/* The ordinal value is only relevant when preprocessing png.h for symbol</i>&nbsp</td></tr>
+<tr><th id="295">295</th><td><i>    * table entries, so we discard it here.  See the .dfn files in the</i>&nbsp</td></tr>
+<tr><th id="296">296</th><td><i>    * scripts directory.</i>&nbsp</td></tr>
+<tr><th id="297">297</th><td><i>    */</i>&nbsp</td></tr>
+<tr><th id="298">298</th><td>&nbsp</td></tr>
+<tr><th id="299">299</th><td><u>#<span data-ppcond="299">ifndef</span> <span class="macro" data-ref="_M/PNG_EXPORTA">PNG_EXPORTA</span></u>&nbsp</td></tr>
+<tr><th id="300">300</th><td><u>#  define <dfn class="macro" id="_M/PNG_EXPORTA" data-ref="_M/PNG_EXPORTA">PNG_EXPORTA</dfn>(ordinal, type, name, args, attributes) \</u>&nbsp</td></tr>
+<tr><th id="301">301</th><td><u>      PNG_FUNCTION(PNG_EXPORT_TYPE(type), (PNGAPI name), PNGARG(args), \</u>&nbsp</td></tr>
+<tr><th id="302">302</th><td><u>      PNG_LINKAGE_API attributes)</u>&nbsp</td></tr>
+<tr><th id="303">303</th><td><u>#<span data-ppcond="299">endif</span></u>&nbsp</td></tr>
+<tr><th id="304">304</th><td>&nbsp</td></tr>
+<tr><th id="305">305</th><td><i>/* ANSI-C (C90) does not permit a macro to be invoked with an empty argument,</i>&nbsp</td></tr>
+<tr><th id="306">306</th><td><i> * so make something non-empty to satisfy the requirement:</i>&nbsp</td></tr>
+<tr><th id="307">307</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="308">308</th><td><u>#define <dfn class="macro" id="_M/PNG_EMPTY" data-ref="_M/PNG_EMPTY">PNG_EMPTY</dfn> /*empty list*/</u>&nbsp</td></tr>
+<tr><th id="309">309</th><td>&nbsp</td></tr>
+<tr><th id="310">310</th><td><u>#define <dfn class="macro" id="_M/PNG_EXPORT" data-ref="_M/PNG_EXPORT">PNG_EXPORT</dfn>(ordinal, type, name, args) \</u>&nbsp</td></tr>
+<tr><th id="311">311</th><td><u>   PNG_EXPORTA(ordinal, type, name, args, PNG_EMPTY)</u>&nbsp</td></tr>
+<tr><th id="312">312</th><td>&nbsp</td></tr>
+<tr><th id="313">313</th><td><i>/* Use PNG_REMOVED to comment out a removed interface. */</i>&nbsp</td></tr>
+<tr><th id="314">314</th><td><u>#<span data-ppcond="314">ifndef</span> <span class="macro" data-ref="_M/PNG_REMOVED">PNG_REMOVED</span></u>&nbsp</td></tr>
+<tr><th id="315">315</th><td><u>#  define <dfn class="macro" id="_M/PNG_REMOVED" data-ref="_M/PNG_REMOVED">PNG_REMOVED</dfn>(ordinal, type, name, args, attributes)</u>&nbsp</td></tr>
+<tr><th id="316">316</th><td><u>#<span data-ppcond="314">endif</span></u>&nbsp</td></tr>
+<tr><th id="317">317</th><td>&nbsp</td></tr>
+<tr><th id="318">318</th><td><u>#<span data-ppcond="318">ifndef</span> <span class="macro" data-ref="_M/PNG_CALLBACK">PNG_CALLBACK</span></u>&nbsp</td></tr>
+<tr><th id="319">319</th><td><u>#  define <dfn class="macro" id="_M/PNG_CALLBACK" data-ref="_M/PNG_CALLBACK">PNG_CALLBACK</dfn>(type, name, args) type (PNGCBAPI name) PNGARG(args)</u>&nbsp</td></tr>
+<tr><th id="320">320</th><td><u>#<span data-ppcond="318">endif</span></u>&nbsp</td></tr>
+<tr><th id="321">321</th><td>&nbsp</td></tr>
+<tr><th id="322">322</th><td><i>/* Support for compiler specific function attributes.  These are used</i>&nbsp</td></tr>
+<tr><th id="323">323</th><td><i> * so that where compiler support is available incorrect use of API</i>&nbsp</td></tr>
+<tr><th id="324">324</th><td><i> * functions in png.h will generate compiler warnings.</i>&nbsp</td></tr>
+<tr><th id="325">325</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="326">326</th><td><i> * Added at libpng-1.2.41.</i>&nbsp</td></tr>
+<tr><th id="327">327</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="328">328</th><td>&nbsp</td></tr>
+<tr><th id="329">329</th><td><u>#<span data-ppcond="329">ifndef</span> <span class="macro" data-ref="_M/PNG_NO_PEDANTIC_WARNINGS">PNG_NO_PEDANTIC_WARNINGS</span></u>&nbsp</td></tr>
+<tr><th id="330">330</th><td><u>#  <span data-ppcond="330">ifndef</span> <span class="macro" data-ref="_M/PNG_PEDANTIC_WARNINGS_SUPPORTED">PNG_PEDANTIC_WARNINGS_SUPPORTED</span></u>&nbsp</td></tr>
+<tr><th id="331">331</th><td><u>#    define <dfn class="macro" id="_M/PNG_PEDANTIC_WARNINGS_SUPPORTED" data-ref="_M/PNG_PEDANTIC_WARNINGS_SUPPORTED">PNG_PEDANTIC_WARNINGS_SUPPORTED</dfn></u>&nbsp</td></tr>
+<tr><th id="332">332</th><td><u>#  <span data-ppcond="330">endif</span></u>&nbsp</td></tr>
+<tr><th id="333">333</th><td><u>#<span data-ppcond="329">endif</span></u>&nbsp</td></tr>
+<tr><th id="334">334</th><td>&nbsp</td></tr>
+<tr><th id="335">335</th><td><u>#<span data-ppcond="335">ifdef</span> <a class="macro" href="#331" data-ref="_M/PNG_PEDANTIC_WARNINGS_SUPPORTED">PNG_PEDANTIC_WARNINGS_SUPPORTED</a></u>&nbsp</td></tr>
+<tr><th id="336">336</th><td>  <i>/* Support for compiler specific function attributes.  These are used</i>&nbsp</td></tr>
+<tr><th id="337">337</th><td><i>   * so that where compiler support is available, incorrect use of API</i>&nbsp</td></tr>
+<tr><th id="338">338</th><td><i>   * functions in png.h will generate compiler warnings.  Added at libpng</i>&nbsp</td></tr>
+<tr><th id="339">339</th><td><i>   * version 1.2.41.  Disabling these removes the warnings but may also produce</i>&nbsp</td></tr>
+<tr><th id="340">340</th><td><i>   * less efficient code.</i>&nbsp</td></tr>
+<tr><th id="341">341</th><td><i>   */</i>&nbsp</td></tr>
+<tr><th id="342">342</th><td><u>#  <span data-ppcond="342">if</span> defined(<span class="macro" data-ref="_M/__clang__">__clang__</span>) &amp;&amp; defined(<span class="macro" data-ref="_M/__has_attribute">__has_attribute</span>)</u>&nbsp</td></tr>
+<tr><th id="343">343</th><td>   <i>/* Clang defines both __clang__ and __GNUC__. Check __clang__ first. */</i>&nbsp</td></tr>
+<tr><th id="344">344</th><td><u>#    <span data-ppcond="344">if</span> !defined(<span class="macro" data-ref="_M/PNG_USE_RESULT">PNG_USE_RESULT</span>) &amp;&amp; <span class="macro" title="" data-ref="_M/__has_attribute">__has_attribute</span>(__warn_unused_result__)</u>&nbsp</td></tr>
+<tr><th id="345">345</th><td><u>#      define <dfn class="macro" id="_M/PNG_USE_RESULT" data-ref="_M/PNG_USE_RESULT">PNG_USE_RESULT</dfn> __attribute__((__warn_unused_result__))</u>&nbsp</td></tr>
+<tr><th id="346">346</th><td><u>#    <span data-ppcond="344">endif</span></u>&nbsp</td></tr>
+<tr><th id="347">347</th><td><u>#    <span data-ppcond="347">if</span> !defined(<span class="macro" data-ref="_M/PNG_NORETURN">PNG_NORETURN</span>) &amp;&amp; <span class="macro" title="" data-ref="_M/__has_attribute">__has_attribute</span>(__noreturn__)</u>&nbsp</td></tr>
+<tr><th id="348">348</th><td><u>#      define <dfn class="macro" id="_M/PNG_NORETURN" data-ref="_M/PNG_NORETURN">PNG_NORETURN</dfn> __attribute__((__noreturn__))</u>&nbsp</td></tr>
+<tr><th id="349">349</th><td><u>#    <span data-ppcond="347">endif</span></u>&nbsp</td></tr>
+<tr><th id="350">350</th><td><u>#    <span data-ppcond="350">if</span> !defined(<span class="macro" data-ref="_M/PNG_ALLOCATED">PNG_ALLOCATED</span>) &amp;&amp; <span class="macro" title="" data-ref="_M/__has_attribute">__has_attribute</span>(__malloc__)</u>&nbsp</td></tr>
+<tr><th id="351">351</th><td><u>#      define <dfn class="macro" id="_M/PNG_ALLOCATED" data-ref="_M/PNG_ALLOCATED">PNG_ALLOCATED</dfn> __attribute__((__malloc__))</u>&nbsp</td></tr>
+<tr><th id="352">352</th><td><u>#    <span data-ppcond="350">endif</span></u>&nbsp</td></tr>
+<tr><th id="353">353</th><td><u>#    <span data-ppcond="353">if</span> !defined(<span class="macro" data-ref="_M/PNG_DEPRECATED">PNG_DEPRECATED</span>) &amp;&amp; <span class="macro" title="" data-ref="_M/__has_attribute">__has_attribute</span>(__deprecated__)</u>&nbsp</td></tr>
+<tr><th id="354">354</th><td><u>#      define <dfn class="macro" id="_M/PNG_DEPRECATED" data-ref="_M/PNG_DEPRECATED">PNG_DEPRECATED</dfn> __attribute__((__deprecated__))</u>&nbsp</td></tr>
+<tr><th id="355">355</th><td><u>#    <span data-ppcond="353">endif</span></u>&nbsp</td></tr>
+<tr><th id="356">356</th><td><u>#    <span data-ppcond="356">if</span> !defined(<span class="macro" data-ref="_M/PNG_PRIVATE">PNG_PRIVATE</span>)</u>&nbsp</td></tr>
+<tr><th id="357">357</th><td><u>#      <span data-ppcond="357">ifdef</span> <span class="macro" data-ref="_M/__has_extension">__has_extension</span></u>&nbsp</td></tr>
+<tr><th id="358">358</th><td><u>#        <span data-ppcond="358">if</span> <span class="macro" title="" data-ref="_M/__has_extension">__has_extension</span>(attribute_unavailable_with_message)</u>&nbsp</td></tr>
+<tr><th id="359">359</th><td><u>#          define <dfn class="macro" id="_M/PNG_PRIVATE" data-ref="_M/PNG_PRIVATE">PNG_PRIVATE</dfn> __attribute__((__unavailable__(\</u>&nbsp</td></tr>
+<tr><th id="360">360</th><td><u>             "This function is not exported by libpng.")))</u>&nbsp</td></tr>
+<tr><th id="361">361</th><td><u>#        <span data-ppcond="358">endif</span></u>&nbsp</td></tr>
+<tr><th id="362">362</th><td><u>#      <span data-ppcond="357">endif</span></u>&nbsp</td></tr>
+<tr><th id="363">363</th><td><u>#    <span data-ppcond="356">endif</span></u>&nbsp</td></tr>
+<tr><th id="364">364</th><td><u>#    <span data-ppcond="364">ifndef</span> <span class="macro" data-ref="_M/PNG_RESTRICT">PNG_RESTRICT</span></u>&nbsp</td></tr>
+<tr><th id="365">365</th><td><u>#      define <dfn class="macro" id="_M/PNG_RESTRICT" data-ref="_M/PNG_RESTRICT">PNG_RESTRICT</dfn> __restrict</u>&nbsp</td></tr>
+<tr><th id="366">366</th><td><u>#    <span data-ppcond="364">endif</span></u>&nbsp</td></tr>
+<tr><th id="367">367</th><td>&nbsp</td></tr>
+<tr><th id="368">368</th><td><u>#  <span data-ppcond="342">elif</span> defined(__GNUC__)</u>&nbsp</td></tr>
+<tr><th id="369">369</th><td><u>#    ifndef PNG_USE_RESULT</u>&nbsp</td></tr>
+<tr><th id="370">370</th><td><u>#      define PNG_USE_RESULT __attribute__((__warn_unused_result__))</u>&nbsp</td></tr>
+<tr><th id="371">371</th><td><u>#    endif</u>&nbsp</td></tr>
+<tr><th id="372">372</th><td><u>#    ifndef PNG_NORETURN</u>&nbsp</td></tr>
+<tr><th id="373">373</th><td><u>#      define PNG_NORETURN   __attribute__((__noreturn__))</u>&nbsp</td></tr>
+<tr><th id="374">374</th><td><u>#    endif</u>&nbsp</td></tr>
+<tr><th id="375">375</th><td><u>#    if __GNUC__ &gt;= 3</u>&nbsp</td></tr>
+<tr><th id="376">376</th><td><u>#      ifndef PNG_ALLOCATED</u>&nbsp</td></tr>
+<tr><th id="377">377</th><td><u>#        define PNG_ALLOCATED  __attribute__((__malloc__))</u>&nbsp</td></tr>
+<tr><th id="378">378</th><td><u>#      endif</u>&nbsp</td></tr>
+<tr><th id="379">379</th><td><u>#      ifndef PNG_DEPRECATED</u>&nbsp</td></tr>
+<tr><th id="380">380</th><td><u>#        define PNG_DEPRECATED __attribute__((__deprecated__))</u>&nbsp</td></tr>
+<tr><th id="381">381</th><td><u>#      endif</u>&nbsp</td></tr>
+<tr><th id="382">382</th><td><u>#      ifndef PNG_PRIVATE</u>&nbsp</td></tr>
+<tr><th id="383">383</th><td><u>#        if 0 /* Doesn't work so we use deprecated instead*/</u>&nbsp</td></tr>
+<tr><th id="384">384</th><td><u>#          define PNG_PRIVATE \</u>&nbsp</td></tr>
+<tr><th id="385">385</th><td><u>            __attribute__((warning("This function is not exported by libpng.")))</u>&nbsp</td></tr>
+<tr><th id="386">386</th><td><u>#        else</u>&nbsp</td></tr>
+<tr><th id="387">387</th><td><u>#          define PNG_PRIVATE \</u>&nbsp</td></tr>
+<tr><th id="388">388</th><td><u>            __attribute__((__deprecated__))</u>&nbsp</td></tr>
+<tr><th id="389">389</th><td><u>#        endif</u>&nbsp</td></tr>
+<tr><th id="390">390</th><td><u>#      endif</u>&nbsp</td></tr>
+<tr><th id="391">391</th><td><u>#      if ((__GNUC__ &gt; 3) || !defined(__GNUC_MINOR__) || (__GNUC_MINOR__ &gt;= 1))</u>&nbsp</td></tr>
+<tr><th id="392">392</th><td><u>#        ifndef PNG_RESTRICT</u>&nbsp</td></tr>
+<tr><th id="393">393</th><td><u>#          define PNG_RESTRICT __restrict</u>&nbsp</td></tr>
+<tr><th id="394">394</th><td><u>#        endif</u>&nbsp</td></tr>
+<tr><th id="395">395</th><td><u>#      endif /* __GNUC__.__GNUC_MINOR__ &gt; 3.0 */</u>&nbsp</td></tr>
+<tr><th id="396">396</th><td><u>#    endif /* __GNUC__ &gt;= 3 */</u>&nbsp</td></tr>
+<tr><th id="397">397</th><td>&nbsp</td></tr>
+<tr><th id="398">398</th><td><u>#  elif defined(_MSC_VER)  &amp;&amp; (_MSC_VER &gt;= 1300)</u>&nbsp</td></tr>
+<tr><th id="399">399</th><td><u>#    ifndef PNG_USE_RESULT</u>&nbsp</td></tr>
+<tr><th id="400">400</th><td><u>#      define PNG_USE_RESULT /* not supported */</u>&nbsp</td></tr>
+<tr><th id="401">401</th><td><u>#    endif</u>&nbsp</td></tr>
+<tr><th id="402">402</th><td><u>#    ifndef PNG_NORETURN</u>&nbsp</td></tr>
+<tr><th id="403">403</th><td><u>#      define PNG_NORETURN   __declspec(noreturn)</u>&nbsp</td></tr>
+<tr><th id="404">404</th><td><u>#    endif</u>&nbsp</td></tr>
+<tr><th id="405">405</th><td><u>#    ifndef PNG_ALLOCATED</u>&nbsp</td></tr>
+<tr><th id="406">406</th><td><u>#      if (_MSC_VER &gt;= 1400)</u>&nbsp</td></tr>
+<tr><th id="407">407</th><td><u>#        define PNG_ALLOCATED __declspec(restrict)</u>&nbsp</td></tr>
+<tr><th id="408">408</th><td><u>#      endif</u>&nbsp</td></tr>
+<tr><th id="409">409</th><td><u>#    endif</u>&nbsp</td></tr>
+<tr><th id="410">410</th><td><u>#    ifndef PNG_DEPRECATED</u>&nbsp</td></tr>
+<tr><th id="411">411</th><td><u>#      define PNG_DEPRECATED __declspec(deprecated)</u>&nbsp</td></tr>
+<tr><th id="412">412</th><td><u>#    endif</u>&nbsp</td></tr>
+<tr><th id="413">413</th><td><u>#    ifndef PNG_PRIVATE</u>&nbsp</td></tr>
+<tr><th id="414">414</th><td><u>#      define PNG_PRIVATE __declspec(deprecated)</u>&nbsp</td></tr>
+<tr><th id="415">415</th><td><u>#    endif</u>&nbsp</td></tr>
+<tr><th id="416">416</th><td><u>#    ifndef PNG_RESTRICT</u>&nbsp</td></tr>
+<tr><th id="417">417</th><td><u>#      if (_MSC_VER &gt;= 1400)</u>&nbsp</td></tr>
+<tr><th id="418">418</th><td><u>#        define PNG_RESTRICT __restrict</u>&nbsp</td></tr>
+<tr><th id="419">419</th><td><u>#      endif</u>&nbsp</td></tr>
+<tr><th id="420">420</th><td><u>#    endif</u>&nbsp</td></tr>
+<tr><th id="421">421</th><td>&nbsp</td></tr>
+<tr><th id="422">422</th><td><u>#  elif defined(__WATCOMC__)</u>&nbsp</td></tr>
+<tr><th id="423">423</th><td><u>#    ifndef PNG_RESTRICT</u>&nbsp</td></tr>
+<tr><th id="424">424</th><td><u>#      define PNG_RESTRICT __restrict</u>&nbsp</td></tr>
+<tr><th id="425">425</th><td><u>#    endif</u>&nbsp</td></tr>
+<tr><th id="426">426</th><td><u>#  <span data-ppcond="342">endif</span></u>&nbsp</td></tr>
+<tr><th id="427">427</th><td><u>#<span data-ppcond="335">endif</span> /* PNG_PEDANTIC_WARNINGS */</u>&nbsp</td></tr>
+<tr><th id="428">428</th><td>&nbsp</td></tr>
+<tr><th id="429">429</th><td><u>#<span data-ppcond="429">ifndef</span> <a class="macro" href="#354" data-ref="_M/PNG_DEPRECATED">PNG_DEPRECATED</a></u>&nbsp</td></tr>
+<tr><th id="430">430</th><td><u>#  define PNG_DEPRECATED  /* Use of this function is deprecated */</u>&nbsp</td></tr>
+<tr><th id="431">431</th><td><u>#<span data-ppcond="429">endif</span></u>&nbsp</td></tr>
+<tr><th id="432">432</th><td><u>#<span data-ppcond="432">ifndef</span> <a class="macro" href="#345" data-ref="_M/PNG_USE_RESULT">PNG_USE_RESULT</a></u>&nbsp</td></tr>
+<tr><th id="433">433</th><td><u>#  define PNG_USE_RESULT  /* The result of this function must be checked */</u>&nbsp</td></tr>
+<tr><th id="434">434</th><td><u>#<span data-ppcond="432">endif</span></u>&nbsp</td></tr>
+<tr><th id="435">435</th><td><u>#<span data-ppcond="435">ifndef</span> <a class="macro" href="#348" data-ref="_M/PNG_NORETURN">PNG_NORETURN</a></u>&nbsp</td></tr>
+<tr><th id="436">436</th><td><u>#  define PNG_NORETURN    /* This function does not return */</u>&nbsp</td></tr>
+<tr><th id="437">437</th><td><u>#<span data-ppcond="435">endif</span></u>&nbsp</td></tr>
+<tr><th id="438">438</th><td><u>#<span data-ppcond="438">ifndef</span> <a class="macro" href="#351" data-ref="_M/PNG_ALLOCATED">PNG_ALLOCATED</a></u>&nbsp</td></tr>
+<tr><th id="439">439</th><td><u>#  define PNG_ALLOCATED   /* The result of the function is new memory */</u>&nbsp</td></tr>
+<tr><th id="440">440</th><td><u>#<span data-ppcond="438">endif</span></u>&nbsp</td></tr>
+<tr><th id="441">441</th><td><u>#<span data-ppcond="441">ifndef</span> <a class="macro" href="#359" data-ref="_M/PNG_PRIVATE">PNG_PRIVATE</a></u>&nbsp</td></tr>
+<tr><th id="442">442</th><td><u>#  define PNG_PRIVATE     /* This is a private libpng function */</u>&nbsp</td></tr>
+<tr><th id="443">443</th><td><u>#<span data-ppcond="441">endif</span></u>&nbsp</td></tr>
+<tr><th id="444">444</th><td><u>#<span data-ppcond="444">ifndef</span> <a class="macro" href="#365" data-ref="_M/PNG_RESTRICT">PNG_RESTRICT</a></u>&nbsp</td></tr>
+<tr><th id="445">445</th><td><u>#  define PNG_RESTRICT    /* The C99 "restrict" feature */</u>&nbsp</td></tr>
+<tr><th id="446">446</th><td><u>#<span data-ppcond="444">endif</span></u>&nbsp</td></tr>
+<tr><th id="447">447</th><td>&nbsp</td></tr>
+<tr><th id="448">448</th><td><u>#<span data-ppcond="448">ifndef</span> <span class="macro" data-ref="_M/PNG_FP_EXPORT">PNG_FP_EXPORT</span>     /* A floating point API. */</u>&nbsp</td></tr>
+<tr><th id="449">449</th><td><u>#  <span data-ppcond="449">ifdef</span> <a class="macro" href="pnglibconf.h.html#36" data-ref="_M/PNG_FLOATING_POINT_SUPPORTED">PNG_FLOATING_POINT_SUPPORTED</a></u>&nbsp</td></tr>
+<tr><th id="450">450</th><td><u>#     define <dfn class="macro" id="_M/PNG_FP_EXPORT" data-ref="_M/PNG_FP_EXPORT">PNG_FP_EXPORT</dfn>(ordinal, type, name, args)\</u>&nbsp</td></tr>
+<tr><th id="451">451</th><td><u>         PNG_EXPORT(ordinal, type, name, args);</u>&nbsp</td></tr>
+<tr><th id="452">452</th><td><u>#  <span data-ppcond="449">else</span>                   /* No floating point APIs */</u>&nbsp</td></tr>
+<tr><th id="453">453</th><td><u>#     define PNG_FP_EXPORT(ordinal, type, name, args)</u>&nbsp</td></tr>
+<tr><th id="454">454</th><td><u>#  <span data-ppcond="449">endif</span></u>&nbsp</td></tr>
+<tr><th id="455">455</th><td><u>#<span data-ppcond="448">endif</span></u>&nbsp</td></tr>
+<tr><th id="456">456</th><td><u>#<span data-ppcond="456">ifndef</span> <span class="macro" data-ref="_M/PNG_FIXED_EXPORT">PNG_FIXED_EXPORT</span>  /* A fixed point API. */</u>&nbsp</td></tr>
+<tr><th id="457">457</th><td><u>#  <span data-ppcond="457">ifdef</span> <a class="macro" href="pnglibconf.h.html#34" data-ref="_M/PNG_FIXED_POINT_SUPPORTED">PNG_FIXED_POINT_SUPPORTED</a></u>&nbsp</td></tr>
+<tr><th id="458">458</th><td><u>#     define <dfn class="macro" id="_M/PNG_FIXED_EXPORT" data-ref="_M/PNG_FIXED_EXPORT">PNG_FIXED_EXPORT</dfn>(ordinal, type, name, args)\</u>&nbsp</td></tr>
+<tr><th id="459">459</th><td><u>         PNG_EXPORT(ordinal, type, name, args);</u>&nbsp</td></tr>
+<tr><th id="460">460</th><td><u>#  <span data-ppcond="457">else</span>                   /* No fixed point APIs */</u>&nbsp</td></tr>
+<tr><th id="461">461</th><td><u>#     define PNG_FIXED_EXPORT(ordinal, type, name, args)</u>&nbsp</td></tr>
+<tr><th id="462">462</th><td><u>#  <span data-ppcond="457">endif</span></u>&nbsp</td></tr>
+<tr><th id="463">463</th><td><u>#<span data-ppcond="456">endif</span></u>&nbsp</td></tr>
+<tr><th id="464">464</th><td>&nbsp</td></tr>
+<tr><th id="465">465</th><td><u>#<span data-ppcond="465">ifndef</span> <span class="macro" data-ref="_M/PNG_BUILDING_SYMBOL_TABLE">PNG_BUILDING_SYMBOL_TABLE</span></u>&nbsp</td></tr>
+<tr><th id="466">466</th><td><i>/* Some typedefs to get us started.  These should be safe on most of the common</i>&nbsp</td></tr>
+<tr><th id="467">467</th><td><i> * platforms.</i>&nbsp</td></tr>
+<tr><th id="468">468</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="469">469</th><td><i> * png_uint_32 and png_int_32 may, currently, be larger than required to hold a</i>&nbsp</td></tr>
+<tr><th id="470">470</th><td><i> * 32-bit value however this is not normally advisable.</i>&nbsp</td></tr>
+<tr><th id="471">471</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="472">472</th><td><i> * png_uint_16 and png_int_16 should always be two bytes in size - this is</i>&nbsp</td></tr>
+<tr><th id="473">473</th><td><i> * verified at library build time.</i>&nbsp</td></tr>
+<tr><th id="474">474</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="475">475</th><td><i> * png_byte must always be one byte in size.</i>&nbsp</td></tr>
+<tr><th id="476">476</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="477">477</th><td><i> * The checks below use constants from limits.h, as defined by the ISOC90</i>&nbsp</td></tr>
+<tr><th id="478">478</th><td><i> * standard.</i>&nbsp</td></tr>
+<tr><th id="479">479</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="480">480</th><td><u>#<span data-ppcond="480">if</span> <span class="macro" title="8" data-ref="_M/CHAR_BIT">CHAR_BIT</span> == 8 &amp;&amp; <span class="macro" title="(127*2 +1)" data-ref="_M/UCHAR_MAX">UCHAR_MAX</span> == 255</u>&nbsp</td></tr>
+<tr><th id="481">481</th><td>   <b>typedef</b> <em>unsigned</em> <em>char</em> <dfn class="typedef" id="png_byte" title='png_byte' data-type='unsigned char' data-ref="png_byte">png_byte</dfn>;&nbsp</td></tr>
+<tr><th id="482">482</th><td><u>#<span data-ppcond="480">else</span></u>&nbsp</td></tr>
+<tr><th id="483">483</th><td><u>#  error "libpng requires 8-bit bytes"</u>&nbsp</td></tr>
+<tr><th id="484">484</th><td><u>#<span data-ppcond="480">endif</span></u>&nbsp</td></tr>
+<tr><th id="485">485</th><td>&nbsp</td></tr>
+<tr><th id="486">486</th><td><u>#<span data-ppcond="486">if</span> <span class="macro" title="(-2147483647 -1)" data-ref="_M/INT_MIN">INT_MIN</span> == -32768 &amp;&amp; <span class="macro" title="2147483647" data-ref="_M/INT_MAX">INT_MAX</span> == 32767</u>&nbsp</td></tr>
+<tr><th id="487">487</th><td>   <b>typedef</b> <em>int</em> png_int_16;&nbsp</td></tr>
+<tr><th id="488">488</th><td><u>#<span data-ppcond="486">elif</span> <span class="macro" title="(-32767 -1)" data-ref="_M/SHRT_MIN">SHRT_MIN</span> == -32768 &amp;&amp; <span class="macro" title="32767" data-ref="_M/SHRT_MAX">SHRT_MAX</span> == 32767</u>&nbsp</td></tr>
+<tr><th id="489">489</th><td>   <b>typedef</b> <em>short</em> <dfn class="typedef" id="png_int_16" title='png_int_16' data-type='short' data-ref="png_int_16">png_int_16</dfn>;&nbsp</td></tr>
+<tr><th id="490">490</th><td><u>#<span data-ppcond="486">else</span></u>&nbsp</td></tr>
+<tr><th id="491">491</th><td><u>#  error "libpng requires a signed 16-bit type"</u>&nbsp</td></tr>
+<tr><th id="492">492</th><td><u>#<span data-ppcond="486">endif</span></u>&nbsp</td></tr>
+<tr><th id="493">493</th><td>&nbsp</td></tr>
+<tr><th id="494">494</th><td><u>#<span data-ppcond="494">if</span> <span class="macro" title="(2147483647 *2U +1U)" data-ref="_M/UINT_MAX">UINT_MAX</span> == 65535</u>&nbsp</td></tr>
+<tr><th id="495">495</th><td>   <b>typedef</b> <em>unsigned</em> <em>int</em> png_uint_16;&nbsp</td></tr>
+<tr><th id="496">496</th><td><u>#<span data-ppcond="494">elif</span> <span class="macro" title="(32767 *2 +1)" data-ref="_M/USHRT_MAX">USHRT_MAX</span> == 65535</u>&nbsp</td></tr>
+<tr><th id="497">497</th><td>   <b>typedef</b> <em>unsigned</em> <em>short</em> <dfn class="typedef" id="png_uint_16" title='png_uint_16' data-type='unsigned short' data-ref="png_uint_16">png_uint_16</dfn>;&nbsp</td></tr>
+<tr><th id="498">498</th><td><u>#<span data-ppcond="494">else</span></u>&nbsp</td></tr>
+<tr><th id="499">499</th><td><u>#  error "libpng requires an unsigned 16-bit type"</u>&nbsp</td></tr>
+<tr><th id="500">500</th><td><u>#<span data-ppcond="494">endif</span></u>&nbsp</td></tr>
+<tr><th id="501">501</th><td>&nbsp</td></tr>
+<tr><th id="502">502</th><td><u>#<span data-ppcond="502">if</span> <span class="macro" title="(-2147483647 -1)" data-ref="_M/INT_MIN">INT_MIN</span> &lt; -2147483646 &amp;&amp; <span class="macro" title="2147483647" data-ref="_M/INT_MAX">INT_MAX</span> &gt; 2147483646</u>&nbsp</td></tr>
+<tr><th id="503">503</th><td>   <b>typedef</b> <em>int</em> <dfn class="typedef" id="png_int_32" title='png_int_32' data-type='int' data-ref="png_int_32">png_int_32</dfn>;&nbsp</td></tr>
+<tr><th id="504">504</th><td><u>#<span data-ppcond="502">elif</span> LONG_MIN &lt; -2147483646 &amp;&amp; LONG_MAX &gt; 2147483646</u>&nbsp</td></tr>
+<tr><th id="505">505</th><td>   <b>typedef</b> <em>long</em> <em>int</em> png_int_32;&nbsp</td></tr>
+<tr><th id="506">506</th><td><u>#else</u>&nbsp</td></tr>
+<tr><th id="507">507</th><td><u>#  error "libpng requires a signed 32-bit (or more) type"</u>&nbsp</td></tr>
+<tr><th id="508">508</th><td><u>#<span data-ppcond="502">endif</span></u>&nbsp</td></tr>
+<tr><th id="509">509</th><td>&nbsp</td></tr>
+<tr><th id="510">510</th><td><u>#<span data-ppcond="510">if</span> <span class="macro" title="(2147483647 *2U +1U)" data-ref="_M/UINT_MAX">UINT_MAX</span> &gt; 4294967294U</u>&nbsp</td></tr>
+<tr><th id="511">511</th><td>   <b>typedef</b> <em>unsigned</em> <em>int</em> <dfn class="typedef" id="png_uint_32" title='png_uint_32' data-type='unsigned int' data-ref="png_uint_32">png_uint_32</dfn>;&nbsp</td></tr>
+<tr><th id="512">512</th><td><u>#<span data-ppcond="510">elif</span> ULONG_MAX &gt; 4294967294U</u>&nbsp</td></tr>
+<tr><th id="513">513</th><td>   <b>typedef</b> <em>unsigned</em> <em>long</em> <em>int</em> png_uint_32;&nbsp</td></tr>
+<tr><th id="514">514</th><td><u>#else</u>&nbsp</td></tr>
+<tr><th id="515">515</th><td><u>#  error "libpng requires an unsigned 32-bit (or more) type"</u>&nbsp</td></tr>
+<tr><th id="516">516</th><td><u>#<span data-ppcond="510">endif</span></u>&nbsp</td></tr>
+<tr><th id="517">517</th><td>&nbsp</td></tr>
+<tr><th id="518">518</th><td><i>/* Prior to 1.6.0, it was possible to disable the use of size_t and ptrdiff_t.</i>&nbsp</td></tr>
+<tr><th id="519">519</th><td><i> * From 1.6.0 onwards, an ISO C90 compiler, as well as a standard-compliant</i>&nbsp</td></tr>
+<tr><th id="520">520</th><td><i> * behavior of sizeof and ptrdiff_t are required.</i>&nbsp</td></tr>
+<tr><th id="521">521</th><td><i> * The legacy typedefs are provided here for backwards compatibility.</i>&nbsp</td></tr>
+<tr><th id="522">522</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="523">523</th><td><b>typedef</b> <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="typedef" id="png_size_t" title='png_size_t' data-type='size_t' data-ref="png_size_t">png_size_t</dfn>;&nbsp</td></tr>
+<tr><th id="524">524</th><td><b>typedef</b> <span class='typedef' title='ptrdiff_t' data-type='long' data-ref="ptrdiff_t">ptrdiff_t</span> <dfn class="typedef" id="png_ptrdiff_t" title='png_ptrdiff_t' data-type='ptrdiff_t' data-ref="png_ptrdiff_t">png_ptrdiff_t</dfn>;&nbsp</td></tr>
+<tr><th id="525">525</th><td>&nbsp</td></tr>
+<tr><th id="526">526</th><td><i>/* libpng needs to know the maximum value of 'size_t' and this controls the</i>&nbsp</td></tr>
+<tr><th id="527">527</th><td><i> * definition of png_alloc_size_t, below.  This maximum value of size_t limits</i>&nbsp</td></tr>
+<tr><th id="528">528</th><td><i> * but does not control the maximum allocations the library makes - there is</i>&nbsp</td></tr>
+<tr><th id="529">529</th><td><i> * direct application control of this through png_set_user_limits().</i>&nbsp</td></tr>
+<tr><th id="530">530</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="531">531</th><td><u>#<span data-ppcond="531">ifndef</span> <span class="macro" data-ref="_M/PNG_SMALL_SIZE_T">PNG_SMALL_SIZE_T</span></u>&nbsp</td></tr>
+<tr><th id="532">532</th><td>   <i>/* Compiler specific tests for systems where size_t is known to be less than</i>&nbsp</td></tr>
+<tr><th id="533">533</th><td><i>    * 32 bits (some of these systems may no longer work because of the lack of</i>&nbsp</td></tr>
+<tr><th id="534">534</th><td><i>    * 'far' support; see above.)</i>&nbsp</td></tr>
+<tr><th id="535">535</th><td><i>    */</i>&nbsp</td></tr>
+<tr><th id="536">536</th><td><u>#  <span data-ppcond="536">if</span> (defined(<span class="macro" data-ref="_M/__TURBOC__">__TURBOC__</span>) &amp;&amp; !defined(<span class="macro" data-ref="_M/__FLAT__">__FLAT__</span>)) ||\</u>&nbsp</td></tr>
+<tr><th id="537">537</th><td><u>   (defined(<span class="macro" data-ref="_M/_MSC_VER">_MSC_VER</span>) &amp;&amp; defined(<span class="macro" data-ref="_M/MAXSEG_64K">MAXSEG_64K</span>))</u>&nbsp</td></tr>
+<tr><th id="538">538</th><td><u>#     define PNG_SMALL_SIZE_T</u>&nbsp</td></tr>
+<tr><th id="539">539</th><td><u>#  <span data-ppcond="536">endif</span></u>&nbsp</td></tr>
+<tr><th id="540">540</th><td><u>#<span data-ppcond="531">endif</span></u>&nbsp</td></tr>
+<tr><th id="541">541</th><td>&nbsp</td></tr>
+<tr><th id="542">542</th><td><i>/* png_alloc_size_t is guaranteed to be no smaller than size_t, and no smaller</i>&nbsp</td></tr>
+<tr><th id="543">543</th><td><i> * than png_uint_32.  Casts from size_t or png_uint_32 to png_alloc_size_t are</i>&nbsp</td></tr>
+<tr><th id="544">544</th><td><i> * not necessary; in fact, it is recommended not to use them at all, so that</i>&nbsp</td></tr>
+<tr><th id="545">545</th><td><i> * the compiler can complain when something turns out to be problematic.</i>&nbsp</td></tr>
+<tr><th id="546">546</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="547">547</th><td><i> * Casts in the other direction (from png_alloc_size_t to size_t or</i>&nbsp</td></tr>
+<tr><th id="548">548</th><td><i> * png_uint_32) should be explicitly applied; however, we do not expect to</i>&nbsp</td></tr>
+<tr><th id="549">549</th><td><i> * encounter practical situations that require such conversions.</i>&nbsp</td></tr>
+<tr><th id="550">550</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="551">551</th><td><i> * PNG_SMALL_SIZE_T must be defined if the maximum value of size_t is less than</i>&nbsp</td></tr>
+<tr><th id="552">552</th><td><i> * 4294967295 - i.e. less than the maximum value of png_uint_32.</i>&nbsp</td></tr>
+<tr><th id="553">553</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="554">554</th><td><u>#<span data-ppcond="554">ifdef</span> <span class="macro" data-ref="_M/PNG_SMALL_SIZE_T">PNG_SMALL_SIZE_T</span></u>&nbsp</td></tr>
+<tr><th id="555">555</th><td>   <b>typedef</b> png_uint_32 png_alloc_size_t;&nbsp</td></tr>
+<tr><th id="556">556</th><td><u>#<span data-ppcond="554">else</span></u>&nbsp</td></tr>
+<tr><th id="557">557</th><td>   <b>typedef</b> <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="typedef" id="png_alloc_size_t" title='png_alloc_size_t' data-type='size_t' data-ref="png_alloc_size_t">png_alloc_size_t</dfn>;&nbsp</td></tr>
+<tr><th id="558">558</th><td><u>#<span data-ppcond="554">endif</span></u>&nbsp</td></tr>
+<tr><th id="559">559</th><td>&nbsp</td></tr>
+<tr><th id="560">560</th><td><i>/* Prior to 1.6.0 libpng offered limited support for Microsoft C compiler</i>&nbsp</td></tr>
+<tr><th id="561">561</th><td><i> * implementations of Intel CPU specific support of user-mode segmented address</i>&nbsp</td></tr>
+<tr><th id="562">562</th><td><i> * spaces, where 16-bit pointers address more than 65536 bytes of memory using</i>&nbsp</td></tr>
+<tr><th id="563">563</th><td><i> * separate 'segment' registers.  The implementation requires two different</i>&nbsp</td></tr>
+<tr><th id="564">564</th><td><i> * types of pointer (only one of which includes the segment value.)</i>&nbsp</td></tr>
+<tr><th id="565">565</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="566">566</th><td><i> * If required this support is available in version 1.2 of libpng and may be</i>&nbsp</td></tr>
+<tr><th id="567">567</th><td><i> * available in versions through 1.5, although the correctness of the code has</i>&nbsp</td></tr>
+<tr><th id="568">568</th><td><i> * not been verified recently.</i>&nbsp</td></tr>
+<tr><th id="569">569</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="570">570</th><td>&nbsp</td></tr>
+<tr><th id="571">571</th><td><i>/* Typedef for floating-point numbers that are converted to fixed-point with a</i>&nbsp</td></tr>
+<tr><th id="572">572</th><td><i> * multiple of 100,000, e.g., gamma</i>&nbsp</td></tr>
+<tr><th id="573">573</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="574">574</th><td><b>typedef</b> <a class="typedef" href="#png_int_32" title='png_int_32' data-type='int' data-ref="png_int_32">png_int_32</a> <dfn class="typedef" id="png_fixed_point" title='png_fixed_point' data-type='png_int_32' data-ref="png_fixed_point">png_fixed_point</dfn>;&nbsp</td></tr>
+<tr><th id="575">575</th><td>&nbsp</td></tr>
+<tr><th id="576">576</th><td><i>/* Add typedefs for pointers */</i>&nbsp</td></tr>
+<tr><th id="577">577</th><td><b>typedef</b> <em>void</em>                  * <dfn class="typedef" id="png_voidp" title='png_voidp' data-type='void *' data-ref="png_voidp">png_voidp</dfn>;&nbsp</td></tr>
+<tr><th id="578">578</th><td><b>typedef</b> <em>const</em> <em>void</em>            * <dfn class="typedef" id="png_const_voidp" title='png_const_voidp' data-type='const void *' data-ref="png_const_voidp">png_const_voidp</dfn>;&nbsp</td></tr>
+<tr><th id="579">579</th><td><b>typedef</b> <a class="typedef" href="#png_byte" title='png_byte' data-type='unsigned char' data-ref="png_byte">png_byte</a>              * <dfn class="typedef" id="png_bytep" title='png_bytep' data-type='png_byte *' data-ref="png_bytep">png_bytep</dfn>;&nbsp</td></tr>
+<tr><th id="580">580</th><td><b>typedef</b> <em>const</em> <a class="typedef" href="#png_byte" title='png_byte' data-type='unsigned char' data-ref="png_byte">png_byte</a>        * <dfn class="typedef" id="png_const_bytep" title='png_const_bytep' data-type='const png_byte *' data-ref="png_const_bytep">png_const_bytep</dfn>;&nbsp</td></tr>
+<tr><th id="581">581</th><td><b>typedef</b> <a class="typedef" href="#png_uint_32" title='png_uint_32' data-type='unsigned int' data-ref="png_uint_32">png_uint_32</a>           * <dfn class="typedef" id="png_uint_32p" title='png_uint_32p' data-type='png_uint_32 *' data-ref="png_uint_32p">png_uint_32p</dfn>;&nbsp</td></tr>
+<tr><th id="582">582</th><td><b>typedef</b> <em>const</em> <a class="typedef" href="#png_uint_32" title='png_uint_32' data-type='unsigned int' data-ref="png_uint_32">png_uint_32</a>     * <dfn class="typedef" id="png_const_uint_32p" title='png_const_uint_32p' data-type='const png_uint_32 *' data-ref="png_const_uint_32p">png_const_uint_32p</dfn>;&nbsp</td></tr>
+<tr><th id="583">583</th><td><b>typedef</b> <a class="typedef" href="#png_int_32" title='png_int_32' data-type='int' data-ref="png_int_32">png_int_32</a>            * <dfn class="typedef" id="png_int_32p" title='png_int_32p' data-type='png_int_32 *' data-ref="png_int_32p">png_int_32p</dfn>;&nbsp</td></tr>
+<tr><th id="584">584</th><td><b>typedef</b> <em>const</em> <a class="typedef" href="#png_int_32" title='png_int_32' data-type='int' data-ref="png_int_32">png_int_32</a>      * <dfn class="typedef" id="png_const_int_32p" title='png_const_int_32p' data-type='const png_int_32 *' data-ref="png_const_int_32p">png_const_int_32p</dfn>;&nbsp</td></tr>
+<tr><th id="585">585</th><td><b>typedef</b> <a class="typedef" href="#png_uint_16" title='png_uint_16' data-type='unsigned short' data-ref="png_uint_16">png_uint_16</a>           * <dfn class="typedef" id="png_uint_16p" title='png_uint_16p' data-type='png_uint_16 *' data-ref="png_uint_16p">png_uint_16p</dfn>;&nbsp</td></tr>
+<tr><th id="586">586</th><td><b>typedef</b> <em>const</em> <a class="typedef" href="#png_uint_16" title='png_uint_16' data-type='unsigned short' data-ref="png_uint_16">png_uint_16</a>     * <dfn class="typedef" id="png_const_uint_16p" title='png_const_uint_16p' data-type='const png_uint_16 *' data-ref="png_const_uint_16p">png_const_uint_16p</dfn>;&nbsp</td></tr>
+<tr><th id="587">587</th><td><b>typedef</b> <a class="typedef" href="#png_int_16" title='png_int_16' data-type='short' data-ref="png_int_16">png_int_16</a>            * <dfn class="typedef" id="png_int_16p" title='png_int_16p' data-type='png_int_16 *' data-ref="png_int_16p">png_int_16p</dfn>;&nbsp</td></tr>
+<tr><th id="588">588</th><td><b>typedef</b> <em>const</em> <a class="typedef" href="#png_int_16" title='png_int_16' data-type='short' data-ref="png_int_16">png_int_16</a>      * <dfn class="typedef" id="png_const_int_16p" title='png_const_int_16p' data-type='const png_int_16 *' data-ref="png_const_int_16p">png_const_int_16p</dfn>;&nbsp</td></tr>
+<tr><th id="589">589</th><td><b>typedef</b> <em>char</em>                  * <dfn class="typedef" id="png_charp" title='png_charp' data-type='char *' data-ref="png_charp">png_charp</dfn>;&nbsp</td></tr>
+<tr><th id="590">590</th><td><b>typedef</b> <em>const</em> <em>char</em>            * <dfn class="typedef" id="png_const_charp" title='png_const_charp' data-type='const char *' data-ref="png_const_charp">png_const_charp</dfn>;&nbsp</td></tr>
+<tr><th id="591">591</th><td><b>typedef</b> <a class="typedef" href="#png_fixed_point" title='png_fixed_point' data-type='png_int_32' data-ref="png_fixed_point">png_fixed_point</a>       * <dfn class="typedef" id="png_fixed_point_p" title='png_fixed_point_p' data-type='png_fixed_point *' data-ref="png_fixed_point_p">png_fixed_point_p</dfn>;&nbsp</td></tr>
+<tr><th id="592">592</th><td><b>typedef</b> <em>const</em> <a class="typedef" href="#png_fixed_point" title='png_fixed_point' data-type='png_int_32' data-ref="png_fixed_point">png_fixed_point</a> * <dfn class="typedef" id="png_const_fixed_point_p" title='png_const_fixed_point_p' data-type='const png_fixed_point *' data-ref="png_const_fixed_point_p">png_const_fixed_point_p</dfn>;&nbsp</td></tr>
+<tr><th id="593">593</th><td><b>typedef</b> <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>                * <dfn class="typedef" id="png_size_tp" title='png_size_tp' data-type='size_t *' data-ref="png_size_tp">png_size_tp</dfn>;&nbsp</td></tr>
+<tr><th id="594">594</th><td><b>typedef</b> <em>const</em> <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>          * <dfn class="typedef" id="png_const_size_tp" title='png_const_size_tp' data-type='const size_t *' data-ref="png_const_size_tp">png_const_size_tp</dfn>;&nbsp</td></tr>
+<tr><th id="595">595</th><td>&nbsp</td></tr>
+<tr><th id="596">596</th><td><u>#<span data-ppcond="596">ifdef</span> <a class="macro" href="pnglibconf.h.html#121" data-ref="_M/PNG_STDIO_SUPPORTED">PNG_STDIO_SUPPORTED</a></u>&nbsp</td></tr>
+<tr><th id="597">597</th><td><b>typedef</b> <a class="typedef" href="../../../../../include/x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a>            * <dfn class="typedef" id="png_FILE_p" title='png_FILE_p' data-type='FILE *' data-ref="png_FILE_p">png_FILE_p</dfn>;&nbsp</td></tr>
+<tr><th id="598">598</th><td><u>#<span data-ppcond="596">endif</span></u>&nbsp</td></tr>
+<tr><th id="599">599</th><td>&nbsp</td></tr>
+<tr><th id="600">600</th><td><u>#<span data-ppcond="600">ifdef</span> <a class="macro" href="pnglibconf.h.html#36" data-ref="_M/PNG_FLOATING_POINT_SUPPORTED">PNG_FLOATING_POINT_SUPPORTED</a></u>&nbsp</td></tr>
+<tr><th id="601">601</th><td><b>typedef</b> <em>double</em>       * <dfn class="typedef" id="png_doublep" title='png_doublep' data-type='double *' data-ref="png_doublep">png_doublep</dfn>;&nbsp</td></tr>
+<tr><th id="602">602</th><td><b>typedef</b> <em>const</em> <em>double</em> * <dfn class="typedef" id="png_const_doublep" title='png_const_doublep' data-type='const double *' data-ref="png_const_doublep">png_const_doublep</dfn>;&nbsp</td></tr>
+<tr><th id="603">603</th><td><u>#<span data-ppcond="600">endif</span></u>&nbsp</td></tr>
+<tr><th id="604">604</th><td>&nbsp</td></tr>
+<tr><th id="605">605</th><td><i>/* Pointers to pointers; i.e. arrays */</i>&nbsp</td></tr>
+<tr><th id="606">606</th><td><b>typedef</b> <a class="typedef" href="#png_byte" title='png_byte' data-type='unsigned char' data-ref="png_byte">png_byte</a>        * * <dfn class="typedef" id="png_bytepp" title='png_bytepp' data-type='png_byte **' data-ref="png_bytepp">png_bytepp</dfn>;&nbsp</td></tr>
+<tr><th id="607">607</th><td><b>typedef</b> <a class="typedef" href="#png_uint_32" title='png_uint_32' data-type='unsigned int' data-ref="png_uint_32">png_uint_32</a>     * * <dfn class="typedef" id="png_uint_32pp" title='png_uint_32pp' data-type='png_uint_32 **' data-ref="png_uint_32pp">png_uint_32pp</dfn>;&nbsp</td></tr>
+<tr><th id="608">608</th><td><b>typedef</b> <a class="typedef" href="#png_int_32" title='png_int_32' data-type='int' data-ref="png_int_32">png_int_32</a>      * * <dfn class="typedef" id="png_int_32pp" title='png_int_32pp' data-type='png_int_32 **' data-ref="png_int_32pp">png_int_32pp</dfn>;&nbsp</td></tr>
+<tr><th id="609">609</th><td><b>typedef</b> <a class="typedef" href="#png_uint_16" title='png_uint_16' data-type='unsigned short' data-ref="png_uint_16">png_uint_16</a>     * * <dfn class="typedef" id="png_uint_16pp" title='png_uint_16pp' data-type='png_uint_16 **' data-ref="png_uint_16pp">png_uint_16pp</dfn>;&nbsp</td></tr>
+<tr><th id="610">610</th><td><b>typedef</b> <a class="typedef" href="#png_int_16" title='png_int_16' data-type='short' data-ref="png_int_16">png_int_16</a>      * * <dfn class="typedef" id="png_int_16pp" title='png_int_16pp' data-type='png_int_16 **' data-ref="png_int_16pp">png_int_16pp</dfn>;&nbsp</td></tr>
+<tr><th id="611">611</th><td><b>typedef</b> <em>const</em> <em>char</em>      * * <dfn class="typedef" id="png_const_charpp" title='png_const_charpp' data-type='const char **' data-ref="png_const_charpp">png_const_charpp</dfn>;&nbsp</td></tr>
+<tr><th id="612">612</th><td><b>typedef</b> <em>char</em>            * * <dfn class="typedef" id="png_charpp" title='png_charpp' data-type='char **' data-ref="png_charpp">png_charpp</dfn>;&nbsp</td></tr>
+<tr><th id="613">613</th><td><b>typedef</b> <a class="typedef" href="#png_fixed_point" title='png_fixed_point' data-type='png_int_32' data-ref="png_fixed_point">png_fixed_point</a> * * <dfn class="typedef" id="png_fixed_point_pp" title='png_fixed_point_pp' data-type='png_fixed_point **' data-ref="png_fixed_point_pp">png_fixed_point_pp</dfn>;&nbsp</td></tr>
+<tr><th id="614">614</th><td><u>#<span data-ppcond="614">ifdef</span> <a class="macro" href="pnglibconf.h.html#36" data-ref="_M/PNG_FLOATING_POINT_SUPPORTED">PNG_FLOATING_POINT_SUPPORTED</a></u>&nbsp</td></tr>
+<tr><th id="615">615</th><td><b>typedef</b> <em>double</em>          * * <dfn class="typedef" id="png_doublepp" title='png_doublepp' data-type='double **' data-ref="png_doublepp">png_doublepp</dfn>;&nbsp</td></tr>
+<tr><th id="616">616</th><td><u>#<span data-ppcond="614">endif</span></u>&nbsp</td></tr>
+<tr><th id="617">617</th><td>&nbsp</td></tr>
+<tr><th id="618">618</th><td><i>/* Pointers to pointers to pointers; i.e., pointer to array */</i>&nbsp</td></tr>
+<tr><th id="619">619</th><td><b>typedef</b> <em>char</em>            * * * <dfn class="typedef" id="png_charppp" title='png_charppp' data-type='char ***' data-ref="png_charppp">png_charppp</dfn>;&nbsp</td></tr>
+<tr><th id="620">620</th><td>&nbsp</td></tr>
+<tr><th id="621">621</th><td><u>#<span data-ppcond="465">endif</span> /* PNG_BUILDING_SYMBOL_TABLE */</u>&nbsp</td></tr>
+<tr><th id="622">622</th><td>&nbsp</td></tr>
+<tr><th id="623">623</th><td><u>#<span data-ppcond="21">endif</span> /* PNGCONF_H */</u>&nbsp</td></tr>
+<tr><th id="624">624</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Src/tPicture.cpp.html'>Modules/Image/Src/tPicture.cpp</a><br/>Generated on <em>2025-Aug-25</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

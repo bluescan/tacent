@@ -1,0 +1,60 @@
+<inh f='include/c++/11/bits/exception.h' l='61' c='std::exception'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='60' ll='127'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='72' c='_ZN7Iex_2_57BaseExcC1ERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='73' c='_ZN7Iex_2_57BaseExcC1EOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='76' c='_ZN7Iex_2_57BaseExcaSERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='76' c='_ZN7Iex_2_57BaseExcaSERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='77' c='_ZN7Iex_2_57BaseExcaSEOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='77' c='_ZN7Iex_2_57BaseExcaSEOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='90' c='_ZN7Iex_2_57BaseExc6assignERNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='91' c='_ZN7Iex_2_57BaseExcaSERNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='93' c='_ZN7Iex_2_57BaseExc6appendERNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='94' c='_ZN7Iex_2_57BaseExcpLERNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='102' c='_ZN7Iex_2_57BaseExc6assignEPKc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='103' c='_ZN7Iex_2_57BaseExcaSEPKc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='105' c='_ZN7Iex_2_57BaseExc6appendEPKc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='106' c='_ZN7Iex_2_57BaseExcpLEPKc'/>
+<ovr f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='168' c='Iex_2_5::ArgExc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='168'/>
+<ovr f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='170' c='Iex_2_5::LogicExc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='170'/>
+<ovr f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='175' c='Iex_2_5::InputExc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='175'/>
+<ovr f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='177' c='Iex_2_5::IoExc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='177'/>
+<ovr f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='179' c='Iex_2_5::MathExc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='179'/>
+<ovr f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='183' c='Iex_2_5::ErrnoExc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='183'/>
+<ovr f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='188' c='Iex_2_5::NoImplExc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='188'/>
+<ovr f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='194' c='Iex_2_5::NullExc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='194'/>
+<ovr f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='196' c='Iex_2_5::TypeExc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='196'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='201' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<size>72</size>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='56'>//-------------------------------
+// Our most basic exception class
+//-------------------------------</doc>
+<fun r='_ZN7Iex_2_57BaseExcC1EPKc'/>
+<fun r='_ZN7Iex_2_57BaseExcC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Iex_2_57BaseExcC1ERNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Iex_2_57BaseExcC1ERKS0_'/>
+<fun r='_ZN7Iex_2_57BaseExcC1EOS0_'/>
+<fun r='_ZN7Iex_2_57BaseExcD1Ev'/>
+<fun r='_ZN7Iex_2_57BaseExcaSERKS0_'/>
+<fun r='_ZN7Iex_2_57BaseExcaSEOS0_'/>
+<fun r='_ZNK7Iex_2_57BaseExc4whatEv'/>
+<fun r='_ZN7Iex_2_57BaseExc6assignERNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Iex_2_57BaseExcaSERNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Iex_2_57BaseExc6appendERNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Iex_2_57BaseExcpLERNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Iex_2_57BaseExc6assignEPKc'/>
+<fun r='_ZN7Iex_2_57BaseExcaSEPKc'/>
+<fun r='_ZN7Iex_2_57BaseExc6appendEPKc'/>
+<fun r='_ZN7Iex_2_57BaseExcpLEPKc'/>
+<fun r='_ZNK7Iex_2_57BaseExc7messageB5cxx11Ev'/>
+<fun r='_ZNK7Iex_2_57BaseExc10stackTraceB5cxx11Ev'/>
+<mbr r='Iex_2_5::BaseExc::_message' o='64' t='std::string'/>
+<mbr r='Iex_2_5::BaseExc::_stackTrace' o='320' t='std::string'/>

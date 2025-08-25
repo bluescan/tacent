@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/stl_map.h' l='869' ll='871' type='std::map::iterator std::map::insert(std::map::const_iterator __position, std::map::value_type &amp;&amp; __x)'/>
+<doc f='include/c++/11/bits/stl_map.h' l='867'>// _GLIBCXX_RESOLVE_LIB_DEFECTS
+      // 2354. Unnecessary copying when inserting into maps with braced-init</doc>

@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='222' type='8'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='217'>/**
+   * BGRA pixel format.  This is the same as @ref TJPF_BGRX, except that when
+   * decompressing, the X component is guaranteed to be 0xFF, which can be
+   * interpreted as an opaque alpha channel.
+   */</doc>

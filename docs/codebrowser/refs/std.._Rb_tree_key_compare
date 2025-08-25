@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/stl_tree.h' l='142' ll='165'/>
+<use f='include/c++/11/bits/stl_tree.h' l='662'/>
+<use f='include/c++/11/bits/stl_tree.h' l='665'/>
+<mbr r='std::_Rb_tree_key_compare::_M_key_compare' t='_Key_compare'/>
+<fun r='_ZNSt20_Rb_tree_key_compareC1Ev'/>
+<fun r='_ZNSt20_Rb_tree_key_compareC1ERKT_'/>
+<fun r='_ZNSt20_Rb_tree_key_compareC1ERKSt20_Rb_tree_key_compareIT_E'/>
+<fun r='_ZNSt20_Rb_tree_key_compareC1EOSt20_Rb_tree_key_compareIT_E'/>

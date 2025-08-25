@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1154' ll='1156' type='const tinyxml2::XMLAttribute * tinyxml2::XMLAttribute::Next() const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1153'>/// The next attribute in the list.</doc>

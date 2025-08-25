@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2853'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2849'>/* Return the size in bytes of a single component of a pixel or color-map
+    * entry (as appropriate) in the image: 1 or 2.
+    */</doc>

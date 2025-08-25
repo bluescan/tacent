@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='118' type='long Imf_2_5::Array::size() const'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='98' u='c' c='_ZN3EXR16ComputeFogColourERfS0_S0_RKN7Imf_2_55ArrayINS1_4RgbaEEE'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='114'>//-------------------------------
+    // Return the size of this array.
+    //-------------------------------</doc>

@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2112' ll='2114' type='tinyxml2::XMLText * tinyxml2::XMLHandle::ToText()'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2111'>/// Safe cast to XMLText. This can return null.</doc>

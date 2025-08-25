@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2095' ll='2097' type='tinyxml2::XMLHandle tinyxml2::XMLHandle::NextSibling()'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2094'>/// Get the next sibling of this handle.</doc>

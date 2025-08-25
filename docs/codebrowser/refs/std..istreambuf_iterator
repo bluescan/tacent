@@ -60,9 +60,9 @@
 <fun r='_ZNKSt19istreambuf_iterator6_M_getEv'/>
 <fun r='_ZNKSt19istreambuf_iterator9_M_at_eofEv'/>
 <fun r='_ZNSt19istreambuf_iterator9_S_is_eofENT0_8int_typeE'/>
+<use f='include/c++/11/istream' l='72'/>
 <use f='include/c++/11/bits/deque.tcc' l='1076' c='_ZSt14__copy_move_a2St19istreambuf_iteratorIT0_St11char_traitsIS0_EES3_St15_Deque_iteratorIS0_RS0_PS0_E'/>
 <use f='include/c++/11/bits/deque.tcc' l='1077' c='_ZSt14__copy_move_a2St19istreambuf_iteratorIT0_St11char_traitsIS0_EES3_St15_Deque_iteratorIS0_RS0_PS0_E'/>
 <use f='include/c++/11/bits/deque.tcc' l='1103' c='_ZSt10__copy_n_aSt19istreambuf_iteratorIT_St11char_traitsIS0_EET0_St15_Deque_iteratorIS0_RS0_PS0_Eb'/>
-<use f='include/c++/11/istream' l='72'/>
 <use f='include/c++/11/iomanip' l='272' c='_ZStrsRSt13basic_istreamIT_T0_ESt10_Get_moneyIT1_E'/>
 <use f='include/c++/11/iomanip' l='426' c='_ZStrsRSt13basic_istreamIT_T0_ESt9_Get_timeIS0_E'/>

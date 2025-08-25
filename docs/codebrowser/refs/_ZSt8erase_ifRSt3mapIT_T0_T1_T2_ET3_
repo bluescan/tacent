@@ -1,0 +1,1 @@
+<def f='include/c++/11/map' l='96' ll='98' type='typename map&lt;_Key, _Tp, _Compare, _Alloc&gt;::size_type std::erase_if(map&lt;_Key, _Tp, _Compare, _Alloc&gt; &amp; __cont, _Predicate __pred)'/>

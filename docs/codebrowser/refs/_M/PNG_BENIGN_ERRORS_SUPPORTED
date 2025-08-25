@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/pnglibconf.h' l='22'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='1798' u='a'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/pnglibconf.h' l='21'>/*#undef PNG_ARM_NEON_CHECK_SUPPORTED*/</doc>

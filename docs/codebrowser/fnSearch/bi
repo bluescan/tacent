@@ -10,6 +10,7 @@ _ZNKSt7bit_andclERKT_S2_|std::bit_and::operator()
 _ZNKSt7bit_notclERKT_|std::bit_not::operator()
 _ZNKSt6bit_orclERKT_S2_|std::bit_or::operator()
 _ZNKSt7bit_xorclERKT_S2_|std::bit_xor::operator()
+_ZNK4half4bitsEv|half::bits
 _ZNSt21binomial_distribution10_M_waitingERTL0__T_d|std::binomial_distribution::_M_waiting
 _ZNKSt21binomial_distribution3maxEv|std::binomial_distribution::max
 _ZNKSt21binomial_distribution3minEv|std::binomial_distribution::min

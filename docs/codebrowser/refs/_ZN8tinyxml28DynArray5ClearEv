@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='222' ll='224' type='void tinyxml2::DynArray::Clear()'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2322' u='c' c='_ZN8tinyxml210XMLPrinter11ClearBufferEb'/>

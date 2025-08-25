@@ -17,9 +17,6 @@
 <use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='104' u='c' c='_ZN10tRuleErrorC1ERK7tString'/>
 <use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='105' u='c' c='_ZN10tRuleErrorC1Ev'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='27' u='c' c='_ZN10tRuleErrorC1EPKcz'/>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='55' u='c' c='_ZN14tSolutionErrorC1EPKcz'/>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='56' u='c' c='_ZN14tSolutionErrorC1ERK7tString'/>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='57' u='c' c='_ZN14tSolutionErrorC1Ev'/>
 <use f='Modules/Scene/Src/tWorld.cpp' l='664' u='c' c='_ZN6tScene6tWorld16CorrectCameraIDsER7tItListINS_7tCameraEERS1_INS_9tInstanceEE'/>
 <use f='Modules/Scene/Src/tWorld.cpp' l='713' u='c' c='_ZN6tScene6tWorld15CorrectLightIDsER7tItListINS_6tLightEERS1_INS_9tInstanceEE'/>
 <use f='Modules/Scene/Src/tWorld.cpp' l='952' u='c' c='_ZN6tScene6tWorld19CorrectPolyModelIDsER7tItListINS_10tPolyModelEERS1_INS_9tLodGroupEERS1_INS_9tInstanceEE'/>

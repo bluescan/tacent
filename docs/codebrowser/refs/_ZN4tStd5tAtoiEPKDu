@@ -1,2 +1,2 @@
-<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='171' type='int tStd::tAtoi(const char8_t * s)'/>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='171'>/* Base 10 only. Use tStrtoi for arbitrary base. */</doc>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='177' type='int tStd::tAtoi(const char8_t * s)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='177'>/* Base 10 only. Use tStrtoi for arbitrary base. */</doc>

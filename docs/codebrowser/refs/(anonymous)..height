@@ -11,3 +11,6 @@
 <use f='Modules/Image/Src/tImageQOI.cpp' l='61' u='r' c='_ZN6tImage9tImageQOI4LoadEPKhi'/>
 <use f='Modules/Image/Src/tImageQOI.cpp' l='208' u='w' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>
 <offset>32</offset>
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2674' type='png_uint_32'/>
+<offset>128</offset>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2674'>/* Image height in pixels (rows) */</doc>

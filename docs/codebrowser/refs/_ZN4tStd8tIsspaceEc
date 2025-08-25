@@ -1,5 +1,5 @@
-<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='333' type='bool tStd::tIsspace(char c)'/>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='331'>// These are non UTF-8 functions that work on individual ASCII characters or ASCII strings. tStrrev, for example,
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='339' type='bool tStd::tIsspace(char c)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='337'>// These are non UTF-8 functions that work on individual ASCII characters or ASCII strings. tStrrev, for example,
 // simply reverses the chars, it is not aware of UFT-8 surrogates and would mess them up.</doc>
 <use f='Modules/System/Src/tRegex.cpp' l='504' u='c' c='_ZN7tSystem6tRegex11MatchCClassEic'/>
 <use f='Modules/System/Src/tRegex.cpp' l='507' u='c' c='_ZN7tSystem6tRegex11MatchCClassEic'/>

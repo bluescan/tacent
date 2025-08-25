@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1878' type='void tinyxml2::XMLDocument::ClearError()'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1877'>/// Clears the error flags.</doc>

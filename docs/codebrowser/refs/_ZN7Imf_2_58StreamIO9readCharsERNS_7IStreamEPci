@@ -1,0 +1,1 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='239' ll='243' type='static bool Imf_2_5::StreamIO::readChars(Imf_2_5::IStream &amp; is, char * c, int n)'/>

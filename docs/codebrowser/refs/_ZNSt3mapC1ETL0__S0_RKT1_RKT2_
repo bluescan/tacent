@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_map.h' l='290' ll='294' type='void std::map::map&lt;_Key, _Tp, _Compare, _Alloc&gt;(_InputIterator __first, _InputIterator __last, const _Compare &amp; __comp, const std::map::allocator_type &amp; __a = std::map::allocator_type())'/>

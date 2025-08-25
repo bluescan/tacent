@@ -1,9 +1,9 @@
 <def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='179' type='float tMath::tSin(float x)'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='193' u='c' c='_ZN5tMath3tSaEf'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='194' u='c' c='_ZN5tMath5tSincEf'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='529' u='c' c='_ZN5tMath7tCosSinERfS0_f'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='565' u='c' c='_ZN5tMath8tUnitSinEfj'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='575' u='c' c='_ZN5tMath12tUnitSinHalfEfj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='196' u='c' c='_ZN5tMath3tSaEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='197' u='c' c='_ZN5tMath5tSincEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='532' u='c' c='_ZN5tMath7tCosSinERfS0_f'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='568' u='c' c='_ZN5tMath8tUnitSinEfj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='578' u='c' c='_ZN5tMath12tUnitSinHalfEfj'/>
 <use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1185' u='c' c='_ZN5tMath12tMakeRotateXERNS_5tMat4Ef'/>
 <use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1198' u='c' c='_ZN5tMath12tMakeRotateYERNS_5tMat4Ef'/>
 <use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1210' u='c' c='_ZN5tMath12tMakeRotateZERNS_5tMat4Ef'/>

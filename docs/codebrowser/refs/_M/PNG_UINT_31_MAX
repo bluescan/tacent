@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='649'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='648'>/* Maximum positive integer used in PNG is (2^31)-1 */</doc>

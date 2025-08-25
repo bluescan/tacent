@@ -1,0 +1,11 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='744' type='const char * tinyxml2::XMLNode::Value() const'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1270' u='c' c='_ZNK8tinyxml210XMLElement4NameEv'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='735'>/** The meaning of &apos;value&apos; changes for the specific type.
+    	@verbatim
+    	Document:	empty (NULL is returned, not an empty string)
+    	Element:	name of the element
+    	Comment:	the comment text
+    	Unknown:	the tag contents
+    	Text:		the text string
+    	@endverbatim
+    */</doc>

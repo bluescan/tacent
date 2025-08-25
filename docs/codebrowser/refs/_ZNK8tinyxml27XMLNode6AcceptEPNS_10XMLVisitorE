@@ -1,0 +1,23 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='932' type='bool tinyxml2::XMLNode::Accept(tinyxml2::XMLVisitor * visitor) const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='910'>/** Accept a hierarchical visit of the nodes in the TinyXML-2 DOM. Every node in the
+    	XML tree will be conditionally visited and the host will be called back
+    	via the XMLVisitor interface.
+
+    	This is essentially a SAX interface for TinyXML-2. (Note however it doesn&apos;t re-parse
+    	the XML for the callbacks, so the performance of TinyXML-2 is unchanged by using this
+    	interface versus any other.)
+
+    	The interface has been based on ideas from:
+
+    	- http://www.saxproject.org/
+    	- http://c2.com/cgi/wiki?HierarchicalVisitorPattern
+
+    	Which are both good references for &quot;visiting&quot;.
+
+    	An example of using Accept():
+    	@verbatim
+    	XMLPrinter printer;
+    	tinyxmlDoc.Accept( &amp;printer );
+    	const char* xmlcstr = printer.CStr();
+    	@endverbatim
+    */</doc>

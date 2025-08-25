@@ -1,0 +1,54 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathMath.h' l='92' ll='121'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathMath.h' l='124' ll='152'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathMath.h' l='125'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathMath.h' l='167' c='_ZN9Imath_2_511sinx_over_xET_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1182' c='_ZNK9Imath_2_54Vec210lengthTinyEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1194' c='_ZNK9Imath_2_54Vec26lengthEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1673' c='_ZNK9Imath_2_54Vec310lengthTinyEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1685' c='_ZNK9Imath_2_54Vec36lengthEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='2077' c='_ZNK9Imath_2_54Vec410lengthTinyEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='2089' c='_ZNK9Imath_2_54Vec46lengthEv'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='65' c='_ZN3EXR7KneeFunEdd'/>
+<size>1</size>
+<fun r='_ZN9Imath_2_54Math4acosET_'/>
+<fun r='_ZN9Imath_2_54Math4asinET_'/>
+<fun r='_ZN9Imath_2_54Math4atanET_'/>
+<fun r='_ZN9Imath_2_54Math5atan2ET_S1_'/>
+<fun r='_ZN9Imath_2_54Math3cosET_'/>
+<fun r='_ZN9Imath_2_54Math3sinET_'/>
+<fun r='_ZN9Imath_2_54Math3tanET_'/>
+<fun r='_ZN9Imath_2_54Math4coshET_'/>
+<fun r='_ZN9Imath_2_54Math4sinhET_'/>
+<fun r='_ZN9Imath_2_54Math4tanhET_'/>
+<fun r='_ZN9Imath_2_54Math3expET_'/>
+<fun r='_ZN9Imath_2_54Math3logET_'/>
+<fun r='_ZN9Imath_2_54Math5log10ET_'/>
+<fun r='_ZN9Imath_2_54Math4modfET_PS1_'/>
+<fun r='_ZN9Imath_2_54Math3powET_S1_'/>
+<fun r='_ZN9Imath_2_54Math4sqrtET_'/>
+<fun r='_ZN9Imath_2_54Math4ceilET_'/>
+<fun r='_ZN9Imath_2_54Math4fabsET_'/>
+<fun r='_ZN9Imath_2_54Math5floorET_'/>
+<fun r='_ZN9Imath_2_54Math4fmodET_S1_'/>
+<fun r='_ZN9Imath_2_54Math5hypotET_S1_'/>
+<fun r='_ZN9Imath_2_54MathIfE4acosEf'/>
+<fun r='_ZN9Imath_2_54MathIfE4asinEf'/>
+<fun r='_ZN9Imath_2_54MathIfE4atanEf'/>
+<fun r='_ZN9Imath_2_54MathIfE5atan2Eff'/>
+<fun r='_ZN9Imath_2_54MathIfE3cosEf'/>
+<fun r='_ZN9Imath_2_54MathIfE3sinEf'/>
+<fun r='_ZN9Imath_2_54MathIfE3tanEf'/>
+<fun r='_ZN9Imath_2_54MathIfE4coshEf'/>
+<fun r='_ZN9Imath_2_54MathIfE4sinhEf'/>
+<fun r='_ZN9Imath_2_54MathIfE4tanhEf'/>
+<fun r='_ZN9Imath_2_54MathIfE3expEf'/>
+<fun r='_ZN9Imath_2_54MathIfE3logEf'/>
+<fun r='_ZN9Imath_2_54MathIfE5log10Ef'/>
+<fun r='_ZN9Imath_2_54MathIfE4modfEfPf'/>
+<fun r='_ZN9Imath_2_54MathIfE3powEff'/>
+<fun r='_ZN9Imath_2_54MathIfE4sqrtEf'/>
+<fun r='_ZN9Imath_2_54MathIfE4ceilEf'/>
+<fun r='_ZN9Imath_2_54MathIfE4fabsEf'/>
+<fun r='_ZN9Imath_2_54MathIfE5floorEf'/>
+<fun r='_ZN9Imath_2_54MathIfE4fmodEff'/>
+<fun r='_ZN9Imath_2_54MathIfE5hypotEff'/>

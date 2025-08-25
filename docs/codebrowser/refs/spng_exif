@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='368' ll='372'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='506' c='spng_get_exif'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='529' c='spng_set_exif'/>
+<size>16</size>
+<mbr r='spng_exif::length' o='0' t='size_t'/>
+<mbr r='spng_exif::data' o='64' t='char *'/>

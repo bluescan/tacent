@@ -41,8 +41,6 @@
 <use f='Modules/Pipeline/Src/tRule.cpp' l='94' u='c' c='_ZN9tPipeline5tRule15AddDependenciesER5tListI11tStringItemE'/>
 <use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='68' u='c' c='_ZN9tPipeline5tRule16AddDependencyDirERK7tStringS3_'/>
 <use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='73' u='c' c='_ZN9tPipeline5tRule19AddDependencyDirRecERK7tStringS3_'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='24' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='69' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
 <use f='Modules/Scene/Inc/Scene/tWorld.h' l='124' u='c' c='_ZNK6tScene6tWorld13GetNumCamerasERK7tString'/>
 <use f='Modules/Scene/Inc/Scene/tWorld.h' l='136' u='c' c='_ZNK6tScene6tWorld12GetNumLightsERK7tString'/>
 <use f='Modules/Scene/Inc/Scene/tWorld.h' l='141' u='c' c='_ZNK6tScene6tWorld11GetNumPathsERK7tString'/>

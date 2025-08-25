@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2342'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2341'>/* For use in png_set_keep_unknown, added to version 1.2.6 */</doc>

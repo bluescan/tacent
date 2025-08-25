@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathPlatform.h' l='72'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathPlatform.h' l='68'>//
+    // supports __restrict
+    //</doc>

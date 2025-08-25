@@ -1,1 +1,2 @@
 <dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='42'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='79' u='c'/>

@@ -1,0 +1,6 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1515' u='r' c='_ZNK8tinyxml210XMLElement14FirstAttributeEv'/>
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1701' type='tinyxml2::XMLAttribute *'/>
+<offset>896</offset>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1698'>// The attribute list is ordered; there is no &apos;lastAttribute&apos;
+    // because the list needs to be scanned for dupes before adding
+    // a new attribute.</doc>

@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='308' type='void Imath_2_5::Vec3::~Vec3&lt;T&gt;()'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='304'>//-----------
+    // Destructor
+    //-----------</doc>

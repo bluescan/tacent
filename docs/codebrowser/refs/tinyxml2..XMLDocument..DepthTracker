@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1965' ll='1976'/>
+<size>8</size>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1962'>// Something of an obvious security hole, once it was discovered.
+	// Either an ill-formed XML or an excessively deep one can overflow
+	// the stack. Track stack depth, and error out if needed.</doc>
+<fun r='_ZN8tinyxml211XMLDocument12DepthTrackerC1EPS0_'/>
+<fun r='_ZN8tinyxml211XMLDocument12DepthTrackerD1Ev'/>
+<mbr r='tinyxml2::XMLDocument::DepthTracker::_document' o='0' t='tinyxml2::XMLDocument *'/>

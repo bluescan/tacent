@@ -1,5 +1,5 @@
-<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='311' type='char32_t tStd::tUTF32c(const char8_t * srcPoint)'/>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='288'>// Individual codepoint functions. If you want to convert to a single codepoint WITHOUT having a null terminator written
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='317' type='char32_t tStd::tUTF32c(const char8_t * srcPoint)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='294'>// Individual codepoint functions. If you want to convert to a single codepoint WITHOUT having a null terminator written
 // the tUTFns functions above don&apos;t work (they write the terminator) and the tUTFn functions above are inconvenient
 // since you&apos;d also need to provide the length.
 //
@@ -22,5 +22,5 @@
 //
 // These read codeunit arrays and return a single codepoint in UTF-32. Special replacement returned on error. An error
 // is either an invalid encoding OR when src is nullptr. Length is not needed as it&apos;s implicit in the encoding.</doc>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='311'>// Reads 1 to 4 char8 codeunits from srcPoint.</doc>
-<def f='Modules/Foundation/Src/tStandard.cpp' l='563' ll='571' type='char32_t tStd::tUTF32c(const char8_t * srcPoint)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='317'>// Reads 1 to 4 char8 codeunits from srcPoint.</doc>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='626' ll='634' type='char32_t tStd::tUTF32c(const char8_t * srcPoint)'/>

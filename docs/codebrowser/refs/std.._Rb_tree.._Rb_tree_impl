@@ -1,0 +1,9 @@
+<inh f='include/c++/11/bits/stl_tree.h' l='168' c='std::_Rb_tree_header'/>
+<def f='include/c++/11/bits/stl_tree.h' l='660' ll='704'/>
+<use f='include/c++/11/bits/stl_tree.h' l='706'/>
+<fun r='_ZNSt8_Rb_tree13_Rb_tree_implC1Ev'/>
+<fun r='_ZNSt8_Rb_tree13_Rb_tree_implC1ERKNS_13_Rb_tree_implITL0__XTL0_0_EEE'/>
+<fun r='_ZNSt8_Rb_tree13_Rb_tree_implC1EONS_13_Rb_tree_implITL0__XTL0_0_EEE'/>
+<fun r='_ZNSt8_Rb_tree13_Rb_tree_implC1EON9__gnu_cxx14__alloc_traitsIT3_NS3_10value_typeEE6rebindISt13_Rb_tree_nodeIT0_EE5otherE'/>
+<fun r='_ZNSt8_Rb_tree13_Rb_tree_implC1EONS_13_Rb_tree_implITL0__XTL0_0_EEEON9__gnu_cxx14__alloc_traitsIT3_NS8_10value_typeEE6rebindISt13_Rb_tree_nodeIT0_EE5otherE'/>
+<fun r='_ZNSt8_Rb_tree13_Rb_tree_implC1ERKTL0__ON9__gnu_cxx14__alloc_traitsIT3_NS6_10value_typeEE6rebindISt13_Rb_tree_nodeIT0_EE5otherE'/>

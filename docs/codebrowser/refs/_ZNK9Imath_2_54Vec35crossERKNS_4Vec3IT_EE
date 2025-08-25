@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='388' type='Vec3&lt;T&gt; Imath_2_5::Vec3::cross(const Vec3&lt;T&gt; &amp; v) const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1494' ll='1501' type='Vec3&lt;T&gt; Imath_2_5::Vec3::cross(const Vec3&lt;T&gt; &amp; v) const'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='384'>//---------------------------
+    // Right-handed cross product
+    //---------------------------</doc>

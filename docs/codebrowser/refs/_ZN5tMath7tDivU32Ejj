@@ -1,2 +1,2 @@
 <dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='104' type='tMath::tDivU32t tMath::tDivU32(uint32 numerator, uint32 denominator)'/>
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='310' ll='316' type='tMath::tDivU32t tMath::tDivU32(uint32 numerator, uint32 denominator)'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='313' ll='319' type='tMath::tDivU32t tMath::tDivU32(uint32 numerator, uint32 denominator)'/>

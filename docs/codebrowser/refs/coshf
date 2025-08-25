@@ -1,1 +1,2 @@
 <dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='71' macro='1' type='float coshf(float __x)'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathMath.h' l='134' u='c' c='_ZN9Imath_2_54MathIfE4coshEf'/>

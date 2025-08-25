@@ -16,9 +16,6 @@
 <use f='Modules/Foundation/Src/tString.cpp' l='142' u='c' c='_ZN7tString11ExtractLeftEc'/>
 <use f='Modules/Foundation/Src/tString.cpp' l='163' u='c' c='_ZN7tString12ExtractRightEc'/>
 <use f='Modules/Foundation/Src/tString.cpp' l='740' u='c' c='_ZN4tStd8tExplodeER5tListI11tStringItemERK7tStringc'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='45' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='93' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='98' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='156' u='c' c='_ZN8tCmdLine6tParseEiPPcb'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='188' u='c' c='_ZN8tCmdLine6tParseEiPPDsb'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='462' u='c' c='_ZN8tCmdLine14SyntaxInternalEP7tStringi'/>

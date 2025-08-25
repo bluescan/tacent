@@ -1,1 +1,2 @@
 _ZSt6skipwsRSt8ios_base|std::skipws
+_ZN8tinyxml27XMLUtil14SkipWhiteSpaceEPKcPi|tinyxml2::XMLUtil::SkipWhiteSpace

@@ -1,1 +1,13 @@
 <dec f='include/c++/11/bits/move.h' l='168'/>
+<use f='include/c++/11/bits/stl_tree.h' l='472' u='c'/>
+<use f='include/c++/11/bits/stl_tree.h' l='476' u='c'/>
+<use f='include/c++/11/bits/stl_tree.h' l='529' u='c'/>
+<use f='include/c++/11/bits/stl_tree.h' l='645' u='c'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1784' u='c'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1809' u='c'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1838' u='c'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2130' u='c'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2154' u='c'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2238' u='c'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2320' u='c'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2323' u='c'/>

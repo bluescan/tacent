@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/Linux/jconfig.h' l='33'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/Linux/jconfig.h' l='24'>/*
+ * Define BITS_IN_JSAMPLE as either
+ *   8   for 8-bit sample values (the usual setting)
+ *   12  for 12-bit sample values
+ * Only 8 and 12 are legal data precisions for lossy JPEG according to the
+ * JPEG standard, and the IJG code does not support anything else!
+ * We do not support run-time selection of data precision, sorry.
+ */</doc>

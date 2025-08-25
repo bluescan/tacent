@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='824' ll='826' type='std::multimap::value_compare std::multimap::value_comp() const'/>
+<doc f='include/c++/11/bits/stl_multimap.h' l='820'>/**
+       *  Returns a value comparison object, built from the key comparison
+       *  object out of which the %multimap was constructed.
+       */</doc>

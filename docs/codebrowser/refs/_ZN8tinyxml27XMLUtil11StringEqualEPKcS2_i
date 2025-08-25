@@ -1,0 +1,1 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='599' ll='607' type='static bool tinyxml2::XMLUtil::StringEqual(const char * p, const char * q, int nChar = 2147483647)'/>

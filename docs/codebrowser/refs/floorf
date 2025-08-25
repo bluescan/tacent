@@ -3,3 +3,4 @@
 <use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='133' u='c' c='_ZN5tMath7tiFloorERf'/>
 <use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='137' u='c' c='_ZN5tMath6tRoundEf'/>
 <use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='138' u='c' c='_ZN5tMath7tiRoundERf'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathMath.h' l='145' u='c' c='_ZN9Imath_2_54MathIfE5floorEf'/>

@@ -5,5 +5,7 @@
 <use f='include/c++/11/bits/stl_vector.h' l='80' u='c'/>
 <use f='include/c++/11/bits/stl_bvector.h' l='67' u='c'/>
 <use f='include/c++/11/bits/vector.tcc' l='62' u='c'/>
+<use f='include/c++/11/bits/stl_map.h' l='69' u='c'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='67' u='c'/>
 <use f='include/c++/11/bits/stl_deque.h' l='75' u='c'/>
 <use f='include/c++/11/bits/deque.tcc' l='64' u='c'/>

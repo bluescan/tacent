@@ -32,6 +32,15 @@
 <use f='include/c++/11/bits/basic_string.tcc' l='1193' c='_ZStplT_RKNSt7__cxx1112basic_stringIS_T0_T1_EE'/>
 <use f='include/c++/11/bits/basic_string.tcc' l='1193' c='_ZStplT_RKNSt7__cxx1112basic_stringIS_T0_T1_EE'/>
 <use f='include/c++/11/bits/basic_string.tcc' l='1195' c='_ZStplT_RKNSt7__cxx1112basic_stringIS_T0_T1_EE'/>
+<use f='include/c++/11/bits/stl_tree.h' l='427'/>
+<use f='include/c++/11/bits/stl_tree.h' l='427'/>
+<use f='include/c++/11/bits/stl_tree.h' l='430'/>
+<use f='include/c++/11/bits/stl_map.h' l='146'/>
+<use f='include/c++/11/bits/stl_map.h' l='146'/>
+<use f='include/c++/11/bits/stl_map.h' l='155'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='145'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='145'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='153'/>
 <use f='include/c++/11/bits/stl_deque.h' l='412'/>
 <use f='include/c++/11/bits/stl_deque.h' l='412'/>
 <use f='include/c++/11/bits/stl_deque.h' l='414'/>

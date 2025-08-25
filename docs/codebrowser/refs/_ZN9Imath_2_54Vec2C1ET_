@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='88' type='void Imath_2_5::Vec2::Vec2&lt;T&gt;(T a)'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='888' ll='893' type='void Imath_2_5::Vec2::Vec2&lt;T&gt;(T a)'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='88'>// (a a)</doc>

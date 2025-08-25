@@ -1,0 +1,27 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='77' ll='130'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='198' c='_ZN7Imf_2_55Array11resizeEraseEl'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='209' c='_ZN7Imf_2_55Array17resizeEraseUnsafeEl'/>
+<use f='Modules/Image/Contrib/OpenEXR/loadImage.h' l='96' c='_ZN3EXR9loadImageEPKcS1_S1_biiiRiRN7Imf_2_56HeaderERNS3_5ArrayINS3_4RgbaEEERNS6_IPfEERNS6_IjEEb'/>
+<use f='Modules/Image/Contrib/OpenEXR/loadImage.h' l='97' c='_ZN3EXR9loadImageEPKcS1_S1_biiiRiRN7Imf_2_56HeaderERNS3_5ArrayINS3_4RgbaEEERNS6_IPfEERNS6_IjEEb'/>
+<use f='Modules/Image/Contrib/OpenEXR/loadImage.h' l='98' c='_ZN3EXR9loadImageEPKcS1_S1_biiiRiRN7Imf_2_56HeaderERNS3_5ArrayINS3_4RgbaEEERNS6_IPfEERNS6_IjEEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='52' c='_ZN3EXR16ComputeFogColourERfS0_S0_RKN7Imf_2_55ArrayINS1_4RgbaEEE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='92' c='_ZN3EXR16ComputeFogColourERfS0_S0_RKN7Imf_2_55ArrayINS1_4RgbaEEE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='172' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='173' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='174' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<fun r='_ZN7Imf_2_55ArrayC1Ev'/>
+<fun r='_ZN7Imf_2_55ArrayC1El'/>
+<fun r='_ZN7Imf_2_55ArrayD1Ev'/>
+<fun r='_ZN7Imf_2_55ArraycvPT_Ev'/>
+<fun r='_ZNK7Imf_2_55ArraycvPKT_Ev'/>
+<fun r='_ZN7Imf_2_55Array11resizeEraseEl'/>
+<fun r='_ZN7Imf_2_55Array17resizeEraseUnsafeEl'/>
+<fun r='_ZNK7Imf_2_55Array4sizeEv'/>
+<fun r='_ZN7Imf_2_55ArrayC1ERKNS_5ArrayIT_EE'/>
+<fun r='_ZN7Imf_2_55ArrayaSERKNS_5ArrayIT_EE'/>
+<fun r='_ZN7Imf_2_55ArrayC1EONS_5ArrayIT_EE'/>
+<fun r='_ZN7Imf_2_55ArrayaSEONS_5ArrayIT_EE'/>
+<mbr r='Imf_2_5::Array::_size' t='long'/>
+<mbr r='Imf_2_5::Array::_data' t='T *'/>
+<fun r='_ZN7Imf_2_55Array11resizeEraseEl'/>
+<fun r='_ZN7Imf_2_55Array17resizeEraseUnsafeEl'/>

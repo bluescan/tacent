@@ -1,7 +1,7 @@
-<def f='include/zlib.h' l='114' ll='129'/>
-<use f='include/zlib.h' l='114'/>
+<def f='Modules/Image/Contrib/ZLib/include/zlib.h' l='114' ll='129'/>
+<use f='Modules/Image/Contrib/ZLib/include/zlib.h' l='114'/>
 <size>80</size>
-<doc f='include/zlib.h' l='110'>/*
+<doc f='Modules/Image/Contrib/ZLib/include/zlib.h' l='110'>/*
      gzip header information passed to and from zlib routines.  See RFC 1952
   for more details on the meanings of these fields.
 */</doc>

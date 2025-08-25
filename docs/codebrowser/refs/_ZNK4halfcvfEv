@@ -1,0 +1,30 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='110' type='float half::operator float() const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='492' ll='496' type='float half::operator float() const'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='582' u='c' c='_ZN4halfpLES_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='582' u='c' c='_ZN4halfpLES_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='590' u='c' c='_ZN4halfpLEf'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='598' u='c' c='_ZN4halfmIES_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='598' u='c' c='_ZN4halfmIES_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='606' u='c' c='_ZN4halfmIEf'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='614' u='c' c='_ZN4halfmLES_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='614' u='c' c='_ZN4halfmLES_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='622' u='c' c='_ZN4halfmLEf'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='630' u='c' c='_ZN4halfdVES_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='630' u='c' c='_ZN4halfdVES_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='638' u='c' c='_ZN4halfdVEf'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='166' u='c' c='_ZN12halfFunctionC1ETL0__4halfS1_T_S2_S2_S2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='166' u='c' c='_ZN12halfFunctionC1ETL0__4halfS1_T_S2_S2_S2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='166' u='c' c='_ZN12halfFunctionC1ETL0__4halfS1_T_S2_S2_S2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='166' u='c' c='_ZN12halfFunctionC1ETL0__4halfS1_T_S2_S2_S2_'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='103' u='c' c='_ZN3EXR16ComputeFogColourERfS0_S0_RKN7Imf_2_55ArrayINS1_4RgbaEEE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='105' u='c' c='_ZN3EXR16ComputeFogColourERfS0_S0_RKN7Imf_2_55ArrayINS1_4RgbaEEE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='106' u='c' c='_ZN3EXR16ComputeFogColourERfS0_S0_RKN7Imf_2_55ArrayINS1_4RgbaEEE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='107' u='c' c='_ZN3EXR16ComputeFogColourERfS0_S0_RKN7Imf_2_55ArrayINS1_4RgbaEEE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='143' u='c' c='_ZN3EXR5GammaclE4half'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='270' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='106'>//--------------------
+    // Conversion to float
+    //--------------------</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='488'>//------------------------------------------
+// Half-to-float conversion via table lookup
+//------------------------------------------</doc>

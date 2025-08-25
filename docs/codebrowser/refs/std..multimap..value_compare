@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='128' ll='141'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='824' c='_ZNKSt8multimap10value_compEv'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='826' c='_ZNKSt8multimap10value_compEv'/>
+<mbr r='std::multimap::value_compare::comp' t='_Compare'/>
+<fun r='_ZNSt8multimap13value_compareC1ET1_'/>
+<fun r='_ZNKSt8multimap13value_compareclERKSt4pairIKT_T0_ES7_'/>

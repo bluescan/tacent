@@ -21,3 +21,11 @@
 <use f='include/c++/11/bits/unordered_map.h' l='2083' c='std::{deductionguideforunordered_multimap}'/>
 <use f='include/c++/11/bits/unordered_map.h' l='2092' c='std::{deductionguideforunordered_multimap}'/>
 <use f='include/c++/11/bits/unordered_map.h' l='2094' c='std::{deductionguideforunordered_multimap}'/>
+<use f='include/c++/11/bits/stl_map.h' l='1419'/>
+<use f='include/c++/11/bits/stl_map.h' l='1426' c='std::{deductionguideformap}'/>
+<use f='include/c++/11/bits/stl_map.h' l='1441' c='std::{deductionguideformap}'/>
+<use f='include/c++/11/bits/stl_map.h' l='1442' c='std::{deductionguideformap}'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='1084'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='1091' c='std::{deductionguideformultimap}'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='1106' c='std::{deductionguideformultimap}'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='1107' c='std::{deductionguideformultimap}'/>

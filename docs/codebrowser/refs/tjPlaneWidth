@@ -1,0 +1,15 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='976' type='int tjPlaneWidth(int componentID, int width, int subsamp)'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='962'>/**
+ * The plane width of a YUV image plane with the given parameters.  Refer to
+ * @ref YUVnotes &quot;YUV Image Format Notes&quot; for a description of plane width.
+ *
+ * @param componentID ID number of the image plane (0 = Y, 1 = U/Cb, 2 = V/Cr)
+ *
+ * @param width width (in pixels) of the YUV image
+ *
+ * @param subsamp level of chrominance subsampling in the image (see
+ * @ref TJSAMP &quot;Chrominance subsampling options&quot;.)
+ *
+ * @return the plane width of a YUV image plane with the given parameters, or
+ * -1 if the arguments are out of bounds.
+ */</doc>

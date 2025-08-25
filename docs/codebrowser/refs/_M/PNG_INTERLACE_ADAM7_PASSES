@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2434'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2430'>/* Interlace support.  The following macros are always defined so that if
+ * libpng interlace handling is turned off the macros may be used to handle
+ * interlaced images within the application.
+ */</doc>

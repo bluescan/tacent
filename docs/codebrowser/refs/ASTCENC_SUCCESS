@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='189' type='0'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='188'>/** @brief The call was successful. */</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1109' u='r' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1114' u='r' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1120' u='r' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1135' u='r' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

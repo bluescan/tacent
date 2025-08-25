@@ -1,0 +1,13 @@
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='163' c='_ZN7Imf_2_56Header6insertEPKcRKNS_9AttributeE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='167' c='_ZN7Imf_2_56Header6insertERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKNS_9AttributeE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='208' c='_ZN7Imf_2_56HeaderixEPKc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='210' c='_ZNK7Imf_2_56HeaderixEPKc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='213' c='_ZN7Imf_2_56HeaderixERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='215' c='_ZNK7Imf_2_56HeaderixERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='234'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='528' c='_ZNK7Imf_2_56Header8Iterator9attributeEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='557' c='_ZNK7Imf_2_56Header13ConstIterator9attributeEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='628' c='_ZNK7Imf_2_56Header8Iterator9attributeEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='680' c='_ZNK7Imf_2_56Header13ConstIterator9attributeEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='709' c='_ZN7Imf_2_56Header14typedAttributeEPKc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='723' c='_ZNK7Imf_2_56Header14typedAttributeEPKc'/>

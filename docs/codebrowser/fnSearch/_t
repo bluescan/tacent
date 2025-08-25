@@ -73,8 +73,6 @@ _ZN5tMath11tBezierPathD1Ev|tMath::tBezierPath::~tBezierPath
 _ZN5tMath20tPiecewiseLinearPathD1Ev|tMath::tPiecewiseLinearPath::~tPiecewiseLinearPath
 _ZN5tMath10tNNBSplineD1Ev|tMath::tNNBSpline::~tNNBSpline
 _ZN9tPipeline5tRuleD1Ev|tPipeline::tRule::~tRule
-_ZN9tPipeline20tVisualStudioProjectD1Ev|tPipeline::tVisualStudioProject::~tVisualStudioProject
-_ZN9tPipeline21tVisualStudioSolutionD1Ev|tPipeline::tVisualStudioSolution::~tVisualStudioSolution
 _ZN6tScene10tAttributeD1Ev|tScene::tAttribute::~tAttribute
 _ZN6tScene11tAttributesD1Ev|tScene::tAttributes::~tAttributes
 _ZN6tScene7tCameraD1Ev|tScene::tCamera::~tCamera

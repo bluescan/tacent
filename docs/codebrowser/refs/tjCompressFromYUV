@@ -1,0 +1,61 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='809' type='int tjCompressFromYUV(tjhandle handle, const unsigned char * srcBuf, int width, int pad, int height, int subsamp, unsigned char ** jpegBuf, unsigned long * jpegSize, int jpegQual, int flags)'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='749'>/**
+ * Compress a YUV planar image into a JPEG image.
+ *
+ * @param handle a handle to a TurboJPEG compressor or transformer instance
+ *
+ * @param srcBuf pointer to an image buffer containing a YUV planar image to be
+ * compressed.  The size of this buffer should match the value returned by
+ * #tjBufSizeYUV2() for the given image width, height, padding, and level of
+ * chrominance subsampling.  The Y, U (Cb), and V (Cr) image planes should be
+ * stored sequentially in the source buffer (refer to @ref YUVnotes
+ * &quot;YUV Image Format Notes&quot;.)
+ *
+ * @param width width (in pixels) of the source image.  If the width is not an
+ * even multiple of the MCU block width (see #tjMCUWidth), then an intermediate
+ * buffer copy will be performed within TurboJPEG.
+ *
+ * @param pad the line padding used in the source image.  For instance, if each
+ * line in each plane of the YUV image is padded to the nearest multiple of 4
+ * bytes, then &lt;tt&gt;pad&lt;/tt&gt; should be set to 4.
+ *
+ * @param height height (in pixels) of the source image.  If the height is not
+ * an even multiple of the MCU block height (see #tjMCUHeight), then an
+ * intermediate buffer copy will be performed within TurboJPEG.
+ *
+ * @param subsamp the level of chrominance subsampling used in the source
+ * image (see @ref TJSAMP &quot;Chrominance subsampling options&quot;.)
+ *
+ * @param jpegBuf address of a pointer to an image buffer that will receive the
+ * JPEG image.  TurboJPEG has the ability to reallocate the JPEG buffer to
+ * accommodate the size of the JPEG image.  Thus, you can choose to:
+ * -# pre-allocate the JPEG buffer with an arbitrary size using #tjAlloc() and
+ * let TurboJPEG grow the buffer as needed,
+ * -# set &lt;tt&gt;*jpegBuf&lt;/tt&gt; to NULL to tell TurboJPEG to allocate the buffer
+ * for you, or
+ * -# pre-allocate the buffer to a &quot;worst case&quot; size determined by calling
+ * #tjBufSize().  This should ensure that the buffer never has to be
+ * re-allocated (setting #TJFLAG_NOREALLOC guarantees that it won&apos;t be.)
+ * .
+ * If you choose option 1, &lt;tt&gt;*jpegSize&lt;/tt&gt; should be set to the size of your
+ * pre-allocated buffer.  In any case, unless you have set #TJFLAG_NOREALLOC,
+ * you should always check &lt;tt&gt;*jpegBuf&lt;/tt&gt; upon return from this function, as
+ * it may have changed.
+ *
+ * @param jpegSize pointer to an unsigned long variable that holds the size of
+ * the JPEG image buffer.  If &lt;tt&gt;*jpegBuf&lt;/tt&gt; points to a pre-allocated
+ * buffer, then &lt;tt&gt;*jpegSize&lt;/tt&gt; should be set to the size of the buffer.
+ * Upon return, &lt;tt&gt;*jpegSize&lt;/tt&gt; will contain the size of the JPEG image (in
+ * bytes.)  If &lt;tt&gt;*jpegBuf&lt;/tt&gt; points to a JPEG image buffer that is being
+ * reused from a previous call to one of the JPEG compression functions, then
+ * &lt;tt&gt;*jpegSize&lt;/tt&gt; is ignored.
+ *
+ * @param jpegQual the image quality of the generated JPEG image (1 = worst,
+ * 100 = best)
+ *
+ * @param flags the bitwise OR of one or more of the @ref TJFLAG_ACCURATEDCT
+ * &quot;flags&quot;
+ *
+ * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr2()
+ * and #tjGetErrorCode().)
+*/</doc>

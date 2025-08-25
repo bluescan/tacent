@@ -1,5 +1,5 @@
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='196' type='double tMath::tPow(double a, double b)'/>
-<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='413' u='c' c='_ZN6M999E517FloatToComponentsERiS0_S0_S0_fff'/>
-<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='445' u='c' c='_ZNK15tPackedM9M9M9E53GetERfS0_S0_'/>
-<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='467' u='c' c='_ZNK15tPackedE5M9M9M93GetERfS0_S0_'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='199' type='double tMath::tPow(double a, double b)'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='414' u='c' c='_ZN6M999E517FloatToComponentsERiS0_S0_S0_fff'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='446' u='c' c='_ZNK15tPackedM9M9M9E53GetERfS0_S0_'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='468' u='c' c='_ZNK15tPackedE5M9M9M93GetERfS0_S0_'/>
 <use f='Modules/System/Src/tPrint.cpp' l='1768' u='c' c='_ZN7tSystem9Handler_gERNS_8ReceiverERKNS_10FormatSpecEPv'/>

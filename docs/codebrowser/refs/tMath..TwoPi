@@ -1,9 +1,9 @@
 <def f='Modules/Foundation/Inc/Foundation/tConstants.h' l='22' type='const float'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='545' u='r' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='546' u='r' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='555' u='r' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='556' u='r' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='556' u='r' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='548' u='r' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='549' u='r' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='558' u='r' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='559' u='r' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='559' u='r' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
 <doc f='Modules/Foundation/Inc/Foundation/tConstants.h' l='22'>// 360 degrees.</doc>
 <use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='973' u='r' c='_ZN5tMath14tRotationAngleERKNS_5tQuatE'/>
 <use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='977' u='r' c='_ZN5tMath14tRotationAngleERKNS_5tQuatE'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='656'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='653'>/* These are constants for fixed point values encoded in the
+ * PNG specification manner (x100000)
+ */</doc>

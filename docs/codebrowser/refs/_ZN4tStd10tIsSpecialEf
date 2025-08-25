@@ -1,4 +1,4 @@
-<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='372' type='bool tStd::tIsSpecial(float v)'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='378' type='bool tStd::tIsSpecial(float v)'/>
 <use f='Modules/System/Src/tScript.cpp' l='756' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tVector2Eb'/>
 <use f='Modules/System/Src/tScript.cpp' l='787' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tVector3Eb'/>
 <use f='Modules/System/Src/tScript.cpp' l='818' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tVector4Eb'/>

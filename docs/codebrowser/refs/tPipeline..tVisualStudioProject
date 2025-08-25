@@ -1,7 +1,0 @@
-<def f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='38' ll='46'/>
-<size>80</size>
-<fun r='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
-<fun r='_ZN9tPipeline20tVisualStudioProjectD1Ev'/>
-<mbr r='tPipeline::tVisualStudioProject::Directory' o='64' t='tString'/>
-<mbr r='tPipeline::tVisualStudioProject::Files' o='320' t='tList&lt;tStringItem&gt;'/>
-<fun r='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>

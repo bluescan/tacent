@@ -28,6 +28,7 @@
 <use f='include/semaphore.h' l='110' u='c'/>
 <use f='include/signal.h' l='393' u='c'/>
 <use f='include/inttypes.h' l='314' u='c'/>
+<use f='include/setjmp.h' l='90' u='c'/>
 <use f='include/x86_64-linux-gnu/bits/statx-generic.h' l='64' u='c'/>
 <use f='include/x86_64-linux-gnu/sys/stat.h' l='468' u='c'/>
 <use f='include/pwd.h' l='191' u='c'/>

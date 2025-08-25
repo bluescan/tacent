@@ -118,6 +118,11 @@ _ZNSt10unique_ptr4swapERSt10unique_ptrIT_T0_E|std::unique_ptr::swap
 _ZSt7unitbufRSt8ios_base|std::unitbuf
 _ZN9tColour3f5UnsetEv|tColour3f::Unset
 _ZN9tColour4f5UnsetEv|tColour4f::Unset
+_ZNSt13basic_istream5ungetEv|std::basic_istream::unget
+_ZNSt7__cxx1115basic_stringbuf9underflowEv|std::basic_stringbuf::underflow
+_ZNK8tinyxml28MemPoolT9UntrackedEv|tinyxml2::MemPoolT::Untracked
+_ZNK8tinyxml212XMLAttribute15Unsigned64ValueEv|tinyxml2::XMLAttribute::Unsigned64Value
+_ZNK8tinyxml212XMLAttribute13UnsignedValueEv|tinyxml2::XMLAttribute::UnsignedValue
 _ZN6tImage12tQuantizeNeu9unbiasnetERNS0_5StateE|tImage::tQuantizeNeu::unbiasnet
 _ZNKSt25uniform_real_distribution1aEv|std::uniform_real_distribution::a
 _ZNKSt25uniform_real_distribution1bEv|std::uniform_real_distribution::b
@@ -134,6 +139,4 @@ _ZN5rgbcx10unpack_bc4EPKvPhj|rgbcx::unpack_bc4
 _ZN5rgbcx10unpack_bc5EPKvPvjjj|rgbcx::unpack_bc5
 _ZN12tChunkReader6UnLoadEv|tChunkReader::UnLoad
 _ZNSt13basic_filebuf9underflowEv|std::basic_filebuf::underflow
-_ZNSt13basic_istream5ungetEv|std::basic_istream::unget
-_ZNSt7__cxx1115basic_stringbuf9underflowEv|std::basic_stringbuf::underflow
 _ZNSt15wbuffer_convert9underflowEv|std::wbuffer_convert::underflow

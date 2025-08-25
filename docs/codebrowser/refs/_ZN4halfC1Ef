@@ -1,0 +1,141 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='100' type='void half::half(float f)'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='428' ll='485' type='void half::half(float f)'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='574' u='c' c='_ZN4halfaSEf'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='582' u='c' c='_ZN4halfpLES_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='590' u='c' c='_ZN4halfpLEf'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='598' u='c' c='_ZN4halfmIES_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='606' u='c' c='_ZN4halfmIEf'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='614' u='c' c='_ZN4halfmLES_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='622' u='c' c='_ZN4halfmLEf'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='630' u='c' c='_ZN4halfdVES_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='638' u='c' c='_ZN4halfdVEf'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfRgba.h' l='63' u='c' c='_ZN7Imf_2_54RgbaC1E4halfS1_S1_S1_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='108' u='c' c='_ZN12halfFunctionC1ETL0__4halfS1_T_S2_S2_S2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='109' macro='1' u='c' c='_ZN12halfFunctionC1ETL0__4halfS1_T_S2_S2_S2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='108' u='c' c='_ZN12halfFunctionC1ETL0__4halfS1_T_S2_S2_S2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='109' macro='1' u='c' c='_ZN12halfFunctionC1ETL0__4halfS1_T_S2_S2_S2_'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='237' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='237' macro='1' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='238' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='238' macro='1' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='239' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='239' macro='1' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='308'>// that 10 raised to that power is
+					// a normalized half
+
+
+//---------------------------------------------------------------------------
+//
+// Implementation --
+//
+// Representation of a float:
+//
+//	We assume that a float, f, is an IEEE 754 single-precision
+//	floating point number, whose bits are arranged as follows:
+//
+//	    31 (msb)
+//	    | 
+//	    | 30     23
+//	    | |      | 
+//	    | |      | 22                    0 (lsb)
+//	    | |      | |                     |
+//	    X XXXXXXXX XXXXXXXXXXXXXXXXXXXXXXX
+//
+//	    s e        m
+//
+//	S is the sign-bit, e is the exponent and m is the significand.
+//
+//	If e is between 1 and 254, f is a normalized number:
+//
+//	            s    e-127
+//	    f = (-1)  * 2      * 1.m
+//
+//	If e is 0, and m is not zero, f is a denormalized number:
+//
+//	            s    -126
+//	    f = (-1)  * 2      * 0.m
+//
+//	If e and m are both zero, f is zero:
+//
+//	    f = 0.0
+//
+//	If e is 255, f is an &quot;infinity&quot; or &quot;not a number&quot; (NAN),
+//	depending on whether m is zero or not.
+//
+//	Examples:
+//
+//	    0 00000000 00000000000000000000000 = 0.0
+//	    0 01111110 00000000000000000000000 = 0.5
+//	    0 01111111 00000000000000000000000 = 1.0
+//	    0 10000000 00000000000000000000000 = 2.0
+//	    0 10000000 10000000000000000000000 = 3.0
+//	    1 10000101 11110000010000000000000 = -124.0625
+//	    0 11111111 00000000000000000000000 = +infinity
+//	    1 11111111 00000000000000000000000 = -infinity
+//	    0 11111111 10000000000000000000000 = NAN
+//	    1 11111111 11111111111111111111111 = NAN
+//
+// Representation of a half:
+//
+//	Here is the bit-layout for a half number, h:
+//
+//	    15 (msb)
+//	    | 
+//	    | 14  10
+//	    | |   |
+//	    | |   | 9        0 (lsb)
+//	    | |   | |        |
+//	    X XXXXX XXXXXXXXXX
+//
+//	    s e     m
+//
+//	S is the sign-bit, e is the exponent and m is the significand.
+//
+//	If e is between 1 and 30, h is a normalized number:
+//
+//	            s    e-15
+//	    h = (-1)  * 2     * 1.m
+//
+//	If e is 0, and m is not zero, h is a denormalized number:
+//
+//	            S    -14
+//	    h = (-1)  * 2     * 0.m
+//
+//	If e and m are both zero, h is zero:
+//
+//	    h = 0.0
+//
+//	If e is 31, h is an &quot;infinity&quot; or &quot;not a number&quot; (NAN),
+//	depending on whether m is zero or not.
+//
+//	Examples:
+//
+//	    0 00000 0000000000 = 0.0
+//	    0 01110 0000000000 = 0.5
+//	    0 01111 0000000000 = 1.0
+//	    0 10000 0000000000 = 2.0
+//	    0 10000 1000000000 = 3.0
+//	    1 10101 1111000001 = -124.0625
+//	    0 11111 0000000000 = +infinity
+//	    1 11111 0000000000 = -infinity
+//	    0 11111 1000000000 = NAN
+//	    1 11111 1111111111 = NAN
+//
+// Conversion:
+//
+//	Converting from a float to a half requires some non-trivial bit
+//	manipulations.  In some cases, this makes conversion relatively
+//	slow, but the most common case is accelerated via table lookups.
+//
+//	Converting back from a half to a float is easier because we don&apos;t
+//	have to do any rounding.  In addition, there are only 65536
+//	different half numbers; we can convert each of those numbers once
+//	and store the results in a table.  Later, all conversions can be
+//	done using only simple table lookups.
+//
+//---------------------------------------------------------------------------
+
+
+//----------------------------
+// Half-from-float constructor
+//----------------------------</doc>

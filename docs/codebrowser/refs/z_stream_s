@@ -1,5 +1,5 @@
-<def f='include/zlib.h' l='86' ll='106'/>
-<use f='include/zlib.h' l='86'/>
+<def f='Modules/Image/Contrib/ZLib/include/zlib.h' l='86' ll='106'/>
+<use f='Modules/Image/Contrib/ZLib/include/zlib.h' l='86'/>
 <size>112</size>
 <mbr r='z_stream_s::next_in' o='0' t='Bytef *'/>
 <mbr r='z_stream_s::avail_in' o='64' t='uInt'/>

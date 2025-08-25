@@ -1,0 +1,4 @@
+<dec f='include/setjmp.h' l='61' type='void _longjmp(struct __jmp_buf_tag * __env, int __val)'/>
+<doc f='include/setjmp.h' l='58'>/* Same.  Usually `_longjmp&apos; is used with `_setjmp&apos;, which does not save
+   the signal mask.  But it is how ENV was saved that determines whether
+   `longjmp&apos; restores the mask; `_longjmp&apos; is just an alias.  */</doc>

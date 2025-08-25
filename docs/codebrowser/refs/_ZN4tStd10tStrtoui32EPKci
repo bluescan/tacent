@@ -1,3 +1,3 @@
-<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='157' type='uint32 tStd::tStrtoui32(const char * s, int base = -1)'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='160' u='c' c='_ZN4tStd8tStrtouiEPKci'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='168' u='c' c='_ZN4tStd7tStrtofEPKc'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='163' type='uint32 tStd::tStrtoui32(const char * s, int base = -1)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='166' u='c' c='_ZN4tStd8tStrtouiEPKci'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='231' u='c' c='_ZN4tStd7tStrtofEPKc'/>

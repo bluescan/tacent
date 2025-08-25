@@ -1,0 +1,20 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='135'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='168' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='170' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='175' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='177' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='179' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='183' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='188' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='194' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='196' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='53' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='56' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='59' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='62' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='65' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='68' u='c'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='130'>//-----------------------------------------------------
+// A macro to save typing when declararing an exception
+// class derived directly or indirectly from BaseExc:
+//-----------------------------------------------------</doc>

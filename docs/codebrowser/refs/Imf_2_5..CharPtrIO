@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='247' ll='264'/>
+<size>1</size>
+<fun r='_ZN7Imf_2_59CharPtrIO10writeCharsERPcPKci'/>
+<fun r='_ZN7Imf_2_59CharPtrIO9readCharsERPKcPci'/>

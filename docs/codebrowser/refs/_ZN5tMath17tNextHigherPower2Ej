@@ -1,4 +1,4 @@
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='213' type='uint tMath::tNextHigherPower2(uint v)'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='214' u='c' c='_ZN5tMath15tiClosestPower2ERj'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='215' u='c' c='_ZN5tMath14tClosestPower2Ej'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='216' type='uint tMath::tNextHigherPower2(uint v)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='217' u='c' c='_ZN5tMath15tiClosestPower2ERj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='218' u='c' c='_ZN5tMath14tClosestPower2Ej'/>
 <use f='Modules/Image/Src/tQuantizeFixed.cpp' l='262' u='c' c='_ZN6tImage14tQuantizeFixed13QuantizeImageEiiiPK9tColour3bPS1_Phb'/>

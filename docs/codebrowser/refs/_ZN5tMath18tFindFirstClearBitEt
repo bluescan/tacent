@@ -1,3 +1,3 @@
 <dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='153' type='int tMath::tFindFirstClearBit(uint16 v)'/>
 <use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='158' u='c' c='_ZN5tMath16tFindFirstSetBitEt'/>
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='428' ll='440' type='int tMath::tFindFirstClearBit(uint16 v)'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='431' ll='443' type='int tMath::tFindFirstClearBit(uint16 v)'/>

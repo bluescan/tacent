@@ -1,4 +1,4 @@
 <dec f='include/stdlib.h' l='860' type='div_t div(int __numer, int __denom)'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='292' u='c' c='_ZN5tMath4tDivEii'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='302' u='c' c='_ZN5tMath6tDiv32Eii'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='295' u='c' c='_ZN5tMath4tDivEii'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='305' u='c' c='_ZN5tMath6tDiv32Eii'/>
 <doc f='include/stdlib.h' l='859'>/* GCC may have built-ins for these someday.  */</doc>

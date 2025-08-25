@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1725' type='int tjDecompress(tjhandle handle, unsigned char * jpegBuf, unsigned long jpegSize, unsigned char * dstBuf, int width, int pitch, int height, int pixelSize, int flags)'/>

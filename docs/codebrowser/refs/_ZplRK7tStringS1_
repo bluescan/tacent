@@ -17,8 +17,6 @@
 <use f='Modules/Math/Inc/Math/tInterval.h' l='222' u='c' c='_ZN5tMath9tInterval3SetERK7tString'/>
 <use f='Modules/Math/Inc/Math/tInterval.h' l='222' u='c' c='_ZN5tMath9tInterval3SetERK7tString'/>
 <use f='Modules/Math/Inc/Math/tInterval.h' l='222' u='c' c='_ZN5tMath9tInterval3SetERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='58' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='106' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
 <use f='Modules/Scene/Src/tWorld.cpp' l='244' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
 <use f='Modules/Scene/Src/tWorld.cpp' l='555' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
 <use f='Modules/Scene/Src/tWorld.cpp' l='558' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>

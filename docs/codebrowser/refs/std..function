@@ -9,12 +9,12 @@
 <use f='include/c++/11/bits/std_function.h' l='769'/>
 <use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='80' c='_ZN5tMath9tBiasLessENS_5tBiasE'/>
 <use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='81' c='_ZN5tMath9tBiasGrtrENS_5tBiasE'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='258' c='_ZN5tMath9tBiasLessENS_5tBiasE'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='274' c='_ZN5tMath9tBiasGrtrENS_5tBiasE'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='543' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='544' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='553' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='554' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='261' c='_ZN5tMath9tBiasLessENS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='277' c='_ZN5tMath9tBiasGrtrENS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='546' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='547' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='556' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='557' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
 <doc f='include/c++/11/bits/std_function.h' l='328'>/**
    *  @brief Polymorphic function wrapper.
    *  @ingroup functors

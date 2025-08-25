@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='223' type='0'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='222'>/** @brief The LDR sRGB color profile. */</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1075' u='r' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1079' u='r' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1080' u='r' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

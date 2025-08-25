@@ -6,9 +6,11 @@ _ZN5tMath19tNormalizedAngle2PiEfNS_5tBiasE|tMath::tNormalizedAngle2Pi
 _ZN5tMath9tNotEqualET_S0_|tMath::tNotEqual
 _Z5tNtoHT_|tNtoH
 _ZN4tStd8tNstrcmpEPKDuS1_|tStd::tNstrcmp
+_ZN4tStd10tNstrcmpExEPKDuS1_|tStd::tNstrcmpEx
 _Z9tNextPow2RK8tFixIntUIXT_EE|tNextPow2
 _ZN5tNameD1Ev|tName::~tName
 _ZN4tStd8tNstrcmpEPKcS1_|tStd::tNstrcmp
+_ZN4tStd10tNstrcmpExEPKcS1_|tStd::tNstrcmpEx
 _ZN5tMath4tNegERNS_5tVec2E|tMath::tNeg
 _ZN5tMath10tNormalizeERNS_5tVec2E|tMath::tNormalize
 _ZN5tMath14tNormalizeFastERNS_5tVec2E|tMath::tNormalizeFast

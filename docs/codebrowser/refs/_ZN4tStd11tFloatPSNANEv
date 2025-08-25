@@ -1,4 +1,4 @@
-<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='379' type='float tStd::tFloatPSNAN()'/>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='376'>// Examples of non-NORM float types. These are only examples as in many cases there are multiple bitpatterns for the
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='385' type='float tStd::tFloatPSNAN()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='382'>// Examples of non-NORM float types. These are only examples as in many cases there are multiple bitpatterns for the
 // same tFloatType. For example a PSNAN can have any bitpattern between 0x7F800001 and 0x7FBFFFFF (inclusive).
 // P for positive. N for negative. Q for quiet. S for signalling.</doc>

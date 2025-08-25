@@ -1,0 +1,16 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='98' ll='136'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='145' c='_ZN12halfFunctionC1ETL0__4halfS1_T_S2_S2_S2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='176' c='_ZNK12halfFunctionclE4half'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='237' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='238' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='239' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<fun r='_ZN12halfFunctionC1ETL0__4halfS1_T_S2_S2_S2_'/>
+<fun r='_ZN12halfFunctionD1Ev'/>
+<fun r='_ZN12halfFunctionC1ERK12halfFunctionIT_E'/>
+<fun r='_ZN12halfFunctionaSERK12halfFunctionIT_E'/>
+<fun r='_ZN12halfFunctionC1EO12halfFunctionIT_E'/>
+<fun r='_ZN12halfFunctionaSEO12halfFunctionIT_E'/>
+<fun r='_ZNK12halfFunctionclE4half'/>
+<mbr r='halfFunction::_lut' t='T *'/>
+<fun r='_ZN12halfFunctionC1ETL0__4halfS1_T_S2_S2_S2_'/>
+<fun r='_ZNK12halfFunctionclE4half'/>

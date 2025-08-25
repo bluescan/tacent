@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1269' ll='1271' type='const char * tinyxml2::XMLElement::Name() const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1268'>/// Get the name of an element (which is the Value() of the node.)</doc>

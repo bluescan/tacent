@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='1927' type='void png_set_bKGD(png_const_structrp png_ptr, png_inforp info_ptr, png_const_color_16p background)'/>

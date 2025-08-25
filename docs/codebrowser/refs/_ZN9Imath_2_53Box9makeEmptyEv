@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='102' type='void Imath_2_5::Box::makeEmpty()'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='149' u='c' c='_ZN9Imath_2_53BoxC1Ev'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='185' ll='190' type='void Imath_2_5::Box::makeEmpty()'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='98'>//------------------
+    //	Box manipulation
+    //------------------</doc>

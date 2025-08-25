@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='296' ll='298' type='const int[12]'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='288'>/**
+ * Alpha offset (in bytes) for a given pixel format.  This specifies the number
+ * of bytes that the Alpha component is offset from the start of the pixel.
+ * For instance, if a pixel of format TJ_BGRA is stored in
+ * &lt;tt&gt;char pixel[]&lt;/tt&gt;, then the alpha component will be
+ * &lt;tt&gt;pixel[tjAlphaOffset[TJ_BGRA]]&lt;/tt&gt;.  This will be -1 if the pixel format
+ * does not have an alpha component.
+ */</doc>

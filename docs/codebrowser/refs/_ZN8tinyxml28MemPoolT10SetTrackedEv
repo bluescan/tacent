@@ -1,0 +1,2 @@
+<inh f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='339' c='_ZN8tinyxml27MemPool10SetTrackedEv'/>
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='419' ll='421' type='void tinyxml2::MemPoolT::SetTracked()'/>

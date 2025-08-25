@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_map.h' l='437' ll='439' type='std::map::const_iterator std::map::cend() const'/>
+<doc f='include/c++/11/bits/stl_map.h' l='432'>/**
+       *  Returns a read-only (constant) iterator that points one past the last
+       *  pair in the %map.  Iteration is done in ascending order according to
+       *  the keys.
+       */</doc>

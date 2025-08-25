@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/stl_tree.h' l='1181' type='void std::_Rb_tree::_M_erase_aux(std::_Rb_tree::const_iterator __position)'/>
+<def f='include/c++/11/bits/stl_tree.h' l='2477' ll='2489' type='void std::_Rb_tree::_M_erase_aux(std::_Rb_tree::const_iterator __position)'/>

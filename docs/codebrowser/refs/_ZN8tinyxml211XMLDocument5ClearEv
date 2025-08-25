@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1906' type='void tinyxml2::XMLDocument::Clear()'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1905'>/// Clear the document, resetting it to the initial state.</doc>

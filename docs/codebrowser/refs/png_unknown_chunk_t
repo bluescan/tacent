@@ -1,0 +1,14 @@
+<def f='Modules/Image/Contrib/LibPNG/include/png.h' l='622' ll='635'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='622'/>
+<size>32</size>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='615'>/* png_unknown_chunk is a structure to hold queued chunks for which there is
+ * no specific support.  The idea is that we can use this to queue
+ * up private chunks for output even though the library doesn&apos;t actually
+ * know about their semantics.
+ *
+ * The data in the structure is set by libpng on read and used on write.
+ */</doc>
+<mbr r='png_unknown_chunk_t::name' o='0' t='png_byte[5]'/>
+<mbr r='png_unknown_chunk_t::data' o='64' t='png_byte *'/>
+<mbr r='png_unknown_chunk_t::size' o='128' t='size_t'/>
+<mbr r='png_unknown_chunk_t::location' o='192' t='png_byte'/>

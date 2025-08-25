@@ -1,13 +1,13 @@
-<dec f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='69' type='uint16 FloatToHalfRaw(float )'/>
-<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='80' u='c' c='_ZN5tHalf3SetEf'/>
-<def f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='205' ll='275' type='uint16 FloatToHalfRaw(float f)'/>
-<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='309' u='c' c='_ZN16tPackedF11F11F103SetEfff'/>
+<dec f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='70' type='uint16 FloatToHalfRaw(float )'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='81' u='c' c='_ZN5tHalf3SetEf'/>
+<def f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='206' ll='276' type='uint16 FloatToHalfRaw(float f)'/>
 <use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='310' u='c' c='_ZN16tPackedF11F11F103SetEfff'/>
 <use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='311' u='c' c='_ZN16tPackedF11F11F103SetEfff'/>
-<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='345' u='c' c='_ZN16tPackedF10F11F113SetEfff'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='312' u='c' c='_ZN16tPackedF11F11F103SetEfff'/>
 <use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='346' u='c' c='_ZN16tPackedF10F11F113SetEfff'/>
 <use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='347' u='c' c='_ZN16tPackedF10F11F113SetEfff'/>
-<doc f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='64'>// Half precision floats are 16 bit. They support the sign bit and denormals. They have 1 sign bit, 5 exponent bits,
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='348' u='c' c='_ZN16tPackedF10F11F113SetEfff'/>
+<doc f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='65'>// Half precision floats are 16 bit. They support the sign bit and denormals. They have 1 sign bit, 5 exponent bits,
 // and 10 mantissa bits. FloatToHalfRaw is based on float_to_half_fast3 or float_to_half_fast3_RTNE depending on
 // if you have TACENT_HALF_FLOAT_RTNE defined. The former rounds to +inf, the latter rounds-to-nearest-even (on-equal).
 // IEEE-754 Bits: SEEEEEEEEMMMMMMMMMMMMMMMMMMMMMMM

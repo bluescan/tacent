@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='262' type='3'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='261'>/** @brief Select the alpha component. */</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1132' u='r' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

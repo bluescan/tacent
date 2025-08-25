@@ -1,0 +1,19 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='212' u='w' c='_ZN8tinyxml28DynArrayC1Ev'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='223' u='w' c='_ZN8tinyxml28DynArray5ClearEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='228' u='r' c='_ZN8tinyxml28DynArray4PushET_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='229' u='w' c='_ZN8tinyxml28DynArray4PushET_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='230' u='w' c='_ZN8tinyxml28DynArray4PushET_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='236' u='r' c='_ZN8tinyxml28DynArray7PushArrEi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='237' c='_ZN8tinyxml28DynArray7PushArrEi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='238' u='w' c='_ZN8tinyxml28DynArray7PushArrEi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='244' u='w' c='_ZN8tinyxml28DynArray3PopEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='245' u='r' c='_ZN8tinyxml28DynArray3PopEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='250' u='w' c='_ZN8tinyxml28DynArray6PopArrEi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='254' u='r' c='_ZNK8tinyxml28DynArray5EmptyEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='269' u='r' c='_ZNK8tinyxml28DynArray7PeekTopEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='274' u='r' c='_ZNK8tinyxml28DynArray4SizeEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='285' u='r' c='_ZN8tinyxml28DynArray10SwapRemoveEi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='286' u='w' c='_ZN8tinyxml28DynArray10SwapRemoveEi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='310' u='r' c='_ZN8tinyxml28DynArray14EnsureCapacityEi'/>
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='322' type='int'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='322'>// number objects in use</doc>

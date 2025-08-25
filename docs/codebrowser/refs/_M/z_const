@@ -1,4 +1,4 @@
-<dec f='include/zconf.h' l='237'/>
-<use f='include/zlib.h' l='87' u='c'/>
-<use f='include/zlib.h' l='95' u='c'/>
-<use f='include/zlib.h' l='1094' u='c'/>
+<dec f='Modules/Image/Contrib/ZLib/include/zconf.h' l='239'/>
+<use f='Modules/Image/Contrib/ZLib/include/zlib.h' l='87' u='c'/>
+<use f='Modules/Image/Contrib/ZLib/include/zlib.h' l='95' u='c'/>
+<use f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1093' u='c'/>

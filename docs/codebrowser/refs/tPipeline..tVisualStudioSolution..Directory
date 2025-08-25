@@ -1,5 +1,0 @@
-<dec f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='33' type='tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='24' u='w' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='34' u='w' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='58' u='r' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<offset>64</offset>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_map.h' l='345' ll='347' type='std::map::allocator_type std::map::get_allocator() const'/>
+<doc f='include/c++/11/bits/stl_map.h' l='344'>/// Get a copy of the memory allocation object.</doc>

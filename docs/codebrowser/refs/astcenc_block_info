@@ -1,0 +1,31 @@
+<def f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='604' ll='671'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='827' c='_Z22astcenc_get_block_infoP15astcenc_contextPKhP18astcenc_block_info'/>
+<size>2144</size>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='598'>/**
+ * @brief A block encoding metadata query result.
+ *
+ * If the block is an error block or a constant color block or an error block all fields other than
+ * the profile, block dimensions, and error/constant indicator will be zero.
+ */</doc>
+<mbr r='astcenc_block_info::profile' o='0' t='astcenc_profile'/>
+<mbr r='astcenc_block_info::block_x' o='32' t='unsigned int'/>
+<mbr r='astcenc_block_info::block_y' o='64' t='unsigned int'/>
+<mbr r='astcenc_block_info::block_z' o='96' t='unsigned int'/>
+<mbr r='astcenc_block_info::texel_count' o='128' t='unsigned int'/>
+<mbr r='astcenc_block_info::is_error_block' o='160' t='bool'/>
+<mbr r='astcenc_block_info::is_constant_block' o='168' t='bool'/>
+<mbr r='astcenc_block_info::is_hdr_block' o='176' t='bool'/>
+<mbr r='astcenc_block_info::is_dual_plane_block' o='184' t='bool'/>
+<mbr r='astcenc_block_info::partition_count' o='192' t='unsigned int'/>
+<mbr r='astcenc_block_info::partition_index' o='224' t='unsigned int'/>
+<mbr r='astcenc_block_info::dual_plane_component' o='256' t='unsigned int'/>
+<mbr r='astcenc_block_info::color_endpoint_modes' o='288' t='unsigned int[4]'/>
+<mbr r='astcenc_block_info::color_level_count' o='416' t='unsigned int'/>
+<mbr r='astcenc_block_info::weight_level_count' o='448' t='unsigned int'/>
+<mbr r='astcenc_block_info::weight_x' o='480' t='unsigned int'/>
+<mbr r='astcenc_block_info::weight_y' o='512' t='unsigned int'/>
+<mbr r='astcenc_block_info::weight_z' o='544' t='unsigned int'/>
+<mbr r='astcenc_block_info::color_endpoints' o='576' t='float[4][2][4]'/>
+<mbr r='astcenc_block_info::weight_values_plane1' o='1600' t='float[216]'/>
+<mbr r='astcenc_block_info::weight_values_plane2' o='8512' t='float[216]'/>
+<mbr r='astcenc_block_info::partition_assignment' o='15424' t='uint8_t[216]'/>

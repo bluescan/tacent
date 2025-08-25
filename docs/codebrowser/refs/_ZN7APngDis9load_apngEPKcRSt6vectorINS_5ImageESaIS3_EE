@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/ApngDis/apngdis.h' l='75' type='int APngDis::load_apng(const char * szIn, std::vector&lt;Image&gt; &amp; img)'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='67' u='c' c='_ZN6tImage10tImageAPNG4LoadERK7tString'/>
+<doc f='Modules/Image/Contrib/ApngDis/apngdis.h' l='74'>// Returns -1 on error.</doc>

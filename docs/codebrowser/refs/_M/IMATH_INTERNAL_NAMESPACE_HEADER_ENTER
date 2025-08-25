@@ -1,0 +1,12 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathNamespace.h' l='108'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathInt64.h' l='48' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='50' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='63' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathMath.h' l='88' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='60' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='68' u='c'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathNamespace.h' l='102'>//
+// There are identical pairs of HEADER/SOURCE ENTER/EXIT macros so that
+// future extension to the namespace mechanism is possible without changing
+// project source code.
+//</doc>

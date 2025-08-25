@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='183' type='512'/>
+<doc f='Modules/Image/Contrib/LibSPNG/spng.h' l='183'>/* big-endian (everything else is host-endian) */</doc>

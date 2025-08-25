@@ -11,9 +11,6 @@
 <use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='104' u='w' c='_ZN10tRuleErrorC1ERK7tString'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='31' u='w' c='_ZN10tRuleErrorC1EPKcz'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='31' u='a' c='_ZN10tRuleErrorC1EPKcz'/>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='55' u='w' c='_ZN14tSolutionErrorC1EPKcz'/>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='55' u='a' c='_ZN14tSolutionErrorC1EPKcz'/>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='56' u='w' c='_ZN14tSolutionErrorC1ERK7tString'/>
 <use f='Modules/System/Src/tThrow.cpp' l='23' u='w' c='_ZN6tErrorC1EPKcz'/>
 <use f='Modules/System/Src/tThrow.cpp' l='27' u='w' c='_ZN6tErrorC1EPKcz'/>
 <use f='Modules/System/Src/tThrow.cpp' l='32' u='w' c='_ZN6tErrorC1ERK7tString'/>

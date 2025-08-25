@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='121' type='const std::string &amp; Iex_2_5::BaseExc::stackTrace() const'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='114'>//--------------------------------------------------
+    // Stack trace for the point at which the exception
+    // was thrown.  The stack trace will be an empty
+    // string unless a working stack-tracing routine
+    // has been installed (see below, setStackTracer()).
+    //--------------------------------------------------</doc>

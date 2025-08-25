@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='884' ll='886' type='std::multimap::size_type std::multimap::count(const std::multimap::key_type &amp; __x) const'/>
+<doc f='include/c++/11/bits/stl_multimap.h' l='879'>/**
+       *  @brief Finds the number of elements with given key.
+       *  @param  __x  Key of (key, value) pairs to be located.
+       *  @return Number of elements with specified key.
+       */</doc>

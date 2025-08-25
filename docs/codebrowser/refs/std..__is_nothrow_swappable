@@ -11,3 +11,7 @@
 <use f='include/c++/11/bits/hashtable.h' l='617' c='_ZNSt10_Hashtable4swapERSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_E'/>
 <use f='include/c++/11/bits/hashtable.h' l='1544' c='_ZNSt10_Hashtable4swapERSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_E'/>
 <use f='include/c++/11/bits/hashtable.h' l='1545' c='_ZNSt10_Hashtable4swapERSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_E'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1040' c='_ZNSt8_Rb_tree4swapERSt8_Rb_treeIT_T0_T1_T2_T3_E'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2029' c='_ZNSt8_Rb_tree4swapERSt8_Rb_treeIT_T0_T1_T2_T3_E'/>
+<use f='include/c++/11/bits/stl_map.h' l='1123' c='_ZNSt3map4swapERSt3mapIT_T0_T1_T2_E'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='798' c='_ZNSt8multimap4swapERSt8multimapIT_T0_T1_T2_E'/>

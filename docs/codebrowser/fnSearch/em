@@ -21,6 +21,15 @@ _ZN6tsList5EmptyEv|tsList::Empty
 _ZSt13emit_on_flushRSt13basic_ostreamIT_T0_E|std::emit_on_flush
 _ZN5tMath5tABox5EmptyEv|tMath::tABox::Empty
 _ZN5tMath7tARect25EmptyEv|tMath::tARect2::Empty
+_ZNKSt8_Rb_tree5emptyEv|std::_Rb_tree::empty
+_ZNSt3map7emplaceEDpOTL0__|std::map::emplace
+_ZNSt3map12emplace_hintENSt8_Rb_treeIT_St4pairIKS1_T0_ESt10_Select1stIS5_ET1_N9__gnu_cxx14__alloc_traitsIT2_NSB_10value_typeEE6rebindIS5_E5otherEE14co4045802|std::map::emplace_hint
+_ZNKSt3map5emptyEv|std::map::empty
+_ZNSt8multimap7emplaceEDpOTL0__|std::multimap::emplace
+_ZNSt8multimap12emplace_hintENSt8_Rb_treeIT_St4pairIKS1_T0_ESt10_Select1stIS5_ET1_N9__gnu_cxx14__alloc_traitsIT2_NSB_10value_typeEE6rebindIS5_E5otherE11057346|std::multimap::emplace_hint
+_ZNKSt8multimap5emptyEv|std::multimap::empty
+_ZNK8tinyxml28DynArray5EmptyEv|tinyxml2::DynArray::Empty
+_ZNK8tinyxml27StrPair5EmptyEv|tinyxml2::StrPair::Empty
 _ZNSt5deque7emplaceENSt11_Deque_baseIT_T0_E14const_iteratorEDpOTL0__|std::deque::emplace
 _ZNSt5deque12emplace_backEDpOTL0__|std::deque::emplace_back
 _ZNSt5deque13emplace_frontEDpOTL0__|std::deque::emplace_front

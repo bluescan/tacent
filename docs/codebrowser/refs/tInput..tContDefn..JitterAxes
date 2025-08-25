@@ -1,0 +1,8 @@
+<dec f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='110' type='float'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='140' u='w' c='_ZN6tInput9tContDefn10SetGenericEv'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='156' u='w' c='_ZN6tInput9tContDefn5ClearEv'/>
+<offset>352</offset>
+<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='106'>// Jitter represents inconsistencies in the time-domain reporting of input changes. It is listed here as the
+	// standard deviation of latency measurements in milliseconds. There is a 68.2% probability of a sample being
+	// within +- one standard deviation from the average latency. Jitter values can be used to control the &apos;tau&apos; value
+	// in a low-pass filter. Such a filter mitigate both jitter and noise.</doc>

@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='506' type='int spng_get_exif(spng_ctx * ctx, struct spng_exif * exif)'/>

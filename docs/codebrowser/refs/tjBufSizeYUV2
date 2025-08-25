@@ -1,0 +1,18 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='933' type='unsigned long tjBufSizeYUV2(int width, int pad, int height, int subsamp)'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='916'>/**
+ * The size of the buffer (in bytes) required to hold a YUV planar image with
+ * the given parameters.
+ *
+ * @param width width (in pixels) of the image
+ *
+ * @param pad the width of each line in each plane of the image is padded to
+ * the nearest multiple of this number of bytes (must be a power of 2.)
+ *
+ * @param height height (in pixels) of the image
+ *
+ * @param subsamp level of chrominance subsampling in the image (see
+ * @ref TJSAMP &quot;Chrominance subsampling options&quot;.)
+ *
+ * @return the size of the buffer (in bytes) required to hold the image, or
+ * -1 if the arguments are out of bounds.
+ */</doc>

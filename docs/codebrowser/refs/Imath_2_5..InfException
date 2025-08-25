@@ -1,0 +1,3 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='66'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='322' c='_ZN9Imath_2_54Vec3C1ERKNS_4Vec4ITL0__EENS_12InfExceptionE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1366' c='_ZN9Imath_2_54Vec3C1ERKNS_4Vec4ITL0__EENS_12InfExceptionE'/>

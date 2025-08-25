@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/ApngDis/apngdis.h' l='47'/>
+<doc f='Modules/Image/Contrib/ApngDis/apngdis.h' l='46'>// @tacent Added version string. Value taken from printf in main().</doc>
+<use f='Modules/Image/Src/tPicture.cpp' l='62' u='c'/>

@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='680' type='tjhandle tjInitCompress()'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='452' u='c' c='_ZNK6tImage9tImageJPG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='674'>/**
+ * Create a TurboJPEG compressor instance.
+ *
+ * @return a handle to the newly-created instance, or NULL if an error
+ * occurred (see #tjGetErrorStr2().)
+ */</doc>

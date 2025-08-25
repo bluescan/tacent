@@ -1,2 +1,2 @@
 <dec f='include/ctype.h' l='110' type='int iscntrl(int )'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='339' u='c' c='_ZN4tStd8tIscntrlEc'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='345' u='c' c='_ZN4tStd8tIscntrlEc'/>

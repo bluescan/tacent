@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='143' type='const int[6]'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='333' u='r' c='_ZNK6tImage9tImageJPG29CanDoPerfectLosslessTransformENS0_9TransformE'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='134'>/**
+ * MCU block width (in pixels) for a given level of chrominance subsampling.
+ * MCU block sizes:
+ * - 8x8 for no subsampling or grayscale
+ * - 16x8 for 4:2:2
+ * - 8x16 for 4:4:0
+ * - 16x16 for 4:2:0
+ * - 32x8 for 4:1:1
+ */</doc>

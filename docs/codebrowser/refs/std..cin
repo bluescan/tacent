@@ -1,0 +1,16 @@
+<dec f='include/c++/11/iostream' l='60' type='std::istream'/>
+<doc f='include/c++/11/iostream' l='46'>/**
+   *  @name Standard Stream Objects
+   *
+   *  The &amp;lt;iostream&amp;gt; header declares the eight &lt;em&gt;standard stream
+   *  objects&lt;/em&gt;.  For other declarations, see
+   *  http://gcc.gnu.org/onlinedocs/libstdc++/manual/io.html
+   *  and the @link iosfwd I/O forward declarations @endlink
+   *
+   *  They are required by default to cooperate with the global C
+   *  library&apos;s @c FILE streams, and to be available during program
+   *  startup and termination. For more information, see the section of the
+   *  manual linked to above.
+  */
+  ///@{</doc>
+<doc f='include/c++/11/iostream' l='60'>/// Linked to standard input</doc>

@@ -21,5 +21,5 @@
 <use f='include/c++/11/chrono' l='3269' u='c' c='_ZNSt8literals15chrono_literalsli2usEe'/>
 <use f='include/c++/11/chrono' l='3280' u='c' c='_ZNSt8literals15chrono_literalsli2nsEe'/>
 <use f='include/c++/11/chrono' l='3392' u='c'/>
-<use f='Modules/Input/Src/tContGamepad.cpp' l='133' u='c' c='_ZN6tInput12tContGamepad4PollEv'/>
-<use f='Modules/Input/Src/tControllerSystem.cpp' l='145' u='c' c='_ZN6tInput17tControllerSystem6DetectEv'/>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='136' u='c' c='_ZN6tInput12tContGamepad4PollEv'/>
+<use f='Modules/Input/Src/tControllerSystem.cpp' l='120' u='c' c='_ZN6tInput17tControllerSystem6DetectEv'/>

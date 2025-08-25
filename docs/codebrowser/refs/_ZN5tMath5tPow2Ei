@@ -1,4 +1,4 @@
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='197' type='int tMath::tPow2(int n)'/>
-<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='197'>/* 2 ^ n. */</doc>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='200' type='int tMath::tPow2(int n)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='200'>/* 2 ^ n. */</doc>
 <use f='Modules/Image/Src/tImageGIF.cpp' l='314' u='c' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>
 <use f='Modules/Image/Src/tPaletteImage.cpp' l='238' u='c' c='_ZNK6tImage13tPaletteImage14GetPaletteSizeEv'/>

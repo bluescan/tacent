@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='454' type='int spng_set_image_limits(spng_ctx * ctx, uint32_t width, uint32_t height)'/>

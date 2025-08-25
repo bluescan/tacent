@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1777' type='tinyxml2::XMLError tinyxml2::XMLDocument::SaveFile(const char * filename, bool compact = false)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1772'>/**
+    	Save the XML file to disk.
+    	Returns XML_SUCCESS (0) on success, or
+    	an errorID.
+    */</doc>

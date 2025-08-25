@@ -1,0 +1,9 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='350' u='w' c='_ZN8tinyxml28MemPoolTC1Ev'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='362' u='w' c='_ZN8tinyxml28MemPoolT5ClearEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='372' u='r' c='_ZNK8tinyxml28MemPoolT13CurrentAllocsEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='392' u='w' c='_ZN8tinyxml28MemPoolT5AllocEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='393' u='r' c='_ZN8tinyxml28MemPoolT5AllocEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='394' u='r' c='_ZN8tinyxml28MemPoolT5AllocEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='405' u='w' c='_ZN8tinyxml28MemPoolT4FreeEPv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='415' c='_ZN8tinyxml28MemPoolT5TraceEPKc'/>
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='454' type='int'/>

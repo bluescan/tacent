@@ -1,0 +1,27 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1626' type='tinyxml2::XMLError tinyxml2::XMLElement::QueryIntText(int * ival) const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1600'>/**
+    	Convenience method to query the value of a child text node. This is probably best
+    	shown by example. Given you have a document is this form:
+    	@verbatim
+    		&lt;point&gt;
+    			&lt;x&gt;1&lt;/x&gt;
+    			&lt;y&gt;1.4&lt;/y&gt;
+    		&lt;/point&gt;
+    	@endverbatim
+
+    	The QueryIntText() and similar functions provide a safe and easier way to get to the
+    	&quot;value&quot; of x and y.
+
+    	@verbatim
+    		int x = 0;
+    		float y = 0;	// types of x and y are contrived for example
+    		const XMLElement* xElement = pointElement-&gt;FirstChildElement( &quot;x&quot; );
+    		const XMLElement* yElement = pointElement-&gt;FirstChildElement( &quot;y&quot; );
+    		xElement-&gt;QueryIntText( &amp;x );
+    		yElement-&gt;QueryFloatText( &amp;y );
+    	@endverbatim
+
+    	@returns XML_SUCCESS (0) on success, XML_CAN_NOT_CONVERT_TEXT if the text cannot be converted
+    			 to the requested type, and XML_NO_TEXT_NODE if there is no child text to query.
+
+    */</doc>

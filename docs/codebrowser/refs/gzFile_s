@@ -1,7 +1,7 @@
-<use f='include/zlib.h' l='1301'/>
-<def f='include/zlib.h' l='1818' ll='1822'/>
+<use f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1300'/>
+<def f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1817' ll='1821'/>
 <size>24</size>
-<doc f='include/zlib.h' l='1811'>/* gzgetc() macro and its supporting function and exposed data structure.  Note
+<doc f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1810'>/* gzgetc() macro and its supporting function and exposed data structure.  Note
  * that the real internal state is much larger than the exposed structure.
  * This abbreviated structure exposes just enough for the gzgetc() macro.  The
  * user should not mess with these exposed elements, since their names or

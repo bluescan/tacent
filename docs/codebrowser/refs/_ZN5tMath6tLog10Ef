@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='194' type='float tMath::tLog10(float x)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='194'>/* Base 10 logarithm. */</doc>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='195' u='c' c='_ZN4tStd10tNstrcmpExEPKcS1_'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='196' u='c' c='_ZN4tStd10tNstrcmpExEPKcS1_'/>

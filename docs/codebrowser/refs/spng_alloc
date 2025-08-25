@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='421' ll='427'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='445' c='spng_ctx_new2'/>
+<size>32</size>
+<mbr r='spng_alloc::malloc_fn' o='0' t='spng_malloc_fn *'/>
+<mbr r='spng_alloc::realloc_fn' o='64' t='spng_realloc_fn *'/>
+<mbr r='spng_alloc::calloc_fn' o='128' t='spng_calloc_fn *'/>
+<mbr r='spng_alloc::free_fn' o='192' t='spng_free_fn *'/>

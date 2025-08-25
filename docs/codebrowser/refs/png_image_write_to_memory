@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='3083' type='int png_image_write_to_memory(png_imagep image, void * memory, png_alloc_size_t *__restrict memory_bytes, int convert_to_8_bit, const void * buffer, png_int_32 row_stride, const void * colormap)'/>

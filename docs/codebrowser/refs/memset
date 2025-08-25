@@ -2,6 +2,8 @@
 <use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='37' u='c' c='_ZN4tStd7tMemsetEPvhi'/>
 <use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='38' u='c' c='_ZN4tStd7tMemclrEPvi'/>
 <doc f='include/string.h' l='60'>/* Set N bytes of S to C.  */</doc>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='64' u='c' c='_ZN7APngAsm5ImageC1Ev'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='65' u='c' c='_ZN7APngAsm5ImageC1Ev'/>
 <use f='Modules/Image/Contrib/QOI/qoi.h' l='310' u='c' c='qoi_encode'/>
 <use f='Modules/Image/Contrib/QOI/qoi.h' l='310' u='c' c='qoi_decode'/>
 <use f='Modules/Image/Contrib/WebP/include/mux_types.h' l='67' u='c' c='_ZL12WebPDataInitP8WebPData'/>

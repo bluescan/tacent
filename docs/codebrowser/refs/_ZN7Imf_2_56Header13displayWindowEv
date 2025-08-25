@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='265' type='Imath::Box2i &amp; Imf_2_5::Header::displayWindow()'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='207' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>

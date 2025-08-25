@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='350' type='const unsigned int'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='385' u='r'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='342'>/**
+ * @brief Create a self-decompression context.
+ *
+ * This mode configures the compressor so that it is only guaranteed to be able to decompress images
+ * that were actually created using the current context. This is the common case for compression use
+ * cases, and setting this flag enables additional optimizations, but does mean that the context
+ * cannot reliably decompress arbitrary ASTC images.
+ */</doc>

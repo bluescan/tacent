@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/stl_map.h' l='228' ll='232' type='void std::map::map&lt;_Key, _Tp, _Compare, _Alloc&gt;(initializer_list&lt;std::map::value_type&gt; __l, const _Compare &amp; __comp = _Compare(), const std::map::allocator_type &amp; __a = std::map::allocator_type())'/>
+<doc f='include/c++/11/bits/stl_map.h' l='217'>/**
+       *  @brief  Builds a %map from an initializer_list.
+       *  @param  __l  An initializer_list.
+       *  @param  __comp  A comparison object.
+       *  @param  __a  An allocator object.
+       *
+       *  Create a %map consisting of copies of the elements in the
+       *  initializer_list @a __l.
+       *  This is linear in N if the range is already sorted, and NlogN
+       *  otherwise (where N is @a __l.size()).
+       */</doc>

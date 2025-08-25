@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='191' type='1'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='190'>/** @brief The call failed due to low memory, or undersized I/O buffers. */</doc>

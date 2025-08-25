@@ -1,7 +1,7 @@
 <def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='169' type='float tMath::tSqrt(float x)'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='493' u='c' c='_ZN5tMath9tSqrtFastEf'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='505' u='c' c='_ZN5tMath14tRecipSqrtFastEf'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='611' u='c' c='_ZN5tMath8tUnitArcEfj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='496' u='c' c='_ZN5tMath9tSqrtFastEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='508' u='c' c='_ZN5tMath14tRecipSqrtFastEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='614' u='c' c='_ZN5tMath8tUnitArcEfj'/>
 <use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='343' u='c' c='_ZN5tMath7tLengthERKNS_5tVec2E'/>
 <use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='344' u='c' c='_ZN5tMath7tLengthERKNS_5tVec3E'/>
 <use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='345' u='c' c='_ZN5tMath7tLengthERKNS_5tVec4E'/>

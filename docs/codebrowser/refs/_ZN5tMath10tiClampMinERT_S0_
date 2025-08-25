@@ -1,10 +1,10 @@
 <def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='60' type='T &amp; tMath::tiClampMin(T &amp; val, T min)'/>
-<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='304' u='c' c='_ZN16tPackedF11F11F103SetEfff'/>
 <use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='305' u='c' c='_ZN16tPackedF11F11F103SetEfff'/>
 <use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='306' u='c' c='_ZN16tPackedF11F11F103SetEfff'/>
-<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='340' u='c' c='_ZN16tPackedF10F11F113SetEfff'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='307' u='c' c='_ZN16tPackedF11F11F103SetEfff'/>
 <use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='341' u='c' c='_ZN16tPackedF10F11F113SetEfff'/>
 <use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='342' u='c' c='_ZN16tPackedF10F11F113SetEfff'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='343' u='c' c='_ZN16tPackedF10F11F113SetEfff'/>
 <use f='Modules/Image/Src/tImageDDS.cpp' l='1381' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
 <use f='Modules/Image/Src/tImageDDS.cpp' l='1382' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
 <use f='Modules/Image/Src/tImageKTX.cpp' l='963' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>

@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='696' ll='698' type='tinyxml2::XMLText * tinyxml2::XMLNode::ToText()'/>
+<ovr f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='997' c='_ZN8tinyxml27XMLText6ToTextEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2113' u='c' c='_ZN8tinyxml29XMLHandle6ToTextEv'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='695'>/// Safely cast to Text, or null.</doc>

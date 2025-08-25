@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='634' type='static bool tinyxml2::XMLUtil::ToInt64(const char * str, int64_t * value)'/>

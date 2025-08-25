@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IlmBaseConfig.h' l='30'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IlmBaseConfig.h' l='22'>/* #undef ILMBASE_HAVE_LARGE_STACK */
+
+//////////////////////
+//
+// C++ namespace configuration / options
+
+// Current (internal) library namepace name and corresponding public
+// client namespaces.</doc>

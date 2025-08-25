@@ -1,0 +1,16 @@
+<def f='include/c++/11/bits/stl_tree.h' l='441' ll='517'/>
+<use f='include/c++/11/bits/stl_tree.h' l='458' c='_ZNSt8_Rb_tree20_Reuse_or_alloc_nodeC1ERKS0_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1679' c='_ZNSt8_Rb_tree14_M_move_assignERSt8_Rb_treeIT_T0_T1_T2_T3_ESt17integral_constantIbLb0EE'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1708' c='_ZNSt8_Rb_tree16_M_assign_uniqueETL0__S0_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1721' c='_ZNSt8_Rb_tree15_M_assign_equalETL0__S0_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1753' c='_ZNSt8_Rb_treeaSERKSt8_Rb_treeIT_T0_T1_T2_T3_E'/>
+<doc f='include/c++/11/bits/stl_tree.h' l='439'>// Functor recycling a pool of nodes and using allocation once the pool
+      // is empty.</doc>
+<fun r='_ZNSt8_Rb_tree20_Reuse_or_alloc_nodeC1ERSt8_Rb_treeIT_T0_T1_T2_T3_E'/>
+<fun r='_ZNSt8_Rb_tree20_Reuse_or_alloc_nodeC1ERKS0_'/>
+<fun r='_ZNSt8_Rb_tree20_Reuse_or_alloc_nodeD1Ev'/>
+<fun r='_ZNSt8_Rb_tree20_Reuse_or_alloc_nodeclEOTL0__'/>
+<fun r='_ZNSt8_Rb_tree20_Reuse_or_alloc_node10_M_extractEv'/>
+<mbr r='std::_Rb_tree::_Reuse_or_alloc_node::_M_root' t='std::_Rb_tree::_Base_ptr'/>
+<mbr r='std::_Rb_tree::_Reuse_or_alloc_node::_M_nodes' t='std::_Rb_tree::_Base_ptr'/>
+<mbr r='std::_Rb_tree::_Reuse_or_alloc_node::_M_t' t='_Rb_tree&lt;_Key, _Val, _KeyOfValue, _Compare, _Alloc&gt; &amp;'/>

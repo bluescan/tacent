@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='515'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='378' u='c'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='511'>/**
+ * This option will cause #tjTransform() to discard any partial MCU blocks that
+ * cannot be transformed.
+ */</doc>

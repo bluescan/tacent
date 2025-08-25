@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='378' ll='385' type='const unsigned int'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='375'>/**
+ * @brief The bit mask of all valid flags.
+ */</doc>

@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='492' type='int spng_get_gama_int(spng_ctx * ctx, uint32_t * gama_int)'/>

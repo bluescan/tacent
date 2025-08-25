@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/pnglibconf.h' l='29'/>
+<use f='Modules/Image/Contrib/LibPNG/include/pngconf.h' l='54' u='a'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='1040' u='a'/>

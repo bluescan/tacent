@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='201' type='void Imf_2_5::OStream::seekp(Imath_2_5::Int64 pos)'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='196'>//-------------------------------------------
+    // Set the current writing position.
+    // After calling seekp(i), tellp() returns i.
+    //-------------------------------------------</doc>

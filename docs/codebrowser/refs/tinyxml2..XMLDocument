@@ -1,0 +1,104 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='487' c='_ZN8tinyxml210XMLVisitor10VisitEnterERKNS_11XMLDocumentE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='491' c='_ZN8tinyxml210XMLVisitor9VisitExitERKNS_11XMLDocumentE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='676'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='681' c='_ZNK8tinyxml27XMLNode11GetDocumentEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='686' c='_ZN8tinyxml27XMLNode11GetDocumentEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='704' c='_ZN8tinyxml27XMLNode10ToDocumentEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='725' c='_ZNK8tinyxml27XMLNode10ToDocumentEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='885' c='_ZNK8tinyxml27XMLNode12ShallowCloneEPNS_11XMLDocumentE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='900' c='_ZNK8tinyxml27XMLNode9DeepCloneEPNS_11XMLDocumentE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='949' c='_ZN8tinyxml27XMLNodeC1EPNS_11XMLDocumentE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='954'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='993'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1013' c='_ZNK8tinyxml27XMLText12ShallowCloneEPNS_11XMLDocumentE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1017' c='_ZN8tinyxml27XMLTextC1EPNS_11XMLDocumentE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1033'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1044' c='_ZNK8tinyxml210XMLComment12ShallowCloneEPNS_11XMLDocumentE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1048' c='_ZN8tinyxml210XMLCommentC1EPNS_11XMLDocumentE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1072'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1083' c='_ZNK8tinyxml214XMLDeclaration12ShallowCloneEPNS_11XMLDocumentE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1087' c='_ZN8tinyxml214XMLDeclarationC1EPNS_11XMLDocumentE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1107'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1118' c='_ZNK8tinyxml210XMLUnknown12ShallowCloneEPNS_11XMLDocumentE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1122' c='_ZN8tinyxml210XMLUnknownC1EPNS_11XMLDocumentE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1266'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1679' c='_ZNK8tinyxml210XMLElement12ShallowCloneEPNS_11XMLDocumentE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1686' c='_ZN8tinyxml210XMLElementC1EPNS_11XMLDocumentE'/>
+<inh f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='674' c='tinyxml2::XMLNode'/>
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1716' ll='1982'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1731' c='_ZN8tinyxml211XMLDocument10ToDocumentEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1735' c='_ZNK8tinyxml211XMLDocument10ToDocumentEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1915' c='_ZNK8tinyxml211XMLDocument8DeepCopyEPS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1923' c='_ZNK8tinyxml211XMLDocument12ShallowCloneEPS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1931' c='_ZN8tinyxml211XMLDocumentC1ERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1932' c='_ZN8tinyxml211XMLDocumentaSERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1967' c='_ZN8tinyxml211XMLDocument12DepthTrackerC1EPS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1975'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2289' c='_ZN8tinyxml210XMLPrinter10VisitEnterERKNS_11XMLDocumentE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2290' c='_ZN8tinyxml210XMLPrinter9VisitExitERKNS_11XMLDocumentE'/>
+<size>776</size>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1711'>/** A Document binds together all the functionality.
+	It can be saved, loaded, and printed to the screen.
+	All Nodes are connected and allocated to a Document.
+	If the Document is deleted, all its Nodes are also deleted.
+*/</doc>
+<fun r='_ZN8tinyxml211XMLDocumentC1EbNS_10WhitespaceE'/>
+<fun r='_ZN8tinyxml211XMLDocumentD1Ev'/>
+<fun r='_ZN8tinyxml211XMLDocument10ToDocumentEv'/>
+<fun r='_ZNK8tinyxml211XMLDocument10ToDocumentEv'/>
+<fun r='_ZN8tinyxml211XMLDocument5ParseEPKcm'/>
+<fun r='_ZN8tinyxml211XMLDocument8LoadFileEPKc'/>
+<fun r='_ZN8tinyxml211XMLDocument8LoadFileEP8_IO_FILE'/>
+<fun r='_ZN8tinyxml211XMLDocument8SaveFileEPKcb'/>
+<fun r='_ZN8tinyxml211XMLDocument8SaveFileEP8_IO_FILEb'/>
+<fun r='_ZNK8tinyxml211XMLDocument15ProcessEntitiesEv'/>
+<fun r='_ZNK8tinyxml211XMLDocument14WhitespaceModeEv'/>
+<fun r='_ZNK8tinyxml211XMLDocument6HasBOMEv'/>
+<fun r='_ZN8tinyxml211XMLDocument6SetBOMEb'/>
+<fun r='_ZN8tinyxml211XMLDocument11RootElementEv'/>
+<fun r='_ZNK8tinyxml211XMLDocument11RootElementEv'/>
+<fun r='_ZNK8tinyxml211XMLDocument5PrintEPNS_10XMLPrinterE'/>
+<fun r='_ZNK8tinyxml211XMLDocument6AcceptEPNS_10XMLVisitorE'/>
+<fun r='_ZN8tinyxml211XMLDocument10NewElementEPKc'/>
+<fun r='_ZN8tinyxml211XMLDocument10NewCommentEPKc'/>
+<fun r='_ZN8tinyxml211XMLDocument7NewTextEPKc'/>
+<fun r='_ZN8tinyxml211XMLDocument14NewDeclarationEPKc'/>
+<fun r='_ZN8tinyxml211XMLDocument10NewUnknownEPKc'/>
+<fun r='_ZN8tinyxml211XMLDocument10DeleteNodeEPNS_7XMLNodeE'/>
+<fun r='_ZN8tinyxml211XMLDocument10ClearErrorEv'/>
+<fun r='_ZNK8tinyxml211XMLDocument5ErrorEv'/>
+<fun r='_ZNK8tinyxml211XMLDocument7ErrorIDEv'/>
+<fun r='_ZNK8tinyxml211XMLDocument9ErrorNameEv'/>
+<fun r='_ZN8tinyxml211XMLDocument13ErrorIDToNameENS_8XMLErrorE'/>
+<fun r='_ZNK8tinyxml211XMLDocument8ErrorStrEv'/>
+<fun r='_ZNK8tinyxml211XMLDocument10PrintErrorEv'/>
+<fun r='_ZNK8tinyxml211XMLDocument12ErrorLineNumEv'/>
+<fun r='_ZN8tinyxml211XMLDocument5ClearEv'/>
+<fun r='_ZNK8tinyxml211XMLDocument8DeepCopyEPS0_'/>
+<fun r='_ZN8tinyxml211XMLDocument8IdentifyEPcPPNS_7XMLNodeE'/>
+<fun r='_ZN8tinyxml211XMLDocument9MarkInUseEPKNS_7XMLNodeE'/>
+<fun r='_ZNK8tinyxml211XMLDocument12ShallowCloneEPS0_'/>
+<fun r='_ZNK8tinyxml211XMLDocument12ShallowEqualEPKNS_7XMLNodeE'/>
+<fun r='_ZN8tinyxml211XMLDocumentC1ERKS0_'/>
+<fun r='_ZN8tinyxml211XMLDocumentaSERKS0_'/>
+<mbr r='tinyxml2::XMLDocument::_writeBOM' o='832' t='bool'/>
+<mbr r='tinyxml2::XMLDocument::_processEntities' o='840' t='bool'/>
+<mbr r='tinyxml2::XMLDocument::_errorID' o='864' t='tinyxml2::XMLError'/>
+<mbr r='tinyxml2::XMLDocument::_whitespaceMode' o='896' t='tinyxml2::Whitespace'/>
+<mbr r='tinyxml2::XMLDocument::_errorStr' o='960' t='tinyxml2::StrPair'/>
+<mbr r='tinyxml2::XMLDocument::_errorLineNum' o='1152' t='int'/>
+<mbr r='tinyxml2::XMLDocument::_charBuffer' o='1216' t='char *'/>
+<mbr r='tinyxml2::XMLDocument::_parseCurLineNum' o='1280' t='int'/>
+<mbr r='tinyxml2::XMLDocument::_parsingDepth' o='1312' t='int'/>
+<mbr r='tinyxml2::XMLDocument::_unlinked' o='1344' t='DynArray&lt;tinyxml2::XMLNode *, 10&gt;'/>
+<mbr r='tinyxml2::XMLDocument::_elementPool' o='2112' t='MemPoolT&lt;sizeof(tinyxml2::XMLElement)&gt;'/>
+<mbr r='tinyxml2::XMLDocument::_attributePool' o='3136' t='MemPoolT&lt;sizeof(tinyxml2::XMLAttribute)&gt;'/>
+<mbr r='tinyxml2::XMLDocument::_textPool' o='4160' t='MemPoolT&lt;sizeof(tinyxml2::XMLText)&gt;'/>
+<mbr r='tinyxml2::XMLDocument::_commentPool' o='5184' t='MemPoolT&lt;sizeof(tinyxml2::XMLComment)&gt;'/>
+<smbr r='tinyxml2::XMLDocument::_errorNames' t='const char *[19]'/>
+<fun r='_ZN8tinyxml211XMLDocument5ParseEv'/>
+<fun r='_ZN8tinyxml211XMLDocument8SetErrorENS_8XMLErrorEiPKcz'/>
+<fun r='_ZN8tinyxml211XMLDocument9PushDepthEv'/>
+<fun r='_ZN8tinyxml211XMLDocument8PopDepthEv'/>
+<fun r='_ZN8tinyxml211XMLDocument18CreateUnlinkedNodeERNS_8MemPoolTIXT0_EEE'/>
+<fun r='_ZN8tinyxml211XMLDocument18CreateUnlinkedNodeERNS_8MemPoolTIXT0_EEE'/>

@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='163' type='T Imath_2_5::Vec2::dot(const Vec2&lt;T&gt; &amp; v) const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1017' ll='1022' type='T Imath_2_5::Vec2::dot(const Vec2&lt;T&gt; &amp; v) const'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1028' u='c' c='_ZNK9Imath_2_54Vec2eoERKNS_4Vec2IT_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1189' u='c' c='_ZNK9Imath_2_54Vec26lengthEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1201' u='c' c='_ZNK9Imath_2_54Vec27length2Ev'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='159'>//------------
+    // Dot product
+    //------------</doc>

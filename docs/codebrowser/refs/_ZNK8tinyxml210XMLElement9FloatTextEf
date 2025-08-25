@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1653' type='float tinyxml2::XMLElement::FloatText(float defaultValue = 0) const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1652'>/// See QueryIntText()</doc>

@@ -1,0 +1,54 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1439' type='int tjDecodeYUVPlanes(tjhandle handle, const unsigned char ** srcPlanes, const int * strides, int subsamp, unsigned char * dstBuf, int width, int pitch, int height, int pixelFormat, int flags)'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1386'>/**
+ * Decode a set of Y, U (Cb), and V (Cr) image planes into an RGB or grayscale
+ * image.  This function uses the accelerated color conversion routines in the
+ * underlying codec but does not execute any of the other steps in the JPEG
+ * decompression process.
+ *
+ * @param handle a handle to a TurboJPEG decompressor or transformer instance
+ *
+ * @param srcPlanes an array of pointers to Y, U (Cb), and V (Cr) image planes
+ * (or just a Y plane, if decoding a grayscale image) that contain a YUV image
+ * to be decoded.  These planes can be contiguous or non-contiguous in memory.
+ * The size of each plane should match the value returned by #tjPlaneSizeYUV()
+ * for the given image width, height, strides, and level of chrominance
+ * subsampling.  Refer to @ref YUVnotes &quot;YUV Image Format Notes&quot; for more
+ * details.
+ *
+ * @param strides an array of integers, each specifying the number of bytes per
+ * line in the corresponding plane of the YUV source image.  Setting the stride
+ * for any plane to 0 is the same as setting it to the plane width (see
+ * @ref YUVnotes &quot;YUV Image Format Notes&quot;.)  If &lt;tt&gt;strides&lt;/tt&gt; is NULL, then
+ * the strides for all planes will be set to their respective plane widths.
+ * You can adjust the strides in order to specify an arbitrary amount of line
+ * padding in each plane or to decode a subregion of a larger YUV planar image.
+ *
+ * @param subsamp the level of chrominance subsampling used in the YUV source
+ * image (see @ref TJSAMP &quot;Chrominance subsampling options&quot;.)
+ *
+ * @param dstBuf pointer to an image buffer that will receive the decoded
+ * image.  This buffer should normally be &lt;tt&gt;pitch * height&lt;/tt&gt; bytes in
+ * size, but the &lt;tt&gt;dstBuf&lt;/tt&gt; pointer can also be used to decode into a
+ * specific region of a larger buffer.
+ *
+ * @param width width (in pixels) of the source and destination images
+ *
+ * @param pitch bytes per line in the destination image.  Normally, this should
+ * be &lt;tt&gt;width * #tjPixelSize[pixelFormat]&lt;/tt&gt; if the destination image is
+ * unpadded, or &lt;tt&gt;#TJPAD(width * #tjPixelSize[pixelFormat])&lt;/tt&gt; if each line
+ * of the destination image should be padded to the nearest 32-bit boundary, as
+ * is the case for Windows bitmaps.  You can also be clever and use the pitch
+ * parameter to skip lines, etc.  Setting this parameter to 0 is the equivalent
+ * of setting it to &lt;tt&gt;width * #tjPixelSize[pixelFormat]&lt;/tt&gt;.
+ *
+ * @param height height (in pixels) of the source and destination images
+ *
+ * @param pixelFormat pixel format of the destination image (see @ref TJPF
+ * &quot;Pixel formats&quot;.)
+ *
+ * @param flags the bitwise OR of one or more of the @ref TJFLAG_ACCURATEDCT
+ * &quot;flags&quot;
+ *
+ * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr2()
+ * and #tjGetErrorCode().)
+ */</doc>

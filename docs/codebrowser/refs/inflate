@@ -1,1 +1,1 @@
-<dec f='include/zlib.h' l='400' type='int inflate(z_streamp strm, int flush)'/>
+<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='400' type='int inflate(z_streamp strm, int flush)'/>

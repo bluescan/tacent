@@ -1,0 +1,43 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='509' c='_ZN8tinyxml210XMLVisitor5VisitERKNS_7XMLTextE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='696' c='_ZN8tinyxml27XMLNode6ToTextEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='719' c='_ZNK8tinyxml27XMLNode6ToTextEv'/>
+<inh f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='674' c='tinyxml2::XMLNode'/>
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='991' ll='1027'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='997' c='_ZN8tinyxml27XMLText6ToTextEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1000' c='_ZNK8tinyxml27XMLText6ToTextEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1025' c='_ZN8tinyxml27XMLTextC1ERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1026' c='_ZN8tinyxml27XMLTextaSERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1026' c='_ZN8tinyxml27XMLTextaSERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1663' c='_ZN8tinyxml210XMLElement13InsertNewTextEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1722'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1851' c='_ZN8tinyxml211XMLDocument7NewTextEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1953'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2112' c='_ZN8tinyxml29XMLHandle6ToTextEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2180' c='_ZNK8tinyxml214XMLConstHandle6ToTextEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2297' c='_ZN8tinyxml210XMLPrinter5VisitERKNS_7XMLTextE'/>
+<size>112</size>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='979'>/** XML text.
+
+	Note that a text node can have child element nodes, for example:
+	@verbatim
+	&lt;root&gt;This is &lt;b&gt;bold&lt;/b&gt;&lt;/root&gt;
+	@endverbatim
+
+	A text node can have 2 ways to output the next. &quot;normal&quot; output
+	and CDATA. It will default to the mode it was parsed from the XML file and
+	you generally want to leave it alone, but you can change the output mode with
+	SetCData() and query it with CData().
+*/</doc>
+<fun r='_ZNK8tinyxml27XMLText6AcceptEPNS_10XMLVisitorE'/>
+<fun r='_ZN8tinyxml27XMLText6ToTextEv'/>
+<fun r='_ZNK8tinyxml27XMLText6ToTextEv'/>
+<fun r='_ZN8tinyxml27XMLText8SetCDataEb'/>
+<fun r='_ZNK8tinyxml27XMLText5CDataEv'/>
+<fun r='_ZNK8tinyxml27XMLText12ShallowCloneEPNS_11XMLDocumentE'/>
+<fun r='_ZNK8tinyxml27XMLText12ShallowEqualEPKNS_7XMLNodeE'/>
+<fun r='_ZN8tinyxml27XMLTextC1EPNS_11XMLDocumentE'/>
+<fun r='_ZN8tinyxml27XMLTextD1Ev'/>
+<fun r='_ZN8tinyxml27XMLText9ParseDeepEPcPNS_7StrPairEPi'/>
+<mbr r='tinyxml2::XMLText::_isCData' o='832' t='bool'/>
+<fun r='_ZN8tinyxml27XMLTextC1ERKS0_'/>
+<fun r='_ZN8tinyxml27XMLTextaSERKS0_'/>

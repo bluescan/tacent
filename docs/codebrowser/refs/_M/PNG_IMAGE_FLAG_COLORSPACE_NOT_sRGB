@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2935'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2930'>/* PNG_IMAGE_FLAG_*
+ *
+ * Flags containing additional information about the image are held in the
+ * &apos;flags&apos; field of png_image.
+ */</doc>

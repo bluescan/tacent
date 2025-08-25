@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='168' type='void Imf_2_5::Array2D::resizeEraseUnsafe(long sizeX, long sizeY)'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='273' ll='284' type='void Imf_2_5::Array2D::resizeEraseUnsafe(long sizeX, long sizeY)'/>

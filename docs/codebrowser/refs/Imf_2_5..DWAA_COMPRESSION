@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfCompression.h' l='69' type='8'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfCompression.h' l='67'>// flat fields are compressed more</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfCompression.h' l='69'>// lossy DCT based compression, in blocks</doc>

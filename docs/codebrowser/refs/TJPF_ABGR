@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='228' type='9'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='223'>/**
+   * ABGR pixel format.  This is the same as @ref TJPF_XBGR, except that when
+   * decompressing, the X component is guaranteed to be 0xFF, which can be
+   * interpreted as an opaque alpha channel.
+   */</doc>

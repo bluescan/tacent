@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2507'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2505'>/* fg and bg should be in `gamma 1.0&apos; space; alpha is the opacity */</doc>

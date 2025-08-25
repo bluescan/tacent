@@ -1,4 +1,5 @@
 <use f='Modules/Image/Src/tImagePNG.cpp' l='256' u='w' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='265' u='w' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
 <use f='Modules/Image/Src/tImagePNG.cpp' l='267' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
 <use f='Modules/Image/Src/tImagePNG.cpp' l='350' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
 <use f='Modules/Image/Src/tImagePNG.cpp' l='357' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
@@ -23,6 +24,8 @@
 <use f='Modules/Image/Src/tImagePNG.cpp' l='817' u='r' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
 <use f='Modules/Image/Src/tImagePNG.cpp' l='830' u='r' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
 <use f='Modules/Image/Src/tImagePNG.cpp' l='832' u='r' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='860' u='r' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='876' u='r' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
 <use f='Modules/Image/Src/tImagePNG.cpp' l='906' u='r' c='_ZNK6tImage9tImagePNG8IsOpaqueEv'/>
 <use f='Modules/Image/Src/tImagePNG.cpp' l='914' u='r' c='_ZNK6tImage9tImagePNG8IsOpaqueEv'/>
 <use f='Modules/Image/Src/tImagePNG.cpp' l='932' u='w' c='_ZN6tImage9tImagePNG12StealPixels8Ev'/>

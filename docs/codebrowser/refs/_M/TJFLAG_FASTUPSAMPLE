@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='380'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='373'>/**
+ * When decompressing an image that was compressed using chrominance
+ * subsampling, use the fastest chrominance upsampling algorithm available in
+ * the underlying codec.  The default is to use smooth upsampling, which
+ * creates a smooth transition between neighboring chrominance components in
+ * order to reduce upsampling artifacts in the decompressed image.
+ */</doc>

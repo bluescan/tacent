@@ -1,0 +1,7 @@
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='81' u='r' c='_ZNK7Imf_2_54Name4textEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='83' u='r' c='_ZNK7Imf_2_54NamedeEv'/>
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='94' type='char[256]'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='113' u='r' c='_ZN7Imf_2_54NameaSEPKc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='121' u='w' c='_ZN7Imf_2_54NameC1Ev'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='129' u='w' c='_ZN7Imf_2_54NameC1EPKc'/>
+<offset>0</offset>

@@ -1,1 +1,5 @@
 <dec f='include/pthread.h' l='773' type='int __sigsetjmp(struct __jmp_buf_tag * __env, int __savemask)'/>
+<dec f='include/setjmp.h' l='41' type='int __sigsetjmp(struct __jmp_buf_tag * __env, int __savemask)'/>
+<doc f='include/setjmp.h' l='38'>/* Store the calling environment in ENV, also saving the
+   signal mask if SAVEMASK is nonzero.  Return 0.
+   This is the internal name for `sigsetjmp&apos;.  */</doc>

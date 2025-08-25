@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='487' type='int spng_get_plte(spng_ctx * ctx, struct spng_plte * plte)'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='310' u='c' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>

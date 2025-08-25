@@ -1,0 +1,2 @@
+<inh f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='696' c='_ZN8tinyxml27XMLNode6ToTextEv'/>
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='997' ll='999' type='tinyxml2::XMLText * tinyxml2::XMLText::ToText()'/>

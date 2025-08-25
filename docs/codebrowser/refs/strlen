@@ -1,4 +1,5 @@
 <dec f='include/string.h' l='407' type='size_t strlen(const char * __s)'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='95' u='c' c='_ZN4tStd7tStrlenEPKc'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='104' u='c' c='_ZN4tStd7tStrlenEPKDu'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='101' u='c' c='_ZN4tStd7tStrlenEPKc'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='110' u='c' c='_ZN4tStd7tStrlenEPKDu'/>
 <doc f='include/string.h' l='406'>/* Return the length of S.  */</doc>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2338' u='c' c='_ZN8tinyxml210XMLPrinter5WriteEPKc'/>

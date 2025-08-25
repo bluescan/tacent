@@ -1,4 +1,4 @@
 <def f='Modules/Input/Inc/Input/tContGamepad.h' l='91' type='bool tInput::tContGamepad::IsPolling() const'/>
 <use f='Modules/Input/Inc/Input/tContGamepad.h' l='92' u='c' c='_ZNK6tInput12tContGamepad11IsConnectedEv'/>
-<use f='Modules/Input/Src/tContGamepad.cpp' l='32' u='c' c='_ZN6tInput12tContGamepad12StartPollingEiNS_10tGamepadIDE'/>
-<use f='Modules/Input/Src/tContGamepad.cpp' l='46' u='c' c='_ZN6tInput12tContGamepad11StopPollingEv'/>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='30' u='c' c='_ZN6tInput12tContGamepad12StartPollingEi'/>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='49' u='c' c='_ZN6tInput12tContGamepad11StopPollingEv'/>

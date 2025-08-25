@@ -1,0 +1,16 @@
+<def f='include/c++/11/bits/stl_map.h' l='1030' ll='1032' type='std::map::iterator std::map::erase(std::map::const_iterator __position)'/>
+<doc f='include/c++/11/bits/stl_map.h' l='1015'>/**
+       *  @brief Erases an element from a %map.
+       *  @param  __position  An iterator pointing to the element to be erased.
+       *  @return An iterator pointing to the element immediately following
+       *          @a position prior to the element being erased. If no such
+       *          element exists, end() is returned.
+       *
+       *  This function erases an element, pointed to by the given
+       *  iterator, from a %map.  Note that this function only erases
+       *  the element, and that if the element is itself a pointer,
+       *  the pointed-to memory is not touched in any way.  Managing
+       *  the pointer is the user&apos;s responsibility.
+       *
+       *  @{
+       */</doc>

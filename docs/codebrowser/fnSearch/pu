@@ -8,9 +8,11 @@ _ZNSt15basic_streambuf10pubseekposENT0_8pos_typeESt13_Ios_Openmode|std::basic_st
 _ZNSt15basic_streambuf9pubsetbufEPT_l|std::basic_streambuf::pubsetbuf
 _ZNSt15basic_streambuf7pubsyncEv|std::basic_streambuf::pubsync
 _ZNKSt7num_put3putET0_RSt8ios_baseT_b|std::num_put::put
+_ZNSt13basic_istream7putbackET_|std::basic_istream::putback
+_ZN8tinyxml28DynArray4PushET_|tinyxml2::DynArray::Push
+_ZN8tinyxml28DynArray7PushArrEi|tinyxml2::DynArray::PushArr
 _ZNSt5deque9push_backERKT_|std::deque::push_back
 _ZNSt5deque10push_frontERKT_|std::deque::push_front
-_ZNSt13basic_istream7putbackET_|std::basic_istream::putback
 _ZNKSt7__cxx119money_put3putET0_bRSt8ios_baseT_e|std::money_put::put
 _ZSt9put_moneyRKT_b|std::put_money
 _ZSt8put_timePK2tmPKT_|std::put_time

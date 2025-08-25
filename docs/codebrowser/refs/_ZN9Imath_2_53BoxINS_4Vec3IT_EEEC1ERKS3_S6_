@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='602' type='void Imath_2_5::Box&lt;Vec3&lt;type-parameter-0-0&gt;&gt;::Box&lt;Vec3&lt;type-parameter-0-0&gt; &gt;(const Vec3&lt;T&gt; &amp; minT, const Vec3&lt;T&gt; &amp; maxT)'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='660' ll='665' type='void Imath_2_5::Box&lt;Vec3&lt;type-parameter-0-0&gt;&gt;::Box&lt;Vec3&lt;type-parameter-0-0&gt; &gt;(const Vec3&lt;T&gt; &amp; minT, const Vec3&lt;T&gt; &amp; maxT)'/>

@@ -1,0 +1,62 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='743' type='int tjCompress2(tjhandle handle, const unsigned char * srcBuf, int width, int pitch, int height, int pixelFormat, unsigned char ** jpegBuf, unsigned long * jpegSize, int jpegSubsamp, int jpegQual, int flags)'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='465' u='c' c='_ZNK6tImage9tImageJPG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='683'>/**
+ * Compress an RGB, grayscale, or CMYK image into a JPEG image.
+ *
+ * @param handle a handle to a TurboJPEG compressor or transformer instance
+ *
+ * @param srcBuf pointer to an image buffer containing RGB, grayscale, or
+ * CMYK pixels to be compressed
+ *
+ * @param width width (in pixels) of the source image
+ *
+ * @param pitch bytes per line in the source image.  Normally, this should be
+ * &lt;tt&gt;width * #tjPixelSize[pixelFormat]&lt;/tt&gt; if the image is unpadded, or
+ * &lt;tt&gt;#TJPAD(width * #tjPixelSize[pixelFormat])&lt;/tt&gt; if each line of the image
+ * is padded to the nearest 32-bit boundary, as is the case for Windows
+ * bitmaps.  You can also be clever and use this parameter to skip lines, etc.
+ * Setting this parameter to 0 is the equivalent of setting it to
+ * &lt;tt&gt;width * #tjPixelSize[pixelFormat]&lt;/tt&gt;.
+ *
+ * @param height height (in pixels) of the source image
+ *
+ * @param pixelFormat pixel format of the source image (see @ref TJPF
+ * &quot;Pixel formats&quot;.)
+ *
+ * @param jpegBuf address of a pointer to an image buffer that will receive the
+ * JPEG image.  TurboJPEG has the ability to reallocate the JPEG buffer
+ * to accommodate the size of the JPEG image.  Thus, you can choose to:
+ * -# pre-allocate the JPEG buffer with an arbitrary size using #tjAlloc() and
+ * let TurboJPEG grow the buffer as needed,
+ * -# set &lt;tt&gt;*jpegBuf&lt;/tt&gt; to NULL to tell TurboJPEG to allocate the buffer
+ * for you, or
+ * -# pre-allocate the buffer to a &quot;worst case&quot; size determined by calling
+ * #tjBufSize().  This should ensure that the buffer never has to be
+ * re-allocated (setting #TJFLAG_NOREALLOC guarantees that it won&apos;t be.)
+ * .
+ * If you choose option 1, &lt;tt&gt;*jpegSize&lt;/tt&gt; should be set to the size of your
+ * pre-allocated buffer.  In any case, unless you have set #TJFLAG_NOREALLOC,
+ * you should always check &lt;tt&gt;*jpegBuf&lt;/tt&gt; upon return from this function, as
+ * it may have changed.
+ *
+ * @param jpegSize pointer to an unsigned long variable that holds the size of
+ * the JPEG image buffer.  If &lt;tt&gt;*jpegBuf&lt;/tt&gt; points to a pre-allocated
+ * buffer, then &lt;tt&gt;*jpegSize&lt;/tt&gt; should be set to the size of the buffer.
+ * Upon return, &lt;tt&gt;*jpegSize&lt;/tt&gt; will contain the size of the JPEG image (in
+ * bytes.)  If &lt;tt&gt;*jpegBuf&lt;/tt&gt; points to a JPEG image buffer that is being
+ * reused from a previous call to one of the JPEG compression functions, then
+ * &lt;tt&gt;*jpegSize&lt;/tt&gt; is ignored.
+ *
+ * @param jpegSubsamp the level of chrominance subsampling to be used when
+ * generating the JPEG image (see @ref TJSAMP
+ * &quot;Chrominance subsampling options&quot;.)
+ *
+ * @param jpegQual the image quality of the generated JPEG image (1 = worst,
+ * 100 = best)
+ *
+ * @param flags the bitwise OR of one or more of the @ref TJFLAG_ACCURATEDCT
+ * &quot;flags&quot;
+ *
+ * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr2()
+ * and #tjGetErrorCode().)
+*/</doc>

@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/pngconf.h' l='64'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/pngconf.h' l='61'>/* Prior to 1.6.0, it was possible to turn off &apos;const&apos; in declarations,
+ * using PNG_NO_CONST.  This is no longer supported.
+ */</doc>

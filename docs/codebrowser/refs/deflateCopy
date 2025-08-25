@@ -1,1 +1,1 @@
-<dec f='include/zlib.h' l='677' type='int deflateCopy(z_streamp dest, z_streamp source)'/>
+<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='677' type='int deflateCopy(z_streamp dest, z_streamp source)'/>

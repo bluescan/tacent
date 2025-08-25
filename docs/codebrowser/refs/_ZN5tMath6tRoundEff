@@ -1,6 +1,6 @@
 <dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='139' type='float tMath::tRound(float v, float nearest)'/>
 <use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='140' u='c' c='_ZN5tMath7tiRoundERff'/>
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='378' ll='387' type='float tMath::tRound(float v, float nearest)'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='381' ll='390' type='float tMath::tRound(float v, float nearest)'/>
 <use f='Modules/Image/Src/tPicture.cpp' l='191' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
 <use f='Modules/Image/Src/tPicture.cpp' l='192' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
 <use f='Modules/Image/Src/tPicture.cpp' l='193' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>

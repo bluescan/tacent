@@ -38,6 +38,8 @@ _ZN5tMath5tRay2C1Ev|tMath::tRay2::tRay2
 _ZN5tMath4tRay3SetERKNS_8tVector3ES3_|tMath::tRay::Set
 _ZN5tMath4tRayC1Ev|tMath::tRay::tRay
 _ZN7tSystem9tReadFileEP8_IO_FILEPvi|tSystem::tReadFile
+_ZNSt3map11try_emplaceERKT_DpOTL0__|std::map::try_emplace
+_ZN8tinyxml28MemPoolT5TraceEPKc|tinyxml2::MemPoolT::Trace
 _ZSt24transform_exclusive_scanT_S_T0_T1_T2_T3_|std::transform_exclusive_scan
 _ZSt24transform_inclusive_scanT_S_T0_T1_T2_T3_|std::transform_inclusive_scan
 _ZSt16transform_reduceT_S_T0_T1_T2_T3_|std::transform_reduce

@@ -9,6 +9,12 @@ _ZNK6tsList4LastEv|tsList::Last
 _ZNK6tChunk4LastEv|tChunk::Last
 _ZNK6tImage9tImagePVR8LayerIdxEiiii|tImage::tImagePVR::LayerIdx
 _ZNK10tFunScript4LastEv|tFunScript::Last
+_ZNK8tinyxml214XMLConstHandle9LastChildEv|tinyxml2::XMLConstHandle::LastChild
+_ZNK8tinyxml214XMLConstHandle16LastChildElementEPKc|tinyxml2::XMLConstHandle::LastChildElement
+_ZN8tinyxml29XMLHandle9LastChildEv|tinyxml2::XMLHandle::LastChild
+_ZN8tinyxml29XMLHandle16LastChildElementEPKc|tinyxml2::XMLHandle::LastChildElement
+_ZNK8tinyxml27XMLNode9LastChildEv|tinyxml2::XMLNode::LastChild
+_ZN8tinyxml27XMLNode16LastChildElementEPKc|tinyxml2::XMLNode::LastChildElement
 _ZNKSt24exponential_distribution6lambdaEv|std::exponential_distribution::lambda
 _ZNKSt24exponential_distribution10param_type6lambdaEv|std::exponential_distribution::param_type::lambda
 _ZNKSt10filesystem7__cxx1115directory_entry15last_write_timeEv|std::filesystem::directory_entry::last_write_time

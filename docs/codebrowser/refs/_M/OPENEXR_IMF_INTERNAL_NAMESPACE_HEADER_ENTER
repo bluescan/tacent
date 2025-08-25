@@ -1,0 +1,19 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfNamespace.h' l='108'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfRgba.h' l='48' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfForward.h' l='50' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='74' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfLineOrder.h' l='47' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfCompression.h' l='47' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='51' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfTileDescription.h' l='46' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfInt64.h' l='47' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='64' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='52' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfGenericInputFile.h' l='43' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfThreading.h' l='75' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfMultiPartInputFile.h' l='44' u='c'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfNamespace.h' l='102'>//
+// There are identical pairs of HEADER/SOURCE ENTER/EXIT macros so that
+// future extension to the namespace mechanism is possible without changing
+// project source code.
+//</doc>

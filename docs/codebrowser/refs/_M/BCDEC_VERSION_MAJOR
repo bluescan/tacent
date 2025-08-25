@@ -1,1 +1,2 @@
 <dec f='Modules/Image/Contrib/bcdec/bcdec.h' l='47'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='68' u='c'/>

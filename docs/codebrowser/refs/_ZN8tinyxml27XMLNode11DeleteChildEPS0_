@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='874' type='void tinyxml2::XMLNode::DeleteChild(tinyxml2::XMLNode * node)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='871'>/**
+    	Delete a child of this node.
+    */</doc>

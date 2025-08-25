@@ -1,2 +1,2 @@
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='222' type='float tMath::tNormalDist(float variance, float x)'/>
-<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='221'>// Gets the range (y) value of a normal distribution with mean = 0, and given variance. Pass in the domain (x) value.</doc>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='225' type='float tMath::tNormalDist(float variance, float x)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='224'>// Gets the range (y) value of a normal distribution with mean = 0, and given variance. Pass in the domain (x) value.</doc>

@@ -1,3 +1,17 @@
 _ZNSt9basic_ios5imbueERKSt6locale|std::basic_ios::imbue
 _ZNSt15basic_streambuf5imbueERKSt6locale|std::basic_streambuf::imbue
+_ZN7APngAsm5ImageC1Ev|APngAsm::Image::Image
+_ZN7APngAsm5Image4freeEv|APngAsm::Image::free
+_ZN7APngAsm5Image4initEjjjj|APngAsm::Image::init
+_ZN7APngAsm5ImageD1Ev|APngAsm::Image::~Image
+_ZN7APngDis5ImageC1Ev|APngDis::Image::Image
+_ZN7APngDis5Image4freeEv|APngDis::Image::free
+_ZN7APngDis5Image4initEjjj|APngDis::Image::init
+_ZN7APngDis5ImageD1Ev|APngDis::Image::~Image
+_ZN9Imath_2_517equalWithAbsErrorET_S0_S0_|Imath_2_5::equalWithAbsError
+_ZN9Imath_2_517equalWithRelErrorET_S0_S0_|Imath_2_5::equalWithRelError
+_ZN9Imath_2_5mlET_RKNS_4Vec2IS0_EE|Imath_2_5::operator*
+_ZN9Imath_2_511sinx_over_xET_|Imath_2_5::sinx_over_x
+_ZN7Imf_2_5neERKNS_4NameES2_|Imf_2_5::operator!=
+_ZN7Imf_2_5eqERKNS_4NameES2_|Imf_2_5::operator==
 _ZNSt13basic_filebuf5imbueERKSt6locale|std::basic_filebuf::imbue

@@ -15,6 +15,9 @@ _ZNKSt17basic_string_view5beginEv|std::basic_string_view::begin
 _ZNK7tItList5beginEv|tItList::begin
 _ZN12tChunkWriter5BeginEjNS_9AlignmentE|tChunkWriter::Begin
 _ZN12tChunkWriter10BeginChunkEjNS_9AlignmentE|tChunkWriter::BeginChunk
+_ZNSt8_Rb_tree5beginEv|std::_Rb_tree::begin
+_ZNSt3map5beginEv|std::map::begin
+_ZNSt8multimap5beginEv|std::multimap::begin
 _ZN11tExprWriter3BegEv|tExprWriter::Beg
 _ZN11tExprWriter5BeginEv|tExprWriter::Begin
 _ZNSt22bernoulli_distributionC1Ev|std::bernoulli_distribution::bernoulli_distribution

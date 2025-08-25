@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='436' type='0'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='115' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='432'>/**
+   * The error was non-fatal and recoverable, but the image may still be
+   * corrupt.
+   */</doc>

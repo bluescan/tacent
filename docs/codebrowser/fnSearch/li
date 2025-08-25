@@ -1,6 +1,7 @@
 _ZN9tColour4f13LinearToGammaEfj|tColour4f::LinearToGamma
 _ZN9tColour4f12LinearToSRGBEj|tColour4f::LinearToSRGB
 _ZN9tColour4f14LinearToSquareEj|tColour4f::LinearToSquare
+_ZN8tinyxml27XMLNode12LinkEndChildEPS0_|tinyxml2::XMLNode::LinkEndChild
 _ZNSt26linear_congruential_engine7discardEy|std::linear_congruential_engine::discard
 _ZNSt26linear_congruential_engine3maxEv|std::linear_congruential_engine::max
 _ZNSt26linear_congruential_engine3minEv|std::linear_congruential_engine::min

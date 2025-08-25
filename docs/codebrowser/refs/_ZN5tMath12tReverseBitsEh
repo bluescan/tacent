@@ -1,4 +1,4 @@
 <def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='141' type='uint8 tMath::tReverseBits(uint8 v)'/>
 <use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='142' u='c' c='_ZN5tMath13tiReverseBitsERh'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='392' u='c' c='_ZN5tMath12tReverseBitsEt'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='393' u='c' c='_ZN5tMath12tReverseBitsEt'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='395' u='c' c='_ZN5tMath12tReverseBitsEt'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='396' u='c' c='_ZN5tMath12tReverseBitsEt'/>

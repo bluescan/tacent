@@ -1,0 +1,12 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='131' type='5'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='120'>/**
+   * 4:1:1 chrominance subsampling.  The JPEG or YUV image will contain one
+   * chrominance component for every 4x1 block of pixels in the source image.
+   * JPEG images compressed with 4:1:1 subsampling will be almost exactly the
+   * same size as those compressed with 4:2:0 subsampling, and in the
+   * aggregate, both subsampling methods produce approximately the same
+   * perceptual quality.  However, 4:1:1 is better able to reproduce sharp
+   * horizontal features.
+   *
+   * @note 4:1:1 subsampling is not fully accelerated in libjpeg-turbo.
+   */</doc>

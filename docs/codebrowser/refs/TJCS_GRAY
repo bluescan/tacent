@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='347' type='2'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='340'>/**
+   * Grayscale colorspace.  The JPEG image retains only the luminance data (Y
+   * component), and any color data from the source image is discarded.
+   * Grayscale JPEG images can be compressed from and decompressed to any of
+   * the extended RGB pixel formats or grayscale, or they can be decompressed
+   * to YUV planar images.
+   */</doc>

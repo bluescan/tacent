@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='323' type='0'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='316'>/**
+   * RGB colorspace.  When compressing the JPEG image, the R, G, and B
+   * components in the source image are reordered into image planes, but no
+   * colorspace conversion or subsampling is performed.  RGB JPEG images can be
+   * decompressed to any of the extended RGB pixel formats or grayscale, but
+   * they cannot be decompressed to YUV images.
+   */</doc>

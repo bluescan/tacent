@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='55' type='unsigned int'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='62' u='w' c='_ZN7APngAsm5ImageC1Ev'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='72' u='w' c='_ZN7APngAsm5Image4initEjjjj'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='73' u='r' c='_ZN7APngAsm5Image4initEjjjj'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='86' u='r' c='_ZN7APngAsm5Image4initEPS0_'/>
+<offset>0</offset>

@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/stl_tree.h' l='1251' ll='1256' type='void std::_Rb_tree::clear()'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1661' u='c' c='_ZNSt8_Rb_tree14_M_move_assignERSt8_Rb_treeIT_T0_T1_T2_T3_ESt17integral_constantIbLb1EE'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1747' u='c' c='_ZNSt8_Rb_treeaSERKSt8_Rb_treeIT_T0_T1_T2_T3_E'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2498' u='c' c='_ZNSt8_Rb_tree12_M_erase_auxESt23_Rb_tree_const_iteratorIT0_ES2_'/>

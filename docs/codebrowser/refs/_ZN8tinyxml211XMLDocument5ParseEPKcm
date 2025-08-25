@@ -1,0 +1,11 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1750' type='tinyxml2::XMLError tinyxml2::XMLDocument::Parse(const char * xml, size_t nBytes = static_cast&lt;size_t&gt;(-1))'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1740'>/**
+    	Parse an XML file from a character string.
+    	Returns XML_SUCCESS (0) on success, or
+    	an errorID.
+
+    	You may optionally pass in the &apos;nBytes&apos;, which is
+    	the number of bytes which will be parsed. If not
+    	specified, TinyXML-2 will assume &apos;xml&apos; points to a
+    	null terminated string.
+    */</doc>

@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='274' ll='284'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='745' c='_Z22astcenc_compress_imageP15astcenc_contextP13astcenc_imagePK15astcenc_swizzlePhmj'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='783' c='_Z24astcenc_decompress_imageP15astcenc_contextPKhmP13astcenc_imagePK15astcenc_swizzlej'/>
+<size>16</size>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='271'>/**
+ * @brief A texel component swizzle.
+ */</doc>
+<mbr r='astcenc_swizzle::r' o='0' t='astcenc_swz'/>
+<mbr r='astcenc_swizzle::g' o='32' t='astcenc_swz'/>
+<mbr r='astcenc_swizzle::b' o='64' t='astcenc_swz'/>
+<mbr r='astcenc_swizzle::a' o='96' t='astcenc_swz'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1132' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<size>16</size>

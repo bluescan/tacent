@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='173' type='bool half::isDenormalized() const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='659' ll='665' type='bool half::isDenormalized() const'/>

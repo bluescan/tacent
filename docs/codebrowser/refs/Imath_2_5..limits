@@ -1,0 +1,183 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='118' ll='126'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='133' ll='142'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='134'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='144' ll='153'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='145'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='155' ll='164'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='156'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='166' ll='175'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='167'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='177' ll='186'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='178'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='188' ll='197'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='189'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='199' ll='208'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='200'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='210' ll='219'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='211'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='221' ll='230'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='222'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='232' ll='241'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='233'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='243' ll='252'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='244'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='254' ll='263'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='255'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathMath.h' l='164' c='_ZN9Imath_2_511sinx_over_xET_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='252' c='_ZN9Imath_2_54Vec211baseTypeMinEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='253' c='_ZN9Imath_2_54Vec211baseTypeMaxEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='254' c='_ZN9Imath_2_54Vec216baseTypeSmallestEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='255' c='_ZN9Imath_2_54Vec215baseTypeEpsilonEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='469' c='_ZN9Imath_2_54Vec311baseTypeMinEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='470' c='_ZN9Imath_2_54Vec311baseTypeMaxEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='471' c='_ZN9Imath_2_54Vec316baseTypeSmallestEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='472' c='_ZN9Imath_2_54Vec315baseTypeEpsilonEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='656' c='_ZN9Imath_2_54Vec411baseTypeMinEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='657' c='_ZN9Imath_2_54Vec411baseTypeMaxEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='658' c='_ZN9Imath_2_54Vec416baseTypeSmallestEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='659' c='_ZN9Imath_2_54Vec415baseTypeEpsilonEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1191' c='_ZNK9Imath_2_54Vec26lengthEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1682' c='_ZNK9Imath_2_54Vec36lengthEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='2086' c='_ZNK9Imath_2_54Vec46lengthEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='550' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEE10isInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='550' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEE10isInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='551' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEE10isInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='551' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEE10isInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='808' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE10isInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='808' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE10isInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='809' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE10isInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='809' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE10isInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='810' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE10isInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='810' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE10isInfiniteEv'/>
+<size>1</size>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='66'>//-----------------------------------------------------------------
+//
+// Template class limits&lt;T&gt; returns information about the limits
+// of numerical data type T:
+//
+//	min()		largest possible negative value of type T
+//
+//	max()		largest possible positive value of type T
+//
+//	smallest()	smallest possible positive value of type T
+//			(for float and double: smallest normalized
+//			positive value)
+//
+//	epsilon()	smallest possible e of type T, for which
+//			1 + e != 1
+//
+//	isIntegral()	returns true if T is an integral type
+//
+//	isSigned()	returns true if T is signed
+//
+// Class limits&lt;T&gt; is useful to implement template classes or
+// functions which depend on the limits of a numerical type
+// which is not known in advance; for example:
+//
+//	template &lt;class T&gt; max (T x[], int n)
+//	{
+//	    T m = limits&lt;T&gt;::min();
+//
+//	    for (int i = 0; i &lt; n; i++)
+//		if (m &lt; x[i])
+//		    m = x[i];
+//
+//	    return m;
+//	}
+//
+// Class limits&lt;T&gt; has been implemented for the following types:
+//
+//	char, signed char, unsigned char
+//	short, unsigned short
+//	int, unsigned int
+//	long, unsigned long
+//	float
+//	double
+//	long double
+//
+// Class limits&lt;T&gt; has only static member functions, all of which
+// are implemented as inlines.  No objects of type limits&lt;T&gt; are
+// ever created.
+//
+//-----------------------------------------------------------------</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathLimits.h' l='129'>//---------------
+// Implementation
+//---------------</doc>
+<fun r='_ZN9Imath_2_56limits3minEv'/>
+<fun r='_ZN9Imath_2_56limits3maxEv'/>
+<fun r='_ZN9Imath_2_56limits8smallestEv'/>
+<fun r='_ZN9Imath_2_56limits7epsilonEv'/>
+<fun r='_ZN9Imath_2_56limits10isIntegralEv'/>
+<fun r='_ZN9Imath_2_56limits8isSignedEv'/>
+<fun r='_ZN9Imath_2_56limitsIcE3minEv'/>
+<fun r='_ZN9Imath_2_56limitsIcE3maxEv'/>
+<fun r='_ZN9Imath_2_56limitsIcE8smallestEv'/>
+<fun r='_ZN9Imath_2_56limitsIcE7epsilonEv'/>
+<fun r='_ZN9Imath_2_56limitsIcE10isIntegralEv'/>
+<fun r='_ZN9Imath_2_56limitsIcE8isSignedEv'/>
+<fun r='_ZN9Imath_2_56limitsIaE3minEv'/>
+<fun r='_ZN9Imath_2_56limitsIaE3maxEv'/>
+<fun r='_ZN9Imath_2_56limitsIaE8smallestEv'/>
+<fun r='_ZN9Imath_2_56limitsIaE7epsilonEv'/>
+<fun r='_ZN9Imath_2_56limitsIaE10isIntegralEv'/>
+<fun r='_ZN9Imath_2_56limitsIaE8isSignedEv'/>
+<fun r='_ZN9Imath_2_56limitsIhE3minEv'/>
+<fun r='_ZN9Imath_2_56limitsIhE3maxEv'/>
+<fun r='_ZN9Imath_2_56limitsIhE8smallestEv'/>
+<fun r='_ZN9Imath_2_56limitsIhE7epsilonEv'/>
+<fun r='_ZN9Imath_2_56limitsIhE10isIntegralEv'/>
+<fun r='_ZN9Imath_2_56limitsIhE8isSignedEv'/>
+<fun r='_ZN9Imath_2_56limitsIsE3minEv'/>
+<fun r='_ZN9Imath_2_56limitsIsE3maxEv'/>
+<fun r='_ZN9Imath_2_56limitsIsE8smallestEv'/>
+<fun r='_ZN9Imath_2_56limitsIsE7epsilonEv'/>
+<fun r='_ZN9Imath_2_56limitsIsE10isIntegralEv'/>
+<fun r='_ZN9Imath_2_56limitsIsE8isSignedEv'/>
+<fun r='_ZN9Imath_2_56limitsItE3minEv'/>
+<fun r='_ZN9Imath_2_56limitsItE3maxEv'/>
+<fun r='_ZN9Imath_2_56limitsItE8smallestEv'/>
+<fun r='_ZN9Imath_2_56limitsItE7epsilonEv'/>
+<fun r='_ZN9Imath_2_56limitsItE10isIntegralEv'/>
+<fun r='_ZN9Imath_2_56limitsItE8isSignedEv'/>
+<fun r='_ZN9Imath_2_56limitsIiE3minEv'/>
+<fun r='_ZN9Imath_2_56limitsIiE3maxEv'/>
+<fun r='_ZN9Imath_2_56limitsIiE8smallestEv'/>
+<fun r='_ZN9Imath_2_56limitsIiE7epsilonEv'/>
+<fun r='_ZN9Imath_2_56limitsIiE10isIntegralEv'/>
+<fun r='_ZN9Imath_2_56limitsIiE8isSignedEv'/>
+<fun r='_ZN9Imath_2_56limitsIjE3minEv'/>
+<fun r='_ZN9Imath_2_56limitsIjE3maxEv'/>
+<fun r='_ZN9Imath_2_56limitsIjE8smallestEv'/>
+<fun r='_ZN9Imath_2_56limitsIjE7epsilonEv'/>
+<fun r='_ZN9Imath_2_56limitsIjE10isIntegralEv'/>
+<fun r='_ZN9Imath_2_56limitsIjE8isSignedEv'/>
+<fun r='_ZN9Imath_2_56limitsIlE3minEv'/>
+<fun r='_ZN9Imath_2_56limitsIlE3maxEv'/>
+<fun r='_ZN9Imath_2_56limitsIlE8smallestEv'/>
+<fun r='_ZN9Imath_2_56limitsIlE7epsilonEv'/>
+<fun r='_ZN9Imath_2_56limitsIlE10isIntegralEv'/>
+<fun r='_ZN9Imath_2_56limitsIlE8isSignedEv'/>
+<fun r='_ZN9Imath_2_56limitsImE3minEv'/>
+<fun r='_ZN9Imath_2_56limitsImE3maxEv'/>
+<fun r='_ZN9Imath_2_56limitsImE8smallestEv'/>
+<fun r='_ZN9Imath_2_56limitsImE7epsilonEv'/>
+<fun r='_ZN9Imath_2_56limitsImE10isIntegralEv'/>
+<fun r='_ZN9Imath_2_56limitsImE8isSignedEv'/>
+<fun r='_ZN9Imath_2_56limitsIfE3minEv'/>
+<fun r='_ZN9Imath_2_56limitsIfE3maxEv'/>
+<fun r='_ZN9Imath_2_56limitsIfE8smallestEv'/>
+<fun r='_ZN9Imath_2_56limitsIfE7epsilonEv'/>
+<fun r='_ZN9Imath_2_56limitsIfE10isIntegralEv'/>
+<fun r='_ZN9Imath_2_56limitsIfE8isSignedEv'/>
+<fun r='_ZN9Imath_2_56limitsIdE3minEv'/>
+<fun r='_ZN9Imath_2_56limitsIdE3maxEv'/>
+<fun r='_ZN9Imath_2_56limitsIdE8smallestEv'/>
+<fun r='_ZN9Imath_2_56limitsIdE7epsilonEv'/>
+<fun r='_ZN9Imath_2_56limitsIdE10isIntegralEv'/>
+<fun r='_ZN9Imath_2_56limitsIdE8isSignedEv'/>
+<fun r='_ZN9Imath_2_56limitsIeE3minEv'/>
+<fun r='_ZN9Imath_2_56limitsIeE3maxEv'/>
+<fun r='_ZN9Imath_2_56limitsIeE8smallestEv'/>
+<fun r='_ZN9Imath_2_56limitsIeE7epsilonEv'/>
+<fun r='_ZN9Imath_2_56limitsIeE10isIntegralEv'/>
+<fun r='_ZN9Imath_2_56limitsIeE8isSignedEv'/>

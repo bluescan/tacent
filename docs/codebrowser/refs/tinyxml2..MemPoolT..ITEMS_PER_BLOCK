@@ -1,0 +1,15 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='382' u='r' c='_ZN8tinyxml28MemPoolT5AllocEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='385' u='r' c='_ZN8tinyxml28MemPoolT5AllocEv'/>
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='438' type='0'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='449'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='427'>// This number is perf sensitive. 4k seems like a good tradeoff on my machine.
+	// The test file is large, 170k.
+	// Release:		VS2010 gcc(no opt)
+	//		1k:		4000
+	//		2k:		4000
+	//		4k:		3900	21000
+	//		16k:	5200
+	//		32k:	4300
+	//		64k:	4000	21000
+    // Declared public because some compilers do not accept to use ITEMS_PER_BLOCK
+    // in private part if ITEMS_PER_BLOCK is private</doc>

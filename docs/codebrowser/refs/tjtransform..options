@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='604' type='int'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='390' u='w' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
+<offset>160</offset>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='601'>/**
+   * The bitwise OR of one of more of the @ref TJXOPT_CROP &quot;transform options&quot;
+   */</doc>

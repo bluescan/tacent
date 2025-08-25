@@ -1,5 +1,5 @@
 <dec f='include/ctype.h' l='122' type='int tolower(int __c)'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='121' u='c' c='_ZN4tStd7tStrlwrEPc'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='123' u='c' c='_ZN4tStd7tStrlwrEPDu'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='126' u='c' c='_ZN4tStd8tToLowerEc'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='127' u='c' c='_ZN4tStd7tStrlwrEPc'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='129' u='c' c='_ZN4tStd7tStrlwrEPDu'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='132' u='c' c='_ZN4tStd8tToLowerEc'/>
 <doc f='include/ctype.h' l='121'>/* Return the lowercase version of C.  */</doc>

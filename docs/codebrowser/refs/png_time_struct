@@ -1,0 +1,15 @@
+<def f='Modules/Image/Contrib/LibPNG/include/png.h' l='600' ll='608'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='600'/>
+<size>8</size>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='594'>/* png_time is a way to hold the time in an machine independent way.
+ * Two conversions are provided, both from time_t and struct tm.  There
+ * is no portable way to convert to either of these structures, as far
+ * as I know.  If you know of a portable way, send it to me.  As a side
+ * note - PNG has always been Year 2000 compliant!
+ */</doc>
+<mbr r='png_time_struct::year' o='0' t='png_uint_16'/>
+<mbr r='png_time_struct::month' o='16' t='png_byte'/>
+<mbr r='png_time_struct::day' o='24' t='png_byte'/>
+<mbr r='png_time_struct::hour' o='32' t='png_byte'/>
+<mbr r='png_time_struct::minute' o='40' t='png_byte'/>
+<mbr r='png_time_struct::second' o='48' t='png_byte'/>

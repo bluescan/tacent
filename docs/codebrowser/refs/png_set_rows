@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='1852' type='void png_set_rows(png_const_structrp png_ptr, png_inforp info_ptr, png_bytepp row_pointers)'/>

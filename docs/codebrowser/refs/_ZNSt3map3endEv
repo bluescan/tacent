@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/stl_map.h' l='373' ll='375' type='std::map::iterator std::map::end()'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='754' u='c' c='_ZN7Imf_2_56Header18findTypedAttributeEPKc'/>
+<doc f='include/c++/11/bits/stl_map.h' l='368'>/**
+       *  Returns a read/write iterator that points one past the last
+       *  pair in the %map.  Iteration is done in ascending order
+       *  according to the keys.
+       */</doc>

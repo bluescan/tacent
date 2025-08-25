@@ -2,5 +2,11 @@ _ZNKSt10error_code5valueEv|std::error_code::value
 _ZNKSt15error_condition5valueEv|std::error_condition::value
 _ZNK6tChunk5ValidEv|tChunk::Valid
 _ZNK12tChunkReader5ValidEv|tChunkReader::Valid
+_ZNKSt3map10value_compEv|std::map::value_comp
+_ZNKSt3map13value_compareclERKSt4pairIKT_T0_ES7_|std::map::value_compare::operator()
+_ZNSt3map13value_compareC1ET1_|std::map::value_compare::value_compare
+_ZNKSt8multimap10value_compEv|std::multimap::value_comp
+_ZNKSt8multimap13value_compareclERKSt4pairIKT_T0_ES7_|std::multimap::value_compare::operator()
+_ZNSt8multimap13value_compareC1ET1_|std::multimap::value_compare::value_compare
 _ZNK11tExpression5ValidEv|tExpression::Valid
 _ZN6tImage11tQuantizeWu3VarERNS0_5StateEPNS0_3BoxE|tImage::tQuantizeWu::Var

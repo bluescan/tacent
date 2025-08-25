@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2572'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2568'>/* Inline macros to do direct reads of bytes from the input buffer.
+ * The png_get_int_32() routine assumes we are using two&apos;s complement
+ * format for negative values, which is almost certainly true.
+ */</doc>
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2595'/>

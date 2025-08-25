@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2104' ll='2106' type='tinyxml2::XMLNode * tinyxml2::XMLHandle::ToNode()'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2103'>/// Safe cast to XMLNode. This can return null.</doc>

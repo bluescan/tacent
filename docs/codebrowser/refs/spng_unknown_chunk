@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='389' ll='395'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='502' c='spng_get_unknown_chunks'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='525' c='spng_set_unknown_chunks'/>
+<size>32</size>
+<mbr r='spng_unknown_chunk::type' o='0' t='uint8_t[4]'/>
+<mbr r='spng_unknown_chunk::length' o='64' t='size_t'/>
+<mbr r='spng_unknown_chunk::data' o='128' t='void *'/>
+<mbr r='spng_unknown_chunk::location' o='192' t='enum spng_location'/>

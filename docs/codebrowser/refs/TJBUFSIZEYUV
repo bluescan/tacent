@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1700' type='unsigned long TJBUFSIZEYUV(int width, int height, int jpegSubsamp)'/>
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1702' type='unsigned long tjBufSizeYUV(int width, int height, int subsamp)'/>

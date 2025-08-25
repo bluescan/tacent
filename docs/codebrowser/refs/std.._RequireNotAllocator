@@ -2,3 +2,7 @@
 <use f='include/c++/11/bits/unordered_map.h' l='1157'/>
 <use f='include/c++/11/bits/unordered_map.h' l='2044'/>
 <use f='include/c++/11/bits/unordered_map.h' l='2058'/>
+<use f='include/c++/11/bits/stl_map.h' l='1422'/>
+<use f='include/c++/11/bits/stl_map.h' l='1431'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='1087'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='1096'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='93' type='Iex_2_5::BaseExc &amp; Iex_2_5::BaseExc::append(std::stringstream &amp; s)'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='93'>// append (s.str())</doc>

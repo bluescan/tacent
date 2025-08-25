@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_map.h' l='1357' ll='1360' type='decltype(pair&lt;std::map::iterator, std::map::iterator&gt;(this-&gt;_M_t._M_equal_range_tr(__x))) std::map::equal_range(const _Kt &amp; __x)'/>

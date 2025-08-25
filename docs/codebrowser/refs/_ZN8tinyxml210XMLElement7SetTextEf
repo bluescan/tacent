@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1598' type='void tinyxml2::XMLElement::SetText(float value)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1597'>/// Convenience method for setting text inside an element. See SetText() for important limitations.</doc>

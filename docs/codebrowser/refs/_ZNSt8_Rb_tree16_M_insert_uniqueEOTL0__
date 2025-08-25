@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/stl_tree.h' l='1046' type='pair&lt;std::_Rb_tree::iterator, bool&gt; std::_Rb_tree::_M_insert_unique(_Arg &amp;&amp; __x)'/>
+<def f='include/c++/11/bits/stl_tree.h' l='2108' ll='2135' type='pair&lt;typename _Rb_tree&lt;_Key, _Val, _KeyOfValue, _Compare, _Alloc&gt;::iterator, bool&gt; std::_Rb_tree::_M_insert_unique(_Arg &amp;&amp; __v)'/>

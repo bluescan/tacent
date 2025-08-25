@@ -1,2 +1,3 @@
 _ZNKSt9basic_ios5widenEc|std::basic_ios::widen
 _ZNKSt8ios_base5widthEv|std::ios_base::width
+_ZNK7Imf_2_57Array2D5widthEv|Imf_2_5::Array2D::width

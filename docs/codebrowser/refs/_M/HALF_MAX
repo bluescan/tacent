@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='271'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='108' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='109' u='c'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='237' u='c'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='237' u='c'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='238' u='c'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='238' u='c'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='239' u='c'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='239' u='c'/>

@@ -1,0 +1,33 @@
+<def f='include/c++/11/bits/stl_tree.h' l='101' ll='138'/>
+<use f='include/c++/11/bits/stl_tree.h' l='103'/>
+<use f='include/c++/11/bits/stl_tree.h' l='104'/>
+<use f='include/c++/11/bits/stl_tree.h' l='170'/>
+<ovr f='include/c++/11/bits/stl_tree.h' l='216' c='std::_Rb_tree_node'/>
+<use f='include/c++/11/bits/stl_tree.h' l='216'/>
+<use f='include/c++/11/bits/stl_tree.h' l='243' c='_ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base'/>
+<use f='include/c++/11/bits/stl_tree.h' l='244' c='_ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base'/>
+<use f='include/c++/11/bits/stl_tree.h' l='246' c='_ZSt18_Rb_tree_incrementPKSt18_Rb_tree_node_base'/>
+<use f='include/c++/11/bits/stl_tree.h' l='247' c='_ZSt18_Rb_tree_incrementPKSt18_Rb_tree_node_base'/>
+<use f='include/c++/11/bits/stl_tree.h' l='249' c='_ZSt18_Rb_tree_decrementPSt18_Rb_tree_node_base'/>
+<use f='include/c++/11/bits/stl_tree.h' l='250' c='_ZSt18_Rb_tree_decrementPSt18_Rb_tree_node_base'/>
+<use f='include/c++/11/bits/stl_tree.h' l='252' c='_ZSt18_Rb_tree_decrementPKSt18_Rb_tree_node_base'/>
+<use f='include/c++/11/bits/stl_tree.h' l='253' c='_ZSt18_Rb_tree_decrementPKSt18_Rb_tree_node_base'/>
+<use f='include/c++/11/bits/stl_tree.h' l='410' c='_ZSt29_Rb_tree_insert_and_rebalancebPSt18_Rb_tree_node_baseS0_RS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='411' c='_ZSt29_Rb_tree_insert_and_rebalancebPSt18_Rb_tree_node_baseS0_RS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='412' c='_ZSt29_Rb_tree_insert_and_rebalancebPSt18_Rb_tree_node_baseS0_RS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='414' c='_ZSt28_Rb_tree_rebalance_for_erasePSt18_Rb_tree_node_baseRS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='415' c='_ZSt28_Rb_tree_rebalance_for_erasePSt18_Rb_tree_node_baseRS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='416' c='_ZSt28_Rb_tree_rebalance_for_erasePSt18_Rb_tree_node_baseRS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='433'/>
+<use f='include/c++/11/bits/stl_tree.h' l='434'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2554' c='_ZSt20_Rb_tree_black_countPKSt18_Rb_tree_node_baseS1_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2555' c='_ZSt20_Rb_tree_black_countPKSt18_Rb_tree_node_baseS1_'/>
+<size>32</size>
+<mbr r='std::_Rb_tree_node_base::_M_color' o='0' t='std::_Rb_tree_color'/>
+<mbr r='std::_Rb_tree_node_base::_M_parent' o='64' t='std::_Rb_tree_node_base::_Base_ptr'/>
+<mbr r='std::_Rb_tree_node_base::_M_left' o='128' t='std::_Rb_tree_node_base::_Base_ptr'/>
+<mbr r='std::_Rb_tree_node_base::_M_right' o='192' t='std::_Rb_tree_node_base::_Base_ptr'/>
+<fun r='_ZNSt18_Rb_tree_node_base10_S_minimumEPS_'/>
+<fun r='_ZNSt18_Rb_tree_node_base10_S_minimumEPKS_'/>
+<fun r='_ZNSt18_Rb_tree_node_base10_S_maximumEPS_'/>
+<fun r='_ZNSt18_Rb_tree_node_base10_S_maximumEPKS_'/>

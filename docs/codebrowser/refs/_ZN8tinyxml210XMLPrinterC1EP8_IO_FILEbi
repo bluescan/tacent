@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2246' type='void tinyxml2::XMLPrinter::XMLPrinter(FILE * file = 0, bool compact = false, int depth = 0)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2240'>/** Construct the printer. If the FILE* is specified,
+    	this will print to the FILE. Else it will print
+    	to memory, and the result is available in CStr().
+    	If &apos;compact&apos; is set to true, then output is created
+    	with only required whitespace and newlines.
+    */</doc>

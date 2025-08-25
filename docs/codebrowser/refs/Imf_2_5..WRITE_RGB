@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfRgba.h' l='84' type='7'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfRgba.h' l='82'>// supported only for scanline-based files)</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfRgba.h' l='84'>// Red, green, blue</doc>

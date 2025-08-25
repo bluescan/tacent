@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='433' type='unsigned int'/>
+<offset>288</offset>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='426'>/**
+	 * @brief The radius for any alpha-weight scaling (-a).
+	 *
+	 * It is recommended that this is set to 1 when using FLG_USE_ALPHA_WEIGHT on a texture that
+	 * will be sampled using linear texture filtering to minimize color bleed out of transparent
+	 * texels that are adjacent to non-transparent texels.
+	 */</doc>

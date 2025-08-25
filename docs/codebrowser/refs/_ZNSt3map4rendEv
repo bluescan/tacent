@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_map.h' l='409' ll='411' type='std::map::reverse_iterator std::map::rend()'/>
+<doc f='include/c++/11/bits/stl_map.h' l='404'>/**
+       *  Returns a read/write reverse iterator that points to one before the
+       *  first pair in the %map.  Iteration is done in descending order
+       *  according to the keys.
+       */</doc>

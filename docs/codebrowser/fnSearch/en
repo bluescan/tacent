@@ -17,7 +17,11 @@ _ZN9tHash_MD56EncodeEPhPKji|tHash_MD5::Encode
 _ZN4tUTF11EncodeUtf16EPDsDi|tUTF::EncodeUtf16
 _ZN4tUTF10EncodeUtf8EPDuDi|tUTF::EncodeUtf8
 _ZN12tChunkWriter3EndEv|tChunkWriter::End
+_ZNSt8_Rb_tree3endEv|std::_Rb_tree::end
+_ZNSt3map3endEv|std::map::end
+_ZNSt8multimap3endEv|std::multimap::end
 _ZN11tExprWriter3EndEv|tExprWriter::End
+_ZN8tinyxml28DynArray14EnsureCapacityEi|tinyxml2::DynArray::EnsureCapacity
 _ZNSt5deque3endEv|std::deque::end
 _ZNKSt13random_device7entropyEv|std::random_device::entropy
 _ZNKSt6ranges8subrange3endEv|std::ranges::subrange::end

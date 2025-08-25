@@ -1,3 +1,4 @@
 _ZNSt13basic_istream4peekEv|std::basic_istream::peek
+_ZNK8tinyxml28DynArray7PeekTopEv|tinyxml2::DynArray::PeekTop
 _ZNKSt10filesystem11file_status11permissionsEv|std::filesystem::file_status::permissions
 _ZNSt10filesystem11permissionsERKNS_7__cxx114pathENS_5permsERSt10error_code|std::filesystem::permissions

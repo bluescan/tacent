@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='636' type='bool Imath_2_5::Box&lt;Vec3&lt;type-parameter-0-0&gt;&gt;::hasVolume() const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='817' ll='827' type='bool Imath_2_5::Box&lt;Vec3&lt;type-parameter-0-0&gt;&gt;::hasVolume() const'/>

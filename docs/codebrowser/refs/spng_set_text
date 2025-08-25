@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='519' type='int spng_set_text(spng_ctx * ctx, struct spng_text * text, uint32_t n_text)'/>

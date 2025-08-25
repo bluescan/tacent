@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='80' ll='81' type='const char * Imf_2_5::Name::text() const'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='76'>//---------------------
+    // Access to the string
+    //---------------------</doc>

@@ -25,7 +25,6 @@
 <use f='Modules/System/Inc/System/tScript.h' l='416' u='c' c='_ZN12tScriptErrorC1EPKcz'/>
 <use f='Modules/System/Inc/System/tScript.h' l='425' u='c' c='_ZN12tScriptErrorC1EiPKcz'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='29' u='c' c='_ZN10tRuleErrorC1EPKcz'/>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='55' u='c' c='_ZN14tSolutionErrorC1EPKcz'/>
 <use f='Modules/System/Src/tPrint.cpp' l='506' u='c' c='_Z8tsPrintfPcPKcz'/>
 <use f='Modules/System/Src/tPrint.cpp' l='516' u='c' c='_Z9tsvPrintfR7tStringPKcP13__va_list_tag'/>
 <use f='Modules/System/Src/tPrint.cpp' l='528' u='c' c='_Z8tsPrintfR7tStringPKcz'/>

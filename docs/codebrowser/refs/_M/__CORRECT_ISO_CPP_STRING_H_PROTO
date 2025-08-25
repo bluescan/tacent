@@ -9,3 +9,4 @@
 <use f='include/string.h' l='327' u='a'/>
 <use f='include/string.h' l='373' u='a'/>
 <use f='include/string.h' l='521' u='a'/>
+<use f='include/c++/11/cstring' l='100' u='a'/>

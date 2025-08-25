@@ -1,0 +1,29 @@
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='240' c='_ZN7Imf_2_56Header5beginEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='245' c='_ZN7Imf_2_56Header3endEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='250' c='_ZN7Imf_2_56Header4findEPKc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='255' c='_ZN7Imf_2_56Header4findERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='511' ll='535'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='521' c='_ZN7Imf_2_56Header8IteratorppEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='523' c='_ZN7Imf_2_56Header8IteratorppEi'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='547' c='_ZN7Imf_2_56Header13ConstIteratorC1ERKNS0_8IteratorE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='604' c='_ZN7Imf_2_56Header8IteratorppEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='612' c='_ZN7Imf_2_56Header8IteratorppEi'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='615' c='_ZN7Imf_2_56Header8IteratorppEi'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='650' c='_ZN7Imf_2_56Header13ConstIteratorC1ERKNS0_8IteratorE'/>
+<size>8</size>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='507'>//----------
+// Iterators
+//----------</doc>
+<fun r='_ZN7Imf_2_56Header8IteratorC1Ev'/>
+<fun r='_ZN7Imf_2_56Header8IteratorC1ERKSt17_Rb_tree_iteratorISt4pairIKNS_4NameEPNS_9AttributeEEE'/>
+<fun r='_ZN7Imf_2_56Header8IteratorppEv'/>
+<fun r='_ZN7Imf_2_56Header8IteratorppEi'/>
+<fun r='_ZNK7Imf_2_56Header8Iterator4nameEv'/>
+<fun r='_ZNK7Imf_2_56Header8Iterator9attributeEv'/>
+<mbr r='Imf_2_5::Header::Iterator::_i' o='0' t='Header::AttributeMap::iterator'/>
+<fun r='_ZN7Imf_2_56Header8IteratorC1Ev'/>
+<fun r='_ZN7Imf_2_56Header8IteratorC1ERKSt17_Rb_tree_iteratorISt4pairIKNS_4NameEPNS_9AttributeEEE'/>
+<fun r='_ZN7Imf_2_56Header8IteratorppEv'/>
+<fun r='_ZN7Imf_2_56Header8IteratorppEi'/>
+<fun r='_ZNK7Imf_2_56Header8Iterator4nameEv'/>
+<fun r='_ZNK7Imf_2_56Header8Iterator9attributeEv'/>

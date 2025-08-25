@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfLineOrder.h' l='50' ll='60'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='84' c='_ZN7Imf_2_56HeaderC1EiifRKN9Imath_2_54Vec2IfEEfNS_9LineOrderENS_11CompressionE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='100' c='_ZN7Imf_2_56HeaderC1EiiRKN9Imath_2_53BoxINS1_4Vec2IiEEEEfRKNS3_IfEEfNS_9LineOrderENS_11CompressionE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='115' c='_ZN7Imf_2_56HeaderC1ERKN9Imath_2_53BoxINS1_4Vec2IiEEEES7_fRKNS3_IfEEfNS_9LineOrderENS_11CompressionE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='295' c='_ZN7Imf_2_56Header9lineOrderEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='297' c='_ZNK7Imf_2_56Header9lineOrderEv'/>

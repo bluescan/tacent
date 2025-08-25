@@ -96,7 +96,18 @@ _ZNK7tSystem11tExtensions8ContainsERK7tString|tSystem::tExtensions::Contains
 _ZNK7tSystem11tExtensions5CountEv|tSystem::tExtensions::Count
 _ZNK7tSystem10tFileTypes8ContainsENS_9tFileTypeE|tSystem::tFileTypes::Contains
 _ZNK7tSystem10tFileTypes5CountEv|tSystem::tFileTypes::Count
-_ZN3EXR16ComputeFogColourERfS0_S0_RKi|EXR::ComputeFogColour
+_ZN3EXR16ComputeFogColourERfS0_S0_RKN7Imf_2_55ArrayINS1_4RgbaEEE|EXR::ComputeFogColour
+_ZN9Imath_2_54Math3cosET_|Imath_2_5::Math::cos
+_ZN9Imath_2_54Math4coshET_|Imath_2_5::Math::cosh
+_ZN7Imf_2_56Header13ConstIteratorC1Ev|Imf_2_5::Header::ConstIterator::ConstIterator
+_ZNK7Imf_2_56Header13ConstIterator9attributeEv|Imf_2_5::Header::ConstIterator::attribute
+_ZNK7Imf_2_56Header13ConstIterator4nameEv|Imf_2_5::Header::ConstIterator::name
+_ZN7Imf_2_56Header13ConstIteratorppEv|Imf_2_5::Header::ConstIterator::operator++
+_ZNKSt8_Rb_tree5countERKT_|std::_Rb_tree::count
+_ZNKSt3map8containsERKT_|std::map::contains
+_ZNKSt3map5countERKT_|std::map::count
+_ZNKSt8multimap8containsERKT_|std::multimap::contains
+_ZNKSt8multimap5countERKT_|std::multimap::count
 _ZN6tImage9tImageHDR31ConvertRadianceToGammaCorrectedEP9tColour4bi|tImage::tImageHDR::ConvertRadianceToGammaCorrected
 _ZN11tExprWriter4CompERK7tStringRKT_|tExprWriter::Comp
 _ZN11tExprWriter4ComsERK7tStringRKT_|tExprWriter::Coms
@@ -105,6 +116,7 @@ _ZNK11tExpression9CountArgsEv|tExpression::CountArgs
 _ZNK11tExpression10CountItemsEv|tExpression::CountItems
 _ZN6tImage10tImageWEBP10CopyRegionEP9tColour4biiS2_iiiib|tImage::tImageWEBP::CopyRegion
 _ZN6tImage8tPicture10CopyRegionEiiPK9tColour4biij|tImage::tPicture::CopyRegion
+_ZN8tinyxml210XMLPrinter11CompactModeERKNS_10XMLElementE|tinyxml2::XMLPrinter::CompactMode
 _ZN6tImage9tQuantize15ConvertToPixelsEP9tColour3biiPKS1_PKh|tImage::tQuantize::ConvertToPixels
 _ZN6tImage12tQuantizeNeu7contestERNS0_5StateEiii|tImage::tQuantizeNeu::contest
 _ZSt10countl_oneT_|std::countl_one

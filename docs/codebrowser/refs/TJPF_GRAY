@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='210' type='6'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='206'>/**
+   * Grayscale pixel format.  Each 1-byte pixel represents a luminance
+   * (brightness) level from 0 to 255.
+   */</doc>

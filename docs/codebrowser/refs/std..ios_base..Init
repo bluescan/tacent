@@ -13,3 +13,5 @@
 <fun r='_ZNSt8ios_base4InitaSERKS0_'/>
 <smbr r='std::ios_base::Init::_S_refcount' t='_Atomic_word'/>
 <smbr r='std::ios_base::Init::_S_synced_with_stdio' t='bool'/>
+<use f='include/c++/11/iostream' l='74'/>
+<size>1</size>

@@ -1,6 +1,6 @@
-<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='185' type='bool tStd::tStrtoiT(IntegralType &amp; , const char8_t * , int base = -1)'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='186' u='c' c='_ZN4tStd9tStrtoi32ERiPKDui'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='187' u='c' c='_ZN4tStd10tStrtoui32ERjPKDui'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='188' u='c' c='_ZN4tStd9tStrtoi64ERxPKDui'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='189' u='c' c='_ZN4tStd10tStrtoui64ERyPKDui'/>
-<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='549' ll='631' type='bool tStd::tStrtoiT(IntegralType &amp; val, const char8_t * str, int base = -1)'/>
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='191' type='bool tStd::tStrtoiT(IntegralType &amp; , const char8_t * , int base = -1)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='192' u='c' c='_ZN4tStd9tStrtoi32ERiPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='193' u='c' c='_ZN4tStd10tStrtoui32ERjPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='194' u='c' c='_ZN4tStd9tStrtoi64ERxPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='195' u='c' c='_ZN4tStd10tStrtoui64ERyPKDui'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='555' ll='637' type='bool tStd::tStrtoiT(IntegralType &amp; val, const char8_t * str, int base = -1)'/>

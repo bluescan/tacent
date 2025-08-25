@@ -1,0 +1,17 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1644' type='void tjFree(unsigned char * buffer)'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='35' u='c' c='_ZN6tImage9tImageJPG5ClearEv'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='408' u='c' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='471' u='c' c='_ZNK6tImage9tImageJPG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='478' u='c' c='_ZNK6tImage9tImageJPG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='483' u='c' c='_ZNK6tImage9tImageJPG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1633'>/**
+ * Free an image buffer previously allocated by TurboJPEG.  You should always
+ * use this function to free JPEG destination buffer(s) that were automatically
+ * (re)allocated by the compression and transform functions or that were
+ * manually allocated using #tjAlloc().
+ *
+ * @param buffer address of the buffer to free.  If the address is NULL, then
+ * this function has no effect.
+ *
+ * @sa tjAlloc()
+ */</doc>

@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='295'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='292'>/* This should be zero for a public release, or non-zero for a
+ * development version.  [Deprecated]
+ */</doc>

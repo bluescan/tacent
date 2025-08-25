@@ -20,6 +20,7 @@
 <use f='include/c++/11/tr1/riemann_zeta.tcc' l='384' u='c'/>
 <doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1686'>/* Define if C99 functions or macros in &lt;math.h&gt; should be imported in
    &lt;tr1/cmath&gt; in namespace std::tr1. */</doc>
+<use f='include/c++/11/math.h' l='77' u='a'/>
 <use f='include/c++/11/bits/random.h' l='3791' u='c'/>
 <use f='include/c++/11/bits/random.h' l='3905' u='a'/>
 <use f='include/c++/11/bits/random.h' l='4466' u='c'/>

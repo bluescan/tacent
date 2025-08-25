@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='469' type='static T Imath_2_5::Vec3::baseTypeMin()'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='465'>//-------------------------------------------------
+    // Limitations of type T (see also class limits&lt;T&gt;)
+    //-------------------------------------------------</doc>

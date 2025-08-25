@@ -1,0 +1,98 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='69' ll='504'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='124' c='_ZN7Imf_2_56HeaderC1ERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='140' c='_ZN7Imf_2_56HeaderaSERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='140' c='_ZN7Imf_2_56HeaderaSERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/loadImage.h' l='95' c='_ZN3EXR9loadImageEPKcS1_S1_biiiRiRN7Imf_2_56HeaderERNS3_5ArrayINS3_4RgbaEEERNS6_IPfEERNS6_IjEEb'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfMultiPartInputFile.h' l='75' c='_ZNK7Imf_2_518MultiPartInputFile6headerEi'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='171' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<size>56</size>
+<fun r='_ZN7Imf_2_56HeaderC1EiifRKN9Imath_2_54Vec2IfEEfNS_9LineOrderENS_11CompressionE'/>
+<fun r='_ZN7Imf_2_56HeaderC1EiiRKN9Imath_2_53BoxINS1_4Vec2IiEEEEfRKNS3_IfEEfNS_9LineOrderENS_11CompressionE'/>
+<fun r='_ZN7Imf_2_56HeaderC1ERKN9Imath_2_53BoxINS1_4Vec2IiEEEES7_fRKNS3_IfEEfNS_9LineOrderENS_11CompressionE'/>
+<fun r='_ZN7Imf_2_56HeaderC1ERKS0_'/>
+<fun r='_ZN7Imf_2_56HeaderD1Ev'/>
+<fun r='_ZN7Imf_2_56HeaderaSERKS0_'/>
+<fun r='_ZN7Imf_2_56Header6insertEPKcRKNS_9AttributeE'/>
+<fun r='_ZN7Imf_2_56Header6insertERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKNS_9AttributeE'/>
+<fun r='_ZN7Imf_2_56Header5eraseEPKc'/>
+<fun r='_ZN7Imf_2_56Header5eraseERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Imf_2_56HeaderixEPKc'/>
+<fun r='_ZNK7Imf_2_56HeaderixEPKc'/>
+<fun r='_ZN7Imf_2_56HeaderixERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNK7Imf_2_56HeaderixERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Imf_2_56Header14typedAttributeEPKc'/>
+<fun r='_ZNK7Imf_2_56Header14typedAttributeEPKc'/>
+<fun r='_ZN7Imf_2_56Header14typedAttributeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNK7Imf_2_56Header14typedAttributeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Imf_2_56Header18findTypedAttributeEPKc'/>
+<fun r='_ZNK7Imf_2_56Header18findTypedAttributeEPKc'/>
+<fun r='_ZN7Imf_2_56Header18findTypedAttributeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNK7Imf_2_56Header18findTypedAttributeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Imf_2_56Header5beginEv'/>
+<fun r='_ZNK7Imf_2_56Header5beginEv'/>
+<fun r='_ZN7Imf_2_56Header3endEv'/>
+<fun r='_ZNK7Imf_2_56Header3endEv'/>
+<fun r='_ZN7Imf_2_56Header4findEPKc'/>
+<fun r='_ZNK7Imf_2_56Header4findEPKc'/>
+<fun r='_ZN7Imf_2_56Header4findERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNK7Imf_2_56Header4findERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Imf_2_56Header13displayWindowEv'/>
+<fun r='_ZNK7Imf_2_56Header13displayWindowEv'/>
+<fun r='_ZN7Imf_2_56Header10dataWindowEv'/>
+<fun r='_ZNK7Imf_2_56Header10dataWindowEv'/>
+<fun r='_ZN7Imf_2_56Header16pixelAspectRatioEv'/>
+<fun r='_ZNK7Imf_2_56Header16pixelAspectRatioEv'/>
+<fun r='_ZN7Imf_2_56Header18screenWindowCenterEv'/>
+<fun r='_ZNK7Imf_2_56Header18screenWindowCenterEv'/>
+<fun r='_ZN7Imf_2_56Header17screenWindowWidthEv'/>
+<fun r='_ZNK7Imf_2_56Header17screenWindowWidthEv'/>
+<fun r='_ZN7Imf_2_56Header8channelsEv'/>
+<fun r='_ZNK7Imf_2_56Header8channelsEv'/>
+<fun r='_ZN7Imf_2_56Header9lineOrderEv'/>
+<fun r='_ZNK7Imf_2_56Header9lineOrderEv'/>
+<fun r='_ZN7Imf_2_56Header11compressionEv'/>
+<fun r='_ZNK7Imf_2_56Header11compressionEv'/>
+<fun r='_ZN7Imf_2_56Header7setNameERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Imf_2_56Header4nameB5cxx11Ev'/>
+<fun r='_ZNK7Imf_2_56Header4nameB5cxx11Ev'/>
+<fun r='_ZNK7Imf_2_56Header7hasNameEv'/>
+<fun r='_ZN7Imf_2_56Header7setTypeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Imf_2_56Header4typeB5cxx11Ev'/>
+<fun r='_ZNK7Imf_2_56Header4typeB5cxx11Ev'/>
+<fun r='_ZNK7Imf_2_56Header7hasTypeEv'/>
+<fun r='_ZN7Imf_2_56Header10setVersionEi'/>
+<fun r='_ZN7Imf_2_56Header7versionEv'/>
+<fun r='_ZNK7Imf_2_56Header7versionEv'/>
+<fun r='_ZNK7Imf_2_56Header10hasVersionEv'/>
+<fun r='_ZN7Imf_2_56Header13setChunkCountEi'/>
+<fun r='_ZNK7Imf_2_56Header13hasChunkCountEv'/>
+<fun r='_ZNK7Imf_2_56Header10chunkCountEv'/>
+<fun r='_ZN7Imf_2_56Header10chunkCountEv'/>
+<fun r='_ZN7Imf_2_56Header7setViewERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNK7Imf_2_56Header7hasViewEv'/>
+<fun r='_ZN7Imf_2_56Header4viewB5cxx11Ev'/>
+<fun r='_ZNK7Imf_2_56Header4viewB5cxx11Ev'/>
+<fun r='_ZN7Imf_2_56Header18setTileDescriptionERKNS_15TileDescriptionE'/>
+<fun r='_ZN7Imf_2_56Header15tileDescriptionEv'/>
+<fun r='_ZNK7Imf_2_56Header15tileDescriptionEv'/>
+<fun r='_ZNK7Imf_2_56Header18hasTileDescriptionEv'/>
+<fun r='_ZN7Imf_2_56Header15setPreviewImageERKNS_12PreviewImageE'/>
+<fun r='_ZN7Imf_2_56Header12previewImageEv'/>
+<fun r='_ZNK7Imf_2_56Header12previewImageEv'/>
+<fun r='_ZNK7Imf_2_56Header15hasPreviewImageEv'/>
+<fun r='_ZNK7Imf_2_56Header11sanityCheckEbb'/>
+<fun r='_ZN7Imf_2_56Header15setMaxImageSizeEii'/>
+<fun r='_ZN7Imf_2_56Header14setMaxTileSizeEii'/>
+<fun r='_ZN7Imf_2_56Header12readsNothingEv'/>
+<fun r='_ZNK7Imf_2_56Header7writeToERNS_7OStreamEb'/>
+<fun r='_ZN7Imf_2_56Header8readFromERNS_7IStreamERi'/>
+<mbr r='Imf_2_5::Header::_map' o='0' t='Imf_2_5::Header::AttributeMap'/>
+<mbr r='Imf_2_5::Header::_readsNothing' o='384' t='bool'/>
+<fun r='_ZN7Imf_2_56Header14typedAttributeEPKc'/>
+<fun r='_ZNK7Imf_2_56Header14typedAttributeEPKc'/>
+<fun r='_ZN7Imf_2_56Header14typedAttributeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNK7Imf_2_56Header14typedAttributeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Imf_2_56Header18findTypedAttributeEPKc'/>
+<fun r='_ZNK7Imf_2_56Header18findTypedAttributeEPKc'/>
+<fun r='_ZN7Imf_2_56Header18findTypedAttributeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNK7Imf_2_56Header18findTypedAttributeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>

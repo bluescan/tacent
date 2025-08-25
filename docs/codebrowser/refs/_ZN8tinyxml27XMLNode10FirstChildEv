@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='773' ll='775' type='tinyxml2::XMLNode * tinyxml2::XMLNode::FirstChild()'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2072' u='c' c='_ZN8tinyxml29XMLHandle10FirstChildEv'/>

@@ -31,6 +31,8 @@ _ZNK7tSystem11tExtensions5FirstEv|tSystem::tExtensions::First
 _ZNK7tSystem11tExtensions7IsEmptyEv|tSystem::tExtensions::IsEmpty
 _ZN7tSystem11tExtensionsC1Ev|tSystem::tExtensions::tExtensions
 _ZNK7tSystem7tStream4TellEv|tSystem::tStream::Tell
+_ZNK7Imf_2_54Name4textEv|Imf_2_5::Name::text
+_ZNSt13basic_istream5tellgEv|std::basic_istream::tellg
 _ZN11tExprReader5ClearEv|tExprReader::Clear
 _ZNK11tExprReader7IsValidEv|tExprReader::IsValid
 _ZN11tExprReaderC1Ev|tExprReader::tExprReader
@@ -121,7 +123,6 @@ _ZN11tExpressionD1Ev|tExpression::~tExpression
 _ZN5tMath22tExtractAffineEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE|tMath::tExtractAffineEulerXYZ
 _ZN5tMath24tExtractProjectionPlanesEPNS_5tVec4ERKNS_5tMat4Ebb|tMath::tExtractProjectionPlanes
 _ZN5tMath24tExtractRotationEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE|tMath::tExtractRotationEulerXYZ
-_ZNSt13basic_istream5tellgEv|std::basic_istream::tellg
 _ZN11tExprReader4LoadERK7tStringb|tExprReader::Load
 _ZN11tExprReaderC1EiPPc|tExprReader::tExprReader
 _ZN11tExprWriter15BeginExpressionEv|tExprWriter::BeginExpression

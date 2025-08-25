@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfCompression.h' l='78' type='10'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfCompression.h' l='74'>// of 256 scanlines. More efficient space
+                                // wise and faster to decode full frames
+                                // than DWAA_COMPRESSION.</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfCompression.h' l='78'>// number of different compression methods</doc>

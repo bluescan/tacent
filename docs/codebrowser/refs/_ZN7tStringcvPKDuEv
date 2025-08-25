@@ -4,12 +4,6 @@
 	// proper UTF-* type, or explicitly call Chr() or Txt() to get an old char-based pointer.</doc>
 <use f='Modules/System/Inc/System/tScript.h' l='104' u='c' c='_ZNK11tExpression11GetAtomHashEv'/>
 <use f='Modules/System/Inc/System/tScript.h' l='200' u='c' c='_Z11GetAtomHashR11tExpression'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='42' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='63' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='88' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='89' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='111' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='112' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='164' u='c' c='_ZN8tCmdLine6tParseEiPPcb'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='196' u='c' c='_ZN8tCmdLine6tParseEiPPDsb'/>
 <use f='Modules/System/Src/tScript.cpp' l='525' u='c' c='_ZN11tExprReaderC1EiPPc'/>

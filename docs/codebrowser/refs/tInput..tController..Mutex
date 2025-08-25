@@ -24,5 +24,5 @@
 <use f='Modules/Input/Inc/Input/tContGamepad.h' l='69' macro='1' u='a' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
 <use f='Modules/Input/Inc/Input/tContGamepad.h' l='70' macro='1' u='a' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
 <use f='Modules/Input/Inc/Input/tContGamepad.h' l='71' macro='1' u='a' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
-<use f='Modules/Input/Src/tContGamepad.cpp' l='52' u='a' c='_ZN6tInput12tContGamepad11StopPollingEv'/>
-<use f='Modules/Input/Src/tContGamepad.cpp' l='132' u='a' c='_ZN6tInput12tContGamepad4PollEv'/>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='55' u='a' c='_ZN6tInput12tContGamepad11StopPollingEv'/>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='135' u='a' c='_ZN6tInput12tContGamepad4PollEv'/>

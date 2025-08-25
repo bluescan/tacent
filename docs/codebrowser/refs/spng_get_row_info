@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='476' type='int spng_get_row_info(spng_ctx * ctx, struct spng_row_info * row_info)'/>
+<doc f='Modules/Image/Contrib/LibSPNG/spng.h' l='475'>/* Encode/decode */</doc>

@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='171' type='0'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='166'>/**
+   * RGB pixel format.  The red, green, and blue components in the image are
+   * stored in 3-byte pixels in the order R, G, B from lowest to highest byte
+   * address within each pixel.
+   */</doc>

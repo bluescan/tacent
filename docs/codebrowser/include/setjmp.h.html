@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>setjmp.h source code [include/setjmp.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/setjmp.h'; var root_path = '..'; var data_path = '../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='./'>include</a>/<a href='setjmp.h.html'>setjmp.h</a><br><a href='/tacent/index.html'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/tacent/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Copyright (C) 1991-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i></i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i></i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i></i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i> *	ISO C99 Standard: 7.13 Nonlocal jumps	&lt;setjmp.h&gt;</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td>&nbsp</td></tr>
+<tr><th id="22">22</th><td><u>#<span data-ppcond="22">ifndef</span>	<span class="macro" data-ref="_M/_SETJMP_H">_SETJMP_H</span></u>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#define	<dfn class="macro" id="_M/_SETJMP_H" data-ref="_M/_SETJMP_H">_SETJMP_H</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><u>#include &lt;features.h&gt;</u>&nbsp</td></tr>
+<tr><th id="26">26</th><td>&nbsp</td></tr>
+<tr><th id="27">27</th><td><a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#133" title="extern &quot;C&quot; {" data-ref="_M/__BEGIN_DECLS">__BEGIN_DECLS</a>&nbsp</td></tr>
+<tr><th id="28">28</th><td>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#include &lt;bits/setjmp.h&gt;		/* Get `__jmp_buf'.  */</u>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#include &lt;bits/types/struct___jmp_buf_tag.h&gt;</u>&nbsp</td></tr>
+<tr><th id="31">31</th><td>&nbsp</td></tr>
+<tr><th id="32">32</th><td><b>typedef</b> <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h.html#__jmp_buf_tag" title='__jmp_buf_tag' data-ref="__jmp_buf_tag">__jmp_buf_tag</a> <dfn class="typedef" id="jmp_buf" title='jmp_buf' data-type='struct __jmp_buf_tag[1]' data-ref="jmp_buf">jmp_buf</dfn>[<var>1</var>];&nbsp</td></tr>
+<tr><th id="33">33</th><td>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i>/* Store the calling environment in ENV, also saving the signal mask.</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i>   Return 0.  */</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="setjmp" title='setjmp' data-ref="setjmp">setjmp</dfn> (<a class="typedef" href="#jmp_buf" title='jmp_buf' data-type='struct __jmp_buf_tag[1]' data-ref="jmp_buf">jmp_buf</a> <dfn class="local col5 decl" id="165__env" title='__env' data-type='struct __jmp_buf_tag *' data-ref="165__env">__env</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#90" title="noexcept (true)" data-ref="_M/__THROWNL">__THROWNL</a>;&nbsp</td></tr>
+<tr><th id="37">37</th><td>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i>/* Store the calling environment in ENV, also saving the</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td><i>   signal mask if SAVEMASK is nonzero.  Return 0.</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i>   This is the internal name for `sigsetjmp'.  */</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><b>extern</b> <em>int</em> <a class="decl fn" href="pthread.h.html#__sigsetjmp" title='__sigsetjmp' data-ref="__sigsetjmp" id="__sigsetjmp">__sigsetjmp</a> (<b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h.html#__jmp_buf_tag" title='__jmp_buf_tag' data-ref="__jmp_buf_tag">__jmp_buf_tag</a> <dfn class="local col6 decl" id="166__env" title='__env' data-type='struct __jmp_buf_tag *' data-ref="166__env">__env</dfn>[<var>1</var>], <em>int</em> <dfn class="local col7 decl" id="167__savemask" title='__savemask' data-type='int' data-ref="167__savemask">__savemask</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#90" title="noexcept (true)" data-ref="_M/__THROWNL">__THROWNL</a>;&nbsp</td></tr>
+<tr><th id="42">42</th><td>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i>/* Store the calling environment in ENV, not saving the signal mask.</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i>   Return 0.  */</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="_setjmp" title='_setjmp' data-ref="_setjmp">_setjmp</dfn> (<b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h.html#__jmp_buf_tag" title='__jmp_buf_tag' data-ref="__jmp_buf_tag">__jmp_buf_tag</a> <dfn class="local col8 decl" id="168__env" title='__env' data-type='struct __jmp_buf_tag *' data-ref="168__env">__env</dfn>[<var>1</var>]) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#90" title="noexcept (true)" data-ref="_M/__THROWNL">__THROWNL</a>;&nbsp</td></tr>
+<tr><th id="46">46</th><td>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i>/* Do not save the signal mask.  This is equivalent to the `_setjmp'</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i>   BSD function.  */</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#define <dfn class="macro" id="_M/setjmp" data-ref="_M/setjmp">setjmp</dfn>(env)	_setjmp (env)</u>&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i>/* Jump to the environment saved in ENV, making the</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i>   `setjmp' call there return VAL, or 1 if VAL is 0.  */</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><b>extern</b> <em>void</em> <dfn class="decl fn" id="longjmp" title='longjmp' data-ref="longjmp">longjmp</dfn> (<b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h.html#__jmp_buf_tag" title='__jmp_buf_tag' data-ref="__jmp_buf_tag">__jmp_buf_tag</a> <dfn class="local col9 decl" id="169__env" title='__env' data-type='struct __jmp_buf_tag *' data-ref="169__env">__env</dfn>[<var>1</var>], <em>int</em> <dfn class="local col0 decl" id="170__val" title='__val' data-type='int' data-ref="170__val">__val</dfn>)&nbsp</td></tr>
+<tr><th id="55">55</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#90" title="noexcept (true)" data-ref="_M/__THROWNL">__THROWNL</a> <b>__attribute__</b> ((__noreturn__));&nbsp</td></tr>
+<tr><th id="56">56</th><td>&nbsp</td></tr>
+<tr><th id="57">57</th><td><u>#<span data-ppcond="57">if</span> defined <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a> || defined <a class="macro" href="features.h.html#355" data-ref="_M/__USE_XOPEN">__USE_XOPEN</a></u>&nbsp</td></tr>
+<tr><th id="58">58</th><td><i>/* Same.  Usually `_longjmp' is used with `_setjmp', which does not save</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td><i>   the signal mask.  But it is how ENV was saved that determines whether</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td><i>   `longjmp' restores the mask; `_longjmp' is just an alias.  */</i>&nbsp</td></tr>
+<tr><th id="61">61</th><td><b>extern</b> <em>void</em> <dfn class="decl fn" id="_longjmp" title='_longjmp' data-ref="_longjmp">_longjmp</dfn> (<b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h.html#__jmp_buf_tag" title='__jmp_buf_tag' data-ref="__jmp_buf_tag">__jmp_buf_tag</a> <dfn class="local col1 decl" id="171__env" title='__env' data-type='struct __jmp_buf_tag *' data-ref="171__env">__env</dfn>[<var>1</var>], <em>int</em> <dfn class="local col2 decl" id="172__val" title='__val' data-type='int' data-ref="172__val">__val</dfn>)&nbsp</td></tr>
+<tr><th id="62">62</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#90" title="noexcept (true)" data-ref="_M/__THROWNL">__THROWNL</a> <b>__attribute__</b> ((__noreturn__));&nbsp</td></tr>
+<tr><th id="63">63</th><td><u>#<span data-ppcond="57">endif</span></u>&nbsp</td></tr>
+<tr><th id="64">64</th><td>&nbsp</td></tr>
+<tr><th id="65">65</th><td>&nbsp</td></tr>
+<tr><th id="66">66</th><td><u>#<span data-ppcond="66">ifdef</span>	<a class="macro" href="features.h.html#325" data-ref="_M/__USE_POSIX">__USE_POSIX</a></u>&nbsp</td></tr>
+<tr><th id="67">67</th><td><i>/* Use the same type for `jmp_buf' and `sigjmp_buf'.</i>&nbsp</td></tr>
+<tr><th id="68">68</th><td><i>   The `__mask_was_saved' flag determines whether</i>&nbsp</td></tr>
+<tr><th id="69">69</th><td><i>   or not `longjmp' will restore the signal mask.  */</i>&nbsp</td></tr>
+<tr><th id="70">70</th><td><b>typedef</b> <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h.html#__jmp_buf_tag" title='__jmp_buf_tag' data-ref="__jmp_buf_tag">__jmp_buf_tag</a> <dfn class="typedef" id="sigjmp_buf" title='sigjmp_buf' data-type='struct __jmp_buf_tag[1]' data-ref="sigjmp_buf">sigjmp_buf</dfn>[<var>1</var>];&nbsp</td></tr>
+<tr><th id="71">71</th><td>&nbsp</td></tr>
+<tr><th id="72">72</th><td><i>/* Store the calling environment in ENV, also saving the</i>&nbsp</td></tr>
+<tr><th id="73">73</th><td><i>   signal mask if SAVEMASK is nonzero.  Return 0.  */</i>&nbsp</td></tr>
+<tr><th id="74">74</th><td><u># define <dfn class="macro" id="_M/sigsetjmp" data-ref="_M/sigsetjmp">sigsetjmp</dfn>(env, savemask)	__sigsetjmp (env, savemask)</u>&nbsp</td></tr>
+<tr><th id="75">75</th><td>&nbsp</td></tr>
+<tr><th id="76">76</th><td><i>/* Jump to the environment saved in ENV, making the</i>&nbsp</td></tr>
+<tr><th id="77">77</th><td><i>   sigsetjmp call there return VAL, or 1 if VAL is 0.</i>&nbsp</td></tr>
+<tr><th id="78">78</th><td><i>   Restore the signal mask if that sigsetjmp call saved it.</i>&nbsp</td></tr>
+<tr><th id="79">79</th><td><i>   This is just an alias `longjmp'.  */</i>&nbsp</td></tr>
+<tr><th id="80">80</th><td><b>extern</b> <em>void</em> <dfn class="decl fn" id="siglongjmp" title='siglongjmp' data-ref="siglongjmp">siglongjmp</dfn> (<a class="typedef" href="#sigjmp_buf" title='sigjmp_buf' data-type='struct __jmp_buf_tag[1]' data-ref="sigjmp_buf">sigjmp_buf</a> <dfn class="local col3 decl" id="173__env" title='__env' data-type='struct __jmp_buf_tag *' data-ref="173__env">__env</dfn>, <em>int</em> <dfn class="local col4 decl" id="174__val" title='__val' data-type='int' data-ref="174__val">__val</dfn>)&nbsp</td></tr>
+<tr><th id="81">81</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#90" title="noexcept (true)" data-ref="_M/__THROWNL">__THROWNL</a> <b>__attribute__</b> ((__noreturn__));&nbsp</td></tr>
+<tr><th id="82">82</th><td><u>#<span data-ppcond="66">endif</span> /* Use POSIX.  */</u>&nbsp</td></tr>
+<tr><th id="83">83</th><td>&nbsp</td></tr>
+<tr><th id="84">84</th><td>&nbsp</td></tr>
+<tr><th id="85">85</th><td><i>/* Define helper functions to catch unsafe code.  */</i>&nbsp</td></tr>
+<tr><th id="86">86</th><td><u>#<span data-ppcond="86">if</span> <a class="macro" href="features.h.html#428" title="0" data-ref="_M/__USE_FORTIFY_LEVEL">__USE_FORTIFY_LEVEL</a> &gt; 0</u>&nbsp</td></tr>
+<tr><th id="87">87</th><td><u># include &lt;bits/setjmp2.h&gt;</u>&nbsp</td></tr>
+<tr><th id="88">88</th><td><u>#<span data-ppcond="86">endif</span></u>&nbsp</td></tr>
+<tr><th id="89">89</th><td>&nbsp</td></tr>
+<tr><th id="90">90</th><td><a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#134" title="}" data-ref="_M/__END_DECLS">__END_DECLS</a>&nbsp</td></tr>
+<tr><th id="91">91</th><td>&nbsp</td></tr>
+<tr><th id="92">92</th><td><u>#<span data-ppcond="22">endif</span> /* setjmp.h  */</u>&nbsp</td></tr>
+<tr><th id="93">93</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../Modules/Image/Src/tPicture.cpp.html'>Modules/Image/Src/tPicture.cpp</a><br/>Generated on <em>2025-Aug-25</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

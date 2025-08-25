@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='289' ll='297'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='592'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='286'>/**
+ * @brief A texel component data format.
+ */</doc>

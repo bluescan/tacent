@@ -81,6 +81,15 @@ _ZN6tImage10tImageAPNG3SetER5tListINS_6tFrameEEb|tImage::tImageAPNG::Set
 _ZN6tImage10tImageASTC3SetEP9tColour4biib|tImage::tImageASTC::Set
 _ZN6tImage9tImageBMP3SetEP9tColour4biib|tImage::tImageBMP::Set
 _ZN6tImage9tImageDDS3SetEP9tColour4biib|tImage::tImageDDS::Set
+_ZN9Imath_2_54Vec28setValueETL0__S1_|Imath_2_5::Vec2::setValue
+_ZN9Imath_2_54Vec38setValueETL0__S1_S1_|Imath_2_5::Vec3::setValue
+_ZN4half7setBitsEt|half::setBits
+_ZNSt13basic_istream5seekgENT0_8pos_typeE|std::basic_istream::seekg
+_ZNKSt13basic_istream6sentrycvbEv|std::basic_istream::sentry::operator bool
+_ZNSt13basic_istream6sentryC1ERSt13basic_istreamIT_T0_Eb|std::basic_istream::sentry::sentry
+_ZNSt7__cxx1115basic_stringbuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode|std::basic_stringbuf::seekoff
+_ZNSt7__cxx1115basic_stringbuf7seekposENT0_8pos_typeESt13_Ios_Openmode|std::basic_stringbuf::seekpos
+_ZNSt7__cxx1115basic_stringbuf6setbufEPT_l|std::basic_stringbuf::setbuf
 _ZN6tImage9tImageEXR3SetER5tListINS_6tFrameEEb|tImage::tImageEXR::Set
 _ZN6tImage9tImageGIF3SetER5tListINS_6tFrameEEb|tImage::tImageGIF::Set
 _ZN6tImage9tImageHDR3SetEP9tColour4biib|tImage::tImageHDR::Set
@@ -103,6 +112,14 @@ _ZN6tImage9tMetaData19SetTags_CamHardwareERKN8TinyEXIF8EXIFInfoE|tImage::tMetaDa
 _ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE|tImage::tMetaData::SetTags_CamSettings
 _ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE|tImage::tMetaData::SetTags_GeoLocation
 _ZN6tImage13tPaletteImage3SetERKS0_|tImage::tPaletteImage::Set
+_ZN8tinyxml28MemPoolT10SetTrackedEv|tinyxml2::MemPoolT::SetTracked
+_ZN8tinyxml27StrPair3SetEPcS1_i|tinyxml2::StrPair::Set
+_ZN8tinyxml27StrPair14SetInternedStrEPKc|tinyxml2::StrPair::SetInternedStr
+_ZN8tinyxml211XMLDocument6SetBOMEb|tinyxml2::XMLDocument::SetBOM
+_ZN8tinyxml210XMLElement12SetAttributeEPKcS2_|tinyxml2::XMLElement::SetAttribute
+_ZN8tinyxml210XMLElement7SetNameEPKcb|tinyxml2::XMLElement::SetName
+_ZN8tinyxml27XMLNode11SetUserDataEPv|tinyxml2::XMLNode::SetUserData
+_ZN8tinyxml27XMLText8SetCDataEb|tinyxml2::XMLText::SetCData
 _ZNSt20discard_block_engine4seedEv|std::discard_block_engine::seed
 _ZNSt23independent_bits_engine4seedEv|std::independent_bits_engine::seed
 _ZNSt26linear_congruential_engine4seedET_|std::linear_congruential_engine::seed
@@ -129,6 +146,8 @@ _ZN6tInput19tUnitContinuousDisp15SetDisplacementEf|tInput::tUnitContinuousDisp::
 _ZN6tInput19tUnitContinuousDisp18SetDisplacementRawEf|tInput::tUnitContinuousDisp::SetDisplacementRaw
 _ZN6tInput12tCompTrigger15SetDisplacementEf|tInput::tCompTrigger::SetDisplacement
 _ZN6tInput12tCompTrigger18SetDisplacementRawEf|tInput::tCompTrigger::SetDisplacementRaw
+_ZN6tInput9tContDefn10SetGenericEv|tInput::tContDefn::SetGeneric
+_ZN6tInput12tContGamepad13SetDefinitionEv|tInput::tContGamepad::SetDefinition
 _ZN5tMath8tFrustum3SetERKNS_8tMatrix4E|tMath::tFrustum::Set
 _ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEj|tMath::tRandom::tGeneratorMersenneTwister::SetSeed
 _ZN5tMath11tBezierPath15SetControlVertsEPKNS_8tVector3EiNS0_5tModeENS0_5tTypeE|tMath::tBezierPath::SetControlVerts
@@ -140,12 +159,6 @@ _ZN9tPipeline5tRule9SetTargetERK7tString|tPipeline::tRule::SetTarget
 _ZNSt13basic_filebuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode|std::basic_filebuf::seekoff
 _ZNSt13basic_filebuf7seekposENT0_8pos_typeESt13_Ios_Openmode|std::basic_filebuf::seekpos
 _ZNSt13basic_filebuf6setbufEPT_l|std::basic_filebuf::setbuf
-_ZNSt13basic_istream5seekgENT0_8pos_typeE|std::basic_istream::seekg
-_ZNKSt13basic_istream6sentrycvbEv|std::basic_istream::sentry::operator bool
-_ZNSt13basic_istream6sentryC1ERSt13basic_istreamIT_T0_Eb|std::basic_istream::sentry::sentry
-_ZNSt7__cxx1115basic_stringbuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode|std::basic_stringbuf::seekoff
-_ZNSt7__cxx1115basic_stringbuf7seekposENT0_8pos_typeESt13_Ios_Openmode|std::basic_stringbuf::seekpos
-_ZNSt7__cxx1115basic_stringbuf6setbufEPT_l|std::basic_stringbuf::setbuf
 _ZSt7setbasei|std::setbase
 _ZSt7setfillT_|std::setfill
 _ZSt11setiosflagsSt13_Ios_Fmtflags|std::setiosflags

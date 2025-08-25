@@ -1,0 +1,35 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='1130'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='1096'>/* How the alpha channel is interpreted - this affects how the color channels
+ * of a PNG file are returned to the calling application when an alpha channel,
+ * or a tRNS chunk in a palette file, is present.
+ *
+ * This has no effect on the way pixels are written into a PNG output
+ * datastream. The color samples in a PNG datastream are never premultiplied
+ * with the alpha samples.
+ *
+ * The default is to return data according to the PNG specification: the alpha
+ * channel is a linear measure of the contribution of the pixel to the
+ * corresponding composited pixel, and the color channels are unassociated
+ * (not premultiplied).  The gamma encoded color channels must be scaled
+ * according to the contribution and to do this it is necessary to undo
+ * the encoding, scale the color values, perform the composition and re-encode
+ * the values.  This is the &apos;PNG&apos; mode.
+ *
+ * The alternative is to &apos;associate&apos; the alpha with the color information by
+ * storing color channel values that have been scaled by the alpha.
+ * image.  These are the &apos;STANDARD&apos;, &apos;ASSOCIATED&apos; or &apos;PREMULTIPLIED&apos; modes
+ * (the latter being the two common names for associated alpha color channels).
+ *
+ * For the &apos;OPTIMIZED&apos; mode, a pixel is treated as opaque only if the alpha
+ * value is equal to the maximum value.
+ *
+ * The final choice is to gamma encode the alpha channel as well.  This is
+ * broken because, in practice, no implementation that uses this choice
+ * correctly undoes the encoding before handling alpha composition.  Use this
+ * choice only if other serious errors in the software or hardware you use
+ * mandate it; the typical serious error is for dark halos to appear around
+ * opaque areas of the composited PNG image because of arithmetic overflow.
+ *
+ * The API function png_set_alpha_mode specifies which of these choices to use
+ * with an enumerated &apos;mode&apos; value and the gamma of the required output:
+ */</doc>

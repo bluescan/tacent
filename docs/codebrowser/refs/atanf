@@ -1,2 +1,3 @@
 <dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='57' macro='1' type='float atanf(float __x)'/>
 <use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='189' u='c' c='_ZN5tMath7tArcTanEf'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathMath.h' l='129' u='c' c='_ZN9Imath_2_54MathIfE4atanEf'/>

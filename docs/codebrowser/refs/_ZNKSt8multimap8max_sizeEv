@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='467' ll='469' type='std::multimap::size_type std::multimap::max_size() const'/>
+<doc f='include/c++/11/bits/stl_multimap.h' l='466'>/** Returns the maximum size of the %multimap.  */</doc>

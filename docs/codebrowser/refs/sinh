@@ -1,1 +1,2 @@
 <dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='73' type='double sinh(double __x)'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathMath.h' l='102' u='c' c='_ZN9Imath_2_54Math4sinhET_'/>

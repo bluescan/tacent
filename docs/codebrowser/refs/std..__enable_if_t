@@ -33,4 +33,12 @@
 <use f='include/c++/11/bits/unique_ptr.h' l='315' c='_ZNSt10unique_ptrC1ENSt15__uniq_ptr_implIT_T0_E7pointerENSt9enable_ifIXsr19is_lvalue_referenceITL0__EE5valueEOTL0_0_E4typeE'/>
 <use f='include/c++/11/bits/unique_ptr.h' l='577' c='_ZNSt10unique_ptrIA_T_T0_EC1ETL0__NSt9enable_ifIXntsr19is_lvalue_referenceITL0_0_EE5valueEOS6_E4typeE'/>
 <use f='include/c++/11/bits/unique_ptr.h' l='586' c='_ZNSt10unique_ptrIA_T_T0_EC1ETL0__NSt9enable_ifIXsr19is_lvalue_referenceITL0_0_EE5valueEOTL0_1_E4typeE'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1097' c='_ZNSt8_Rb_tree22_M_insert_range_uniqueETL0__S0_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1106' c='_ZNSt8_Rb_tree22_M_insert_range_uniqueETL0__S0_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1114' c='_ZNSt8_Rb_tree21_M_insert_range_equalETL0__S0_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1123' c='_ZNSt8_Rb_tree21_M_insert_range_equalETL0__S0_'/>
+<use f='include/c++/11/bits/stl_map.h' l='814' c='_ZNSt3map6insertEOTL0__'/>
+<use f='include/c++/11/bits/stl_map.h' l='874' c='_ZNSt3map6insertENSt8_Rb_treeIT_St4pairIKS1_T0_ESt10_Select1stIS5_ET1_N9__gnu_cxx14__alloc_traitsIT2_NSB_10value_typeEE6rebindIS5_E5otherEE14const_iteratorEOTL0__'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='550' c='_ZNSt8multimap6insertEOTL0__'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='593' c='_ZNSt8multimap6insertENSt8_Rb_treeIT_St4pairIKS1_T0_ESt10_Select1stIS5_ET1_N9__gnu_cxx14__alloc_traitsIT2_NSB_10value_typeEE6rebindIS5_E5otherEE14const_iteratorEOTL0__'/>
 <use f='include/c++/11/bits/shared_ptr_base.h' l='1076'/>

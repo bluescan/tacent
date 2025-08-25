@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='634' type='png_byte'/>
+<offset>192</offset>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='628'>/* On write &apos;location&apos; must be set using the flag values listed below.
+    * Notice that on read it is set by libpng however the values stored have
+    * more bits set than are listed below.  Always treat the value as a
+    * bitmask.  On write set only one bit - setting multiple bits may cause the
+    * chunk to be written in multiple places.
+    */</doc>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='634'>/* mode of operation at read time */</doc>

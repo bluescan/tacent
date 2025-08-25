@@ -1,6 +1,7 @@
-<def f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='150' ll='168'/>
+<def f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='151' ll='169'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='170'/>
 <size>4</size>
-<doc f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='145'>// This is a packed format that stores three 14-bit unsigned floats that each share a 5-bit exponent in 32 bits. The
+<doc f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='146'>// This is a packed format that stores three 14-bit unsigned floats that each share a 5-bit exponent in 32 bits. The
 // mantissa for each float is 9 bits. This format is special in that a) there is no sign bit, and b) the values are
 // never encoded normalized -- the mantissas are always denorm so they can share the same exponent. This class is
 // primarily for decoding the packed format into 3 regular 32-bit floats. tPackedM9M9M9E5 must remain pod. No virtual

@@ -1,9 +1,9 @@
-<dec f='Modules/Foundation/Src/tStandard.cpp' l='275' type='int tUTF::DecodeUtf16(char32_t &amp; codepoint, const char16_t * src)'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='312' u='c' c='_ZN4tStd5tUTF8EPDuPKDsi'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='469' u='c' c='_ZN4tStd6tUTF32EPDiPKDsi'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='580' u='c' c='_ZN4tStd7tUTF32cEPKDs'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='626' u='c' c='_ZN4tStd7tUTF32cEPDiPKDs'/>
-<def f='Modules/Foundation/Src/tStandard.cpp' l='679' ll='715' type='int tUTF::DecodeUtf16(char32_t &amp; codepoint, const char16_t * src)'/>
-<doc f='Modules/Foundation/Src/tStandard.cpp' l='272'>// Gets a single codepoint from a UTF-16 string (string does not need null-termination). Returns how many char16s
+<dec f='Modules/Foundation/Src/tStandard.cpp' l='338' type='int tUTF::DecodeUtf16(char32_t &amp; codepoint, const char16_t * src)'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='375' u='c' c='_ZN4tStd5tUTF8EPDuPKDsi'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='532' u='c' c='_ZN4tStd6tUTF32EPDiPKDsi'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='643' u='c' c='_ZN4tStd7tUTF32cEPKDs'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='689' u='c' c='_ZN4tStd7tUTF32cEPDiPKDs'/>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='742' ll='778' type='int tUTF::DecodeUtf16(char32_t &amp; codepoint, const char16_t * src)'/>
+<doc f='Modules/Foundation/Src/tStandard.cpp' l='335'>// Gets a single codepoint from a UTF-16 string (string does not need null-termination). Returns how many char16s
 	// were read to generate the codepoint. If 2 char16s (surrogate pairs) were read, returns 2. Otherwise returns 1.
 	// For invalid encodings, the codepoint is set to the special &apos;replacement&apos; (from the BMP) and 1 is returned.</doc>

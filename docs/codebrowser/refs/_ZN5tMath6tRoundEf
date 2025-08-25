@@ -1,5 +1,5 @@
 <def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='137' type='float tMath::tRound(float v)'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='385' u='c' c='_ZN5tMath6tRoundEff'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='388' u='c' c='_ZN5tMath6tRoundEff'/>
 <doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='136'>// The &apos;nearest&apos; round variants let you round to the nearest [value]. For example, tRound(5.17f, 0.2f) = 5.2f</doc>
 <use f='Modules/Image/Src/tMetaData.cpp' l='279' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
 <use f='Modules/Image/Src/tMetaData.cpp' l='280' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>

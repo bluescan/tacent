@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2988' type='int png_image_begin_read_from_memory(png_imagep image, png_const_voidp memory, size_t size)'/>

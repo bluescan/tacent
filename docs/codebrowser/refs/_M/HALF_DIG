@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='283'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='279'>// (significand + hidden leading 1)
+
+// 
+// floor( (HALF_MANT_DIG - 1) * log10(2) ) =&gt; 3.01... -&gt; 3</doc>

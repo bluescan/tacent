@@ -1,10 +1,26 @@
-<def f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='53' ll='86'/>
-<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='90' c='_ZN6tInput15tLookupContDefnERKNS_7tVidPidE'/>
+<def f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='74' ll='112'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='118' c='_ZN6tInput15tLookupContDefnERKNS_7tVidPidE'/>
+<use f='Modules/Input/Inc/Input/tCont.h' l='36'/>
 <size>56</size>
-<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='49'>// The controller definition stored in the dictionary. Unfortunately some controllers have multiple ways to connect with
+<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='70'>// The controller definition stored in the dictionary. Unfortunately some controllers have multiple ways to connect with
 // different latency characteristics. Usually the 2.4GHz dongles are pretty close to wired. Also quite often bluetooth
 // connected controllers aren&apos;t recognized by XInput (plus BT has a lot more latency). For this reason the wired
 // definitions are used in the table below.</doc>
+<fun r='_ZN6tInput9tContDefn10SetGenericEv'/>
+<fun r='_ZN6tInput9tContDefn5ClearEv'/>
+<mbr r='tInput::tContDefn::Vendor' o='0' t='const char *'/>
+<mbr r='tInput::tContDefn::Product' o='64' t='const char *'/>
+<mbr r='tInput::tContDefn::MaxPollingFreq' o='128' t='int32'/>
+<mbr r='tInput::tContDefn::DispTechSticks' o='160' t='tInput::tDispTech'/>
+<mbr r='tInput::tContDefn::DispTechTriggers' o='192' t='tInput::tDispTech'/>
+<mbr r='tInput::tContDefn::StickDeadZone' o='224' t='float'/>
+<mbr r='tInput::tContDefn::TriggerDeadZone' o='256' t='float'/>
+<mbr r='tInput::tContDefn::LatencyAxes' o='288' t='float'/>
+<mbr r='tInput::tContDefn::LatencyButtons' o='320' t='float'/>
+<mbr r='tInput::tContDefn::JitterAxes' o='352' t='float'/>
+<mbr r='tInput::tContDefn::JitterButtons' o='384' t='float'/>
+<fun r='_ZN6tInput9tContDefn10SetGenericEv'/>
+<fun r='_ZN6tInput9tContDefn5ClearEv'/>
 <use f='Modules/Input/Src/tControllerDefinitions.cpp' l='25'/>
 <use f='Modules/Input/Src/tControllerDefinitions.cpp' l='32' c='_ZN6tInput15tLookupContDefnERKNS_7tVidPidE'/>
 <size>56</size>

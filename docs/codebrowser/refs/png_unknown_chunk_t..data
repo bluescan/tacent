@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='625' type='png_byte *'/>
+<offset>64</offset>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='625'>/* Data, should not be modified on read! */</doc>

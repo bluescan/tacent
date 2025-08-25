@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='609' type='void *'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='391' u='w' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
+<offset>192</offset>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='605'>/**
+   * Arbitrary data that can be accessed within the body of the callback
+   * function
+   */</doc>

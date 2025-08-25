@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfMultiPartInputFile.h' l='109' type='T * Imf_2_5::MultiPartInputFile::getInputPart(int partNumber)'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfMultiPartInputFile.h' l='106'>//
+    // used internally by &apos;Part&apos; types to access individual parts of the multipart file
+    //</doc>

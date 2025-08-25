@@ -1,0 +1,6 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2307' u='m' c='_ZNK8tinyxml210XMLPrinter4CStrEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2315' u='m' c='_ZNK8tinyxml210XMLPrinter8CStrSizeEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2322' u='m' c='_ZN8tinyxml210XMLPrinter11ClearBufferEb'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2323' u='m' c='_ZN8tinyxml210XMLPrinter11ClearBufferEb'/>
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2366' type='DynArray&lt;char, 20&gt;'/>
+<offset>2176</offset>

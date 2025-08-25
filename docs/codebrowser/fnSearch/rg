@@ -1,5 +1,6 @@
 _ZN9tColour4b8RGBToHSVEv|tColour4b::RGBToHSV
 _ZN9tColour4f8RGBToHSVEv|tColour4f::RGBToHSV
+_ZN7Imf_2_54RgbaC1Ev|Imf_2_5::Rgba::Rgba
 _ZN5rgbcxL4absiEi|rgbcx::absi
 _ZN5rgbcxL11bc1_encode3EPNS_9bc1_blockEiiiiiiPKh|rgbcx::bc1_encode3
 _ZN5rgbcxL11bc1_encode4EPNS_9bc1_blockEiiiiiiPKh|rgbcx::bc1_encode4

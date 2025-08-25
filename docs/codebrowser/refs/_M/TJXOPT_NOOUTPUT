@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='532'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='526'>/**
+ * This option will prevent #tjTransform() from outputting a JPEG image for
+ * this particular transform (this can be used in conjunction with a custom
+ * filter to capture the transformed DCT coefficients without transcoding
+ * them.)
+ */</doc>

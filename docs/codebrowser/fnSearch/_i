@@ -8,6 +8,8 @@ _ZNSt6locale5_Impl23_M_init_facet_uncheckedEPT_|std::locale::_Impl::_M_init_face
 _ZNSt6locale5_Impl19_M_remove_referenceEv|std::locale::_Impl::_M_remove_reference
 _ZNSt6thread8_Invoker9_M_invokeESt12_Index_tupleIJXspTL0__EEE|std::thread::_Invoker::_M_invoke
 _ZNSt6thread8_InvokerclEv|std::thread::_Invoker::operator()
+_ZN7APngAsm5ImageD1Ev|APngAsm::Image::~Image
+_ZN7APngDis5ImageD1Ev|APngDis::Image::~Image
 _ZNSt19_Sp_counted_deleter5_ImplC1ET_T0_RKT1_|std::_Sp_counted_deleter::_Impl::_Impl
 _ZNSt19_Sp_counted_deleter5_Impl8_M_allocEv|std::_Sp_counted_deleter::_Impl::_M_alloc
 _ZNSt19_Sp_counted_deleter5_Impl6_M_delEv|std::_Sp_counted_deleter::_Impl::_M_del

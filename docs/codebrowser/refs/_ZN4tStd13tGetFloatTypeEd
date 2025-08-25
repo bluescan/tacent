@@ -1,6 +1,6 @@
-<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='369' type='tStd::tFloatType tStd::tGetFloatType(double )'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='371' u='c' c='_ZN4tStd6tIsNANEd'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='373' u='c' c='_ZN4tStd10tIsSpecialEd'/>
-<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='721' ll='747' type='tStd::tFloatType tStd::tGetFloatType(double v)'/>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='369'>// Double precision get float type.</doc>
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='375' type='tStd::tFloatType tStd::tGetFloatType(double )'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='377' u='c' c='_ZN4tStd6tIsNANEd'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='379' u='c' c='_ZN4tStd10tIsSpecialEd'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='727' ll='753' type='tStd::tFloatType tStd::tGetFloatType(double v)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='375'>// Double precision get float type.</doc>
 <use f='Modules/System/Src/tPrint.cpp' l='1445' u='c' c='_ZN7tSystem37HandlerHelper_HandleSpecialFloatTypesER6tArrayIcEd'/>

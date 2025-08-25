@@ -1,1 +1,2 @@
 <dec f='include/math.h' l='1152'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathPlatform.h' l='54' u='a'/>

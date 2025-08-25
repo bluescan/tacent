@@ -1,4 +1,4 @@
-<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='110' type='char8_t * tStd::tStrchr(const char8_t * s, int c)'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='116' type='char8_t * tStd::tStrchr(const char8_t * s, int c)'/>
 <use f='Modules/System/Src/tScript.cpp' l='111' u='c' c='_ZNK11tExpression4NextEv'/>
 <use f='Modules/System/Src/tScript.cpp' l='129' u='c' c='_ZNK11tExpression4NextEv'/>
 <use f='Modules/System/Src/tScript.cpp' l='224' u='c' c='_ZNK11tExpression13GetAtomStringEv'/>

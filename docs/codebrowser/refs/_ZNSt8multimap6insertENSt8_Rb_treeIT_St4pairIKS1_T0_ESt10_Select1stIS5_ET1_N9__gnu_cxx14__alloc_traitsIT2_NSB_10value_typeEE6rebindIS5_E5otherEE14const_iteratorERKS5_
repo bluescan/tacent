@@ -1,0 +1,22 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='577' ll='583' type='std::multimap::iterator std::multimap::insert(std::multimap::const_iterator __position, const std::multimap::value_type &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_multimap.h' l='556'>/**
+       *  @brief Inserts a std::pair into the %multimap.
+       *  @param  __position  An iterator that serves as a hint as to where the
+       *                      pair should be inserted.
+       *  @param  __x  Pair to be inserted (see std::make_pair for easy creation
+       *               of pairs).
+       *  @return An iterator that points to the inserted (key,value) pair.
+       *
+       *  This function inserts a (key, value) pair into the %multimap.
+       *  Contrary to a std::map the %multimap does not rely on unique keys and
+       *  thus multiple pairs with the same key can be inserted.
+       *  Note that the first parameter is only a hint and can potentially
+       *  improve the performance of the insertion process.  A bad hint would
+       *  cause no gains in efficiency.
+       *
+       *  For more on @a hinting, see:
+       *  https://gcc.gnu.org/onlinedocs/libstdc++/manual/associative.html#containers.associative.insert_hints
+       *
+       *  Insertion requires logarithmic time (if the hint is not taken).
+       * @{
+       */</doc>

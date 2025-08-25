@@ -1,0 +1,3 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='509' ll='511' type='bool tinyxml2::XMLVisitor::Visit(const tinyxml2::XMLText &amp; )'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='508'>/// Visit a text node.</doc>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='509'>/*text*/</doc>

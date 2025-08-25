@@ -1,2 +1,0 @@
-<dec f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='30' type='void tPipeline::tVisualStudioSolution::tVisualStudioSolution(const tString &amp; slnFile)'/>
-<def f='Modules/Pipeline/Src/tSolution.cpp' l='23' ll='65' type='void tPipeline::tVisualStudioSolution::tVisualStudioSolution(const tString &amp; slnFile)'/>

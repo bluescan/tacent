@@ -1,0 +1,9 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1466' u='c' c='_ZN8tinyxml210XMLElement12SetAttributeEPKcS2_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1471' u='c' c='_ZN8tinyxml210XMLElement12SetAttributeEPKci'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1476' u='c' c='_ZN8tinyxml210XMLElement12SetAttributeEPKcj'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1482' u='c' c='_ZN8tinyxml210XMLElement12SetAttributeEPKcl'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1488' u='c' c='_ZN8tinyxml210XMLElement12SetAttributeEPKcm'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1494' u='c' c='_ZN8tinyxml210XMLElement12SetAttributeEPKcb'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1499' u='c' c='_ZN8tinyxml210XMLElement12SetAttributeEPKcd'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1504' u='c' c='_ZN8tinyxml210XMLElement12SetAttributeEPKcf'/>
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1691' type='tinyxml2::XMLAttribute * tinyxml2::XMLElement::FindOrCreateAttribute(const char * name)'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='946' type='void * tinyxml2::XMLNode::GetUserData() const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='941'>/**
+		Get user data set into the XMLNode. TinyXML-2 in
+		no way processes or interprets user data.
+		It is initially 0.
+	*/</doc>

@@ -1,0 +1,40 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='136' ll='197'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='180' c='_ZN8tinyxml27StrPair10TransferToEPS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='195' c='_ZN8tinyxml27StrPairC1ERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='196' c='_ZN8tinyxml27StrPairaSERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='952' c='_ZN8tinyxml27XMLNode9ParseDeepEPcPNS_7StrPairEPi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='956'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1020' c='_ZN8tinyxml27XMLText9ParseDeepEPcPNS_7StrPairEPi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1051' c='_ZN8tinyxml210XMLComment9ParseDeepEPcPNS_7StrPairEPi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1090' c='_ZN8tinyxml214XMLDeclaration9ParseDeepEPcPNS_7StrPairEPi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1125' c='_ZN8tinyxml210XMLUnknown9ParseDeepEPcPNS_7StrPairEPi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1252'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1253'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1683' c='_ZN8tinyxml210XMLElement9ParseDeepEPcPNS_7StrPairEPi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1938'/>
+<size>24</size>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='128'>/*
+	A class that wraps strings. Normally stores the start and end
+	pointers into the XML file itself, and will apply normalization
+	and entity translation if actually read. Can also store (and memory
+	manage) a traditional char[]
+
+    Isn&apos;t clear why TINYXML2_LIB is needed; but seems to fix #719
+*/</doc>
+<fun r='_ZN8tinyxml27StrPairC1Ev'/>
+<fun r='_ZN8tinyxml27StrPairD1Ev'/>
+<fun r='_ZN8tinyxml27StrPair3SetEPcS1_i'/>
+<fun r='_ZN8tinyxml27StrPair6GetStrEv'/>
+<fun r='_ZNK8tinyxml27StrPair5EmptyEv'/>
+<fun r='_ZN8tinyxml27StrPair14SetInternedStrEPKc'/>
+<fun r='_ZN8tinyxml27StrPair6SetStrEPKci'/>
+<fun r='_ZN8tinyxml27StrPair9ParseTextEPcPKciPi'/>
+<fun r='_ZN8tinyxml27StrPair9ParseNameEPc'/>
+<fun r='_ZN8tinyxml27StrPair10TransferToEPS0_'/>
+<fun r='_ZN8tinyxml27StrPair5ResetEv'/>
+<fun r='_ZN8tinyxml27StrPair18CollapseWhitespaceEv'/>
+<mbr r='tinyxml2::StrPair::_flags' o='0' t='int'/>
+<mbr r='tinyxml2::StrPair::_start' o='64' t='char *'/>
+<mbr r='tinyxml2::StrPair::_end' o='128' t='char *'/>
+<fun r='_ZN8tinyxml27StrPairC1ERKS0_'/>
+<fun r='_ZN8tinyxml27StrPairaSERKS0_'/>

@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='94' type='void Imf_2_5::Header::Header(int width, int height, const Imath::Box2i &amp; dataWindow, float pixelAspectRatio = 1, const Imath::V2f &amp; screenWindowCenter = Imath::V2f(0, 0), float screenWindowWidth = 1, Imf_2_5::LineOrder lineOrder = INCREASING_Y, Imf_2_5::Compression  = ZIP_COMPRESSION)'/>

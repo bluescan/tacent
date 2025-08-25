@@ -1,0 +1,29 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1548' type='const char * tinyxml2::XMLElement::GetText() const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1520'>/** Convenience function for easy access to the text inside an element. Although easy
+    	and concise, GetText() is limited compared to getting the XMLText child
+    	and accessing it directly.
+
+    	If the first child of &apos;this&apos; is a XMLText, the GetText()
+    	returns the character string of the Text node, else null is returned.
+
+    	This is a convenient method for getting the text of simple contained text:
+    	@verbatim
+    	&lt;foo&gt;This is text&lt;/foo&gt;
+    		const char* str = fooElement-&gt;GetText();
+    	@endverbatim
+
+    	&apos;str&apos; will be a pointer to &quot;This is text&quot;.
+
+    	Note that this function can be misleading. If the element foo was created from
+    	this XML:
+    	@verbatim
+    		&lt;foo&gt;&lt;b&gt;This is text&lt;/b&gt;&lt;/foo&gt;
+    	@endverbatim
+
+    	then the value of str would be null. The first child node isn&apos;t a text node, it is
+    	another element. From this XML:
+    	@verbatim
+    		&lt;foo&gt;This is &lt;b&gt;text&lt;/b&gt;&lt;/foo&gt;
+    	@endverbatim
+    	GetText() will return &quot;This is &quot;.
+    */</doc>

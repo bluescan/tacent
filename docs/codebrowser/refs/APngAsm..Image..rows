@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='61' type='APngAsm::Image::ROW *'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='62' u='w' c='_ZN7APngAsm5ImageC1Ev'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='74' u='r' c='_ZN7APngAsm5Image4initEjjjj'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='75' u='w' c='_ZN7APngAsm5Image4initEjjjj'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='76' u='r' c='_ZN7APngAsm5Image4initEjjjj'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='78' u='r' c='_ZN7APngAsm5Image4initEjjjj'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='78' u='r' c='_ZN7APngAsm5Image4initEjjjj'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='87' u='r' c='_ZN7APngAsm5Image4freeEv'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='284' u='r' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>8512</offset>

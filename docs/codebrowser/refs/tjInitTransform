@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1452' type='tjhandle tjInitTransform()'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='322' u='c' c='_ZNK6tImage9tImageJPG29CanDoPerfectLosslessTransformENS0_9TransformE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='366' u='c' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1446'>/**
+ * Create a new TurboJPEG transformer instance.
+ *
+ * @return a handle to the newly-created instance, or NULL if an error
+ * occurred (see #tjGetErrorStr2().)
+ */</doc>

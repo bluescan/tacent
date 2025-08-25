@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/pngconf.h' l='308'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/pngconf.h' l='305'>/* ANSI-C (C90) does not permit a macro to be invoked with an empty argument,
+ * so make something non-empty to satisfy the requirement:
+ */</doc>

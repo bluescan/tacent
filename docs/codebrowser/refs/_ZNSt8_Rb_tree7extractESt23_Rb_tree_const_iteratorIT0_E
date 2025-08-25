@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_tree.h' l='1531' ll='1538' type='std::_Rb_tree::node_type std::_Rb_tree::extract(std::_Rb_tree::const_iterator __pos)'/>
+<doc f='include/c++/11/bits/stl_tree.h' l='1530'>/// Extract a node.</doc>

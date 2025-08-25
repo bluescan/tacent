@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='227' type='2'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='226'>/** @brief The HDR RGB with LDR alpha color profile. */</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1078' u='r' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1082' u='r' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

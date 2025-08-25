@@ -1,3 +1,3 @@
-<dec f='include/zconf.h' l='383'/>
-<use f='include/zlib.h' l='1469' u='c'/>
-<use f='include/zlib.h' l='1903' u='c'/>
+<dec f='Modules/Image/Contrib/ZLib/include/zconf.h' l='385'/>
+<use f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1468' u='c'/>
+<use f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1902' u='c'/>

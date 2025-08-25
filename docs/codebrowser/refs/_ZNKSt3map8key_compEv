@@ -1,0 +1,13 @@
+<use f='include/c++/11/bits/stl_map.h' l='499' u='c' c='_ZNSt3mapixERKT_'/>
+<use f='include/c++/11/bits/stl_map.h' l='519' u='c' c='_ZNSt3mapixEOT_'/>
+<use f='include/c++/11/bits/stl_map.h' l='540' u='c' c='_ZNSt3map2atERKT_'/>
+<use f='include/c++/11/bits/stl_map.h' l='549' u='c' c='_ZNKSt3map2atERKT_'/>
+<use f='include/c++/11/bits/stl_map.h' l='694' u='c' c='_ZNSt3map11try_emplaceERKT_DpOTL0__'/>
+<use f='include/c++/11/bits/stl_map.h' l='711' u='c' c='_ZNSt3map11try_emplaceEOT_DpOTL0__'/>
+<use f='include/c++/11/bits/stl_map.h' l='921' u='c' c='_ZNSt3map16insert_or_assignERKT_OTL0__'/>
+<use f='include/c++/11/bits/stl_map.h' l='939' u='c' c='_ZNSt3map16insert_or_assignEOT_OTL0__'/>
+<def f='include/c++/11/bits/stl_map.h' l='1141' ll='1143' type='std::map::key_compare std::map::key_comp() const'/>
+<doc f='include/c++/11/bits/stl_map.h' l='1137'>/**
+       *  Returns the key comparison object out of which the %map was
+       *  constructed.
+       */</doc>

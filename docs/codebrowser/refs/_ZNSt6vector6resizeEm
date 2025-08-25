@@ -8,3 +8,4 @@
        *  %vector&apos;s current size the %vector is truncated, otherwise
        *  default constructed elements are appended.
        */</doc>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='268' u='c' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

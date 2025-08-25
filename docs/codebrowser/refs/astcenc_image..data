@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='595' type='void **'/>
+<offset>128</offset>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='594'>/** @brief The array of 2D slices, of length @c dim_z. */</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1131' u='w' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

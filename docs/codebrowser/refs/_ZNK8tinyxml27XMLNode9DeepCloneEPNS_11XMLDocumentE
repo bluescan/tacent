@@ -1,0 +1,14 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='900' type='tinyxml2::XMLNode * tinyxml2::XMLNode::DeepClone(tinyxml2::XMLDocument * target) const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='887'>/**
+		Make a copy of this node and all its children.
+
+		If the &apos;target&apos; is null, then the nodes will
+		be allocated in the current document. If &apos;target&apos;
+        is specified, the memory will be allocated is the
+        specified XMLDocument.
+
+		NOTE: This is probably not the correct tool to
+		copy a document, since XMLDocuments can have multiple
+		top level XMLNodes. You probably want to use
+        XMLDocument::DeepCopy()
+	*/</doc>

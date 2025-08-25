@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='866' ll='868' type='std::multimap::const_iterator std::multimap::find(const std::multimap::key_type &amp; __x) const'/>
+<doc f='include/c++/11/bits/stl_multimap.h' l='855'>/**
+       *  @brief Tries to locate an element in a %multimap.
+       *  @param  __x  Key of (key, value) pair to be located.
+       *  @return  Read-only (constant) iterator pointing to sought-after
+       *           element, or end() if not found.
+       *
+       *  This function takes a key and tries to locate the element with which
+       *  the key matches.  If successful the function returns a constant
+       *  iterator pointing to the sought after %pair.  If unsuccessful it
+       *  returns the past-the-end ( @c end() ) iterator.
+       */</doc>

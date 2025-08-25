@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2314' ll='2316' type='int tinyxml2::XMLPrinter::CStrSize() const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2309'>/**
+    	If in print to memory mode, return the size
+    	of the XML file in memory. (Note the size returned
+    	includes the terminating null.)
+    */</doc>

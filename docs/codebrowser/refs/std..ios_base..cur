@@ -2,11 +2,11 @@
 <use f='include/c++/11/bits/ostream.tcc' l='243' c='_ZNSt13basic_ostream5tellpEv'/>
 <doc f='include/c++/11/bits/ios_base.h' l='484'>/// Request a seek relative to the current position within the sequence.</doc>
 <use f='include/c++/11/bits/istream.tcc' l='863' c='_ZNSt13basic_istream5tellgEv'/>
+<use f='include/c++/11/bits/sstream.tcc' l='173' u='r' c='_ZNSt7__cxx1115basic_stringbuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/sstream.tcc' l='186' u='r' c='_ZNSt7__cxx1115basic_stringbuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
 <use f='include/c++/11/bits/fstream.tcc' l='506' c='_ZNSt13basic_filebuf9pbackfailENT0_8int_typeE'/>
 <use f='include/c++/11/bits/fstream.tcc' l='554' u='r' c='_ZNSt13basic_filebuf8overflowENT0_8int_typeE'/>
 <use f='include/c++/11/bits/fstream.tcc' l='849' u='r' c='_ZNSt13basic_filebuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
 <use f='include/c++/11/bits/fstream.tcc' l='863' u='r' c='_ZNSt13basic_filebuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
 <use f='include/c++/11/bits/fstream.tcc' l='875' u='r' c='_ZNSt13basic_filebuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
 <use f='include/c++/11/bits/fstream.tcc' l='1052' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
-<use f='include/c++/11/bits/sstream.tcc' l='173' u='r' c='_ZNSt7__cxx1115basic_stringbuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
-<use f='include/c++/11/bits/sstream.tcc' l='186' u='r' c='_ZNSt7__cxx1115basic_stringbuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>

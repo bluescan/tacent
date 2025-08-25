@@ -59,3 +59,4 @@ _ZNSt10_HashtableaSEOSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_E|std::_Hashtab
 _ZNSt10_Hashtable6rehashENSt8__detail15_Hashtable_baseIT_T0_T2_T3_T4_T5_T6_T8_E9size_typeE|std::_Hashtable::rehash
 _ZNKSt10_Hashtable4sizeEv|std::_Hashtable::size
 _ZNSt10_Hashtable4swapERSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_E|std::_Hashtable::swap
+_ZN4halfD1Ev|half::~half

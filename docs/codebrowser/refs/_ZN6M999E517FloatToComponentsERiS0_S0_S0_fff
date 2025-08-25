@@ -1,5 +1,5 @@
-<dec f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='390' type='void M999E5::FloatToComponents(int32 &amp; xm, int32 &amp; ym, int32 &amp; zm, int32 &amp; exp, float x, float y, float z)'/>
-<def f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='403' ll='429' type='void M999E5::FloatToComponents(int32 &amp; xm, int32 &amp; ym, int32 &amp; zm, int32 &amp; expShared, float x, float y, float z)'/>
-<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='435' u='c' c='_ZN15tPackedM9M9M9E53SetEfff'/>
-<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='457' u='c' c='_ZN15tPackedE5M9M9M93SetEfff'/>
-<doc f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='389'>// Converts 3 floats to 3 raw mantissas and a shared exponent.</doc>
+<dec f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='391' type='void M999E5::FloatToComponents(int32 &amp; xm, int32 &amp; ym, int32 &amp; zm, int32 &amp; exp, float x, float y, float z)'/>
+<def f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='404' ll='430' type='void M999E5::FloatToComponents(int32 &amp; xm, int32 &amp; ym, int32 &amp; zm, int32 &amp; expShared, float x, float y, float z)'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='436' u='c' c='_ZN15tPackedM9M9M9E53SetEfff'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='458' u='c' c='_ZN15tPackedE5M9M9M93SetEfff'/>
+<doc f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='390'>// Converts 3 floats to 3 raw mantissas and a shared exponent.</doc>

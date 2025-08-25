@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='193' type='Imath_2_5::Int64 Imf_2_5::OStream::tellp()'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='186'>//---------------------------------------------------------
+    // Get the current writing position, in bytes from the
+    // beginning of the file.  If the next call to write() will
+    // start writing at the beginning of the file, tellp()
+    // returns 0.
+    //---------------------------------------------------------</doc>

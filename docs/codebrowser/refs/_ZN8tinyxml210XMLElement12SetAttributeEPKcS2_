@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1465' ll='1468' type='void tinyxml2::XMLElement::SetAttribute(const char * name, const char * value)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1464'>/// Sets the named attribute to value.</doc>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/stl_tree.h' l='1066' type='std::_Rb_tree::iterator std::_Rb_tree::_M_insert_equal_(std::_Rb_tree::const_iterator __pos, _Arg &amp;&amp; __x, _NodeGen &amp; )'/>
+<def f='include/c++/11/bits/stl_tree.h' l='2298' ll='2324' type='typename _Rb_tree&lt;_Key, _Val, _KeyOfValue, _Compare, _Alloc&gt;::iterator std::_Rb_tree::_M_insert_equal_(std::_Rb_tree::const_iterator __position, _Arg &amp;&amp; __v, _NodeGen &amp; __node_gen)'/>

@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='1597' type='void png_set_read_status_fn(png_structrp png_ptr, png_read_status_ptr read_row_fn)'/>

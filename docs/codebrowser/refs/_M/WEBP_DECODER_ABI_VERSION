@@ -2,3 +2,5 @@
 <use f='Modules/Image/Contrib/WebP/include/decode.h' l='224' u='c'/>
 <use f='Modules/Image/Contrib/WebP/include/decode.h' l='441' u='c'/>
 <use f='Modules/Image/Contrib/WebP/include/decode.h' l='476' u='c'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='66' u='c'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='67' u='c'/>

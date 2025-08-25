@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='115' type='const int'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='110'>// A fixed element depth limit is problematic. There needs to be a
+// limit to avoid a stack overflow. However, that limit varies per
+// system, and the capacity of the stack. On the other hand, it&apos;s a trivial
+// attack that can result from ill, malicious, or even correctly formed XML,
+// so there needs to be a limit in place.</doc>

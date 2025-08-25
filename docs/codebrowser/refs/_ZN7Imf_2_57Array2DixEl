@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='151' type='T * Imf_2_5::Array2D::operator[](long x)'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='245' ll='250' type='T * Imf_2_5::Array2D::operator[](long x)'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='147'>//-----------------------------
+    // Access to the array elements
+    //-----------------------------</doc>

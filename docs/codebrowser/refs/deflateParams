@@ -1,1 +1,1 @@
-<dec f='include/zlib.h' l='706' type='int deflateParams(z_streamp strm, int level, int strategy)'/>
+<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='706' type='int deflateParams(z_streamp strm, int level, int strategy)'/>

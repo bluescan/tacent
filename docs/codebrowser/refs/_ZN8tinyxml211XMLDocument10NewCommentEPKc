@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1845' type='tinyxml2::XMLComment * tinyxml2::XMLDocument::NewComment(const char * comment)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1840'>/**
+    	Create a new Comment associated with
+    	this Document. The memory for the Comment
+    	is managed by the Document.
+    */</doc>

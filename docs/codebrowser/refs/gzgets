@@ -1,1 +1,1 @@
-<dec f='include/zlib.h' l='1492' type='char * gzgets(gzFile file, char * buf, int len)'/>
+<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1491' type='char * gzgets(gzFile file, char * buf, int len)'/>

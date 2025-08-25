@@ -1,3 +1,4 @@
 <def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='124' type='int tMath::tFloatToInt(float val)'/>
 <doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='122'>// Use this instead of casting to int. The only difference is it rounds instead of truncating and is way faster -- The
 // FPU stays in rounding mode so pipeline not flushed.</doc>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='270' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>

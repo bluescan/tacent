@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='545' ll='547' type='std::multimap::iterator std::multimap::insert(std::multimap::value_type &amp;&amp; __x)'/>
+<doc f='include/c++/11/bits/stl_multimap.h' l='543'>// _GLIBCXX_RESOLVE_LIB_DEFECTS
+      // 2354. Unnecessary copying when inserting into maps with braced-init</doc>

@@ -6,3 +6,6 @@ _ZNK5tList4HeadEv|tList::Head
 _ZNK6tsList4HeadEv|tsList::Head
 _ZSt3hexRSt8ios_base|std::hex
 _ZSt8hexfloatRSt8ios_base|std::hexfloat
+_ZNK7Imf_2_57Array2D6heightEv|Imf_2_5::Array2D::height
+_ZN7Imf_2_56Header18findTypedAttributeEPKc|Imf_2_5::Header::findTypedAttribute
+_ZN7Imf_2_56Header14typedAttributeEPKc|Imf_2_5::Header::typedAttribute

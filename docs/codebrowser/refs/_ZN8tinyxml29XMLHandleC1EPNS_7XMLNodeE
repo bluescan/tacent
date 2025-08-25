@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2056' ll='2057' type='void tinyxml2::XMLHandle::XMLHandle(tinyxml2::XMLNode * node)'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2072' u='c' c='_ZN8tinyxml29XMLHandle10FirstChildEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2076' u='c' c='_ZN8tinyxml29XMLHandle17FirstChildElementEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2080' u='c' c='_ZN8tinyxml29XMLHandle9LastChildEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2084' u='c' c='_ZN8tinyxml29XMLHandle16LastChildElementEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2088' u='c' c='_ZN8tinyxml29XMLHandle15PreviousSiblingEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2092' u='c' c='_ZN8tinyxml29XMLHandle22PreviousSiblingElementEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2096' u='c' c='_ZN8tinyxml29XMLHandle11NextSiblingEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2100' u='c' c='_ZN8tinyxml29XMLHandle18NextSiblingElementEPKc'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2055'>/// Create a handle from any node (at any depth of the tree.) This can be a null pointer.</doc>

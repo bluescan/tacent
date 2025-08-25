@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1869' type='tinyxml2::XMLUnknown * tinyxml2::XMLDocument::NewUnknown(const char * text)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1864'>/**
+    	Create a new Unknown associated with
+    	this Document. The memory for the object
+    	is managed by the Document.
+    */</doc>

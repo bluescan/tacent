@@ -1,1 +1,1 @@
-<dec f='include/zlib.h' l='1243' type='int compress2(Bytef * dest, uLongf * destLen, const Bytef * source, uLong sourceLen, int level)'/>
+<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1242' type='int compress2(Bytef * dest, uLongf * destLen, const Bytef * source, uLong sourceLen, int level)'/>

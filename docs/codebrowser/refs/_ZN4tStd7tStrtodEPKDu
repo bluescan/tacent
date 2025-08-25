@@ -1,4 +1,4 @@
-<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='207' type='double tStd::tStrtod(const char8_t * s)'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='213' u='c' c='_ZN4tStd5tAtodEPKDu'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='213' type='double tStd::tStrtod(const char8_t * s)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='219' u='c' c='_ZN4tStd5tAtodEPKDu'/>
 <use f='Modules/Foundation/Inc/Foundation/tString.h' l='354' u='c' c='_ZNK7tString11GetAsDoubleEv'/>
 <use f='Modules/Foundation/Inc/Foundation/tName.h' l='215' u='c' c='_ZNK5tName11GetAsDoubleEv'/>

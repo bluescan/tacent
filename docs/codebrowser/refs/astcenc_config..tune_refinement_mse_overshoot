@@ -1,0 +1,11 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='535' type='float'/>
+<offset>736</offset>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='526'>/**
+	 * @brief The amount of overshoot needed to early-out refinement.
+	 *
+	 * The codec will refine block candidates iteratively to improve the encoding, based on the
+	 * @c tune_refinement_limit count. Earlier implementations will use all refinement iterations,
+	 * even if the target threshold is reached. This tuning parameter allows an early out, but with
+	 * an overshoot MSE threshold. Setting this to 1.0 will early-out as soon as the target is hit,
+	 * but does reduce image quality vs the default behavior of over-refinement.
+	 */</doc>

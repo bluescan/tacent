@@ -2,6 +2,9 @@ _ZSt8distanceT_S_|std::distance
 _ZSt3divll|std::div
 _ZNKSt7dividesclERKT_S2_|std::divides::operator()
 _ZN3EXR6DitherEfii|EXR::Dither
+_ZN9Imath_2_54Vec210dimensionsEv|Imath_2_5::Vec2::dimensions
+_ZN9Imath_2_54Vec310dimensionsEv|Imath_2_5::Vec3::dimensions
+_ZN9Imath_2_54Vec410dimensionsEv|Imath_2_5::Vec4::dimensions
 _ZN11tExprWriter4DIndEv|tExprWriter::DInd
 _ZNKSt20discard_block_engine4baseEv|std::discard_block_engine::base
 _ZNSt20discard_block_engine7discardEy|std::discard_block_engine::discard

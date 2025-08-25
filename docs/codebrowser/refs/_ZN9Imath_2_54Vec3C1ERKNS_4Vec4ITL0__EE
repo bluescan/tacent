@@ -1,0 +1,12 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='321' type='void Imath_2_5::Vec3::Vec3&lt;T&gt;(const Vec4&lt;S&gt; &amp; v)'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1354' ll='1362' type='void Imath_2_5::Vec3::Vec3&lt;T&gt;(const Vec4&lt;S&gt; &amp; v)'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='310'>//---------------------------------------------------------
+    // Vec4 to Vec3 conversion, divides x, y and z by w:
+    //
+    // The one-argument conversion function divides by w even
+    // if w is zero.  The result depends on how the environment
+    // handles floating-point exceptions.
+    //
+    // The two-argument version thows an InfPointExc exception
+    // if w is zero or if division by w would overflow.
+    //---------------------------------------------------------</doc>

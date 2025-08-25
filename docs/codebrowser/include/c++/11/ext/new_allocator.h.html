@@ -114,7 +114,7 @@
 <tr><th id="100">100</th><td>      <i>// NB: __n is permitted to be 0.  The C++ standard says nothing</i>&nbsp</td></tr>
 <tr><th id="101">101</th><td><i>      // about what the return value is when __n == 0.</i>&nbsp</td></tr>
 <tr><th id="102">102</th><td>      <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#131" title="[[__nodiscard__]]" data-ref="_M/_GLIBCXX_NODISCARD">_GLIBCXX_NODISCARD</a> _Tp*&nbsp</td></tr>
-<tr><th id="103">103</th><td>      <dfn class="decl def fn" id="__gnu_cxx::new_allocator::allocate" title='__gnu_cxx::new_allocator::allocate' data-ref="__gnu_cxx::new_allocator::allocate">allocate</dfn>(<a class="typedef" href="#__gnu_cxx::new_allocator::size_type" title='__gnu_cxx::new_allocator::size_type' data-type='std::size_t' data-ref="__gnu_cxx::new_allocator::size_type">size_type</a> <dfn class="local col7 decl" id="5877__n" title='__n' data-type='__gnu_cxx::new_allocator::size_type' data-ref="5877__n">__n</dfn>, <em>const</em> <em>void</em>* = <b>static_cast</b>&lt;<em>const</em> <em>void</em>*&gt;(<var>0</var>))&nbsp</td></tr>
+<tr><th id="103">103</th><td>      <dfn class="decl def fn" id="__gnu_cxx::new_allocator::allocate" title='__gnu_cxx::new_allocator::allocate' data-ref="__gnu_cxx::new_allocator::allocate">allocate</dfn>(<a class="typedef" href="#__gnu_cxx::new_allocator::size_type" title='__gnu_cxx::new_allocator::size_type' data-type='std::size_t' data-ref="__gnu_cxx::new_allocator::size_type">size_type</a> <dfn class="local col1 decl" id="5881__n" title='__n' data-type='__gnu_cxx::new_allocator::size_type' data-ref="5881__n">__n</dfn>, <em>const</em> <em>void</em>* = <b>static_cast</b>&lt;<em>const</em> <em>void</em>*&gt;(<var>0</var>))&nbsp</td></tr>
 <tr><th id="104">104</th><td>      {&nbsp</td></tr>
 <tr><th id="105">105</th><td><u>#<span data-ppcond="105">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
 <tr><th id="106">106</th><td>	 <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
@@ -122,11 +122,11 @@
 <tr><th id="108">108</th><td>	 <b>static_assert</b>(<b>sizeof</b>(_Tp) != <var>0</var>, <q>"cannot allocate incomplete types"</q>);&nbsp</td></tr>
 <tr><th id="109">109</th><td><u>#<span data-ppcond="105">endif</span></u>&nbsp</td></tr>
 <tr><th id="110">110</th><td>&nbsp</td></tr>
-<tr><th id="111">111</th><td>	<b>if</b> (<a class="ref fn" href="#111" title='__builtin_expect' data-ref="__builtin_expect">__builtin_expect</a>(<a class="local col7 ref" href="#5877__n" title='__n' data-ref="5877__n">__n</a> &gt; <b>this</b>-&gt;_M_max_size(), <b>false</b>))&nbsp</td></tr>
+<tr><th id="111">111</th><td>	<b>if</b> (<a class="ref fn" href="#111" title='__builtin_expect' data-ref="__builtin_expect">__builtin_expect</a>(<a class="local col1 ref" href="#5881__n" title='__n' data-ref="5881__n">__n</a> &gt; <b>this</b>-&gt;_M_max_size(), <b>false</b>))&nbsp</td></tr>
 <tr><th id="112">112</th><td>	  {&nbsp</td></tr>
 <tr><th id="113">113</th><td>	    <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
 <tr><th id="114">114</th><td><i>	    // 3190. allocator::allocate sometimes returns too little storage</i>&nbsp</td></tr>
-<tr><th id="115">115</th><td>	    <b>if</b> (<a class="local col7 ref" href="#5877__n" title='__n' data-ref="5877__n">__n</a> &gt; (<span class="namespace">std::</span><a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>(-<var>1</var>) / <b>sizeof</b>(_Tp)))&nbsp</td></tr>
+<tr><th id="115">115</th><td>	    <b>if</b> (<a class="local col1 ref" href="#5881__n" title='__n' data-ref="5881__n">__n</a> &gt; (<span class="namespace">std::</span><a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>(-<var>1</var>) / <b>sizeof</b>(_Tp)))&nbsp</td></tr>
 <tr><th id="116">116</th><td>	      <span class="namespace">std::</span><a class="ref fn" href="../bits/functexcept.h.html#_ZSt28__throw_bad_array_new_lengthv" title='std::__throw_bad_array_new_length' data-ref="_ZSt28__throw_bad_array_new_lengthv">__throw_bad_array_new_length</a>();&nbsp</td></tr>
 <tr><th id="117">117</th><td>	    <span class="namespace">std::</span><a class="ref fn" href="../bits/functexcept.h.html#_ZSt17__throw_bad_allocv" title='std::__throw_bad_alloc' data-ref="_ZSt17__throw_bad_allocv">__throw_bad_alloc</a>();&nbsp</td></tr>
 <tr><th id="118">118</th><td>	  }&nbsp</td></tr>
@@ -134,21 +134,21 @@
 <tr><th id="120">120</th><td><u>#<span data-ppcond="120">if</span> <span class="macro" title="201606L" data-ref="_M/__cpp_aligned_new">__cpp_aligned_new</span></u>&nbsp</td></tr>
 <tr><th id="121">121</th><td>	<b>if</b> (<b>alignof</b>(_Tp) &gt; <span class="macro" title="16UL" data-ref="_M/__STDCPP_DEFAULT_NEW_ALIGNMENT__">__STDCPP_DEFAULT_NEW_ALIGNMENT__</span>)&nbsp</td></tr>
 <tr><th id="122">122</th><td>	  {&nbsp</td></tr>
-<tr><th id="123">123</th><td>	    <span class="namespace">std::</span><a class="type" href="../new.html#std::align_val_t" title='std::align_val_t' data-ref="std::align_val_t">align_val_t</a> <dfn class="local col8 decl" id="5878__al" title='__al' data-type='std::align_val_t' data-ref="5878__al">__al</dfn> = <span class="namespace">std::</span><a class="type" href="../new.html#std::align_val_t" title='std::align_val_t' data-ref="std::align_val_t">align_val_t</a>(<b>alignof</b>(_Tp));&nbsp</td></tr>
-<tr><th id="124">124</th><td>	    <b>return</b> <b>static_cast</b>&lt;_Tp*&gt;(::<span class='ref fn' title='operator new' data-ref="_ZnwmSt11align_val_t"><b>operator</b> <b>new</b></span>(<a class="local col7 ref" href="#5877__n" title='__n' data-ref="5877__n">__n</a> * <b>sizeof</b>(_Tp), <a class="local col8 ref" href="#5878__al" title='__al' data-ref="5878__al">__al</a>));&nbsp</td></tr>
+<tr><th id="123">123</th><td>	    <span class="namespace">std::</span><a class="type" href="../new.html#std::align_val_t" title='std::align_val_t' data-ref="std::align_val_t">align_val_t</a> <dfn class="local col2 decl" id="5882__al" title='__al' data-type='std::align_val_t' data-ref="5882__al">__al</dfn> = <span class="namespace">std::</span><a class="type" href="../new.html#std::align_val_t" title='std::align_val_t' data-ref="std::align_val_t">align_val_t</a>(<b>alignof</b>(_Tp));&nbsp</td></tr>
+<tr><th id="124">124</th><td>	    <b>return</b> <b>static_cast</b>&lt;_Tp*&gt;(::<span class='ref fn' title='operator new' data-ref="_ZnwmSt11align_val_t"><b>operator</b> <b>new</b></span>(<a class="local col1 ref" href="#5881__n" title='__n' data-ref="5881__n">__n</a> * <b>sizeof</b>(_Tp), <a class="local col2 ref" href="#5882__al" title='__al' data-ref="5882__al">__al</a>));&nbsp</td></tr>
 <tr><th id="125">125</th><td>	  }&nbsp</td></tr>
 <tr><th id="126">126</th><td><u>#<span data-ppcond="120">endif</span></u>&nbsp</td></tr>
-<tr><th id="127">127</th><td>	<b>return</b> <b>static_cast</b>&lt;_Tp*&gt;(::<span class='ref fn' title='operator new' data-ref="_Znwm"><b>operator</b> <b>new</b></span>(<a class="local col7 ref" href="#5877__n" title='__n' data-ref="5877__n">__n</a> * <b>sizeof</b>(_Tp)));&nbsp</td></tr>
+<tr><th id="127">127</th><td>	<b>return</b> <b>static_cast</b>&lt;_Tp*&gt;(::<span class='ref fn' title='operator new' data-ref="_Znwm"><b>operator</b> <b>new</b></span>(<a class="local col1 ref" href="#5881__n" title='__n' data-ref="5881__n">__n</a> * <b>sizeof</b>(_Tp)));&nbsp</td></tr>
 <tr><th id="128">128</th><td>      }&nbsp</td></tr>
 <tr><th id="129">129</th><td>&nbsp</td></tr>
 <tr><th id="130">130</th><td>      <i>// __p is not permitted to be a null pointer.</i>&nbsp</td></tr>
 <tr><th id="131">131</th><td>      <em>void</em>&nbsp</td></tr>
-<tr><th id="132">132</th><td>      <dfn class="decl def fn" id="__gnu_cxx::new_allocator::deallocate" title='__gnu_cxx::new_allocator::deallocate' data-ref="__gnu_cxx::new_allocator::deallocate">deallocate</dfn>(_Tp* <dfn class="local col9 decl" id="5879__p" title='__p' data-type='_Tp *' data-ref="5879__p">__p</dfn>, <a class="typedef" href="#__gnu_cxx::new_allocator::size_type" title='__gnu_cxx::new_allocator::size_type' data-type='std::size_t' data-ref="__gnu_cxx::new_allocator::size_type">size_type</a> <dfn class="local col0 decl" id="5880__t" title='__t' data-type='__gnu_cxx::new_allocator::size_type' data-ref="5880__t">__t</dfn> <b>__attribute__</b> ((__unused__)))&nbsp</td></tr>
+<tr><th id="132">132</th><td>      <dfn class="decl def fn" id="__gnu_cxx::new_allocator::deallocate" title='__gnu_cxx::new_allocator::deallocate' data-ref="__gnu_cxx::new_allocator::deallocate">deallocate</dfn>(_Tp* <dfn class="local col3 decl" id="5883__p" title='__p' data-type='_Tp *' data-ref="5883__p">__p</dfn>, <a class="typedef" href="#__gnu_cxx::new_allocator::size_type" title='__gnu_cxx::new_allocator::size_type' data-type='std::size_t' data-ref="__gnu_cxx::new_allocator::size_type">size_type</a> <dfn class="local col4 decl" id="5884__t" title='__t' data-type='__gnu_cxx::new_allocator::size_type' data-ref="5884__t">__t</dfn> <b>__attribute__</b> ((__unused__)))&nbsp</td></tr>
 <tr><th id="133">133</th><td>      {&nbsp</td></tr>
 <tr><th id="134">134</th><td><u>#<span data-ppcond="134">if</span> <span class="macro" title="201606L" data-ref="_M/__cpp_aligned_new">__cpp_aligned_new</span></u>&nbsp</td></tr>
 <tr><th id="135">135</th><td>	<b>if</b> (<b>alignof</b>(_Tp) &gt; <span class="macro" title="16UL" data-ref="_M/__STDCPP_DEFAULT_NEW_ALIGNMENT__">__STDCPP_DEFAULT_NEW_ALIGNMENT__</span>)&nbsp</td></tr>
 <tr><th id="136">136</th><td>	  {&nbsp</td></tr>
-<tr><th id="137">137</th><td>	    ::<b>operator</b> <b>delete</b>(<a class="local col9 ref" href="#5879__p" title='__p' data-ref="5879__p">__p</a>,&nbsp</td></tr>
+<tr><th id="137">137</th><td>	    ::<b>operator</b> <b>delete</b>(<a class="local col3 ref" href="#5883__p" title='__p' data-ref="5883__p">__p</a>,&nbsp</td></tr>
 <tr><th id="138">138</th><td><u># <span data-ppcond="138">if</span> __cpp_sized_deallocation</u>&nbsp</td></tr>
 <tr><th id="139">139</th><td>			      __t * <b>sizeof</b>(_Tp),&nbsp</td></tr>
 <tr><th id="140">140</th><td><u># <span data-ppcond="138">endif</span></u>&nbsp</td></tr>
@@ -156,7 +156,7 @@
 <tr><th id="142">142</th><td>	    <b>return</b>;&nbsp</td></tr>
 <tr><th id="143">143</th><td>	  }&nbsp</td></tr>
 <tr><th id="144">144</th><td><u>#<span data-ppcond="134">endif</span></u>&nbsp</td></tr>
-<tr><th id="145">145</th><td>	::<b>operator</b> <b>delete</b>(<a class="local col9 ref" href="#5879__p" title='__p' data-ref="5879__p">__p</a>&nbsp</td></tr>
+<tr><th id="145">145</th><td>	::<b>operator</b> <b>delete</b>(<a class="local col3 ref" href="#5883__p" title='__p' data-ref="5883__p">__p</a>&nbsp</td></tr>
 <tr><th id="146">146</th><td><u>#<span data-ppcond="146">if</span> __cpp_sized_deallocation</u>&nbsp</td></tr>
 <tr><th id="147">147</th><td>			  , __t * <b>sizeof</b>(_Tp)&nbsp</td></tr>
 <tr><th id="148">148</th><td><u>#<span data-ppcond="146">endif</span></u>&nbsp</td></tr>
@@ -224,6 +224,6 @@
 <tr><th id="210">210</th><td><u>#<span data-ppcond="29">endif</span></u>&nbsp</td></tr>
 <tr><th id="211">211</th><td></td></tr>
 </table><hr/><p id='footer'>
-Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-25</em><br />Powered by Woboq Code Browser 2.1
 <br/></p>
 </div></body></html>

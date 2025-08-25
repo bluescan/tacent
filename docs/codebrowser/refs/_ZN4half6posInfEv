@@ -1,0 +1,15 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='194' type='static half half::posInf()'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='700' ll='706' type='static half half::posInf()'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='180'>//--------------------------------------------
+    // Special values
+    //
+    //	posInf()	returns +infinity
+    //
+    //	negInf()	returns -infinity
+    //
+    //	qNan()		returns a NAN with the bit
+    //			pattern 0111111111111111
+    //
+    //	sNan()		returns a NAN with the bit
+    //			pattern 0111110111111111
+    //--------------------------------------------</doc>

@@ -61,21 +61,21 @@
 <tr><th id="48">48</th><td>  {&nbsp</td></tr>
 <tr><th id="49">49</th><td>    <b>template</b>&lt;<b>typename</b> _Container, <b>typename</b> _Predicate&gt;&nbsp</td></tr>
 <tr><th id="50">50</th><td>      <b>typename</b> _Container::size_type&nbsp</td></tr>
-<tr><th id="51">51</th><td>      <dfn class="decl def fn" id="_ZNSt8__detail16__erase_nodes_ifERT_T0_" title='std::__detail::__erase_nodes_if' data-ref="_ZNSt8__detail16__erase_nodes_ifERT_T0_">__erase_nodes_if</dfn>(_Container&amp; <dfn class="local col5 decl" id="6815__cont" title='__cont' data-type='_Container &amp;' data-ref="6815__cont">__cont</dfn>, _Predicate <dfn class="local col6 decl" id="6816__pred" title='__pred' data-type='_Predicate' data-ref="6816__pred">__pred</dfn>)&nbsp</td></tr>
+<tr><th id="51">51</th><td>      <dfn class="decl def fn" id="_ZNSt8__detail16__erase_nodes_ifERT_T0_" title='std::__detail::__erase_nodes_if' data-ref="_ZNSt8__detail16__erase_nodes_ifERT_T0_">__erase_nodes_if</dfn>(_Container&amp; <dfn class="local col9 decl" id="6819__cont" title='__cont' data-type='_Container &amp;' data-ref="6819__cont">__cont</dfn>, _Predicate <dfn class="local col0 decl" id="6820__pred" title='__pred' data-type='_Predicate' data-ref="6820__pred">__pred</dfn>)&nbsp</td></tr>
 <tr><th id="52">52</th><td>      {&nbsp</td></tr>
-<tr><th id="53">53</th><td>	<b>typename</b> _Container::size_type <dfn class="local col7 decl" id="6817__num" title='__num' data-type='typename _Container::size_type' data-ref="6817__num">__num</dfn> = <var>0</var>;&nbsp</td></tr>
-<tr><th id="54">54</th><td>	<b>for</b> (<em>auto</em> <dfn class="local col8 decl" id="6818__iter" title='__iter' data-type='auto' data-ref="6818__iter">__iter</dfn> = <a class="local col5 ref" href="#6815__cont" title='__cont' data-ref="6815__cont">__cont</a>.begin(), <dfn class="local col9 decl" id="6819__last" title='__last' data-type='auto' data-ref="6819__last">__last</dfn> = <a class="local col5 ref" href="#6815__cont" title='__cont' data-ref="6815__cont">__cont</a>.end();&nbsp</td></tr>
-<tr><th id="55">55</th><td>	     <a class="local col8 ref" href="#6818__iter" title='__iter' data-ref="6818__iter">__iter</a> != <a class="local col9 ref" href="#6819__last" title='__last' data-ref="6819__last">__last</a>;)&nbsp</td></tr>
+<tr><th id="53">53</th><td>	<b>typename</b> _Container::size_type <dfn class="local col1 decl" id="6821__num" title='__num' data-type='typename _Container::size_type' data-ref="6821__num">__num</dfn> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="54">54</th><td>	<b>for</b> (<em>auto</em> <dfn class="local col2 decl" id="6822__iter" title='__iter' data-type='auto' data-ref="6822__iter">__iter</dfn> = <a class="local col9 ref" href="#6819__cont" title='__cont' data-ref="6819__cont">__cont</a>.begin(), <dfn class="local col3 decl" id="6823__last" title='__last' data-type='auto' data-ref="6823__last">__last</dfn> = <a class="local col9 ref" href="#6819__cont" title='__cont' data-ref="6819__cont">__cont</a>.end();&nbsp</td></tr>
+<tr><th id="55">55</th><td>	     <a class="local col2 ref" href="#6822__iter" title='__iter' data-ref="6822__iter">__iter</a> != <a class="local col3 ref" href="#6823__last" title='__last' data-ref="6823__last">__last</a>;)&nbsp</td></tr>
 <tr><th id="56">56</th><td>	  {&nbsp</td></tr>
-<tr><th id="57">57</th><td>	    <b>if</b> (<a class="local col6 ref" href="#6816__pred" title='__pred' data-ref="6816__pred">__pred</a>(*<a class="local col8 ref" href="#6818__iter" title='__iter' data-ref="6818__iter">__iter</a>))&nbsp</td></tr>
+<tr><th id="57">57</th><td>	    <b>if</b> (<a class="local col0 ref" href="#6820__pred" title='__pred' data-ref="6820__pred">__pred</a>(*<a class="local col2 ref" href="#6822__iter" title='__iter' data-ref="6822__iter">__iter</a>))&nbsp</td></tr>
 <tr><th id="58">58</th><td>	      {&nbsp</td></tr>
-<tr><th id="59">59</th><td>		<a class="local col8 ref" href="#6818__iter" title='__iter' data-ref="6818__iter">__iter</a> = <a class="local col5 ref" href="#6815__cont" title='__cont' data-ref="6815__cont">__cont</a>.erase(<a class="local col8 ref" href="#6818__iter" title='__iter' data-ref="6818__iter">__iter</a>);&nbsp</td></tr>
-<tr><th id="60">60</th><td>		++<a class="local col7 ref" href="#6817__num" title='__num' data-ref="6817__num">__num</a>;&nbsp</td></tr>
+<tr><th id="59">59</th><td>		<a class="local col2 ref" href="#6822__iter" title='__iter' data-ref="6822__iter">__iter</a> = <a class="local col9 ref" href="#6819__cont" title='__cont' data-ref="6819__cont">__cont</a>.erase(<a class="local col2 ref" href="#6822__iter" title='__iter' data-ref="6822__iter">__iter</a>);&nbsp</td></tr>
+<tr><th id="60">60</th><td>		++<a class="local col1 ref" href="#6821__num" title='__num' data-ref="6821__num">__num</a>;&nbsp</td></tr>
 <tr><th id="61">61</th><td>	      }&nbsp</td></tr>
 <tr><th id="62">62</th><td>	    <b>else</b>&nbsp</td></tr>
-<tr><th id="63">63</th><td>	      ++<a class="local col8 ref" href="#6818__iter" title='__iter' data-ref="6818__iter">__iter</a>;&nbsp</td></tr>
+<tr><th id="63">63</th><td>	      ++<a class="local col2 ref" href="#6822__iter" title='__iter' data-ref="6822__iter">__iter</a>;&nbsp</td></tr>
 <tr><th id="64">64</th><td>	  }&nbsp</td></tr>
-<tr><th id="65">65</th><td>	<b>return</b> <a class="local col7 ref" href="#6817__num" title='__num' data-ref="6817__num">__num</a>;&nbsp</td></tr>
+<tr><th id="65">65</th><td>	<b>return</b> <a class="local col1 ref" href="#6821__num" title='__num' data-ref="6821__num">__num</a>;&nbsp</td></tr>
 <tr><th id="66">66</th><td>      }&nbsp</td></tr>
 <tr><th id="67">67</th><td>  } <i>// namespace __detail</i>&nbsp</td></tr>
 <tr><th id="68">68</th><td>&nbsp</td></tr>
@@ -87,6 +87,6 @@
 <tr><th id="74">74</th><td><u>#<span data-ppcond="30">endif</span> // _GLIBCXX_ERASE_IF_H</u>&nbsp</td></tr>
 <tr><th id="75">75</th><td></td></tr>
 </table><hr/><p id='footer'>
-Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-25</em><br />Powered by Woboq Code Browser 2.1
 <br/></p>
 </div></body></html>

@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='681' ll='684' type='const tinyxml2::XMLDocument * tinyxml2::XMLNode::GetDocument() const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='680'>/// Get the XMLDocument that owns this XMLNode.</doc>

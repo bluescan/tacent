@@ -21,6 +21,8 @@
 <use f='include/c++/11/bits/vector.tcc' l='616' u='c' c='_ZNSt6vector17_M_default_appendEm'/>
 <use f='include/c++/11/bits/vector.tcc' l='690' u='c' c='_ZNSt6vector16_M_shrink_to_fitEv'/>
 <doc f='include/c++/11/bits/stl_vector.h' l='916'>/**  Returns the number of elements in the %vector.  */</doc>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='72' u='c' c='_ZN6tImage10tImageAPNG4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='104' u='c' c='_ZN6tImage10tImageAPNG4LoadERK7tString'/>
 <use f='include/c++/11/bits/random.h' l='6089' u='c' c='_ZNKSt8seed_seq4sizeEv'/>
 <use f='include/c++/11/bits/random.tcc' l='2659' u='c' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
 <use f='include/c++/11/bits/random.tcc' l='2672' u='c' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='96' type='bool Imath_2_5::Box::operator!=(const Box&lt;T&gt; &amp; src) const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='177' ll='182' type='bool Imath_2_5::Box::operator!=(const Box&lt;T&gt; &amp; src) const'/>

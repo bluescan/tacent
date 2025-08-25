@@ -1,0 +1,29 @@
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='495' c='_ZN7Imf_2_56Header8readFromERNS_7IStreamERi'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='58' ll='156'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='150' c='_ZN7Imf_2_57IStreamC1ERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='151' c='_ZN7Imf_2_57IStreamaSERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='151' c='_ZN7Imf_2_57IStreamaSERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='152' c='_ZN7Imf_2_57IStreamC1EOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='153' c='_ZN7Imf_2_57IStreamaSEOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='153' c='_ZN7Imf_2_57IStreamaSEOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='240' c='_ZN7Imf_2_58StreamIO9readCharsERNS_7IStreamEPci'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfGenericInputFile.h' l='55' c='_ZN7Imf_2_516GenericInputFile30readMagicNumberAndVersionFieldERNS_7IStreamERi'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfMultiPartInputFile.h' l='56' c='_ZN7Imf_2_518MultiPartInputFileC1ERNS_7IStreamEib'/>
+<size>40</size>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='54'>//-----------------------------------------------------------
+// class IStream -- an abstract base class for input streams.
+//-----------------------------------------------------------</doc>
+<fun r='_ZN7Imf_2_57IStreamD1Ev'/>
+<fun r='_ZNK7Imf_2_57IStream14isMemoryMappedEv'/>
+<fun r='_ZN7Imf_2_57IStream4readEPci'/>
+<fun r='_ZN7Imf_2_57IStream16readMemoryMappedEi'/>
+<fun r='_ZN7Imf_2_57IStream5tellgEv'/>
+<fun r='_ZN7Imf_2_57IStream5seekgEm'/>
+<fun r='_ZN7Imf_2_57IStream5clearEv'/>
+<fun r='_ZNK7Imf_2_57IStream8fileNameEv'/>
+<fun r='_ZN7Imf_2_57IStreamC1EPKc'/>
+<fun r='_ZN7Imf_2_57IStreamC1ERKS0_'/>
+<fun r='_ZN7Imf_2_57IStreamaSERKS0_'/>
+<fun r='_ZN7Imf_2_57IStreamC1EOS0_'/>
+<fun r='_ZN7Imf_2_57IStreamaSEOS0_'/>
+<mbr r='Imf_2_5::IStream::_fileName' o='64' t='std::string'/>

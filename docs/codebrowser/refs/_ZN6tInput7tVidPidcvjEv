@@ -1,0 +1,2 @@
+<def f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='54' type='uint32 tInput::tVidPid::operator unsigned int()'/>
+<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='53'>// These are needed so that a VidPid can be used as a key in a tMap.</doc>

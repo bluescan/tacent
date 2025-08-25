@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2922'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2918'>/* Return the size, in bytes, of the image in memory given just a png_image;
+    * the row stride is the minimum stride required for the image.
+    */</doc>

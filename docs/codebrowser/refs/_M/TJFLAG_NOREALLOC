@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='388'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='381'>/**
+ * Disable buffer (re)allocation.  If passed to one of the JPEG compression or
+ * transform functions, this flag will cause those functions to generate an
+ * error if the JPEG image buffer is invalid or too small rather than
+ * attempting to allocate or reallocate that buffer.  This reproduces the
+ * behavior of earlier versions of TurboJPEG.
+ */</doc>

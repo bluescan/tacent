@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2065' ll='2068' type='tinyxml2::XMLHandle &amp; tinyxml2::XMLHandle::operator=(const tinyxml2::XMLHandle &amp; ref)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2064'>/// Assignment</doc>

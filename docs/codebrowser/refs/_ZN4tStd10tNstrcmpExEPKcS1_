@@ -1,0 +1,6 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='98' type='int tStd::tNstrcmpEx(const char * a, const char * b)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='99' u='c' c='_ZN4tStd10tNstrcmpExEPKDuS1_'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='95'>// Experimental. This is a natural string compare function that may give slightly different results. Note for
+// example that page5.tx and page-8.txt sort in the same order in Windows explorer and tNstrcmp but sorts in the
+// opposite order when using tNstrcmpEx.</doc>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='141' ll='201' type='int tStd::tNstrcmpEx(const char * a, const char * b)'/>

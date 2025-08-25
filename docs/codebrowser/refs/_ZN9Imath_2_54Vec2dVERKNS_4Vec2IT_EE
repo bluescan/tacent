@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='214' type='const Vec2&lt;T&gt; &amp; Imath_2_5::Vec2::operator/=(const Vec2&lt;T&gt; &amp; v)'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1126' ll='1133' type='const Vec2&lt;T&gt; &amp; Imath_2_5::Vec2::operator/=(const Vec2&lt;T&gt; &amp; v)'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='210'>//------------------------
+    // Component-wise division
+    //------------------------</doc>

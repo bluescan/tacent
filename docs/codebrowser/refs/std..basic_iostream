@@ -10,10 +10,6 @@
 <inh f='include/c++/11/bits/ostream.tcc' l='382' c='std::basic_ostream'/>
 <def f='include/c++/11/bits/istream.tcc' l='1119'/>
 <use f='include/c++/11/bits/istream.tcc' l='1119'/>
-<use f='include/c++/11/fstream' l='1021'/>
-<use f='include/c++/11/fstream' l='1034'/>
-<ovr f='include/c++/11/bits/fstream.tcc' l='1089' c='std::basic_fstream'/>
-<ovr f='include/c++/11/bits/fstream.tcc' l='1095' c='std::basic_fstream'/>
 <use f='include/c++/11/sstream' l='979'/>
 <use f='include/c++/11/sstream' l='995'/>
 <ovr f='include/c++/11/bits/sstream.tcc' l='294' c='std::basic_stringstream'/>
@@ -27,3 +23,7 @@
 <fun r='_ZNSt14basic_iostreamaSERKSt14basic_iostreamIT_T0_E'/>
 <fun r='_ZNSt14basic_iostreamaSEOSt14basic_iostreamIT_T0_E'/>
 <fun r='_ZNSt14basic_iostream4swapERSt14basic_iostreamIT_T0_E'/>
+<use f='include/c++/11/fstream' l='1021'/>
+<use f='include/c++/11/fstream' l='1034'/>
+<ovr f='include/c++/11/bits/fstream.tcc' l='1089' c='std::basic_fstream'/>
+<ovr f='include/c++/11/bits/fstream.tcc' l='1095' c='std::basic_fstream'/>

@@ -1,0 +1,7 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1164' u='c' c='_ZNK8tinyxml212XMLAttribute8IntValueEv'/>
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1209' type='tinyxml2::XMLError tinyxml2::XMLAttribute::QueryIntValue(int * value) const'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1348' u='c' c='_ZNK8tinyxml210XMLElement17QueryIntAttributeEPKcPi'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1205'>/** QueryIntValue interprets the attribute as an integer, and returns the value
+    	in the provided parameter. The function will return XML_SUCCESS on success,
+    	and XML_WRONG_ATTRIBUTE_TYPE if the conversion is not successful.
+    */</doc>

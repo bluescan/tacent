@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='329' ll='333'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='499' c='spng_get_phys'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='522' c='spng_set_phys'/>
+<size>12</size>
+<mbr r='spng_phys::ppu_x' o='0' t='uint32_t'/>
+<mbr r='spng_phys::ppu_y' o='32' t='uint32_t'/>
+<mbr r='spng_phys::unit_specifier' o='64' t='uint8_t'/>

@@ -1,0 +1,19 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='373' type='bool Imath_2_5::Vec3::equalWithAbsError(const Vec3&lt;T&gt; &amp; v, T e) const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1458' ll='1467' type='bool Imath_2_5::Vec3::equalWithAbsError(const Vec3&lt;T&gt; &amp; v, T e) const'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='355'>//-----------------------------------------------------------------------
+    // Compare two vectors and test if they are &quot;approximately equal&quot;:
+    //
+    // equalWithAbsError (v, e)
+    //
+    //	    Returns true if the coefficients of this and v are the same with
+    //	    an absolute error of no more than e, i.e., for all i
+    //
+    //      abs (this[i] - v[i]) &lt;= e
+    //
+    // equalWithRelError (v, e)
+    //
+    //	    Returns true if the coefficients of this and v are the same with
+    //	    a relative error of no more than e, i.e., for all i
+    //
+    //      abs (this[i] - v[i]) &lt;= e * abs (this[i])
+    //-----------------------------------------------------------------------</doc>

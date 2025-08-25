@@ -1,0 +1,14 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='796' ll='799' type='void std::multimap::swap(multimap&lt;_Key, _Tp, _Compare, _Alloc&gt; &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_multimap.h' l='783'>/**
+       *  @brief  Swaps data with another %multimap.
+       *  @param  __x  A %multimap of the same element and allocator types.
+       *
+       *  This exchanges the elements between two multimaps in constant time.
+       *  (It is only swapping a pointer, an integer, and an instance of
+       *  the @c Compare type (which itself is often stateless and empty), so it
+       *  should be quite fast.)
+       *  Note that the global std::swap() function is specialized such that
+       *  std::swap(m1,m2) will feed to this function.
+       *
+       *  Whether the allocators are swapped depends on the allocator traits.
+       */</doc>

@@ -1,0 +1,4 @@
+<def f='include/c++/11/iostream' l='74' type='ios_base::Init'/>
+<doc f='include/c++/11/iostream' l='71'>///@}
+
+  // For construction of filebuffers for cout, cin, cerr, clog et. al.</doc>

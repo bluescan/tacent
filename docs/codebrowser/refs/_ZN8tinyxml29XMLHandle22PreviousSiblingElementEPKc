@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2091' ll='2093' type='tinyxml2::XMLHandle tinyxml2::XMLHandle::PreviousSiblingElement(const char * name = 0)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2090'>/// Get the previous sibling element of this handle.</doc>

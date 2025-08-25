@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2807'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2804'>/* Then the linear 2-byte formats.  When naming these &quot;Y&quot; is used to
+ * indicate a luminance (gray) channel.
+ */</doc>

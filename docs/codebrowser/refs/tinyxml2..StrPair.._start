@@ -1,0 +1,6 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='152' u='w' c='_ZN8tinyxml27StrPairC1Ev'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='159' u='w' c='_ZN8tinyxml27StrPair3SetEPcS1_i'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='167' u='r' c='_ZNK8tinyxml27StrPair5EmptyEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='172' u='w' c='_ZN8tinyxml27StrPair14SetInternedStrEPKc'/>
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='192' type='char *'/>
+<offset>64</offset>

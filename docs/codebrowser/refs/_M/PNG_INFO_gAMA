@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='732'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='727'>/* These determine if an ancillary chunk&apos;s data has been successfully read
+ * from the PNG header, or if the application has filled in the corresponding
+ * data in the info_struct to be written into the output file.  The values
+ * of the PNG_INFO_&lt;chunk&gt; defines should NOT be changed.
+ */</doc>

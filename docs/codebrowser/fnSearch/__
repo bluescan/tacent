@@ -4,4 +4,5 @@ _ZNSt19_Node_handle_common15_Optional_allocD1Ev|std::_Node_handle_common::_Optio
 _ZNSt6vector16_Temporary_valueD1Ev|std::vector::_Temporary_value::~_Temporary_value
 _ZNSt9once_flag18_Prepare_executionD1Ev|std::once_flag::_Prepare_execution::~_Prepare_execution
 _ZNSt10stop_token15_Stop_state_refD1Ev|std::stop_token::_Stop_state_ref::~_Stop_state_ref
+_ZNSt8_Rb_tree20_Reuse_or_alloc_nodeD1Ev|std::_Rb_tree::_Reuse_or_alloc_node::~_Reuse_or_alloc_node
 _ZNSt10filesystem7__cxx114path5_ListD1Ev|std::filesystem::path::_List::~_List

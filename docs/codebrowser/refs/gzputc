@@ -1,1 +1,1 @@
-<dec f='include/zlib.h' l='1505' type='int gzputc(gzFile file, int c)'/>
+<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1504' type='int gzputc(gzFile file, int c)'/>

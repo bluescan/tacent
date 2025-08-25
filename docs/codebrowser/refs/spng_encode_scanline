@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='482' type='int spng_encode_scanline(spng_ctx * ctx, const void * scanline, size_t len)'/>
+<doc f='Modules/Image/Contrib/LibSPNG/spng.h' l='481'>/* Progressive encode */</doc>

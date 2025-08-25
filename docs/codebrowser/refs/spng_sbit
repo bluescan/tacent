@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='292' ll='299'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='494' c='spng_get_sbit'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='517' c='spng_set_sbit'/>
+<size>5</size>
+<mbr r='spng_sbit::grayscale_bits' o='0' t='uint8_t'/>
+<mbr r='spng_sbit::red_bits' o='8' t='uint8_t'/>
+<mbr r='spng_sbit::green_bits' o='16' t='uint8_t'/>
+<mbr r='spng_sbit::blue_bits' o='24' t='uint8_t'/>
+<mbr r='spng_sbit::alpha_bits' o='32' t='uint8_t'/>

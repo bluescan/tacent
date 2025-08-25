@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='336' type='int tinyxml2::MemPool::ItemSize() const'/>
+<ovr f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='368' c='_ZNK8tinyxml28MemPoolT8ItemSizeEv'/>

@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='302' ll='304' type='const int[12]'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='299'>/**
+ * Pixel size (in bytes) for a given pixel format
+ */</doc>

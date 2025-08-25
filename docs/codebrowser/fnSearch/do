@@ -10,6 +10,10 @@ _ZNKSt7__cxx118numpunct12do_falsenameEv|std::numpunct::do_falsename
 _ZNKSt7__cxx118numpunct11do_groupingEv|std::numpunct::do_grouping
 _ZNKSt7__cxx118numpunct16do_thousands_sepEv|std::numpunct::do_thousands_sep
 _ZNKSt7__cxx118numpunct11do_truenameEv|std::numpunct::do_truename
+_ZNK9Imath_2_54Vec23dotERKNS_4Vec2IT_EE|Imath_2_5::Vec2::dot
+_ZNK9Imath_2_54Vec33dotERKNS_4Vec3IT_EE|Imath_2_5::Vec3::dot
+_ZNK9Imath_2_54Vec43dotERKNS_4Vec4IT_EE|Imath_2_5::Vec4::dot
+_ZNK8tinyxml212XMLAttribute11DoubleValueEv|tinyxml2::XMLAttribute::DoubleValue
 _ZN6tImage26DoBC1BlocksHaveBinaryAlphaEPNS_8BC1BlockEi|tImage::DoBC1BlocksHaveBinaryAlpha
 _ZNKSt7__cxx118messages8do_closeEi|std::messages::do_close
 _ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale|std::messages::do_open

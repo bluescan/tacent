@@ -1,0 +1,2 @@
+<inh f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='700' c='_ZN8tinyxml27XMLNode9ToCommentEv'/>
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1035' ll='1037' type='tinyxml2::XMLComment * tinyxml2::XMLComment::ToComment()'/>

@@ -1,0 +1,18 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='210' u='w' c='_ZN8tinyxml28DynArrayC1Ev'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='217' c='_ZN8tinyxml28DynArrayD1Ev'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='218' c='_ZN8tinyxml28DynArrayD1Ev'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='229' u='w' c='_ZN8tinyxml28DynArray4PushET_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='237' c='_ZN8tinyxml28DynArray7PushArrEi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='245' u='r' c='_ZN8tinyxml28DynArray3PopEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='259' u='a' c='_ZN8tinyxml28DynArrayixEi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='264' u='a' c='_ZNK8tinyxml28DynArrayixEi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='269' u='a' c='_ZNK8tinyxml28DynArray7PeekTopEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='285' u='w' c='_ZN8tinyxml28DynArray10SwapRemoveEi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='285' u='r' c='_ZN8tinyxml28DynArray10SwapRemoveEi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='291' u='r' c='_ZNK8tinyxml28DynArray3MemEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='296' u='r' c='_ZN8tinyxml28DynArray3MemEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='310' c='_ZN8tinyxml28DynArray14EnsureCapacityEi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='311' c='_ZN8tinyxml28DynArray14EnsureCapacityEi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='312' c='_ZN8tinyxml28DynArray14EnsureCapacityEi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='314' u='w' c='_ZN8tinyxml28DynArray14EnsureCapacityEi'/>
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='319' type='T *'/>

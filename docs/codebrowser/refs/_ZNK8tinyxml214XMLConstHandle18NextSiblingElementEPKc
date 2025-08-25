@@ -1,0 +1,1 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2169' ll='2171' type='const tinyxml2::XMLConstHandle tinyxml2::XMLConstHandle::NextSiblingElement(const char * name = 0) const'/>

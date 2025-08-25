@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='331' ll='336' type='multimap&lt;_Key, _Tp, _Compare, _Alloc&gt; &amp; std::multimap::operator=(initializer_list&lt;std::multimap::value_type&gt; __l)'/>
+<doc f='include/c++/11/bits/stl_multimap.h' l='320'>/**
+       *  @brief  %Multimap list assignment operator.
+       *  @param  __l  An initializer_list.
+       *
+       *  This function fills a %multimap with copies of the elements
+       *  in the initializer list @a __l.
+       *
+       *  Note that the assignment completely changes the %multimap and
+       *  that the resulting %multimap&apos;s size is the same as the number
+       *  of elements assigned.
+       */</doc>

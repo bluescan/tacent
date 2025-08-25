@@ -1,6 +1,6 @@
-<def f='Modules/Foundation/Src/tStandard.cpp' l='251' ll='255'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='259'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='769' c='_ZN4tUTF10DecodeUtf8ERDiPKDu'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='848' c='_ZN4tUTF10EncodeUtf8EPDuDi'/>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='314' ll='318'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='322'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='832' c='_ZN4tUTF10DecodeUtf8ERDiPKDu'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='911' c='_ZN4tUTF10EncodeUtf8EPDuDi'/>
 <size>2</size>
-<doc f='Modules/Foundation/Src/tStandard.cpp' l='250'>// A UTF-8 bit-pattern that can be set or verified.</doc>
+<doc f='Modules/Foundation/Src/tStandard.cpp' l='313'>// A UTF-8 bit-pattern that can be set or verified.</doc>

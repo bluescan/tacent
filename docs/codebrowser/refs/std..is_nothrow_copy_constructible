@@ -4,3 +4,6 @@
 <use f='include/c++/11/bits/stl_algobase.h' l='314' c='_ZSt12__niter_baseT_'/>
 <use f='include/c++/11/bits/hashtable.h' l='501' c='_ZNSt10_Hashtable15_S_nothrow_moveEv'/>
 <use f='include/c++/11/bits/hashtable.h' l='502' c='_ZNSt10_Hashtable15_S_nothrow_moveEv'/>
+<use f='include/c++/11/bits/stl_tree.h' l='161' c='_ZNSt20_Rb_tree_key_compareC1EOSt20_Rb_tree_key_compareIT_E'/>
+<use f='include/c++/11/bits/stl_map.h' l='245' c='_ZNSt3mapC1EOSt3mapIT_T0_T1_T2_ERKS4_'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='242' c='_ZNSt8multimapC1EOSt8multimapIT_T0_T1_T2_ERKS4_'/>

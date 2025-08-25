@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='525'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='521'>/**
+ * This option will discard the color data in the input image and produce
+ * a grayscale output image.
+ */</doc>

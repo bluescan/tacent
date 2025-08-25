@@ -1,1 +1,1 @@
-<dec f='include/zlib.h' l='1364' type='int gzbuffer(gzFile file, unsigned int size)'/>
+<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1363' type='int gzbuffer(gzFile file, unsigned int size)'/>

@@ -8,4 +8,8 @@ _ZNKSt6vector4cendEv|std::vector::cend
 _ZNKSt7__cxx1112basic_string4cendEv|std::basic_string::cend
 _ZNKSt17basic_string_view4cendEv|std::basic_string_view::cend
 _ZNSt6chrono4ceilERKNS_8durationIT0_T1_EE|std::chrono::ceil
+_ZNK9Imath_2_53Box6centerEv|Imath_2_5::Box::center
+_ZN9Imath_2_54Math4ceilET_|Imath_2_5::Math::ceil
+_ZNKSt3map4cendEv|std::map::cend
+_ZNKSt8multimap4cendEv|std::multimap::cend
 _ZNKSt5deque4cendEv|std::deque::cend

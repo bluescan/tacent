@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='449' type='const Vec3&lt;T&gt; &amp; Imath_2_5::Vec3::normalize()'/>
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='774' type='const Vec3&lt;short&gt; &amp; Imath_2_5::Vec3&lt;short&gt;::normalize()'/>
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='798' type='const Vec3&lt;int&gt; &amp; Imath_2_5::Vec3&lt;int&gt;::normalize()'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1695' ll='1715' type='const Vec3&lt;T&gt; &amp; Imath_2_5::Vec3::normalize()'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='449'>// modifies *this</doc>

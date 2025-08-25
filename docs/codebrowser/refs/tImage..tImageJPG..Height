@@ -1,5 +1,7 @@
 <use f='Modules/Image/Src/tImageJPG.cpp' l='32' u='w' c='_ZN6tImage9tImageJPG5ClearEv'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='89' u='a' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
 <use f='Modules/Image/Src/tImageJPG.cpp' l='93' u='r' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='106' u='r' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
 <use f='Modules/Image/Src/tImageJPG.cpp' l='197' u='w' c='_ZN6tImage9tImageJPG3SetEP9tColour4biib'/>
 <use f='Modules/Image/Src/tImageJPG.cpp' l='204' u='r' c='_ZN6tImage9tImageJPG3SetEP9tColour4biib'/>
 <use f='Modules/Image/Src/tImageJPG.cpp' l='205' u='r' c='_ZN6tImage9tImageJPG3SetEP9tColour4biib'/>
@@ -15,4 +17,5 @@
 <use f='Modules/Image/Src/tImageJPG.cpp' l='306' u='r' c='_ZN6tImage9tImageJPG4FlipEb'/>
 <use f='Modules/Image/Src/tImageJPG.cpp' l='308' u='r' c='_ZN6tImage9tImageJPG4FlipEb'/>
 <use f='Modules/Image/Src/tImageJPG.cpp' l='312' u='w' c='_ZN6tImage9tImageJPG4FlipEb'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='465' u='r' c='_ZNK6tImage9tImageJPG4SaveERK7tStringRKNS0_10SaveParamsE'/>
 <use f='Modules/Image/Src/tImageJPG.cpp' l='494' u='w' c='_ZN6tImage9tImageJPG11StealPixelsEv'/>

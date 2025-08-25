@@ -1,9 +1,11 @@
-<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='334' type='bool tStd::tIsdigit(char c)'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='340' type='bool tStd::tIsdigit(char c)'/>
 <use f='Modules/Foundation/Inc/Foundation/tString.h' l='815' u='c' c='_ZNK7tString9IsNumericEb'/>
 <use f='Modules/Foundation/Src/tStandard.cpp' l='71' u='c' c='_ZN4tStd8tNstrcmpEPKcS1_'/>
 <use f='Modules/Foundation/Src/tStandard.cpp' l='72' u='c' c='_ZN4tStd8tNstrcmpEPKcS1_'/>
 <use f='Modules/Foundation/Src/tStandard.cpp' l='77' u='c' c='_ZN4tStd8tNstrcmpEPKcS1_'/>
 <use f='Modules/Foundation/Src/tStandard.cpp' l='78' u='c' c='_ZN4tStd8tNstrcmpEPKcS1_'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='168' u='c' c='_ZN4tStd10tNstrcmpExEPKcS1_'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='168' u='c' c='_ZN4tStd10tNstrcmpExEPKcS1_'/>
 <use f='Modules/System/Src/tPrint.cpp' l='732' u='c' c='_ZN7tSystem31IsValidFormatSpecifierCharacterEc'/>
 <use f='Modules/System/Src/tPrint.cpp' l='792' u='c' c='_ZN7tSystem7ProcessERNS_8ReceiverEPKcP13__va_list_tag'/>
 <use f='Modules/System/Src/tPrint.cpp' l='812' u='c' c='_ZN7tSystem7ProcessERNS_8ReceiverEPKcP13__va_list_tag'/>

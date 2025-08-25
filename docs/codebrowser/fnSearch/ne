@@ -14,6 +14,17 @@ _ZNK5tLink4NextEv|tLink::Next
 _ZNK5tList8NextCircEPKT_|tList::NextCirc
 _ZNK6tsList8NextCircEPKT_|tsList::NextCirc
 _ZNK6tChunk4NextEv|tChunk::Next
+_ZN9Imath_2_54Vec26negateEv|Imath_2_5::Vec2::negate
+_ZN9Imath_2_54Vec36negateEv|Imath_2_5::Vec3::negate
+_ZN9Imath_2_54Vec46negateEv|Imath_2_5::Vec4::negate
+_ZN4half6negInfEv|half::negInf
+_ZNK8tinyxml212XMLAttribute4NextEv|tinyxml2::XMLAttribute::Next
+_ZNK8tinyxml214XMLConstHandle11NextSiblingEv|tinyxml2::XMLConstHandle::NextSibling
+_ZNK8tinyxml214XMLConstHandle18NextSiblingElementEPKc|tinyxml2::XMLConstHandle::NextSiblingElement
+_ZN8tinyxml29XMLHandle11NextSiblingEv|tinyxml2::XMLHandle::NextSibling
+_ZN8tinyxml29XMLHandle18NextSiblingElementEPKc|tinyxml2::XMLHandle::NextSiblingElement
+_ZNK8tinyxml27XMLNode11NextSiblingEv|tinyxml2::XMLNode::NextSibling
+_ZN8tinyxml27XMLNode18NextSiblingElementEPKc|tinyxml2::XMLNode::NextSiblingElement
 _ZNKSt30negative_binomial_distribution1kEv|std::negative_binomial_distribution::k
 _ZNKSt30negative_binomial_distribution3maxEv|std::negative_binomial_distribution::max
 _ZNKSt30negative_binomial_distribution3minEv|std::negative_binomial_distribution::min

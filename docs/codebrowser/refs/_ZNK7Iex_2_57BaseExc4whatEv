@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='83' type='const char * Iex_2_5::BaseExc::what() const'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='203' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='79'>//---------------------------------------------------
+    // what() method -- e.what() returns _message.c_str()
+    //---------------------------------------------------</doc>

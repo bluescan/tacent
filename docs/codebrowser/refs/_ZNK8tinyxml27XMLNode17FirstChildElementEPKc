@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='780' type='const tinyxml2::XMLElement * tinyxml2::XMLNode::FirstChildElement(const char * name = 0) const'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='783' u='c' c='_ZN8tinyxml27XMLNode17FirstChildElementEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1814' u='c' c='_ZNK8tinyxml211XMLDocument11RootElementEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2152' u='c' c='_ZNK8tinyxml214XMLConstHandle17FirstChildElementEPKc'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='777'>/** Get the first child element, or optionally the first child
+        element with the specified name.
+    */</doc>

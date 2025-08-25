@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Src/tImageEXR.cpp' l='52' type='void EXR::ComputeFogColour(float &amp; fogR, float &amp; fogG, float &amp; fogB, const IMF::Array&lt;IMF::Rgba&gt; &amp; pixels)'/>
+<def f='Modules/Image/Src/tImageEXR.cpp' l='92' ll='113' type='void EXR::ComputeFogColour(float &amp; fogR, float &amp; fogG, float &amp; fogB, const IMF::Array&lt;IMF::Rgba&gt; &amp; pixels)'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='235' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Src/tImageEXR.cpp' l='51'>// This fog colour is used when de-fogging.</doc>

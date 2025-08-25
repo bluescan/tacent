@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='471' type='unsigned int'/>
+<offset>480</offset>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='466'>/**
+	 * @brief The maximum centile for block modes searched (-blockmodelimit).
+	 *
+	 * Valid values are between 1 and 100.
+	 */</doc>

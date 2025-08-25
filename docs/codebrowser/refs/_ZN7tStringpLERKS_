@@ -15,8 +15,6 @@
 <use f='Modules/Math/Inc/Math/tInterval.h' l='442' u='c' c='_ZNK5tMath12tIntervalSet3GetER7tStringNS_12tIntervalRepENS_15tIntervalSetRepE'/>
 <use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='104' u='c' c='_ZN10tRuleErrorC1ERK7tString'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='31' u='c' c='_ZN10tRuleErrorC1EPKcz'/>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='55' u='c' c='_ZN14tSolutionErrorC1EPKcz'/>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='56' u='c' c='_ZN14tSolutionErrorC1ERK7tString'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='159' u='c' c='_ZN8tCmdLine6tParseEiPPcb'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='161' u='c' c='_ZN8tCmdLine6tParseEiPPcb'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='191' u='c' c='_ZN8tCmdLine6tParseEiPPDsb'/>

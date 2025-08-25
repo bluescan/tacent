@@ -287,6 +287,8 @@ _ZN6tInput12tCompTrigger18SetDisplacementRawEf|tInput::tCompTrigger::SetDisplace
 _ZN6tInput12tCompTriggerC1ERK5tNameRSt5mutex|tInput::tCompTrigger::tCompTrigger
 _ZN6tInput12tCompTriggerD1Ev|tInput::tCompTrigger::~tCompTrigger
 _ZN6tInput10tCompWheelD1Ev|tInput::tCompWheel::~tCompWheel
+_ZN6tInput9tContDefn5ClearEv|tInput::tContDefn::Clear
+_ZN6tInput9tContDefn10SetGenericEv|tInput::tContDefn::SetGeneric
 _ZN6tInput11tControllerD1Ev|tInput::tController::~tController
 _ZNK6tInput12tContGamepad11IsConnectedEv|tInput::tContGamepad::IsConnected
 _ZNK6tInput12tContGamepad9IsPollingEv|tInput::tContGamepad::IsPolling
@@ -294,12 +296,13 @@ _ZN6tInput12tContGamepadC1EOS0_|tInput::tContGamepad::tContGamepad
 _ZN6tInput12tContGamepadD1Ev|tInput::tContGamepad::~tContGamepad
 _ZN6tInput16tContRacingWheelD1Ev|tInput::tContRacingWheel::~tContRacingWheel
 _ZN6tInput12tCompTrigger6UpdateEv|tInput::tCompTrigger::Update
+_ZN6tInput12tContGamepad15ClearDefinitionEv|tInput::tContGamepad::ClearDefinition
 _ZN6tInput12tContGamepad4PollEv|tInput::tContGamepad::Poll
-_ZN6tInput12tContGamepad12StartPollingEiNS_10tGamepadIDE|tInput::tContGamepad::StartPolling
+_ZN6tInput12tContGamepad13SetDefinitionEv|tInput::tContGamepad::SetDefinition
+_ZN6tInput12tContGamepad12StartPollingEi|tInput::tContGamepad::StartPolling
 _ZN6tInput12tContGamepad11StopPollingEv|tInput::tContGamepad::StopPolling
 _ZN6tInput12tContGamepad6UpdateEv|tInput::tContGamepad::Update
 _ZN6tInput17tControllerSystem6DetectEv|tInput::tControllerSystem::Detect
-_ZN6tInput17tControllerSystem45DetermineGamepadPollingPeriodFromHardwareInfoENS_10tGamepadIDE|tInput::tControllerSystem::DetermineGamepadPollingPeriodFromHardwareInfo
 _ZN6tInput17tControllerSystem6UpdateEv|tInput::tControllerSystem::Update
 _ZN6tInput17tControllerSystemC1Eii|tInput::tControllerSystem::tControllerSystem
 _ZN6tInput17tControllerSystemD1Ev|tInput::tControllerSystem::~tControllerSystem

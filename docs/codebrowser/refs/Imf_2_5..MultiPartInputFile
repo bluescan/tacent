@@ -1,0 +1,25 @@
+<inh f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfGenericInputFile.h' l='45' c='Imf_2_5::GenericInputFile'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfMultiPartInputFile.h' l='47' ll='132'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfMultiPartInputFile.h' l='100' c='_ZN7Imf_2_518MultiPartInputFileC1ERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfMultiPartInputFile.h' l='101' c='_ZN7Imf_2_518MultiPartInputFileaSERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfMultiPartInputFile.h' l='101' c='_ZN7Imf_2_518MultiPartInputFileaSERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfMultiPartInputFile.h' l='102' c='_ZN7Imf_2_518MultiPartInputFileC1EOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfMultiPartInputFile.h' l='103' c='_ZN7Imf_2_518MultiPartInputFileaSEOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfMultiPartInputFile.h' l='103' c='_ZN7Imf_2_518MultiPartInputFileaSEOS0_'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='176' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<size>16</size>
+<fun r='_ZN7Imf_2_518MultiPartInputFileC1EPKcib'/>
+<fun r='_ZN7Imf_2_518MultiPartInputFileC1ERNS_7IStreamEib'/>
+<fun r='_ZN7Imf_2_518MultiPartInputFileD1Ev'/>
+<fun r='_ZNK7Imf_2_518MultiPartInputFile5partsEv'/>
+<fun r='_ZNK7Imf_2_518MultiPartInputFile6headerEi'/>
+<fun r='_ZNK7Imf_2_518MultiPartInputFile7versionEv'/>
+<fun r='_ZNK7Imf_2_518MultiPartInputFile12partCompleteEi'/>
+<mbr r='Imf_2_5::MultiPartInputFile::_data' o='64' t='Imf_2_5::MultiPartInputFile::Data *'/>
+<fun r='_ZN7Imf_2_518MultiPartInputFileC1ERKS0_'/>
+<fun r='_ZN7Imf_2_518MultiPartInputFileaSERKS0_'/>
+<fun r='_ZN7Imf_2_518MultiPartInputFileC1EOS0_'/>
+<fun r='_ZN7Imf_2_518MultiPartInputFileaSEOS0_'/>
+<fun r='_ZN7Imf_2_518MultiPartInputFile12getInputPartEi'/>
+<fun r='_ZN7Imf_2_518MultiPartInputFile7getPartEi'/>
+<fun r='_ZN7Imf_2_518MultiPartInputFile10initializeEv'/>

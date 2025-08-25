@@ -1,8 +1,8 @@
-<dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='202' type='int tMath::tLog2(int v)'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='419' u='c' c='_ZN5tMath18tFindFirstClearBitEh'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='435' u='c' c='_ZN5tMath18tFindFirstClearBitEt'/>
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='458' ll='466' type='int tMath::tLog2(int x)'/>
-<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='199'>// Returns integral base 2 logarithm. If v is &lt;= 0 returns MinInt32. If v is a power of 2 you will get an exact
+<dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='205' type='int tMath::tLog2(int v)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='422' u='c' c='_ZN5tMath18tFindFirstClearBitEh'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='438' u='c' c='_ZN5tMath18tFindFirstClearBitEt'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='461' ll='469' type='int tMath::tLog2(int x)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='202'>// Returns integral base 2 logarithm. If v is &lt;= 0 returns MinInt32. If v is a power of 2 you will get an exact
 // result. If v is not a power of two it will return the logarithm of the next lowest power of 2. For example,
 // Log2(2) = 1, Log2(3) = 1, and Log2(4) = 2.</doc>
 <use f='Modules/Foundation/Inc/Foundation/tMap.h' l='147' u='c' c='_ZN4tMap9GetInsertERKT_'/>

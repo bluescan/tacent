@@ -1,0 +1,17 @@
+<def f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='580' ll='596'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='744' c='_Z22astcenc_compress_imageP15astcenc_contextP13astcenc_imagePK15astcenc_swizzlePhmj'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='782' c='_Z24astcenc_decompress_imageP15astcenc_contextPKhmP13astcenc_imagePK15astcenc_swizzlej'/>
+<size>24</size>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='574'>/**
+ * @brief An uncompressed 2D or 3D image.
+ *
+ * 3D image are passed in as an array of 2D slices. Each slice has identical
+ * size and color format.
+ */</doc>
+<mbr r='astcenc_image::dim_x' o='0' t='unsigned int'/>
+<mbr r='astcenc_image::dim_y' o='32' t='unsigned int'/>
+<mbr r='astcenc_image::dim_z' o='64' t='unsigned int'/>
+<mbr r='astcenc_image::data_type' o='96' t='astcenc_type'/>
+<mbr r='astcenc_image::data' o='128' t='void **'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1124' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<size>24</size>

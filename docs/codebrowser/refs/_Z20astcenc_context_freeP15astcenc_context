@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='807' type='void astcenc_context_free(astcenc_context * context)'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='802'>/**
+ * Free the compressor context.
+ *
+ * @param context   The codec context.
+ */</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1137' u='c' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1142' u='c' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

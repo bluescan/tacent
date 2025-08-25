@@ -1,3 +1,3 @@
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='211' type='uint tMath::tNextLowerPower2(uint v)'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='214' u='c' c='_ZN5tMath15tiClosestPower2ERj'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='215' u='c' c='_ZN5tMath14tClosestPower2Ej'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='214' type='uint tMath::tNextLowerPower2(uint v)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='217' u='c' c='_ZN5tMath15tiClosestPower2ERj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='218' u='c' c='_ZN5tMath14tClosestPower2Ej'/>

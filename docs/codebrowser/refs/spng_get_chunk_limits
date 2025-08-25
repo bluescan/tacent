@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='458' type='int spng_get_chunk_limits(spng_ctx * ctx, size_t * chunk_size, size_t * cache_size)'/>

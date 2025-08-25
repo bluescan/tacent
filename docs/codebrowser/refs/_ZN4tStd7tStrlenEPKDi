@@ -1,5 +1,5 @@
-<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='106' type='int tStd::tStrlen(const char32_t * s)'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='112' type='int tStd::tStrlen(const char32_t * s)'/>
 <use f='Modules/Foundation/Inc/Foundation/tString.h' l='1001' u='c' c='_ZN12tStringUTF163SetEPKDi'/>
 <use f='Modules/Foundation/Inc/Foundation/tString.h' l='1130' u='c' c='_ZN12tStringUTF323SetEPKDi'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='503' u='c' c='_ZN4tStd6tUTF8sEPDuPKDi'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='529' u='c' c='_ZN4tStd7tUTF16sEPDsPKDi'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='566' u='c' c='_ZN4tStd6tUTF8sEPDuPKDi'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='592' u='c' c='_ZN4tStd7tUTF16sEPDsPKDi'/>

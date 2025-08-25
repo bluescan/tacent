@@ -3,6 +3,9 @@ _ZNK7tString5UpperEv|tString::Upper
 _ZSt9uppercaseRSt8ios_base|std::uppercase
 _ZN9tHash_MD56UpdateEPjS0_PKhjPh|tHash_MD5::Update
 _ZN7tString14UpdateCapacityEib|tString::UpdateCapacity
+_ZNSt8_Rb_tree11upper_boundERKT_|std::_Rb_tree::upper_bound
+_ZNSt3map11upper_boundERKT_|std::map::upper_bound
+_ZNSt8multimap11upper_boundERKT_|std::multimap::upper_bound
 _ZN6tImage16tQuantizeSpatial8update_sERNS0_7array2dINS0_12vector_fixedIdLi3EEEEERNS0_7array3dIdEES5_iiid|tImage::tQuantizeSpatial::update_s
 _ZN6tInput12tCompTrigger6UpdateEv|tInput::tCompTrigger::Update
 _ZN6tInput12tContGamepad6UpdateEv|tInput::tContGamepad::Update

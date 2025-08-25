@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/stl_tree.h' l='1086' type='std::_Rb_tree::iterator std::_Rb_tree::_M_emplace_hint_unique(std::_Rb_tree::const_iterator __pos, _Args &amp;&amp;... __args)'/>
+<def f='include/c++/11/bits/stl_tree.h' l='2424' ll='2448' type='typename _Rb_tree&lt;_Key, _Val, _KeyOfValue, _Compare, _Alloc&gt;::iterator std::_Rb_tree::_M_emplace_hint_unique(std::_Rb_tree::const_iterator __pos, _Args &amp;&amp;... __args)'/>

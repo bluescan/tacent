@@ -1,0 +1,8 @@
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='116' c='_ZN12halfFunctionD1Ev'/>
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='134' type='T *'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='154' u='w' c='_ZN12halfFunctionC1ETL0__4halfS1_T_S2_S2_S2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='163' u='w' c='_ZN12halfFunctionC1ETL0__4halfS1_T_S2_S2_S2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='165' u='w' c='_ZN12halfFunctionC1ETL0__4halfS1_T_S2_S2_S2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='167' u='w' c='_ZN12halfFunctionC1ETL0__4halfS1_T_S2_S2_S2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='169' u='w' c='_ZN12halfFunctionC1ETL0__4halfS1_T_S2_S2_S2_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='178' u='r' c='_ZNK12halfFunctionclE4half'/>

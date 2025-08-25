@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2612' type='int png_get_palette_max(png_const_structp png_ptr, png_const_infop info_ptr)'/>

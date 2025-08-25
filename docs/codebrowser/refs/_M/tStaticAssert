@@ -1,4 +1,10 @@
 <dec f='Modules/Foundation/Inc/Foundation/tAssert.h' l='30'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='62' u='c'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='92' u='c'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='119' u='c'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='143' u='c'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='170' u='c'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='194' u='c'/>
 <use f='Modules/Foundation/Src/tPlatform.cpp' l='61' u='c'/>
 <use f='Modules/Foundation/Src/tPlatform.cpp' l='82' u='c'/>
 <use f='Modules/Foundation/Src/tPlatform.cpp' l='121' u='c'/>

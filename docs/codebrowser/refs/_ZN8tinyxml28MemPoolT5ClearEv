@@ -1,0 +1,2 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='352' u='c' c='_ZN8tinyxml28MemPoolTD1Ev'/>
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='355' ll='366' type='void tinyxml2::MemPoolT::Clear()'/>

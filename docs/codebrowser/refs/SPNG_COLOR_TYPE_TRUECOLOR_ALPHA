@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='140' type='6'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='287' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='867' u='r' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='869' u='r' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1199' ll='1203' type='float tinyxml2::XMLAttribute::FloatValue() const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1198'>/// Query as a float. See IntValue()</doc>

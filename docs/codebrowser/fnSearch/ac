@@ -1,4 +1,5 @@
 _ZSt4acosf|std::acos
 _ZSt5acoshf|std::acosh
 _ZNSt18counting_semaphore7acquireEv|std::counting_semaphore::acquire
+_ZN9Imath_2_54Math4acosET_|Imath_2_5::Math::acos
 _ZSt10accumulateT_S_T0_|std::accumulate

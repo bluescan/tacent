@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='516' type='void Imf_2_5::Header::Iterator::Iterator()'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='590' ll='594' type='void Imf_2_5::Header::Iterator::Iterator()'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='585'>//-----------------
+// Inline Functions
+//-----------------</doc>

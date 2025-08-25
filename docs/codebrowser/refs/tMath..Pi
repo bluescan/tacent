@@ -8,11 +8,11 @@
 <use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='175' u='r' c='_ZN5tMath9tRadToDegEf'/>
 <use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='176' u='r' c='_ZN5tMath10tiDegToRadERf'/>
 <use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='177' u='r' c='_ZN5tMath10tiRadToDegERf'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='194' u='r' c='_ZN5tMath5tSincEf'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='222' u='r' c='_ZN5tMath11tNormalDistEff'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='545' u='r' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='546' u='r' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='565' u='r' c='_ZN5tMath8tUnitSinEfj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='197' u='r' c='_ZN5tMath5tSincEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='225' u='r' c='_ZN5tMath11tNormalDistEff'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='548' u='r' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='549' u='r' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='568' u='r' c='_ZN5tMath8tUnitSinEfj'/>
 <doc f='Modules/Foundation/Inc/Foundation/tConstants.h' l='21'>// 180 degrees.</doc>
 <use f='Modules/Math/Inc/Math/tGeometry.h' l='199' u='r' c='_ZNK5tMath8tCircle24AreaEv'/>
 <use f='Modules/Math/Inc/Math/tGeometry.h' l='210' u='r' c='_ZNK5tMath9tEllipse24AreaEv'/>

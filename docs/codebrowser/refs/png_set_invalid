@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2312' type='void png_set_invalid(png_const_structrp png_ptr, png_inforp info_ptr, int mask)'/>

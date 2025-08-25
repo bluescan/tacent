@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1949' type='DynArray&lt;tinyxml2::XMLNode *, 10&gt;'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1993' u='m' c='_ZN8tinyxml211XMLDocument18CreateUnlinkedNodeERNS_8MemPoolTIXT0_EEE'/>
+<offset>1344</offset>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1943'>// Memory tracking does add some overhead.
+	// However, the code assumes that you don&apos;t
+	// have a bunch of unlinked nodes around.
+	// Therefore it takes less memory to track
+	// in the document vs. a linked list in the XMLNode,
+	// and the performance is the same.</doc>

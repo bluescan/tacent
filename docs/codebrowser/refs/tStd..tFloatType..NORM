@@ -1,5 +1,5 @@
-<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='355' type='0'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='717' u='r' c='_ZN4tStd13tGetFloatTypeEf'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='746' u='r' c='_ZN4tStd13tGetFloatTypeEd'/>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='355'>// A normal floating point value (normalized or denormalized). Must be first type.</doc>
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='361' type='0'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='723' u='r' c='_ZN4tStd13tGetFloatTypeEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='752' u='r' c='_ZN4tStd13tGetFloatTypeEd'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='361'>// A normal floating point value (normalized or denormalized). Must be first type.</doc>
 <use f='Modules/System/Src/tPrint.cpp' l='1464' c='_ZN7tSystem37HandlerHelper_HandleSpecialFloatTypesER6tArrayIcEd'/>

@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='198' type='4'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='192'>/**
+   * XBGR pixel format.  The red, green, and blue components in the image are
+   * stored in 4-byte pixels in the order R, G, B from highest to lowest byte
+   * address within each pixel.  The X component is ignored when compressing
+   * and undefined when decompressing.
+   */</doc>

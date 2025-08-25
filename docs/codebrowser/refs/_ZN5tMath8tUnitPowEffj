@@ -1,6 +1,6 @@
-<dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='243' type='float tMath::tUnitPow(float x, float c = 1.F, uint32  = tUnitFlip_None)'/>
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='581' ll='588' type='float tMath::tUnitPow(float x, float c = 1.F, uint32 flip = tUnitFlip_None)'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='598' u='c' c='_ZN5tMath15tUnitPowPlateauEffj'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='600' u='c' c='_ZN5tMath15tUnitPowPlateauEffj'/>
-<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='241'>// Plot: http://www.wolframalpha.com/input/?i=Plot%5Bpow%28x%2C+c%29%2C+%7Bx%2C0%2C1%7D%2C+%7Bc%2C0.1%2C3%7D%5D
+<dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='246' type='float tMath::tUnitPow(float x, float c = 1.F, uint32  = tUnitFlip_None)'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='584' ll='591' type='float tMath::tUnitPow(float x, float c = 1.F, uint32 flip = tUnitFlip_None)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='601' u='c' c='_ZN5tMath15tUnitPowPlateauEffj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='603' u='c' c='_ZN5tMath15tUnitPowPlateauEffj'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='244'>// Plot: http://www.wolframalpha.com/input/?i=Plot%5Bpow%28x%2C+c%29%2C+%7Bx%2C0%2C1%7D%2C+%7Bc%2C0.1%2C3%7D%5D
 // c E (0, inf). c &lt; 1 pulls towards top left. c &gt; 1 pulls towards bottom right.</doc>

@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/ApngDis/apngdis.h' l='71' type='void APngDis::Image::free()'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='105' u='c' c='_ZN6tImage10tImageAPNG4LoadERK7tString'/>

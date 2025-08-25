@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_map.h' l='707' ll='720' type='pair&lt;std::map::iterator, bool&gt; std::map::try_emplace(std::map::key_type &amp;&amp; __k, _Args &amp;&amp;... __args)'/>

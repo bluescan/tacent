@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1671' ll='1675'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1676' c='_ZNK8tinyxml210XMLElement11ClosingTypeEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1697'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1670'>// internal:</doc>

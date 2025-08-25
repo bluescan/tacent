@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='152' type='const T * Imf_2_5::Array2D::operator[](long x) const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='253' ll='258' type='const T * Imf_2_5::Array2D::operator[](long x) const'/>

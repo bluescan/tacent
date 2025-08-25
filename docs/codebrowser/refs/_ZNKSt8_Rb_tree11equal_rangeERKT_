@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/stl_tree.h' l='1288' type='pair&lt;std::_Rb_tree::const_iterator, std::_Rb_tree::const_iterator&gt; std::_Rb_tree::equal_range(const std::_Rb_tree::key_type &amp; __k) const'/>
+<def f='include/c++/11/bits/stl_tree.h' l='1992' ll='2022' type='pair&lt;typename _Rb_tree&lt;_Key, _Val, _KeyOfValue, _Compare, _Alloc&gt;::const_iterator, typename _Rb_tree&lt;_Key, _Val, _KeyOfValue, _Compare, _Alloc&gt;::const_iterator&gt; std::_Rb_tree::equal_range(const _Key &amp; __k) const'/>

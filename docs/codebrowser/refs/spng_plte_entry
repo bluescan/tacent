@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='234' ll='241'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='246'/>
+<size>4</size>
+<mbr r='spng_plte_entry::red' o='0' t='uint8_t'/>
+<mbr r='spng_plte_entry::green' o='8' t='uint8_t'/>
+<mbr r='spng_plte_entry::blue' o='16' t='uint8_t'/>
+<mbr r='spng_plte_entry::alpha' o='24' t='uint8_t'/>

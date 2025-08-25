@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='479' type='int spng_encode_image(spng_ctx * ctx, const void * img, size_t len, int fmt, int flags)'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='876' u='c' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<doc f='Modules/Image/Contrib/LibSPNG/spng.h' l='478'>/* Encode */</doc>

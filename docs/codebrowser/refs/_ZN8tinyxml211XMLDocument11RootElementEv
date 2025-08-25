@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1810' ll='1812' type='tinyxml2::XMLElement * tinyxml2::XMLDocument::RootElement()'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1807'>/** Return the root element of DOM. Equivalent to FirstChildElement().
+        To get the first node, use FirstChild().
+    */</doc>

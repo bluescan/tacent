@@ -31,10 +31,6 @@
 <use f='Modules/Math/Inc/Math/tInterval.h' l='245' u='c' c='_ZN5tMath9tInterval3SetERK7tString'/>
 <use f='Modules/Math/Inc/Math/tInterval.h' l='249' u='c' c='_ZN5tMath9tInterval3SetERK7tString'/>
 <use f='Modules/Math/Inc/Math/tInterval.h' l='251' u='c' c='_ZN5tMath9tInterval3SetERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='55' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='55' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='103' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='103' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
 <use f='Modules/System/Src/tChunk.cpp' l='717' u='c' c='_ZN12tChunkWriter5WriteEPKvRK7tString'/>
 <use f='Modules/System/Src/tChunk.cpp' l='727' u='c' c='_ZN12tChunkWriter5WriteEPKvRK7tString'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='213' u='c' c='_ZN8tCmdLine10ExpandArgsER5tListI11tStringItemE'/>

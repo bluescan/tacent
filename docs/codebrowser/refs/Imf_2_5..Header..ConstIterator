@@ -1,0 +1,35 @@
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='242' c='_ZNK7Imf_2_56Header5beginEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='247' c='_ZNK7Imf_2_56Header3endEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='252' c='_ZNK7Imf_2_56Header4findEPKc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='257' c='_ZNK7Imf_2_56Header4findERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='532'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='538' ll='565'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='550' c='_ZN7Imf_2_56Header13ConstIteratorppEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='552' c='_ZN7Imf_2_56Header13ConstIteratorppEi'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='561' c='_ZN7Imf_2_5eqERKNS_6Header13ConstIteratorES3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='561' c='_ZN7Imf_2_5eqERKNS_6Header13ConstIteratorES3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='562' c='_ZN7Imf_2_5neERKNS_6Header13ConstIteratorES3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='562' c='_ZN7Imf_2_5neERKNS_6Header13ConstIteratorES3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='656' c='_ZN7Imf_2_56Header13ConstIteratorppEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='664' c='_ZN7Imf_2_56Header13ConstIteratorppEi'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='667' c='_ZN7Imf_2_56Header13ConstIteratorppEi'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='688' c='_ZN7Imf_2_5eqERKNS_6Header13ConstIteratorES3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='688' c='_ZN7Imf_2_5eqERKNS_6Header13ConstIteratorES3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='695' c='_ZN7Imf_2_5neERKNS_6Header13ConstIteratorES3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='695' c='_ZN7Imf_2_5neERKNS_6Header13ConstIteratorES3_'/>
+<size>8</size>
+<fun r='_ZN7Imf_2_56Header13ConstIteratorC1Ev'/>
+<fun r='_ZN7Imf_2_56Header13ConstIteratorC1ERKSt23_Rb_tree_const_iteratorISt4pairIKNS_4NameEPNS_9AttributeEEE'/>
+<fun r='_ZN7Imf_2_56Header13ConstIteratorC1ERKNS0_8IteratorE'/>
+<fun r='_ZN7Imf_2_56Header13ConstIteratorppEv'/>
+<fun r='_ZN7Imf_2_56Header13ConstIteratorppEi'/>
+<fun r='_ZNK7Imf_2_56Header13ConstIterator4nameEv'/>
+<fun r='_ZNK7Imf_2_56Header13ConstIterator9attributeEv'/>
+<mbr r='Imf_2_5::Header::ConstIterator::_i' o='0' t='Header::AttributeMap::const_iterator'/>
+<fun r='_ZN7Imf_2_56Header13ConstIteratorC1Ev'/>
+<fun r='_ZN7Imf_2_56Header13ConstIteratorC1ERKSt23_Rb_tree_const_iteratorISt4pairIKNS_4NameEPNS_9AttributeEEE'/>
+<fun r='_ZN7Imf_2_56Header13ConstIteratorC1ERKNS0_8IteratorE'/>
+<fun r='_ZN7Imf_2_56Header13ConstIteratorppEv'/>
+<fun r='_ZN7Imf_2_56Header13ConstIteratorppEi'/>
+<fun r='_ZNK7Imf_2_56Header13ConstIterator4nameEv'/>
+<fun r='_ZNK7Imf_2_56Header13ConstIterator9attributeEv'/>

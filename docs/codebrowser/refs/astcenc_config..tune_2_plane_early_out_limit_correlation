@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='556' type='float'/>
+<offset>832</offset>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='551'>/**
+	 * @brief The threshold for skipping two weight planes (-2planelimitcorrelation).
+	 *
+	 * This option is ineffective for normal maps.
+	 */</doc>

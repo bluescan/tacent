@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/OpenEXRConfig.h' l='36'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/OpenEXRConfig.h' l='35'>// Version as a single hex number, e.g. 0x01000300 == 1.0.3</doc>

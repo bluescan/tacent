@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='352' ll='360'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='501' c='spng_get_time'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='524' c='spng_set_time'/>
+<size>8</size>
+<mbr r='spng_time::year' o='0' t='uint16_t'/>
+<mbr r='spng_time::month' o='16' t='uint8_t'/>
+<mbr r='spng_time::day' o='24' t='uint8_t'/>
+<mbr r='spng_time::hour' o='32' t='uint8_t'/>
+<mbr r='spng_time::minute' o='40' t='uint8_t'/>
+<mbr r='spng_time::second' o='48' t='uint8_t'/>

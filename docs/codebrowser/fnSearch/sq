@@ -1,4 +1,5 @@
 _ZSt4sqrtf|std::sqrt
 _ZN9tColour4f14SquareToLinearEj|tColour4f::SquareToLinear
+_ZN9Imath_2_54Math4sqrtET_|Imath_2_5::Math::sqrt
 _ZN5rgbcx6squareET_|rgbcx::square
 _ZN5rgbcxL7squareiEi|rgbcx::squarei

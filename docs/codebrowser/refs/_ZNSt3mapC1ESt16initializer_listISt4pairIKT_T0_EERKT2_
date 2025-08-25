@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_map.h' l='250' ll='252' type='void std::map::map&lt;_Key, _Tp, _Compare, _Alloc&gt;(initializer_list&lt;std::map::value_type&gt; __l, const std::map::allocator_type &amp; __a)'/>
+<doc f='include/c++/11/bits/stl_map.h' l='249'>/// Allocator-extended initialier-list constructor.</doc>

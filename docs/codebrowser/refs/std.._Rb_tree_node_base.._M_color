@@ -1,0 +1,6 @@
+<dec f='include/c++/11/bits/stl_tree.h' l='106' type='std::_Rb_tree_color'/>
+<use f='include/c++/11/bits/stl_tree.h' l='175' u='w' c='_ZNSt15_Rb_tree_headerC1Ev'/>
+<use f='include/c++/11/bits/stl_tree.h' l='186' u='w' c='_ZNSt15_Rb_tree_headerC1EOS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='195' u='w' c='_ZNSt15_Rb_tree_header12_M_move_dataERS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='195' u='r' c='_ZNSt15_Rb_tree_header12_M_move_dataERS_'/>
+<offset>0</offset>

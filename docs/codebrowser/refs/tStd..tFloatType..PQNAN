@@ -1,5 +1,5 @@
-<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='360' type='3'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='703' u='r' c='_ZN4tStd13tGetFloatTypeEf'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='732' u='r' c='_ZN4tStd13tGetFloatTypeEd'/>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='360'>// Positive non-signaling (quiet) Not-A-Number (QNAN).</doc>
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='366' type='3'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='709' u='r' c='_ZN4tStd13tGetFloatTypeEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='738' u='r' c='_ZN4tStd13tGetFloatTypeEd'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='366'>// Positive non-signaling (quiet) Not-A-Number (QNAN).</doc>
 <use f='Modules/System/Src/tPrint.cpp' l='1448' c='_ZN7tSystem37HandlerHelper_HandleSpecialFloatTypesER6tArrayIcEd'/>

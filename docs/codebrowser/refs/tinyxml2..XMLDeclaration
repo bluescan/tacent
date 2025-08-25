@@ -1,0 +1,38 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='505' c='_ZN8tinyxml210XMLVisitor5VisitERKNS_14XMLDeclarationE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='708' c='_ZN8tinyxml27XMLNode13ToDeclarationEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='728' c='_ZNK8tinyxml27XMLNode13ToDeclarationEv'/>
+<inh f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='674' c='tinyxml2::XMLNode'/>
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1070' ll='1095'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1074' c='_ZN8tinyxml214XMLDeclaration13ToDeclarationEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1077' c='_ZNK8tinyxml214XMLDeclaration13ToDeclarationEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1093' c='_ZN8tinyxml214XMLDeclarationC1ERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1094' c='_ZN8tinyxml214XMLDeclarationaSERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1094' c='_ZN8tinyxml214XMLDeclarationaSERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1665' c='_ZN8tinyxml210XMLElement20InsertNewDeclarationEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1724'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1863' c='_ZN8tinyxml211XMLDocument14NewDeclarationEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2120' c='_ZN8tinyxml29XMLHandle13ToDeclarationEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2186' c='_ZNK8tinyxml214XMLConstHandle13ToDeclarationEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2299' c='_ZN8tinyxml210XMLPrinter5VisitERKNS_14XMLDeclarationE'/>
+<size>104</size>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1059'>/** In correct XML the declaration is the first entry in the file.
+	@verbatim
+		&lt;?xml version=&quot;1.0&quot; standalone=&quot;yes&quot;?&gt;
+	@endverbatim
+
+	TinyXML-2 will happily read or write files without a declaration,
+	however.
+
+	The text of the declaration isn&apos;t interpreted. It is parsed
+	and written as a string.
+*/</doc>
+<fun r='_ZN8tinyxml214XMLDeclaration13ToDeclarationEv'/>
+<fun r='_ZNK8tinyxml214XMLDeclaration13ToDeclarationEv'/>
+<fun r='_ZNK8tinyxml214XMLDeclaration6AcceptEPNS_10XMLVisitorE'/>
+<fun r='_ZNK8tinyxml214XMLDeclaration12ShallowCloneEPNS_11XMLDocumentE'/>
+<fun r='_ZNK8tinyxml214XMLDeclaration12ShallowEqualEPKNS_7XMLNodeE'/>
+<fun r='_ZN8tinyxml214XMLDeclarationC1EPNS_11XMLDocumentE'/>
+<fun r='_ZN8tinyxml214XMLDeclarationD1Ev'/>
+<fun r='_ZN8tinyxml214XMLDeclaration9ParseDeepEPcPNS_7StrPairEPi'/>
+<fun r='_ZN8tinyxml214XMLDeclarationC1ERKS0_'/>
+<fun r='_ZN8tinyxml214XMLDeclarationaSERKS0_'/>

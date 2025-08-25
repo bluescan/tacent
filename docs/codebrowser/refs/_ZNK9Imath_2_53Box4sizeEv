@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='111' type='T Imath_2_5::Box::size() const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='258' ll='266' type='T Imath_2_5::Box::size() const'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='323' u='c' c='_ZNK9Imath_2_53Box9majorAxisEv'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='107'>//---------------------------------------------------
+    //	Query functions - these compute results each time
+    //---------------------------------------------------</doc>

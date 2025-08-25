@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1900' ll='1903' type='int tinyxml2::XMLDocument::ErrorLineNum() const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1899'>/// Return the line where the error occurred, or zero if unknown.</doc>

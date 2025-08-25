@@ -43,8 +43,16 @@ _ZN5tMath8tMatrix26InvertEv|tMath::tMatrix2::Invert
 _ZN5tMath8tMatrix46InvertEv|tMath::tMatrix4::Invert
 _ZN5tMath8tMatrix412InvertAffineEv|tMath::tMatrix4::InvertAffine
 _ZN6tImage8tPicture9IntensityEj|tImage::tPicture::Intensity
+_ZN7APngAsm5Image4initEjjjj|APngAsm::Image::init
+_ZN7APngDis5Image4initEjjj|APngDis::Image::init
+_ZNK9Imath_2_53Box10intersectsERKT_|Imath_2_5::Box::intersects
+_ZNSt3map6insertEONSt8_Rb_treeIT_St4pairIKS1_T0_ESt10_Select1stIS5_ET1_N9__gnu_cxx14__alloc_traitsIT2_NSB_10value_typeEE6rebindIS5_E5otherEE9node_typeE|std::map::insert
+_ZNSt3map16insert_or_assignERKT_OTL0__|std::map::insert_or_assign
+_ZNSt8multimap6insertERKSt4pairIKT_T0_E|std::multimap::insert
 _ZN11tExprWriter3IndEv|tExprWriter::Ind
 _ZN11tExprWriter6IndentEv|tExprWriter::Indent
+_ZNK8tinyxml212XMLAttribute10Int64ValueEv|tinyxml2::XMLAttribute::Int64Value
+_ZNK8tinyxml212XMLAttribute8IntValueEv|tinyxml2::XMLAttribute::IntValue
 _ZN6tImage12tQuantizeNeu7initnetERNS0_5StateEPhii|tImage::tQuantizeNeu::initnet
 _ZN6tImage12tQuantizeNeu8inxbuildERNS0_5StateE|tImage::tQuantizeNeu::inxbuild
 _ZN6tImage12tQuantizeNeu9inxsearchERNS0_5StateEiii|tImage::tQuantizeNeu::inxsearch

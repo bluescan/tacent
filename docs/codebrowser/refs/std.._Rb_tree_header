@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/stl_tree.h' l='168' ll='213'/>
+<use f='include/c++/11/bits/stl_tree.h' l='180' c='_ZNSt15_Rb_tree_headerC1EOS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='193' c='_ZNSt15_Rb_tree_header12_M_move_dataERS_'/>
+<ovr f='include/c++/11/bits/stl_tree.h' l='660' c='std::_Rb_tree::_Rb_tree_impl'/>
+<use f='include/c++/11/bits/stl_tree.h' l='663'/>
+<use f='include/c++/11/bits/stl_tree.h' l='677' c='_ZNSt8_Rb_tree13_Rb_tree_implC1ERKNS_13_Rb_tree_implITL0__XTL0_0_EEE'/>
+<use f='include/c++/11/bits/stl_tree.h' l='697' c='_ZNSt8_Rb_tree13_Rb_tree_implC1EONS_13_Rb_tree_implITL0__XTL0_0_EEEON9__gnu_cxx14__alloc_traitsIT3_NS8_10value_typeEE6rebindISt13_Rb_tree_nodeIT0_EE5otherE'/>
+<size>40</size>
+<doc f='include/c++/11/bits/stl_tree.h' l='167'>// Helper type to manage default initialization of node count and header.</doc>
+<mbr r='std::_Rb_tree_header::_M_header' o='0' t='std::_Rb_tree_node_base'/>
+<mbr r='std::_Rb_tree_header::_M_node_count' o='256' t='std::size_t'/>
+<fun r='_ZNSt15_Rb_tree_headerC1Ev'/>
+<fun r='_ZNSt15_Rb_tree_headerC1EOS_'/>
+<fun r='_ZNSt15_Rb_tree_header12_M_move_dataERS_'/>
+<fun r='_ZNSt15_Rb_tree_header8_M_resetEv'/>

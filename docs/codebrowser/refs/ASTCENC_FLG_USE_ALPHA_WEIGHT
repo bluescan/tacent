@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='324' type='const unsigned int'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='382' u='r'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='317'>/**
+ * @brief Enable alpha weighting.
+ *
+ * The input alpha value is used for transparency, so errors in the RGB components are weighted by
+ * the transparency level. This allows the codec to more accurately encode the alpha value in areas
+ * where the color value is less significant.
+ */</doc>

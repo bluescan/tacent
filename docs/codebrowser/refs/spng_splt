@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='344' ll='350'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='500' c='spng_get_splt'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='523' c='spng_set_splt'/>
+<size>96</size>
+<mbr r='spng_splt::name' o='0' t='char[80]'/>
+<mbr r='spng_splt::sample_depth' o='640' t='uint8_t'/>
+<mbr r='spng_splt::n_entries' o='672' t='uint32_t'/>
+<mbr r='spng_splt::entries' o='704' t='struct spng_splt_entry *'/>

@@ -27,6 +27,11 @@ _ZN6tImage10tImageAPNG4LoadERK7tString|tImage::tImageAPNG::Load
 _ZN6tImage10tImageASTC4LoadERK7tStringRKNS0_10LoadParamsE|tImage::tImageASTC::Load
 _ZN6tImage9tImageBMP4LoadERK7tString|tImage::tImageBMP::Load
 _ZN6tImage9tImageDDS4LoadERK7tStringRKNS0_10LoadParamsE|tImage::tImageDDS::Load
+_ZN9Imath_2_54Math3logET_|Imath_2_5::Math::log
+_ZN9Imath_2_54Math5log10ET_|Imath_2_5::Math::log10
+_ZNSt8_Rb_tree11lower_boundERKT_|std::_Rb_tree::lower_bound
+_ZNSt3map11lower_boundERKT_|std::map::lower_bound
+_ZNSt8multimap11lower_boundERKT_|std::multimap::lower_bound
 _ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE|tImage::tImageEXR::Load
 _ZN6tImage9tImageGIF4LoadERK7tString|tImage::tImageGIF::Load
 _ZN6tImage9tImageHDR4LoadERK7tStringRKNS0_10LoadParamsE|tImage::tImageHDR::Load

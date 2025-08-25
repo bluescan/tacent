@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='307' type='const unsigned int'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='380' u='r'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='299'>/**
+ * @brief Enable normal map compression.
+ *
+ * Input data will be treated a two component normal map, storing X and Y, and the codec will
+ * optimize for angular error rather than simple linear PSNR. In this mode the input swizzle should
+ * be e.g. rrrg (the default ordering for ASTC normals on the command line) or gggr (the ordering
+ * used by BC5n).
+ */</doc>

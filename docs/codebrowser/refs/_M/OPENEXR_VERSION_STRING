@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/OpenEXRConfig.h' l='28'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/OpenEXRConfig.h' l='24'>//
+// Version string for runtime access
+//</doc>
+<use f='Modules/Image/Src/tPicture.cpp' l='59' u='c'/>

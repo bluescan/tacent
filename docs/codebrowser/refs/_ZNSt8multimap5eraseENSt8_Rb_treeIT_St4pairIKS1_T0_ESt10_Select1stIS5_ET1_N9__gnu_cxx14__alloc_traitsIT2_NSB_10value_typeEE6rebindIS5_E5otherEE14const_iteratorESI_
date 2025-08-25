@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='759' ll='761' type='std::multimap::iterator std::multimap::erase(std::multimap::const_iterator __first, std::multimap::const_iterator __last)'/>
+<doc f='include/c++/11/bits/stl_multimap.h' l='745'>/**
+       *  @brief Erases a [first,last) range of elements from a %multimap.
+       *  @param  __first  Iterator pointing to the start of the range to be
+       *                   erased.
+       *  @param __last Iterator pointing to the end of the range to be
+       *                erased .
+       *  @return The iterator @a __last.
+       *
+       *  This function erases a sequence of elements from a %multimap.
+       *  Note that this function only erases the elements, and that if
+       *  the elements themselves are pointers, the pointed-to memory is not
+       *  touched in any way.  Managing the pointer is the user&apos;s
+       *  responsibility.
+       */</doc>

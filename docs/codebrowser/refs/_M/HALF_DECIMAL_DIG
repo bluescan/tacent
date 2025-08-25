@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='287'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='284'>// can be represented without change
+
+// ceil(HALF_MANT_DIG * log10(2) + 1) =&gt; 4.31... -&gt; 5</doc>

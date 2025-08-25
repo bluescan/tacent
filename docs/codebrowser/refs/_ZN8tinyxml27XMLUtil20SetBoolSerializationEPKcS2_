@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='641' type='static void tinyxml2::XMLUtil::SetBoolSerialization(const char * writeTrue, const char * writeFalse)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='636'>// Changes what is serialized for a boolean value.
+	// Default to &quot;true&quot; and &quot;false&quot;. Shouldn&apos;t be changed
+	// unless you have a special testing or compatibility need.
+	// Be careful: static, global, &amp; not thread safe.
+	// Be sure to set static const memory as parameters.</doc>

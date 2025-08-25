@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2860'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2855'>/* This is the size of the sample data for one sample.  If the image is
+    * color-mapped it is the size of one color-map entry (and image pixels are
+    * one byte in size), otherwise it is the size of one image pixel.
+    */</doc>

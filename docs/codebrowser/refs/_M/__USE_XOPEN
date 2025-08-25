@@ -70,6 +70,7 @@
 <use f='include/signal.h' l='38' u='a'/>
 <use f='include/signal.h' l='43' u='a'/>
 <use f='include/signal.h' l='314' u='a'/>
+<use f='include/setjmp.h' l='57' u='a'/>
 <use f='include/x86_64-linux-gnu/sys/stat.h' l='33' u='a'/>
 <use f='include/x86_64-linux-gnu/sys/stat.h' l='103' u='a'/>
 <use f='include/x86_64-linux-gnu/sys/stat.h' l='163' u='a'/>

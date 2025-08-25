@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/stl_map.h' l='215' type='void std::map::map&lt;_Key, _Tp, _Compare, _Alloc&gt;(map&lt;_Key, _Tp, _Compare, _Alloc&gt; &amp;&amp; )'/>
+<doc f='include/c++/11/bits/stl_map.h' l='209'>/**
+       *  @brief  %Map move constructor.
+       *
+       *  The newly-created %map contains the exact contents of the moved
+       *  instance. The moved instance is a valid, but unspecified, %map.
+       */</doc>

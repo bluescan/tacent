@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='542' type='float'/>
+<offset>768</offset>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='537'>/**
+	 * @brief The threshold for skipping 3.1/4.1 trials (-2partitionlimitfactor).
+	 *
+	 * This option is further scaled for normal maps, so it skips less often.
+	 */</doc>

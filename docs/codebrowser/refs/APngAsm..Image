@@ -1,0 +1,33 @@
+<def f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='52' ll='88'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='80' c='_ZN7APngAsm5Image4initEjjPS0_'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='86' c='_ZN7APngAsm5Image4initEPS0_'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='90' c='_ZN7APngAsm10load_imageEPcPNS_5ImageE'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='91' c='_ZN7APngAsm19find_common_coltypeERSt6vectorINS_5ImageESaIS1_EE'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='92' c='_ZN7APngAsm15optim_upconvertEPNS_5ImageEh'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='93' c='_ZN7APngAsm16optim_duplicatesERSt6vectorINS_5ImageESaIS1_EEj'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='94' c='_ZN7APngAsm18optim_dirty_transpEPNS_5ImageE'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='95' c='_ZN7APngAsm17optim_downconvertERSt6vectorINS_5ImageESaIS1_EE'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='96' c='_ZN7APngAsm13optim_paletteERSt6vectorINS_5ImageESaIS1_EE'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='97' c='_ZN7APngAsm16optim_add_transpERSt6vectorINS_5ImageESaIS1_EE'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='104' c='_ZN7APngAsm9save_apngEPcRSt6vectorINS_5ImageESaIS2_EEjjii'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='267' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='273' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<size>1072</size>
+<mbr r='APngAsm::Image::w' o='0' t='unsigned int'/>
+<mbr r='APngAsm::Image::h' o='32' t='unsigned int'/>
+<mbr r='APngAsm::Image::bpp' o='64' t='unsigned int'/>
+<mbr r='APngAsm::Image::type' o='96' t='unsigned int'/>
+<mbr r='APngAsm::Image::ps' o='128' t='int'/>
+<mbr r='APngAsm::Image::ts' o='160' t='int'/>
+<mbr r='APngAsm::Image::pl' o='192' t='APngAsm::rgb[256]'/>
+<mbr r='APngAsm::Image::tr' o='6336' t='unsigned char[256]'/>
+<mbr r='APngAsm::Image::delay_num' o='8384' t='unsigned int'/>
+<mbr r='APngAsm::Image::delay_den' o='8416' t='unsigned int'/>
+<mbr r='APngAsm::Image::p' o='8448' t='unsigned char *'/>
+<mbr r='APngAsm::Image::rows' o='8512' t='APngAsm::Image::ROW *'/>
+<fun r='_ZN7APngAsm5ImageC1Ev'/>
+<fun r='_ZN7APngAsm5ImageD1Ev'/>
+<fun r='_ZN7APngAsm5Image4initEjjjj'/>
+<fun r='_ZN7APngAsm5Image4initEjjPS0_'/>
+<fun r='_ZN7APngAsm5Image4initEPS0_'/>
+<fun r='_ZN7APngAsm5Image4freeEv'/>

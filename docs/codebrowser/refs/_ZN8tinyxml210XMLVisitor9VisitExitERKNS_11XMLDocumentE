@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='491' ll='493' type='bool tinyxml2::XMLVisitor::VisitExit(const tinyxml2::XMLDocument &amp; )'/>
+<ovr f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2290' c='_ZN8tinyxml210XMLPrinter9VisitExitERKNS_11XMLDocumentE'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='490'>/// Visit a document.</doc>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='491'>/*doc*/</doc>

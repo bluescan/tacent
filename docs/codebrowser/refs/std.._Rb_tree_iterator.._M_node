@@ -1,0 +1,13 @@
+<use f='include/c++/11/bits/stl_tree.h' l='270' u='w' c='_ZNSt17_Rb_tree_iteratorC1Ev'/>
+<use f='include/c++/11/bits/stl_tree.h' l='274' u='w' c='_ZNSt17_Rb_tree_iteratorC1EPSt18_Rb_tree_node_base'/>
+<use f='include/c++/11/bits/stl_tree.h' l='278' u='c' c='_ZNKSt17_Rb_tree_iteratordeEv'/>
+<use f='include/c++/11/bits/stl_tree.h' l='282' u='c' c='_ZNKSt17_Rb_tree_iteratorptEv'/>
+<use f='include/c++/11/bits/stl_tree.h' l='287' u='w' c='_ZNSt17_Rb_tree_iteratorppEv'/>
+<use f='include/c++/11/bits/stl_tree.h' l='287' u='r' c='_ZNSt17_Rb_tree_iteratorppEv'/>
+<use f='include/c++/11/bits/stl_tree.h' l='295' u='w' c='_ZNSt17_Rb_tree_iteratorppEi'/>
+<use f='include/c++/11/bits/stl_tree.h' l='295' u='r' c='_ZNSt17_Rb_tree_iteratorppEi'/>
+<use f='include/c++/11/bits/stl_tree.h' l='302' u='w' c='_ZNSt17_Rb_tree_iteratormmEv'/>
+<use f='include/c++/11/bits/stl_tree.h' l='302' u='r' c='_ZNSt17_Rb_tree_iteratormmEv'/>
+<use f='include/c++/11/bits/stl_tree.h' l='310' u='w' c='_ZNSt17_Rb_tree_iteratormmEi'/>
+<use f='include/c++/11/bits/stl_tree.h' l='310' u='r' c='_ZNSt17_Rb_tree_iteratormmEi'/>
+<dec f='include/c++/11/bits/stl_tree.h' l='324' type='std::_Rb_tree_iterator::_Base_ptr'/>

@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2440'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2436'>/* Two macros to return the first row and first column of the original,
+ * full, image which appears in a given pass.  &apos;pass&apos; is in the range 0
+ * to 6 and the result is in the range 0 to 7.
+ */</doc>

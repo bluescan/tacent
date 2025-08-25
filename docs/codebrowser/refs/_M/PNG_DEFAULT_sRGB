@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='1147'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='1144'>/* The output_gamma value is a screen gamma in libpng terminology: it expresses
+ * how to decode the output values, not how they are encoded.
+ */</doc>

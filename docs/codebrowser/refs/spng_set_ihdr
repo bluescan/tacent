@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='509' type='int spng_set_ihdr(spng_ctx * ctx, struct spng_ihdr * ihdr)'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='871' u='c' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='324' ll='327'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='498' c='spng_get_hist'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='521' c='spng_set_hist'/>
+<size>512</size>
+<mbr r='spng_hist::frequency' o='0' t='uint16_t[256]'/>

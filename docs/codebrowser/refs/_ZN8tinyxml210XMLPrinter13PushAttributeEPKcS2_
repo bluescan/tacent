@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2256' type='void tinyxml2::XMLPrinter::PushAttribute(const char * name, const char * value)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2255'>/// If streaming, add an attribute to an open element.</doc>

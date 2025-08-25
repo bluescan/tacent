@@ -1,0 +1,5 @@
+<dec f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='94' type='tInput::tDispTech'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='133' u='w' c='_ZN6tInput9tContDefn10SetGenericEv'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='151' u='w' c='_ZN6tInput9tContDefn5ClearEv'/>
+<offset>192</offset>
+<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='93'>// Displacement tech used by the triggers.</doc>

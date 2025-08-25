@@ -1,4 +1,4 @@
-<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='396' type='const char'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='406' u='r'/>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='395'>// These ASCII separators may be used for things like replacing characters in strings for subsequent manipulation.</doc>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='396'>// 0x1A</doc>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='402' type='const char'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='412' u='r'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='401'>// These ASCII separators may be used for things like replacing characters in strings for subsequent manipulation.</doc>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='402'>// 0x1A</doc>

@@ -6,5 +6,12 @@ _ZNSt11timed_mutex13native_handleEv|std::timed_mutex::native_handle
 _ZNKSt9basic_ios6narrowET_c|std::basic_ios::narrow
 _ZNSt7jthread13native_handleEv|std::jthread::native_handle
 _ZNSt6thread13native_handleEv|std::thread::native_handle
+_ZNK7Imf_2_56Header13ConstIterator4nameEv|Imf_2_5::Header::ConstIterator::name
+_ZNK7Imf_2_56Header8Iterator4nameEv|Imf_2_5::Header::Iterator::name
+_ZN7Imf_2_54NameC1Ev|Imf_2_5::Name::Name
+_ZNK7Imf_2_54NamedeEv|Imf_2_5::Name::operator*
+_ZN7Imf_2_54NameaSEPKc|Imf_2_5::Name::operator=
+_ZNK7Imf_2_54Name4textEv|Imf_2_5::Name::text
+_ZNK8tinyxml210XMLElement4NameEv|tinyxml2::XMLElement::Name
 _ZNSt18condition_variable13native_handleEv|std::condition_variable::native_handle
 _ZNKSt10filesystem7__cxx114path6nativeEv|std::filesystem::path::native

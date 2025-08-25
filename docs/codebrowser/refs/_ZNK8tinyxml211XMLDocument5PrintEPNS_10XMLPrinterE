@@ -1,0 +1,15 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1831' type='void tinyxml2::XMLDocument::Print(tinyxml2::XMLPrinter * streamer = 0) const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1817'>/** Print the Document. If the Printer is not provided, it will
+        print to stdout. If you provide Printer, this can print to a file:
+    	@verbatim
+    	XMLPrinter printer( fp );
+    	doc.Print( &amp;printer );
+    	@endverbatim
+
+    	Or you can use a printer to print to memory:
+    	@verbatim
+    	XMLPrinter printer;
+    	doc.Print( &amp;printer );
+    	// printer.CStr() has a const char* to the XML
+    	@endverbatim
+    */</doc>

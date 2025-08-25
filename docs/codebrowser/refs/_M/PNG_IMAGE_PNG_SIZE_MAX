@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='3164'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='3158'>/* A helper for the following macro; if your compiler cannot handle the
+    * following macro use this one with the result of
+    * PNG_IMAGE_COMPRESSED_SIZE_MAX(image) as the second argument (most
+    * compilers should handle this just fine.)
+    */</doc>

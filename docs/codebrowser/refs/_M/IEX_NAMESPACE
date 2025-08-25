@@ -1,0 +1,13 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IlmBaseConfig.h' l='37'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexNamespace.h' l='80' u='a'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexNamespace.h' l='96' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/namespaceAlias.h' l='43' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='53' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='56' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='59' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='62' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='65' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='68' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='713' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='727' u='c'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='201' u='c'/>

@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1316' type='int tinyxml2::XMLElement::IntAttribute(const char * name, int defaultValue = 0) const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1310'>/** Given an attribute name, IntAttribute() returns the value
+    	of the attribute interpreted as an integer. The default
+        value will be returned if the attribute isn&apos;t present,
+        or if there is an error. (For a method with error
+    	checking, see QueryIntAttribute()).
+    */</doc>

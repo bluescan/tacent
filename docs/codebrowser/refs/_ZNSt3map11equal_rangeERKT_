@@ -1,0 +1,16 @@
+<def f='include/c++/11/bits/stl_map.h' l='1351' ll='1353' type='std::pair&lt;iterator, iterator&gt; std::map::equal_range(const std::map::key_type &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_map.h' l='1336'>/**
+       *  @brief Finds a subsequence matching given key.
+       *  @param  __x  Key of (key, value) pairs to be located.
+       *  @return  Pair of iterators that possibly points to the subsequence
+       *           matching given key.
+       *
+       *  This function is equivalent to
+       *  @code
+       *    std::make_pair(c.lower_bound(val),
+       *                   c.upper_bound(val))
+       *  @endcode
+       *  (but is faster than making the calls separately).
+       *
+       *  This function probably only makes sense for multimaps.
+       */</doc>

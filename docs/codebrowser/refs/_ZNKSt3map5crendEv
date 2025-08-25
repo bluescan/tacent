@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_map.h' l='455' ll='457' type='std::map::const_reverse_iterator std::map::crend() const'/>
+<doc f='include/c++/11/bits/stl_map.h' l='450'>/**
+       *  Returns a read-only (constant) reverse iterator that points to one
+       *  before the first pair in the %map.  Iteration is done in descending
+       *  order according to the keys.
+       */</doc>

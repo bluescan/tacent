@@ -1,0 +1,13 @@
+<def f='include/c++/11/bits/stl_map.h' l='491' ll='508' type='std::map::mapped_type &amp; std::map::operator[](const std::map::key_type &amp; __k)'/>
+<doc f='include/c++/11/bits/stl_map.h' l='479'>/**
+       *  @brief  Subscript ( @c [] ) access to %map data.
+       *  @param  __k  The key for which data should be retrieved.
+       *  @return  A reference to the data of the (key,data) %pair.
+       *
+       *  Allows for easy lookup with the subscript ( @c [] )
+       *  operator.  Returns data associated with the key specified in
+       *  subscript.  If the key does not exist, a pair with that key
+       *  is created using default values, which is then returned.
+       *
+       *  Lookup requires logarithmic time.
+       */</doc>

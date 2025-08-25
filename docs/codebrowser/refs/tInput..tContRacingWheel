@@ -1,4 +1,4 @@
-<inh f='Modules/Input/Inc/Input/tCont.h' l='25' c='tInput::tController'/>
+<inh f='Modules/Input/Inc/Input/tCont.h' l='26' c='tInput::tController'/>
 <def f='Modules/Input/Inc/Input/tContRacingWheel.h' l='21' ll='26'/>
-<size>80</size>
+<size>136</size>
 <fun r='_ZN6tInput16tContRacingWheelD1Ev'/>

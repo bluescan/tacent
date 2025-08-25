@@ -1,0 +1,10 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1344' u='c' c='_ZNK8tinyxml210XMLElement17QueryIntAttributeEPKcPi'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1353' u='c' c='_ZNK8tinyxml210XMLElement22QueryUnsignedAttributeEPKcPj'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1362' u='c' c='_ZNK8tinyxml210XMLElement19QueryInt64AttributeEPKcPl'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1371' u='c' c='_ZNK8tinyxml210XMLElement24QueryUnsigned64AttributeEPKcPm'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1380' u='c' c='_ZNK8tinyxml210XMLElement18QueryBoolAttributeEPKcPb'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1388' u='c' c='_ZNK8tinyxml210XMLElement20QueryDoubleAttributeEPKcPd'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1396' u='c' c='_ZNK8tinyxml210XMLElement19QueryFloatAttributeEPKcPf'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1405' u='c' c='_ZNK8tinyxml210XMLElement20QueryStringAttributeEPKcPS2_'/>
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1518' type='const tinyxml2::XMLAttribute * tinyxml2::XMLElement::FindAttribute(const char * name) const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1517'>/// Query a specific attribute in the list.</doc>

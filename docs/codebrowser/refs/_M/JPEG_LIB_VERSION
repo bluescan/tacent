@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/Linux/jconfig.h' l='4'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/Linux/jconfig.h' l='1'>/* Version ID for the JPEG library.
+ * Might be useful for tests like &quot;#if JPEG_LIB_VERSION &gt;= 60&quot;.
+ */</doc>

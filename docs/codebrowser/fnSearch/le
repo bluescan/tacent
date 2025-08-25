@@ -33,6 +33,15 @@ _ZNK5tMath8tVector26LengthEv|tMath::tVector2::Length
 _ZNK5tMath8tVector210LengthFastEv|tMath::tVector2::LengthFast
 _ZNK5tMath8tVector28LengthSqEv|tMath::tVector2::LengthSq
 _ZN5tMath8tVector24LerpERKNS_5tVec2ES3_f|tMath::tVector2::Lerp
+_ZNK9Imath_2_54Vec26lengthEv|Imath_2_5::Vec2::length
+_ZNK9Imath_2_54Vec27length2Ev|Imath_2_5::Vec2::length2
+_ZNK9Imath_2_54Vec210lengthTinyEv|Imath_2_5::Vec2::lengthTiny
+_ZNK9Imath_2_54Vec36lengthEv|Imath_2_5::Vec3::length
+_ZNK9Imath_2_54Vec37length2Ev|Imath_2_5::Vec3::length2
+_ZNK9Imath_2_54Vec310lengthTinyEv|Imath_2_5::Vec3::lengthTiny
+_ZNK9Imath_2_54Vec46lengthEv|Imath_2_5::Vec4::length
+_ZNK9Imath_2_54Vec47length2Ev|Imath_2_5::Vec4::length2
+_ZNK9Imath_2_54Vec410lengthTinyEv|Imath_2_5::Vec4::lengthTiny
 _ZN6tImage9tImageHDR25LegacyReadRadianceColoursEP9tColour4bi|tImage::tImageHDR::LegacyReadRadianceColours
 _ZN6tImage12tQuantizeNeu5learnERNS0_5StateE|tImage::tQuantizeNeu::learn
 _ZN5rgbcx4lerpET_S0_S0_|rgbcx::lerp

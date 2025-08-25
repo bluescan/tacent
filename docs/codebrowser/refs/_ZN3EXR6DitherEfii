@@ -1,2 +1,5 @@
 <dec f='Modules/Image/Src/tImageEXR.cpp' l='49' type='uint8 EXR::Dither(float v, int x, int y)'/>
 <def f='Modules/Image/Src/tImageEXR.cpp' l='116' ll='127' type='uint8 EXR::Dither(float v, int x, int y)'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='267' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='268' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='269' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>

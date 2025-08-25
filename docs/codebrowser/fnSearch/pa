@@ -12,6 +12,7 @@ _ZNKSt24uniform_int_distribution10param_type1bEv|std::uniform_int_distribution::
 _ZNSt24uniform_int_distribution10param_typeC1Ev|std::uniform_int_distribution::param_type::param_type
 _ZN8tVersion6ParserC1EPKc|tVersion::Parser::Parser
 _ZN6tImage9tImagePVR13ParseMetaDataEPKhi|tImage::tImagePVR::ParseMetaData
+_ZNK8tinyxml27XMLNode6ParentEv|tinyxml2::XMLNode::Parent
 _ZNKSt22bernoulli_distribution5paramEv|std::bernoulli_distribution::param
 _ZNKSt22bernoulli_distribution10param_type1pEv|std::bernoulli_distribution::param_type::p
 _ZNSt22bernoulli_distribution10param_typeC1Ev|std::bernoulli_distribution::param_type::param_type

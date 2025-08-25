@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2350' type='void tinyxml2::XMLPrinter::PrintString(const char * , bool restrictedEntitySet)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2350'>// prints out, after detecting entities.</doc>

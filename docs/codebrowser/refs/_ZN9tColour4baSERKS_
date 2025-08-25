@@ -6,6 +6,7 @@
 <use f='Modules/Image/Inc/Image/tPicture.h' l='407' u='c' c='_ZN6tImage8tPicture3SetEiiRK9tColour4b'/>
 <use f='Modules/Image/Inc/Image/tPicture.h' l='512' u='c' c='_ZN6tImage8tPicture6SetAllERK9tColour4bj'/>
 <use f='Modules/Image/Src/tImageBMP.cpp' l='170' u='c' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='265' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
 <use f='Modules/Image/Src/tImageGIF.cpp' l='346' u='c' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>
 <use f='Modules/Image/Src/tImageHDR.cpp' l='113' u='c' c='_ZN6tImage9tImageHDR25LegacyReadRadianceColoursEP9tColour4bi'/>
 <use f='Modules/Image/Src/tImageJPG.cpp' l='290' u='c' c='_ZN6tImage9tImageJPG8Rotate90Eb'/>

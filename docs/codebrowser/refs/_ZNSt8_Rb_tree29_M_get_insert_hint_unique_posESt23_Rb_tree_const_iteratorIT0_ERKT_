@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/stl_tree.h' l='835' type='pair&lt;std::_Rb_tree::_Base_ptr, std::_Rb_tree::_Base_ptr&gt; std::_Rb_tree::_M_get_insert_hint_unique_pos(std::_Rb_tree::const_iterator __pos, const std::_Rb_tree::key_type &amp; __k)'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1498' u='c' c='_ZNSt8_Rb_tree28_M_reinsert_node_hint_uniqueESt23_Rb_tree_const_iteratorIT0_EOSt12_Node_handleIT_S1_N9__gnu_cxx14__alloc_traitsIT3_NS7_10value_typeEE67502283'/>
+<def f='include/c++/11/bits/stl_tree.h' l='2157' ll='2214' type='pair&lt;typename _Rb_tree&lt;_Key, _Val, _KeyOfValue, _Compare, _Alloc&gt;::_Base_ptr, typename _Rb_tree&lt;_Key, _Val, _KeyOfValue, _Compare, _Alloc&gt;::_Base_ptr&gt; std::_Rb_tree::_M_get_insert_hint_unique_pos(std::_Rb_tree::const_iterator __position, const std::_Rb_tree::key_type &amp; __k)'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2234' u='c' c='_ZNSt8_Rb_tree17_M_insert_unique_ESt23_Rb_tree_const_iteratorIT0_EOTL0__RTL0_0_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2435' u='c' c='_ZNSt8_Rb_tree22_M_emplace_hint_uniqueESt23_Rb_tree_const_iteratorIT0_EDpOTL0__'/>

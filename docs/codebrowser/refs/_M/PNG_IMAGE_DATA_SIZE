@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='3127'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='3122'>/* You can pre-allocate the buffer by making sure it is of sufficient size
+ * regardless of the amount of compression achieved.  The buffer size will
+ * always be bigger than the original image and it will never be filled.  The
+ * following macros are provided to assist in allocating the buffer.
+ */</doc>

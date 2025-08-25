@@ -1,0 +1,14 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='582' type='void Imf_2_5::staticInitialize()'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='568'>//------------------------------------------------------------------------
+// Library initialization:
+//
+// In a multithreaded program, staticInitialize() must be called once
+// during startup, before the program accesses any other functions or
+// classes in the IlmImf library.  Calling staticInitialize() in this
+// way avoids races during initialization of the library&apos;s global
+// variables.
+//
+// Single-threaded programs are not required to call staticInitialize();
+// initialization of the library&apos;s global variables happens automatically.
+//
+//------------------------------------------------------------------------</doc>

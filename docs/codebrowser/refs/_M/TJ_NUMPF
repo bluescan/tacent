@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='160'/>
+<use f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='264' u='c'/>
+<use f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='275' u='c'/>
+<use f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='285' u='c'/>
+<use f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='296' u='c'/>
+<use f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='302' u='c'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='157'>/**
+ * The number of pixel formats
+ */</doc>

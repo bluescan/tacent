@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfRgba.h' l='81' type='32'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfRgba.h' l='79'>// or in combination with chroma</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfRgba.h' l='81'>// Chroma (two subsampled channels, RY and BY,</doc>

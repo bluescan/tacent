@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='210' type='1'/>
+<doc f='Modules/Image/Contrib/LibSPNG/spng.h' l='208'>/* Discard chunk, invalid for critical chunks.
+       Since v0.6.2: default for ancillary chunks */</doc>

@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1181' ll='1185' type='unsigned int tinyxml2::XMLAttribute::UnsignedValue() const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1180'>/// Query as an unsigned integer. See IntValue()</doc>

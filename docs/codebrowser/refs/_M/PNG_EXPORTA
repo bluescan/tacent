@@ -1,0 +1,17 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/pngconf.h' l='300'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='922' u='c'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='928' u='c'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='963' u='c'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='968' u='c'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='973' u='c'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='978' u='c'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='1004' u='c'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='1011' u='c'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='1033' u='c'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='1716' u='c'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='1719' u='c'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='1723' u='c'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='1763' u='c'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='1765' u='c'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='1771' u='c'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='1775' u='c'/>

@@ -2,9 +2,9 @@
 <dec f='include/stdlib.h' l='70' type='long'/>
 <dec f='include/stdlib.h' l='80' type='long long'/>
 <use f='include/c++/11/cstdlib' l='214' u='w' c='__gnu_cxx::div'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='295' u='r' c='_ZN5tMath4tDivEii'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='305' u='r' c='_ZN5tMath6tDiv32Eii'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='324' u='r' c='_ZN5tMath6tDiv64Exx'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='298' u='r' c='_ZN5tMath4tDivEii'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='308' u='r' c='_ZN5tMath6tDiv32Eii'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='327' u='r' c='_ZN5tMath6tDiv64Exx'/>
 <offset>64</offset>
 <doc f='include/stdlib.h' l='62'>/* Remainder.  */</doc>
 <doc f='include/stdlib.h' l='70'>/* Remainder.  */</doc>

@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='125' type='void Imf_2_5::IStream::seekg(Imath_2_5::Int64 pos)'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='120'>//-------------------------------------------
+    // Set the current reading position.
+    // After calling seekg(i), tellg() returns i.
+    //-------------------------------------------</doc>

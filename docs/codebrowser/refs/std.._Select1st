@@ -3,3 +3,5 @@
 <fun r='_ZNKSt10_Select1stclERKT_'/>
 <fun r='_ZNKSt10_Select1stclERTL0__'/>
 <fun r='_ZNKSt10_Select1stclERKTL0__'/>
+<use f='include/c++/11/bits/stl_map.h' l='149'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='148'/>

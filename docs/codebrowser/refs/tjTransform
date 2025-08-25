@@ -1,0 +1,74 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1515' type='int tjTransform(tjhandle handle, const unsigned char * jpegBuf, unsigned long jpegSize, int n, unsigned char ** dstBufs, unsigned long * dstSizes, tjtransform * transforms, int flags)'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='395' u='c' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1455'>/**
+ * Losslessly transform a JPEG image into another JPEG image.  Lossless
+ * transforms work by moving the raw DCT coefficients from one JPEG image
+ * structure to another without altering the values of the coefficients.  While
+ * this is typically faster than decompressing the image, transforming it, and
+ * re-compressing it, lossless transforms are not free.  Each lossless
+ * transform requires reading and performing Huffman decoding on all of the
+ * coefficients in the source image, regardless of the size of the destination
+ * image.  Thus, this function provides a means of generating multiple
+ * transformed images from the same source or  applying multiple
+ * transformations simultaneously, in order to eliminate the need to read the
+ * source coefficients multiple times.
+ *
+ * @param handle a handle to a TurboJPEG transformer instance
+ *
+ * @param jpegBuf pointer to a buffer containing the JPEG source image to
+ * transform
+ *
+ * @param jpegSize size of the JPEG source image (in bytes)
+ *
+ * @param n the number of transformed JPEG images to generate
+ *
+ * @param dstBufs pointer to an array of n image buffers.  &lt;tt&gt;dstBufs[i]&lt;/tt&gt;
+ * will receive a JPEG image that has been transformed using the parameters in
+ * &lt;tt&gt;transforms[i]&lt;/tt&gt;.  TurboJPEG has the ability to reallocate the JPEG
+ * buffer to accommodate the size of the JPEG image.  Thus, you can choose to:
+ * -# pre-allocate the JPEG buffer with an arbitrary size using #tjAlloc() and
+ * let TurboJPEG grow the buffer as needed,
+ * -# set &lt;tt&gt;dstBufs[i]&lt;/tt&gt; to NULL to tell TurboJPEG to allocate the buffer
+ * for you, or
+ * -# pre-allocate the buffer to a &quot;worst case&quot; size determined by calling
+ * #tjBufSize() with the transformed or cropped width and height.  Under normal
+ * circumstances, this should ensure that the buffer never has to be
+ * re-allocated (setting #TJFLAG_NOREALLOC guarantees that it won&apos;t be.)  Note,
+ * however, that there are some rare cases (such as transforming images with a
+ * large amount of embedded EXIF or ICC profile data) in which the output image
+ * will be larger than the worst-case size, and #TJFLAG_NOREALLOC cannot be
+ * used in those cases.
+ * .
+ * If you choose option 1, &lt;tt&gt;dstSizes[i]&lt;/tt&gt; should be set to the size of
+ * your pre-allocated buffer.  In any case, unless you have set
+ * #TJFLAG_NOREALLOC, you should always check &lt;tt&gt;dstBufs[i]&lt;/tt&gt; upon return
+ * from this function, as it may have changed.
+ *
+ * @param dstSizes pointer to an array of n unsigned long variables that will
+ * receive the actual sizes (in bytes) of each transformed JPEG image.  If
+ * &lt;tt&gt;dstBufs[i]&lt;/tt&gt; points to a pre-allocated buffer, then
+ * &lt;tt&gt;dstSizes[i]&lt;/tt&gt; should be set to the size of the buffer.  Upon return,
+ * &lt;tt&gt;dstSizes[i]&lt;/tt&gt; will contain the size of the JPEG image (in bytes.)
+ *
+ * @param transforms pointer to an array of n #tjtransform structures, each of
+ * which specifies the transform parameters and/or cropping region for the
+ * corresponding transformed output image.
+ *
+ * @param flags the bitwise OR of one or more of the @ref TJFLAG_ACCURATEDCT
+ * &quot;flags&quot;
+ *
+ * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr2()
+ * and #tjGetErrorCode().)
+ */</doc>
+<def f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='592' ll='646'/>
+<use f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='645'/>
+<use f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='592'/>
+<size>40</size>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='589'>/**
+ * Lossless transform
+ */</doc>
+<mbr r='tjtransform::r' o='0' t='tjregion'/>
+<mbr r='tjtransform::op' o='128' t='int'/>
+<mbr r='tjtransform::options' o='160' t='int'/>
+<mbr r='tjtransform::data' o='192' t='void *'/>
+<mbr r='tjtransform::customFilter' o='256' t='int (*)(short *, tjregion, tjregion, int, int, struct tjtransform *)'/>

@@ -1,0 +1,4 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='756' u='r' c='_ZNK8tinyxml27XMLNode6ParentEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='760' u='r' c='_ZN8tinyxml27XMLNode6ParentEv'/>
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='955' type='tinyxml2::XMLNode *'/>
+<offset>128</offset>

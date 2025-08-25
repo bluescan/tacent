@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='264' ll='266' type='const int[12]'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='257'>/**
+ * Red offset (in bytes) for a given pixel format.  This specifies the number
+ * of bytes that the red component is offset from the start of the pixel.  For
+ * instance, if a pixel of format TJ_BGRX is stored in &lt;tt&gt;char pixel[]&lt;/tt&gt;,
+ * then the red component will be &lt;tt&gt;pixel[tjRedOffset[TJ_BGRX]]&lt;/tt&gt;.  This
+ * will be -1 if the pixel format does not have a red component.
+ */</doc>

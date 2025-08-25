@@ -1,2 +1,2 @@
-<dec f='include/zlib.h' l='209'/>
-<doc f='include/zlib.h' l='207'>/* Possible values of the data_type field for deflate() */</doc>
+<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='209'/>
+<doc f='Modules/Image/Contrib/ZLib/include/zlib.h' l='207'>/* Possible values of the data_type field for deflate() */</doc>

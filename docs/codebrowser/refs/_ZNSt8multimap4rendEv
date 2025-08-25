@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='404' ll='406' type='std::multimap::reverse_iterator std::multimap::rend()'/>
+<doc f='include/c++/11/bits/stl_multimap.h' l='399'>/**
+       *  Returns a read/write reverse iterator that points to one before the
+       *  first pair in the %multimap.  Iteration is done in descending order
+       *  according to the keys.
+       */</doc>

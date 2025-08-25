@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='124' type='half &amp; half::operator=(const half &amp; h)'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='120'>//-----------
+    // Assignment
+    //-----------</doc>

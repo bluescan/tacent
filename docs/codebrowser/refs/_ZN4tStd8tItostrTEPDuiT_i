@@ -1,6 +1,6 @@
-<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='236' type='bool tStd::tItostrT(char8_t * str, int strSize, IntegralType value, int base = 10)'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='237' u='c' c='_ZN4tStd7tItostrEPDuiii'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='238' u='c' c='_ZN4tStd7tItostrEPDuixi'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='239' u='c' c='_ZN4tStd7tItostrEPDuiji'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='240' u='c' c='_ZN4tStd7tItostrEPDuiyi'/>
-<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='640' ll='689' type='bool tStd::tItostrT(char8_t * str, int strSize, IntegralType value, int base = 10)'/>
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='242' type='bool tStd::tItostrT(char8_t * str, int strSize, IntegralType value, int base = 10)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='243' u='c' c='_ZN4tStd7tItostrEPDuiii'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='244' u='c' c='_ZN4tStd7tItostrEPDuixi'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='245' u='c' c='_ZN4tStd7tItostrEPDuiji'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='246' u='c' c='_ZN4tStd7tItostrEPDuiyi'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='646' ll='695' type='bool tStd::tItostrT(char8_t * str, int strSize, IntegralType value, int base = 10)'/>

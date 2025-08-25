@@ -2,9 +2,9 @@
 <dec f='include/stdlib.h' l='69' type='long'/>
 <dec f='include/stdlib.h' l='79' type='long long'/>
 <use f='include/c++/11/cstdlib' l='214' u='w' c='__gnu_cxx::div'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='294' u='r' c='_ZN5tMath4tDivEii'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='304' u='r' c='_ZN5tMath6tDiv32Eii'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='323' u='r' c='_ZN5tMath6tDiv64Exx'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='297' u='r' c='_ZN5tMath4tDivEii'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='307' u='r' c='_ZN5tMath6tDiv32Eii'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='326' u='r' c='_ZN5tMath6tDiv64Exx'/>
 <offset>0</offset>
 <doc f='include/stdlib.h' l='61'>/* Quotient.  */</doc>
 <doc f='include/stdlib.h' l='69'>/* Quotient.  */</doc>

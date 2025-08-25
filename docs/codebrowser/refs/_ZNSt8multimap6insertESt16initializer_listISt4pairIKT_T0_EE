@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='624' ll='626' type='void std::multimap::insert(initializer_list&lt;std::multimap::value_type&gt; __l)'/>
+<doc f='include/c++/11/bits/stl_multimap.h' l='617'>/**
+       *  @brief Attempts to insert a list of std::pairs into the %multimap.
+       *  @param  __l  A std::initializer_list&lt;value_type&gt; of pairs to be
+       *               inserted.
+       *
+       *  Complexity similar to that of the range constructor.
+       */</doc>

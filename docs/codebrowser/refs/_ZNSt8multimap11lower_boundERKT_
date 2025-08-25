@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='927' ll='929' type='std::multimap::iterator std::multimap::lower_bound(const std::multimap::key_type &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_multimap.h' l='916'>/**
+       *  @brief Finds the beginning of a subsequence matching given key.
+       *  @param  __x  Key of (key, value) pair to be located.
+       *  @return  Iterator pointing to first element equal to or greater
+       *           than key, or end().
+       *
+       *  This function returns the first element of a subsequence of elements
+       *  that matches the given key.  If unsuccessful it returns an iterator
+       *  pointing to the first element that has a greater value than given key
+       *  or end() if no such element exists.
+       */</doc>

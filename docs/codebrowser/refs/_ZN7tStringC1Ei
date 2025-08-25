@@ -15,10 +15,6 @@
 <use f='Modules/Foundation/Src/tString.cpp' l='192' u='c' c='_ZN7tString11ExtractLeftEi'/>
 <use f='Modules/Foundation/Src/tString.cpp' l='215' u='c' c='_ZN7tString10ExtractMidEii'/>
 <use f='Modules/Foundation/Src/tString.cpp' l='242' u='c' c='_ZN7tString12ExtractRightEi'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='37' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='53' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='82' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='101' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
 <use f='Modules/System/Inc/System/tRegex.h' l='113' u='c' c='_ZNK7tSystem6tRegex5Match9GetStringERK7tString'/>
 <use f='Modules/System/Src/tScript.cpp' l='208' u='c' c='_ZNK11tExpression19GetExpressionStringEv'/>
 <use f='Modules/System/Src/tScript.cpp' l='256' u='c' c='_ZNK11tExpression13GetAtomStringEv'/>

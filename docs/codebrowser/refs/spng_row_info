@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='429' ll='435'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='476' c='spng_get_row_info'/>
+<size>16</size>
+<mbr r='spng_row_info::scanline_idx' o='0' t='uint32_t'/>
+<mbr r='spng_row_info::row_num' o='32' t='uint32_t'/>
+<mbr r='spng_row_info::pass' o='64' t='int'/>
+<mbr r='spng_row_info::filter' o='96' t='uint8_t'/>

@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='495' type='int spng_get_srgb(spng_ctx * ctx, uint8_t * rendering_intent)'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='390' type='Vec3&lt;T&gt; Imath_2_5::Vec3::operator%(const Vec3&lt;T&gt; &amp; v) const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1516' ll='1523' type='Vec3&lt;T&gt; Imath_2_5::Vec3::operator%(const Vec3&lt;T&gt; &amp; v) const'/>

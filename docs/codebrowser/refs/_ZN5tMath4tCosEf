@@ -1,5 +1,5 @@
 <def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='181' type='float tMath::tCos(float x)'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='528' u='c' c='_ZN5tMath7tCosSinERfS0_f'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='531' u='c' c='_ZN5tMath7tCosSinERfS0_f'/>
 <use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1184' u='c' c='_ZN5tMath12tMakeRotateXERNS_5tMat4Ef'/>
 <use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1197' u='c' c='_ZN5tMath12tMakeRotateYERNS_5tMat4Ef'/>
 <use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1209' u='c' c='_ZN5tMath12tMakeRotateZERNS_5tMat4Ef'/>

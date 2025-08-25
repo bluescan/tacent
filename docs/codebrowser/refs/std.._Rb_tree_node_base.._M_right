@@ -1,0 +1,15 @@
+<dec f='include/c++/11/bits/stl_tree.h' l='109' type='std::_Rb_tree_node_base::_Base_ptr'/>
+<use f='include/c++/11/bits/stl_tree.h' l='128' u='r' c='_ZNSt18_Rb_tree_node_base10_S_maximumEPS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='128' u='r' c='_ZNSt18_Rb_tree_node_base10_S_maximumEPS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='135' u='r' c='_ZNSt18_Rb_tree_node_base10_S_maximumEPKS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='135' u='r' c='_ZNSt18_Rb_tree_node_base10_S_maximumEPKS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='198' u='w' c='_ZNSt15_Rb_tree_header12_M_move_dataERS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='198' u='r' c='_ZNSt15_Rb_tree_header12_M_move_dataERS_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='210' u='w' c='_ZNSt15_Rb_tree_header8_M_resetEv'/>
+<use f='include/c++/11/bits/stl_tree.h' l='490' u='r' c='_ZNSt8_Rb_tree20_Reuse_or_alloc_node10_M_extractEv'/>
+<use f='include/c++/11/bits/stl_tree.h' l='492' u='w' c='_ZNSt8_Rb_tree20_Reuse_or_alloc_node10_M_extractEv'/>
+<use f='include/c++/11/bits/stl_tree.h' l='498' u='r' c='_ZNSt8_Rb_tree20_Reuse_or_alloc_node10_M_extractEv'/>
+<use f='include/c++/11/bits/stl_tree.h' l='499' u='r' c='_ZNSt8_Rb_tree20_Reuse_or_alloc_node10_M_extractEv'/>
+<use f='include/c++/11/bits/stl_tree.h' l='788' u='r' c='_ZNSt8_Rb_tree8_S_rightEPSt18_Rb_tree_node_base'/>
+<use f='include/c++/11/bits/stl_tree.h' l='792' u='r' c='_ZNSt8_Rb_tree8_S_rightEPKSt18_Rb_tree_node_base'/>
+<offset>192</offset>

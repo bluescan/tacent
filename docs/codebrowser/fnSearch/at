@@ -66,6 +66,11 @@ _ZSt21atomic_store_explicitPSt6atomicIT_ENSt15__type_identityIS0_E4typeESt12memo
 _ZSt19atomic_thread_fenceSt12memory_order|std::atomic_thread_fence
 _ZSt11atomic_waitPKSt6atomicIT_ENS1_10value_typeE|std::atomic_wait
 _ZSt20atomic_wait_explicitPKSt6atomicIT_ENS1_10value_typeESt12memory_order|std::atomic_wait_explicit
+_ZN9Imath_2_54Math4atanET_|Imath_2_5::Math::atan
+_ZN9Imath_2_54Math5atan2ET_S1_|Imath_2_5::Math::atan2
+_ZNK7Imf_2_56Header13ConstIterator9attributeEv|Imf_2_5::Header::ConstIterator::attribute
+_ZNK7Imf_2_56Header8Iterator9attributeEv|Imf_2_5::Header::Iterator::attribute
+_ZNSt3map2atERKT_|std::map::at
 _ZN11tExprWriter4AtomERK7tString|tExprWriter::Atom
 _ZNK11tExpression4AtomEv|tExpression::Atom
 _ZNSt5deque2atEm|std::deque::at

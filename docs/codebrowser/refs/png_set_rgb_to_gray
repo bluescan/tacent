@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='1081' type='void png_set_rgb_to_gray(png_structrp png_ptr, int error_action, double red, double green)'/>

@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='1612' type='void png_set_read_user_transform_fn(png_structrp png_ptr, png_user_transform_ptr read_user_transform_fn)'/>

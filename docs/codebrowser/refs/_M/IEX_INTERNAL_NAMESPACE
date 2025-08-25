@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IlmBaseConfig.h' l='32'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexNamespace.h' l='84' u='a'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexNamespace.h' l='95' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexNamespace.h' l='97' u='c'/>

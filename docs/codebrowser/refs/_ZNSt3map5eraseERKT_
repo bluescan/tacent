@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/stl_map.h' l='1067' ll='1069' type='std::map::size_type std::map::erase(const std::map::key_type &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_map.h' l='1056'>/**
+       *  @brief Erases elements according to the provided key.
+       *  @param  __x  Key of element to be erased.
+       *  @return  The number of elements erased.
+       *
+       *  This function erases all the elements located by the given key from
+       *  a %map.
+       *  Note that this function only erases the element, and that if
+       *  the element is itself a pointer, the pointed-to memory is not touched
+       *  in any way.  Managing the pointer is the user&apos;s responsibility.
+       */</doc>

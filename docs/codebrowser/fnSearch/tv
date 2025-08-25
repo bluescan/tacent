@@ -98,8 +98,6 @@ _ZN5tMath8tVector2dVEf|tMath::tVector2::operator/=
 _ZN5tMath8tVector2aSERKNS_5tVec2E|tMath::tVector2::operator=
 _ZN5tMath8tVector2ixEi|tMath::tVector2::operator[]
 _ZN5tMath8tVector2C1Ev|tMath::tVector2::tVector2
-_ZN9tPipeline20tVisualStudioProjectC1ERK7tString|tPipeline::tVisualStudioProject::tVisualStudioProject
-_ZN9tPipeline20tVisualStudioProjectD1Ev|tPipeline::tVisualStudioProject::~tVisualStudioProject
-_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString|tPipeline::tVisualStudioSolution::tVisualStudioSolution
-_ZN9tPipeline21tVisualStudioSolutionD1Ev|tPipeline::tVisualStudioSolution::~tVisualStudioSolution
+_ZN6tInput7tVidPidcvjEv|tInput::tVidPid::operator unsigned int
+_ZN6tInput7tVidPidC1Ev|tInput::tVidPid::tVidPid
 _Z8tvPrintfPKcP13__va_list_tag|tvPrintf

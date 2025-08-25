@@ -8,6 +8,8 @@ _ZNKSt8ios_base5flagsEv|std::ios_base::flags
 _Z14FloatToHalfRawf|FloatToHalfRaw
 _ZN6M999E517FloatToComponentsERiS0_S0_S0_fff|M999E5::FloatToComponents
 _ZN6M999E59FloorLog2Ef|M999E5::FloorLog2
+_ZN9Imath_2_54Math5floorET_|Imath_2_5::Math::floor
 _ZN6tImage9tImageJPG4FlipEb|tImage::tImageJPG::Flip
 _ZN6tImage4tPVR4FlipEPNS_6tLayerEb|tImage::tPVR::Flip
 _ZN6tImage8tPicture4FlipEb|tImage::tPicture::Flip
+_ZNK8tinyxml212XMLAttribute10FloatValueEv|tinyxml2::XMLAttribute::FloatValue

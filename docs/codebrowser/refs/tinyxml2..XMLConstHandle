@@ -1,0 +1,43 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2133' ll='2192'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2140' c='_ZN8tinyxml214XMLConstHandleC1ERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2143' c='_ZN8tinyxml214XMLConstHandleaSERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2143' c='_ZN8tinyxml214XMLConstHandleaSERKS0_'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2148' c='_ZNK8tinyxml214XMLConstHandle10FirstChildEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2149' c='_ZNK8tinyxml214XMLConstHandle10FirstChildEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2151' c='_ZNK8tinyxml214XMLConstHandle17FirstChildElementEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2152' c='_ZNK8tinyxml214XMLConstHandle17FirstChildElementEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2154' c='_ZNK8tinyxml214XMLConstHandle9LastChildEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2155' c='_ZNK8tinyxml214XMLConstHandle9LastChildEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2157' c='_ZNK8tinyxml214XMLConstHandle16LastChildElementEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2158' c='_ZNK8tinyxml214XMLConstHandle16LastChildElementEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2160' c='_ZNK8tinyxml214XMLConstHandle15PreviousSiblingEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2161' c='_ZNK8tinyxml214XMLConstHandle15PreviousSiblingEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2163' c='_ZNK8tinyxml214XMLConstHandle22PreviousSiblingElementEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2164' c='_ZNK8tinyxml214XMLConstHandle22PreviousSiblingElementEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2166' c='_ZNK8tinyxml214XMLConstHandle11NextSiblingEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2167' c='_ZNK8tinyxml214XMLConstHandle11NextSiblingEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2169' c='_ZNK8tinyxml214XMLConstHandle18NextSiblingElementEPKc'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2170' c='_ZNK8tinyxml214XMLConstHandle18NextSiblingElementEPKc'/>
+<size>8</size>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2129'>/**
+	A variant of the XMLHandle class for working with const XMLNodes and Documents. It is the
+	same in all regards, except for the &apos;const&apos; qualifiers. See XMLHandle for API.
+*/</doc>
+<fun r='_ZN8tinyxml214XMLConstHandleC1EPKNS_7XMLNodeE'/>
+<fun r='_ZN8tinyxml214XMLConstHandleC1ERKNS_7XMLNodeE'/>
+<fun r='_ZN8tinyxml214XMLConstHandleC1ERKS0_'/>
+<fun r='_ZN8tinyxml214XMLConstHandleaSERKS0_'/>
+<fun r='_ZNK8tinyxml214XMLConstHandle10FirstChildEv'/>
+<fun r='_ZNK8tinyxml214XMLConstHandle17FirstChildElementEPKc'/>
+<fun r='_ZNK8tinyxml214XMLConstHandle9LastChildEv'/>
+<fun r='_ZNK8tinyxml214XMLConstHandle16LastChildElementEPKc'/>
+<fun r='_ZNK8tinyxml214XMLConstHandle15PreviousSiblingEv'/>
+<fun r='_ZNK8tinyxml214XMLConstHandle22PreviousSiblingElementEPKc'/>
+<fun r='_ZNK8tinyxml214XMLConstHandle11NextSiblingEv'/>
+<fun r='_ZNK8tinyxml214XMLConstHandle18NextSiblingElementEPKc'/>
+<fun r='_ZNK8tinyxml214XMLConstHandle6ToNodeEv'/>
+<fun r='_ZNK8tinyxml214XMLConstHandle9ToElementEv'/>
+<fun r='_ZNK8tinyxml214XMLConstHandle6ToTextEv'/>
+<fun r='_ZNK8tinyxml214XMLConstHandle9ToUnknownEv'/>
+<fun r='_ZNK8tinyxml214XMLConstHandle13ToDeclarationEv'/>
+<mbr r='tinyxml2::XMLConstHandle::_node' o='0' t='const tinyxml2::XMLNode *'/>

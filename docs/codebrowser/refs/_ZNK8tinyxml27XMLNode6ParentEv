@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='755' ll='757' type='const tinyxml2::XMLNode * tinyxml2::XMLNode::Parent() const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='754'>/// Get the parent of this node on the DOM.</doc>

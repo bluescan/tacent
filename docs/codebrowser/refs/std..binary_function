@@ -26,4 +26,6 @@
 <use f='include/c++/11/bits/stl_function.h' l='1326'/>
 <use f='include/c++/11/bits/stl_function.h' l='1343'/>
 <use f='include/c++/11/bits/refwrap.h' l='65'/>
+<use f='include/c++/11/bits/stl_map.h' l='130'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='129'/>
 <use f='include/c++/11/bits/shared_ptr_base.h' l='1744'/>

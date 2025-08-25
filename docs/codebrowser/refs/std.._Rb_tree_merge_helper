@@ -1,0 +1,18 @@
+<def f='include/c++/11/bits/stl_tree.h' l='420'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1563' c='_ZNSt8_Rb_tree15_M_merge_uniqueERSt8_Rb_treeIT_T0_T1_TL0__T3_E'/>
+<use f='include/c++/11/bits/stl_tree.h' l='1585' c='_ZNSt8_Rb_tree14_M_merge_equalERSt8_Rb_treeIT_T0_T1_TL0__T3_E'/>
+<def f='include/c++/11/bits/stl_tree.h' l='2597' ll='2608'/>
+<use f='include/c++/11/bits/stl_map.h' l='644' c='_ZNSt3map5mergeERSt3mapIT_T0_TL0__T2_E'/>
+<use f='include/c++/11/bits/stl_map.h' l='657' c='_ZNSt3map5mergeERSt8multimapIT_T0_TL0__T2_E'/>
+<def f='include/c++/11/bits/stl_map.h' l='1546' ll='1562'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='660' c='_ZNSt8multimap5mergeERSt8multimapIT_T0_TL0__T2_E'/>
+<use f='include/c++/11/bits/stl_multimap.h' l='673' c='_ZNSt8multimap5mergeERSt3mapIT_T0_TL0__T2_E'/>
+<def f='include/c++/11/bits/stl_multimap.h' l='1211' ll='1227'/>
+<doc f='include/c++/11/bits/stl_tree.h' l='2596'>// Allow access to internals of compatible _Rb_tree specializations.</doc>
+<doc f='include/c++/11/bits/stl_map.h' l='1545'>// Allow std::map access to internals of compatible maps.</doc>
+<doc f='include/c++/11/bits/stl_multimap.h' l='1210'>// Allow std::multimap access to internals of compatible maps.</doc>
+<fun r='_ZNSt21_Rb_tree_merge_helperISt8_Rb_treeIT_T0_T1_T2_T3_ET4_E11_S_get_implERS0_IS1_S2_S3_S7_S5_E'/>
+<fun r='_ZNSt21_Rb_tree_merge_helperISt3mapIT_T0_T1_T2_ET3_E11_S_get_treeERS0_IS1_S2_S6_S4_E'/>
+<fun r='_ZNSt21_Rb_tree_merge_helperISt3mapIT_T0_T1_T2_ET3_E11_S_get_treeERSt8multimapIS1_S2_S6_S4_E'/>
+<fun r='_ZNSt21_Rb_tree_merge_helperISt8multimapIT_T0_T1_T2_ET3_E11_S_get_treeERSt3mapIS1_S2_S6_S4_E'/>
+<fun r='_ZNSt21_Rb_tree_merge_helperISt8multimapIT_T0_T1_T2_ET3_E11_S_get_treeERS0_IS1_S2_S6_S4_E'/>

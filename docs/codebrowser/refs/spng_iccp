@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='285' ll='290'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='493' c='spng_get_iccp'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='516' c='spng_set_iccp'/>
+<size>96</size>
+<mbr r='spng_iccp::profile_name' o='0' t='char[80]'/>
+<mbr r='spng_iccp::profile_len' o='640' t='size_t'/>
+<mbr r='spng_iccp::profile' o='704' t='char *'/>

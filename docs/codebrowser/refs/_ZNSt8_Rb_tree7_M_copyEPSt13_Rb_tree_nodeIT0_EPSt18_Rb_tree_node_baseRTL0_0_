@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/stl_tree.h' l='883' type='std::_Rb_tree::_Link_type std::_Rb_tree::_M_copy(std::_Rb_tree::_Link_type , std::_Rb_tree::_Base_ptr , _NodeGen &amp; )'/>
+<def f='include/c++/11/bits/stl_tree.h' l='1841' ll='1878' type='typename _Rb_tree&lt;_Key, _Val, _KoV, _Compare, _Alloc&gt;::_Link_type std::_Rb_tree::_M_copy(std::_Rb_tree::_Link_type __x, std::_Rb_tree::_Base_ptr __p, _NodeGen &amp; __node_gen)'/>

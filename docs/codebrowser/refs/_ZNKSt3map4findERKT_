@@ -1,0 +1,13 @@
+<def f='include/c++/11/bits/stl_map.h' l='1193' ll='1195' type='std::map::const_iterator std::map::find(const std::map::key_type &amp; __x) const'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='762' u='c' c='_ZNK7Imf_2_56Header18findTypedAttributeEPKc'/>
+<doc f='include/c++/11/bits/stl_map.h' l='1181'>/**
+       *  @brief Tries to locate an element in a %map.
+       *  @param  __x  Key of (key, value) %pair to be located.
+       *  @return  Read-only (constant) iterator pointing to sought-after
+       *           element, or end() if not found.
+       *
+       *  This function takes a key and tries to locate the element with which
+       *  the key matches.  If successful the function returns a constant
+       *  iterator pointing to the sought after %pair. If unsuccessful it
+       *  returns the past-the-end ( @c end() ) iterator.
+       */</doc>

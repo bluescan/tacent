@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='340' type='const unsigned int'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='384' u='r'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='334'>/**
+ * @brief Create a decompression-only context.
+ *
+ * This mode disables support for compression. This enables context allocation to skip some
+ * transient buffer allocation, resulting in lower memory usage.
+ */</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1111' u='r' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

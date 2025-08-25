@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='214' type='2'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='231' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='231' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Contrib/LibSPNG/spng.h' l='212'>/* Ignore and don&apos;t calculate checksum.
+       Since v0.6.2: also ignores checksums in DEFLATE streams */</doc>

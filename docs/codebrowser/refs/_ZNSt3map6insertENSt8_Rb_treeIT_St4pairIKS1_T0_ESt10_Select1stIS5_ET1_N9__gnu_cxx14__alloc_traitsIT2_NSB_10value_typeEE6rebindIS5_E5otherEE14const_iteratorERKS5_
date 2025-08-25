@@ -1,0 +1,25 @@
+<def f='include/c++/11/bits/stl_map.h' l='858' ll='864' type='std::map::iterator std::map::insert(std::map::const_iterator __position, const std::map::value_type &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_map.h' l='834'>/**
+       *  @brief Attempts to insert a std::pair into the %map.
+       *  @param  __position  An iterator that serves as a hint as to where the
+       *                    pair should be inserted.
+       *  @param  __x  Pair to be inserted (see std::make_pair for easy creation
+       *               of pairs).
+       *  @return An iterator that points to the element with key of
+       *           @a __x (may or may not be the %pair passed in).
+       *
+
+       *  This function is not concerned about whether the insertion
+       *  took place, and thus does not return a boolean like the
+       *  single-argument insert() does.  Note that the first
+       *  parameter is only a hint and can potentially improve the
+       *  performance of the insertion process.  A bad hint would
+       *  cause no gains in efficiency.
+       *
+       *  See
+       *  https://gcc.gnu.org/onlinedocs/libstdc++/manual/associative.html#containers.associative.insert_hints
+       *  for more on @a hinting.
+       *
+       *  Insertion requires logarithmic time (if the hint is not taken).
+       *  @{
+       */</doc>

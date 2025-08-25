@@ -1,0 +1,28 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2775'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2748'>/* PNG_FORMAT_*
+ *
+ * #defines to be used in png_image::format.  Each #define identifies a
+ * particular layout of sample data and, if present, alpha values.  There are
+ * separate defines for each of the two component encodings.
+ *
+ * A format is built up using single bit flag values.  All combinations are
+ * valid.  Formats can be built up from the flag values or you can use one of
+ * the predefined values below.  When testing formats always use the FORMAT_FLAG
+ * macros to test for individual features - future versions of the library may
+ * add new flags.
+ *
+ * When reading or writing color-mapped images the format should be set to the
+ * format of the entries in the color-map then png_image_{read,write}_colormap
+ * called to read or write the color-map and set the format correctly for the
+ * image data.  Do not set the PNG_FORMAT_FLAG_COLORMAP bit directly!
+ *
+ * NOTE: libpng can be built with particular features disabled. If you see
+ * compiler errors because the definition of one of the following flags has been
+ * compiled out it is because libpng does not have the required support.  It is
+ * possible, however, for the libpng configuration to enable the format on just
+ * read or just write; in that case you may see an error at run time.  You can
+ * guard against this by checking for the definition of the appropriate
+ * &quot;_SUPPORTED&quot; macro, one of:
+ *
+ *    PNG_SIMPLIFIED_{READ,WRITE}_{BGR,AFIRST}_SUPPORTED
+ */</doc>

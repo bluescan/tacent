@@ -1,8 +1,8 @@
-<dec f='Modules/Foundation/Src/tStandard.cpp' l='280' type='int tUTF::EncodeUtf16(char16_t * dst, char32_t codepoint)'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='386' u='c' c='_ZN4tStd6tUTF16EPDsPKDui'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='416' u='c' c='_ZN4tStd6tUTF16EPDsPKDii'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='653' u='c' c='_ZN4tStd7tUTF16cEPDsDi'/>
-<def f='Modules/Foundation/Src/tStandard.cpp' l='718' ll='741' type='int tUTF::EncodeUtf16(char16_t * dst, char32_t codepoint)'/>
-<doc f='Modules/Foundation/Src/tStandard.cpp' l='277'>// Encodes a 32-bit codepoint into a UTF-16 string. The codepoint is not checked for validity by this function. You
+<dec f='Modules/Foundation/Src/tStandard.cpp' l='343' type='int tUTF::EncodeUtf16(char16_t * dst, char32_t codepoint)'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='449' u='c' c='_ZN4tStd6tUTF16EPDsPKDui'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='479' u='c' c='_ZN4tStd6tUTF16EPDsPKDii'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='716' u='c' c='_ZN4tStd7tUTF16cEPDsDi'/>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='781' ll='804' type='int tUTF::EncodeUtf16(char16_t * dst, char32_t codepoint)'/>
+<doc f='Modules/Foundation/Src/tStandard.cpp' l='340'>// Encodes a 32-bit codepoint into a UTF-16 string. The codepoint is not checked for validity by this function. You
 	// must ensure the dst buffer is big enough -- 2 is always big enough, but you can call CalculateUtf16Length to get
 	// an exact size. Returns the number of char16s written to dst [0,2]. Returns 0 is dst is nullptr.</doc>

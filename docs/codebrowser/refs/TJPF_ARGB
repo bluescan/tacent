@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='234' type='10'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='229'>/**
+   * ARGB pixel format.  This is the same as @ref TJPF_XRGB, except that when
+   * decompressing, the X component is guaranteed to be 0xFF, which can be
+   * interpreted as an opaque alpha channel.
+   */</doc>

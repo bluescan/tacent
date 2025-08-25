@@ -14,6 +14,15 @@ _ZNKSt6vector4sizeEv|std::vector::size
 _ZNKSt7__cxx1112basic_string4sizeEv|std::basic_string::size
 _ZNKSt17basic_string_view4sizeEv|std::basic_string_view::size
 _ZNK6tChunk4SizeEv|tChunk::Size
+_ZNK9Imath_2_53Box4sizeEv|Imath_2_5::Box::size
+_ZN9Imath_2_54Math3sinET_|Imath_2_5::Math::sin
+_ZN9Imath_2_54Math4sinhET_|Imath_2_5::Math::sinh
+_ZN9Imath_2_511sinx_over_xET_|Imath_2_5::sinx_over_x
+_ZNK7Imf_2_55Array4sizeEv|Imf_2_5::Array::size
+_ZNKSt8_Rb_tree4sizeEv|std::_Rb_tree::size
+_ZNKSt3map4sizeEv|std::map::size
+_ZNKSt8multimap4sizeEv|std::multimap::size
+_ZNK8tinyxml28DynArray4SizeEv|tinyxml2::DynArray::Size
 _ZNKSt5deque4sizeEv|std::deque::size
 _ZNKSt6ranges8subrange4sizeEv|std::ranges::subrange::size
 _ZNSt6ranges14view_interface4sizeEv|std::ranges::view_interface::size

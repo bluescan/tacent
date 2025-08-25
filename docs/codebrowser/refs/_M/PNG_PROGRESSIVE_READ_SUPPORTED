@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/pnglibconf.h' l='53'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='783' u='a'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='1674' u='a'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/pnglibconf.h' l='52'>/*#undef PNG_POWERPC_VSX_CHECK_SUPPORTED*/</doc>

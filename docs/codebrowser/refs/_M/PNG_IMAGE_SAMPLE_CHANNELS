@@ -1,0 +1,19 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2843'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2825'>/* PNG_IMAGE macros
+ *
+ * These are convenience macros to derive information from a png_image
+ * structure.  The PNG_IMAGE_SAMPLE_ macros return values appropriate to the
+ * actual image sample values - either the entries in the color-map or the
+ * pixels in the image.  The PNG_IMAGE_PIXEL_ macros return corresponding values
+ * for the pixels and will always return 1 for color-mapped formats.  The
+ * remaining macros return information about the rows in the image and the
+ * complete image.
+ *
+ * NOTE: All the macros that take a png_image::format parameter are compile time
+ * constants if the format parameter is, itself, a constant.  Therefore these
+ * macros can be used in array declarations and case labels where required.
+ * Similarly the macros are also pre-processor constants (sizeof is not used) so
+ * they can be used in #if tests.
+ *
+ * First the information about the samples.
+ */</doc>

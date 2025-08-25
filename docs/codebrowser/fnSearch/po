@@ -13,7 +13,11 @@ _ZNK5tMath8tMatrix23PodEv|tMath::tMatrix2::Pod
 _ZNK5tMath8tMatrix43PodEv|tMath::tMatrix4::Pod
 _ZNK5tMath11tQuaternion3PodEv|tMath::tQuaternion::Pod
 _ZNK5tMath8tVector23PodEv|tMath::tVector2::Pod
+_ZN9Imath_2_54Math3powET_S1_|Imath_2_5::Math::pow
+_ZN4half6posInfEv|half::posInf
 _ZN6tImage9tImageJPG16PopulateMetaDataEPKhi|tImage::tImageJPG::PopulateMetaData
+_ZN8tinyxml28DynArray3PopEv|tinyxml2::DynArray::Pop
+_ZN8tinyxml28DynArray6PopArrEi|tinyxml2::DynArray::PopArr
 _ZNSt5deque8pop_backEv|std::deque::pop_back
 _ZNSt5deque9pop_frontEv|std::deque::pop_front
 _ZNKSt20poisson_distribution3maxEv|std::poisson_distribution::max

@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='449' type='int spng_set_png_stream(spng_ctx * ctx, spng_rw_fn * rw_func, void * user)'/>

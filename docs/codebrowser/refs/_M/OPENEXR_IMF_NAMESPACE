@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/OpenEXRConfig.h' l='22'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfNamespace.h' l='81' u='a'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfNamespace.h' l='98' u='c'/>
+<use f='Modules/Image/Contrib/OpenEXR/namespaceAlias.h' l='41' u='c'/>

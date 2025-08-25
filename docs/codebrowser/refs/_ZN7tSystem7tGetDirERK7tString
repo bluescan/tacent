@@ -6,8 +6,6 @@
 // eg. &quot;/Only/Path/No/File/&quot; will return &quot;/Only/Path/No/File/&quot;
 // Windows network shares retain only required backslashes.
 // eg. &quot;\\machine\share/dir/subdir/file.txt&quot; will return &quot;\\machine\share/dir/subdir/&quot;</doc>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='34' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='79' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
 <use f='Modules/Scene/Src/tWorld.cpp' l='546' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
 <def f='Modules/System/Src/tFile.cpp' l='355' ll='374' type='tString tSystem::tGetDir(const tString &amp; path)'/>
 <use f='Modules/System/Src/tMachine.cpp' l='224' u='c' c='_ZN7tSystem23tOpenSystemFileExplorerERK7tString'/>

@@ -1,0 +1,106 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='80' type='T'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='156' u='w' c='_ZN9Imath_2_53BoxC1ERKT_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='164' u='w' c='_ZN9Imath_2_53BoxC1ERKT_S3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='173' c='_ZNK9Imath_2_53BoxeqERKNS_3BoxIT_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='181' c='_ZNK9Imath_2_53BoxneERKNS_3BoxIT_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='188' u='w' c='_ZN9Imath_2_53Box9makeEmptyEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='195' u='w' c='_ZN9Imath_2_53Box12makeInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='204' u='c' c='_ZN9Imath_2_53Box8extendByERKT_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='206' c='_ZN9Imath_2_53Box8extendByERKT_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='207' u='w' c='_ZN9Imath_2_53Box8extendByERKT_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='219' u='c' c='_ZN9Imath_2_53Box8extendByERKNS_3BoxIT_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='221' c='_ZN9Imath_2_53Box8extendByERKNS_3BoxIT_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='222' u='w' c='_ZN9Imath_2_53Box8extendByERKNS_3BoxIT_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='234' u='c' c='_ZNK9Imath_2_53Box10intersectsERKT_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='236' c='_ZNK9Imath_2_53Box10intersectsERKT_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='248' u='c' c='_ZNK9Imath_2_53Box10intersectsERKNS_3BoxIT_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='250' c='_ZNK9Imath_2_53Box10intersectsERKNS_3BoxIT_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='265' u='r' c='_ZNK9Imath_2_53Box4sizeEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='273' c='_ZNK9Imath_2_53Box6centerEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='281' u='c' c='_ZNK9Imath_2_53Box7isEmptyEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='283' c='_ZNK9Imath_2_53Box7isEmptyEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='294' u='c' c='_ZNK9Imath_2_53Box10isInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='296' c='_ZNK9Imath_2_53Box10isInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='308' u='c' c='_ZNK9Imath_2_53Box9hasVolumeEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='310' u='r' c='_ZNK9Imath_2_53Box9hasVolumeEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='325' u='c' c='_ZNK9Imath_2_53Box9majorAxisEv'/>
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='351' type='Vec2&lt;T&gt;'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='412' u='w' c='_ZN9Imath_2_53BoxINS_4Vec2IT_EEEC1ERKS3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='420' u='w' c='_ZN9Imath_2_53BoxINS_4Vec2IT_EEEC1ERKS3_S6_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='429' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEEeqERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='437' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEEneERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='444' u='w' c='_ZN9Imath_2_53BoxINS_4Vec2IT_EEE9makeEmptyEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='451' u='w' c='_ZN9Imath_2_53BoxINS_4Vec2IT_EEE12makeInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='460' c='_ZN9Imath_2_53BoxINS_4Vec2IT_EEE8extendByERKS3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='461' u='w' c='_ZN9Imath_2_53BoxINS_4Vec2IT_EEE8extendByERKS3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='466' c='_ZN9Imath_2_53BoxINS_4Vec2IT_EEE8extendByERKS3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='467' u='w' c='_ZN9Imath_2_53BoxINS_4Vec2IT_EEE8extendByERKS3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='478' c='_ZN9Imath_2_53BoxINS_4Vec2IT_EEE8extendByERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='479' u='w' c='_ZN9Imath_2_53BoxINS_4Vec2IT_EEE8extendByERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='484' c='_ZN9Imath_2_53BoxINS_4Vec2IT_EEE8extendByERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='485' u='w' c='_ZN9Imath_2_53BoxINS_4Vec2IT_EEE8extendByERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='496' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEE10intersectsERKS3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='497' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEE10intersectsERKS3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='508' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEE10intersectsERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='509' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEE10intersectsERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='523' u='r' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEE4sizeEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='531' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEE6centerEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='539' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEE7isEmptyEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='540' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEE7isEmptyEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='550' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEE10isInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='551' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEE10isInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='562' u='r' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEE9hasVolumeEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='563' u='r' c='_ZNK9Imath_2_53BoxINS_4Vec2IT_EEE9hasVolumeEv'/>
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='593' type='Vec3&lt;T&gt;'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='655' u='w' c='_ZN9Imath_2_53BoxINS_4Vec3IT_EEEC1ERKS3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='663' u='w' c='_ZN9Imath_2_53BoxINS_4Vec3IT_EEEC1ERKS3_S6_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='672' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEEeqERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='680' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEEneERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='687' u='w' c='_ZN9Imath_2_53BoxINS_4Vec3IT_EEE9makeEmptyEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='694' u='w' c='_ZN9Imath_2_53BoxINS_4Vec3IT_EEE12makeInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='703' c='_ZN9Imath_2_53BoxINS_4Vec3IT_EEE8extendByERKS3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='704' u='w' c='_ZN9Imath_2_53BoxINS_4Vec3IT_EEE8extendByERKS3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='709' c='_ZN9Imath_2_53BoxINS_4Vec3IT_EEE8extendByERKS3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='710' u='w' c='_ZN9Imath_2_53BoxINS_4Vec3IT_EEE8extendByERKS3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='715' c='_ZN9Imath_2_53BoxINS_4Vec3IT_EEE8extendByERKS3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='716' u='w' c='_ZN9Imath_2_53BoxINS_4Vec3IT_EEE8extendByERKS3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='727' c='_ZN9Imath_2_53BoxINS_4Vec3IT_EEE8extendByERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='728' u='w' c='_ZN9Imath_2_53BoxINS_4Vec3IT_EEE8extendByERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='733' c='_ZN9Imath_2_53BoxINS_4Vec3IT_EEE8extendByERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='734' u='w' c='_ZN9Imath_2_53BoxINS_4Vec3IT_EEE8extendByERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='739' c='_ZN9Imath_2_53BoxINS_4Vec3IT_EEE8extendByERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='740' u='w' c='_ZN9Imath_2_53BoxINS_4Vec3IT_EEE8extendByERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='751' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE10intersectsERKS3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='752' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE10intersectsERKS3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='753' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE10intersectsERKS3_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='764' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE10intersectsERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='765' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE10intersectsERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='766' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE10intersectsERKNS0_IS3_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='780' u='r' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE4sizeEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='788' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE6centerEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='796' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE7isEmptyEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='797' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE7isEmptyEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='798' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE7isEmptyEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='808' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE10isInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='809' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE10isInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='810' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE10isInfiniteEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='821' u='r' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE9hasVolumeEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='822' u='r' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE9hasVolumeEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='823' u='r' c='_ZNK9Imath_2_53BoxINS_4Vec3IT_EEE9hasVolumeEv'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='210' u='m' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='211' u='m' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='212' u='m' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='212' u='m' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='213' u='m' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='213' u='m' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='214' u='m' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='215' u='m' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='76'>//-------------------------
+    //  Data Members are public
+    //-------------------------</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='347'>//-------------------------
+    //  Data Members are public
+    //-------------------------</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='589'>//-------------------------
+    //  Data Members are public
+    //-------------------------</doc>

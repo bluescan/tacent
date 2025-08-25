@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='113' type='bool Imath_2_5::Box::intersects(const T &amp; point) const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='230' ll='241' type='bool Imath_2_5::Box::intersects(const T &amp; point) const'/>

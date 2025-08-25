@@ -1,1 +1,2 @@
 <dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='110' macro='1' type='float modff(float __x, float * __iptr)'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathMath.h' l='140' u='c' c='_ZN9Imath_2_54MathIfE4modfEfPf'/>

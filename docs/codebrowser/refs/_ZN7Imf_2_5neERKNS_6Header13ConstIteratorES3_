@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='562' type='bool Imf_2_5::operator!=(const Imf_2_5::Header::ConstIterator &amp; , const Imf_2_5::Header::ConstIterator &amp; )'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='694' ll='698' type='bool Imf_2_5::operator!=(const Header::ConstIterator &amp; x, const Header::ConstIterator &amp; y)'/>

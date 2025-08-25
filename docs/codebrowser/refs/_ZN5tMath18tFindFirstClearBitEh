@@ -1,6 +1,6 @@
 <dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='152' type='int tMath::tFindFirstClearBit(uint8 v)'/>
 <use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='157' u='c' c='_ZN5tMath16tFindFirstSetBitEh'/>
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='408' ll='425' type='int tMath::tFindFirstClearBit(uint8 v)'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='411' ll='428' type='int tMath::tFindFirstClearBit(uint8 v)'/>
 <doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='148'>// Find index of first unset (0) bit starting from the LSB (right). For uint8 will return a value in [-1, 7]. For
 // uint16 will return a value in [-1, 15]. For uint32 will return a value in [-1, 31]. The -1 is returned if no bits
 // were clear. These functions use fancy bit manipulations to get the result -- they do not loop through inspecting

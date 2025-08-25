@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/stl_tree.h' l='1434' type='void std::_Rb_tree::_M_move_assign(_Rb_tree&lt;_Key, _Val, _KeyOfValue, _Compare, _Alloc&gt; &amp; , std::false_type )'/>
+<def f='include/c++/11/bits/stl_tree.h' l='1668' ll='1686' type='void std::_Rb_tree::_M_move_assign(_Rb_tree&lt;_Key, _Val, _KeyOfValue, _Compare, _Alloc&gt; &amp; __x, std::false_type )'/>
+<doc f='include/c++/11/bits/stl_tree.h' l='1431'>// Move assignment from container with possibly non-equal allocator,
+      // which might result in a copy not a move.</doc>

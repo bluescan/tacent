@@ -1,10 +1,10 @@
-<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='226' type='bool tStd::tItostrT(char * str, int strSize, IntegralType value, int base = 10)'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='227' u='c' c='_ZN4tStd7tItostrEPciii'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='228' u='c' c='_ZN4tStd7tItostrEPcixi'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='229' u='c' c='_ZN4tStd7tItostrEPciji'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='230' u='c' c='_ZN4tStd7tItostrEPciyi'/>
-<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='634' ll='637' type='bool tStd::tItostrT(char * str, int strSize, IntegralType value, int base = 10)'/>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='215'>// Here are the functions for going from integral types to strings. strSize (as opposed to length) must include
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='232' type='bool tStd::tItostrT(char * str, int strSize, IntegralType value, int base = 10)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='233' u='c' c='_ZN4tStd7tItostrEPciii'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='234' u='c' c='_ZN4tStd7tItostrEPcixi'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='235' u='c' c='_ZN4tStd7tItostrEPciji'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='236' u='c' c='_ZN4tStd7tItostrEPciyi'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='640' ll='643' type='bool tStd::tItostrT(char * str, int strSize, IntegralType value, int base = 10)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='221'>// Here are the functions for going from integral types to strings. strSize (as opposed to length) must include
 // enough room for the terminating null. strSize should be the full size of the passed-in str buffer. The resulting
 // string, if letter characters are called for (bases &gt; 10) will be capital, not lower case. Base must be E [2, 36].
 // Conversion problems boil down to passing null str, strSize being too small, and specifying an out-of-bounds base.

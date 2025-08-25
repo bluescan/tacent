@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='949' type='void tinyxml2::XMLNode::XMLNode(tinyxml2::XMLDocument * )'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1017' u='c' c='_ZN8tinyxml27XMLTextC1EPNS_11XMLDocumentE'/>

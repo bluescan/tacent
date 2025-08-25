@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='210' type='const Imf_2_5::Attribute &amp; Imf_2_5::Header::operator[](const char * name) const'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='723' u='c' c='_ZNK7Imf_2_56Header14typedAttributeEPKc'/>

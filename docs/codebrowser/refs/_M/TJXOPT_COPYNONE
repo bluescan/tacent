@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='546'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='541'>/**
+ * This option will prevent #tjTransform() from copying any extra markers
+ * (including EXIF and ICC profile data) from the source image to the output
+ * image.
+ */</doc>

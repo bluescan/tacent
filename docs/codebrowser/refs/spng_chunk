@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='374' ll='380'/>
+<size>24</size>
+<mbr r='spng_chunk::offset' o='0' t='size_t'/>
+<mbr r='spng_chunk::length' o='64' t='uint32_t'/>
+<mbr r='spng_chunk::type' o='96' t='uint8_t[4]'/>
+<mbr r='spng_chunk::crc' o='128' t='uint32_t'/>

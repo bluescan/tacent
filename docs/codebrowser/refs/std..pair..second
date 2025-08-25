@@ -23,6 +23,17 @@
 <use f='include/c++/11/bits/hashtable.h' l='2021' u='r' c='_ZNSt10_Hashtable21_M_insert_unique_nodeENSt8__detail15_Hashtable_baseIT_T0_T2_T3_T4_T5_T6_T8_E9size_typeENSA_11__hash_codeENS0_16_Hashtable_allocINSt660719'/>
 <use f='include/c++/11/bits/hashtable.h' l='2049' u='r' c='_ZNSt10_Hashtable20_M_insert_multi_nodeENSt8__detail16_Hashtable_allocINSt23__allocator_traits_base8__rebindIT1_NS0_10_Hash_nodeIT0_Xsr13__hash_cached13831568'/>
 <doc f='include/c++/11/bits/stl_pair.h' l='218'>///&lt; The second member</doc>
+<use f='include/c++/11/bits/stl_tree.h' l='2126' u='r' c='_ZNSt8_Rb_tree16_M_insert_uniqueEOTL0__'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2129' c='_ZNSt8_Rb_tree16_M_insert_uniqueEOTL0__'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2153' c='_ZNSt8_Rb_tree15_M_insert_equalEOTL0__'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2236' u='r' c='_ZNSt8_Rb_tree17_M_insert_unique_ESt23_Rb_tree_const_iteratorIT0_EOTL0__RTL0_0_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2237' c='_ZNSt8_Rb_tree17_M_insert_unique_ESt23_Rb_tree_const_iteratorIT0_EOTL0__RTL0_0_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2318' u='r' c='_ZNSt8_Rb_tree16_M_insert_equal_ESt23_Rb_tree_const_iteratorIT0_EOTL0__RTL0_0_'/>
+<use f='include/c++/11/bits/stl_tree.h' l='2319' c='_ZNSt8_Rb_tree16_M_insert_equal_ESt23_Rb_tree_const_iteratorIT0_EOTL0__RTL0_0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='631' u='r' c='_ZNK7Imf_2_56Header8Iterator9attributeEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='683' u='r' c='_ZNK7Imf_2_56Header13ConstIterator9attributeEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='754' u='r' c='_ZN7Imf_2_56Header18findTypedAttributeEPKc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='763' u='r' c='_ZNK7Imf_2_56Header18findTypedAttributeEPKc'/>
 <use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='662' u='r' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
 <use f='include/c++/11/bits/fs_path.h' l='1219' u='r' c='_ZNKSt10filesystem7__cxx114path4stemEv'/>
 <use f='include/c++/11/bits/fs_path.h' l='1220' u='r' c='_ZNKSt10filesystem7__cxx114path4stemEv'/>

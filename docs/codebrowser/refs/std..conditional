@@ -34,4 +34,5 @@
 <doc f='include/c++/11/type_traits' l='2223'>// Partial specialization for false.</doc>
 <use f='include/c++/11/bits/unique_ptr.h' l='337'/>
 <use f='include/c++/11/bits/unique_ptr.h' l='600'/>
+<use f='include/c++/11/bits/stl_tree.h' l='640' c='_ZNSt8_Rb_tree13_M_clone_nodeEPSt13_Rb_tree_nodeIT0_ERTL0_0_'/>
 <use f='include/c++/11/bits/shared_ptr_base.h' l='678' c='_ZNSt14__shared_countC1EOSt10unique_ptrITL0__TL0_0_E'/>

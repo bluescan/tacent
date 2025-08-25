@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='254' type='-1'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='251'>/**
+   * Unknown pixel format.  Currently this is only used by #tjLoadImage().
+   */</doc>

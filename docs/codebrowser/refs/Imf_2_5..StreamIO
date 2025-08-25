@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='231' ll='244'/>
+<size>1</size>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='227'>//-----------------------
+// Helper classes for Xdr
+//-----------------------</doc>
+<fun r='_ZN7Imf_2_58StreamIO10writeCharsERNS_7OStreamEPKci'/>
+<fun r='_ZN7Imf_2_58StreamIO9readCharsERNS_7IStreamEPci'/>

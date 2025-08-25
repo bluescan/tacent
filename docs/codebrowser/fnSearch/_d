@@ -1,5 +1,6 @@
 _ZSt8_DestroyPT_|std::_Destroy
 _ZSt10_Destroy_nT_T0_|std::_Destroy_n
+_ZN8tinyxml211XMLDocument12DepthTrackerD1Ev|tinyxml2::XMLDocument::DepthTracker::~DepthTracker
 _ZNSt11_Deque_base11_Deque_implC1Ev|std::_Deque_base::_Deque_impl::_Deque_impl
 _ZNSt11_Deque_base16_Deque_impl_dataC1Ev|std::_Deque_base::_Deque_impl_data::_Deque_impl_data
 _ZNSt11_Deque_base16_Deque_impl_data12_M_swap_dataERS0_|std::_Deque_base::_Deque_impl_data::_M_swap_data

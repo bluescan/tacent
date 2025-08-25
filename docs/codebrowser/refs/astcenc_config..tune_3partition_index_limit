@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='457' type='unsigned int'/>
+<offset>416</offset>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='452'>/**
+	 * @brief The maximum number of partitions searched (-3partitionindexlimit).
+	 *
+	 * Valid values are between 1 and 1024.
+	 */</doc>

@@ -1,0 +1,6 @@
+<dec f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='78' type='void tInput::tContDefn::SetGeneric()'/>
+<def f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='127' ll='142' type='void tInput::tContDefn::SetGeneric()'/>
+<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='76'>// I want to keep tContDefn as an aggregrate type. For this reason if you need to set the parameters to a reasonable
+	// &apos;generic&apos; set of values, call this function.</doc>
+<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='124'>// Implementation below this line.</doc>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='191' u='c' c='_ZN6tInput12tContGamepad13SetDefinitionEv'/>

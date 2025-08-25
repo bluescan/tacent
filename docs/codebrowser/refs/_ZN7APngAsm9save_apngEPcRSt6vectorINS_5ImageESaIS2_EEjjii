@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='104' type='int APngAsm::save_apng(char * szOut, std::vector&lt;Image&gt; &amp; img, unsigned int loops, unsigned int first, int deflate_method, int iter)'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='321' u='c' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<doc f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='100'>// @tacent
+// deflate_method = 0 for zlib (only one supported).
+// iter is ignored for zlib.
+// first is the index of the first frame (usually 0).</doc>

@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfTileDescription.h' l='73' type='unsigned int'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfTileDescription.h' l='83' u='w' c='_ZN7Imf_2_515TileDescriptionC1EjjNS_9LevelModeENS_17LevelRoundingModeE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfTileDescription.h' l='94' u='r' c='_ZNK7Imf_2_515TileDescriptioneqERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfTileDescription.h' l='94' u='r' c='_ZNK7Imf_2_515TileDescriptioneqERKS0_'/>
+<offset>32</offset>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfTileDescription.h' l='73'>// size of a tile in the y dimension</doc>

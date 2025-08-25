@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='282' type='T &amp; Imath_2_5::Vec3::operator[](int i)'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1288' ll='1293' type='T &amp; Imath_2_5::Vec3::operator[](int i)'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1284'>//-----------------------
+// Implementation of Vec3
+//-----------------------</doc>

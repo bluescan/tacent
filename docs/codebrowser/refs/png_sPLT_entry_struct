@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/LibPNG/include/png.h' l='516' ll='523'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='516'/>
+<size>10</size>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='512'>/*
+ * The following two structures are used for the in-core representation
+ * of sPLT chunks.
+ */</doc>
+<mbr r='png_sPLT_entry_struct::red' o='0' t='png_uint_16'/>
+<mbr r='png_sPLT_entry_struct::green' o='16' t='png_uint_16'/>
+<mbr r='png_sPLT_entry_struct::blue' o='32' t='png_uint_16'/>
+<mbr r='png_sPLT_entry_struct::alpha' o='48' t='png_uint_16'/>
+<mbr r='png_sPLT_entry_struct::frequency' o='64' t='png_uint_16'/>

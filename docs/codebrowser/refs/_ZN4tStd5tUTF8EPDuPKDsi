@@ -1,5 +1,5 @@
-<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='268' type='int tStd::tUTF8(char8_t * dst, const char16_t * src, int srcLen)'/>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='255'>// These functions convert to/from the 3 main unicode encodings. Note that most text in Tacent is
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='274' type='int tStd::tUTF8(char8_t * dst, const char16_t * src, int srcLen)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='261'>// These functions convert to/from the 3 main unicode encodings. Note that most text in Tacent is
 // assumed to be UTF-8. These are provided so external or OS-specific calls can be made when they expect non-UTF-8
 // input, and when results are supplied, converted back to UTF-8.
 //
@@ -12,10 +12,10 @@
 //    (charNs) written.
 // Caller is responsibe for making sure dst is big enough! srcLen is not the number of code-points, it is the number of
 // code-units (charNs) provided by the src pointer.</doc>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='268'>// UFT-16 to UTF-8.</doc>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='274'>// UFT-16 to UTF-8.</doc>
 <use f='Modules/Foundation/Inc/Foundation/tName.h' l='540' u='c' c='_ZN5tName8SetUTF16EPKDsi'/>
 <use f='Modules/Foundation/Inc/Foundation/tName.h' l='543' u='c' c='_ZN5tName8SetUTF16EPKDsi'/>
-<def f='Modules/Foundation/Src/tStandard.cpp' l='298' ll='331' type='int tStd::tUTF8(char8_t * dst, const char16_t * src, int srcLen)'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='490' u='c' c='_ZN4tStd6tUTF8sEPDuPKDs'/>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='361' ll='394' type='int tStd::tUTF8(char8_t * dst, const char16_t * src, int srcLen)'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='553' u='c' c='_ZN4tStd6tUTF8sEPDuPKDs'/>
 <use f='Modules/Foundation/Src/tString.cpp' l='657' u='c' c='_ZN7tString8SetUTF16EPKDsi'/>
 <use f='Modules/Foundation/Src/tString.cpp' l='659' u='c' c='_ZN7tString8SetUTF16EPKDsi'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2284' type='void tinyxml2::XMLPrinter::PushComment(const char * comment)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2283'>/// Add a comment</doc>

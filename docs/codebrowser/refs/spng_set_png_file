@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='450' type='int spng_set_png_file(spng_ctx * ctx, FILE * file)'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='855' u='c' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

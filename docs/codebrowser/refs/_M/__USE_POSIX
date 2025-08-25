@@ -12,5 +12,6 @@
 <use f='include/signal.h' l='34' u='a'/>
 <use f='include/signal.h' l='111' u='a'/>
 <use f='include/signal.h' l='196' u='a'/>
+<use f='include/setjmp.h' l='66' u='a'/>
 <use f='include/pwd.h' l='118' u='a'/>
 <use f='include/dirent.h' l='176' u='a'/>

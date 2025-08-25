@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibSPNG/spng.h' l='335' ll='342'/>
+<use f='Modules/Image/Contrib/LibSPNG/spng.h' l='349'/>
+<size>10</size>
+<mbr r='spng_splt_entry::red' o='0' t='uint16_t'/>
+<mbr r='spng_splt_entry::green' o='16' t='uint16_t'/>
+<mbr r='spng_splt_entry::blue' o='32' t='uint16_t'/>
+<mbr r='spng_splt_entry::alpha' o='48' t='uint16_t'/>
+<mbr r='spng_splt_entry::frequency' o='64' t='uint16_t'/>

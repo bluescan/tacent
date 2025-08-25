@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>cstddef source code [include/c++/11/cstddef] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::__byte_operand,std::byte "/>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/cstddef'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>c++</a>/<a href='./'>11</a>/<a href='cstddef.html'>cstddef</a><br><a href='/tacent/index.html'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/tacent/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// -*- C++ -*- forwarding header.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 1997-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">cstddef</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is a Standard C++ Library file.  You should<span class="command"> @c</span> <span class="arg">\#includ</span>e this file</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  in your programs, rather than any of the<span class="command"> @a</span> <span class="arg">*.h</span> implementation files.</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> *</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i class="doc"> *  This is the C++ version of the Standard C Library header<span class="command"> @c</span> <span class="arg">stddef.h,</span></i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i class="doc"> *  and its contents are (mostly) the same as that header, but are all</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i class="doc"> *  contained in the namespace<span class="command"> @c</span> <span class="arg">std</span> (except for names which are defined</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i class="doc"> *  as macros in C).</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i class="doc">// ISO C++ 14882: 18.1  Types</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#<span data-ppcond="39">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_CSTDDEF">_GLIBCXX_CSTDDEF</span></u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_CSTDDEF" data-ref="_M/_GLIBCXX_CSTDDEF">_GLIBCXX_CSTDDEF</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="41">41</th><td>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>#undef <span class="macro" data-ref="_M/__need_wchar_t">__need_wchar_t</span></u>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u>#undef <span class="macro" data-ref="_M/__need_ptrdiff_t">__need_ptrdiff_t</span></u>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u>#undef <span class="macro" data-ref="_M/__need_size_t">__need_size_t</span></u>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u>#undef <span class="macro" data-ref="_M/__need_NULL">__need_NULL</span></u>&nbsp</td></tr>
+<tr><th id="48">48</th><td><u>#undef <span class="macro" data-ref="_M/__need_wint_t">__need_wint_t</span></u>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#include &lt;bits/c++config.h&gt;</u>&nbsp</td></tr>
+<tr><th id="50">50</th><td><u>#include &lt;stddef.h&gt;</u>&nbsp</td></tr>
+<tr><th id="51">51</th><td>&nbsp</td></tr>
+<tr><th id="52">52</th><td><b>extern</b> <q>"C++"</q>&nbsp</td></tr>
+<tr><th id="53">53</th><td>{&nbsp</td></tr>
+<tr><th id="54">54</th><td><u>#<span data-ppcond="54">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="55">55</th><td><b>namespace</b> <span class="namespace">std</span>&nbsp</td></tr>
+<tr><th id="56">56</th><td>{&nbsp</td></tr>
+<tr><th id="57">57</th><td>  <i>// We handle size_t, ptrdiff_t, and nullptr_t in c++config.h.</i>&nbsp</td></tr>
+<tr><th id="58">58</th><td>  <b>using</b> ::max_align_t;&nbsp</td></tr>
+<tr><th id="59">59</th><td>}&nbsp</td></tr>
+<tr><th id="60">60</th><td><u>#<span data-ppcond="54">endif</span> // C++11</u>&nbsp</td></tr>
+<tr><th id="61">61</th><td>&nbsp</td></tr>
+<tr><th id="62">62</th><td><u>#<span data-ppcond="62">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="63">63</th><td><b>namespace</b> <span class="namespace">std</span>&nbsp</td></tr>
+<tr><th id="64">64</th><td>{&nbsp</td></tr>
+<tr><th id="65">65</th><td><a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="66">66</th><td><u>#define <dfn class="macro" id="_M/__cpp_lib_byte" data-ref="_M/__cpp_lib_byte">__cpp_lib_byte</dfn> 201603</u>&nbsp</td></tr>
+<tr><th id="67">67</th><td>&nbsp</td></tr>
+<tr><th id="68">68</th><td>  <i class="doc">/// std::byte</i>&nbsp</td></tr>
+<tr><th id="69">69</th><td>  <b>enum</b> <b>class</b> <dfn class="type def" id="std::byte" title='std::byte' data-ref="std::byte">byte</dfn> : <em>unsigned</em> <em>char</em> {};&nbsp</td></tr>
+<tr><th id="70">70</th><td>&nbsp</td></tr>
+<tr><th id="71">71</th><td>  <b>template</b>&lt;<b>typename</b> _IntegerType&gt; <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</dfn> { };&nbsp</td></tr>
+<tr><th id="72">72</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand"><a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a></dfn>&lt;<em>bool</em>&gt; { <b>using</b> <dfn class="typedef" id="std::__byte_operand{bool}::__type" title='std::__byte_operand&lt;bool&gt;::__type' data-type='std::byte' data-ref="std::__byte_operand{bool}::__type">__type</dfn> = <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>; };&nbsp</td></tr>
+<tr><th id="73">73</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand"><a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a></dfn>&lt;<em>char</em>&gt; { <b>using</b> <dfn class="typedef" id="std::__byte_operand{char}::__type" title='std::__byte_operand&lt;char&gt;::__type' data-type='std::byte' data-ref="std::__byte_operand{char}::__type">__type</dfn> = <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>; };&nbsp</td></tr>
+<tr><th id="74">74</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand"><a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a></dfn>&lt;<em>signed</em> <em>char</em>&gt; { <b>using</b> <dfn class="typedef" id="std::__byte_operand{signedchar}::__type" title='std::__byte_operand&lt;signed char&gt;::__type' data-type='std::byte' data-ref="std::__byte_operand{signedchar}::__type">__type</dfn> = <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>; };&nbsp</td></tr>
+<tr><th id="75">75</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand"><a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a></dfn>&lt;<em>unsigned</em> <em>char</em>&gt; { <b>using</b> <dfn class="typedef" id="std::__byte_operand{unsignedchar}::__type" title='std::__byte_operand&lt;unsigned char&gt;::__type' data-type='std::byte' data-ref="std::__byte_operand{unsignedchar}::__type">__type</dfn> = <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>; };&nbsp</td></tr>
+<tr><th id="76">76</th><td><u>#<span data-ppcond="76">ifdef</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1797" data-ref="_M/_GLIBCXX_USE_WCHAR_T">_GLIBCXX_USE_WCHAR_T</a></u>&nbsp</td></tr>
+<tr><th id="77">77</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand"><a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a></dfn>&lt;<em>wchar_t</em>&gt; { <b>using</b> <dfn class="typedef" id="std::__byte_operand{wchar_t}::__type" title='std::__byte_operand&lt;wchar_t&gt;::__type' data-type='std::byte' data-ref="std::__byte_operand{wchar_t}::__type">__type</dfn> = <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>; };&nbsp</td></tr>
+<tr><th id="78">78</th><td><u>#<span data-ppcond="76">endif</span></u>&nbsp</td></tr>
+<tr><th id="79">79</th><td><u>#<span data-ppcond="79">ifdef</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#694" data-ref="_M/_GLIBCXX_USE_CHAR8_T">_GLIBCXX_USE_CHAR8_T</a></u>&nbsp</td></tr>
+<tr><th id="80">80</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand"><a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a></dfn>&lt;<b>char8_t</b>&gt; { <b>using</b> <dfn class="typedef" id="std::__byte_operand{char8_t}::__type" title='std::__byte_operand&lt;char8_t&gt;::__type' data-type='std::byte' data-ref="std::__byte_operand{char8_t}::__type">__type</dfn> = <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>; };&nbsp</td></tr>
+<tr><th id="81">81</th><td><u>#<span data-ppcond="79">endif</span></u>&nbsp</td></tr>
+<tr><th id="82">82</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand"><a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a></dfn>&lt;<em>char16_t</em>&gt; { <b>using</b> <dfn class="typedef" id="std::__byte_operand{char16_t}::__type" title='std::__byte_operand&lt;char16_t&gt;::__type' data-type='std::byte' data-ref="std::__byte_operand{char16_t}::__type">__type</dfn> = <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>; };&nbsp</td></tr>
+<tr><th id="83">83</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand"><a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a></dfn>&lt;<em>char32_t</em>&gt; { <b>using</b> <dfn class="typedef" id="std::__byte_operand{char32_t}::__type" title='std::__byte_operand&lt;char32_t&gt;::__type' data-type='std::byte' data-ref="std::__byte_operand{char32_t}::__type">__type</dfn> = <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>; };&nbsp</td></tr>
+<tr><th id="84">84</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand"><a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a></dfn>&lt;<em>short</em>&gt; { <b>using</b> <dfn class="typedef" id="std::__byte_operand{short}::__type" title='std::__byte_operand&lt;short&gt;::__type' data-type='std::byte' data-ref="std::__byte_operand{short}::__type">__type</dfn> = <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>; };&nbsp</td></tr>
+<tr><th id="85">85</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand"><a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a></dfn>&lt;<em>unsigned</em> <em>short</em>&gt; { <b>using</b> <dfn class="typedef" id="std::__byte_operand{unsignedshort}::__type" title='std::__byte_operand&lt;unsigned short&gt;::__type' data-type='std::byte' data-ref="std::__byte_operand{unsignedshort}::__type">__type</dfn> = <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>; };&nbsp</td></tr>
+<tr><th id="86">86</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand"><a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a></dfn>&lt;<em>int</em>&gt; { <b>using</b> <dfn class="typedef" id="std::__byte_operand{int}::__type" title='std::__byte_operand&lt;int&gt;::__type' data-type='std::byte' data-ref="std::__byte_operand{int}::__type">__type</dfn> = <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>; };&nbsp</td></tr>
+<tr><th id="87">87</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand"><a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a></dfn>&lt;<em>unsigned</em> <em>int</em>&gt; { <b>using</b> <dfn class="typedef" id="std::__byte_operand{unsignedint}::__type" title='std::__byte_operand&lt;unsigned int&gt;::__type' data-type='std::byte' data-ref="std::__byte_operand{unsignedint}::__type">__type</dfn> = <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>; };&nbsp</td></tr>
+<tr><th id="88">88</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand"><a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a></dfn>&lt;<em>long</em>&gt; { <b>using</b> <dfn class="typedef" id="std::__byte_operand{long}::__type" title='std::__byte_operand&lt;long&gt;::__type' data-type='std::byte' data-ref="std::__byte_operand{long}::__type">__type</dfn> = <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>; };&nbsp</td></tr>
+<tr><th id="89">89</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand"><a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a></dfn>&lt;<em>unsigned</em> <em>long</em>&gt; { <b>using</b> <dfn class="typedef" id="std::__byte_operand{unsignedlong}::__type" title='std::__byte_operand&lt;unsigned long&gt;::__type' data-type='std::byte' data-ref="std::__byte_operand{unsignedlong}::__type">__type</dfn> = <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>; };&nbsp</td></tr>
+<tr><th id="90">90</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand"><a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a></dfn>&lt;<em>long</em> <em>long</em>&gt; { <b>using</b> <dfn class="typedef" id="std::__byte_operand{longlong}::__type" title='std::__byte_operand&lt;long long&gt;::__type' data-type='std::byte' data-ref="std::__byte_operand{longlong}::__type">__type</dfn> = <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>; };&nbsp</td></tr>
+<tr><th id="91">91</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand"><a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a></dfn>&lt;<em>unsigned</em> <em>long</em> <em>long</em>&gt; { <b>using</b> <dfn class="typedef" id="std::__byte_operand{unsignedlonglong}::__type" title='std::__byte_operand&lt;unsigned long long&gt;::__type' data-type='std::byte' data-ref="std::__byte_operand{unsignedlonglong}::__type">__type</dfn> = <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>; };&nbsp</td></tr>
+<tr><th id="92">92</th><td><u>#<span data-ppcond="92">if</span> defined(<span class="macro" data-ref="_M/__GLIBCXX_TYPE_INT_N_0">__GLIBCXX_TYPE_INT_N_0</span>)</u>&nbsp</td></tr>
+<tr><th id="93">93</th><td>  <b>template</b>&lt;&gt; <b>struct</b> __byte_operand&lt;__GLIBCXX_TYPE_INT_N_0&gt;&nbsp</td></tr>
+<tr><th id="94">94</th><td>  { <b>using</b> __type = byte; };&nbsp</td></tr>
+<tr><th id="95">95</th><td>  <b>template</b>&lt;&gt; <b>struct</b> __byte_operand&lt;<em>unsigned</em> __GLIBCXX_TYPE_INT_N_0&gt;&nbsp</td></tr>
+<tr><th id="96">96</th><td>  { <b>using</b> __type = byte; };&nbsp</td></tr>
+<tr><th id="97">97</th><td><u>#<span data-ppcond="92">endif</span></u>&nbsp</td></tr>
+<tr><th id="98">98</th><td><u>#<span data-ppcond="98">if</span> defined(<span class="macro" data-ref="_M/__GLIBCXX_TYPE_INT_N_1">__GLIBCXX_TYPE_INT_N_1</span>)</u>&nbsp</td></tr>
+<tr><th id="99">99</th><td>  <b>template</b>&lt;&gt; <b>struct</b> __byte_operand&lt;__GLIBCXX_TYPE_INT_N_1&gt;&nbsp</td></tr>
+<tr><th id="100">100</th><td>  { <b>using</b> __type = byte; };&nbsp</td></tr>
+<tr><th id="101">101</th><td>  <b>template</b>&lt;&gt; <b>struct</b> __byte_operand&lt;<em>unsigned</em> __GLIBCXX_TYPE_INT_N_1&gt;&nbsp</td></tr>
+<tr><th id="102">102</th><td>  { <b>using</b> __type = byte; };&nbsp</td></tr>
+<tr><th id="103">103</th><td><u>#<span data-ppcond="98">endif</span></u>&nbsp</td></tr>
+<tr><th id="104">104</th><td><u>#<span data-ppcond="104">if</span> defined(<span class="macro" data-ref="_M/__GLIBCXX_TYPE_INT_N_2">__GLIBCXX_TYPE_INT_N_2</span>)</u>&nbsp</td></tr>
+<tr><th id="105">105</th><td>  <b>template</b>&lt;&gt; <b>struct</b> __byte_operand&lt;__GLIBCXX_TYPE_INT_N_2&gt;&nbsp</td></tr>
+<tr><th id="106">106</th><td>  { <b>using</b> __type = byte; };&nbsp</td></tr>
+<tr><th id="107">107</th><td>  <b>template</b>&lt;&gt; <b>struct</b> __byte_operand&lt;<em>unsigned</em> __GLIBCXX_TYPE_INT_N_2&gt;&nbsp</td></tr>
+<tr><th id="108">108</th><td>  { <b>using</b> __type = byte; };&nbsp</td></tr>
+<tr><th id="109">109</th><td><u>#<span data-ppcond="104">endif</span></u>&nbsp</td></tr>
+<tr><th id="110">110</th><td>  <b>template</b>&lt;<b>typename</b> _IntegerType&gt;&nbsp</td></tr>
+<tr><th id="111">111</th><td>    <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</dfn>&lt;<em>const</em> _IntegerType&gt;&nbsp</td></tr>
+<tr><th id="112">112</th><td>    : <a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a>&lt;_IntegerType&gt; { };&nbsp</td></tr>
+<tr><th id="113">113</th><td>  <b>template</b>&lt;<b>typename</b> _IntegerType&gt;&nbsp</td></tr>
+<tr><th id="114">114</th><td>    <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</dfn>&lt;<em>volatile</em> _IntegerType&gt;&nbsp</td></tr>
+<tr><th id="115">115</th><td>    : <a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a>&lt;_IntegerType&gt; { };&nbsp</td></tr>
+<tr><th id="116">116</th><td>  <b>template</b>&lt;<b>typename</b> _IntegerType&gt;&nbsp</td></tr>
+<tr><th id="117">117</th><td>    <b>struct</b> <dfn class="type def" id="std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</dfn>&lt;<em>const</em> <em>volatile</em> _IntegerType&gt;&nbsp</td></tr>
+<tr><th id="118">118</th><td>    : <a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a>&lt;_IntegerType&gt; { };&nbsp</td></tr>
+<tr><th id="119">119</th><td>&nbsp</td></tr>
+<tr><th id="120">120</th><td>  <b>template</b>&lt;<b>typename</b> _IntegerType&gt;&nbsp</td></tr>
+<tr><th id="121">121</th><td>    <b>using</b> <dfn class="typedef" id="std::__byte_op_t" title='std::__byte_op_t' data-type='typename __byte_operand&lt;_IntegerType&gt;::__type' data-ref="std::__byte_op_t">__byte_op_t</dfn> = <b>typename</b> <a class="type" href="#std::__byte_operand" title='std::__byte_operand' data-ref="std::__byte_operand">__byte_operand</a>&lt;_IntegerType&gt;::__type;&nbsp</td></tr>
+<tr><th id="122">122</th><td>&nbsp</td></tr>
+<tr><th id="123">123</th><td>  <b>template</b>&lt;<b>typename</b> _IntegerType&gt;&nbsp</td></tr>
+<tr><th id="124">124</th><td>    [[__gnu__::__always_inline__]]&nbsp</td></tr>
+<tr><th id="125">125</th><td>    <b>constexpr</b> <a class="type" href="#std::__byte_op_t" title='std::__byte_op_t' data-ref="std::__byte_op_t">__byte_op_t</a>&lt;_IntegerType&gt;&nbsp</td></tr>
+<tr><th id="126">126</th><td>    <dfn class="decl def fn" id="_ZStlsSt4byteT_" title='std::operator&lt;&lt;' data-ref="_ZStlsSt4byteT_"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a> <dfn class="local col3 decl" id="13__b" title='__b' data-type='std::byte' data-ref="13__b">__b</dfn>, _IntegerType <dfn class="local col4 decl" id="14__shift" title='__shift' data-type='_IntegerType' data-ref="14__shift">__shift</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="127">127</th><td>    { <b>return</b> (<a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>)(<em>unsigned</em> <em>char</em>)((<em>unsigned</em>)<a class="local col3 ref" href="#13__b" title='__b' data-ref="13__b">__b</a> &lt;&lt; <a class="local col4 ref" href="#14__shift" title='__shift' data-ref="14__shift">__shift</a>); }&nbsp</td></tr>
+<tr><th id="128">128</th><td>&nbsp</td></tr>
+<tr><th id="129">129</th><td>  <b>template</b>&lt;<b>typename</b> _IntegerType&gt;&nbsp</td></tr>
+<tr><th id="130">130</th><td>    [[__gnu__::__always_inline__]]&nbsp</td></tr>
+<tr><th id="131">131</th><td>    <b>constexpr</b> <a class="type" href="#std::__byte_op_t" title='std::__byte_op_t' data-ref="std::__byte_op_t">__byte_op_t</a>&lt;_IntegerType&gt;&nbsp</td></tr>
+<tr><th id="132">132</th><td>    <dfn class="decl def fn" id="_ZStrsSt4byteT_" title='std::operator&gt;&gt;' data-ref="_ZStrsSt4byteT_"><b>operator</b>&gt;&gt;</dfn>(<a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a> <dfn class="local col5 decl" id="15__b" title='__b' data-type='std::byte' data-ref="15__b">__b</dfn>, _IntegerType <dfn class="local col6 decl" id="16__shift" title='__shift' data-type='_IntegerType' data-ref="16__shift">__shift</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="133">133</th><td>    { <b>return</b> (<a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>)(<em>unsigned</em> <em>char</em>)((<em>unsigned</em>)<a class="local col5 ref" href="#15__b" title='__b' data-ref="15__b">__b</a> &gt;&gt; <a class="local col6 ref" href="#16__shift" title='__shift' data-ref="16__shift">__shift</a>); }&nbsp</td></tr>
+<tr><th id="134">134</th><td>&nbsp</td></tr>
+<tr><th id="135">135</th><td>  [[__gnu__::__always_inline__]]&nbsp</td></tr>
+<tr><th id="136">136</th><td>  <b>constexpr</b> <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>&nbsp</td></tr>
+<tr><th id="137">137</th><td>  <dfn class="decl def fn" id="_ZStorSt4byteS_" title='std::operator|' data-ref="_ZStorSt4byteS_"><b>operator</b>|</dfn>(<a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a> <dfn class="local col7 decl" id="17__l" title='__l' data-type='std::byte' data-ref="17__l">__l</dfn>, <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a> <dfn class="local col8 decl" id="18__r" title='__r' data-type='std::byte' data-ref="18__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="138">138</th><td>  { <b>return</b> (<a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>)(<em>unsigned</em> <em>char</em>)((<em>unsigned</em>)<a class="local col7 ref" href="#17__l" title='__l' data-ref="17__l">__l</a> | (<em>unsigned</em>)<a class="local col8 ref" href="#18__r" title='__r' data-ref="18__r">__r</a>); }&nbsp</td></tr>
+<tr><th id="139">139</th><td>&nbsp</td></tr>
+<tr><th id="140">140</th><td>  [[__gnu__::__always_inline__]]&nbsp</td></tr>
+<tr><th id="141">141</th><td>  <b>constexpr</b> <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>&nbsp</td></tr>
+<tr><th id="142">142</th><td>  <dfn class="decl def fn" id="_ZStanSt4byteS_" title='std::operator&amp;' data-ref="_ZStanSt4byteS_"><b>operator</b>&amp;</dfn>(<a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a> <dfn class="local col9 decl" id="19__l" title='__l' data-type='std::byte' data-ref="19__l">__l</dfn>, <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a> <dfn class="local col0 decl" id="20__r" title='__r' data-type='std::byte' data-ref="20__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="143">143</th><td>  { <b>return</b> (<a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>)(<em>unsigned</em> <em>char</em>)((<em>unsigned</em>)<a class="local col9 ref" href="#19__l" title='__l' data-ref="19__l">__l</a> &amp; (<em>unsigned</em>)<a class="local col0 ref" href="#20__r" title='__r' data-ref="20__r">__r</a>); }&nbsp</td></tr>
+<tr><th id="144">144</th><td>&nbsp</td></tr>
+<tr><th id="145">145</th><td>  [[__gnu__::__always_inline__]]&nbsp</td></tr>
+<tr><th id="146">146</th><td>  <b>constexpr</b> <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>&nbsp</td></tr>
+<tr><th id="147">147</th><td>  <dfn class="decl def fn" id="_ZSteoSt4byteS_" title='std::operator^' data-ref="_ZSteoSt4byteS_"><b>operator</b>^</dfn>(<a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a> <dfn class="local col1 decl" id="21__l" title='__l' data-type='std::byte' data-ref="21__l">__l</dfn>, <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a> <dfn class="local col2 decl" id="22__r" title='__r' data-type='std::byte' data-ref="22__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="148">148</th><td>  { <b>return</b> (<a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>)(<em>unsigned</em> <em>char</em>)((<em>unsigned</em>)<a class="local col1 ref" href="#21__l" title='__l' data-ref="21__l">__l</a> ^ (<em>unsigned</em>)<a class="local col2 ref" href="#22__r" title='__r' data-ref="22__r">__r</a>); }&nbsp</td></tr>
+<tr><th id="149">149</th><td>&nbsp</td></tr>
+<tr><th id="150">150</th><td>  [[__gnu__::__always_inline__]]&nbsp</td></tr>
+<tr><th id="151">151</th><td>  <b>constexpr</b> <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>&nbsp</td></tr>
+<tr><th id="152">152</th><td>  <dfn class="decl def fn" id="_ZStcoSt4byte" title='std::operator~' data-ref="_ZStcoSt4byte"><b>operator</b>~</dfn>(<a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a> <dfn class="local col3 decl" id="23__b" title='__b' data-type='std::byte' data-ref="23__b">__b</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="153">153</th><td>  { <b>return</b> (<a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>)(<em>unsigned</em> <em>char</em>)~(<em>unsigned</em>)<a class="local col3 ref" href="#23__b" title='__b' data-ref="23__b">__b</a>; }&nbsp</td></tr>
+<tr><th id="154">154</th><td>&nbsp</td></tr>
+<tr><th id="155">155</th><td>  <b>template</b>&lt;<b>typename</b> _IntegerType&gt;&nbsp</td></tr>
+<tr><th id="156">156</th><td>    [[__gnu__::__always_inline__]]&nbsp</td></tr>
+<tr><th id="157">157</th><td>    <b>constexpr</b> <a class="type" href="#std::__byte_op_t" title='std::__byte_op_t' data-ref="std::__byte_op_t">__byte_op_t</a>&lt;_IntegerType&gt;&amp;&nbsp</td></tr>
+<tr><th id="158">158</th><td>    <dfn class="decl def fn" id="_ZStlSRSt4byteT_" title='std::operator&lt;&lt;=' data-ref="_ZStlSRSt4byteT_"><b>operator</b>&lt;&lt;=</dfn>(<a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>&amp; <dfn class="local col4 decl" id="24__b" title='__b' data-type='std::byte &amp;' data-ref="24__b">__b</dfn>, _IntegerType <dfn class="local col5 decl" id="25__shift" title='__shift' data-type='_IntegerType' data-ref="25__shift">__shift</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="159">159</th><td>    { <b>return</b> <a class="local col4 ref" href="#24__b" title='__b' data-ref="24__b">__b</a> = <a class="local col4 ref" href="#24__b" title='__b' data-ref="24__b">__b</a> &lt;&lt; <a class="local col5 ref" href="#25__shift" title='__shift' data-ref="25__shift">__shift</a>; }&nbsp</td></tr>
+<tr><th id="160">160</th><td>&nbsp</td></tr>
+<tr><th id="161">161</th><td>  <b>template</b>&lt;<b>typename</b> _IntegerType&gt;&nbsp</td></tr>
+<tr><th id="162">162</th><td>    [[__gnu__::__always_inline__]]&nbsp</td></tr>
+<tr><th id="163">163</th><td>    <b>constexpr</b> <a class="type" href="#std::__byte_op_t" title='std::__byte_op_t' data-ref="std::__byte_op_t">__byte_op_t</a>&lt;_IntegerType&gt;&amp;&nbsp</td></tr>
+<tr><th id="164">164</th><td>    <dfn class="decl def fn" id="_ZStrSRSt4byteT_" title='std::operator&gt;&gt;=' data-ref="_ZStrSRSt4byteT_"><b>operator</b>&gt;&gt;=</dfn>(<a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>&amp; <dfn class="local col6 decl" id="26__b" title='__b' data-type='std::byte &amp;' data-ref="26__b">__b</dfn>, _IntegerType <dfn class="local col7 decl" id="27__shift" title='__shift' data-type='_IntegerType' data-ref="27__shift">__shift</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="165">165</th><td>    { <b>return</b> <a class="local col6 ref" href="#26__b" title='__b' data-ref="26__b">__b</a> = <a class="local col6 ref" href="#26__b" title='__b' data-ref="26__b">__b</a> &gt;&gt; <a class="local col7 ref" href="#27__shift" title='__shift' data-ref="27__shift">__shift</a>; }&nbsp</td></tr>
+<tr><th id="166">166</th><td>&nbsp</td></tr>
+<tr><th id="167">167</th><td>  [[__gnu__::__always_inline__]]&nbsp</td></tr>
+<tr><th id="168">168</th><td>  <b>constexpr</b> <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>&amp;&nbsp</td></tr>
+<tr><th id="169">169</th><td>  <dfn class="decl def fn" id="_ZStoRRSt4byteS_" title='std::operator|=' data-ref="_ZStoRRSt4byteS_"><b>operator</b>|=</dfn>(<a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>&amp; <dfn class="local col8 decl" id="28__l" title='__l' data-type='std::byte &amp;' data-ref="28__l">__l</dfn>, <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a> <dfn class="local col9 decl" id="29__r" title='__r' data-type='std::byte' data-ref="29__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="170">170</th><td>  { <b>return</b> <a class="local col8 ref" href="#28__l" title='__l' data-ref="28__l">__l</a> = <a class="local col8 ref" href="#28__l" title='__l' data-ref="28__l">__l</a> <a class="ref fn" href="#_ZStorSt4byteS_" title='std::operator|' data-ref="_ZStorSt4byteS_">|</a> <a class="local col9 ref" href="#29__r" title='__r' data-ref="29__r">__r</a>; }&nbsp</td></tr>
+<tr><th id="171">171</th><td>&nbsp</td></tr>
+<tr><th id="172">172</th><td>  [[__gnu__::__always_inline__]]&nbsp</td></tr>
+<tr><th id="173">173</th><td>  <b>constexpr</b> <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>&amp;&nbsp</td></tr>
+<tr><th id="174">174</th><td>  <dfn class="decl def fn" id="_ZStaNRSt4byteS_" title='std::operator&amp;=' data-ref="_ZStaNRSt4byteS_"><b>operator</b>&amp;=</dfn>(<a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>&amp; <dfn class="local col0 decl" id="30__l" title='__l' data-type='std::byte &amp;' data-ref="30__l">__l</dfn>, <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a> <dfn class="local col1 decl" id="31__r" title='__r' data-type='std::byte' data-ref="31__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="175">175</th><td>  { <b>return</b> <a class="local col0 ref" href="#30__l" title='__l' data-ref="30__l">__l</a> = <a class="local col0 ref" href="#30__l" title='__l' data-ref="30__l">__l</a> <a class="ref fn" href="#_ZStanSt4byteS_" title='std::operator&amp;' data-ref="_ZStanSt4byteS_">&amp;</a> <a class="local col1 ref" href="#31__r" title='__r' data-ref="31__r">__r</a>; }&nbsp</td></tr>
+<tr><th id="176">176</th><td>&nbsp</td></tr>
+<tr><th id="177">177</th><td>  [[__gnu__::__always_inline__]]&nbsp</td></tr>
+<tr><th id="178">178</th><td>  <b>constexpr</b> <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>&amp;&nbsp</td></tr>
+<tr><th id="179">179</th><td>  <dfn class="decl def fn" id="_ZSteORSt4byteS_" title='std::operator^=' data-ref="_ZSteORSt4byteS_"><b>operator</b>^=</dfn>(<a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a>&amp; <dfn class="local col2 decl" id="32__l" title='__l' data-type='std::byte &amp;' data-ref="32__l">__l</dfn>, <a class="type" href="bits/cpp_type_traits.h.html#std::byte" title='std::byte' data-ref="std::byte">byte</a> <dfn class="local col3 decl" id="33__r" title='__r' data-type='std::byte' data-ref="33__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="180">180</th><td>  { <b>return</b> <a class="local col2 ref" href="#32__l" title='__l' data-ref="32__l">__l</a> = <a class="local col2 ref" href="#32__l" title='__l' data-ref="32__l">__l</a> <a class="ref fn" href="#_ZSteoSt4byteS_" title='std::operator^' data-ref="_ZSteoSt4byteS_">^</a> <a class="local col3 ref" href="#33__r" title='__r' data-ref="33__r">__r</a>; }&nbsp</td></tr>
+<tr><th id="181">181</th><td>&nbsp</td></tr>
+<tr><th id="182">182</th><td>  <b>template</b>&lt;<b>typename</b> _IntegerType&gt;&nbsp</td></tr>
+<tr><th id="183">183</th><td>    [[nodiscard,__gnu__::__always_inline__]]&nbsp</td></tr>
+<tr><th id="184">184</th><td>    <b>constexpr</b> _IntegerType&nbsp</td></tr>
+<tr><th id="185">185</th><td>    <dfn class="decl def fn" id="_ZSt10to_integerNSt14__byte_operandIT_E6__typeE" title='std::to_integer' data-ref="_ZSt10to_integerNSt14__byte_operandIT_E6__typeE">to_integer</dfn>(<a class="type" href="#std::__byte_op_t" title='std::__byte_op_t' data-ref="std::__byte_op_t">__byte_op_t</a>&lt;_IntegerType&gt; <dfn class="local col4 decl" id="34__b" title='__b' data-type='__byte_op_t&lt;_IntegerType&gt;' data-ref="34__b">__b</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="186">186</th><td>    { <b>return</b> _IntegerType(<a class="local col4 ref" href="#34__b" title='__b' data-ref="34__b">__b</a>); }&nbsp</td></tr>
+<tr><th id="187">187</th><td>&nbsp</td></tr>
+<tr><th id="188">188</th><td><a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="189">189</th><td>} <i>// namespace std</i>&nbsp</td></tr>
+<tr><th id="190">190</th><td><u>#<span data-ppcond="62">endif</span> // C++17</u>&nbsp</td></tr>
+<tr><th id="191">191</th><td>} <i>// extern "C++"</i>&nbsp</td></tr>
+<tr><th id="192">192</th><td>&nbsp</td></tr>
+<tr><th id="193">193</th><td><u>#<span data-ppcond="39">endif</span> // _GLIBCXX_CSTDDEF</u>&nbsp</td></tr>
+<tr><th id="194">194</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Image/Src/tImageASTC.cpp.html'>Modules/Image/Src/tImageASTC.cpp</a><br/>Generated on <em>2025-Aug-25</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

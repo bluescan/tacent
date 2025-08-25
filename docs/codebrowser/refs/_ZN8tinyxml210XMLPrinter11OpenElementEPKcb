@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2254' type='void tinyxml2::XMLPrinter::OpenElement(const char * name, bool compactMode = false)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2251'>/** If streaming, start writing an element.
+        The element must be closed with CloseElement()
+    */</doc>

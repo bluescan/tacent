@@ -1,5 +1,5 @@
 <def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='51' type='T tMath::tMax(const T &amp; a, const T &amp; b, const T &amp; c)'/>
-<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='408' u='c' c='_ZN6M999E517FloatToComponentsERiS0_S0_S0_fff'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='409' u='c' c='_ZN6M999E517FloatToComponentsERiS0_S0_S0_fff'/>
 <use f='Modules/Image/Src/tPicture.cpp' l='647' u='c' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
 <use f='Modules/Math/Src/tColour.cpp' l='210' u='c' c='_ZN5tMath9tRGBToHSVERiS0_S0_iiiNS_10tAngleModeE'/>
 <use f='Modules/Math/Src/tColour.cpp' l='335' u='c' c='_ZN5tMath9tRGBToHSVERfS0_S0_fffNS_10tAngleModeE'/>

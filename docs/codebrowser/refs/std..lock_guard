@@ -34,5 +34,5 @@
 <use f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='61' c='_ZN6tInput19tUnitContinuousDisp15SetDisplacementEf'/>
 <use f='include/c++/11/condition_variable' l='292' c='_ZNSt3_V222condition_variable_any10notify_oneEv'/>
 <use f='include/c++/11/condition_variable' l='299' c='_ZNSt3_V222condition_variable_any10notify_allEv'/>
-<use f='Modules/Input/Src/tContGamepad.cpp' l='52' c='_ZN6tInput12tContGamepad11StopPollingEv'/>
-<use f='Modules/Input/Src/tControllerSystem.cpp' l='78' c='_ZN6tInput17tControllerSystemD1Ev'/>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='55' c='_ZN6tInput12tContGamepad11StopPollingEv'/>
+<use f='Modules/Input/Src/tControllerSystem.cpp' l='63' c='_ZN6tInput17tControllerSystemD1Ev'/>

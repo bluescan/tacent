@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1151' type='int tinyxml2::XMLAttribute::GetLineNum() const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1150'>/// Gets the line number the attribute is in, if the document was parsed from a file.</doc>

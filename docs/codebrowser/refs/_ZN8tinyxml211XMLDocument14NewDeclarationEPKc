@@ -1,0 +1,12 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1863' type='tinyxml2::XMLDeclaration * tinyxml2::XMLDocument::NewDeclaration(const char * text = 0)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1852'>/**
+    	Create a new Declaration associated with
+    	this Document. The memory for the object
+    	is managed by the Document.
+
+    	If the &apos;text&apos; param is null, the standard
+    	declaration is used.:
+    	@verbatim
+    		&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+    	@endverbatim
+    */</doc>

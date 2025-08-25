@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='195' type='double tMath::tLog10(double x)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='195'>/* Base 10 logarithm. */</doc>

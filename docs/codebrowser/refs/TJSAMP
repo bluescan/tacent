@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='92' ll='132'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='83'>/**
+ * Chrominance subsampling options.
+ * When pixels are converted from RGB to YCbCr (see #TJCS_YCbCr) or from CMYK
+ * to YCCK (see #TJCS_YCCK) as part of the JPEG compression process, some of
+ * the Cb and Cr (chrominance) components can be discarded or averaged together
+ * to produce a smaller image with little perceptible loss of image clarity
+ * (the human eye is more sensitive to small changes in brightness than to
+ * small changes in color.)  This is called &quot;chrominance subsampling&quot;.
+ */</doc>

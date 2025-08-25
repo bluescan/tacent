@@ -1,0 +1,20 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='446' type='T Imath_2_5::Vec3::length() const'/>
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='771' type='short Imath_2_5::Vec3&lt;short&gt;::length() const'/>
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='795' type='int Imath_2_5::Vec3&lt;int&gt;::length() const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1676' ll='1686' type='T Imath_2_5::Vec3::length() const'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1699' u='c' c='_ZN9Imath_2_54Vec39normalizeEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1721' u='c' c='_ZN9Imath_2_54Vec312normalizeExcEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1737' u='c' c='_ZN9Imath_2_54Vec316normalizeNonNullEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1748' u='c' c='_ZNK9Imath_2_54Vec310normalizedEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1760' u='c' c='_ZNK9Imath_2_54Vec313normalizedExcEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1773' u='c' c='_ZNK9Imath_2_54Vec317normalizedNonNullEv'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='437'>//----------------------------------------------------------------
+    // Length and normalization:  If v.length() is 0.0, v.normalize()
+    // and v.normalized() produce a null vector; v.normalizeExc() and
+    // v.normalizedExc() throw a NullVecExc.
+    // v.normalizeNonNull() and v.normalizedNonNull() are slightly
+    // faster than the other normalization routines, but if v.length()
+    // is 0.0, the result is undefined.
+    //----------------------------------------------------------------</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='768'>// Vec3&lt;short&gt;</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='792'>// Vec3&lt;int&gt;</doc>

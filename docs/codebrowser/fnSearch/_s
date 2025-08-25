@@ -69,6 +69,13 @@ _ZNSt10stop_token13_Stop_state_t9_M_unlockEv|std::stop_token::_Stop_state_t::_M_
 _ZNSt10stop_token13_Stop_state_tC1Ev|std::stop_token::_Stop_state_t::_Stop_state_t
 _ZNSt10stop_tokenD1Ev|std::stop_token::~stop_token
 _ZNSt6thread11_State_impl6_M_runEv|std::thread::_State_impl::_M_run
+_ZNSt8_Rb_tree6_S_keyEPKSt13_Rb_tree_nodeIT0_E|std::_Rb_tree::_S_key
+_ZNSt8_Rb_tree7_S_leftEPSt18_Rb_tree_node_base|std::_Rb_tree::_S_left
+_ZNSt8_Rb_tree10_S_maximumEPSt18_Rb_tree_node_base|std::_Rb_tree::_S_maximum
+_ZNSt8_Rb_tree10_S_minimumEPSt18_Rb_tree_node_base|std::_Rb_tree::_S_minimum
+_ZNSt8_Rb_tree8_S_rightEPSt18_Rb_tree_node_base|std::_Rb_tree::_S_right
+_ZNSt18_Rb_tree_node_base10_S_maximumEPS_|std::_Rb_tree_node_base::_S_maximum
+_ZNSt18_Rb_tree_node_base10_S_minimumEPS_|std::_Rb_tree_node_base::_S_minimum
 _ZNSt15_Deque_iterator14_S_buffer_sizeEv|std::_Deque_iterator::_S_buffer_size
 _ZNSt5deque14_S_buffer_sizeEv|std::deque::_S_buffer_size
 _ZNSt5deque17_S_check_init_lenEmRKT0_|std::deque::_S_check_init_len

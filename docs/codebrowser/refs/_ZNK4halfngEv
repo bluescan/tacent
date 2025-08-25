@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='117' type='half half::operator-() const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='562' ll='568' type='half half::operator-() const'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='113'>//------------
+    // Unary minus
+    //------------</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='558'>//-----------------------
+// Other inline functions
+//-----------------------</doc>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1667' type='tinyxml2::XMLUnknown * tinyxml2::XMLElement::InsertNewUnknown(const char * text)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1666'>/// See InsertNewChildElement()</doc>

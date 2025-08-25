@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1839' type='tinyxml2::XMLElement * tinyxml2::XMLDocument::NewElement(const char * name)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1834'>/**
+    	Create a new Element associated with
+    	this Document. The memory for the Element
+    	is managed by the Document.
+    */</doc>

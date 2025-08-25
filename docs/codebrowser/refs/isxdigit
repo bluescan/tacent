@@ -1,2 +1,2 @@
 <dec f='include/ctype.h' l='118' type='int isxdigit(int )'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='337' u='c' c='_ZN4tStd9tIsxdigitEc'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='343' u='c' c='_ZN4tStd9tIsxdigitEc'/>

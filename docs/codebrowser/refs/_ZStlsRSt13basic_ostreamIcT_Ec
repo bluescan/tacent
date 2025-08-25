@@ -1,1 +1,4 @@
 <def f='include/c++/11/ostream' l='523' ll='525' type='basic_ostream&lt;char, _Traits&gt; &amp; std::operator&lt;&lt;(basic_ostream&lt;char, _Traits&gt; &amp; __out, char __c)'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='2192' u='c' c='_ZN9Imath_2_5lsERSoRKNS_4Vec2IT_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='2199' u='c' c='_ZN9Imath_2_5lsERSoRKNS_4Vec3IT_EE'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='2206' u='c' c='_ZN9Imath_2_5lsERSoRKNS_4Vec4IT_EE'/>

@@ -1,1 +1,1 @@
-<dec f='include/zlib.h' l='1656' type='const char * gzerror(gzFile file, int * errnum)'/>
+<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1655' type='const char * gzerror(gzFile file, int * errnum)'/>

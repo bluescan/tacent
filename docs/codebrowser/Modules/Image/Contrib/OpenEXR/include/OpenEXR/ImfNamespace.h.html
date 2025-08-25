@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ImfNamespace.h source code [Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfNamespace.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfNamespace.h'; var root_path = '../../../../../..'; var data_path = '../../../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../../../..'>Modules</a>/<a href='../../../..'>Image</a>/<a href='../../..'>Contrib</a>/<a href='../..'>OpenEXR</a>/<a href='..'>include</a>/<a href='./'>OpenEXR</a>/<a href='ImfNamespace.h.html'>ImfNamespace.h</a><br><a href='/tacent/index.html'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/tacent/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>///////////////////////////////////////////////////////////////////////////</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (c) 2012, Industrial Light &amp; Magic, a division of Lucas</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>// Digital Ltd. LLC</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// All rights reserved.</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Redistribution and use in source and binary forms, with or without</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// modification, are permitted provided that the following conditions are</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>// met:</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// *       Redistributions of source code must retain the above copyright</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// notice, this list of conditions and the following disclaimer.</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// *       Redistributions in binary form must reproduce the above</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// copyright notice, this list of conditions and the following disclaimer</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>// in the documentation and/or other materials provided with the</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// distribution.</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// *       Neither the name of Industrial Light &amp; Magic nor the names of</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// its contributors may be used to endorse or promote products derived</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i>// from this software without specific prior written permission.</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td><i>// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</i>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i>// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i>// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i>// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i>// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i>// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i>// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i>// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i>///////////////////////////////////////////////////////////////////////////</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#<span data-ppcond="35">ifndef</span> <span class="macro" data-ref="_M/INCLUDED_IMFNAMESPACE_H">INCLUDED_IMFNAMESPACE_H</span></u>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#define <dfn class="macro" id="_M/INCLUDED_IMFNAMESPACE_H" data-ref="_M/INCLUDED_IMFNAMESPACE_H">INCLUDED_IMFNAMESPACE_H</dfn></u>&nbsp</td></tr>
+<tr><th id="37">37</th><td>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td><i>// The purpose of this file is to have all of the Imath symbols defined within </i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i>// the OPENEXR_IMF_INTERNAL_NAMESPACE namespace rather than the standard Imath</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i>// namespace. Those symbols are made available to client code through the </i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i>// OPENEXR_IMF_NAMESPACE in addition to the OPENEXR_IMF_INTERNAL_NAMESPACE.</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i>// To ensure source code compatibility, the OPENEXR_IMF_NAMESPACE defaults to</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i>// Imath and then "using namespace OPENEXR_IMF_INTERNAL_NAMESPACE;" brings all</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i>// of the declarations from the OPENEXR_IMF_INTERNAL_NAMESPACE into the</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i>// OPENEXR_IMF_NAMESPACE.</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i>// This means that client code can continue to use syntax like</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><i>// Imf::Header, but at link time it will resolve to a</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td><i>// mangled symbol based on the OPENEXR_IMF_INTERNAL_NAMESPACE.</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i>// As an example, if one needed to build against a newer version of Imath and</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i>// have it run alongside an older version in the same application, it is now</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><i>// possible to use an internal namespace to prevent collisions between the</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td><i>// older versions of Imath symbols and the newer ones.  To do this, the</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td><i>// following could be defined at build time:</i>&nbsp</td></tr>
+<tr><th id="57">57</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="58">58</th><td><i>// OPENEXR_IMF_INTERNAL_NAMESPACE = Imf_v2</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td><i>// This means that declarations inside Imath headers look like this (after</i>&nbsp</td></tr>
+<tr><th id="61">61</th><td><i>// the preprocessor has done its work):</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td><i>// namespace Imf_v2 {</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td><i>//     ...</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td><i>//     class declarations</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td><i>//     ...</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td><i>// }</i>&nbsp</td></tr>
+<tr><th id="68">68</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="69">69</th><td><i>// namespace Imf {</i>&nbsp</td></tr>
+<tr><th id="70">70</th><td><i>//     using namespace IMF_NAMESPACE_v2;</i>&nbsp</td></tr>
+<tr><th id="71">71</th><td><i>// }</i>&nbsp</td></tr>
+<tr><th id="72">72</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="73">73</th><td><i></i>&nbsp</td></tr>
+<tr><th id="74">74</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="75">75</th><td><i>// Open Source version of this file pulls in the OpenEXRConfig.h file</i>&nbsp</td></tr>
+<tr><th id="76">76</th><td><i>// for the configure time options.</i>&nbsp</td></tr>
+<tr><th id="77">77</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="78">78</th><td><u>#include "OpenEXRConfig.h"</u>&nbsp</td></tr>
+<tr><th id="79">79</th><td>&nbsp</td></tr>
+<tr><th id="80">80</th><td>&nbsp</td></tr>
+<tr><th id="81">81</th><td><u>#<span data-ppcond="81">ifndef</span> <a class="macro" href="OpenEXRConfig.h.html#22" data-ref="_M/OPENEXR_IMF_NAMESPACE">OPENEXR_IMF_NAMESPACE</a></u>&nbsp</td></tr>
+<tr><th id="82">82</th><td><u>#define OPENEXR_IMF_NAMESPACE Imf</u>&nbsp</td></tr>
+<tr><th id="83">83</th><td><u>#<span data-ppcond="81">endif</span></u>&nbsp</td></tr>
+<tr><th id="84">84</th><td>&nbsp</td></tr>
+<tr><th id="85">85</th><td><u>#<span data-ppcond="85">ifndef</span> <a class="macro" href="OpenEXRConfig.h.html#15" data-ref="_M/OPENEXR_IMF_INTERNAL_NAMESPACE">OPENEXR_IMF_INTERNAL_NAMESPACE</a></u>&nbsp</td></tr>
+<tr><th id="86">86</th><td><u>#define OPENEXR_IMF_INTERNAL_NAMESPACE OPENEXR_IMF_NAMESPACE</u>&nbsp</td></tr>
+<tr><th id="87">87</th><td><u>#<span data-ppcond="85">endif</span></u>&nbsp</td></tr>
+<tr><th id="88">88</th><td>&nbsp</td></tr>
+<tr><th id="89">89</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="90">90</th><td><i>// We need to be sure that we import the internal namespace into the public one.</i>&nbsp</td></tr>
+<tr><th id="91">91</th><td><i>// To do this, we use the small bit of code below which initially defines</i>&nbsp</td></tr>
+<tr><th id="92">92</th><td><i>// OPENEXR_IMF_INTERNAL_NAMESPACE (so it can be referenced) and then defines</i>&nbsp</td></tr>
+<tr><th id="93">93</th><td><i>// OPENEXR_IMF_NAMESPACE and pulls the internal symbols into the public</i>&nbsp</td></tr>
+<tr><th id="94">94</th><td><i>// namespace.</i>&nbsp</td></tr>
+<tr><th id="95">95</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="96">96</th><td>&nbsp</td></tr>
+<tr><th id="97">97</th><td><b>namespace</b> <a class="macro" href="OpenEXRConfig.h.html#15" title="Imf_2_5" data-ref="_M/OPENEXR_IMF_INTERNAL_NAMESPACE">OPENEXR_IMF_INTERNAL_NAMESPACE</a> {}&nbsp</td></tr>
+<tr><th id="98">98</th><td><b>namespace</b> <a class="macro" href="OpenEXRConfig.h.html#22" title="Imf" data-ref="_M/OPENEXR_IMF_NAMESPACE">OPENEXR_IMF_NAMESPACE</a> {&nbsp</td></tr>
+<tr><th id="99">99</th><td>     <b>using</b> <b>namespace</b> <a class="macro" href="OpenEXRConfig.h.html#15" title="Imf_2_5" data-ref="_M/OPENEXR_IMF_INTERNAL_NAMESPACE">OPENEXR_IMF_INTERNAL_NAMESPACE</a>;&nbsp</td></tr>
+<tr><th id="100">100</th><td>}&nbsp</td></tr>
+<tr><th id="101">101</th><td>&nbsp</td></tr>
+<tr><th id="102">102</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td><i>// There are identical pairs of HEADER/SOURCE ENTER/EXIT macros so that</i>&nbsp</td></tr>
+<tr><th id="104">104</th><td><i>// future extension to the namespace mechanism is possible without changing</i>&nbsp</td></tr>
+<tr><th id="105">105</th><td><i>// project source code.</i>&nbsp</td></tr>
+<tr><th id="106">106</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="107">107</th><td>&nbsp</td></tr>
+<tr><th id="108">108</th><td><u>#define <dfn class="macro" id="_M/OPENEXR_IMF_INTERNAL_NAMESPACE_HEADER_ENTER" data-ref="_M/OPENEXR_IMF_INTERNAL_NAMESPACE_HEADER_ENTER">OPENEXR_IMF_INTERNAL_NAMESPACE_HEADER_ENTER</dfn> namespace OPENEXR_IMF_INTERNAL_NAMESPACE {</u>&nbsp</td></tr>
+<tr><th id="109">109</th><td><u>#define <dfn class="macro" id="_M/OPENEXR_IMF_INTERNAL_NAMESPACE_HEADER_EXIT" data-ref="_M/OPENEXR_IMF_INTERNAL_NAMESPACE_HEADER_EXIT">OPENEXR_IMF_INTERNAL_NAMESPACE_HEADER_EXIT</dfn> }</u>&nbsp</td></tr>
+<tr><th id="110">110</th><td>&nbsp</td></tr>
+<tr><th id="111">111</th><td><u>#define <dfn class="macro" id="_M/OPENEXR_IMF_INTERNAL_NAMESPACE_SOURCE_ENTER" data-ref="_M/OPENEXR_IMF_INTERNAL_NAMESPACE_SOURCE_ENTER">OPENEXR_IMF_INTERNAL_NAMESPACE_SOURCE_ENTER</dfn> namespace OPENEXR_IMF_INTERNAL_NAMESPACE {</u>&nbsp</td></tr>
+<tr><th id="112">112</th><td><u>#define <dfn class="macro" id="_M/OPENEXR_IMF_INTERNAL_NAMESPACE_SOURCE_EXIT" data-ref="_M/OPENEXR_IMF_INTERNAL_NAMESPACE_SOURCE_EXIT">OPENEXR_IMF_INTERNAL_NAMESPACE_SOURCE_EXIT</dfn> }</u>&nbsp</td></tr>
+<tr><th id="113">113</th><td>&nbsp</td></tr>
+<tr><th id="114">114</th><td>&nbsp</td></tr>
+<tr><th id="115">115</th><td><u>#<span data-ppcond="35">endif</span> /* INCLUDED_IMFNAMESPACE_H */</u>&nbsp</td></tr>
+<tr><th id="116">116</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Src/tImageEXR.cpp.html'>Modules/Image/Src/tImageEXR.cpp</a><br/>Generated on <em>2025-Aug-25</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

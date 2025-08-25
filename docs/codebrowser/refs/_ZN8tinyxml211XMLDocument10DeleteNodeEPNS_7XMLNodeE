@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1875' type='void tinyxml2::XMLDocument::DeleteNode(tinyxml2::XMLNode * node)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1871'>/**
+    	Delete a node associated with this document.
+    	It will be unlinked from the DOM.
+    */</doc>

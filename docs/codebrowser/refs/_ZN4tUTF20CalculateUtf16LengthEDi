@@ -1,6 +1,6 @@
-<dec f='Modules/Foundation/Src/tStandard.cpp' l='270' type='int tUTF::CalculateUtf16Length(char32_t codepoint)'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='392' u='c' c='_ZN4tStd6tUTF16EPDsPKDui'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='422' u='c' c='_ZN4tStd6tUTF16EPDsPKDii'/>
-<def f='Modules/Foundation/Src/tStandard.cpp' l='670' ll='676' type='int tUTF::CalculateUtf16Length(char32_t codepoint)'/>
-<doc f='Modules/Foundation/Src/tStandard.cpp' l='268'>// Calculates the number of UTF-16 16-bit characters it would take to encode a codepoint. The codepoint is not
+<dec f='Modules/Foundation/Src/tStandard.cpp' l='333' type='int tUTF::CalculateUtf16Length(char32_t codepoint)'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='455' u='c' c='_ZN4tStd6tUTF16EPDsPKDui'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='485' u='c' c='_ZN4tStd6tUTF16EPDsPKDii'/>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='733' ll='739' type='int tUTF::CalculateUtf16Length(char32_t codepoint)'/>
+<doc f='Modules/Foundation/Src/tStandard.cpp' l='331'>// Calculates the number of UTF-16 16-bit characters it would take to encode a codepoint. The codepoint is not
 	// checked for validity. That should be done beforehand.</doc>

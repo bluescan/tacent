@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1705' ll='1708'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1728' c='_ZN8tinyxml211XMLDocumentC1EbNS_10WhitespaceE'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1791' c='_ZNK8tinyxml211XMLDocument14WhitespaceModeEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1937'/>

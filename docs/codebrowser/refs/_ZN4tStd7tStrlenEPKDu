@@ -1,7 +1,7 @@
-<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='104' type='int tStd::tStrlen(const char8_t * s)'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='490' u='c' c='_ZN4tStd8tStrtoiTEPKDui'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='555' u='c' c='_ZN4tStd8tStrtoiTERT_PKDui'/>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='103'>// These return the number of code-units if UFT-8, UTF-16, or UTF-32 null-terminated strings are passed in.</doc>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='110' type='int tStd::tStrlen(const char8_t * s)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='496' u='c' c='_ZN4tStd8tStrtoiTEPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='561' u='c' c='_ZN4tStd8tStrtoiTERT_PKDui'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='109'>// These return the number of code-units if UFT-8, UTF-16, or UTF-32 null-terminated strings are passed in.</doc>
 <use f='Modules/Foundation/Inc/Foundation/tString.h' l='121' u='c' c='_ZNK7tString20LengthNullTerminatedEv'/>
 <use f='Modules/Foundation/Inc/Foundation/tString.h' l='157' u='c' c='_ZNK7tString7IsEqualEPKDu'/>
 <use f='Modules/Foundation/Inc/Foundation/tString.h' l='162' u='c' c='_ZNK7tString9IsEqualCIEPKDu'/>
@@ -16,8 +16,8 @@
 <use f='Modules/Foundation/Inc/Foundation/tHash.h' l='171' u='c' c='_ZN5tHash17tHashStringSHA256EPKDu8tFixIntUILi256EE'/>
 <use f='Modules/Foundation/Inc/Foundation/tName.h' l='143' u='c' c='_ZNK5tName7IsEqualEPKDu'/>
 <use f='Modules/Foundation/Inc/Foundation/tName.h' l='386' u='c' c='_ZN5tName3SetEPKDu'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='516' u='c' c='_ZN4tStd7tUTF16sEPDsPKDu'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='542' u='c' c='_ZN4tStd7tUTF32sEPDiPKDu'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='579' u='c' c='_ZN4tStd7tUTF16sEPDsPKDu'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='605' u='c' c='_ZN4tStd7tUTF32sEPDiPKDu'/>
 <use f='Modules/Foundation/Src/tString.cpp' l='259' u='c' c='_ZN7tString11ExtractLeftEPKDu'/>
 <use f='Modules/Foundation/Src/tString.cpp' l='283' u='c' c='_ZN7tString12ExtractRightEPKDu'/>
 <use f='Modules/Foundation/Src/tString.cpp' l='307' u='c' c='_ZN7tString7ReplaceEPKDuS1_'/>

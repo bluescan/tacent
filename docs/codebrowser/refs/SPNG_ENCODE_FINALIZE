@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='220' type='2'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='876' u='r' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<doc f='Modules/Image/Contrib/LibSPNG/spng.h' l='220'>/* Finalize PNG after encoding image */</doc>

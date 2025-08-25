@@ -55,6 +55,7 @@
 <fun r='_ZNSt16allocator_traitsISaIvEE8max_sizeERKS0_'/>
 <fun r='_ZNSt16allocator_traitsISaIvEE37select_on_container_copy_constructionERKS0_'/>
 <use f='include/c++/11/bits/basic_string.h' l='6176' c='_ZStplONSt7__cxx1112basic_stringIT_T0_T1_EES5_'/>
+<use f='include/c++/11/sstream' l='77'/>
 <use f='include/c++/11/bits/allocated_ptr.h' l='49'/>
 <use f='include/c++/11/bits/allocated_ptr.h' l='50'/>
 <use f='include/c++/11/bits/allocated_ptr.h' l='74' c='_ZNSt15__allocated_ptrD1Ev'/>
@@ -62,5 +63,4 @@
 <use f='include/c++/11/bits/shared_ptr_base.h' l='519' c='_ZNSt23_Sp_counted_ptr_inplaceC1ET0_DpOTL0__'/>
 <use f='include/c++/11/bits/shared_ptr_base.h' l='528' c='_ZNSt23_Sp_counted_ptr_inplace10_M_disposeEv'/>
 <use f='include/c++/11/bits/shared_ptr_base.h' l='684' c='_ZNSt14__shared_countC1EOSt10unique_ptrITL0__TL0_0_E'/>
-<use f='include/c++/11/sstream' l='77'/>
 <use f='include/c++/11/bits/fs_path.h' l='1129' c='_ZNKSt10filesystem7__cxx114path14generic_stringERKT1_'/>

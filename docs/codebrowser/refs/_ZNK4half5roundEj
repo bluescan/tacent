@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='147' type='half half::round(unsigned int n) const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='503' ll='555' type='half half::round(unsigned int n) const'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='141'>//---------------------------------------------------------
+    // Round to n-bit precision (n should be between 0 and 10).
+    // After rounding, the significand&apos;s 10-n least significant
+    // bits will be zero.
+    //---------------------------------------------------------</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='499'>//-------------------------
+// Round to n-bit precision
+//-------------------------</doc>

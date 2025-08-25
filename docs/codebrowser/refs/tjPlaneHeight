@@ -1,0 +1,15 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='993' type='int tjPlaneHeight(int componentID, int height, int subsamp)'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='979'>/**
+ * The plane height of a YUV image plane with the given parameters.  Refer to
+ * @ref YUVnotes &quot;YUV Image Format Notes&quot; for a description of plane height.
+ *
+ * @param componentID ID number of the image plane (0 = Y, 1 = U/Cb, 2 = V/Cr)
+ *
+ * @param height height (in pixels) of the YUV image
+ *
+ * @param subsamp level of chrominance subsampling in the image (see
+ * @ref TJSAMP &quot;Chrominance subsampling options&quot;.)
+ *
+ * @return the plane height of a YUV image plane with the given parameters, or
+ * -1 if the arguments are out of bounds.
+ */</doc>

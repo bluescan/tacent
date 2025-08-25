@@ -1,0 +1,2 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='573' u='c' c='_ZN8tinyxml27XMLUtil12IsWhiteSpaceEc'/>
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='609' ll='611' type='static bool tinyxml2::XMLUtil::IsUTF8Continuation(const char p)'/>

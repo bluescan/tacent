@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='175' type='long Imf_2_5::Array2D::height() const'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfArray.h' l='171'>//-------------------------------
+    // Return the size of this array.
+    //-------------------------------</doc>

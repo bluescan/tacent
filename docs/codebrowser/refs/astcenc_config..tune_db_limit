@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='514' type='float'/>
+<offset>672</offset>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='509'>/**
+	 * @brief The dB threshold for stopping block search (-dblimit).
+	 *
+	 * This option is ineffective for HDR textures.
+	 */</doc>

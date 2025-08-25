@@ -54,6 +54,7 @@ _ZN4tStd7tMemmovEPvPKvi|tStd::tMemmov
 _ZN4tStd7tMemsetEPvhi|tStd::tMemset
 _ZN4tStd8tMemsrchEPKviS1_i|tStd::tMemsrch
 _ZN4tStd8tNstrcmpEPKDuS1_|tStd::tNstrcmp
+_ZN4tStd10tNstrcmpExEPKDuS1_|tStd::tNstrcmpEx
 _ZN4tStd8tPstrcmpEPKcS1_|tStd::tPstrcmp
 _ZN4tStd9tPstrncmpEPKcS1_i|tStd::tPstrncmp
 _ZN4tStd7tStrcatEPcPKc|tStd::tStrcat
@@ -213,6 +214,7 @@ _ZN5tSort9tQuickRecEPT_S1_PFbRKS0_S3_E|tSort::tQuickRec
 _ZN5tSort6tShellEPT_iPFbRKS0_S3_E|tSort::tShell
 _ZN4tStd8tMemsrchEPviS0_i|tStd::tMemsrch
 _ZN4tStd8tNstrcmpEPKcS1_|tStd::tNstrcmp
+_ZN4tStd10tNstrcmpExEPKcS1_|tStd::tNstrcmpEx
 _ZN4tStd7tStrrevEPcS0_|tStd::tStrrev
 _ZN4tStd7tStrtobEPKc|tStd::tStrtob
 _ZN4tStd7tStrtodEPKc|tStd::tStrtod
@@ -278,7 +280,6 @@ _Z10tsrvPrintfPKcP13__va_list_tag|tsrvPrintf
 _ZN12tScriptErrorC1EPKcz|tScriptError::tScriptError
 _ZN5tMath4tSetERNS_5tQuatERKNS_5tMat4E|tMath::tSet
 _ZN5tMath6tSlerpERNS_5tQuatERKS0_S3_f|tMath::tSlerp
-_ZN14tSolutionErrorC1EPKcz|tSolutionError::tSolutionError
 _ZN6tScene10tSelectionD1Ev|tScene::tSelection::~tSelection
 _ZN6tScene9tSkeletonD1Ev|tScene::tSkeleton::~tSkeleton
 _ZN6tScene10tSelection4LoadERK6tChunk|tScene::tSelection::Load

@@ -1,0 +1,1 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfTileDescription.h' l='77' ll='88' type='void Imf_2_5::TileDescription::TileDescription(unsigned int xs = 32, unsigned int ys = 32, Imf_2_5::LevelMode m = ONE_LEVEL, Imf_2_5::LevelRoundingMode r = ROUND_DOWN)'/>

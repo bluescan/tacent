@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='233' type='std::ostream &amp; operator&lt;&lt;(std::ostream &amp; os, half h)'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='229'>//-----------
+// Stream I/O
+//-----------</doc>

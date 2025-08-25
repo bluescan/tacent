@@ -1,10 +1,10 @@
-<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='270' type='int tStd::tUTF16(char16_t * dst, const char8_t * src, int srcLen)'/>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='270'>// UFT-8  to UTF-16.</doc>
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='276' type='int tStd::tUTF16(char16_t * dst, const char8_t * src, int srcLen)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='276'>// UFT-8  to UTF-16.</doc>
 <use f='Modules/Foundation/Inc/Foundation/tString.h' l='1012' u='c' c='_ZN12tStringUTF163SetEPKDui'/>
 <use f='Modules/Foundation/Inc/Foundation/tString.h' l='1014' u='c' c='_ZN12tStringUTF163SetEPKDui'/>
 <use f='Modules/Foundation/Inc/Foundation/tName.h' l='493' u='c' c='_ZNK5tName8GetUTF16EPDsb'/>
 <use f='Modules/Foundation/Inc/Foundation/tName.h' l='495' u='c' c='_ZNK5tName8GetUTF16EPDsb'/>
-<def f='Modules/Foundation/Src/tStandard.cpp' l='364' ll='398' type='int tStd::tUTF16(char16_t * dst, const char8_t * src, int srcLen)'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='516' u='c' c='_ZN4tStd7tUTF16sEPDsPKDu'/>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='427' ll='461' type='int tStd::tUTF16(char16_t * dst, const char8_t * src, int srcLen)'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='579' u='c' c='_ZN4tStd7tUTF16sEPDsPKDu'/>
 <use f='Modules/Foundation/Src/tString.cpp' l='608' u='c' c='_ZNK7tString8GetUTF16EPDsb'/>
 <use f='Modules/Foundation/Src/tString.cpp' l='610' u='c' c='_ZNK7tString8GetUTF16EPDsb'/>

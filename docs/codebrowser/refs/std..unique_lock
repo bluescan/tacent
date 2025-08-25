@@ -47,5 +47,5 @@
 <use f='include/c++/11/condition_variable' l='387' c='_ZNSt3_V222condition_variable_any4waitERT_St10stop_tokenT0_'/>
 <use f='include/c++/11/condition_variable' l='410' c='_ZNSt3_V222condition_variable_any10wait_untilERT_St10stop_tokenRKNSt6chrono10time_pointIT0_T1_EET2_'/>
 <use f='include/c++/11/condition_variable' l='416' c='_ZNSt3_V222condition_variable_any10wait_untilERT_St10stop_tokenRKNSt6chrono10time_pointIT0_T1_EET2_'/>
-<use f='Modules/Input/Src/tContGamepad.cpp' l='132' c='_ZN6tInput12tContGamepad4PollEv'/>
-<use f='Modules/Input/Src/tControllerSystem.cpp' l='144' c='_ZN6tInput17tControllerSystem6DetectEv'/>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='135' c='_ZN6tInput12tContGamepad4PollEv'/>
+<use f='Modules/Input/Src/tControllerSystem.cpp' l='119' c='_ZN6tInput17tControllerSystem6DetectEv'/>

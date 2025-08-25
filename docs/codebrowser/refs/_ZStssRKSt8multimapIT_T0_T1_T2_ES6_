@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='1148' ll='1151' type='__detail::__synth3way_t&lt;pair&lt;const _Key, _Tp&gt;&gt; std::operator&lt;=&gt;(const multimap&lt;_Key, _Tp, _Compare, _Alloc&gt; &amp; __x, const multimap&lt;_Key, _Tp, _Compare, _Alloc&gt; &amp; __y)'/>

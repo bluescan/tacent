@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1514' ll='1516' type='const tinyxml2::XMLAttribute * tinyxml2::XMLElement::FirstAttribute() const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1513'>/// Return the first attribute in the list.</doc>

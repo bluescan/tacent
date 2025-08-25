@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='589' type='unsigned int'/>
+<offset>64</offset>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='588'>/** @brief The Z dimension of the image, in texels. */</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1127' u='w' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

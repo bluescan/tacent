@@ -6,3 +6,51 @@
 <use f='include/c++/11/functional' l='982'/>
 <use f='include/c++/11/functional' l='982'/>
 <use f='include/c++/11/functional' l='986'/>
+<def f='include/c++/11/cstddef' l='69'/>
+<use f='include/c++/11/cstddef' l='72'/>
+<use f='include/c++/11/cstddef' l='73'/>
+<use f='include/c++/11/cstddef' l='74'/>
+<use f='include/c++/11/cstddef' l='75'/>
+<use f='include/c++/11/cstddef' l='77'/>
+<use f='include/c++/11/cstddef' l='80'/>
+<use f='include/c++/11/cstddef' l='82'/>
+<use f='include/c++/11/cstddef' l='83'/>
+<use f='include/c++/11/cstddef' l='84'/>
+<use f='include/c++/11/cstddef' l='85'/>
+<use f='include/c++/11/cstddef' l='86'/>
+<use f='include/c++/11/cstddef' l='87'/>
+<use f='include/c++/11/cstddef' l='88'/>
+<use f='include/c++/11/cstddef' l='89'/>
+<use f='include/c++/11/cstddef' l='90'/>
+<use f='include/c++/11/cstddef' l='91'/>
+<use f='include/c++/11/cstddef' l='126' c='_ZStlsSt4byteT_'/>
+<use f='include/c++/11/cstddef' l='127' c='_ZStlsSt4byteT_'/>
+<use f='include/c++/11/cstddef' l='132' c='_ZStrsSt4byteT_'/>
+<use f='include/c++/11/cstddef' l='133' c='_ZStrsSt4byteT_'/>
+<use f='include/c++/11/cstddef' l='136' c='_ZStorSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='137' c='_ZStorSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='137' c='_ZStorSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='138' c='_ZStorSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='141' c='_ZStanSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='142' c='_ZStanSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='142' c='_ZStanSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='143' c='_ZStanSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='146' c='_ZSteoSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='147' c='_ZSteoSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='147' c='_ZSteoSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='148' c='_ZSteoSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='151' c='_ZStcoSt4byte'/>
+<use f='include/c++/11/cstddef' l='152' c='_ZStcoSt4byte'/>
+<use f='include/c++/11/cstddef' l='153' c='_ZStcoSt4byte'/>
+<use f='include/c++/11/cstddef' l='158' c='_ZStlSRSt4byteT_'/>
+<use f='include/c++/11/cstddef' l='164' c='_ZStrSRSt4byteT_'/>
+<use f='include/c++/11/cstddef' l='168' c='_ZStoRRSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='169' c='_ZStoRRSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='169' c='_ZStoRRSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='173' c='_ZStaNRSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='174' c='_ZStaNRSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='174' c='_ZStaNRSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='178' c='_ZSteORSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='179' c='_ZSteORSt4byteS_'/>
+<use f='include/c++/11/cstddef' l='179' c='_ZSteORSt4byteS_'/>
+<doc f='include/c++/11/cstddef' l='68'>/// std::byte</doc>

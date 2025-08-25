@@ -1,0 +1,13 @@
+<def f='include/c++/11/bits/stl_tree.h' l='256' ll='325'/>
+<use f='include/c++/11/bits/stl_tree.h' l='265'/>
+<use f='include/c++/11/bits/stl_tree.h' l='334'/>
+<use f='include/c++/11/bits/stl_tree.h' l='815'/>
+<fun r='_ZNSt17_Rb_tree_iteratorC1Ev'/>
+<fun r='_ZNSt17_Rb_tree_iteratorC1EPSt18_Rb_tree_node_base'/>
+<fun r='_ZNKSt17_Rb_tree_iteratordeEv'/>
+<fun r='_ZNKSt17_Rb_tree_iteratorptEv'/>
+<fun r='_ZNSt17_Rb_tree_iteratorppEv'/>
+<fun r='_ZNSt17_Rb_tree_iteratorppEi'/>
+<fun r='_ZNSt17_Rb_tree_iteratormmEv'/>
+<fun r='_ZNSt17_Rb_tree_iteratormmEi'/>
+<mbr r='std::_Rb_tree_iterator::_M_node' t='std::_Rb_tree_iterator::_Base_ptr'/>

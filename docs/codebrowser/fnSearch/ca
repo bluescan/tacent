@@ -14,6 +14,7 @@ _ZNK11tExpression7CaddddrEv|tExpression::Caddddr
 _ZNK11tExpression6CadddrEv|tExpression::Cadddr
 _ZNK11tExpression5CaddrEv|tExpression::Caddr
 _ZNK11tExpression4CadrEv|tExpression::Cadr
+_ZNK8tinyxml28DynArray8CapacityEv|tinyxml2::DynArray::Capacity
 _ZN6tImage17CanReverseRowDataENS_12tPixelFormatEi|tImage::CanReverseRowData
 _ZN6tImage20CanReverseRowData_BCENS_12tPixelFormatEi|tImage::CanReverseRowData_BC
 _ZN6tImage24CanReverseRowData_PackedENS_12tPixelFormatE|tImage::CanReverseRowData_Packed

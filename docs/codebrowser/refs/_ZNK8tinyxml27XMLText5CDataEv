@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1009' ll='1011' type='bool tinyxml2::XMLText::CData() const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1008'>/// Returns true if this is a CDATA text element.</doc>

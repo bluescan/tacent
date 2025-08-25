@@ -1,3 +1,3 @@
 <dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='100' type='tMath::tDivt tMath::tDiv(int numerator, int denominator)'/>
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='290' ll='297' type='tMath::tDivt tMath::tDiv(int numerator, int denominator)'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='293' ll='300' type='tMath::tDivt tMath::tDiv(int numerator, int denominator)'/>
 <use f='Modules/Foundation/Inc/Foundation/tArray.h' l='144' u='c' c='_ZN6tArray6AppendEPKT_i'/>

@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='253' ll='269'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='277'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='279'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='281'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='283'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='250'>/**
+ * @brief A codec component swizzle selector.
+ */</doc>

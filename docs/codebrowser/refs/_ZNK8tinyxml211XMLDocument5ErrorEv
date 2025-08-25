@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1881' ll='1883' type='bool tinyxml2::XMLDocument::Error() const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1880'>/// Return true if there was an error parsing the document.</doc>

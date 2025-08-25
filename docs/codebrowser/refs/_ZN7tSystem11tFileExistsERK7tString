@@ -30,8 +30,6 @@
 <use f='Modules/Pipeline/Src/tRule.cpp' l='97' u='c' c='_ZN9tPipeline5tRule15AddDependenciesER5tListI11tStringItemE'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='146' u='c' c='_ZN9tPipeline5tRule9OutOfDateEb'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='152' u='c' c='_ZN9tPipeline5tRule9OutOfDateEb'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='27' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='72' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
 <def f='Modules/System/Src/tFile.cpp' l='437' ll='474' type='bool tSystem::tFileExists(const tString &amp; file)'/>
 <use f='Modules/System/Src/tFile.cpp' l='1017' u='c' c='_ZN7tSystem11tCreateFileERK7tStringPhi'/>
 <use f='Modules/System/Src/tFile.cpp' l='1046' u='c' c='_ZN7tSystem11tCreateFileERK7tStringPDuib'/>

@@ -1,4 +1,4 @@
-<def f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='40' ll='46'/>
-<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='65'/>
-<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='68'/>
-<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='39'>// The controller component displacement technology.</doc>
+<def f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='61' ll='67'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='91'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='94'/>
+<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='60'>// The controller component displacement technology.</doc>

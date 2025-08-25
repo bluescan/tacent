@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2369' type='void tinyxml2::XMLPrinter::XMLPrinter(const tinyxml2::XMLPrinter &amp; )'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2368'>// Prohibit cloning, intentionally not implemented</doc>

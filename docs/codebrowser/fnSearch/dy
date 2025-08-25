@@ -1,1 +1,14 @@
+_ZNK8tinyxml28DynArray8CapacityEv|tinyxml2::DynArray::Capacity
+_ZN8tinyxml28DynArray5ClearEv|tinyxml2::DynArray::Clear
+_ZNK8tinyxml28DynArray5EmptyEv|tinyxml2::DynArray::Empty
+_ZN8tinyxml28DynArray14EnsureCapacityEi|tinyxml2::DynArray::EnsureCapacity
+_ZNK8tinyxml28DynArray3MemEv|tinyxml2::DynArray::Mem
+_ZNK8tinyxml28DynArray7PeekTopEv|tinyxml2::DynArray::PeekTop
+_ZN8tinyxml28DynArray3PopEv|tinyxml2::DynArray::Pop
+_ZN8tinyxml28DynArray6PopArrEi|tinyxml2::DynArray::PopArr
+_ZN8tinyxml28DynArray4PushET_|tinyxml2::DynArray::Push
+_ZN8tinyxml28DynArray7PushArrEi|tinyxml2::DynArray::PushArr
+_ZNK8tinyxml28DynArray4SizeEv|tinyxml2::DynArray::Size
+_ZN8tinyxml28DynArray10SwapRemoveEi|tinyxml2::DynArray::SwapRemove
+_ZN8tinyxml28DynArrayixEi|tinyxml2::DynArray::operator[]
 _ZSt20dynamic_pointer_castRKSt12__shared_ptrIT0_XT1_EE|std::dynamic_pointer_cast

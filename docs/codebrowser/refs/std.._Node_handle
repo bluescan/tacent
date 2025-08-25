@@ -22,3 +22,4 @@
 <fun r='_ZNSt12_Node_handleIT_S0_T0_E4swapERS_IS0_S0_S1_E'/>
 <fun r='_ZNSt12_Node_handleIT_S0_T0_EC1ENSt16allocator_traitsIS1_E7pointerERKS1_'/>
 <fun r='_ZNKSt12_Node_handleIT_S0_T0_E6_M_keyEv'/>
+<use f='include/c++/11/bits/stl_tree.h' l='822'/>

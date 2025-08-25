@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='275' type='float &amp; Imf_2_5::Header::pixelAspectRatio()'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='209' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>

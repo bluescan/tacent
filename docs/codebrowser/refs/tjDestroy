@@ -1,0 +1,14 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1529' type='int tjDestroy(tjhandle handle)'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='126' u='c' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='330' u='c' c='_ZNK6tImage9tImageJPG29CanDoPerfectLosslessTransformENS0_9TransformE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='402' u='c' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='412' u='c' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='468' u='c' c='_ZNK6tImage9tImageJPG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1521'>/**
+ * Destroy a TurboJPEG compressor, decompressor, or transformer instance.
+ *
+ * @param handle a handle to a TurboJPEG compressor, decompressor or
+ * transformer instance
+ *
+ * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr2().)
+ */</doc>

@@ -1,0 +1,21 @@
+<inh f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='179' c='Iex_2_5::MathExc'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='53' macro='1'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='53' c='_ZN9Imath_2_510NullVecExcC1ERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='53' c='_ZN9Imath_2_510NullVecExcC1EOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='53' c='_ZN9Imath_2_510NullVecExcaSERS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='53' c='_ZN9Imath_2_510NullVecExcaSERS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='53' c='_ZN9Imath_2_510NullVecExcaSEOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='53' c='_ZN9Imath_2_510NullVecExcaSEOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1232' c='_ZN9Imath_2_54Vec212normalizeExcEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1269' c='_ZNK9Imath_2_54Vec213normalizedExcEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1724' c='_ZN9Imath_2_54Vec312normalizeExcEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1763' c='_ZNK9Imath_2_54Vec313normalizedExcEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='2129' c='_ZN9Imath_2_54Vec412normalizeExcEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='2170' c='_ZNK9Imath_2_54Vec413normalizedExcEv'/>
+<size>72</size>
+<fun r='_ZN9Imath_2_510NullVecExcC1Ev'/>
+<fun r='_ZN9Imath_2_510NullVecExcC1EPKc'/>
+<fun r='_ZN9Imath_2_510NullVecExcC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN9Imath_2_510NullVecExcC1ERNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN9Imath_2_510NullVecExcC1ERKS0_'/>
+<fun r='_ZN9Imath_2_510NullVecExcC1EOS0_'/>

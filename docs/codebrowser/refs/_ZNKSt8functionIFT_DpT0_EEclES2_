@@ -1,8 +1,8 @@
 <def f='include/c++/11/bits/std_function.h' l='585' ll='591' type='_Res std::function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt;::operator()(_ArgTypes... __args) const'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='545' u='c' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='546' u='c' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='555' u='c' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='556' u='c' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='548' u='c' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='549' u='c' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='558' u='c' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='559' u='c' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
 <doc f='include/c++/11/bits/std_function.h' l='577'>/**
        *  @brief Invokes the function targeted by @c *this.
        *  @returns the result of the target.

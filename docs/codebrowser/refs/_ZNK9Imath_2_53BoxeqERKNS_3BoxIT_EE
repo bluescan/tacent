@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='95' type='bool Imath_2_5::Box::operator==(const Box&lt;T&gt; &amp; src) const'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='169' ll='174' type='bool Imath_2_5::Box::operator==(const Box&lt;T&gt; &amp; src) const'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='91'>//--------------------
+    //  Operators:  ==, !=
+    //--------------------</doc>

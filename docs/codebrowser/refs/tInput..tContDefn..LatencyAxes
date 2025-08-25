@@ -1,0 +1,5 @@
+<dec f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='103' type='float'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='138' u='w' c='_ZN6tInput9tContDefn10SetGenericEv'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='154' u='w' c='_ZN6tInput9tContDefn5ClearEv'/>
+<offset>288</offset>
+<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='102'>// Latency here is the average time in milliseconds between an input change and the controller reporting the change.</doc>

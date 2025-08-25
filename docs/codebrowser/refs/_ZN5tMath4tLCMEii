@@ -1,5 +1,5 @@
 <dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='119' type='int tMath::tLCM(int a, int b)'/>
 <use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='120' u='c' c='_ZN5tMath20tLeastCommonMultipleEii'/>
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='368' ll='375' type='int tMath::tLCM(int a, int b)'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='371' ll='378' type='int tMath::tLCM(int a, int b)'/>
 <doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='117'>// Finds the Least Common Multiple of a and b. Always returns a positive result (or 0). If either a or b (or both) are
 // 0, the smallest multiple is also 0. Note that lcm(a,b,c) = lcm(lcm(a,b),c)</doc>

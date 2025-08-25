@@ -1,6 +1,7 @@
 _ZN5tMath4tLCMEii|tMath::tLCM
 _ZN5tMath20tLeastCommonMultipleEii|tMath::tLeastCommonMultiple
 _ZN5tMath4tLogEf|tMath::tLog
+_ZN5tMath6tLog10Ef|tMath::tLog10
 _ZN5tMath5tLog2Ei|tMath::tLog2
 _ZNK5tLink4NextEv|tLink::Next
 _ZNK5tLink4PrevEv|tLink::Prev

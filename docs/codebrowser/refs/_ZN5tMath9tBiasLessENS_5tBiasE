@@ -1,11 +1,11 @@
 <dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='80' type='std::function&lt;bool (float, float)&gt; tMath::tBiasLess(tMath::tBias )'/>
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='258' ll='271' type='std::function&lt;bool (float, float)&gt; tMath::tBiasLess(tMath::tBias bias)'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='543' u='c' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='553' u='c' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='261' ll='274' type='std::function&lt;bool (float, float)&gt; tMath::tBiasLess(tMath::tBias bias)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='546' u='c' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='556' u='c' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
 <doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='77'>// These are handy functions that return appropriate comparison operators when computing biased intervals.
 // For tBiasLess we care about the RHS. If the RHS is inclusive we get &lt;=. If the RHS is exclusive we get &lt;.
 // For tBiasGrtr we care about the LHS. If the LHS is inclusive we get &gt;=. If the LHS is exclusive we get &gt;.</doc>
-<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='255'>// Implementation below this line.</doc>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='258'>// Implementation below this line.</doc>
 <use f='Modules/Math/Inc/Math/tGeometry.h' l='549' u='c' c='_ZNK5tMath7tARect217IsPointInsideBiasERKNS_8tVector2ENS_5tBiasES4_'/>
 <use f='Modules/Math/Inc/Math/tGeometry.h' l='553' u='c' c='_ZNK5tMath7tARect217IsPointInsideBiasERKNS_8tVector2ENS_5tBiasES4_'/>
 <use f='Modules/Math/Inc/Math/tGeometry.h' l='575' u='c' c='_ZNK5tMath5tABox17IsPointInsideBiasERKNS_8tVector3ENS_5tBiasES4_S4_'/>

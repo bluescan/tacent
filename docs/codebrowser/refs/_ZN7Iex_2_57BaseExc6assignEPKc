@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='102' type='Iex_2_5::BaseExc &amp; Iex_2_5::BaseExc::assign(const char * s)'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='97'>//--------------------------------------------------
+    // These methods from the base class get obscured by
+    // the definitions above.
+    //--------------------------------------------------</doc>

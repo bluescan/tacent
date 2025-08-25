@@ -10,8 +10,6 @@
 // This function also works if a filename is specified at the end. If forceTreatAsDir is false, paths ending with a /
 // are treated as directories and paths without a / are treated as files. If force is true, both are treated as dirs
 // and the returned path will end with a /.</doc>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='58' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='106' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
 <use f='Modules/Scene/Src/tWorld.cpp' l='555' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
 <use f='Modules/Scene/Src/tWorld.cpp' l='558' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
 <use f='Modules/Scene/Src/tWorld.cpp' l='561' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>

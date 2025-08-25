@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='1436'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='1427'>/* Values for png_set_crc_action() say how to handle CRC errors in
+ * ancillary and critical chunks, and whether to use the data contained
+ * therein.  Note that it is impossible to &quot;discard&quot; data in a critical
+ * chunk.  For versions prior to 0.90, the action was always error/quit,
+ * whereas in version 0.90 and later, the action for CRC errors in ancillary
+ * chunks is warn/discard.  These values should NOT be changed.
+ *
+ *      value                       action:critical     action:ancillary
+ */</doc>

@@ -230,8 +230,6 @@
 <use f='Modules/Pipeline/Src/tRule.cpp' l='90' c='_ZN9tPipeline5tRule15AddDependenciesER5tListI11tStringItemE'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='116' c='_ZN9tPipeline5tRule16AddDependencyDirERK7tStringS3_'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='127' c='_ZN9tPipeline5tRule19AddDependencyDirRecERK7tStringS3_'/>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='34'/>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='45'/>
 <use f='Modules/System/Inc/System/tCmdLine.h' l='118'/>
 <use f='Modules/System/Inc/System/tCmdLine.h' l='149' c='_ZNK8tCmdLine7tOption7GetArgsER5tListI11tStringItemE'/>
 <use f='Modules/System/Inc/System/tCmdLine.h' l='166'/>

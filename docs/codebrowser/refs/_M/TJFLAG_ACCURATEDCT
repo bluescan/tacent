@@ -1,0 +1,11 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='406'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='101' u='c'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='463' u='c'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='398'>/**
+ * Use the most accurate DCT/IDCT algorithm available in the underlying codec.
+ * The default if this flag is not specified is implementation-specific.  For
+ * example, the implementation of TurboJPEG for libjpeg[-turbo] uses the fast
+ * algorithm by default when compressing, because this has been shown to have
+ * only a very slight effect on accuracy, but it uses the accurate algorithm
+ * when decompressing, because this has been shown to have a larger effect.
+ */</doc>

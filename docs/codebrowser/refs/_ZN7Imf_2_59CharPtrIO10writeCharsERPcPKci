@@ -1,0 +1,1 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfIO.h' l='249' ll='254' type='static void Imf_2_5::CharPtrIO::writeChars(char *&amp; op, const char * c, int n)'/>

@@ -9,7 +9,10 @@ _ZNSt7__cxx1112basic_string5frontEv|std::basic_string::front
 _ZNKSt17basic_string_view5frontEv|std::basic_string_view::front
 _ZNSt6chrono3_V212system_clock11from_time_tEl|std::chrono::system_clock::from_time_t
 _ZN4tMem9tFastPool4FreeEPv|tMem::tFastPool::Free
+_ZN7APngAsm5Image4freeEv|APngAsm::Image::free
+_ZN7APngDis5Image4freeEv|APngDis::Image::free
 _ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR|tImage::tImageGIF::FrameLoadCallback
+_ZN8tinyxml28MemPoolT4FreeEPv|tinyxml2::MemPoolT::Free
 _ZNSt5deque5frontEv|std::deque::front
 _ZNSt6ranges14view_interface5frontEv|std::ranges::view_interface::front
 _ZNKSt7__cxx1110moneypunct11frac_digitsEv|std::moneypunct::frac_digits

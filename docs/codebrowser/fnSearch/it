@@ -25,6 +25,10 @@ _ZNK7tItList8IterNode3GetEv|tItList::IterNode::Get
 _ZN7tItList8IterNodeC1EPKT_|tItList::IterNode::IterNode
 _ZNK6tChunk11ItemAdvanceEi|tChunk::ItemAdvance
 _ZNK6tChunk9ItemResetEv|tChunk::ItemReset
+_ZN7Imf_2_56Header8IteratorC1Ev|Imf_2_5::Header::Iterator::Iterator
+_ZNK7Imf_2_56Header8Iterator9attributeEv|Imf_2_5::Header::Iterator::attribute
+_ZNK7Imf_2_56Header8Iterator4nameEv|Imf_2_5::Header::Iterator::name
+_ZN7Imf_2_56Header8IteratorppEv|Imf_2_5::Header::Iterator::operator++
 _ZNK11tExpression5Item0Ev|tExpression::Item0
 _ZNK11tExpression5Item1Ev|tExpression::Item1
 _ZNK11tExpression5Item2Ev|tExpression::Item2
@@ -33,6 +37,7 @@ _ZNK11tExpression5Item4Ev|tExpression::Item4
 _ZNK11tExpression5Item5Ev|tExpression::Item5
 _ZNK11tExpression5Item6Ev|tExpression::Item6
 _ZNK11tExpression5ItemNEi|tExpression::ItemN
+_ZNK8tinyxml28MemPoolT8ItemSizeEv|tinyxml2::MemPoolT::ItemSize
 _ZNKSt10filesystem7__cxx114path8iterator9_M_equalsES2_|std::filesystem::path::iterator::_M_equals
 _ZNKSt10filesystem7__cxx114path8iterator11_M_is_multiEv|std::filesystem::path::iterator::_M_is_multi
 _ZNSt10filesystem7__cxx114path8iteratorC1Ev|std::filesystem::path::iterator::iterator

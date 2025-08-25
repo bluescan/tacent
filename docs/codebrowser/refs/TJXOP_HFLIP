@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='461' type='1'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='375' u='r' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='457'>/**
+   * Flip (mirror) image horizontally.  This transform is imperfect if there
+   * are any partial MCU blocks on the right edge (see #TJXOPT_PERFECT.)
+   */</doc>

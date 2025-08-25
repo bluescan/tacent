@@ -1,0 +1,4 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1170' u='c' c='_ZNK8tinyxml212XMLAttribute10Int64ValueEv'/>
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1213' type='tinyxml2::XMLError tinyxml2::XMLAttribute::QueryInt64Value(int64_t * value) const'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1366' u='c' c='_ZNK8tinyxml210XMLElement19QueryInt64AttributeEPKcPl'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1212'>/// See QueryIntValue</doc>

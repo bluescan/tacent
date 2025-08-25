@@ -1,0 +1,15 @@
+<inh f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='60' c='Iex_2_5::BaseExc'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='188' macro='1'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='188' c='_ZN7Iex_2_59NoImplExcC1ERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='188' c='_ZN7Iex_2_59NoImplExcC1EOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='188' c='_ZN7Iex_2_59NoImplExcaSERS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='188' c='_ZN7Iex_2_59NoImplExcaSERS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='188' c='_ZN7Iex_2_59NoImplExcaSEOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='188' c='_ZN7Iex_2_59NoImplExcaSEOS0_'/>
+<size>72</size>
+<fun r='_ZN7Iex_2_59NoImplExcC1Ev'/>
+<fun r='_ZN7Iex_2_59NoImplExcC1EPKc'/>
+<fun r='_ZN7Iex_2_59NoImplExcC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Iex_2_59NoImplExcC1ERNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Iex_2_59NoImplExcC1ERKS0_'/>
+<fun r='_ZN7Iex_2_59NoImplExcC1EOS0_'/>

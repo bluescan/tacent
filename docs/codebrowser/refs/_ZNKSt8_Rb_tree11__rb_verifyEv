@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/stl_tree.h' l='1400' type='bool std::_Rb_tree::__rb_verify() const'/>
+<def f='include/c++/11/bits/stl_tree.h' l='2557' ll='2593' type='bool std::_Rb_tree::__rb_verify() const'/>
+<doc f='include/c++/11/bits/stl_tree.h' l='1398'>// Debugging.</doc>

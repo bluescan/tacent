@@ -1,3 +1,3 @@
-<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='328' type='int tStd::tUTF32c(char32_t * dst, char32_t srcPoint)'/>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='328'>// Reads srcPoint and returns [0,1].</doc>
-<def f='Modules/Foundation/Src/tStandard.cpp' l='657' ll='667' type='int tStd::tUTF32c(char32_t * dst, char32_t srcPoint)'/>
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='334' type='int tStd::tUTF32c(char32_t * dst, char32_t srcPoint)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='334'>// Reads srcPoint and returns [0,1].</doc>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='720' ll='730' type='int tStd::tUTF32c(char32_t * dst, char32_t srcPoint)'/>

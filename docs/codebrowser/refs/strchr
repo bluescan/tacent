@@ -1,4 +1,4 @@
 <dec f='include/string.h' l='226' type='char * strchr(char * __s, int __c)'/>
 <dec f='include/string.h' l='228' type='const char * strchr(const char * __s, int __c)'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='99' u='c' c='_ZN4tStd7tStrchrEPKci'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='110' u='c' c='_ZN4tStd7tStrchrEPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='105' u='c' c='_ZN4tStd7tStrchrEPKci'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='116' u='c' c='_ZN4tStd7tStrchrEPKDui'/>

@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='213' type='void std::multimap::multimap&lt;_Key, _Tp, _Compare, _Alloc&gt;(multimap&lt;_Key, _Tp, _Compare, _Alloc&gt; &amp;&amp; )'/>
+<doc f='include/c++/11/bits/stl_multimap.h' l='206'>/**
+       *  @brief  %Multimap move constructor.
+       *
+       *  The newly-created %multimap contains the exact contents of the
+       *  moved instance. The moved instance is a valid, but unspecified
+       *  %multimap.
+       */</doc>

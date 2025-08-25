@@ -1,0 +1,13 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='321'/>
+<use f='Modules/Image/Contrib/LibPNG/include/png.h' l='1031' u='c'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='314'>/* Careful here.  At one time, Guy wanted to use 082, but that
+ * would be octal.  We must not include leading zeros.
+ * Versions 0.7 through 1.0.0 were in the range 0 to 100 here
+ * (only version 1.0.0 was mis-numbered 100 instead of 10000).
+ * From version 1.0.1 it is:
+ * XXYYZZ, where XX=major, YY=minor, ZZ=release
+ */</doc>
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='374'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='371'>/* Version information for C files, stored in png.c.  This had better match
+ * the version above.
+ */</doc>

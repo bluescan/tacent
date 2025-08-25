@@ -1,0 +1,5 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='765' u='r' c='_ZNK8tinyxml27XMLNode10NoChildrenEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='770' u='r' c='_ZNK8tinyxml27XMLNode10FirstChildEv'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='774' u='r' c='_ZN8tinyxml27XMLNode10FirstChildEv'/>
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='959' type='tinyxml2::XMLNode *'/>
+<offset>448</offset>

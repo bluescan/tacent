@@ -9,10 +9,17 @@ _ZNKSt7__cxx1112basic_string7crbeginEv|std::basic_string::crbegin
 _ZNKSt7__cxx1112basic_string5crendEv|std::basic_string::crend
 _ZNKSt17basic_string_view7crbeginEv|std::basic_string_view::crbegin
 _ZNKSt17basic_string_view5crendEv|std::basic_string_view::crend
+_ZNK9Imath_2_54Vec25crossERKNS_4Vec2IT_EE|Imath_2_5::Vec2::cross
+_ZNK9Imath_2_54Vec35crossERKNS_4Vec3IT_EE|Imath_2_5::Vec3::cross
+_ZNKSt3map7crbeginEv|std::map::crbegin
+_ZNKSt3map5crendEv|std::map::crend
+_ZNKSt8multimap7crbeginEv|std::multimap::crbegin
+_ZNKSt8multimap5crendEv|std::multimap::crend
 _ZN6tImage9tImageICO11CreateFrameEPKhiii|tImage::tImageICO::CreateFrame
 _ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii|tImage::tImagePVR::CreateNewLayer
 _ZN11tExprWriter2CREv|tExprWriter::CR
 _ZN6tImage8tPicture4CropEiiNS0_6AnchorERK9tColour4b|tImage::tPicture::Crop
+_ZN8tinyxml211XMLDocument18CreateUnlinkedNodeERNS_8MemPoolTIXT0_EEE|tinyxml2::XMLDocument::CreateUnlinkedNode
 _ZN6tImage21CreateReversedRowDataEPKhNS_12tPixelFormatEii|tImage::CreateReversedRowData
 _ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii|tImage::CreateReversedRowData_BC
 _ZN6tImage28CreateReversedRowData_PackedEPKhNS_12tPixelFormatEii|tImage::CreateReversedRowData_Packed

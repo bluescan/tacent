@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2279' type='void tinyxml2::XMLPrinter::PushText(float value)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2278'>/// Add a text node from a float.</doc>

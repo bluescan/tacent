@@ -36,11 +36,11 @@
 <fun r='_ZNSt6thread13native_handleEv'/>
 <fun r='_ZNSt6thread20hardware_concurrencyEv'/>
 <fun r='_ZNSt6thread15_M_start_threadESt10unique_ptrINS_6_StateESt14default_deleteIS1_EEPFvvE'/>
-<use f='Modules/Input/Inc/Input/tContGamepad.h' l='107'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='109'/>
 <size>8</size>
-<use f='Modules/Input/Inc/Input/tControllerSystem.h' l='81'/>
+<use f='Modules/Input/Inc/Input/tControllerSystem.h' l='66'/>
 <size>8</size>
-<use f='Modules/Input/Src/tContGamepad.cpp' l='38' c='_ZN6tInput12tContGamepad12StartPollingEiNS_10tGamepadIDE'/>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='42' c='_ZN6tInput12tContGamepad12StartPollingEi'/>
 <size>8</size>
-<use f='Modules/Input/Src/tControllerSystem.cpp' l='71' c='_ZN6tInput17tControllerSystemC1Eii'/>
+<use f='Modules/Input/Src/tControllerSystem.cpp' l='56' c='_ZN6tInput17tControllerSystemC1Eii'/>
 <size>8</size>

@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/stl_map.h' l='1132' ll='1134' type='void std::map::clear()'/>
+<doc f='include/c++/11/bits/stl_map.h' l='1126'>/**
+       *  Erases all elements in a %map.  Note that this function only
+       *  erases the elements, and that if the elements themselves are
+       *  pointers, the pointed-to memory is not touched in any way.
+       *  Managing the pointer is the user&apos;s responsibility.
+       */</doc>

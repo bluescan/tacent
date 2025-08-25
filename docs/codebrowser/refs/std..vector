@@ -280,6 +280,15 @@
 <fun r='_ZNSt6vectorIbT_E8_M_eraseESt13_Bit_iterator'/>
 <fun r='_ZNSt6vectorIbT_E8_M_eraseESt13_Bit_iteratorS2_'/>
 <fun r='_ZNSt6vectorIbT_E16_M_shrink_to_fitEv'/>
+<use f='Modules/Image/Contrib/ApngDis/apngdis.h' l='75' c='_ZN7APngDis9load_apngEPKcRSt6vectorINS_5ImageESaIS3_EE'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='91' c='_ZN7APngAsm19find_common_coltypeERSt6vectorINS_5ImageESaIS1_EE'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='93' c='_ZN7APngAsm16optim_duplicatesERSt6vectorINS_5ImageESaIS1_EEj'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='95' c='_ZN7APngAsm17optim_downconvertERSt6vectorINS_5ImageESaIS1_EE'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='96' c='_ZN7APngAsm13optim_paletteERSt6vectorINS_5ImageESaIS1_EE'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='97' c='_ZN7APngAsm16optim_add_transpERSt6vectorINS_5ImageESaIS1_EE'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='104' c='_ZN7APngAsm9save_apngEPcRSt6vectorINS_5ImageESaIS2_EEjjii'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='64' c='_ZN6tImage10tImageAPNG4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='267' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
 <use f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='245'/>
 <use f='include/c++/11/bits/random.h' l='5316' c='_ZNKSt21discrete_distribution10param_type13probabilitiesEv'/>
 <use f='include/c++/11/bits/random.h' l='5318' c='_ZNKSt21discrete_distribution10param_type13probabilitiesEv'/>
@@ -350,4 +359,4 @@
 <use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='684' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
 <use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='684' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
 <use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='869' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>
-<use f='Modules/Input/Inc/Input/tControllerSystem.h' l='76'/>
+<use f='Modules/Input/Inc/Input/tControllerSystem.h' l='61'/>

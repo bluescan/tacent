@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='462' ll='464' type='std::multimap::size_type std::multimap::size() const'/>
+<doc f='include/c++/11/bits/stl_multimap.h' l='461'>/** Returns the size of the %multimap.  */</doc>

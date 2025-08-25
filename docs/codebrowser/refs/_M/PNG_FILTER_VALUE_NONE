@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='1476'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='1473'>/* Filter values (not flags) - used in pngwrite.c, pngwutil.c for now.
+ * These defines should NOT be changed.
+ */</doc>

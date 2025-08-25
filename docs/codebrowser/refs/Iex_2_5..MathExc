@@ -1,0 +1,27 @@
+<inh f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='60' c='Iex_2_5::BaseExc'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='179' macro='1'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='179' c='_ZN7Iex_2_57MathExcC1ERKS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='179' c='_ZN7Iex_2_57MathExcC1EOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='179' c='_ZN7Iex_2_57MathExcaSERS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='179' c='_ZN7Iex_2_57MathExcaSERS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='179' c='_ZN7Iex_2_57MathExcaSEOS0_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='179' c='_ZN7Iex_2_57MathExcaSEOS0_'/>
+<ovr f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='53' c='Imath_2_5::NullVecExc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='53'/>
+<ovr f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='56' c='Imath_2_5::InfPointExc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='56'/>
+<ovr f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='59' c='Imath_2_5::NullQuatExc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='59'/>
+<ovr f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='62' c='Imath_2_5::SingMatrixExc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='62'/>
+<ovr f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='65' c='Imath_2_5::ZeroScaleExc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='65'/>
+<ovr f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='68' c='Imath_2_5::IntVecNormalizeExc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='68'/>
+<size>72</size>
+<fun r='_ZN7Iex_2_57MathExcC1Ev'/>
+<fun r='_ZN7Iex_2_57MathExcC1EPKc'/>
+<fun r='_ZN7Iex_2_57MathExcC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Iex_2_57MathExcC1ERNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZN7Iex_2_57MathExcC1ERKS0_'/>
+<fun r='_ZN7Iex_2_57MathExcC1EOS0_'/>

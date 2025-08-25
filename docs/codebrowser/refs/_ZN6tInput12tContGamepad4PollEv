@@ -1,4 +1,4 @@
-<dec f='Modules/Input/Inc/Input/tContGamepad.h' l='98' type='void tInput::tContGamepad::Poll()'/>
-<doc f='Modules/Input/Inc/Input/tContGamepad.h' l='97'>// This function runs on the polling thread for this controller.</doc>
-<use f='Modules/Input/Src/tContGamepad.cpp' l='38' u='a' c='_ZN6tInput12tContGamepad12StartPollingEiNS_10tGamepadIDE'/>
-<def f='Modules/Input/Src/tContGamepad.cpp' l='62' ll='137' type='void tInput::tContGamepad::Poll()'/>
+<dec f='Modules/Input/Inc/Input/tContGamepad.h' l='100' type='void tInput::tContGamepad::Poll()'/>
+<doc f='Modules/Input/Inc/Input/tContGamepad.h' l='99'>// This function runs on the polling thread for this controller.</doc>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='42' u='a' c='_ZN6tInput12tContGamepad12StartPollingEi'/>
+<def f='Modules/Input/Src/tContGamepad.cpp' l='65' ll='140' type='void tInput::tContGamepad::Poll()'/>

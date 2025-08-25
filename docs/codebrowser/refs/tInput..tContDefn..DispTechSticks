@@ -1,0 +1,5 @@
+<dec f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='91' type='tInput::tDispTech'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='132' u='w' c='_ZN6tInput9tContDefn10SetGenericEv'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='150' u='w' c='_ZN6tInput9tContDefn5ClearEv'/>
+<offset>160</offset>
+<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='90'>// Displacement tech used by the joysticks.</doc>

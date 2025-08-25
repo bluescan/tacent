@@ -1,10 +1,10 @@
-<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='155' type='IntegralType tStd::tStrtoiT(const char * , int base = -1)'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='156' u='c' c='_ZN4tStd9tStrtoi32EPKci'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='157' u='c' c='_ZN4tStd10tStrtoui32EPKci'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='158' u='c' c='_ZN4tStd9tStrtoi64EPKci'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='159' u='c' c='_ZN4tStd10tStrtoui64EPKci'/>
-<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='479' ll='482' type='IntegralType tStd::tStrtoiT(const char * str, int base = -1)'/>
-<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='128'>// For these conversion calls, unknown digit characters for the supplied base are ignored. If base is not E [2, 36], the
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='161' type='IntegralType tStd::tStrtoiT(const char * , int base = -1)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='162' u='c' c='_ZN4tStd9tStrtoi32EPKci'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='163' u='c' c='_ZN4tStd10tStrtoui32EPKci'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='164' u='c' c='_ZN4tStd9tStrtoi64EPKci'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='165' u='c' c='_ZN4tStd10tStrtoui64EPKci'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='485' ll='488' type='IntegralType tStd::tStrtoiT(const char * str, int base = -1)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='134'>// For these conversion calls, unknown digit characters for the supplied base are ignored. If base is not E [2, 36], the
 // base in which to interpret the string is determined by passing a prefix in the string. Base 10 is used if no specific
 // prefix is found. Although these functions take in UTF-8 strings (chat8_t*), a well-formed source string will only
 // include ASCII characters like digits, negative signs, prefix letters etc. Again, unknown characters are ignored, or,

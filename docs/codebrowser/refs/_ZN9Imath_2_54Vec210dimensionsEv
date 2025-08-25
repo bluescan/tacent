@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='245' type='static unsigned int Imath_2_5::Vec2::dimensions()'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='241'>//--------------------------------------------------------
+    // Number of dimensions, i.e. number of elements in a Vec2
+    //--------------------------------------------------------</doc>

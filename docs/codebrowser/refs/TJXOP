@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='452' ll='495'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='370' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='449'>/**
+ * Transform operations for #tjTransform()
+ */</doc>

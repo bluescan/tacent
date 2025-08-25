@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='107' type='void halfFunction::halfFunction&lt;T&gt;(Function f, half domainMin = -65504., half domainMax = 65504., T defaultValue = 0, T posInfValue = 0, T negInfValue = 0, T nanValue = 0)'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='143' ll='171' type='void halfFunction::halfFunction&lt;T&gt;(Function f, half domainMin = -65504., half domainMax = 65504., T defaultValue = 0, T posInfValue = 0, T negInfValue = 0, T nanValue = 0)'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='237' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='238' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='239' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/halfFunction.h' l='139'>//---------------
+// Implementation
+//---------------</doc>

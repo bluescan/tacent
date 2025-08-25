@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='70' ll='79' type='void APngAsm::Image::init(unsigned int w1, unsigned int h1, unsigned int bpp1, unsigned int type1)'/>
+<use f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='82' u='c' c='_ZN7APngAsm5Image4initEjjPS0_'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='279' u='c' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<doc f='Modules/Image/Contrib/ApngAsm/apngasm.h' l='68'>// bpp is bytes per pixel.
+  // type = 2 for RGB. type = 6 for RGBA</doc>

@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='456' type='0'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='370' u='r' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='453'>/**
+   * Do not transform the position of the image pixels
+   */</doc>

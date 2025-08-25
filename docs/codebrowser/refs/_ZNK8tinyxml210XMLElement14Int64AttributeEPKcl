@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1320' type='int64_t tinyxml2::XMLElement::Int64Attribute(const char * name, int64_t defaultValue = 0) const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1319'>/// See IntAttribute()</doc>

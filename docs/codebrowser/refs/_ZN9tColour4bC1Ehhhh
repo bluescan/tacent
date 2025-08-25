@@ -1,5 +1,6 @@
 <def f='Modules/Math/Inc/Math/tColour.h' l='343' type='void tColour4b::tColour4b(uint8 r, uint8 g, uint8 b, uint8 a = 255)'/>
 <use f='Modules/Image/Inc/Image/tPicture.h' l='154' u='c' c='_ZN6tImage8tPicture8SetPixelEiihhhh'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='266' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
 <use f='Modules/Image/Src/tPixelUtil.cpp' l='116' u='c' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
 <use f='Modules/Image/Src/tPixelUtil.cpp' l='129' u='c' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
 <use f='Modules/Image/Src/tPixelUtil.cpp' l='139' u='c' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>

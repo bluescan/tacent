@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='494' type='7'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='373' u='r' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='489'>/**
+   * Rotate image counter-clockwise by 90 degrees.  This transform is imperfect
+   * if there are any partial MCU blocks on the right edge (see
+   * #TJXOPT_PERFECT.)
+   */</doc>

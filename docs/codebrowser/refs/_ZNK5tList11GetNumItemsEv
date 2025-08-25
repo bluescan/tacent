@@ -21,6 +21,7 @@
 <use f='Modules/Image/Inc/Image/tTexture.h' l='103' u='c' c='_ZNK6tImage8tTexture12GetNumLayersEv'/>
 <use f='Modules/Image/Inc/Image/tTexture.h' l='104' u='c' c='_ZNK6tImage8tTexture13GetNumMipmapsEv'/>
 <use f='Modules/Image/Src/tImageAPNG.cpp' l='129' u='c' c='_ZN6tImage10tImageAPNG3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='268' u='c' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
 <use f='Modules/Image/Src/tImageEXR.cpp' l='289' u='c' c='_ZN6tImage9tImageEXR3SetER5tListINS_6tFrameEEb'/>
 <use f='Modules/Image/Src/tImageGIF.cpp' l='179' u='c' c='_ZN6tImage9tImageGIF3SetER5tListINS_6tFrameEEb'/>
 <use f='Modules/Image/Src/tImageICO.cpp' l='171' u='c' c='_ZN6tImage9tImageICO3SetER5tListINS_6tFrameEEb'/>

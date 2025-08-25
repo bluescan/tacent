@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2079' ll='2081' type='tinyxml2::XMLHandle tinyxml2::XMLHandle::LastChild()'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2078'>/// Get the last child of this handle.</doc>

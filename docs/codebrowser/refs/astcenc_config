@@ -1,0 +1,44 @@
+<def f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='397' ll='572'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='699' c='_Z19astcenc_config_init15astcenc_profilejjjfjP14astcenc_config'/>
+<use f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='720' c='_Z21astcenc_context_allocPK14astcenc_configjPP15astcenc_context'/>
+<size>112</size>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='387'>/**
+ * @brief The config structure.
+ *
+ * This structure will initially be populated by a call to astcenc_config_init, but power users may
+ * modify it before calling astcenc_context_alloc. See astcenccli_toplevel_help.cpp for full user
+ * documentation of the power-user settings.
+ *
+ * Note for any settings which are associated with a specific color component, the value in the
+ * config applies to the component that exists after any compression data swizzle is applied.
+ */</doc>
+<mbr r='astcenc_config::profile' o='0' t='astcenc_profile'/>
+<mbr r='astcenc_config::flags' o='32' t='unsigned int'/>
+<mbr r='astcenc_config::block_x' o='64' t='unsigned int'/>
+<mbr r='astcenc_config::block_y' o='96' t='unsigned int'/>
+<mbr r='astcenc_config::block_z' o='128' t='unsigned int'/>
+<mbr r='astcenc_config::cw_r_weight' o='160' t='float'/>
+<mbr r='astcenc_config::cw_g_weight' o='192' t='float'/>
+<mbr r='astcenc_config::cw_b_weight' o='224' t='float'/>
+<mbr r='astcenc_config::cw_a_weight' o='256' t='float'/>
+<mbr r='astcenc_config::a_scale_radius' o='288' t='unsigned int'/>
+<mbr r='astcenc_config::rgbm_m_scale' o='320' t='float'/>
+<mbr r='astcenc_config::tune_partition_count_limit' o='352' t='unsigned int'/>
+<mbr r='astcenc_config::tune_2partition_index_limit' o='384' t='unsigned int'/>
+<mbr r='astcenc_config::tune_3partition_index_limit' o='416' t='unsigned int'/>
+<mbr r='astcenc_config::tune_4partition_index_limit' o='448' t='unsigned int'/>
+<mbr r='astcenc_config::tune_block_mode_limit' o='480' t='unsigned int'/>
+<mbr r='astcenc_config::tune_refinement_limit' o='512' t='unsigned int'/>
+<mbr r='astcenc_config::tune_candidate_limit' o='544' t='unsigned int'/>
+<mbr r='astcenc_config::tune_2partitioning_candidate_limit' o='576' t='unsigned int'/>
+<mbr r='astcenc_config::tune_3partitioning_candidate_limit' o='608' t='unsigned int'/>
+<mbr r='astcenc_config::tune_4partitioning_candidate_limit' o='640' t='unsigned int'/>
+<mbr r='astcenc_config::tune_db_limit' o='672' t='float'/>
+<mbr r='astcenc_config::tune_mode0_mse_overshoot' o='704' t='float'/>
+<mbr r='astcenc_config::tune_refinement_mse_overshoot' o='736' t='float'/>
+<mbr r='astcenc_config::tune_2_partition_early_out_limit_factor' o='768' t='float'/>
+<mbr r='astcenc_config::tune_3_partition_early_out_limit_factor' o='800' t='float'/>
+<mbr r='astcenc_config::tune_2_plane_early_out_limit_correlation' o='832' t='float'/>
+<mbr r='astcenc_config::tune_low_weight_count_limit' o='864' t='unsigned int'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1110' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<size>112</size>

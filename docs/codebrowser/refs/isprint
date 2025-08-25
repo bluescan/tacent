@@ -1,2 +1,2 @@
 <dec f='include/ctype.h' l='114' type='int isprint(int )'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='341' u='c' c='_ZN4tStd8tIsprintEc'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='347' u='c' c='_ZN4tStd8tIsprintEc'/>

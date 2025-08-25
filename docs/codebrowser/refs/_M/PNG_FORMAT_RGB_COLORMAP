@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='2818'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='2813'>/* With color-mapped formats the image data is one byte for each pixel, the byte
+ * is an index into the color-map which is formatted as above.  To obtain a
+ * color-mapped format it is sufficient just to add the PNG_FOMAT_FLAG_COLORMAP
+ * to one of the above definitions, or you can use one of the definitions below.
+ */</doc>

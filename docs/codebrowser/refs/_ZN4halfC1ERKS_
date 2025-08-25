@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='103' type='void half::half(const half &amp; )'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='511' u='c' c='_ZNK4half5roundEj'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfRgba.h' l='63' u='c' c='_ZN7Imf_2_54RgbaC1E4halfS1_S1_S1_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfRgba.h' l='63' u='c' c='_ZN7Imf_2_54RgbaC1E4halfS1_S1_S1_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfRgba.h' l='63' u='c' c='_ZN7Imf_2_54RgbaC1E4halfS1_S1_S1_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfRgba.h' l='63' u='c' c='_ZN7Imf_2_54RgbaC1E4halfS1_S1_S1_'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='267' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='268' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='269' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>

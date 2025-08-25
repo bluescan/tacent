@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='358' type='void Imath_2_5::Box&lt;Vec2&lt;type-parameter-0-0&gt;&gt;::Box&lt;Vec2&lt;type-parameter-0-0&gt; &gt;()'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='402' ll='406' type='void Imath_2_5::Box&lt;Vec2&lt;type-parameter-0-0&gt;&gt;::Box&lt;Vec2&lt;type-parameter-0-0&gt; &gt;()'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='354'>//-----------------------------------------------------
+    //  Constructors - an &quot;empty&quot; box is created by default
+    //-----------------------------------------------------</doc>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathBox.h' l='399'>//----------------
+//  Implementation</doc>

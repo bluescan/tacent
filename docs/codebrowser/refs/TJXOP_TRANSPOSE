@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='471' type='3'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='467'>/**
+   * Transpose image (flip/mirror along upper left to lower right axis.)  This
+   * transform is always perfect.
+   */</doc>

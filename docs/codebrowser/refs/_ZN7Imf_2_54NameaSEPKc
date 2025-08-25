@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='73' type='Imf_2_5::Name &amp; Imf_2_5::Name::operator=(const char * text)'/>
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='110' ll='115' type='Imf_2_5::Name &amp; Imf_2_5::Name::operator=(const char * text)'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='128' u='c' c='_ZN7Imf_2_54NameC1EPKc'/>
+<doc f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfName.h' l='106'>//-----------------
+// Inline functions
+//-----------------</doc>

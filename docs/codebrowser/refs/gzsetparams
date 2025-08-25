@@ -1,1 +1,1 @@
-<dec f='include/zlib.h' l='1380' type='int gzsetparams(gzFile file, int level, int strategy)'/>
+<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1379' type='int gzsetparams(gzFile file, int level, int strategy)'/>

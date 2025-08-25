@@ -1,4 +1,4 @@
-<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='95' type='int tStd::tStrlen(const char * s)'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='101' type='int tStd::tStrlen(const char * s)'/>
 <use f='Modules/Foundation/Inc/Foundation/tString.h' l='156' u='c' c='_ZNK7tString7IsEqualEPKc'/>
 <use f='Modules/Foundation/Inc/Foundation/tString.h' l='161' u='c' c='_ZNK7tString9IsEqualCIEPKc'/>
 <use f='Modules/Foundation/Inc/Foundation/tHash.h' l='135' u='c' c='_ZN5tHash17tHashStringFast32EPKcj'/>
@@ -9,9 +9,9 @@
 <use f='Modules/Foundation/Inc/Foundation/tHash.h' l='167' u='c' c='_ZN5tHash14tHashString256EPKc8tFixIntUILi256EE'/>
 <use f='Modules/Foundation/Inc/Foundation/tHash.h' l='170' u='c' c='_ZN5tHash17tHashStringSHA256EPKc8tFixIntUILi256EE'/>
 <use f='Modules/Foundation/Inc/Foundation/tName.h' l='142' u='c' c='_ZNK5tName7IsEqualEPKc'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='166' u='c' c='_ZN4tStd7tStrtofEPKc'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='182' u='c' c='_ZN4tStd7tStrtodEPKc'/>
-<use f='Modules/Foundation/Src/tStandard.cpp' l='187' u='c' c='_ZN4tStd7tStrtodEPKc'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='229' u='c' c='_ZN4tStd7tStrtofEPKc'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='245' u='c' c='_ZN4tStd7tStrtodEPKc'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='250' u='c' c='_ZN4tStd7tStrtodEPKc'/>
 <use f='Modules/System/Inc/System/tChunk.h' l='143' u='c' c='_ZN12tChunkWriter5WriteEPKc'/>
 <use f='Modules/System/Inc/System/tRegex.h' l='122' u='c' c='_ZNK7tSystem6tRegex6SearchEPKcR5tListINS0_5MatchEE'/>
 <use f='Modules/System/Src/tCmdLine.cpp' l='151' u='c' c='_ZN8tCmdLine6tParseEiPPcb'/>

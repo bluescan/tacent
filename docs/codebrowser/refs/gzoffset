@@ -1,1 +1,1 @@
-<dec f='include/zlib.h' l='1876' type='off_t gzoffset(gzFile )'/>
+<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1875' type='off_t gzoffset(gzFile )'/>

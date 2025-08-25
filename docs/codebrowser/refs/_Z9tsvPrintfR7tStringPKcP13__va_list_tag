@@ -6,6 +6,5 @@
 <use f='Modules/System/Inc/System/tScript.h' l='419' u='c' c='_ZN12tScriptErrorC1EPKcz'/>
 <use f='Modules/System/Inc/System/tScript.h' l='428' u='c' c='_ZN12tScriptErrorC1EiPKcz'/>
 <use f='Modules/Pipeline/Src/tRule.cpp' l='31' u='c' c='_ZN10tRuleErrorC1EPKcz'/>
-<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='55' u='c' c='_ZN14tSolutionErrorC1EPKcz'/>
 <def f='Modules/System/Src/tPrint.cpp' l='514' ll='523' type='tString &amp; tsvPrintf(tString &amp; dest, const char * format, __va_list_tag * argList)'/>
 <use f='Modules/System/Src/tPrint.cpp' l='530' u='c' c='_Z8tsPrintfR7tStringPKcz'/>

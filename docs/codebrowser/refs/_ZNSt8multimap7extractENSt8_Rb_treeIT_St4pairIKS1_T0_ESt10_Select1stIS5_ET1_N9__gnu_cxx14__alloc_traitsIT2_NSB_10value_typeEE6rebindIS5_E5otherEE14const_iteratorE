@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='631' ll='636' type='std::multimap::node_type std::multimap::extract(std::multimap::const_iterator __pos)'/>
+<doc f='include/c++/11/bits/stl_multimap.h' l='630'>/// Extract a node.</doc>

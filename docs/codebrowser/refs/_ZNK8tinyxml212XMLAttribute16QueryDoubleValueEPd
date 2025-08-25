@@ -1,0 +1,4 @@
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1195' u='c' c='_ZNK8tinyxml212XMLAttribute11DoubleValueEv'/>
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1219' type='tinyxml2::XMLError tinyxml2::XMLAttribute::QueryDoubleValue(double * value) const'/>
+<use f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1392' u='c' c='_ZNK8tinyxml210XMLElement20QueryDoubleAttributeEPKcPd'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1218'>/// See QueryIntValue</doc>

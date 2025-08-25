@@ -1,0 +1,19 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='742' type='astcenc_error astcenc_compress_image(astcenc_context * context, astcenc_image * image, const astcenc_swizzle * swizzle, uint8_t * data_out, size_t data_len, unsigned int thread_index)'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='724'>/**
+ * @brief Compress an image.
+ *
+ * A single context can only compress or decompress a single image at a time.
+ *
+ * For a context configured for multi-threading, any set of the N threads can call this function.
+ * Work will be dynamically scheduled across the threads available. Each thread must have a unique
+ * @c thread_index.
+ *
+ * @param         context        Codec context.
+ * @param[in,out] image          An input image, in 2D slices.
+ * @param         swizzle        Compression data swizzle, applied before compression.
+ * @param[out]    data_out       Pointer to output data array.
+ * @param         data_len       Length of the output data array.
+ * @param         thread_index   Thread index [0..N-1] of calling thread.
+ *
+ * @return @c ASTCENC_SUCCESS on success, or an error if compression failed.
+ */</doc>

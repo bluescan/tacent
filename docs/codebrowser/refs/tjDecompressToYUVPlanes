@@ -1,0 +1,53 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1325' type='int tjDecompressToYUVPlanes(tjhandle handle, const unsigned char * jpegBuf, unsigned long jpegSize, unsigned char ** dstPlanes, int width, int * strides, int height, int flags)'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1273'>/**
+ * Decompress a JPEG image into separate Y, U (Cb), and V (Cr) image
+ * planes.  This function performs JPEG decompression but leaves out the color
+ * conversion step, so a planar YUV image is generated instead of an RGB image.
+ *
+ * @param handle a handle to a TurboJPEG decompressor or transformer instance
+ *
+ * @param jpegBuf pointer to a buffer containing the JPEG image to decompress
+ *
+ * @param jpegSize size of the JPEG image (in bytes)
+ *
+ * @param dstPlanes an array of pointers to Y, U (Cb), and V (Cr) image planes
+ * (or just a Y plane, if decompressing a grayscale image) that will receive
+ * the YUV image.  These planes can be contiguous or non-contiguous in memory.
+ * Use #tjPlaneSizeYUV() to determine the appropriate size for each plane based
+ * on the scaled image width, scaled image height, strides, and level of
+ * chrominance subsampling.  Refer to @ref YUVnotes &quot;YUV Image Format Notes&quot;
+ * for more details.
+ *
+ * @param width desired width (in pixels) of the YUV image.  If this is
+ * different than the width of the JPEG image being decompressed, then
+ * TurboJPEG will use scaling in the JPEG decompressor to generate the largest
+ * possible image that will fit within the desired width.  If &lt;tt&gt;width&lt;/tt&gt; is
+ * set to 0, then only the height will be considered when determining the
+ * scaled image size.  If the scaled width is not an even multiple of the MCU
+ * block width (see #tjMCUWidth), then an intermediate buffer copy will be
+ * performed within TurboJPEG.
+ *
+ * @param strides an array of integers, each specifying the number of bytes per
+ * line in the corresponding plane of the output image.  Setting the stride for
+ * any plane to 0 is the same as setting it to the scaled plane width (see
+ * @ref YUVnotes &quot;YUV Image Format Notes&quot;.)  If &lt;tt&gt;strides&lt;/tt&gt; is NULL, then
+ * the strides for all planes will be set to their respective scaled plane
+ * widths.  You can adjust the strides in order to add an arbitrary amount of
+ * line padding to each plane or to decompress the JPEG image into a subregion
+ * of a larger YUV planar image.
+ *
+ * @param height desired height (in pixels) of the YUV image.  If this is
+ * different than the height of the JPEG image being decompressed, then
+ * TurboJPEG will use scaling in the JPEG decompressor to generate the largest
+ * possible image that will fit within the desired height.  If &lt;tt&gt;height&lt;/tt&gt;
+ * is set to 0, then only the width will be considered when determining the
+ * scaled image size.  If the scaled height is not an even multiple of the MCU
+ * block height (see #tjMCUHeight), then an intermediate buffer copy will be
+ * performed within TurboJPEG.
+ *
+ * @param flags the bitwise OR of one or more of the @ref TJFLAG_ACCURATEDCT
+ * &quot;flags&quot;
+ *
+ * @return 0 if successful, or -1 if an error occurred (see #tjGetErrorStr2()
+ * and #tjGetErrorCode().)
+ */</doc>

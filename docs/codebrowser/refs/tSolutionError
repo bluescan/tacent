@@ -1,9 +1,0 @@
-<inh f='Modules/System/Inc/System/tThrow.h' l='27' c='tError'/>
-<def f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='53' ll='58'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='28' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
-<use f='Modules/Pipeline/Src/tSolution.cpp' l='73' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
-<size>32</size>
-<doc f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='52'>// @todo Move into PCH when we set them up.</doc>
-<fun r='_ZN14tSolutionErrorC1EPKcz'/>
-<fun r='_ZN14tSolutionErrorC1ERK7tString'/>
-<fun r='_ZN14tSolutionErrorC1Ev'/>

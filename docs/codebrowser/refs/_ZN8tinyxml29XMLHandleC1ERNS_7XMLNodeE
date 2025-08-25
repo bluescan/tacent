@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2059' ll='2060' type='void tinyxml2::XMLHandle::XMLHandle(tinyxml2::XMLNode &amp; node)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='2058'>/// Create a handle from a node.</doc>

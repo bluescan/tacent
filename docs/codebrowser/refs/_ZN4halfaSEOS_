@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='125' type='half &amp; half::operator=(half &amp;&amp; h)'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='574' u='c' c='_ZN4halfaSEf'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='582' u='c' c='_ZN4halfpLES_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='590' u='c' c='_ZN4halfpLEf'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='598' u='c' c='_ZN4halfmIES_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='606' u='c' c='_ZN4halfmIEf'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='614' u='c' c='_ZN4halfmLES_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='622' u='c' c='_ZN4halfmLEf'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='630' u='c' c='_ZN4halfdVES_'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/half.h' l='638' u='c' c='_ZN4halfdVEf'/>

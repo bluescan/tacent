@@ -1,4 +1,4 @@
 <dec f='include/c++/11/bits/ios_base.h' l='488' type='const std::ios_base::seekdir'/>
 <doc f='include/c++/11/bits/ios_base.h' l='487'>/// Request a seek relative to the current end of the sequence.</doc>
-<use f='include/c++/11/bits/fstream.tcc' l='201' c='_ZNSt13basic_filebuf4openEPKcSt13_Ios_Openmode'/>
 <use f='include/c++/11/bits/sstream.tcc' l='191' u='r' c='_ZNSt7__cxx1115basic_stringbuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='201' c='_ZNSt13basic_filebuf4openEPKcSt13_Ios_Openmode'/>

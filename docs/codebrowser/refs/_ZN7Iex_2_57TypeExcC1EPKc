@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/IexBaseExc.h' l='196' type='void Iex_2_5::TypeExc::TypeExc(const char * text)'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='713' u='c' c='_ZN7Imf_2_56Header14typedAttributeEPKc'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImfHeader.h' l='727' u='c' c='_ZNK7Imf_2_56Header14typedAttributeEPKc'/>

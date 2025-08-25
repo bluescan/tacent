@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1645' type='int64_t tinyxml2::XMLElement::Int64Text(int64_t defaultValue = 0) const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1644'>/// See QueryIntText()</doc>

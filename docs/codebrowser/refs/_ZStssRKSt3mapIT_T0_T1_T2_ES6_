@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_map.h' l='1483' ll='1486' type='__detail::__synth3way_t&lt;pair&lt;const _Key, _Tp&gt;&gt; std::operator&lt;=&gt;(const map&lt;_Key, _Tp, _Compare, _Alloc&gt; &amp; __x, const map&lt;_Key, _Tp, _Compare, _Alloc&gt; &amp; __y)'/>

@@ -3,5 +3,6 @@ _ZNKSt9type_info9hash_codeEv|std::type_info::hash_code
 _ZNKSt9type_info4nameEv|std::type_info::name
 _ZNKSt9type_infoeqERKS_|std::type_info::operator==
 _ZNSt9type_infoC1EPKc|std::type_info::type_info
+_ZN7Imf_2_56Header14typedAttributeEPKc|Imf_2_5::Header::typedAttribute
 _ZNKSt10filesystem11file_status4typeEv|std::filesystem::file_status::type
 _ZNKSt10filesystem7__cxx114path5_List4typeEv|std::filesystem::path::_List::type

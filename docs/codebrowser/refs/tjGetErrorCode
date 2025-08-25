@@ -1,0 +1,12 @@
+<dec f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1670' type='int tjGetErrorCode(tjhandle handle)'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='112' u='c' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Contrib/TurboJpeg/turbojpeg.h' l='1660'>/**
+ * Returns a code indicating the severity of the last error.  See
+ * @ref TJERR &quot;Error codes&quot;.
+ *
+ * @param handle a handle to a TurboJPEG compressor, decompressor or
+ * transformer instance
+ *
+ * @return a code indicating the severity of the last error.  See
+ * @ref TJERR &quot;Error codes&quot;.
+ */</doc>

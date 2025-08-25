@@ -7,4 +7,5 @@
 <use f='include/c++/11/bits/stl_bvector.h' l='430' u='c'/>
 <doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='319'>// Defined if inline namespaces are used for versioning.</doc>
 <use f='include/c++/11/bits/unique_ptr.h' l='915' u='c'/>
+<use f='include/c++/11/bits/stl_tree.h' l='653' u='c'/>
 <use f='include/c++/11/bits/locale_facets_nonio.h' l='239' u='c'/>

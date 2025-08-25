@@ -1,12 +1,14 @@
 <use f='Modules/Image/Src/tImageJPG.cpp' l='35' u='r' c='_ZN6tImage9tImageJPG5ClearEv'/>
-<use f='Modules/Image/Src/tImageJPG.cpp' l='35' c='_ZN6tImage9tImageJPG5ClearEv'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='35' u='r' c='_ZN6tImage9tImageJPG5ClearEv'/>
 <use f='Modules/Image/Src/tImageJPG.cpp' l='36' u='w' c='_ZN6tImage9tImageJPG5ClearEv'/>
 <use f='Modules/Image/Src/tImageJPG.cpp' l='75' u='w' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
 <use f='Modules/Image/Src/tImageJPG.cpp' l='76' u='r' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
 <use f='Modules/Image/Src/tImageJPG.cpp' l='319' u='r' c='_ZNK6tImage9tImageJPG29CanDoPerfectLosslessTransformENS0_9TransformE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='329' u='r' c='_ZNK6tImage9tImageJPG29CanDoPerfectLosslessTransformENS0_9TransformE'/>
 <use f='Modules/Image/Src/tImageJPG.cpp' l='363' u='r' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='397' u='r' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
 <use f='Modules/Image/Src/tImageJPG.cpp' l='407' u='r' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
-<use f='Modules/Image/Src/tImageJPG.cpp' l='408' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='408' u='r' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
 <use f='Modules/Image/Src/tImageJPG.cpp' l='409' u='w' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
 <use f='Modules/Image/Src/tImageJPG.cpp' l='442' u='r' c='_ZNK6tImage9tImageJPG4SaveERK7tStringRKNS0_10SaveParamsE'/>
 <use f='Modules/Image/Src/tImageJPG.cpp' l='447' u='r' c='_ZNK6tImage9tImageJPG4SaveERK7tStringRKNS0_10SaveParamsE'/>

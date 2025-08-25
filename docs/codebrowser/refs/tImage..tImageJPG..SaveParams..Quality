@@ -1,1 +1,2 @@
 <use f='Modules/Image/Src/tImageJPG.cpp' l='428' u='w' c='_ZNK6tImage9tImageJPG4SaveERK7tStringi'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='466' u='r' c='_ZNK6tImage9tImageJPG4SaveERK7tStringRKNS0_10SaveParamsE'/>

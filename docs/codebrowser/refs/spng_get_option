@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibSPNG/spng.h' l='463' type='int spng_get_option(spng_ctx * ctx, enum spng_option option, int * value)'/>

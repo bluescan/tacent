@@ -1,7 +1,7 @@
 <def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='107'/>
 <use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='108' c='_ZN5tMath7tDivU64Eyy'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='329' c='_ZN5tMath7tDivU64Eyy'/>
-<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='331' c='_ZN5tMath7tDivU64Eyy'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='332' c='_ZN5tMath7tDivU64Eyy'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='334' c='_ZN5tMath7tDivU64Eyy'/>
 <size>16</size>
 <mbr r='tMath::tDivU64t::Quotient' o='0' t='uint64'/>
 <mbr r='tMath::tDivU64t::Remainder' o='64' t='uint64'/>

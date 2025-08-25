@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1728' type='void tinyxml2::XMLDocument::XMLDocument(bool processEntities = true, tinyxml2::Whitespace whitespaceMode = PRESERVE_WHITESPACE)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1727'>/// constructor</doc>

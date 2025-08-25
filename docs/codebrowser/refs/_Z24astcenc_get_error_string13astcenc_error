@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='836' type='const char * astcenc_get_error_string(astcenc_error status)'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='829'>/**
+ * @brief Get a printable string for specific status code.
+ *
+ * @param status   The status value.
+ *
+ * @return A human readable nul-terminated string.
+ */</doc>

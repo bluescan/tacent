@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='1712' type='void png_progressive_combine_row(png_const_structrp png_ptr, png_bytep old_row, png_const_bytep new_row)'/>

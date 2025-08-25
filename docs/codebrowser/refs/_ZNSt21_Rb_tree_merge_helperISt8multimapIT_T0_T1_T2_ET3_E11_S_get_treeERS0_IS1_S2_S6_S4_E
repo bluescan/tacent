@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_multimap.h' l='1224' ll='1226' type='static auto &amp; std::_Rb_tree_merge_helper&lt;multimap&lt;type-parameter-0-0, type-parameter-0-1, type-parameter-0-2, type-parameter-0-3&gt;, type-parameter-0-4&gt;::_S_get_tree(std::multimap&lt;_Key, _Val, _Cmp2, _Alloc&gt; &amp; __map)'/>

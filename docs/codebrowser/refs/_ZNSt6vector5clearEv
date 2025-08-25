@@ -6,6 +6,7 @@
        *  pointed-to memory is not touched in any way.  Managing the pointer is
        *  the user&apos;s responsibility.
        */</doc>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='106' u='c' c='_ZN6tImage10tImageAPNG4LoadERK7tString'/>
 <use f='include/c++/11/bits/random.tcc' l='2661' u='c' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
 <use f='include/c++/11/bits/random.tcc' l='2826' u='c' c='_ZNSt31piecewise_constant_distribution10param_type13_M_initializeEv'/>
 <use f='include/c++/11/bits/random.tcc' l='3041' u='c' c='_ZNSt29piecewise_linear_distribution10param_type13_M_initializeEv'/>

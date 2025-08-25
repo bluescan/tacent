@@ -21,6 +21,18 @@ _ZNK9tBitArray6AreAllEb|tBitArray::AreAll
 _ZNK5tMath8tCircle24AreaEv|tMath::tCircle2::Area
 _ZNK5tMath7tCircle4AreaEv|tMath::tCircle::Area
 _ZNK5tMath9tEllipse24AreaEv|tMath::tEllipse2::Area
+_ZNK7Imf_2_57Array2D6heightEv|Imf_2_5::Array2D::height
+_ZN7Imf_2_57Array2DaSERKNS_7Array2DIT_EE|Imf_2_5::Array2D::operator=
+_ZN7Imf_2_57Array2DixEl|Imf_2_5::Array2D::operator[]
+_ZN7Imf_2_57Array2D11resizeEraseEll|Imf_2_5::Array2D::resizeErase
+_ZN7Imf_2_57Array2D17resizeEraseUnsafeEll|Imf_2_5::Array2D::resizeEraseUnsafe
+_ZNK7Imf_2_57Array2D5widthEv|Imf_2_5::Array2D::width
+_ZNK7Imf_2_55ArraycvPKT_Ev|Imf_2_5::Array::operator const type-parameter-0-0 *
+_ZN7Imf_2_55ArraycvPT_Ev|Imf_2_5::Array::operator type-parameter-0-0 *
+_ZN7Imf_2_55ArrayaSERKNS_5ArrayIT_EE|Imf_2_5::Array::operator=
+_ZN7Imf_2_55Array11resizeEraseEl|Imf_2_5::Array::resizeErase
+_ZN7Imf_2_55Array17resizeEraseUnsafeEl|Imf_2_5::Array::resizeEraseUnsafe
+_ZNK7Imf_2_55Array4sizeEv|Imf_2_5::Array::size
 _ZNK11tExpression4Arg0Ev|tExpression::Arg0
 _ZNK11tExpression4Arg1Ev|tExpression::Arg1
 _ZNK11tExpression4Arg2Ev|tExpression::Arg2

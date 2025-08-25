@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1798' ll='1800' type='bool tinyxml2::XMLDocument::HasBOM() const'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1795'>/**
+    	Returns true if this document has a leading Byte Order Mark of UTF8.
+    */</doc>

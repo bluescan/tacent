@@ -1,0 +1,15 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='824' type='astcenc_error astcenc_get_block_info(astcenc_context * context, const uint8_t * data, astcenc_block_info * info)'/>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='810'>/**
+ * @brief Provide a high level summary of a block&apos;s encoding.
+ *
+ * This feature is primarily useful for codec developers but may be useful for developers building
+ * advanced content packaging pipelines.
+ *
+ * @param context   Codec context.
+ * @param data      One block of compressed ASTC data.
+ * @param info      The output info structure to populate.
+ *
+ * @return @c ASTCENC_SUCCESS if the block was decoded, or an error otherwise. Note that this
+ *         function will return success even if the block itself was an error block encoding, as the
+ *         decode was correctly handled.
+ */</doc>

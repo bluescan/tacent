@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_map.h' l='623' ll='625' type='std::map::node_type std::map::extract(const std::map::key_type &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_map.h' l='622'>/// Extract a node.</doc>

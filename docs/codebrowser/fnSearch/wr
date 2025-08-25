@@ -1,6 +1,8 @@
 _ZNSt13basic_ostream5writeEPKT_l|std::basic_ostream::write
 _ZN12tHash_SHA2565WriteEPNS_5StateEPKhi|tHash_SHA256::Write
 _ZN12tChunkWriter5WriteEb|tChunkWriter::Write
+_ZN7Imf_2_59CharPtrIO10writeCharsERPcPKci|Imf_2_5::CharPtrIO::writeChars
+_ZN7Imf_2_58StreamIO10writeCharsERNS_7OStreamEPKci|Imf_2_5::StreamIO::writeChars
 _ZN11tExprWriter9WriteAtomEPKDu|tExprWriter::WriteAtom
 _ZN11tExprWriter12WriteCommentEPKDu|tExprWriter::WriteComment
 _ZN11tExprWriter18WriteCommentInlineEPKDu|tExprWriter::WriteCommentInline
@@ -8,6 +10,7 @@ _ZN11tExprWriter16WriteCommentLineEPKDu|tExprWriter::WriteCommentLine
 _ZN11tExprWriter12WriteIndentsEv|tExprWriter::WriteIndents
 _ZN11tExprWriter8WriteRawEPKDu|tExprWriter::WriteRaw
 _ZNK6tImage10tImageTIFF25WriteSoftwarePageDurationEP4tiffi|tImage::tImageTIFF::WriteSoftwarePageDuration
+_ZN8tinyxml210XMLPrinter5WriteEPKc|tinyxml2::XMLPrinter::Write
 _ZN12tChunkWriter5WriteEPKvi|tChunkWriter::Write
 _ZN11tExprWriter9WriteAtomERK7tString|tExprWriter::WriteAtom
 _ZN11tExprWriter12WriteCommentEPKc|tExprWriter::WriteComment

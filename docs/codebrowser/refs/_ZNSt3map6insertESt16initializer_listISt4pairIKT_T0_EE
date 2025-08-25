@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/stl_map.h' l='829' ll='831' type='void std::map::insert(std::initializer_list&lt;value_type&gt; __list)'/>
+<doc f='include/c++/11/bits/stl_map.h' l='822'>/**
+       *  @brief Attempts to insert a list of std::pairs into the %map.
+       *  @param  __list  A std::initializer_list&lt;value_type&gt; of pairs to be
+       *                  inserted.
+       *
+       *  Complexity similar to that of the range constructor.
+       */</doc>

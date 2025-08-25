@@ -1,4 +1,4 @@
 <dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='154' type='int tMath::tFindFirstClearBit(uint32 v)'/>
 <use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='159' u='c' c='_ZN5tMath16tFindFirstSetBitEj'/>
-<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='443' ll='455' type='int tMath::tFindFirstClearBit(uint32 v)'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='446' ll='458' type='int tMath::tFindFirstClearBit(uint32 v)'/>
 <use f='Modules/Foundation/Src/tBitArray.cpp' l='130' u='c' c='_ZNK9tBitArray17FindFirstClearBitEv'/>

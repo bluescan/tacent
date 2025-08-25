@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='592' type='astcenc_type'/>
+<offset>96</offset>
+<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='591'>/** @brief The data type per component. */</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1128' u='w' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

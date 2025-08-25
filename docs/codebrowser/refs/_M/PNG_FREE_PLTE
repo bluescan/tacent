@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibPNG/include/png.h' l='1755'/>
+<doc f='Modules/Image/Contrib/LibPNG/include/png.h' l='1754'>/*      PNG_FREE_LIST 0x0400U   removed in 1.6.0 because it is ignored */</doc>

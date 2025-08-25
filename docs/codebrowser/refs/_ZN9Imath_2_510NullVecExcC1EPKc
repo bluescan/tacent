@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathExc.h' l='53' type='void Imath_2_5::NullVecExc::NullVecExc(const char * text)'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1232' u='c' c='_ZN9Imath_2_54Vec212normalizeExcEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1269' u='c' c='_ZNK9Imath_2_54Vec213normalizedExcEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1724' u='c' c='_ZN9Imath_2_54Vec312normalizeExcEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='1763' u='c' c='_ZNK9Imath_2_54Vec313normalizedExcEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='2129' u='c' c='_ZN9Imath_2_54Vec412normalizeExcEv'/>
+<use f='Modules/Image/Contrib/OpenEXR/include/OpenEXR/ImathVec.h' l='2170' u='c' c='_ZNK9Imath_2_54Vec413normalizedExcEv'/>

@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1273' ll='1275' type='void tinyxml2::XMLElement::SetName(const char * str, bool staticMem = false)'/>
+<doc f='Modules/Image/Contrib/TinyXML2/tinyxml2.h' l='1272'>/// Set the name of the element.</doc>
