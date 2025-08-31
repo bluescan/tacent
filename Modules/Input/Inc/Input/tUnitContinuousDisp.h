@@ -62,6 +62,8 @@ private:
 		DisplacementRaw = disp;
 	}
 
+
+	/// @todo Use a low pass filter here.
 	float DisplacementRaw		= 0.0f;			// Mutex protected.
 	float Displacement			= 0.0f;			// Mutel protected.
 };
