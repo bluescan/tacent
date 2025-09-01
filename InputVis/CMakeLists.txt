@@ -47,6 +47,28 @@ target_include_directories(
 		${CMAKE_CURRENT_SOURCE_DIR}/../Contrib/glfw/include
 )
 
+target_compile_definitions(
+	${PROJECT_NAME}
+	PRIVATE
+		ARCHITECTURE_X64
+		GLFW_INCLUDE_NONE
+		$<$<PLATFORM_ID:Linux>:HAVE_PNG_H>
+		$<$<CONFIG:Debug>:CONFIG_DEBUG>
+		$<$<CONFIG:Release>:CONFIG_RELEASE>
+		$<$<CXX_COMPILER_ID:MSVC>:_CRT_SECURE_NO_DEPRECATE>
+
+		$<$<PLATFORM_ID:Windows>:PLATFORM_WINDOWS>
+		$<$<PLATFORM_ID:Linux>:PLATFORM_LINUX>
+
+		# These shouldn't actually be necessary as there are no direct Windows API calls
+		# in TacentView (they are abstracted away by the Tacent libraries). But just in case
+		# anything in the viewer were to call an OS-level function, these enable the UTF-16
+		# versions if the TACENT_UTF16_API_CALLS option is set.
+		$<$<AND:$<PLATFORM_ID:Windows>,$<BOOL:${TACENT_UTF16_API_CALLS}>>:UNICODE>	# C++	UFF-16
+		$<$<AND:$<PLATFORM_ID:Windows>,$<BOOL:${TACENT_UTF16_API_CALLS}>>:_UNICODE>	# C		UTF-16
+		$<$<AND:$<PLATFORM_ID:Windows>,$<BOOL:${TACENT_UTF16_API_CALLS}>>:TACENT_UTF16_API_CALLS>
+)
+
 # Installation.
 install(
 	TARGETS ${PROJECT_NAME}
