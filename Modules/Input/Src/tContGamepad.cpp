@@ -72,7 +72,7 @@ void tContGamepad::Poll()
 
 		// Get the state of the controller from XInput. From what I can tell reading different gamepads on different
 		// threads does not require a mutex to protect this call. Only this thread instance will read this particular
-		// controller and so two calls to XInputGetState for the same controller will never happed at the same time.
+		// controller and so two calls to XInputGetState for the same controller will never happen at the same time.
 		WinDWord result = XInputGetState(int(GamepadID), &state);
 
 		if (result == WinErrorSuccess)

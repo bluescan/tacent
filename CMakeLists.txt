@@ -36,6 +36,14 @@ add_subdirectory(Modules)
 # The UnitTests executable.
 add_subdirectory(UnitTests)
 
+# The InputVis executable.
+tacent_is_arch_arm(IsArm)
+if (IsArm)
+	message(STATUS "Tacent -- Arm Architecture. Excluding InputVis.")
+else()
+	add_subdirectory(InputVis)
+endif()
+
 # The WoboqGen executable.
 tacent_is_arch_arm(IsArm)
 if (IsArm)
