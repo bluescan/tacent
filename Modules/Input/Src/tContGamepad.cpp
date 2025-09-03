@@ -24,7 +24,7 @@ namespace tInput
 {
 
 
-void tContGamepad::StartPolling(int pollingPeriod_ns)
+void tContGamepad::StartPolling(int pollingPeriod_us)
 {
 	// If it's already running do nothing. We also don't update the period if we're already running.
 	if (IsPolling())
@@ -34,10 +34,10 @@ void tContGamepad::StartPolling(int pollingPeriod_ns)
 	SetDefinition();
 
 	// PollingPeriod is only ever set before the thread starts and doesn't change. We don't need to Mutex protect it.
-	if (pollingPeriod_ns <= 0)
-		PollingPeriod_ns = int(1000000.0f/Definition.MaxPollingFreq);
+	if (pollingPeriod_us <= 0)
+		PollingPeriod_us = int(1000000.0f/Definition.MaxPollingFreq);
 	else
-		PollingPeriod_ns = pollingPeriod_ns;
+		PollingPeriod_us = pollingPeriod_us;
 
 	PollingThread = std::thread(&tContGamepad::Poll, this);
 }
@@ -133,7 +133,7 @@ void tContGamepad::Poll()
 		// This unique_lock is just a more powerful version of lock_guard. Supports subsequent unlocking/locking which
 		// is presumably needed by wait_for. In any case, wait_for needs this type of lock.
 		std::unique_lock<std::mutex> lock(Mutex);
-		bool exitRequested = PollingExitCondition.wait_for(lock, std::chrono::nanoseconds(PollingPeriod_ns), [this]{ return PollingExitRequested; });
+		bool exitRequested = PollingExitCondition.wait_for(lock, std::chrono::microseconds(PollingPeriod_us), [this]{ return PollingExitRequested; });
 		if (exitRequested)
 			break;
 	}

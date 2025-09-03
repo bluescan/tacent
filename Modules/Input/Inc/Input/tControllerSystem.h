@@ -26,14 +26,14 @@ namespace tInput
 class tControllerSystem
 {
 public:
-	// PollingPeriod is in nanoseconds. A value of 0 means auto-detect the polling period by inspecting the vendor and
+	// PollingPeriod is in microseconds. A value of 0 means auto-detect the polling period by inspecting the vendor and
 	// prodict ID of any controller that is plugged in. For example the polling rate of an 8BitDo Ultimate 2 Wireless is
-	// 1000Hz so it will set the pollingPeriod to 1000ns (1ms -> 1000Hz, 2000Hz -> 500ns). Note that there is a separate
+	// 1000Hz so it will set the pollingPeriod to 1000us (1ms -> 1000Hz, 2000Hz -> 500us). Note that there is a separate
 	// polling thread for each controller. In auto-mode the polling rate may be different for each controller. If
-	// controller details can't be determined or pollingPeriod is 0, 8000ns (125Hz) is used. This is the XBoxOne
+	// controller details can't be determined or pollingPeriod is 0, 8000us (125Hz) is used. This is the XBoxOne
 	// controller (gamepad) polling rate. PollingControllerDetectionPeriod is in milliseconds. A value of 0 means use
 	// the default 1000ms period.
-	tControllerSystem(int pollingPeriod_ns = 0, int pollingControllerDetectionPeriod_ms = 0);
+	tControllerSystem(int pollingPeriod_us = 0, int pollingControllerDetectionPeriod_ms = 0);
 	virtual ~tControllerSystem();
 
 	// Call this periodically from the main thread loop. When this is called any callbacks are executed and all
@@ -50,7 +50,7 @@ private:
 	// components of the gamepads -- ditto for other controller types when we get around to implementing them.
 	std::mutex Mutex;
 
-	int PollingPeriod_ns = 0;				// In nanoseconds.
+	int PollingPeriod_us = 0;				// In microseconds.
 	int DetectPeriod_ms = 0;				// In milliseconds.
 
 	// To simplify the implementation we are going to support up to precisely 4 gamepads. This matches the maximum

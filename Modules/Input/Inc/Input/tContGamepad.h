@@ -86,7 +86,7 @@ public:
 	tCompButton AButton;
 	tCompButton BButton;
 
-	void StartPolling(int pollingPeriod_ns);
+	void StartPolling(int pollingPeriod_us);
 	void StopPolling();
 	bool IsPolling() const { return PollingThread.joinable(); }
 	bool IsConnected() const { return IsPolling(); }
@@ -109,7 +109,7 @@ private:
 	std::thread PollingThread;
 
 	ulong PollingPacketNumber = ulong(-1);
-	int PollingPeriod_ns = 0;
+	int PollingPeriod_us = 0;
 };
 
 

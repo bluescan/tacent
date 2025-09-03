@@ -5,6 +5,15 @@ add_executable(
 	${PROJECT_NAME}
 	Src/InputVisualizer.h
 	Src/InputVisualizer.cpp
+	../Contrib/imgui/imgui.cpp
+	../Contrib/imgui/imgui_demo.cpp
+	../Contrib/imgui/imgui_draw.cpp
+	../Contrib/imgui/imgui_tables.cpp
+	../Contrib/imgui/imgui_widgets.cpp
+	../Contrib/imgui/misc/cpp/imgui_stdlib.cpp
+	../Contrib/imgui/backends/imgui_impl_glfw.cpp
+	../Contrib/imgui/backends/imgui_impl_opengl2.cpp
+	../Contrib/glad/src/glad.c
 )
 
 option(TACENT_UTF16_API_CALLS "Build Tacent With UTF16 API Calls" Off)
@@ -20,14 +29,36 @@ set_target_properties(
 	MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"	# Use multithreaded or multithreaded-debug runtime on windows.
 )
 
-target_link_libraries(${PROJECT_NAME} PUBLIC
-	Foundation Math System Image Input
+target_link_libraries(
+	${PROJECT_NAME}
+	PUBLIC
+		Foundation Math System Image Input
+
+		$<$<PLATFORM_ID:Windows>:Dbghelp.lib>
+		$<$<PLATFORM_ID:Windows>:opengl32.lib>
+		$<$<PLATFORM_ID:Windows>:uxtheme.lib>
+		$<$<PLATFORM_ID:Windows>:dwmapi.lib>
+		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/../Contrib/glfw/glfw3.lib>
+
+		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/../Contrib/glfw/libglfw3.a>
+		$<$<PLATFORM_ID:Linux>:dl>
+		$<$<PLATFORM_ID:Linux>:X11>
+		$<$<PLATFORM_ID:Linux>:xcb>		# For clipboard support.
 )
 
 if (MSVC)
-	# Why do we still need this?
+	target_link_options(
+		${PROJECT_NAME}
+		PRIVATE
+		$<IF:$<BOOL:${TACENT_UTF16_API_CALLS}>,/ENTRY:wmainCRTStartup,/ENTRY:mainCRTStartup>
+		#"/SUBSYSTEM:CONSOLE"
+		#"/SUBSYSTEM:WINDOWS"
+	)
 	if (CMAKE_BUILD_TYPE MATCHES Debug)
-		target_link_options(${PROJECT_NAME} PRIVATE "/NODEFAULTLIB:LIBCMT.lib")
+		target_link_options(
+			${PROJECT_NAME}
+			PRIVATE "/NODEFAULTLIB:LIBCMT.lib"
+		)
 	endif()
 endif()
 
