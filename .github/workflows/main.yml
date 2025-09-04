@@ -5,9 +5,15 @@ name: Unit Tests
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+    paths-ignore:
+      - 'docs/**'
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
+    paths-ignore:
+      - 'docs/**'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -59,6 +65,7 @@ jobs:
       run: |
         echo '*** Configuring CMake ***'
         sudo apt-get install ninja-build
+        sudo apt-get install libx11-dev
         mkdir build
         cd build
         cmake .. -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang -DCMAKE_C_COMPILER=clang -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON
