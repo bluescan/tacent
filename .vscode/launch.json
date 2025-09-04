@@ -9,7 +9,7 @@
 	"configurations":
 	[
 		{
-			"name": "Launch GDB",
+			"name": "UnitTests GDB",
 			"type": "cppdbg",
 			"request": "launch",
 			//"program": "${workspaceFolder}/build/TacentInstall/UnitTests",
@@ -31,11 +31,43 @@
 			]
 		},
 		{
-			"name": "Launch Windows",
+			"name": "UnitTests VSDBG",
 			"type": "cppvsdbg",
 			"request": "launch",
 			//"program": "${workspaceFolder}/build/TacentInstall/UnitTests.exe",
 			"program": "${command:cmake.buildDirectory}/TacentInstall/UnitTests.exe",
+			"args": [],
+			"stopAtEntry": false,
+			//"cwd": "${workspaceFolder}/build/TacentInstall",
+			"cwd": "${command:cmake.buildDirectory}/TacentInstall",
+			"environment": [],
+			"console": "integratedTerminal",
+		},
+		{
+			"name": "InputVis GDB",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${command:cmake.buildDirectory}/TacentInstall/InputVis",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${command:cmake.buildDirectory}/TacentInstall",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"setupCommands":
+			[
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				}
+			]
+		},
+		{
+			"name": "InputVis VSDBG",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${command:cmake.buildDirectory}/TacentInstall/InputVis.exe",
 			"args": [],
 			"stopAtEntry": false,
 			//"cwd": "${workspaceFolder}/build/TacentInstall",

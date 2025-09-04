@@ -108,8 +108,10 @@ namespace Visualizer
 	int CursorY										= 0;
 	float CursorMouseX								= -1.0f;
 	float CursorMouseY								= -1.0f;
+#endif
 	int DispW										= 1;
 	int DispH										= 1;
+#if 0
 	int PanOffsetX									= 0;
 	int PanOffsetY									= 0;
 	int PanDragDownOffsetX							= 0;
@@ -120,7 +122,11 @@ namespace Visualizer
 	const tVector4 ColourDisabledTint				= tVector4(0.54f, 0.54f, 0.54f, 1.00f);
 	const tVector4 ColourBG							= tVector4(0.00f, 0.00f, 0.00f, 0.00f);
 	const tVector4 ColourPressedBG					= tVector4(0.21f, 0.45f, 0.21f, 1.00f);
+
+	#endif
 	const tVector4 ColourClear						= tVector4(0.10f, 0.10f, 0.12f, 1.00f);
+
+	#if 0
 
 	// UI scaling and HighDPI support. Scale is driven by decision on min/max font sizes.
 	const float MinFontPointSize					= 14.0f;
@@ -239,9 +245,10 @@ void Viewer::DrawBackground(float l, float r, float b, float t, float drawW, flo
 		}
 	}
 }
+#endif
 
 
-void Viewer::Update(GLFWwindow* window, double dt, bool dopoll)
+void Visualizer::Update(GLFWwindow* window, double dt, bool dopoll)
 {
 	// Poll and handle events like inputs, window resize, etc. You can read the io.WantCaptureMouse,
 	// io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
@@ -254,20 +261,8 @@ void Viewer::Update(GLFWwindow* window, double dt, bool dopoll)
 	if (dopoll)
 		glfwPollEvents();
 
-	Config::ProfileData& profile = Config::GetProfileData();
-	if (Config::Global.TransparentWorkArea)
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	else
-		glClearColor(ColourClear.x, ColourClear.y, ColourClear.z, ColourClear.w);
+	glClearColor(ColourClear.x, ColourClear.y, ColourClear.z, ColourClear.w);
 	glClear(GL_COLOR_BUFFER_BIT);
-
-	// We deal with changing the UI size before ImGui_ImplOpenGL2_NewFrame. This is because modifying UI size
-	// may need to add a new font texture atlas. Adding a font must happen outside of BeginFrame/EndFrame.
-	// If one is added and bd->FontTexture is already set, ImGui_ImplOpenGL2_NewFrame will ignore trying to add
-	// a new one. The UI size may change if a) the size was changed in the prefs, b) reset was pressed, or
-	// c) inc/dec UISize operation was executed.
-	if (CurrentUISize != DesiredUISize)
-		SetUISize(DesiredUISize);
 
 	ImGui_ImplOpenGL2_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
@@ -284,20 +279,18 @@ void Viewer::Update(GLFWwindow* window, double dt, bool dopoll)
 	{
 		DispW = dispw;
 		DispH = disph;
-		if (!GetPanX() && !GetPanY())
-			ResetPan();
 	}
 
 	//
 	// Step 1 - Draw and process the main (top) menu bar and remember its height.
 	//
-	int topUIHeight = DoMainMenuBar();
+	int topUIHeight = 0;//DoMainMenuBar();
 
 	//
 	// Step 2 - Draw and process the bottom nav bar and remember its height.
 	//
-	int bottomUIHeight = GetNavBarHeight();
-	DoNavBar(DispW, DispH, bottomUIHeight);
+	int bottomUIHeight = 0;//GetNavBarHeight();
+//	DoNavBar(DispW, DispH, bottomUIHeight);
 
 	int workAreaW = DispW;
 	int workAreaH = DispH - bottomUIHeight - topUIHeight;
@@ -329,11 +322,9 @@ void Viewer::Update(GLFWwindow* window, double dt, bool dopoll)
 	float mouseY = workH - float(mouseYd);
 	int mouseXi = int(mouseX);
 	int mouseYi = int(mouseY);
-	Config::ProfileData::ZoomModeEnum zoomMode = GetZoomMode();
-	bool imgAvail = CurrImage && CurrImage->IsLoaded();
 
 	// Show the big demo window. You can browse its code to learn more about Dear ImGui.
-	static bool showDemoWindow = false;
+	static bool showDemoWindow = true;
 	//static bool showDemoWindow = true;
 	if (showDemoWindow)
 		ImGui::ShowDemoWindow(&showDemoWindow);
@@ -342,8 +333,8 @@ void Viewer::Update(GLFWwindow* window, double dt, bool dopoll)
 		ImGuiWindowFlags_NoTitleBar		|	ImGuiWindowFlags_NoScrollbar	|	ImGuiWindowFlags_NoMove			| ImGuiWindowFlags_NoResize |
 		ImGuiWindowFlags_NoCollapse		|	ImGuiWindowFlags_NoNav			|	ImGuiWindowFlags_NoBackground	| ImGuiWindowFlags_NoBringToFrontOnFocus;
 
-	if (!ImGui::GetIO().WantCaptureMouse)
-		DisappearCountdown -= dt;
+//	if (!ImGui::GetIO().WantCaptureMouse)
+//		DisappearCountdown -= dt;
 	tVector2 mousePos(mouseX, mouseY);
 
 	// This calls ImGui::EndFrame for us.
@@ -353,10 +344,8 @@ void Viewer::Update(GLFWwindow* window, double dt, bool dopoll)
 
 	glfwMakeContextCurrent(window);
 	glfwSwapBuffers(window);
-	FrameNumber++;
+//	FrameNumber++;
 }
-
-#endif
 
 
 void Visualizer::KeyCallback(GLFWwindow* window, int key, int scancode, int action, int modifiers)
@@ -619,65 +608,44 @@ int main(int argc, char** argv)
 	// SetCurrentImage deals with ImageToLoad being empty.
 	Viewer::SetCurrentImage(Viewer::ImageToLoad);
 
-	if (Viewer::Config::Global.TransparentWorkArea)
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	else
-		glClearColor(Viewer::ColourClear.x, Viewer::ColourClear.y, Viewer::ColourClear.z, Viewer::ColourClear.w);
+	#endif
+
+	glClearColor(Visualizer::ColourClear.x, Visualizer::ColourClear.y, Visualizer::ColourClear.z, Visualizer::ColourClear.w);
 	glClear(GL_COLOR_BUFFER_BIT);
 	int dispw, disph;
-	glfwGetFramebufferSize(Viewer::Window, &dispw, &disph);
+	glfwGetFramebufferSize(Visualizer::Window, &dispw, &disph);
 	glViewport(0, 0, dispw, disph);
 
 	// Show the window. Can this just be the glfw call for all platforms?
 	#ifdef PLATFORM_WINDOWS
 	ShowWindow(hwnd, SW_SHOW);
 	#elif defined(PLATFORM_LINUX)
-	glfwShowWindow(Viewer::Window);
+	glfwShowWindow(Visualizer::Window);
 	#endif
 
 	// I don't seem to be able to get Linux to v-sync.
 	// glfwSwapInterval(1);
-	glfwMakeContextCurrent(Viewer::Window);
-	glfwSwapBuffers(Viewer::Window);
+	glfwMakeContextCurrent(Visualizer::Window);
+	glfwSwapBuffers(Visualizer::Window);
 
-	Viewer::Config::ProfileData& profile = *Viewer::Config::Current;
-	if (profile.FullscreenMode)
-		Viewer::ChangeScreenMode(true, true);
-
-	if (profile.SlideshowAutoStart)
-	{
-		Viewer::SlideshowPlaying = true;
-		Viewer::SlideshowCountdown = profile.SlideshowPeriod;
-		Viewer::DisappearCountdown = 0.0;
-	}
-
-	if (profile.ShowImportRaw)
-		Viewer::ImportRawWindowJustOpened = true;
+//	Viewer::Config::ProfileData& profile = *Viewer::Config::Current;
+//	if (profile.FullscreenMode)
+//		Viewer::ChangeScreenMode(true, true);
 
 	int redBits		= 0;	glGetIntegerv(GL_RED_BITS,	&redBits);
 	int greenBits	= 0;	glGetIntegerv(GL_GREEN_BITS,&greenBits);
 	int blueBits	= 0;	glGetIntegerv(GL_BLUE_BITS,	&blueBits);
 	int alphaBits	= 0;	glGetIntegerv(GL_ALPHA_BITS,&alphaBits);
-	if (Viewer::Config::Global.TransparentWorkArea)
-		tPrintf("Framebuffer BPC (RGBA): (%d,%d,%d,%d)\n", redBits, blueBits, greenBits, alphaBits);
-	else
-		tPrintf("Framebuffer BPC (RGB): (%d,%d,%d)\n", redBits, blueBits, greenBits);
+	tPrintf("Framebuffer BPC (RGB): (%d,%d,%d)\n", redBits, blueBits, greenBits);
 
 	// Main loop.
 	static double lastUpdateTime = glfwGetTime();
-	while (!glfwWindowShouldClose(Viewer::Window) && !Viewer::Request_Quit)
+	while (!glfwWindowShouldClose(Visualizer::Window))// && !Visualizer::Request_Quit)
 	{
 		double currUpdateTime = glfwGetTime();
 		double elapsed = tMath::tMin(currUpdateTime - lastUpdateTime, 1.0/30.0);
 
-		Viewer::Update(Viewer::Window, elapsed);
-
-		// Modal dialogs only seem to work after the first Update. May be a ImGui bug?
-		if (requestSnapMessageNoTrans)
-		{
-			Viewer::Request_SnapMessage_NoFrameTrans = true;
-			requestSnapMessageNoTrans = false;
-		}
+		Visualizer::Update(Visualizer::Window, elapsed);
 
 		int sleepms = 0;
 
@@ -686,7 +654,7 @@ int main(int argc, char** argv)
 		sleepms = 16;
 		#endif
 
-		if (Viewer::WindowIconified)
+		if (Visualizer::WindowIconified)
 			sleepms = 100;
 		if (sleepms)
 			tSystem::tSleep(sleepms);
@@ -694,48 +662,17 @@ int main(int argc, char** argv)
 		lastUpdateTime = currUpdateTime;
 	}
 
-	if (Viewer::CurrImage)
-		Viewer::Config::Global.LastOpenPath = Viewer::CurrImage->Filename;
-	else if (Viewer::ImagesDir.IsValid())
-		Viewer::Config::Global.LastOpenPath = Viewer::ImagesDir;
-
-	// This is important. We need the destructors to run BEFORE we shutdown GLFW. Deconstructing the images may block for a bit while shutting
-	// down worker threads. We could show a 'shutting down' popup here if we wanted -- if Image::ThumbnailNumThreadsRunning is > 0.
-	Viewer::Images.Clear();
-	Viewer::UnloadAppImages();
-
-	// Get current window geometry and set in config file if we're not in fullscreen mode and not iconified.
-	if (!profile.FullscreenMode && !Viewer::WindowIconified)
-	{
-		glfwGetWindowPos(Viewer::Window, &Viewer::Config::Global.WindowX, &Viewer::Config::Global.WindowY);
-
-		// This is the client area size. Use glfwGetWindowFrameSize to include the title bar.
-		glfwGetWindowSize(Viewer::Window, &Viewer::Config::Global.WindowW, &Viewer::Config::Global.WindowH);
-	}
-
-	// If we called with --profile we don't save it as current. Before saving the config we restore the original.
-	if ((overridProfile != Viewer::Profile::Invalid) && (originalProfile != Viewer::Profile::Invalid))
-		Viewer::Config::SetProfile(originalProfile);
-
-	Viewer::Config::Global.TransparentWorkArea = Viewer::PendingTransparentWorkArea;
-	Viewer::Config::Global.FrameBufferBPC = Viewer::PendingFrameBufferBPC;
-	Viewer::Config::Save(cfgFile);
+	//Viewer::UnloadAppImages();
 
 	// Cleanup.
 	ImGui_ImplOpenGL2_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 
-	glfwDestroyWindow(Viewer::Window);
+	glfwDestroyWindow(Visualizer::Window);
 	glfwTerminate();
 
-	// Before we go, lets clear out any old cache files.
-	if (Viewer::DeleteAllCacheFilesOnExit)
-		tSystem::tDeleteDir(Viewer::Image::ThumbCacheDir);
-	else
-		Viewer::RemoveOldCacheFiles(Viewer::Image::ThumbCacheDir);
+	return Visualizer::ErrorCode_Success;
 
-	return Viewer::ErrorCode_Success;
-
-	#endif // if 0
+//	#endif // if 0
 }
