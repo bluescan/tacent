@@ -44,10 +44,10 @@
 			"console": "integratedTerminal",
 		},
 		{
-			"name": "InputVis GDB",
+			"name": "Visualizer GDB",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${command:cmake.buildDirectory}/TacentInstall/InputVis",
+			"program": "${command:cmake.buildDirectory}/TacentInstall/Visualizer",
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${command:cmake.buildDirectory}/TacentInstall",
@@ -64,10 +64,10 @@
 			]
 		},
 		{
-			"name": "InputVis VSDBG",
+			"name": "Visualizer VSDBG",
 			"type": "cppvsdbg",
 			"request": "launch",
-			"program": "${command:cmake.buildDirectory}/TacentInstall/InputVis.exe",
+			"program": "${command:cmake.buildDirectory}/TacentInstall/Visualizer.exe",
 			"args": [],
 			"stopAtEntry": false,
 			//"cwd": "${workspaceFolder}/build/TacentInstall",

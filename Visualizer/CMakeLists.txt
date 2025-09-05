@@ -1,10 +1,10 @@
 find_package("TacentProjectUtilities" REQUIRED)
-project(InputVis VERSION ${TACENT_VERSION} LANGUAGES CXX)
+project(Visualizer VERSION ${TACENT_VERSION} LANGUAGES CXX)
 
 add_executable(
 	${PROJECT_NAME}
-	Src/InputVisualizer.h
-	Src/InputVisualizer.cpp
+	Src/Visualizer.h
+	Src/Visualizer.cpp
 	../Contrib/imgui/imgui.cpp
 	../Contrib/imgui/imgui_demo.cpp
 	../Contrib/imgui/imgui_draw.cpp
@@ -14,6 +14,7 @@ add_executable(
 	../Contrib/imgui/backends/imgui_impl_glfw.cpp
 	../Contrib/imgui/backends/imgui_impl_opengl2.cpp
 	../Contrib/glad/src/glad.c
+	$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Windows/Visualizer.rc>
 )
 
 option(TACENT_UTF16_API_CALLS "Build Tacent With UTF16 API Calls" Off)
@@ -105,4 +106,4 @@ install(
 	TARGETS ${PROJECT_NAME}
 	RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/TacentInstall"
 )
-# install(DIRECTORY TestData/ DESTINATION "${CMAKE_BINARY_DIR}/TacentInstall/TestData")
+install(DIRECTORY Assets/ DESTINATION "${CMAKE_BINARY_DIR}/Visualizer/Assets")

@@ -95,8 +95,9 @@ namespace Visualizer
 	GLFWwindow* Window								= nullptr;
 	bool WindowIconified							= false;
 
+//	OutputLog OutLog;
+
 #if 0
-	OutputLog OutLog;
 
 	bool LMBDown									= false;
 	bool RMBDown									= false;
@@ -145,6 +146,9 @@ namespace Visualizer
 
 	void DrawBackground(float l, float r, float b, float t, float drawW, float drawH);
 	#endif
+
+	void SetWindowIcon(const tString& icoFile);
+
 	void PrintRedirectCallback(const char* text, int numChars);
 
 	void GlfwErrorCallback(int error, const char* description)															{ tPrintf("Glfw Error %d: %s\n", error, description); }
@@ -451,6 +455,33 @@ void Visualizer::IconifyCallback(GLFWwindow* window, int iconified)
 }
 
 
+void Visualizer::SetWindowIcon(const tString& icoFile)
+{
+	#ifdef PLATFORM_LINUX
+	tImage::tImageICO icon(icoFile);
+	if (!icon.IsValid())
+		return;
+
+	const int maxImages = 16;
+	GLFWimage* imageTable[maxImages];
+	GLFWimage images[maxImages];
+	int numImages = tMath::tMin(icon.GetNumFrames(), maxImages);
+	for (int i = 0; i < numImages; i++)
+	{
+		imageTable[i] = &images[i];
+		tImage::tFrame* frame = icon.GetFrame(i);
+		frame->ReverseRows();
+		images[i].width = frame->Width;
+		images[i].height = frame->Height;
+		images[i].pixels = (uint8*)frame->Pixels;
+	}
+
+	// This copies the pixel data out so we can let the tImageICO clean itself up afterwards afterwards.
+	glfwSetWindowIcon(Viewer::Window, numImages, *imageTable);
+	#endif
+}
+
+
 #ifdef TACENT_UTF16_API_CALLS
 int wmain(int argc, wchar_t** argv)
 #else
@@ -526,19 +557,19 @@ int main(int argc, char** argv)
 		glfwWindowHint(GLFW_BLUE_BITS, windowHintFramebufferBitsPerComponent);
 	}
 
-	// The title here seems to override the Linux hint above. When we create with the title string "inputvis",
+	// The title here seems to override the Linux hint above. When we create with the title string "visualizer",
 	// glfw makes it the X11 WM_CLASS. This is needed so that the Ubuntu can map the same name in the .desktop file
 	// to find things like the correct dock icon to display. The SetWindowTitle afterwards does not mod the WM_CLASS.
-	Visualizer::Window = glfwCreateWindow(1024, 576, "inputvis", nullptr, nullptr);
+	Visualizer::Window = glfwCreateWindow(1024, 576, "visualizer", nullptr, nullptr);
 	if (!Visualizer::Window)
 	{
 		glfwTerminate();
 		return Visualizer::ErrorCode_GUI_FailGLFWWindow;
 	}
 
-//	if (assetsDirExists)
-//		Gutil::SetWindowIcon(assetsDir + "TacentView.ico");
-//	Gutil::SetWindowTitle();
+	if (assetsDirExists)
+		Visualizer::SetWindowIcon(assetsDir + "Visualizer.ico");
+	glfwSetWindowTitle(Visualizer::Window, "Visualizer");
 	glfwSetWindowPos(Visualizer::Window, 100, 80);
 
 	#ifdef PLATFORM_WINDOWS
