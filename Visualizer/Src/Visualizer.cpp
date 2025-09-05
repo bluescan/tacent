@@ -546,7 +546,7 @@ int main(int argc, char** argv)
 	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 
 	#if defined(PLATFORM_LINUX)
-	glfwWindowHintString(GLFW_X11_CLASS_NAME, "inputvis");
+	glfwWindowHintString(GLFW_X11_CLASS_NAME, "visualizer");
 	#endif
 
 	int windowHintFramebufferBitsPerComponent = 8;
