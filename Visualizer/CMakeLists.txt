@@ -102,8 +102,8 @@ target_compile_definitions(
 )
 
 # Installation.
-install(
-	TARGETS ${PROJECT_NAME}
-	RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/TacentInstall"
-)
+#install(
+#	TARGETS ${PROJECT_NAME}
+#	RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/TacentInstall"
+#)
 install(DIRECTORY Assets/ DESTINATION "${CMAKE_BINARY_DIR}/Visualizer/Assets")

@@ -26,7 +26,7 @@
 //#include <Foundation/tHash.h>
 //#include <System/tCmdLine.h>
 //#include <Image/tPicture.h>
-//#include <Image/tImageICO.h>
+#include <Image/tImageICO.h>
 //#include <Image/tImageTGA.h>		// For paste from clipboard.
 #include <Image/tImagePNG.h>		// For paste from clipboard.
 //#include <Image/tImageWEBP.h>		// For paste from clipboard.
@@ -477,7 +477,7 @@ void Visualizer::SetWindowIcon(const tString& icoFile)
 	}
 
 	// This copies the pixel data out so we can let the tImageICO clean itself up afterwards afterwards.
-	glfwSetWindowIcon(Viewer::Window, numImages, *imageTable);
+	glfwSetWindowIcon(Visualizer::Window, numImages, *imageTable);
 	#endif
 }
 
