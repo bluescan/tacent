@@ -18,7 +18,9 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # The Windows_CM_VS_VC job builds and runs unit tests on windows. CM = CMAKE. VS = VisualStudioGenerator. VC = MSVC Compiler.
-  Windows_CM_VS_VC:
+  # We are swapping out the VS generator for Ninja:
+  # The Windows_CM_NI_VC job builds and runs unit tests on windows. CM = CMAKE. NII = NinjaGenerator. VC = MSVC Compiler.
+  Windows_CM_NI_VC:
     # The type of runner that the job will run on
     runs-on: windows-latest
 
@@ -34,11 +36,13 @@ jobs:
         echo '*** Configuring CMake ***'
         mkdir build
         cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 17 2022" -Ax64
+        # cmake .. -G "Visual Studio 17 2022" -Ax64
         # cmake .. -DCMAKE_BUILD_TYPE=Release -G "NMake Makefiles"
+        cmake .. -DCMAKE_BUILD_TYPE=Release -G "Ninja"
         echo '*** CMake Build ***'
+        # cmake --build . --config Release --target install
         # nmake install
-        cmake --build . --config Release --target install
+        ninja -v install
         echo '*** Done Building ***'
 
     - name: Unit Tests
@@ -46,7 +50,7 @@ jobs:
         echo 'Running Unit Tests'
         cd build
         cd UnitTests
-        powershell "UnitTests.exe | tee Windows_TestResults.txt"
+        powershell ".\UnitTests.exe | tee Windows_TestResults.txt"
         Write-Output "Exit Code: ${LASTEXITCODE}"
         echo '*** Done Running Unit Tests ***'
 
