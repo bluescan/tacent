@@ -31,7 +31,7 @@ jobs:
 
     # msvc-dev-cmd needed so old gnu compiler not used. Want latest msvc on windows.
     - uses: ilammy/msvc-dev-cmd@v1
-    - name: Build using CMake VS MSVC
+    - name: Build using CMake Ninja MSVC
       run: |
         echo '*** Configuring CMake ***'
         mkdir build
@@ -65,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Build Using CMake Ninja
+    - name: Build Using CMake Ninja Clang
       run: |
         echo '*** Configuring CMake ***'
         sudo apt-get install ninja-build
