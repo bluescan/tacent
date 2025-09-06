@@ -116,7 +116,7 @@ endfunction(tacent_target_link_options)
 function(tacent_install PROJNAME)
 	# This path is relative to CMAKE_INSTALL_PREFIX. Do not use an absolute path if you want
 	# the exports to work properly (the will have bad absolute paths if you do).
-	set(TACENT_INSTALL_RELDIR "TacentInstall")
+	set(TACENT_INSTALL_RELDIR "Install")
 	message(STATUS "Tacent -- ${PROJNAME} will be installed to ${TACENT_INSTALL_RELDIR}")
 
 	install(

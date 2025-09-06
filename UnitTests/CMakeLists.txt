@@ -90,8 +90,8 @@ endif()
 
 
 # Installation.
-install(
-	TARGETS ${PROJECT_NAME}
-	RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/TacentInstall"
-)
-install(DIRECTORY TestData/ DESTINATION "${CMAKE_BINARY_DIR}/TacentInstall/TestData")
+#install(
+#	TARGETS ${PROJECT_NAME}
+#	RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/Install"
+#)
+install(DIRECTORY TestData/ DESTINATION "${CMAKE_BINARY_DIR}/UnitTests/TestData")
