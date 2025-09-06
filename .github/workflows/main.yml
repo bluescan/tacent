@@ -46,7 +46,7 @@ jobs:
         echo 'Running Unit Tests'
         cd build
         cd UnitTests
-        powershell ".\UnitTests.exe | tee Windows_TestResults.txt"
+        powershell "UnitTests.exe | tee Windows_TestResults.txt"
         Write-Output "Exit Code: ${LASTEXITCODE}"
         echo '*** Done Running Unit Tests ***'
 
