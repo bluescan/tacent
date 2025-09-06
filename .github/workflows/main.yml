@@ -45,7 +45,7 @@ jobs:
       run: |
         echo 'Running Unit Tests'
         cd build
-        cd TacentInstall
+        cd UnitTests
         powershell ".\UnitTests.exe | tee Windows_TestResults.txt"
         Write-Output "Exit Code: ${LASTEXITCODE}"
         echo '*** Done Running Unit Tests ***'
@@ -54,7 +54,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: unit_test_results_windows_CM_VS_VC
-        path: build/TacentInstall/Windows_TestResults.txt
+        path: build/UnitTests/Windows_TestResults.txt
 
   # The Ubuntu_CM_NI_CL job buildsand tests tacent on ubuntu. CMake Ninja Clang
   Ubuntu_CM_NI_CL:
@@ -77,7 +77,7 @@ jobs:
       run: |
         echo 'Running Unit Tests'
         cd build
-        cd TacentInstall
+        cd UnitTests
         set -o pipefail
         ./UnitTests | tee Ubuntu_TestResults.txt ; echo Error Code $?
         echo '*** Done Running Unit Tests ***'
@@ -86,4 +86,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: unit_test_results_ubuntu_CM_NI_CL
-        path: build/TacentInstall/Ubuntu_TestResults.txt
+        path: build/UnitTests/Ubuntu_TestResults.txt
