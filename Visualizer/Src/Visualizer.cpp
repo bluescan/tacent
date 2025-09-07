@@ -316,7 +316,6 @@ void Visualizer::Update(GLFWwindow* window, double dt, bool dopoll)
 	float panX		= 0.0f;
 	float panY		= 0.0f;
 
-	static bool skipUpdatePlaying = false;
 	double mouseXd, mouseYd;
 	glfwGetCursorPos(window, &mouseXd, &mouseYd);
 
@@ -327,15 +326,27 @@ void Visualizer::Update(GLFWwindow* window, double dt, bool dopoll)
 	int mouseXi = int(mouseX);
 	int mouseYi = int(mouseY);
 
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, tVector2(0.0f, 0.0f));
+	ImGui::SetNextWindowPos(tVector2(20.0f, 10.0f));
+
+	static float fps = 0.0f;
+	float instFps = dt > tMath::Epsilon ? 1.0f/dt : 0.0f;
+	fps = 0.05f*instFps + 0.95f*fps;
+
+	ImGuiWindowFlags flagsImgButton =
+		ImGuiWindowFlags_NoTitleBar		|	ImGuiWindowFlags_NoScrollbar	|	ImGuiWindowFlags_NoMove			| ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_NoCollapse		|	ImGuiWindowFlags_NoNav			|	ImGuiWindowFlags_NoBackground	| ImGuiWindowFlags_NoBringToFrontOnFocus;
+
+	ImGui::Begin("FPSTextID", nullptr, flagsImgButton);
+	ImGui::Text("FPS:%04.1f", fps);
+	ImGui::End();
+	ImGui::PopStyleVar();
+
 	// Show the big demo window. You can browse its code to learn more about Dear ImGui.
 	static bool showDemoWindow = true;
 	//static bool showDemoWindow = true;
 	if (showDemoWindow)
 		ImGui::ShowDemoWindow(&showDemoWindow);
-
-	ImGuiWindowFlags flagsImgButton =
-		ImGuiWindowFlags_NoTitleBar		|	ImGuiWindowFlags_NoScrollbar	|	ImGuiWindowFlags_NoMove			| ImGuiWindowFlags_NoResize |
-		ImGuiWindowFlags_NoCollapse		|	ImGuiWindowFlags_NoNav			|	ImGuiWindowFlags_NoBackground	| ImGuiWindowFlags_NoBringToFrontOnFocus;
 
 //	if (!ImGui::GetIO().WantCaptureMouse)
 //		DisappearCountdown -= dt;
