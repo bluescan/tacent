@@ -64,9 +64,9 @@
 #include "Config.h"
 #include "InputBindings.h"
 #include "Command.h"
-#include "RobotoFontBase85.cpp"
-#include "Version.cmake.h"
 #endif
+#include "RobotoFontBase85.cpp"
+//#include "Version.cmake.h"
 
 using namespace tStd;
 using namespace tSystem;
@@ -182,7 +182,7 @@ namespace Visualizer
 	bool IgnoreNextCursorPosCallback = false;
 	#endif
 
-
+	void SetStyleScaleAndFontSize();
 	void Update(GLFWwindow* window, double dt, bool dopoll = true);
 //	int  DoMainMenuBar();																								// Returns height.
 //	int  GetNavBarHeight();
@@ -482,6 +482,42 @@ void Visualizer::SetWindowIcon(const tString& icoFile)
 }
 
 
+void Visualizer::SetStyleScaleAndFontSize()
+{
+	ImGuiIO& io = ImGui::GetIO();
+
+	ImVector<ImWchar> ranges;
+	ImFontGlyphRangesBuilder builder;
+	builder.AddChar(0x2026);                               // Adds ellipsis.
+	builder.AddRanges(io.Fonts->GetGlyphRangesCyrillic()); // Default plus Cyrillic.
+	builder.BuildRanges(&ranges);
+
+	// Calling destroy is safe if no texture is currently bound.
+	ImGui_ImplOpenGL2_DestroyFontsTexture();
+	float fontSizePixels = 22.0f;
+	io.Fonts->AddFontFromMemoryCompressedBase85TTF
+	(
+		RobotoFont_compressed_data_base85,
+		fontSizePixels,
+		0, ranges.Data
+	);
+
+	// This will call build on the font atlas for us.
+	ImGui_ImplOpenGL2_CreateFontsTexture();
+
+	// Update the font.
+	int fontIndex = 0;
+	ImFont* font = io.Fonts->Fonts[fontIndex];
+	io.FontDefault = font;
+
+	// Update the style scale.
+	float uiSizeScale = 1.5f;
+	ImGuiStyle scaledStyle;
+	scaledStyle.ScaleAllSizes(uiSizeScale);
+	ImGui::GetStyle() = scaledStyle;
+}
+
+
 #ifdef TACENT_UTF16_API_CALLS
 int wmain(int argc, wchar_t** argv)
 #else
@@ -510,23 +546,17 @@ int main(int argc, char** argv)
 	tString progDir	= tSystem::tGetProgramDir();
 	assetsDir		= progDir + "Assets/";
 	configDir		= progDir + "Config/";
-	cacheDir		= progDir + "Cache/";
 	tAssert(assetsDir.IsValid());
 	tAssert(configDir.IsValid());
-	tAssert(cacheDir.IsValid());
 	tPrintf("LocInfo: assetsDir : %s\n", assetsDir.Chr());
 	tPrintf("LocInfo; configDir : %s\n", configDir.Chr());
-	tPrintf("LocInfo: cacheDir  : %s\n", cacheDir.Chr());
 
 	// assetDir is supposed to already exist and, well, have the assets in it.
-	// The other two locations need to be created if they don't already exist.
+	// configDir needs to be created if it don't already exist.
 	bool assetsDirExists = tSystem::tDirExists(assetsDir);
 	bool configDirExists = tSystem::tDirExists(configDir);
-	bool cacheDirExists  = tSystem::tDirExists(cacheDir);
-	//if (!configDirExists)
-	//	configDirExists = tSystem::tCreateDirs(configDir);
-	//if (!cacheDirExists)
-	//	cacheDirExists = tSystem::tCreateDirs(cacheDir);
+	if (!configDirExists)
+		configDirExists = tSystem::tCreateDirs(configDir);
 
 	// Setup window
 	glfwSetErrorCallback(Visualizer::GlfwErrorCallback);
@@ -646,6 +676,8 @@ int main(int argc, char** argv)
 	int dispw, disph;
 	glfwGetFramebufferSize(Visualizer::Window, &dispw, &disph);
 	glViewport(0, 0, dispw, disph);
+
+	Visualizer::SetStyleScaleAndFontSize();
 
 	// Show the window. Can this just be the glfw call for all platforms?
 	#ifdef PLATFORM_WINDOWS
