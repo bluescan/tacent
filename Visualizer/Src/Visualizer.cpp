@@ -252,6 +252,30 @@ void Viewer::DrawBackground(float l, float r, float b, float t, float drawW, flo
 #endif
 
 
+void DrawNGon(const tVector2& center, float radius, int numsides)
+{
+	tColour4b colour = tColour4b::cyan;
+	glColor4ubv(colour.E);
+	glBegin(GL_LINE_STRIP);
+
+	for (int s = 0; s < numsides+1; s++)
+	{
+		float a = tMath::TwoPi * s / float(numsides);
+		float x = center.x + radius*tMath::tCos(a);
+		float y = center.y + radius*tMath::tSin(a);
+		glVertex2f(x, y);
+	}
+
+	glEnd();
+}
+
+
+void DrawCircle(const tVector2& center, float radius)
+{
+	DrawNGon(center, radius, 40);
+}
+
+
 void Visualizer::Update(GLFWwindow* window, double dt, bool dopoll)
 {
 	// Poll and handle events like inputs, window resize, etc. You can read the io.WantCaptureMouse,
@@ -329,6 +353,7 @@ void Visualizer::Update(GLFWwindow* window, double dt, bool dopoll)
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, tVector2(0.0f, 0.0f));
 	ImGui::SetNextWindowPos(tVector2(20.0f, 10.0f));
 
+	// Display FPS
 	static float fps = 0.0f;
 	float instFps = dt > tMath::Epsilon ? 1.0f/dt : 0.0f;
 	fps = 0.05f*instFps + 0.95f*fps;
@@ -341,6 +366,12 @@ void Visualizer::Update(GLFWwindow* window, double dt, bool dopoll)
 	ImGui::Text("FPS:%04.1f", fps);
 	ImGui::End();
 	ImGui::PopStyleVar();
+
+	//Draw a circle.
+	tVector2 center(400, 400);
+	float radius = 100.0f;
+	DrawCircle(center, radius);
+
 
 	// Show the big demo window. You can browse its code to learn more about Dear ImGui.
 	static bool showDemoWindow = true;
