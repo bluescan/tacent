@@ -15,6 +15,7 @@
 
 #pragma once
 #include <Foundation/tName.h>
+#include <Math/tFilter.h>
 #include "Input/tUnit.h"
 namespace tInput
 {
@@ -27,8 +28,26 @@ public:
 	tUnitContinuousAxis(const tName& name, std::mutex& mutex)															: tUnit(name, mutex) { }
 	virtual ~tUnitContinuousAxis()																						{ }
 
-	// @todo Add accessors and make this private.
-	float Value = 0.0f;
+	// Thread-safe. Read by the main system update to send change notification events. May also be used directly by
+	// client code in main thread.
+	float GetAxis() const
+	{
+		std::lock_guard<std::mutex> lock(Mutex);
+		return FilteredAxis.GetValue();
+	}
+
+
+private:
+
+	// Called by the controller polling thread.
+	void UpdateAxisRaw(float axis)
+	{
+		std::lock_guard<std::mutex> lock(Mutex);
+		tMath::tiClamp(axis, -1.0f, 1.0f);
+		FilteredAxis.Update(axis);
+	}
+
+	tMath::tLowPassFilter_FixFlt FilteredAxis;		// Mutex protected.
 };
 
 

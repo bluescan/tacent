@@ -28,7 +28,7 @@ public:
 		InitUnit(Disp)																									{ }
 	virtual ~tCompTrigger()																								{ }
 
-	float GetDisplacement() const																						{ return Disp.GetDisplacement(); }
+	float GetDisplacement() const																						{ return Disp.GetDisp(); }
 	void Reset()																										{ Disp.Reset(); }
 	void Update();
 
@@ -38,8 +38,8 @@ private:
 	// because the result would be the same if it were done in the polling thread, but in Update it's more efficient
 	// since there are fewer updates than polls.
 	friend class tContGamepad;
-	void SetDisplacementRaw(float displacement)																			{ Disp.SetDisplacementRaw(displacement); }
-	void SetDisplacement(float displacement)																			{ Disp.SetDisplacement(displacement); }
+	void SetDisplacementRaw(float displacement)																			{ Disp.UpdateDispRaw(displacement); }
+//	void SetDisplacement(float displacement)																			{ Disp.SetDisplacement(displacement); }
 
 	// The tUnit has been cnstructed with the mutex ref. Calls made to it are mutex protected.
 	tUnitContinuousDisp Disp;

@@ -48,20 +48,20 @@ void tInput::tPopulateContDict()
 //		Vendor					Product
 		"8BitDo",				"Ultimate 2 Wireless Controller",
 
-//		Poll	StickTech		TriggerTech		JoyDead	TrgDead	AxesLat	ButnLat	AxesJit	ButnJit
+//		Poll	StickTech		TriggerTech		StkDead	TrgDead	AxesLat	ButnLat	AxesJit	ButnJit
 //		(Hz)									(%)		(%)		(ms)	(ms)	(ms)	(ms)
-		956,	tDispTech::TMR,	tDispTech::HAL,	0.05f,	0.00f,	7.02f,	2.81f,	0.45f,	0.35f		// No dead zone.
+		1000,	tDispTech::TMR,	tDispTech::HAL,	0.05f,	0.00f,	7.00f,	2.80f,	0.45f,	0.35f		// No dead zone.
 	};
 
 	ContDict[ {0x2DC8, 0x3106} ] =
 	{
 		"8BitDo",				"Ultimate Bluetooth Controller",
-		100,	tDispTech::HAL,	tDispTech::HAL,	0.05f,	0.00f,	16.22f,	10.11f,	2.68f,	2.56f		// No dead zone.
+		100,	tDispTech::HAL,	tDispTech::HAL,	0.05f,	0.00f,	16.20f,	10.10f,	2.70f,	2.60f		// No dead zone.
 	};
 
 	ContDict[ {0x045E, 0x02FF} ] =
 	{
 		"Microsoft",			"XBox One Controller",
-		125,	tDispTech::POT,	tDispTech::POT,	0.05f,	0.00f,	5.54f,	5.54f,	2.24f,	2.24f		// No dead zone. Latencies and jitter not measures separately so they match.
+		125,	tDispTech::POT,	tDispTech::POT,	0.05f,	0.00f,	5.50f,	5.50f,	2.20f,	2.20f		// No dead zone. Latencies and jitter not measures separately so they match.
 	};
 }

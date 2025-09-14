@@ -16,6 +16,7 @@
 #pragma once
 #include <mutex>
 #include <Foundation/tFundamentals.h>
+#include <Math/tFilter.h>
 #include "Input/tUnit.h"
 namespace tInput
 {
@@ -28,29 +29,29 @@ public:
 	tUnitContinuousDisp(const tName& name, std::mutex& mutex)															: tUnit(name, mutex) { }
 	virtual ~tUnitContinuousDisp()																						{ }
 
-	// Read by the main system update to sent change notification events.
+	// Read by the main system update to send change notification events.
 	// May also be used directly by client code in main thread.
-	float GetDisplacement() const
+	float GetDisp() const
 	{
 		std::lock_guard<std::mutex> lock(Mutex);
-		return Displacement;
+		return FilteredDisp.GetValue();
 	}
 
 	void Reset()
 	{
-		SetDisplacementRaw(0.0f);
-		SetDisplacement(0.0f);
+		//SetDisplacementRaw(0.0f);
+		//SetDisplacement(0.0f);
 	}
 
 private:
 	friend class tCompTrigger;
 
-	// Called by the the controller polling thread.
-	void SetDisplacementRaw(float disp)
+	// Called by the controller polling thread.
+	void UpdateDispRaw(float disp)
 	{
 		std::lock_guard<std::mutex> lock(Mutex);
 		tMath::tiClamp(disp, 0.0f, 1.0f);
-		DisplacementRaw = disp;
+		FilteredDisp.Update(disp);
 	}
 
 	// Called by the the controller component in the update function of the main thread. It is the component that does
@@ -59,13 +60,14 @@ private:
 	{
 		tAssert(tMath::tInInterval(disp, 0.0f, 1.0f));
 		std::lock_guard<std::mutex> lock(Mutex);
-		DisplacementRaw = disp;
+		//DisplacementRaw = disp;
 	}
 
+	tMath::tLowPassFilter_FixFlt FilteredDisp;		// Mutex protected.
 
 	/// @todo Use a low pass filter here.
-	float DisplacementRaw		= 0.0f;			// Mutex protected.
-	float Displacement			= 0.0f;			// Mutel protected.
+	//float DisplacementRaw		= 0.0f;			
+	//float Displacement			= 0.0f;			// Mutel protected.
 };
 
 

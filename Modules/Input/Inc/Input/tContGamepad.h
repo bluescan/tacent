@@ -95,6 +95,7 @@ public:
 private:
 	void SetDefinition();
 	void ClearDefinition();
+	void ConfigureFilters();
 
 	// This function runs on the polling thread for this controller.
 	void Poll();

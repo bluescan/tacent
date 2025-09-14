@@ -31,6 +31,7 @@ public:
 		InitUnit(Button)																								{ }
 	virtual ~tCompJoystick()																							{ }
 
+	void ConfigureFilters(float fixedDeltaTime, float tau) { }
 	void Update()																										{ }
 
 private:

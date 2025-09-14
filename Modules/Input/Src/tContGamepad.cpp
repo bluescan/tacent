@@ -39,6 +39,10 @@ void tContGamepad::StartPolling(int pollingPeriod_us)
 	else
 		PollingPeriod_us = pollingPeriod_us;
 
+	// Now that the definition is valid _and_ we know the polling period we can configure the components that need
+	// low-pass filting properly.
+	ConfigureFilters();
+	
 	PollingThread = std::thread(&tContGamepad::Poll, this);
 }
 
@@ -196,6 +200,25 @@ void tContGamepad::SetDefinition()
 void tContGamepad::ClearDefinition()
 {
 	Definition.Clear();
+}
+
+
+void tContGamepad::ConfigureFilters()
+{
+	float fixedDeltaTime = float(PollingPeriod_us) / 1000000.0f;
+
+	// Jitter is measured as the standard deviation of latency measurements in ms.
+	// Tau is the time, in s, it takes the low-pass filter to reach 63% of the input value.
+	// With a bit of hand-waving, the higher the jitter, the less responsive the filter
+	// needs to be -- higher tau. This is the logic being used for using the jitter as the
+	// tau value.
+	float tau = Definition.JitterAxes / 1000.0f;
+	LStick.ConfigureFilters(fixedDeltaTime, tau);
+	RStick.ConfigureFilters(fixedDeltaTime, tau);
+
+	
+	//LTrigger
+	//RTrigger
 }
 
 
