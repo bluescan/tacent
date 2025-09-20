@@ -36,17 +36,45 @@ public:
 		return FilteredAxis.GetValue();
 	}
 
-
-private:
-
-	// Called by the controller polling thread.
-	void UpdateAxisRaw(float axis)
+	// Alternate versions of GetAxis that return true if in dead zone. Since these functions locak a mutex it's best to
+	// only do one function call to get all the values you need.
+	bool GetAxis(float& filteredAxis)
 	{
 		std::lock_guard<std::mutex> lock(Mutex);
-		tMath::tiClamp(axis, -1.0f, 1.0f);
-		FilteredAxis.Update(axis);
+		filteredAxis = FilteredAxis.GetValue();
+		return InDeadZone;
 	}
 
+	bool GetAxis(float& filteredAxis, float& rawAxis)
+	{
+		std::lock_guard<std::mutex> lock(Mutex);
+		filteredAxis = FilteredAxis.GetValue();
+		rawAxis = RawAxis;
+		return InDeadZone;
+	}
+
+private:
+	friend class tCompJoystick;
+
+	// This is called by the controller before polling starts.
+	void Configure(float fixedDeltaTime, float filterTau)
+	{
+		FilteredAxis.Set(fixedDeltaTime, filterTau, true);
+	}
+
+	// Called by the controller in the polling thread.
+	void UpdateAxis(float rawAxis, bool inDeadZone)
+	{
+		std::lock_guard<std::mutex> lock(Mutex);
+		tMath::tiClamp(rawAxis, -1.0f, 1.0f);
+		FilteredAxis.Update(rawAxis);
+
+		RawAxis = rawAxis;
+		InDeadZone = inDeadZone;
+	}
+
+	bool InDeadZone									= false;
+	float RawAxis									= 0.0f;
 	tMath::tLowPassFilter_FixFlt FilteredAxis;		// Mutex protected.
 };
 

@@ -213,8 +213,8 @@ void tContGamepad::ConfigureFilters()
 	// needs to be -- higher tau. This is the logic being used for using the jitter as the
 	// tau value.
 	float tau = Definition.JitterAxes / 1000.0f;
-	LStick.ConfigureFilters(fixedDeltaTime, tau);
-	RStick.ConfigureFilters(fixedDeltaTime, tau);
+	LStick.Configure(fixedDeltaTime, tau);
+	RStick.Configure(fixedDeltaTime, tau);
 
 	
 	//LTrigger

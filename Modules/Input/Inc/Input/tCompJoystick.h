@@ -31,7 +31,11 @@ public:
 		InitUnit(Button)																								{ }
 	virtual ~tCompJoystick()																							{ }
 
-	void ConfigureFilters(float fixedDeltaTime, float tau) { }
+	void Configure(float fixedDeltaTime, float tau)
+	{
+		XAxis.Configure(fixedDeltaTime, tau);
+		YAxis.Configure(fixedDeltaTime, tau);
+	}
 	void Update()																										{ }
 
 private:
