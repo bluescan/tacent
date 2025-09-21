@@ -36,9 +36,20 @@ public:
 		XAxis.Configure(fixedDeltaTime, tau);
 		YAxis.Configure(fixedDeltaTime, tau);
 	}
+
+	// @todo Filtering is dealt with in polling thread. This main thread update
+	// call needs to deal with the dead-zone.
 	void Update()																										{ }
 
 private:
+	friend class tContGamepad;
+
+	void SetAxesRaw(float xaxis, float yaxis)
+	{
+		XAxis.SetAxisRaw(xaxis);
+		YAxis.SetAxisRaw(yaxis);
+	}
+
 	// These are private because they need to be mutex-protected. Use the accessors.
 	tUnitContinuousAxis XAxis;		// Horizontal.
 	tUnitContinuousAxis YAxis;		// Vertical.

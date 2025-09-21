@@ -63,14 +63,13 @@ private:
 	}
 
 	// Called by the controller in the polling thread.
-	void UpdateAxis(float rawAxis, bool inDeadZone)
+	void SetAxisRaw(float rawAxis)
 	{
 		std::lock_guard<std::mutex> lock(Mutex);
 		tMath::tiClamp(rawAxis, -1.0f, 1.0f);
 		FilteredAxis.Update(rawAxis);
 
 		RawAxis = rawAxis;
-		InDeadZone = inDeadZone;
 	}
 
 	bool InDeadZone									= false;

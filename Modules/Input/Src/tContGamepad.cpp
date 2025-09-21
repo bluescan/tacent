@@ -40,9 +40,9 @@ void tContGamepad::StartPolling(int pollingPeriod_us)
 		PollingPeriod_us = pollingPeriod_us;
 
 	// Now that the definition is valid _and_ we know the polling period we can configure the components that need
-	// low-pass filting properly.
-	ConfigureFilters();
-	
+	// low-pass filtering properly.
+	Configure();
+
 	PollingThread = std::thread(&tContGamepad::Poll, this);
 }
 
@@ -85,32 +85,28 @@ void tContGamepad::Poll()
 			if (state.dwPacketNumber != PollingPacketNumber)
 			{
 				// The set calls to the components below are all mutex protected internally. Main thread may read input
-				// unit values so we require the protection.
+				// unit values so we require the protection. Note there is a bit more precision for the neg integral
+				// displacement values. -32768 to 32767 maps to [-1.0, 1.0].
 
-				// Note there is a bit more precision for the neg integral values. -32768 to 32767 maps to [-1.0, 1.0]
+				// Left Joystick.
 				int16 rawLX = state.Gamepad.sThumbLX;
-				float axisLXNorm = (rawLX < 0) ? float(rawLX)/32768.0f : float(rawLX)/32767.0f;
-				tPrintf("LX: %05.3f ", axisLXNorm);
-				// @todo Set LStick X.
-
+				float rawLXNorm = (rawLX < 0) ? float(rawLX)/32768.0f : float(rawLX)/32767.0f;
 				int16 rawLY = state.Gamepad.sThumbLY;
-				float axisLYNorm = (rawLY < 0) ? float(rawLY)/32768.0f : float(rawLY)/32767.0f;
-				tPrintf("LY: %05.3f ", axisLXNorm);
-				// @todo Set LStick Y.
-
+				float rawLYNorm = (rawLY < 0) ? float(rawLY)/32768.0f : float(rawLY)/32767.0f;
+				LStick.SetAxesRaw(rawLXNorm, rawLYNorm);
 				bool rawLB = (state.Gamepad.wButtons & XINPUT_GAMEPAD_LEFT_THUMB) ? true : false;
-				tPrintf("LB: %s\n", rawLB ? "down" : "up");
+				tPrintf("LeftJoystick: (%05.3f, %05.3f) %s\n", rawLXNorm, rawLYNorm, rawLB ? "Dn" : "Up");
 				// @todo Set LStick B.
 
+				// Right Joystick.
 				int16 rawRX = state.Gamepad.sThumbRX;
-				float axisRXNorm = (rawRX < 0) ? float(rawRX)/32768.0f : float(rawRX)/32767.0f;
-				// @todo Set RStick X.
-
+				float rawRXNorm = (rawRX < 0) ? float(rawRX)/32768.0f : float(rawRX)/32767.0f;
 				int16 rawRY = state.Gamepad.sThumbRY;
-				float axisRYNorm = (rawRY < 0) ? float(rawRY)/32768.0f : float(rawRY)/32767.0f;
-				// @todo Set RStick Y.
-
+				float rawRYNorm = (rawRY < 0) ? float(rawRY)/32768.0f : float(rawRY)/32767.0f;
+				RStick.SetAxesRaw(rawRXNorm, rawRYNorm);
 				bool rawRB = (state.Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_THUMB) ? true : false;
+				tPrintf("RghtJoystick: (%05.3f, %05.3f) %s\n", rawRXNorm, rawRYNorm, rawRB ? "Dn" : "Up");
+				// @todo Set RStick B.
 
 				float leftTriggerNorm = float(state.Gamepad.bLeftTrigger) / 255.0f;
 				LTrigger.SetDisplacementRaw(leftTriggerNorm);
@@ -203,7 +199,7 @@ void tContGamepad::ClearDefinition()
 }
 
 
-void tContGamepad::ConfigureFilters()
+void tContGamepad::Configure()
 {
 	float fixedDeltaTime = float(PollingPeriod_us) / 1000000.0f;
 

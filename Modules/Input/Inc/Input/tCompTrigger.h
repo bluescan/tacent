@@ -33,10 +33,6 @@ public:
 	void Update();
 
 private:
-	// The tContGamepad is allowed to set the raw displacement directly. We don't want any writers to be in the public
-	// interface that clients on the main thread use. It is the update call that processes antijitter and dead zones
-	// because the result would be the same if it were done in the polling thread, but in Update it's more efficient
-	// since there are fewer updates than polls.
 	friend class tContGamepad;
 	void SetDisplacementRaw(float displacement)																			{ Disp.UpdateDispRaw(displacement); }
 //	void SetDisplacement(float displacement)																			{ Disp.SetDisplacement(displacement); }
