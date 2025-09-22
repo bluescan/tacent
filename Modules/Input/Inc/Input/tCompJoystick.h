@@ -14,6 +14,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include "Math/tVector2.h"
 #include "Input/tComp.h"
 #include "Input/tUnitContinuousAxis.h"
 #include "Input/tUnitDiscreteBool.h"
@@ -37,6 +38,23 @@ public:
 		YAxis.Configure(fixedDeltaTime, tau);
 	}
 
+	// Returns true if in dead zone. The x and y axis vars will have the filtered result.
+	bool GetAxes(tMath::tVector2& axes)
+	{
+		bool xdead = XAxis.GetAxis(axes.x);
+		bool ydead = YAxis.GetAxis(axes.y);
+		return xdead || ydead;
+	}
+
+	bool GetAxes(tMath::tVector2& axes, tMath::tVector2& rawAxes)
+	{
+		bool xdead = XAxis.GetAxis(axes.x, rawAxes.x);
+		bool ydead = YAxis.GetAxis(axes.y, rawAxes.y);
+		return xdead || ydead;
+	}
+
+	// @todo Make a direction/magnitude accessor.
+	
 	// @todo Filtering is dealt with in polling thread. This main thread update
 	// call needs to deal with the dead-zone.
 	void Update()																										{ }
