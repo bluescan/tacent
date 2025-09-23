@@ -38,22 +38,30 @@ public:
 		YAxis.Configure(fixedDeltaTime, tau);
 	}
 
-	// Returns true if in dead zone. The x and y axis vars will have the filtered result.
+	// Returns false if in dead zone and true if outside (safe-zone). The x and y axis vars will have the filtered
+	// result. These values are still returned inside the dead-zone but are not considered as reliable.
 	bool GetAxes(tMath::tVector2& axes)
 	{
-		bool xdead = XAxis.GetAxis(axes.x);
-		bool ydead = YAxis.GetAxis(axes.y);
-		return xdead || ydead;
+		XAxis.GetAxis(axes.x);
+		YAxis.GetAxis(axes.y);
+		return !InDeadZone;
 	}
 
 	bool GetAxes(tMath::tVector2& axes, tMath::tVector2& rawAxes)
 	{
-		bool xdead = XAxis.GetAxis(axes.x, rawAxes.x);
-		bool ydead = YAxis.GetAxis(axes.y, rawAxes.y);
-		return xdead || ydead;
+		XAxis.GetAxis(axes.x, rawAxes.x);
+		YAxis.GetAxis(axes.y, rawAxes.y);
+		return !InDeadZone;
 	}
 
-	// @todo Make a direction/magnitude accessor.
+	// This direction/magnitude accessor is similar to above but populates a normalized direction vector and a separate
+	// length. If the axes length is zero the resultant direction is set to the zero vector and the magnitude is set to zero.
+	bool GetDirectionMagnitute(tMath::tVector2& direction, float& magnitude)
+	{
+		GetAxes(direction);
+		magnitude = direction.NormalizeSafeGetLength();
+		return !InDeadZone;
+	}
 	
 	// @todo Filtering is dealt with in polling thread. This main thread update
 	// call needs to deal with the dead-zone.
@@ -71,6 +79,7 @@ private:
 	// These are private because they need to be mutex-protected. Use the accessors.
 	tUnitContinuousAxis XAxis;		// Horizontal.
 	tUnitContinuousAxis YAxis;		// Vertical.
+	bool InDeadZone = false;
 
 	// Pressing down on the stick. By having this button in the joystick component we can, if we want, deal with the
 	// fact that there is mechanical linkage between the button and the axes. There is likely more unwanted movement in

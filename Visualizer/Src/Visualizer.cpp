@@ -372,9 +372,11 @@ void Visualizer::Update(GLFWwindow* window, double dt, bool dopoll)
 	float radius = 100.0f;
 	DrawCircle(center, radius);
 
+	
+
 
 	// Show the big demo window. You can browse its code to learn more about Dear ImGui.
-	static bool showDemoWindow = true;
+	static bool showDemoWindow = false;
 	//static bool showDemoWindow = true;
 	if (showDemoWindow)
 		ImGui::ShowDemoWindow(&showDemoWindow);

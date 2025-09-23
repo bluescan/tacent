@@ -36,21 +36,19 @@ public:
 		return FilteredAxis.GetValue();
 	}
 
-	// Alternate versions of GetAxis that return true if in dead zone. Since these functions locak a mutex it's best to
-	// only do one function call to get all the values you need.
-	bool GetAxis(float& filteredAxis)
+	// Alternate versions of GetAxis that fill in value references. These functions lock a mutex it's best to only do
+	// one function call to get all the values you need.
+	void GetAxis(float& filteredAxis)
 	{
 		std::lock_guard<std::mutex> lock(Mutex);
 		filteredAxis = FilteredAxis.GetValue();
-		return InDeadZone;
 	}
 
-	bool GetAxis(float& filteredAxis, float& rawAxis)
+	void GetAxis(float& filteredAxis, float& rawAxis)
 	{
 		std::lock_guard<std::mutex> lock(Mutex);
 		filteredAxis = FilteredAxis.GetValue();
 		rawAxis = RawAxis;
-		return InDeadZone;
 	}
 
 private:
@@ -72,7 +70,6 @@ private:
 		RawAxis = rawAxis;
 	}
 
-	bool InDeadZone									= false;
 	float RawAxis									= 0.0f;
 	tMath::tLowPassFilter_FixFlt FilteredAxis;		// Mutex protected.
 };
