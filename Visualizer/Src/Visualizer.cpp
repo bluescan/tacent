@@ -38,6 +38,7 @@
 #include <System/tScript.h>
 #include <System/tMachine.h>
 #include <Math/tVector2.h>
+#include <Input/tControllerSystem.h>
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl2.h"
@@ -200,6 +201,9 @@ namespace Visualizer
 	void FocusCallback(GLFWwindow*, int gotFocus);
 	void IconifyCallback(GLFWwindow*, int iconified);
 	// void ChangProfile(Viewer::Profile);
+
+	// Create a controller system in the data segment.
+	tInput::tControllerSystem ControllerSystem;
 }
 
 
@@ -367,13 +371,23 @@ void Visualizer::Update(GLFWwindow* window, double dt, bool dopoll)
 	ImGui::End();
 	ImGui::PopStyleVar();
 
-	//Draw a circle.
-	tVector2 center(400, 400);
-	float radius = 100.0f;
-	DrawCircle(center, radius);
+	// Left joystick.
+	tVector2 lcenter(200, 200);
+	float lradius = 100.0f;
+	DrawCircle(lcenter, lradius);
+	tVector2 laxes, laxesraw;
+	Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).LStick.GetAxes(laxes, laxesraw);
+	DrawCircle(lcenter + laxes*100.0f, 10.0f);
+	DrawCircle(lcenter + laxesraw*100.0f, 5.0f);
 
-	
-
+	// Right joystick.
+	tVector2 rcenter(600, 200);
+	float rradius = 100.0f;
+	DrawCircle(rcenter, rradius);
+	tVector2 raxes, raxesraw;
+	Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).RStick.GetAxes(raxes, raxesraw);
+	DrawCircle(rcenter + raxes*100.0f, 10.0f);
+	DrawCircle(rcenter + raxesraw*100.0f, 5.0f);
 
 	// Show the big demo window. You can browse its code to learn more about Dear ImGui.
 	static bool showDemoWindow = false;
@@ -744,6 +758,10 @@ int main(int argc, char** argv)
 	int blueBits	= 0;	glGetIntegerv(GL_BLUE_BITS,	&blueBits);
 	int alphaBits	= 0;	glGetIntegerv(GL_ALPHA_BITS,&alphaBits);
 	tPrintf("Framebuffer BPC (RGB): (%d,%d,%d)\n", redBits, blueBits, greenBits);
+
+	tPrintf("LEFT STICK  : %s\n", Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).LStick.Name.Chr());
+	tPrintf("DPAD        : %s\n", Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).DPad.Name.Chr());
+	tPrintf("LEFT TRIGGER: %s\n", Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).LTrigger.Name.Chr());
 
 	// Main loop.
 	static double lastUpdateTime = glfwGetTime();

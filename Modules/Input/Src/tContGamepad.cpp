@@ -15,7 +15,7 @@
 #include <chrono>
 #ifdef PLATFORM_WINDOWS
 #include <windows.h>
-#include <xinput.h>
+#include <Input/xinputex.h>
 #endif
 #include "Foundation/tPlatform.h"
 #include "Input/tContGamepad.h"
@@ -165,10 +165,11 @@ void tContGamepad::SetDefinition()
 	tPrintf("Gamepad %d Set Definition", int(GamepadID));
 	WinXInputCapabilitiesEx capsEx;
 	tStd::tMemclr(&capsEx, sizeof(WinXInputCapabilitiesEx));
+	tAssertMsg(XInputGetCapabilitiesEx, "tInput must be initialized.");
 	if (XInputGetCapabilitiesEx(1, int(GamepadID), 0, &capsEx) == WinErrorSuccess)
 	{
 		tVidPid vidpid(uint16(capsEx.vendorId), uint16(capsEx.productId));
-		const tContDefn* defn = tLookupContDefn(vidpid);
+		const tControllerDefinition* defn = tLookupControllerDefinition(vidpid);
 		const char* vendor = defn ? defn->Vendor : "unknown";
 		const char* product = defn ? defn->Product : "unknown";
 		tPrintf

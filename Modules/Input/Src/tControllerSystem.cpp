@@ -15,28 +15,73 @@
 #include <chrono>
 #ifdef PLATFORM_WINDOWS
 #include <windows.h>
-#include <xinput.h>
+#define XINPUTEX_IMPLEMENTATION
+#include <Input/xinputex.h>
 #endif
 #include <Foundation/tPlatform.h>
 #include <Foundation/tName.h>
 #include <System/tPrint.h>
 #include "Input/tControllerSystem.h"
 #include "Input/tControllerDefinitions.h"
-
-
-#ifdef PLATFORM_WINDOWS
-// Missing from xinput.h.
-_XInputGetCapabilitiesEx XInputGetCapabilitiesEx;
-#endif
-
-
 namespace tInput
 {
+
+
+bool Initialized = false;
+int ControllerSystemCount = 0;
+
+
+// Initialize the input system. This is handled automatically by the constructor of tControllerSystem.
+bool Initialize()
+{
+	if (Initialized)
+		return true;
+
+	tInitializeControllerDictionary();
+
+	#ifdef PLATFORM_WINDOWS
+	// This is better than LoadLibrary(TEXT("XInput1_4.dll") in two ways:
+	// 1) The module is already loaded using the import library.
+	// 2) We use the xinput.h header define in case xinput is ever updated.
+    HMODULE moduleHandle = GetModuleHandle(XINPUT_DLL);
+	if (!moduleHandle)
+		return false;
+
+    XInputGetCapabilitiesEx = (_XInputGetCapabilitiesEx)GetProcAddress(moduleHandle, (char*)108);
+	if (!XInputGetCapabilitiesEx)
+		return false;
+	#endif
+	
+	Initialized = true;
+	return true;
+}
+
+
+// Shutdown the input system. This is handled automatically by the destructor of tControllerSystem.
+bool Shutdown()
+{
+	if (!Initialized)
+		return true;
+
+	// Note that GetModuleHandle does NOT increase the library ref count so no
+	// action should be taken.
+	XInputGetCapabilitiesEx = nullptr;
+
+	tShutdownControllerDictionary();
+
+	Initialized = false;
+	return true;
+}
 
 
 tControllerSystem::tControllerSystem(int pollingPeriod_us, int detectionPeriod_ms) :
 	PollingPeriod_us(pollingPeriod_us)
 {
+	// Even if initialization fails, the detection thread will handle it gracefully.
+	if (ControllerSystemCount == 0)
+		Initialize();
+	ControllerSystemCount++;
+
 	Gamepads.reserve(int(tGamepadID::NumGamepads));
 	Gamepads.emplace_back("Gamepad1", tGamepadID::GP0);
 	Gamepads.emplace_back("Gamepad2", tGamepadID::GP1);
@@ -44,15 +89,6 @@ tControllerSystem::tControllerSystem(int pollingPeriod_us, int detectionPeriod_m
 	Gamepads.emplace_back("Gamepad4", tGamepadID::GP3);
 
 	DetectPeriod_ms = (detectionPeriod_ms > 0) ? detectionPeriod_ms : 1000;
-
-	#ifdef PLATFORM_WINDOWS
-	// This is better than LoadLibrary(TEXT("XInput1_4.dll") in two ways:
-	// 1) The module is already loaded using the import library.
-	// 2) We use the xinput.h header define in case xinput is ever updated.
-    HMODULE moduleHandle = GetModuleHandle(XINPUT_DLL);
-    XInputGetCapabilitiesEx = (_XInputGetCapabilitiesEx)GetProcAddress(moduleHandle, (char*)108);
-	#endif
-
 	DetectThread = std::thread(&tControllerSystem::Detect, this);
 }
 
@@ -70,6 +106,10 @@ tControllerSystem::~tControllerSystem()
 
 	// The join just blocks until the polling thread has finished -- and has responded to the notify above.
 	DetectThread.join();
+
+	ControllerSystemCount--;
+	if (ControllerSystemCount == 0)
+		Shutdown();
 }
 
 

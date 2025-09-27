@@ -86,6 +86,7 @@ tTestUnit(Fundamentals)
 	tPrintf("Log2 Tests.\n");
 	for (int v = -3; v < 257; v++)
 		tPrintf("Log2(%d) = %d\n", v, tMath::tLog2(v));
+	tRequire(tMath::tLog2(256) == 8);
 
 	for (uint v = 0x7FFFFFF0; v != 0x80000000; v++)
 		tPrintf("Log2(%d) = %d\n", v, tMath::tLog2(v));

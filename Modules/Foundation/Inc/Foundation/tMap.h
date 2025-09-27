@@ -30,7 +30,7 @@
 template<typename K, typename V> class tMap
 {
 public:
-	// Set therekey percent > 1.0f to prevent all rekeying / resizing.
+	// Set the rekey percent > 1.0f to prevent all rekeying / resizing.
 	tMap(int initialLog2Size = 8, float rekeyPercent = 0.6f);
 	~tMap();
 
@@ -41,6 +41,7 @@ public:
 	V& operator[](const K&);
 	bool Remove(const K&);
 	int GetNumItems() const																								{ return NumItems; }
+	void Clear();
 
 	// These are mostly for debugging or checking performance of the hash table.
 	int GetHashTableSize() const																						{ return HashTableSize; }
@@ -66,6 +67,7 @@ private:
 	int HashTableSize;
 	int HashTableEntryCount;
 	HashTableItem* HashTable;
+	int InitialLog2Size;
 	float RekeyPercent;
 
 public:
@@ -121,7 +123,8 @@ template<typename K, typename V> inline tMap<K,V>::tMap(int initialLog2Size, flo
 	NumItems = 0;
 
 	tAssert(initialLog2Size >= 0);
-	HashTableSize = 1 << initialLog2Size;
+	InitialLog2Size = initialLog2Size;
+	HashTableSize = 1 << InitialLog2Size;
 
 	tAssert(rekeyPercent >= 0.0f);
 	RekeyPercent = rekeyPercent;
@@ -134,6 +137,16 @@ template<typename K, typename V> inline tMap<K,V>::tMap(int initialLog2Size, flo
 template<typename K, typename V> inline tMap<K,V>::~tMap()
 {
 	delete[] HashTable;
+}
+
+
+template<typename K, typename V> inline void tMap<K,V>::Clear()
+{
+	delete[] HashTable;
+	NumItems = 0;
+	HashTableSize = 1 << InitialLog2Size;
+	HashTableEntryCount = 0;
+	HashTable = new HashTableItem[HashTableSize];
 }
 
 

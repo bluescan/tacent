@@ -295,8 +295,8 @@ template<typename T> inline T tHtoN(T val)
 }
 
 
+#if defined(PLATFORM_WINDOWS)
 // These defines mitigate Windows all-capital naming ugliness.
-#ifdef PLATFORM_WINDOWS
 #define Win32FindData WIN32_FIND_DATA
 #define WinApi WINAPI
 #define WinApiEntry APIENTRY

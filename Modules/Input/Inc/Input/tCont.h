@@ -33,7 +33,7 @@ public:
 	tName Name;
 
 	// All connected controllers have a definition which will indicate what polling rate should be used.
-	tContDefn Definition;
+	tControllerDefinition Definition;
 
 	// Protects updates to all the components since they may be read by the main thread at any time.
 	// Protects PollExitRequested.

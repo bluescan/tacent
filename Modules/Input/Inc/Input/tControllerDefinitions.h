@@ -23,21 +23,6 @@
 #include <Foundation/tStandard.h>
 
 
-#ifdef PLATFORM_WINDOWS
-// Missing from xinput.h.
-struct XINPUT_CAPABILITIES_EX
-{
-    XINPUT_CAPABILITIES Capabilities;
-    WORD vendorId;
-    WORD productId;
-    WORD revisionId;
-    DWORD a4; //unknown
-};
-typedef DWORD(_stdcall* _XInputGetCapabilitiesEx)(DWORD a1, DWORD dwUserIndex, DWORD dwFlags, XINPUT_CAPABILITIES_EX* pCapabilities);
-extern _XInputGetCapabilitiesEx XInputGetCapabilitiesEx;
-#endif
-
-
 namespace tInput
 {
 
@@ -71,7 +56,7 @@ enum class tDispTech
 // different latency characteristics. Usually the 2.4GHz dongles are pretty close to wired. Also quite often bluetooth
 // connected controllers aren't recognized by XInput (plus BT has a lot more latency). For this reason the wired
 // definitions are used in the table below.
-struct tContDefn
+struct tControllerDefinition
 {
 	// I want to keep tContDefn as an aggregrate type. For this reason if you need to set the parameters to a reasonable
 	// 'generic' set of values, call this function.
@@ -112,10 +97,18 @@ struct tContDefn
 };
 
 
+// Call this once before any calls to tLookupControllerDefinition.
+void tInitializeControllerDictionary();
+
+
 // The lookup calls are fast since the dictionary uses a tMap. The Find calls, that don't exist at the moment, are slow
 // because they have to iterate. tLookupContDefn returns nullptr if the vidpid can't be found. When nullptr is returned
 // you may optionally default construct a tContDefn. It will represent a 'generic' controller with a 125Hz polling rate.
-const tContDefn* tLookupContDefn(const tVidPid& vidpid);
+const tControllerDefinition* tLookupControllerDefinition(const tVidPid& vidpid);
+
+
+// Call this after all calls to tLookupControllerDefinition.
+void tShutdownControllerDictionary();
 
 
 }
@@ -124,7 +117,7 @@ const tContDefn* tLookupContDefn(const tVidPid& vidpid);
 // Implementation below this line.
 
 
-inline void tInput::tContDefn::SetGeneric()
+inline void tInput::tControllerDefinition::SetGeneric()
 {
 	Vendor				= "Unknown";
 	Product				= "Generic";
@@ -142,7 +135,7 @@ inline void tInput::tContDefn::SetGeneric()
 }
 
 
-inline void tInput::tContDefn::Clear()
+inline void tInput::tControllerDefinition::Clear()
 {
 	Vendor				= "";
 	Product				= "";

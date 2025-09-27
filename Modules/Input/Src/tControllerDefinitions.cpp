@@ -21,47 +21,54 @@
 
 namespace tInput
 {
-	// The controller dictionary. Lookup by vidpid and contains the controller definitions.
-	tMap<tVidPid, tContDefn> ContDict;
+	// The controller dictionary singleton. Lookup by vidpid and contains the controller definitions.
+	struct tControllerDict { static tMap<tVidPid, tControllerDefinition>& Get()
+	{
+		static tMap<tVidPid, tControllerDefinition> ControllerDictionary;
+		return ControllerDictionary;
+	} };
 
-	bool ContDictPopulated = false;
-	void tPopulateContDict();
+	bool ControllerDictionaryPopulated = false;
 }
 
 
-const tInput::tContDefn* tInput::tLookupContDefn(const tVidPid& vidpid)
+void tInput::tInitializeControllerDictionary()
 {
-	if (!ContDictPopulated)
+	tControllerDict::Get()[ {0x2DC8, 0x310B} ] =
 	{
-		tPopulateContDict();
-		ContDictPopulated = true;
-	}
-
-	return ContDict.GetValue(vidpid);
-}
-
-
-void tInput::tPopulateContDict()
-{
-	ContDict[ {0x2DC8, 0x310B} ] =
-	{
-//		Vendor					Product
+		//Vendor				Product
 		"8BitDo",				"Ultimate 2 Wireless Controller",
 
-//		Poll	StickTech		TriggerTech		StkDead	TrgDead	AxesLat	ButnLat	AxesJit	ButnJit
-//		(Hz)									(%)		(%)		(ms)	(ms)	(ms)	(ms)
+		//Poll	StickTech		TriggerTech		StkDead	TrgDead	AxesLat	ButnLat	AxesJit	ButnJit
+		//(Hz)									(%)		(%)		(ms)	(ms)	(ms)	(ms)
 		1000,	tDispTech::TMR,	tDispTech::HAL,	0.05f,	0.00f,	7.00f,	2.80f,	0.45f,	0.35f		// No dead zone.
 	};
 
-	ContDict[ {0x2DC8, 0x3106} ] =
+	tControllerDict::Get()[ {0x2DC8, 0x3106} ] =
 	{
 		"8BitDo",				"Ultimate Bluetooth Controller",
 		100,	tDispTech::HAL,	tDispTech::HAL,	0.05f,	0.00f,	16.20f,	10.10f,	2.70f,	2.60f		// No dead zone.
 	};
 
-	ContDict[ {0x045E, 0x02FF} ] =
+	tControllerDict::Get()[ {0x045E, 0x02FF} ] =
 	{
 		"Microsoft",			"XBox One Controller",
 		125,	tDispTech::POT,	tDispTech::POT,	0.05f,	0.00f,	5.50f,	5.50f,	2.20f,	2.20f		// No dead zone. Latencies and jitter not measures separately so they match.
 	};
+
+	ControllerDictionaryPopulated = true;
+}
+
+
+void tInput::tShutdownControllerDictionary()
+{
+	ControllerDictionaryPopulated = false;
+	tControllerDict::Get().Clear();
+}
+
+
+const tInput::tControllerDefinition* tInput::tLookupControllerDefinition(const tVidPid& vidpid)
+{
+	tAssert(ControllerDictionaryPopulated);
+	return tControllerDict::Get().GetValue(vidpid);
 }
