@@ -63,9 +63,11 @@ bool Shutdown()
 	if (!Initialized)
 		return true;
 
+	#ifdef PLATFORM_WINDOWS
 	// Note that GetModuleHandle does NOT increase the library ref count so no
 	// action should be taken.
 	XInputGetCapabilitiesEx = nullptr;
+	#endif
 
 	tShutdownControllerDictionary();
 
