@@ -143,12 +143,12 @@ void tControllerSystem::Detect()
 			else
 			{
 				// Either WinErrorDeviceNotConnected or some other error. Either way treat controller as disconnected.
-				if (Gamepads[g].IsPolling())
-				{
-					// Now we need to stop polling and queue a disconnect message to for the main update to pick up.
-					// Since the gamepad is now disconnected
-					Gamepads[g].StopPolling();
-				}
+				if (!Gamepads[g].IsPolling())
+					continue;
+
+				// Now we need to stop polling and queue a disconnect message to for the main update to pick up
+				// since the gamepad is now disconnected.
+				Gamepads[g].StopPolling();
 			}
 		}
 		#endif

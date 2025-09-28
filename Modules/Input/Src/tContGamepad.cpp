@@ -24,7 +24,7 @@ namespace tInput
 {
 
 
-void tContGamepad::StartPolling(int pollingPeriod_us)
+void tContGamepad::StartPolling(int pollingPeriod_us, float tau_s)
 {
 	// If it's already running do nothing. We also don't update the period if we're already running.
 	if (IsPolling())
@@ -39,11 +39,29 @@ void tContGamepad::StartPolling(int pollingPeriod_us)
 	else
 		PollingPeriod_us = pollingPeriod_us;
 
-	// Now that the definition is valid _and_ we know the polling period we can configure the components that need
-	// low-pass filtering properly.
+	// Jitter is measured as the standard deviation of latency measurements in ms.
+	// Tau is the time, in s, it takes the low-pass filter to reach 63% of the input value.
+	// With a bit of hand-waving, the higher the jitter, the less responsive the filter
+	// needs to be -- higher tau. This is the logic being used for using the jitter as the
+	// tau value.
+	AxesTau_s = (tau_s < 0.0f) ? (Definition.JitterAxes / 1000.0f) : tau_s;
+
+	// Now that the definition is valid _and_ we've set the polling period and tau, we can configure the components that
+	// need low-pass filtering properly.
 	Configure();
 
 	PollingThread = std::thread(&tContGamepad::Poll, this);
+}
+
+
+bool tContGamepad::SetPollingParameters(int pollingPeriod_us, float tau_s)
+{
+	if (!IsConnected())
+		return false;
+
+	StopPolling();
+	StartPolling(pollingPeriod_us, tau_s);
+	return true;
 }
 
 
@@ -63,6 +81,8 @@ void tContGamepad::StopPolling()
 	// Joins back up to the detection thread.
 	PollingThread.join();
 	ClearDefinition();
+	PollingPeriod_us = 0;
+	AxesTau_s = -1.0f;
 }
 
 
@@ -131,7 +151,8 @@ void tContGamepad::Poll()
 		#endif
 
 		// This unique_lock is just a more powerful version of lock_guard. Supports subsequent unlocking/locking which
-		// is presumably needed by wait_for. In any case, wait_for needs this type of lock.
+		// is presumably needed by wait_for. In any case, wait_for needs this type of lock. It's primarily to protect
+		// PollingExitRequested but also protects PollingPeriod_us so we can dynamically adjust polling rate if we want.
 		std::unique_lock<std::mutex> lock(Mutex);
 		bool exitRequested = PollingExitCondition.wait_for(lock, std::chrono::microseconds(PollingPeriod_us), [this]{ return PollingExitRequested; });
 		if (exitRequested)
@@ -204,15 +225,8 @@ void tContGamepad::Configure()
 {
 	float fixedDeltaTime = float(PollingPeriod_us) / 1000000.0f;
 
-	// Jitter is measured as the standard deviation of latency measurements in ms.
-	// Tau is the time, in s, it takes the low-pass filter to reach 63% of the input value.
-	// With a bit of hand-waving, the higher the jitter, the less responsive the filter
-	// needs to be -- higher tau. This is the logic being used for using the jitter as the
-	// tau value.
-	float tau = Definition.JitterAxes / 1000.0f;
-	LStick.Configure(fixedDeltaTime, tau);
-	RStick.Configure(fixedDeltaTime, tau);
-
+	LStick.Configure(fixedDeltaTime, AxesTau_s);
+	RStick.Configure(fixedDeltaTime, AxesTau_s);
 	
 	//LTrigger
 	//RTrigger

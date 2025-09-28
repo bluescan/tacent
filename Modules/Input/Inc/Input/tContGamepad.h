@@ -86,11 +86,26 @@ public:
 	tCompButton AButton;
 	tCompButton BButton;
 
-	void StartPolling(int pollingPeriod_us);
+	// If pollingPeriod is <= 0 the polling period will be determined by looking it up from the controller definition
+	// which is based on the vendor and product ID. If tau is < 0.0f the filter tau is determined by looking it up from
+	// the controller definition which is based on the vendor and product ID. A tau of 0 is valid and results in no
+	// filtering.
+	void StartPolling(int pollingPeriod_us = 0, float tau_s = -1.0f);
 	void StopPolling();
 	bool IsPolling() const { return PollingThread.joinable(); }
 	bool IsConnected() const { return IsPolling(); }
 	void Update();
+
+	// If you want to override the polling period and tau for a currently connected controller you can call this. It is
+	// not something you want to call oftent because it has to stop and start the polling thread so it can reset the
+	// filters. If the controller is not connected/polling this function returns false.
+	bool SetPollingParameters(int pollingPeriod_us = 0, float tau_s = -1.0f);
+
+	// For informational purposes you may want to display the current tau and or polling period. Since the period and
+	// tau are atomics these functions are thread safe.
+	int GetPollingPeriod() const /* In us. */ { return PollingPeriod_us; }
+	float GetAxesTau() const /* In s. */ { return AxesTau_s; }
+	void GetConfig(int& pollingPeriod, float& axesTau) { pollingPeriod = PollingPeriod_us; axesTau = AxesTau_s; }
 
 private:
 	void SetDefinition();
@@ -110,7 +125,16 @@ private:
 	std::thread PollingThread;
 
 	ulong PollingPacketNumber = ulong(-1);
-	int PollingPeriod_us = 0;
+
+	// This is the actual polling period being used. It will always be > 0 when polling is active. It is stored as a
+	// member so the polling thread function knows how long to sleep for. It may also be retrieved for informational
+	// purposes. It is always 0 when not polling and 0 is
+	// considered invalid while polling.
+	std::atomic<int> PollingPeriod_us = 0;
+
+	// This is the actual tau used for the left and right joystick filters. It is always >= 0.0f when polling is active
+	// and is < 0.0f (invalid) when not polling. It may be retrieved for informational purposes.
+	std::atomic<float> AxesTau_s = -1.0f;
 };
 
 
