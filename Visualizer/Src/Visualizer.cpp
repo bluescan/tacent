@@ -276,7 +276,7 @@ void DrawNGon(const tVector2& center, float radius, int numsides)
 
 void DrawCircle(const tVector2& center, float radius)
 {
-	DrawNGon(center, radius, 40);
+	DrawNGon(center, radius, 64);
 }
 
 
@@ -366,28 +366,41 @@ void Visualizer::Update(GLFWwindow* window, double dt, bool dopoll)
 		ImGuiWindowFlags_NoTitleBar		|	ImGuiWindowFlags_NoScrollbar	|	ImGuiWindowFlags_NoMove			| ImGuiWindowFlags_NoResize |
 		ImGuiWindowFlags_NoCollapse		|	ImGuiWindowFlags_NoNav			|	ImGuiWindowFlags_NoBackground	| ImGuiWindowFlags_NoBringToFrontOnFocus;
 
+	// This should be called for the current frame. Controller polling rates are handled internally so there is no need
+	// to specify a delta-time. When this Update is called, all registered main-thread input-system callbacks may be
+	// called by this functions. They will all have been dispatched when Update returns.
+	Visualizer::ControllerSystem.Update();
+
 	ImGui::Begin("FPSTextID", nullptr, flagsImgButton);
 	ImGui::Text("FPS:%04.1f", fps);
 	ImGui::End();
 	ImGui::PopStyleVar();
 
-	// Left joystick.
+	// Left joystick bounds circle.
+	float radius = 150.0f;
 	tVector2 lcenter(200, 200);
-	float lradius = 100.0f;
-	DrawCircle(lcenter, lradius);
-	tVector2 laxes, laxesraw;
-	Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).LStick.GetAxes(laxes, laxesraw);
-	DrawCircle(lcenter + laxes*100.0f, 10.0f);
-	DrawCircle(lcenter + laxesraw*100.0f, 5.0f);
+	DrawCircle(lcenter, radius);
 
-	// Right joystick.
+	// Right joystick bounds circle.
 	tVector2 rcenter(600, 200);
-	float rradius = 100.0f;
-	DrawCircle(rcenter, rradius);
-	tVector2 raxes, raxesraw;
-	Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).RStick.GetAxes(raxes, raxesraw);
-	DrawCircle(rcenter + raxes*100.0f, 10.0f);
-	DrawCircle(rcenter + raxesraw*100.0f, 5.0f);
+	DrawCircle(rcenter, radius);
+
+	if (Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).IsConnected())
+	{
+		float deadZoneRadiusNorm = Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).GetJoystickDeadZone();
+
+		tVector2 laxes, laxesraw;
+		Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).LStick.GetAxes(laxes, laxesraw);
+		DrawCircle(lcenter + laxes*radius, 4.0f);
+		DrawCircle(lcenter + laxesraw*radius, 2.0f);
+		DrawCircle(lcenter, deadZoneRadiusNorm*radius);
+
+		tVector2 raxes, raxesraw;
+		Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).RStick.GetAxes(raxes, raxesraw);
+		DrawCircle(rcenter + raxes*radius, 4.0f);
+		DrawCircle(rcenter + raxesraw*radius, 2.0f);
+		DrawCircle(rcenter, deadZoneRadiusNorm*radius);
+	}
 
 	// Show the big demo window. You can browse its code to learn more about Dear ImGui.
 	static bool showDemoWindow = false;
