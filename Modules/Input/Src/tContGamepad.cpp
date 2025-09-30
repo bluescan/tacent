@@ -24,7 +24,7 @@ namespace tInput
 {
 
 
-void tContGamepad::StartPolling(int pollingPeriod_us, float tau_s)
+void tContGamepad::StartPolling(int pollingPeriod_us, float tau_s, float joystickDeadZoneRadius_p)
 {
 	// If it's already running do nothing. We also don't update the period if we're already running.
 	if (IsPolling())
@@ -46,6 +46,8 @@ void tContGamepad::StartPolling(int pollingPeriod_us, float tau_s)
 	// tau value.
 	AxesTau_s = (tau_s < 0.0f) ? (Definition.JitterAxes / 1000.0f) : tau_s;
 
+	JoystickDeadZoneRadius_p = (joystickDeadZoneRadius_p < 0.0f) ? Definition.StickDeadZone : joystickDeadZoneRadius_p;
+
 	// Now that the definition is valid _and_ we've set the polling period and tau, we can configure the components that
 	// need low-pass filtering properly.
 	Configure();
@@ -54,14 +56,26 @@ void tContGamepad::StartPolling(int pollingPeriod_us, float tau_s)
 }
 
 
-bool tContGamepad::SetPollingParameters(int pollingPeriod_us, float tau_s)
+bool tContGamepad::SetParameters(int pollingPeriod_us, float tau_s, float joystickDeadZoneRadius_p)
 {
 	if (!IsConnected())
 		return false;
 
 	StopPolling();
-	StartPolling(pollingPeriod_us, tau_s);
+	StartPolling(pollingPeriod_us, tau_s, joystickDeadZoneRadius_p);
 	return true;
+}
+
+
+void tContGamepad::Configure()
+{
+	float fixedDeltaTime = float(PollingPeriod_us) / 1000000.0f;
+
+	LStick.Configure(fixedDeltaTime, AxesTau_s, JoystickDeadZoneRadius_p);
+	RStick.Configure(fixedDeltaTime, AxesTau_s, JoystickDeadZoneRadius_p);
+
+	//LTrigger
+	//RTrigger
 }
 
 
@@ -83,6 +97,7 @@ void tContGamepad::StopPolling()
 	ClearDefinition();
 	PollingPeriod_us = 0;
 	AxesTau_s = -1.0f;
+	JoystickDeadZoneRadius_p = -1.0f;
 }
 
 
@@ -218,18 +233,6 @@ void tContGamepad::SetDefinition()
 void tContGamepad::ClearDefinition()
 {
 	Definition.Clear();
-}
-
-
-void tContGamepad::Configure()
-{
-	float fixedDeltaTime = float(PollingPeriod_us) / 1000000.0f;
-
-	LStick.Configure(fixedDeltaTime, AxesTau_s);
-	RStick.Configure(fixedDeltaTime, AxesTau_s);
-	
-	//LTrigger
-	//RTrigger
 }
 
 

@@ -32,10 +32,11 @@ public:
 		InitUnit(Button)																								{ }
 	virtual ~tCompJoystick()																							{ }
 
-	void Configure(float fixedDeltaTime, float tau)
+	void Configure(float fixedDeltaTime, float tau, float deadZoneRadius)
 	{
 		XAxis.Configure(fixedDeltaTime, tau);
 		YAxis.Configure(fixedDeltaTime, tau);
+		DeadZoneRadius = deadZoneRadius;
 	}
 
 	// Returns false if in dead zone and true if outside (safe-zone). The x and y axis vars will have the filtered
@@ -65,7 +66,18 @@ public:
 	
 	// @todo Filtering is dealt with in polling thread. This main thread update
 	// call needs to deal with the dead-zone.
-	void Update()																										{ }
+	void Update()
+	{
+		if (DeadZoneRadius <= 0.0f)
+			InDeadZone = false;
+
+		// I think it makes slightly more sense to consider the joystick in the deadzone if the raw values indicate it
+		// is rather than the filtered values. The GetAxis calls use a mutex to protect the polled values.
+		float x, y, rx, ry;
+		XAxis.GetAxis(x, rx); YAxis.GetAxis(y, ry);
+		tMath::tVector2 rv(rx, ry);
+		InDeadZone = (rv.LengthSq() <= DeadZoneRadius*DeadZoneRadius);
+	}
 
 private:
 	friend class tContGamepad;
@@ -79,6 +91,8 @@ private:
 	// These are private because they need to be mutex-protected. Use the accessors.
 	tUnitContinuousAxis XAxis;		// Horizontal.
 	tUnitContinuousAxis YAxis;		// Vertical.
+
+	float DeadZoneRadius = 0.0f;
 	bool InDeadZone = false;
 
 	// Pressing down on the stick. By having this button in the joystick component we can, if we want, deal with the

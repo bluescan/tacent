@@ -78,7 +78,7 @@ struct tControllerDefinition
 	// Displacement tech used by the triggers.
 	tDispTech DispTechTriggers;
 	
-	// Stick dead zone expressed as a percent [0.0,1.0]. Assumes multiple sticks have the same deat-zone.
+	// Stick dead zone expressed as a percent [0.0,1.0]. Assumes multiple sticks have the same dead-zone radius.
 	float StickDeadZone;
 
 	// Trigger dead zone expressed as percent [0.0, 1.0].

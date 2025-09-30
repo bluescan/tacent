@@ -137,7 +137,7 @@ void tControllerSystem::Detect()
 
 				// Controller connected. Now we need to start polling the controller and queue a message that a
 				// controller has been connected for the main Update to pick up. If polling period is set to 0 the
-				// gamepad will do a hrdware lookup to determine the polling period.
+				// gamepad will do a hardware lookup to determine the polling period.
 				Gamepads[g].StartPolling(PollingPeriod_us);
 			}
 			else
