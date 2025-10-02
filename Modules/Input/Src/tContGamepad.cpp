@@ -34,10 +34,7 @@ void tContGamepad::StartPolling(int pollingPeriod_us, float tau_s, float joystic
 	SetDefinition();
 
 	// PollingPeriod is only ever set before the thread starts and doesn't change. We don't need to Mutex protect it.
-	if (pollingPeriod_us <= 0)
-		PollingPeriod_us = int(1000000.0f/Definition.MaxPollingFreq);
-	else
-		PollingPeriod_us = pollingPeriod_us;
+	PollingPeriod_us = (pollingPeriod_us <= 0) ? int(1000000.0f/Definition.MaxPollingFreq) : PollingPeriod_us = pollingPeriod_us;
 
 	// Jitter is measured as the standard deviation of latency measurements in ms.
 	// Tau is the time, in s, it takes the low-pass filter to reach 63% of the input value.
@@ -61,8 +58,11 @@ bool tContGamepad::SetParameters(int pollingPeriod_us, float tau_s, float joysti
 	if (!IsConnected())
 		return false;
 
-	StopPolling();
-	StartPolling(pollingPeriod_us, tau_s, joystickDeadZoneRadius_p);
+	PollingPeriod_us = (pollingPeriod_us <= 0) ? int(1000000.0f/Definition.MaxPollingFreq) : PollingPeriod_us = pollingPeriod_us;
+	AxesTau_s = (tau_s < 0.0f) ? (Definition.JitterAxes / 1000.0f) : tau_s;
+	JoystickDeadZoneRadius_p = (joystickDeadZoneRadius_p < 0.0f) ? Definition.StickDeadZone : joystickDeadZoneRadius_p;
+	Configure();
+
 	return true;
 }
 

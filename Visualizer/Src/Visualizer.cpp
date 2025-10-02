@@ -256,9 +256,8 @@ void Viewer::DrawBackground(float l, float r, float b, float t, float drawW, flo
 #endif
 
 
-void DrawNGon(const tVector2& center, float radius, int numsides)
+void DrawNGon(const tVector2& center, float radius, int numsides, const tColour4b& colour = tColour4b::cyan)
 {
-	tColour4b colour = tColour4b::cyan;
 	glColor4ubv(colour.E);
 	glBegin(GL_LINE_STRIP);
 
@@ -274,9 +273,9 @@ void DrawNGon(const tVector2& center, float radius, int numsides)
 }
 
 
-void DrawCircle(const tVector2& center, float radius)
+void DrawCircle(const tVector2& center, float radius, const tColour4b& colour = tColour4b::cyan)
 {
-	DrawNGon(center, radius, 64);
+	DrawNGon(center, radius, 64, colour);
 }
 
 
@@ -385,22 +384,50 @@ void Visualizer::Update(GLFWwindow* window, double dt, bool dopoll)
 	tVector2 rcenter(600, 200);
 	DrawCircle(rcenter, radius);
 
-	if (Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).IsConnected())
+	bool gp0Connected = Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).IsConnected();
+	if (gp0Connected)
 	{
 		float deadZoneRadiusNorm = Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).GetJoystickDeadZone();
 
 		tVector2 laxes, laxesraw;
-		Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).LStick.GetAxes(laxes, laxesraw);
+		bool lsafezone = Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).LStick.GetAxes(laxes, laxesraw);
 		DrawCircle(lcenter + laxes*radius, 4.0f);
 		DrawCircle(lcenter + laxesraw*radius, 2.0f);
-		DrawCircle(lcenter, deadZoneRadiusNorm*radius);
+		DrawCircle(lcenter, deadZoneRadiusNorm*radius, lsafezone ? tColour4b::cyan : tColour4b::red);
 
 		tVector2 raxes, raxesraw;
-		Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).RStick.GetAxes(raxes, raxesraw);
+		bool rsafezone = Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).RStick.GetAxes(raxes, raxesraw);
 		DrawCircle(rcenter + raxes*radius, 4.0f);
 		DrawCircle(rcenter + raxesraw*radius, 2.0f);
-		DrawCircle(rcenter, deadZoneRadiusNorm*radius);
+		DrawCircle(rcenter, deadZoneRadiusNorm*radius, rsafezone ? tColour4b::cyan : tColour4b::red);
 	}
+
+	static int pollPeriod_us = 1000;	// 100 would be 10000Hz
+	bool pollChanged = ImGui::InputInt("Poll Period (us)", &pollPeriod_us, 1 , 100);
+	tiClamp(pollPeriod_us, 500, 500000);
+
+	static float tau_ms = 3.0f;
+	bool tauChanged = ImGui::InputFloat("Tau (ms)", &tau_ms, 0.1f, 1.0f);
+	tiClamp(tau_ms, 0.0f, 1000.0f);
+
+	static float deadZone_p = 0.0f;
+	bool zoneChanged = ImGui::InputFloat("DeadZone (p)", &deadZone_p, 0.1f, 1.0f);
+	tiClamp(deadZone_p, 0.0f, 1.0f);
+
+	if (pollChanged || tauChanged || zoneChanged)
+	{
+		Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).SetParameters(pollPeriod_us, tau_ms / 1000.0f, deadZone_p);
+	}
+
+	int vpoll;
+	float vtau, vzone;
+	Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).GetParameters(vpoll, vtau, vzone);
+	if (vpoll)
+		ImGui::Text("Poll Period: %d microseconds. Hz: %d", vpoll, 1000000/vpoll);
+	else
+		ImGui::Text("Poll Period: %d microseconds.", vpoll);
+	ImGui::Text("Filter Tau : %f milliseconds.", vtau * 1000.0f);
+	ImGui::Text("Deadzone   : %f Percent.", vzone * 100.0f);
 
 	// Show the big demo window. You can browse its code to learn more about Dear ImGui.
 	static bool showDemoWindow = false;
