@@ -82,10 +82,15 @@ public:
 private:
 	friend class tContGamepad;
 
-	void SetAxesRaw(float xaxis, float yaxis)
+	void UpdateAxesRaw(float xaxis, float yaxis)
 	{
-		XAxis.SetAxisRaw(xaxis);
-		YAxis.SetAxisRaw(yaxis);
+		XAxis.UpdateAxisRaw(xaxis);
+		YAxis.UpdateAxisRaw(yaxis);
+	}
+	void UpdateAxesSame()
+	{
+		XAxis.UpdateAxisSame();
+		YAxis.UpdateAxisSame();
 	}
 
 	// These are private because they need to be mutex-protected. Use the accessors.

@@ -105,6 +105,7 @@ private:
 	// We need to bring required base class functions into scope. The base template class hasn't been instantiated yet.
 	using tLowPassFilter<T>::ComputeTau;
 	using tLowPassFilter<T>::ComputeWeight;
+	using tLowPassFilter<T>::ComputeWeightFast;
 	using tLowPassFilter<T>::UpdateValue;
 
 	// Stored so we can adjust weight after construction by setting a new Tau, CutoffFreq, FixedDeltaTime step.
@@ -148,6 +149,7 @@ private:
 	// We need to bring required base class functions into scope. The base template class hasn't been instantiated yet.
 	using tLowPassFilter<T>::ComputeTau;
 	using tLowPassFilter<T>::ComputeWeight;
+	using tLowPassFilter<T>::ComputeWeightFast;
 	using tLowPassFilter<T>::UpdateValue;
 
 	T Tau;

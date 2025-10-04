@@ -404,7 +404,7 @@ void Visualizer::Update(GLFWwindow* window, double dt, bool dopoll)
 
 	static int pollPeriod_us = 1000;	// 100 would be 10000Hz
 	bool pollChanged = ImGui::InputInt("Poll Period (us)", &pollPeriod_us, 1 , 100);
-	tiClamp(pollPeriod_us, 500, 500000);
+	tiClamp(pollPeriod_us, 100, 1000000);
 
 	static float tau_ms = 3.0f;
 	bool tauChanged = ImGui::InputFloat("Tau (ms)", &tau_ms, 0.1f, 1.0f);
@@ -414,9 +414,17 @@ void Visualizer::Update(GLFWwindow* window, double dt, bool dopoll)
 	bool zoneChanged = ImGui::InputFloat("DeadZone (p)", &deadZone_p, 0.1f, 1.0f);
 	tiClamp(deadZone_p, 0.0f, 1.0f);
 
-	if (pollChanged || tauChanged || zoneChanged)
+	static int lastPollPeriod = -1;
+	static float lastTau = -1.0f;
+	static float lastZone = -1.0f;
+//	if (pollChanged || tauChanged || zoneChanged)
+	if ((pollPeriod_us != lastPollPeriod) || (tau_ms != lastTau) || (deadZone_p != lastZone))
 	{
+		tPrintf("Setting Params\n");
 		Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).SetParameters(pollPeriod_us, tau_ms / 1000.0f, deadZone_p);
+		lastPollPeriod = pollPeriod_us;
+		lastTau = tau_ms;
+		lastZone = deadZone_p;
 	}
 
 	int vpoll;

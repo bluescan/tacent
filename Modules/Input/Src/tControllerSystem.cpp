@@ -153,8 +153,8 @@ void tControllerSystem::Detect()
 		}
 		#endif
 
-		static int detectNum = 0;
-		tPrintf("Detect: %d\n", detectNum++);
+//		static int detectNum = 0;
+//		tPrintf("Detect: %d\n", detectNum++);
 
 		// This unique_lock is just a more powerful version of lock_guard. Supports subsequent unlocking/locking which
 		// is presumably needed by wait_for. In any case, wait_for needs this type of lock.

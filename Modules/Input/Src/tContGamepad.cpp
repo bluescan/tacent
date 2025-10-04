@@ -128,9 +128,9 @@ void tContGamepad::Poll()
 				float rawLXNorm = (rawLX < 0) ? float(rawLX)/32768.0f : float(rawLX)/32767.0f;
 				int16 rawLY = state.Gamepad.sThumbLY;
 				float rawLYNorm = (rawLY < 0) ? float(rawLY)/32768.0f : float(rawLY)/32767.0f;
-				LStick.SetAxesRaw(rawLXNorm, rawLYNorm);
+				LStick.UpdateAxesRaw(rawLXNorm, rawLYNorm);
 				bool rawLB = (state.Gamepad.wButtons & XINPUT_GAMEPAD_LEFT_THUMB) ? true : false;
-				tPrintf("LeftJoystick: (%05.3f, %05.3f) %s\n", rawLXNorm, rawLYNorm, rawLB ? "Dn" : "Up");
+			//	tPrintf("LeftJoystick: (%05.3f, %05.3f) %s\n", rawLXNorm, rawLYNorm, rawLB ? "Dn" : "Up");
 				// @todo Set LStick B.
 
 				// Right Joystick.
@@ -138,9 +138,9 @@ void tContGamepad::Poll()
 				float rawRXNorm = (rawRX < 0) ? float(rawRX)/32768.0f : float(rawRX)/32767.0f;
 				int16 rawRY = state.Gamepad.sThumbRY;
 				float rawRYNorm = (rawRY < 0) ? float(rawRY)/32768.0f : float(rawRY)/32767.0f;
-				RStick.SetAxesRaw(rawRXNorm, rawRYNorm);
+				RStick.UpdateAxesRaw(rawRXNorm, rawRYNorm);
 				bool rawRB = (state.Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_THUMB) ? true : false;
-				tPrintf("RghtJoystick: (%05.3f, %05.3f) %s\n", rawRXNorm, rawRYNorm, rawRB ? "Dn" : "Up");
+			//	tPrintf("RghtJoystick: (%05.3f, %05.3f) %s\n", rawRXNorm, rawRYNorm, rawRB ? "Dn" : "Up");
 				// @todo Set RStick B.
 
 				float leftTriggerNorm = float(state.Gamepad.bLeftTrigger) / 255.0f;
@@ -150,6 +150,11 @@ void tContGamepad::Poll()
 				RTrigger.SetDisplacementRaw(rightTriggerNorm);
 
 				PollingPacketNumber = state.dwPacketNumber;
+			}
+			else
+			{
+				LStick.UpdateAxesSame();
+				RStick.UpdateAxesSame();
 			}
 		}
 		else

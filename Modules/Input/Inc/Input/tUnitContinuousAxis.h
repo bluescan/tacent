@@ -61,13 +61,21 @@ private:
 	}
 
 	// Called by the controller in the polling thread.
-	void SetAxisRaw(float rawAxis)
+	void UpdateAxisRaw(float rawAxis)
 	{
 		std::lock_guard<std::mutex> lock(Mutex);
 		tMath::tiClamp(rawAxis, -1.0f, 1.0f);
 		FilteredAxis.Update(rawAxis);
 
 		RawAxis = rawAxis;
+	}
+
+	// Called by the controller in the polling thread. This is called if there was no change in value... but we still
+	// need an update so the fixed period filter gets updated.
+	void UpdateAxisSame()
+	{
+		std::lock_guard<std::mutex> lock(Mutex);
+		FilteredAxis.Update(RawAxis);
 	}
 
 	float RawAxis									= 0.0f;
