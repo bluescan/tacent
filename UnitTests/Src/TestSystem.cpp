@@ -142,7 +142,7 @@ double MyTask::Execute(double timeDelta)
 tTestUnit(Task)
 {
 	int64 freq = tGetHardwareTimerFrequency();
-	tTaskSet tasks(freq, 0.1);
+	tTaskSetF tasks(freq, 0.1);
 	MyTask* t1 = new MyTask();
 	MyTask* t2 = new MyTask();
 
@@ -239,6 +239,7 @@ tTestUnit(Print)
 {
 	tSetDefaultPrecision(6);
 
+	// We test prints here. AKA print tests. How well does tPrintf work.
 	tPrint("tPrintf Tests.\n");
 	tRequire(PrintCompare("Hex %#010X\n", 0x0123ABCD));
 	tRequire(PrintCompare("Hex %#010x\n", 0));

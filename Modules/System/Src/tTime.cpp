@@ -48,6 +48,16 @@ int64 tSystem::tGetHardwareTimerFrequency()
 }
 
 
+int64 tSystem::tGetHardwareTimerPeriod_ns()
+{
+	int64 hpcFreq = tGetHardwareTimerFrequency();
+	if (hpcFreq == 0)
+		return 1;
+
+	return 1000000000ll/hpcFreq;
+}
+
+
 int64 tSystem::tGetHardwareTimerCount()
 {
 	#if defined(PLATFORM_WINDOWS)

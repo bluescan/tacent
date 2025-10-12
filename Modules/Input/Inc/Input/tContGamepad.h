@@ -111,6 +111,8 @@ public:
 	float GetJoystickDeadZone() const /* In p. */ { return JoystickDeadZoneRadius_p; }
 	void GetParameters(int& pollingPeriod, float& axesTau, float& joystickDeadZoneRadius) { pollingPeriod = PollingPeriod_us; axesTau = AxesTau_s; joystickDeadZoneRadius = JoystickDeadZoneRadius_p; }
 
+	std::atomic<double> MeasuredPollPeriod = 0.0;
+
 private:
 	void SetDefinition();
 	void ClearDefinition();

@@ -20,6 +20,7 @@
 #include "Foundation/tPlatform.h"
 #include "Input/tContGamepad.h"
 #include "System/tPrint.h"
+#include "System/tTime.h"
 namespace tInput
 {
 
@@ -103,8 +104,14 @@ void tContGamepad::StopPolling()
 
 void tContGamepad::Poll()
 {
+	static double lastPollTime = tSystem::tGetTimeDouble();
 	while (true)
 	{
+		double currPollTime = tSystem::tGetTimeDouble();
+		MeasuredPollPeriod = currPollTime - lastPollTime;
+//		double mpp = MeasuredPollPeriod;
+//		tPrintf("MeasuredPollPeriod %f\n", mpp);
+
 		#ifdef PLATFORM_WINDOWS
 		WinXInputState state;
 		tStd::tMemclr(&state, sizeof(WinXInputState));
@@ -174,15 +181,23 @@ void tContGamepad::Poll()
 		// is presumably needed by wait_for. In any case, wait_for needs this type of lock. It's primarily to protect
 		// PollingExitRequested but also protects PollingPeriod_us so we can dynamically adjust polling rate if we want.
 		std::unique_lock<std::mutex> lock(Mutex);
-		bool exitRequested = PollingExitCondition.wait_for(lock, std::chrono::microseconds(PollingPeriod_us), [this]{ return PollingExitRequested; });
-		if (exitRequested)
-			break;
+
+		std::chrono::microseconds waitPeriodUS(1000);
+		std::chrono::milliseconds waitPeriodMS(64);
+		std::this_thread::sleep_for(waitPeriodMS);
+//		bool exitRequested = PollingExitCondition.wait_for(lock, std::chrono::microseconds(PollingPeriod_us), [this]{ return PollingExitRequested; });
+//		bool exitRequested = PollingExitCondition.wait_for(lock, waitPeriod, [this]{ return PollingExitRequested; });
+//		if (exitRequested)
+//			break;
+
+		lastPollTime = currPollTime;	
 	}
 }
 
 
 void tContGamepad::Update()
 {
+	/*
 	LStick.Update();
 	RStick.Update();
 	DPad.Update();
@@ -196,6 +211,7 @@ void tContGamepad::Update()
 	YButton.Update();
 	AButton.Update();
 	BButton.Update();
+	*/
 }
 
 

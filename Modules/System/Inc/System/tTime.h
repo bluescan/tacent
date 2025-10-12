@@ -23,8 +23,20 @@ namespace tSystem
 
 
 // High accuracy cross platform timing functions. For windows the frequency is whatever the HW reports. For other
-// platforms it's 1/1ns = 1000000000Hz but counts increment by whatever the internal timer resulution is in ns.
+// platforms it's 1/1ns = 1000000000Hz = 1GHz. Returns the frequency in Hz. The crystals in most computers that are used
+// for the high-performance timer can generally measure down to micro-second or better resolution. Even though 1GHz
+// (a 1ns period) is reported for non-Windows platforms, it does not mean you get that resolution -- it just means the
+// timer count will get updated in larger chunks.
 int64 tGetHardwareTimerFrequency();
+
+// Similar to tGetHardwareTimerFrequency except returns the inverse so as to get the period. Returns the hardware timer
+// period in nano-seconds. 10E-9 was chosen so that the period fits nicely in an int.
+int64 tGetHardwareTimerPeriod_ns();
+
+// The absolute value of this count is unimportant. On Windows, for example, it starts when Windows is booted up. In any
+// case it is the delta you will care about. The returned count increments by whatever the internal timer resolution is.
+// For example, if the timer freq is 5000000 Hz, that's 1/5000000 s = 0.000000200 s which is 200ns. This means for every
+// timer count it represents 200ns.
 int64 tGetHardwareTimerCount();
 
 

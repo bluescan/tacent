@@ -23,16 +23,8 @@
 #include <GLFW/glfw3native.h>
 #endif
 #include <Foundation/tVersion.cmake.h>
-//#include <Foundation/tHash.h>
-//#include <System/tCmdLine.h>
-//#include <Image/tPicture.h>
 #include <Image/tImageICO.h>
-//#include <Image/tImageTGA.h>		// For paste from clipboard.
 #include <Image/tImagePNG.h>		// For paste from clipboard.
-//#include <Image/tImageWEBP.h>		// For paste from clipboard.
-//#include <Image/tImageQOI.h>		// For paste from clipboard.
-//#include <Image/tImageBMP.h>		// For paste from clipboard.
-//#include <Image/tImageTIFF.h>		// For paste from clipboard.
 #include <System/tFile.h>
 #include <System/tTime.h>
 #include <System/tScript.h>
@@ -43,29 +35,6 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl2.h"
 #include "imgui_internal.h"			// For ImGuiWindow.
-
-#if 0
-#include "TacentView.h"
-#include "GuiUtil.h"
-#include "Image.h"
-#include "ColourDialogs.h"
-#include "ImportRaw.h"
-#include "Dialogs.h"
-#include "Details.h"
-#include "Preferences.h"
-#include "Properties.h"
-#include "ContactSheet.h"
-#include "MultiFrame.h"
-#include "ThumbnailView.h"
-#include "Crop.h"
-#include "Quantize.h"
-#include "Resize.h"
-#include "Rotate.h"
-#include "OpenSaveDialogs.h"
-#include "Config.h"
-#include "InputBindings.h"
-#include "Command.h"
-#endif
 #include "RobotoFontBase85.cpp"
 //#include "Version.cmake.h"
 
@@ -370,8 +339,13 @@ void Visualizer::Update(GLFWwindow* window, double dt, bool dopoll)
 	// called by this functions. They will all have been dispatched when Update returns.
 	Visualizer::ControllerSystem.Update();
 
+	double gp0PollPeriod = Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).MeasuredPollPeriod;
+	static double pollp = 0.0;
+	pollp = 0.05*gp0PollPeriod + 0.95*pollp;
+
 	ImGui::Begin("FPSTextID", nullptr, flagsImgButton);
 	ImGui::Text("FPS:%04.1f", fps);
+	ImGui::Text("GP0PP(ms):%04.1f", pollp*1000.0);
 	ImGui::End();
 	ImGui::PopStyleVar();
 
@@ -384,6 +358,7 @@ void Visualizer::Update(GLFWwindow* window, double dt, bool dopoll)
 	tVector2 rcenter(600, 200);
 	DrawCircle(rcenter, radius);
 
+	/*
 	bool gp0Connected = Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).IsConnected();
 	if (gp0Connected)
 	{
@@ -401,6 +376,7 @@ void Visualizer::Update(GLFWwindow* window, double dt, bool dopoll)
 		DrawCircle(rcenter + raxesraw*radius, 2.0f);
 		DrawCircle(rcenter, deadZoneRadiusNorm*radius, rsafezone ? tColour4b::cyan : tColour4b::red);
 	}
+	*/
 
 	static int pollPeriod_us = 1000;	// 100 would be 10000Hz
 	bool pollChanged = ImGui::InputInt("Poll Period (us)", &pollPeriod_us, 1 , 100);
@@ -427,6 +403,7 @@ void Visualizer::Update(GLFWwindow* window, double dt, bool dopoll)
 		lastZone = deadZone_p;
 	}
 
+	/*
 	int vpoll;
 	float vtau, vzone;
 	Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).GetParameters(vpoll, vtau, vzone);
@@ -436,6 +413,7 @@ void Visualizer::Update(GLFWwindow* window, double dt, bool dopoll)
 		ImGui::Text("Poll Period: %d microseconds.", vpoll);
 	ImGui::Text("Filter Tau : %f milliseconds.", vtau * 1000.0f);
 	ImGui::Text("Deadzone   : %f Percent.", vzone * 100.0f);
+	*/
 
 	// Show the big demo window. You can browse its code to learn more about Dear ImGui.
 	static bool showDemoWindow = false;
@@ -812,10 +790,12 @@ int main(int argc, char** argv)
 	tPrintf("LEFT TRIGGER: %s\n", Visualizer::ControllerSystem.GetGetpad(tInput::tGamepadID::GP0).LTrigger.Name.Chr());
 
 	// Main loop.
-	static double lastUpdateTime = glfwGetTime();
+	//static double lastUpdateTime = glfwGetTime();
+	static double lastUpdateTime = tSystem::tGetTimeDouble();
 	while (!glfwWindowShouldClose(Visualizer::Window))// && !Visualizer::Request_Quit)
 	{
-		double currUpdateTime = glfwGetTime();
+		// double currUpdateTime = glfwGetTime();
+		double currUpdateTime = tSystem::tGetTimeDouble();
 		double elapsed = tMath::tMin(currUpdateTime - lastUpdateTime, 1.0/30.0);
 
 		Visualizer::Update(Visualizer::Window, elapsed);
