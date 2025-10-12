@@ -14,6 +14,7 @@
 
 #pragma once
 #include <Foundation/tPriorityQueue.h>
+#include <Foundation/tConstants.h>
 
 
 // All tasks that you want in a task-set must be derived from a tTask. You need to implement at least one of ExecuteF or
@@ -45,35 +46,36 @@ struct tTask
 class tTaskSetF
 {
 public:
-	// CounterFreq must be given in Hz. MaxTimeDelta is the ceiling on the elapsed time that the Execute() fn gets
-	// called with. Useful for things like collision detection where we need some guarantees. If the max is hit because
-	// the fps is slow then the objects will, only at that point, start to slow down.
-	tTaskSetF(int64 counterFreq, double maxTimeDelta);
+	// CounterFreq must be given in Hz. If it is left at -1, this constructor will call tGetHardwareTimerFrequency for
+	// you. If you want to create an invalid task set and set the frequency later (with SetCounter), enter 0 for the
+	// counterFreq or <= 0 for the maxDeltaTime. MaxDeltaTime is the ceiling on the elapsed time that the Execute() fn gets called with in seconds.
+	// Useful for things like collision detection where we need some guarantees. If the max is hit because the fps is
+	// slow then the objects will, only at that point, start to slow down.
+	tTaskSetF(int64 counterFreq = -1, double maxDeltaTime = tMath::dMax);
+	~tTaskSetF()																										{ }
 
-	// Sometimes it's not convenient to set the counter freq and max delta in the constructor. Call SetCounter if you
-	// use this constructor.
-	tTaskSetF();
-	~tTaskSetF()																											{ }
+	bool IsValid() const																								{ return (CounterFreq > 0) && (MaxDeltaTime > 0.0); }
 
 	// If you need to adjust the counterFreq dynamically you can do so here.
-	void SetCounter(int64 counterFreq, double maxTimeDelta)																{ CounterFreq = counterFreq; MaxTimeDelta = maxTimeDelta; }
+	void SetCounter(int64 counterFreq = -1, double maxDeltaTime = tMath::dMax);
 
 	// Inserts a task in O(lg(n)) time. Memory for tTask is managed by the caller. When a task is first inserted, it
 	// gets scheduled to be executed on the next call to Update. After that, the task controls the next execution time
 	// by returning the desired number of seconds.
-	void Insert(tTask* t)																								{ PriorityQueue.Insert( tPQ<tTask*>::tItem(t, UpdateTime) ); }
+	void Insert(tTask* t)																								{ PriorityQueue.Insert( tPQ<tTask*>::tItem(t, UpdateCount) ); }
 
 	// Removes a task in O(n) time. You'll probably want to delete it after. Internally the tQueueItem isn't removed
 	// until it's about to be executed again, but you don't need to know that.
 	void Remove(tTask* t)																								{ PriorityQueue.Replace( t, nullptr ); }
 
-	// Executes any tasks that are ready. O(lg(n)). Call this as often as you like.
-	void Update(int64 counter);
+	// Executes any tasks that are ready. O(lg(n)). Call this as often as you like. If you pass in a counter value <= 0
+	// the Update call will call tGetHardwareTimerCount for you.
+	void Update(int64 counter = 0);
 
 private:
-	int64 UpdateTime;					// Time Update was called last.
+	int64 UpdateCount;					// The count when Update was called last.
 	int64 CounterFreq;					// How quickly the counter value that gets passed to Update() is going in Hz.
-	double MaxTimeDelta;
+	double MaxDeltaTime;
 	tPriorityQueue<tTask*> PriorityQueue;
 
 	static const int NumTasks = 64;

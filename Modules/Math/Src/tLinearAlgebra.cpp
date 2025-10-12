@@ -4,7 +4,7 @@
 // cross/dot products, inversion functions, projections, normalization etc. These POD types are used as superclasses
 // for the more object-oriented and complete derived types. eg. tVector3 derives from the POD type tVec2 found here.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2023 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2023, 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -165,11 +165,11 @@ void tMath::tGet(tVec3& axis, float& angle, const tQuat& q)
 	else
 		tSet(axis, 1.0f, 0.0f, 0.0f);		// The axis direction doesn't matter so (1,0,0) is fine.
 
-	if (angle > Pi)
+	if (angle > fPi)
 	{
 		// To return an angle E [0,Pi] we may have to reverse the axis direction.
 		tNeg(axis);
-		angle = TwoPi - angle;
+		angle = fTwoPi - angle;
 	}
 }
 
@@ -612,7 +612,7 @@ void tMath::tMakeRotate(tMat4& d, const tVec3& a, const tVec3& b)
 	float e = tDot(a, b);
 	tVec3 v; tCross(v, a, b);
 
-	if (tLength(v) < Epsilon)		// Parallel?
+	if (tLength(v) < fEpsilon)		// Parallel?
 	{
 		if (e > 0.0f)				// Aligned?
 		{
@@ -633,7 +633,7 @@ void tMath::tMakeRotate(tMat4& d, const tVec3& a, const tVec3& b)
 			else
 				tSet(u, -a.y,  a.z,  0.0f);
 
-			tMakeRotate(d, u, Pi);
+			tMakeRotate(d, u, fPi);
 		}
 	}
 
@@ -951,7 +951,7 @@ bool tMath::tExtractRotationEulerXYZ
 	if (!gimbalNeg && !gimbalPos)
 	{
 		sol1.y = -tArcSin(rot.a31);							// [-Pi/2, Pi/2]
-		sol2.y = tNormalizedAngle( Pi - sol1.y, bias );
+		sol2.y = tNormalizedAngle( fPi - sol1.y, bias );
 
 		float ct1 = tCos(sol1.y);							// Cos(theta1)
 		float ct2 = tCos(sol2.y);							// Cos(theta2)
@@ -966,12 +966,12 @@ bool tMath::tExtractRotationEulerXYZ
 		sol1.z = gimbalZ;
 		if (gimbalNeg)
 		{
-			sol1.y = PiOver2;
+			sol1.y = fPiOver2;
 			sol1.x = tNormalizedAngle(sol1.z + tArcTan(rot.a12, rot.a13), bias);
 		}
 		else
 		{
-			sol1.y = -PiOver2;
+			sol1.y = -fPiOver2;
 			sol1.x = tNormalizedAngle(-sol1.z + tArcTan(-rot.a12, -rot.a13), bias);
 		}
 		sol2 = sol1;
@@ -994,11 +994,11 @@ bool tMath::tExtractAffineEulerXYZ(tVec3& sol1, tVec3& sol2, const tMat4& affine
 bool tMath::tApproachAngle(float& angle, float dest, float rate, float dt)
 {
 	float diff = dest - angle;
-	while (diff > Pi)
-		diff -= TwoPi;
+	while (diff > fPi)
+		diff -= fTwoPi;
 
-	while (diff < -Pi)
-		diff += TwoPi;
+	while (diff < -fPi)
+		diff += fTwoPi;
 
 	float delta = rate*dt;
 	if (tAbs(diff) <= delta)

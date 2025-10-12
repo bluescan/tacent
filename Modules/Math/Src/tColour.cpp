@@ -3,7 +3,7 @@
 // Colour and pixel classes. Both a 32 bit integral representation as well as a 4 component floating point one can be
 // found in this file.
 //
-// Copyright (c) 2006, 2011, 2017, 2020, 2022-2024 Tristan Grimmer.
+// Copyright (c) 2006, 2011, 2017, 2020, 2022-2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -358,7 +358,7 @@ void tMath::tRGBToHSV(float& h, float& s, float& v, float r, float g, float b, t
 	float fullCircle = 360.0f;
 	switch (angleMode)
 	{
-		case tAngleMode::Radians:			fullCircle = TwoPi;		break;
+		case tAngleMode::Radians:			fullCircle = fTwoPi;	break;
 		case tAngleMode::Degrees:			fullCircle = 360.0f;	break;
 		case tAngleMode::Norm256:			fullCircle = 256.0f;	break;
 		case tAngleMode::NormOne:			fullCircle = 1.0f;		break;
@@ -382,7 +382,7 @@ void tMath::tHSVToRGB(float& r, float& g, float& b, float h, float s, float v, t
 	float fullCircle = 360.0f;
 	switch (angleMode)
 	{
-		case tAngleMode::Radians:			fullCircle = TwoPi;		break;
+		case tAngleMode::Radians:			fullCircle = fTwoPi;	break;
 		case tAngleMode::Degrees:			fullCircle = 360.0f;	break;
 		case tAngleMode::Norm256:			fullCircle = 256.0f;	break;
 		case tAngleMode::NormOne:			fullCircle = 1.0f;		break;

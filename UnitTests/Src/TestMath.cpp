@@ -115,8 +115,8 @@ tTestUnit(Fundamentals)
 
 	// I know of these plats int is 32 bits.
 	#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_LINUX)
-	tRequire(MinInt == MinInt32);
-	tRequire(MaxInt == MaxInt32);
+	tRequire(iMin == i32Min);
+	tRequire(iMax == i32Max);
 	#endif
 
 	//
@@ -160,7 +160,7 @@ tTestUnit(Fundamentals)
 
 	gcd = tGCD(0, 0);
 	tPrintf("tGCD(0,0) : %d\n", gcd);
-	tRequire(gcd == MaxInt);
+	tRequire(gcd == iMax);
 
 	//
 	// Test Least Common Multiple.

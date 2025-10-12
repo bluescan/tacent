@@ -13,28 +13,36 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include "System/tTask.h"
+#include "System/tTime.h"
 
 
-tTaskSetF::tTaskSetF(int64 counterFreq, double maxTimeDelta) :
-	UpdateTime(0),
-	CounterFreq(counterFreq),
-	MaxTimeDelta(maxTimeDelta),
+tTaskSetF::tTaskSetF(int64 counterFreq, double maxDeltaTime) :
+	UpdateCount(0),
 	PriorityQueue(NumTasks, GrowSize)
 {
+	SetCounter(counterFreq, maxDeltaTime);
 }
 
 
-tTaskSetF::tTaskSetF() :
-	UpdateTime(0),
-	CounterFreq(0),
-	MaxTimeDelta(0),
-	PriorityQueue(NumTasks, GrowSize)
+void tTaskSetF::SetCounter(int64 counterFreq, double maxDeltaTime)
 {
+	if (counterFreq < 0)
+		CounterFreq = tSystem::tGetHardwareTimerFrequency();
+	else
+		CounterFreq = counterFreq;
+		
+	MaxDeltaTime = maxDeltaTime;
 }
 
 
 void tTaskSetF::Update(int64 counter)
 {
+	if (!IsValid())
+		return;
+
+	if (counter <= 0)
+		counter = tSystem::tGetHardwareTimerCount();
+
 	bool runningTasks = true;
 	while (runningTasks)
 	{
@@ -51,9 +59,10 @@ void tTaskSetF::Update(int64 counter)
 			// If there is no function tTask pointer we're all done. The node is already removed from the queue.
 			if (t)
 			{
-				double td = double(counter - UpdateTime) / double(CounterFreq);
-				if (td > MaxTimeDelta)
-					td = MaxTimeDelta;
+				tAssert(CounterFreq > 0);
+				double td = double(counter - UpdateCount) / double(CounterFreq);
+				if (td > MaxDeltaTime)
+					td = MaxDeltaTime;
 
 				double nextTime = t->Execute(td);
 				int64 nextTimeDelta = int64( nextTime*double(CounterFreq) );
@@ -81,5 +90,5 @@ void tTaskSetF::Update(int64 counter)
 		}
 	}
 
-	UpdateTime = counter;
+	UpdateCount = counter;
 }

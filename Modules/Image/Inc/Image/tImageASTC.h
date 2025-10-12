@@ -4,7 +4,7 @@
 // stored in a tLayer. If decode was requested the layer will store raw pixel data. The layer may be 'stolen'. IF it
 // is the tImageASTC is invalid afterwards. This is purely for performance.
 //
-// Copyright (c) 2023, 2024 Tristan Grimmer.
+// Copyright (c) 2023-2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -46,7 +46,7 @@ public:
 		LoadParams()																									{ Reset(); }
 		LoadParams(const LoadParams& src)																				: Flags(src.Flags), Profile(src.Profile), Gamma(src.Gamma), Exposure(src.Exposure) { }
 
-		void Reset()																									{ Flags = LoadFlags_Default; Profile = tColourProfile::LDRsRGB_LDRlA; Gamma = tMath::DefaultGamma; Exposure = 1.0f; }
+		void Reset()																									{ Flags = LoadFlags_Default; Profile = tColourProfile::LDRsRGB_LDRlA; Gamma = tMath::fDefaultGamma; Exposure = 1.0f; }
 		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Profile = src.Profile; Gamma = src.Gamma; Exposure = src.Exposure; return *this; }
 
 		uint32 Flags;

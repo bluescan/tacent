@@ -5,7 +5,7 @@
 // tImagePVR so that excessive memcpys are avoided. After they are stolen the tImagePVR is invalid. The tImagePVR
 // class supports V1, V2, and V3 pvr files.
 //
-// Copyright (c) 2023, 2024 Tristan Grimmer.
+// Copyright (c) 2023-2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -74,7 +74,7 @@ public:
 	{
 		LoadParams()																									{ Reset(); }
 		LoadParams(const LoadParams& src)																				: Flags(src.Flags), Gamma(src.Gamma), Exposure(src.Exposure), MaxRange(src.MaxRange) { }
-		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::DefaultGamma; Exposure = 1.0f; MaxRange = 8.0f; }
+		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::fDefaultGamma; Exposure = 1.0f; MaxRange = 8.0f; }
 		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Gamma = src.Gamma; Exposure = src.Exposure; MaxRange = src.MaxRange; return *this; }
 
 		uint32 Flags;

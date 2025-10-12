@@ -52,13 +52,13 @@ public:
 protected:
 
 	// The cutoffFreq should be > 0. Gets min clamped to epsilon.
-	T ComputeTau(T cutoffFreq) const																					{ tMath::tiClampMin(cutoffFreq, T(tMath::Epsilon)); return T(1.0) / (tMath::TwoPi * cutoffFreq); }
+	T ComputeTau(T cutoffFreq) const																					{ tMath::tiClampMin(cutoffFreq, T(tMath::fEpsilon)); return T(1.0) / (tMath::fTwoPi * cutoffFreq); }
 
 	// Both dt and tau should not be close to zero at the same time. If dt is close to zero, the weight will be near
 	// zero. If tau is close to zero, the weight will be close to one. This function returns 1 if tau is less than
 	// epsilon and otherwise takes dt into account (a dt of exactly 0 returns 0).
-	T ComputeWeight(T dt, T tau) const																					{ if (tau < T(tMath::Epsilon)) return T(1.0); return tSaturate(T(1.0) - tMath::tExp(-dt / tau)); }
-	T ComputeWeightFast(T dt, T tau) const																				{ if (tau < T(tMath::Epsilon)) return T(1.0); return tSaturate(dt / (tau + dt)); }
+	T ComputeWeight(T dt, T tau) const																					{ if (tau < T(tMath::dEpsilon)) return T(1.0); return tSaturate(T(1.0) - tMath::tExp(-dt / tau)); }
+	T ComputeWeightFast(T dt, T tau) const																				{ if (tau < T(tMath::dEpsilon)) return T(1.0); return tSaturate(dt / (tau + dt)); }
 
 	T UpdateValue(T weight, T inputValue)																				{ Value = weight*inputValue + (T(1.0) - weight)*Value; return Value; }
 
@@ -170,7 +170,7 @@ template<typename T> inline void tMath::tLowPassFilterFixed<T>::Set(T fixedDelta
 	FixedDeltaTime = fixedDeltaTime;
 
 	// Calculate the weight. It doesn't change since fixedDeltaTime is unchanging.
-	tiClampMin<T>(attenuation, T(tMath::Epsilon));
+	tiClampMin<T>(attenuation, T(tMath::dEpsilon));
 	T tau = tauAttenuation ? attenuation : ComputeTau(attenuation);
 	Weight = ComputeWeight(fixedDeltaTime, tau);
 }
@@ -197,7 +197,7 @@ template<typename T> inline void tMath::tLowPassFilterFixed<T>::SetTau(T tau)
 
 template<typename T> inline void tMath::tLowPassFilterDynamic<T>::Set(T attenuation, bool tauAttenuation)
 {
-	tiClampMin<T>(attenuation, tMath::Epsilon);
+	tiClampMin<T>(attenuation, T(tMath::dEpsilon));
 	Tau = tauAttenuation ? attenuation : ComputeTau(attenuation);
 }
 

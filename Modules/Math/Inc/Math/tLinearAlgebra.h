@@ -4,7 +4,7 @@
 // cross/dot products, inversion functions, projections, normalization etc. These POD types are used as superclasses
 // for the more object-oriented and complete derived types. eg. tVector3 derives from the POD type tVec2 found here.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019, 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019, 2022, 2023, 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -296,18 +296,18 @@ inline bool tIsZero(const tMat4& m, comp_t c);
 
 // Test for equality within epsilon. Each basis component is tested independently. A relative error metric would behave
 // better: http://www.cygnus-software.com/papers/comparingfloats/comparingfloats.htm
-inline bool tApproxEqual(const tVec2& a, const tVec2& b, float e = Epsilon)												{ return (tAbs(a.x-b.x) < e) && (tAbs(a.y-b.y) < e); }
-inline bool tApproxEqual(const tVec2& a, const tVec2& b, comp_t c, float e = Epsilon)									{ return (!(c & tCompBit_X) || (tAbs(a.x-b.x) < e)) && (!(c & tCompBit_Y) || (tAbs(a.y-b.y) < e)); }
-inline bool tApproxEqual(const tVec3& a, const tVec3& b, float e = Epsilon)												{ return (tAbs(a.x-b.x) < e) && (tAbs(a.y-b.y) < e) && (tAbs(a.z-b.z) < e); }
-inline bool tApproxEqual(const tVec3& a, const tVec3& b, comp_t c, float e = Epsilon)									{ return (!(c & tCompBit_X) || (tAbs(a.x-b.x) < e)) && (!(c & tCompBit_Y) || (tAbs(a.y-b.y) < e)) && (!(c & tCompBit_Z) || (tAbs(a.z-b.z) < e)); }
-inline bool tApproxEqual(const tVec4& a, const tVec4& b, float e = Epsilon)												{ return (tAbs(a.x-b.x) < e) && (tAbs(a.y-b.y) < e) && (tAbs(a.z-b.z) < e) && (tAbs(a.w-b.w) < e); }
-inline bool tApproxEqual(const tVec4& a, const tVec4& b, comp_t c, float e = Epsilon)									{ return (!(c & tCompBit_X) || (tAbs(a.x-b.x) < e)) && (!(c & tCompBit_Y) || (tAbs(a.y-b.y) < e)) && (!(c & tCompBit_Z) || (tAbs(a.z-b.z) < e)) && (!(c & tCompBit_W) || (tAbs(a.w-b.w) < e)); }
-inline bool tApproxEqual(const tQuat& a, const tQuat& b, float e = Epsilon)												{ return (tAbs(a.x-b.x) < e) && (tAbs(a.y-b.y) < e) && (tAbs(a.z-b.z) < e) && (tAbs(a.w-b.w) < e); }
-inline bool tApproxEqual(const tQuat& a, const tQuat& b, comp_t c, float e = Epsilon)									{ return (!(c & tCompBit_X) || (tAbs(a.x-b.x) < e)) && (!(c & tCompBit_Y) || (tAbs(a.y-b.y) < e)) && (!(c & tCompBit_Z) || (tAbs(a.z-b.z) < e)) && (!(c & tCompBit_W) || (tAbs(a.w-b.w) < e)); }
-inline bool tApproxEqual(const tMat2& a, const tMat2& b, float e = Epsilon)												{ return tApproxEqual(a.C1, b.C1, e) && tApproxEqual(a.C2, b.C2, e); }
-inline bool tApproxEqual(const tMat2& a, const tMat2& b, comp_t c, float e = Epsilon);
-inline bool tApproxEqual(const tMat4& a, const tMat4& b, float e = Epsilon)												{ return tApproxEqual(a.C1, b.C1, e) && tApproxEqual(a.C2, b.C2, e) && tApproxEqual(a.C3, b.C3, e) && tApproxEqual(a.C4, b.C4, e); }
-inline bool tApproxEqual(const tMat4& a, const tMat4& b, comp_t c, float e = Epsilon);
+inline bool tApproxEqual(const tVec2& a, const tVec2& b, float e = fEpsilon)											{ return (tAbs(a.x-b.x) < e) && (tAbs(a.y-b.y) < e); }
+inline bool tApproxEqual(const tVec2& a, const tVec2& b, comp_t c, float e = fEpsilon)									{ return (!(c & tCompBit_X) || (tAbs(a.x-b.x) < e)) && (!(c & tCompBit_Y) || (tAbs(a.y-b.y) < e)); }
+inline bool tApproxEqual(const tVec3& a, const tVec3& b, float e = fEpsilon)											{ return (tAbs(a.x-b.x) < e) && (tAbs(a.y-b.y) < e) && (tAbs(a.z-b.z) < e); }
+inline bool tApproxEqual(const tVec3& a, const tVec3& b, comp_t c, float e = fEpsilon)									{ return (!(c & tCompBit_X) || (tAbs(a.x-b.x) < e)) && (!(c & tCompBit_Y) || (tAbs(a.y-b.y) < e)) && (!(c & tCompBit_Z) || (tAbs(a.z-b.z) < e)); }
+inline bool tApproxEqual(const tVec4& a, const tVec4& b, float e = fEpsilon)											{ return (tAbs(a.x-b.x) < e) && (tAbs(a.y-b.y) < e) && (tAbs(a.z-b.z) < e) && (tAbs(a.w-b.w) < e); }
+inline bool tApproxEqual(const tVec4& a, const tVec4& b, comp_t c, float e = fEpsilon)									{ return (!(c & tCompBit_X) || (tAbs(a.x-b.x) < e)) && (!(c & tCompBit_Y) || (tAbs(a.y-b.y) < e)) && (!(c & tCompBit_Z) || (tAbs(a.z-b.z) < e)) && (!(c & tCompBit_W) || (tAbs(a.w-b.w) < e)); }
+inline bool tApproxEqual(const tQuat& a, const tQuat& b, float e = fEpsilon)											{ return (tAbs(a.x-b.x) < e) && (tAbs(a.y-b.y) < e) && (tAbs(a.z-b.z) < e) && (tAbs(a.w-b.w) < e); }
+inline bool tApproxEqual(const tQuat& a, const tQuat& b, comp_t c, float e = fEpsilon)									{ return (!(c & tCompBit_X) || (tAbs(a.x-b.x) < e)) && (!(c & tCompBit_Y) || (tAbs(a.y-b.y) < e)) && (!(c & tCompBit_Z) || (tAbs(a.z-b.z) < e)) && (!(c & tCompBit_W) || (tAbs(a.w-b.w) < e)); }
+inline bool tApproxEqual(const tMat2& a, const tMat2& b, float e = fEpsilon)											{ return tApproxEqual(a.C1, b.C1, e) && tApproxEqual(a.C2, b.C2, e); }
+inline bool tApproxEqual(const tMat2& a, const tMat2& b, comp_t c, float e = fEpsilon);
+inline bool tApproxEqual(const tMat4& a, const tMat4& b, float e = fEpsilon)											{ return tApproxEqual(a.C1, b.C1, e) && tApproxEqual(a.C2, b.C2, e) && tApproxEqual(a.C3, b.C3, e) && tApproxEqual(a.C4, b.C4, e); }
+inline bool tApproxEqual(const tMat4& a, const tMat4& b, comp_t c, float e = fEpsilon);
 
 inline bool tEqual(const tVec2& a, const tVec2& b)																		{ return (a.x == b.x) && (a.y == b.y); }
 inline bool tEqual(const tVec2& a, const tVec2& b, comp_t c)															{ return (!(c & tCompBit_X) || (a.x == b.x)) && (!(c & tCompBit_Y) || (a.y == b.y)); }
@@ -970,11 +970,11 @@ inline bool tMath::tNotEqual(const tMat4& a, const tMat4& b, comp_t c)
 
 inline float tMath::tRotationAngle(const tQuat& q)
 {
-	float a = tMod(2.0f*tMath::tArcCos(q.w), tMath::TwoPi);
+	float a = tMod(2.0f*tMath::tArcCos(q.w), tMath::fTwoPi);
 	if (a > 0.0f)
 		a *= -1.0f;
 	if (a < 0.0f)
-		a += tMath::TwoPi;
+		a += tMath::fTwoPi;
 
 	return a;
 }

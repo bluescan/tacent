@@ -5,7 +5,7 @@
 // that can optionally be run on different threads. Sharing a generator between threads is not supported. One of the
 // generators implements the Mersenne Twistor algorithm by M. Matsumoto & T. Nishimura.
 //
-// Copyright (c) 2005, 2017, 2023 Tristan Grimmer.
+// Copyright (c) 2005, 2017, 2023, 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -131,7 +131,7 @@ tVector3 tRandom::tGetDir(const tVector3& centerDir, float extentAngle, const tG
 	// @todo This doesn't work for arbitrary central directions. For example, centerDir.z should be allowed to be zero.
 	float theta = tArcTan( tSqrt(centerDir.x*centerDir.x + centerDir.y*centerDir.y), centerDir.z );
 	float phi = tArcTan( centerDir.y, centerDir.x );
-	float normSpread = (Pi - (tGetFloat(gen)*extentAngle)) / Pi;
+	float normSpread = (fPi - (tGetFloat(gen)*extentAngle)) / fPi;
 
 	// Rotate around the axis.
 	theta += -((extentAngle / 2.0f)) + (tGetFloat(gen) * extentAngle);
@@ -221,8 +221,8 @@ tVector3 tRandom::tGetPointOnBox(const tBox& box, const tGenerator& gen)
 tVector3 tRandom::tGetPointOnSphere(const tSphere& sphere, const tGenerator& gen)
 {
 	// See http://mathworld.wolfram.com/SphericalCoordinates.html
-	float theta = tGetBounded(0.0f, TwoPi, gen);
-	float phi = tGetBounded(0.0f, Pi, gen);
+	float theta = tGetBounded(0.0f, fTwoPi, gen);
+	float phi = tGetBounded(0.0f, fPi, gen);
 	
 	// 's' for Sin, 'c' for Cos.
 	float ct, st, cp, sp;
@@ -250,7 +250,7 @@ tVector3 tRandom::tGetPointOnCylinder(const tCylinder& cylinder, const tGenerato
 	plane.ComputeOrthogonalBasisVectors(u, v);
 
 	axis *= tGetFloat(gen);									// Random distance along axis.
-	float theta = tGetBounded(0.0f, TwoPi, gen);			// Random angle around circle.
+	float theta = tGetBounded(0.0f, fTwoPi, gen);			// Random angle around circle.
 	float st = tSin(theta);
 	float ct = tCos(theta);
 
@@ -278,8 +278,8 @@ tVector3 tRandom::tGetPointInBox(const tBox& box, const tGenerator& gen)
 tVector3 tRandom::tGetPointInSphere(const tSphere& sphere, const tGenerator& gen)
 {
 	// See http://mathworld.wolfram.com/SphericalCoordinates.html
-	float theta = tGetBounded(0.0f, TwoPi, gen);
-	float phi = tGetBounded(0.0f, Pi, gen);
+	float theta = tGetBounded(0.0f, fTwoPi, gen);
+	float phi = tGetBounded(0.0f, fPi, gen);
 	float radius = tGetBounded(0.0f, sphere.Radius, gen);
 	
 	// 's' for Sin, 'c' for Cos.
@@ -309,7 +309,7 @@ tVector3 tRandom::tGetPointInCylinder(const tCylinder& cylinder, const tGenerato
 
 	axis *= tGetFloat(gen);									// Random distance along axis.
 	float radius = tGetBounded(0.0f, cylinder.Radius, gen);	// Random radius out.
-	float theta = tGetBounded(0.0f, TwoPi, gen);			// Random angle around circle.
+	float theta = tGetBounded(0.0f, fTwoPi, gen);			// Random angle around circle.
 	float st = tSin(theta);
 	float ct = tCos(theta);
 

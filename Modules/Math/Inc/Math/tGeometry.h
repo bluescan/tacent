@@ -5,7 +5,7 @@
 // shape is in, not the dimensionality of the shape itself. eg. A tCircle3 is a (2D) circle in R3 while a tCircle2 is a
 // 2D circle in R2. For shapes that are in R3 we drop the 3 because the R3 primitives are more general.
 //
-// Copyright (c) 2006, 2016, 2019, 2023 Tristan Grimmer.
+// Copyright (c) 2006, 2016, 2019, 2023, 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -151,7 +151,7 @@ struct tARect2
 
 	void AddPoint(const tVector2&);
 	void Expand(float e)																								{ Min.x -= e; Min.y -= e; Max.x += e; Max.y += e; }
-	void Clear()																										{ Min = tVector2(PosInfinity, PosInfinity); Max = tVector2(NegInfinity, NegInfinity); }
+	void Clear()																										{ Min = tVector2(fPosInfinity, fPosInfinity); Max = tVector2(fNegInfinity, fNegInfinity); }
 	void Empty()																										{ Clear(); }
 
 	// Boundary included.
@@ -196,7 +196,7 @@ struct tORect2
 struct tCircle2
 {
 	tCircle2()																											{ }
-	float Area() const																									{ return Pi * Radius * Radius; }
+	float Area() const																									{ return fPi * Radius * Radius; }
 	float Radius;
 	tVector2 Center;
 };
@@ -207,7 +207,7 @@ struct tCircle2
 struct tEllipse2
 {
 	tEllipse2()																											{ }
-	float Area() const																									{ return Pi * RadiusX * RadiusY; }
+	float Area() const																									{ return fPi * RadiusX * RadiusY; }
 
 	float RadiusX, RadiusY;
 	tVector2 Center;
@@ -283,7 +283,7 @@ struct tTriangle
 // This is an axis-aligned box in R3.
 struct tABox
 {
-	tABox()																												: Min(PosInfinity, PosInfinity, PosInfinity), Max(NegInfinity, NegInfinity, NegInfinity) { }
+	tABox()																												: Min(fPosInfinity, fPosInfinity, fPosInfinity), Max(fNegInfinity, fNegInfinity, fNegInfinity) { }
 	tABox(const tABox& src)																								: Min(src.Min), Max(src.Max) { }
 	tABox(const tVector3& min, float width, float height, float depth)													: Min(min), Max(min.x + width, min.y + height, min.z + depth) { }
 	tABox(const tVector3& min, const tVector3& max)																		: Min(min), Max(max) { }
@@ -291,7 +291,7 @@ struct tABox
 
 	void AddPoint(const tVector3&);
 	void Expand(float e)																								{ Min.x -= e; Min.y -= e; Min.z -= e; Max.x += e; Max.y += e; Max.z += e; }
-	void Empty()																										{ Min = tVector3(PosInfinity, PosInfinity, PosInfinity); Max = tVector3(NegInfinity, NegInfinity, NegInfinity); }
+	void Empty()																										{ Min = tVector3(fPosInfinity, fPosInfinity, fPosInfinity); Max = tVector3(fNegInfinity, fNegInfinity, fNegInfinity); }
 	void Transform(const tMatrix4& xform);					// Affine and projection transforms supported.
 
 	// Boundary included.
@@ -338,7 +338,7 @@ typedef tOBox tOBB;
 struct tCircle
 {
 	tCircle()																											{ }
-	float Area() const																									{ return Pi * Radius * Radius; }
+	float Area() const																									{ return fPi * Radius * Radius; }
 
 	float Radius;
 	tVector3 Center;

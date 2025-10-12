@@ -232,7 +232,7 @@ void DrawNGon(const tVector2& center, float radius, int numsides, const tColour4
 
 	for (int s = 0; s < numsides+1; s++)
 	{
-		float a = tMath::TwoPi * s / float(numsides);
+		float a = tMath::fTwoPi * s / float(numsides);
 		float x = center.x + radius*tMath::tCos(a);
 		float y = center.y + radius*tMath::tSin(a);
 		glVertex2f(x, y);
@@ -327,7 +327,7 @@ void Visualizer::Update(GLFWwindow* window, double dt, bool dopoll)
 
 	// Display FPS
 	static float fps = 0.0f;
-	float instFps = dt > tMath::Epsilon ? 1.0f/dt : 0.0f;
+	float instFps = dt > tMath::fEpsilon ? 1.0f/dt : 0.0f;
 	fps = 0.05f*instFps + 0.95f*fps;
 
 	ImGuiWindowFlags flagsImgButton =

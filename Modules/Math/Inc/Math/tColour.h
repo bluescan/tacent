@@ -8,7 +8,7 @@
 // * A 96 bit colour. 3 32-bit float components.
 // * A 128 bit colour. 4 32-bit float components (rgb + alpha).
 //
-// Copyright (c) 2006, 2011, 2017, 2020, 2022-2024 Tristan Grimmer.
+// Copyright (c) 2006, 2011, 2017, 2020, 2022-2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -272,8 +272,8 @@ namespace tMath
 	//
 	// GammaToLinear will darken  the image. Gamma = 2.2   (default/decoding). Gamma expansion.
 	// LinearToGamma Will lighten the image. Gamma = 1/2,2 (default/encoding). Gamma compression.
-	float tGammaToLinear  (float gammaComponent, float gamma = DefaultGamma);
-	float tLinearToGamma  (float linearComponent, float gamma = DefaultGamma);
+	float tGammaToLinear  (float gammaComponent, float gamma = fDefaultGamma);
+	float tLinearToGamma  (float linearComponent, float gamma = fDefaultGamma);
 
 	// The slowest conversion but for high fidelity, the sRGB space is likely what the image was authored in. sRGB
 	// conversions do not use the pow function for the whole domain, and the amplitude is not quite 1, but generally
@@ -879,8 +879,8 @@ public:
 	//
 	// GammaToLinear will darken  the image. Gamma = 2.2   (default/decoding). Gamma expansion.
 	// LinearToGamma Will lighten the image. Gamma = 1/2,2 (default/encoding). Gamma compression.
-	void GammaToLinear(float gamma    = tMath::DefaultGamma, comp_t = tCompBit_RGB);
-	void LinearToGamma(float invGamma = tMath::DefaultGamma, comp_t = tCompBit_RGB);
+	void GammaToLinear(float gamma    = tMath::fDefaultGamma, comp_t = tCompBit_RGB);
+	void LinearToGamma(float invGamma = tMath::fDefaultGamma, comp_t = tCompBit_RGB);
 
 	// The slowest conversion but for high fidelity, the sRGB space is likely what the image was authored in. sRGB
 	// conversions do not use the pow function for the whole domain, and the amplitude is not quite 1, but generally

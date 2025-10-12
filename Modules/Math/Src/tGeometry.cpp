@@ -5,7 +5,7 @@
 // shape is in, not the dimensionality of the shape itself. eg. A tCircle3 is a (2D) circle in R3 while a tCircle2 is a
 // 2D circle in R2. For shapes that are in R3 we drop the 3 because the R3 primitives are more general.
 //
-// Copyright (c) 2006, 2016, 2023 Tristan Grimmer.
+// Copyright (c) 2006, 2016, 2023, 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -118,8 +118,8 @@ bool tMath::tComputeSmallEnclosingSphere(tSphere& sphere, const tVector3* points
 	if (!points || (numPoints <= 0))
 		return false;
 
-	if (minRadius < Epsilon)
-		minRadius = Epsilon;
+	if (minRadius < fEpsilon)
+		minRadius = fEpsilon;
 
 	float& radius = sphere.Radius;
 	tVector3& center = sphere.Center;
@@ -181,12 +181,12 @@ bool tMath::tComputeSmallEnclosingSphere_Unstable(tSphere& sphere, const tVector
 		return true;
 	}
 
-	tVector3 xmin(PosInfinity, PosInfinity, PosInfinity);
-	tVector3 xmax(NegInfinity, NegInfinity, NegInfinity);
-	tVector3 ymin(PosInfinity, PosInfinity, PosInfinity);
-	tVector3 ymax(NegInfinity, NegInfinity, NegInfinity);
-	tVector3 zmin(PosInfinity, PosInfinity, PosInfinity);
-	tVector3 zmax(NegInfinity, NegInfinity, NegInfinity);
+	tVector3 xmin(fPosInfinity, fPosInfinity, fPosInfinity);
+	tVector3 xmax(fNegInfinity, fNegInfinity, fNegInfinity);
+	tVector3 ymin(fPosInfinity, fPosInfinity, fPosInfinity);
+	tVector3 ymax(fNegInfinity, fNegInfinity, fNegInfinity);
+	tVector3 zmin(fPosInfinity, fPosInfinity, fPosInfinity);
+	tVector3 zmax(fNegInfinity, fNegInfinity, fNegInfinity);
 	for (int p = 0; p < numPoints; p++)
 	{
 		const tVector3& point = points[p];

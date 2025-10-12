@@ -4,7 +4,7 @@
 // the data into tLayers, optionally decompressing them. Saving is not implemented yet. The layers may be 'stolen' from
 // a tImageDDS so that excessive memcpys are avoided. After they are stolen the tImageDDS is invalid.
 //
-// Copyright (c) 2006, 2017, 2019, 2020, 2022-2024 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2020, 2022-2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -71,7 +71,7 @@ public:
 	{
 		LoadParams()																									{ Reset(); }
 		LoadParams(const LoadParams& src)																				: Flags(src.Flags), Gamma(src.Gamma), Exposure(src.Exposure) { }
-		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::DefaultGamma; Exposure = 1.0f; }
+		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::fDefaultGamma; Exposure = 1.0f; }
 		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Gamma = src.Gamma; Exposure = src.Exposure; return *this; }
 
 		uint32 Flags;

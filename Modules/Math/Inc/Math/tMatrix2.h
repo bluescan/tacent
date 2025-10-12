@@ -3,7 +3,7 @@
 // A 2x2 matrix class with the expected member functions and overloads. Backs off of the tMat2 POD type and the
 // tLinearAlgebra library functions.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2023 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2023, 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -41,8 +41,8 @@ struct tMatrix2 : public tMat2
 	void Zero(tCompBit c)																								{ tZero(*this, c); }
 	bool IsZero() const																									{ return tIsZero((tMat2&)*this); }
 	bool IsZero(tCompBit c) const																						{ return tIsZero(*this, c); }
-	bool ApproxEqual(const tMat2& m, float e = Epsilon) const															{ return tApproxEqual(*this, m, e); }
-	bool ApproxEqual(const tMat2& m, tCompBit c, float e = Epsilon) const												{ return tApproxEqual(*this, m, c, e); }
+	bool ApproxEqual(const tMat2& m, float e = fEpsilon) const															{ return tApproxEqual(*this, m, e); }
+	bool ApproxEqual(const tMat2& m, tCompBit c, float e = fEpsilon) const												{ return tApproxEqual(*this, m, c, e); }
 
 	void Identity()																										{ tIdentity(*this); }
 	void Transpose()																									{ tTranspose(*this); }

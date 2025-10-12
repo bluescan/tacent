@@ -2,7 +2,7 @@
 //
 // Image module tests.
 //
-// Copyright (c) 2017, 2019-2024 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -877,7 +877,7 @@ tTestUnit(ImageRotation)
 	for (int rotNum = 0; rotNum < numRotations; rotNum++)
 	{
 		tPicture rotPic(aroPic);
-		float angle = float(rotNum) * tMath::TwoPi / numRotations;
+		float angle = float(rotNum) * tMath::fTwoPi / numRotations;
 		rotPic.RotateCenter(angle, tColour4b::transparent);
 
 		tPrintf("Rotated %05.1f Dimensions: W:%d H:%d\n", tMath::tRadToDeg(angle), rotPic.GetWidth(), rotPic.GetHeight());
@@ -893,7 +893,7 @@ tTestUnit(ImageRotation)
 	for (int rotNum = 0; rotNum < numRotations; rotNum++)
 	{
 		tPicture rotPic(aroPic);
-		float angle = float(rotNum) * tMath::TwoPi / numRotations;
+		float angle = float(rotNum) * tMath::fTwoPi / numRotations;
 		rotPic.RotateCenter(angle, tColour4b::transparent, tImage::tResampleFilter::Bilinear, tImage::tResampleFilter::None);
 
 		tPrintf("Rotated %05.1f Dimensions: W:%d H:%d\n", tMath::tRadToDeg(angle), rotPic.GetWidth(), rotPic.GetHeight());
@@ -910,7 +910,7 @@ tTestUnit(ImageRotation)
 	tPicture planePic(w, h, planepng.StealPixels8(), false);
 	w = planePic.GetWidth();
 	h = planePic.GetHeight();
-	planePic.RotateCenter(-tMath::PiOver4, tColour4b::transparent);
+	planePic.RotateCenter(-tMath::fPiOver4, tColour4b::transparent);
 }
 
 

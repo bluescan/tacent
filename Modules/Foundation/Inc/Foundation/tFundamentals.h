@@ -3,7 +3,7 @@
 // Core math functions needed by the rest or of the module as well as for external use. Functions include trigonometric
 // functions, intervals, angle manipulation, power functions, and other analytic functions.
 //
-// Copyright (c) 2004, 2017, 2019, 2020, 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2004, 2017, 2019, 2020, 2022, 2023, 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -92,7 +92,7 @@ template<typename T> inline bool tInRange(const T val, const T min, const T max,
 template<typename T> inline T tSign(T val)			/* +1,-1, or 0 for equal, */										{ return val < T(0) ? T(-1) : val > T(0) ? T(1) : T(0); }
 template<typename T> inline T tBinarySign(T val)																		{ return val < T(0) ? T(-1) : T(1); }	// Same as Sign but does not return 0 ever. Two return values only.
 template<typename T> inline bool tIsZero(T a)																			{ return a == T(0); }
-template<typename T> inline bool tApproxEqual(T a, T b, float e = Epsilon)												{ return (tAbs(a-b) < e); }
+template<typename T> inline bool tApproxEqual(T a, T b, float e = fEpsilon)												{ return (tAbs(a-b) < e); }
 template<typename T> inline bool tEquals(T a, T b)																		{ return a == b; }
 template<typename T> inline bool tNotEqual(T a, T b)																	{ return a != b; }
 
@@ -171,10 +171,10 @@ float tSqrtFast(float x);
 inline float tRecipSqrt(float x)																						{ return 1.0f/sqrtf(x); }
 float tRecipSqrtFast(float x);
 
-inline float tDegToRad(float deg)																						{ return deg * Pi / 180.0f; }
-inline float tRadToDeg(float rad)																						{ return rad * 180.0f / Pi; }
-inline float& tiDegToRad(float& ang)																					{ ang = ang * Pi / 180.0f; return ang; }
-inline float& tiRadToDeg(float& ang)																					{ ang = ang * 180.0f / Pi; return ang; }
+inline float tDegToRad(float deg)																						{ return deg * fPi / 180.0f; }
+inline float tRadToDeg(float rad)																						{ return rad * 180.0f / fPi; }
+inline float& tiDegToRad(float& ang)																					{ ang = ang * fPi / 180.0f; return ang; }
+inline float& tiRadToDeg(float& ang)																					{ ang = ang * 180.0f / fPi; return ang; }
 
 inline float tSin(float x)																								{ return sinf(x); }
 inline float tSinFast(float x);								// For x E [0, Pi/2].
@@ -194,7 +194,7 @@ inline double tLog(double x)								/* Natural logarithm. */									{ return lo
 inline float tLog10(float x)								/* Base 10 logarithm. */									{ return log10f(x); }
 inline double tLog10(double x)								/* Base 10 logarithm. */									{ return log10(x); }
 inline float tSa(float x)									/* Unnormalized (sampling) sinc. */							{ if (x == 0.0f) return 1.0f; return tSin(x) / x; }
-inline float tSinc(float x)									/* Normalized sinc. */										{ if (x == 0.0f) return 1.0f; float pix = Pi*x; return tSin(pix) / pix; }
+inline float tSinc(float x)									/* Normalized sinc. */										{ if (x == 0.0f) return 1.0f; float pix = fPi*x; return tSin(pix) / pix; }
 inline float tPow(float a, float b)																						{ return powf(a, b); }
 inline double tPow(double a, double b)																					{ return pow(a, b); }
 inline int tPow2(int n)										/* 2 ^ n. */												{ return 1 << n; }
@@ -222,7 +222,7 @@ float& tiNormalizeAngle2Pi(float& angle, tBias = tBias::Low);			// Results in an
 inline float tNormalizedAngle2Pi(float angle, tBias bias = tBias::Low)													{ tiNormalizeAngle2Pi(angle, bias); return angle; }
 
 // Gets the range (y) value of a normal distribution with mean = 0, and given variance. Pass in the domain (x) value.
-inline float tNormalDist(float variance, float x)																		{ return tPow(2*Pi*variance, -0.5f) * tExp(-tPow(x, 2.0f) / (2.0f*variance)); }
+inline float tNormalDist(float variance, float x)																		{ return tPow(2*fPi*variance, -0.5f) * tExp(-tPow(x, 2.0f) / (2.0f*variance)); }
 
 // These functions compute f(x) with x E [0, 1]. When not flipped f(0) = 0 and f(1) = 1. Furthermore, 0 <= f(x) <= 1.
 // Curve shape may be controlled by one or more constant (c) arguments. These functions always exist in the unit square,
@@ -360,7 +360,7 @@ inline int tMath::tGCD(int a, int b)
 	// Both zeroes is undefined. Any number divides zero, but since the other number is also zero, the
 	// most reasonable it to return the biggest number we can.
 	if ((a == 0) && (b == 0))
-		return MaxInt;
+		return iMax;
 
 	if (a < 0) a = -a;
 	if (b < 0) b = -b;
@@ -545,8 +545,8 @@ inline float& tMath::tiNormalizeAngle(float& a, tBias bias)
 {
 	std::function<bool(float,float)> less = tBiasLess(bias);
 	std::function<bool(float,float)> grtr = tBiasGrtr(bias);
-	while (less(a, -Pi)) a += TwoPi;
-	while (grtr(a,  Pi)) a -= TwoPi;
+	while (less(a, -fPi)) a += fTwoPi;
+	while (grtr(a,  fPi)) a -= fTwoPi;
 	return a;
 }
 
@@ -555,8 +555,8 @@ inline float& tMath::tiNormalizeAngle2Pi(float& a, tBias bias)
 {
 	std::function<bool(float,float)> less = tBiasLess(bias);
 	std::function<bool(float,float)> grtr = tBiasGrtr(bias);
-	while (less(a, 0.0f))  a += TwoPi;
-	while (grtr(a, TwoPi)) a -= TwoPi;
+	while (less(a, 0.0f))  a += fTwoPi;
+	while (grtr(a, fTwoPi)) a -= fTwoPi;
 	return a;
 }
 
@@ -565,7 +565,7 @@ inline float tMath::tUnitSin(float x, uint32 flip)
 {
 	tiClamp(x, 0.0f, 1.0f);
 	x = (flip & tUnitFlip_X) ? 1.0f-x : x;
-	float y = (tSin(x*Pi - PiOver2) + 1.0f)/2.0f;
+	float y = (tSin(x*fPi - fPiOver2) + 1.0f)/2.0f;
 	y = (flip & tUnitFlip_Y) ? 1.0f-y : y;
 	return y;
 }
@@ -575,7 +575,7 @@ inline float tMath::tUnitSinHalf(float x, uint32 flip)
 {
 	tiClamp(x, 0.0f, 1.0f);
 	x = (flip & tUnitFlip_X) ? 1.0f-x : x;
-	float y = tSin(x*PiOver2);
+	float y = tSin(x*fPiOver2);
 	y = (flip & tUnitFlip_Y) ? 1.0f-y : y;
 	return y;
 }

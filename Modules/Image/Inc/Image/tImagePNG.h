@@ -4,7 +4,7 @@
 // png file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor
 // if a png file is specified. After the array is stolen the tImagePNG is invalid. This is purely for performance.
 //
-// Copyright (c) 2020, 2022-2024 Tristan Grimmer.
+// Copyright (c) 2020, 2022-2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -50,7 +50,7 @@ public:
 	{
 		LoadParams()																									{ Reset(); }
 		LoadParams(const LoadParams& src)																				: Flags(src.Flags), Gamma(src.Gamma) { }
-		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::DefaultGamma; }
+		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::fDefaultGamma; }
 		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Gamma = src.Gamma; return *this; }
 		uint32 Flags;
 		float Gamma;

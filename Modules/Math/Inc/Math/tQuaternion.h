@@ -4,7 +4,7 @@
 // normalized linear interpolation. Ability to construct unit quaternions (rotations) from axis-angle as
 // well as from rotation matrices.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2022, 2023, 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -47,8 +47,8 @@ struct tQuaternion : public tQuat
 	void Zero(comp_t c)																									{ tZero(*this, c); }
 	bool IsZero() const																									{ return tIsZero((tQuat&)*this); }
 	bool IsZero(comp_t c) const																							{ return tIsZero(*this, c); }
-	bool ApproxEqual(const tQuat& q, float e = Epsilon) const															{ return tApproxEqual(*this, q, e); }
-	bool ApproxEqual(const tQuat& q, comp_t c, float e = Epsilon) const													{ return tApproxEqual(*this, q, c, e); }
+	bool ApproxEqual(const tQuat& q, float e = fEpsilon) const															{ return tApproxEqual(*this, q, e); }
+	bool ApproxEqual(const tQuat& q, comp_t c, float e = fEpsilon) const												{ return tApproxEqual(*this, q, c, e); }
 
 	float LengthSq() const																								{ return tLengthSq(*this); }
 	float Length() const																								{ return tLength(*this); }

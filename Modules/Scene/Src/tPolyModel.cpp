@@ -2,7 +2,7 @@
 //
 // This file implements tScene polygonal models. A tPolyModel contains a tMesh and a functional interface over it.
 //
-// Copyright (c) 2006, 2017, 2020, 2023 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2020, 2023, 2025 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -78,7 +78,7 @@ float tPolyModel::ComputeBoundingRadius() const
 
 void tPolyModel::ComputeMinMaxRadius(float& minRadius, float& maxRadius) const
 {
-	float minRadiusSq = Infinity;
+	float minRadiusSq = fInfinity;
 	float maxRadiusSq = 0.0f;
 	for (int v = 0; v < Mesh.NumVertPositions; v++)
 	{
