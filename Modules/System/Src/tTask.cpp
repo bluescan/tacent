@@ -12,14 +12,15 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
+#include <Foundation/tFundamentals.h>
 #include "System/tTask.h"
 #include "System/tTime.h"
 
 
-tTaskSetF::tTaskSetF(int64 counterFreq, double maxDeltaTime) :
-	UpdateCount(0),
+tTaskSetF::tTaskSetF(int64 counterFreq, int64 initialCount, double maxDeltaTime) :
 	PriorityQueue(NumTasks, GrowSize)
 {
+	UpdateCount = (initialCount >= 0) ? initialCount : tSystem::tGetHardwareTimerCount();
 	SetCounter(counterFreq, maxDeltaTime);
 }
 
@@ -35,13 +36,28 @@ void tTaskSetF::SetCounter(int64 counterFreq, double maxDeltaTime)
 }
 
 
-void tTaskSetF::Update(int64 counter)
+void tTaskSetF::Insert(tTask* t, int64 exeCount)
+{
+	tMath::tiClampMin(exeCount, UpdateCount);
+	PriorityQueue.Insert( tPQ<tTask*>::tItem(t, exeCount) );
+}
+
+
+void tTaskSetF::Insert(tTask* t, double deltaSeconds)
+{
+	tAssert(deltaSeconds >= 0.0);
+	int64 exeCount = tSystem::tGetHardwareTimerCount() + int64(deltaSeconds*double(CounterFreq));
+	PriorityQueue.Insert( tPQ<tTask*>::tItem(t, exeCount) );
+}
+
+
+void tTaskSetF::Update(int64 count)
 {
 	if (!IsValid())
 		return;
 
-	if (counter <= 0)
-		counter = tSystem::tGetHardwareTimerCount();
+	if (count <= 0)
+		count = tSystem::tGetHardwareTimerCount();
 
 	bool runningTasks = true;
 	while (runningTasks)
@@ -51,7 +67,7 @@ void tTaskSetF::Update(int64 counter)
 
 		// Take tasks that are due from the front of the priority queue.
 		int64 keyCount = PriorityQueue.GetMin().Key;
-		if (keyCount <= counter)
+		if (keyCount <= count)
 		{
 			tPQ<tTask*>::tItem qn = PriorityQueue.GetRemoveMin();
 			tTask* t = (tTask*)qn.Data;
@@ -60,7 +76,7 @@ void tTaskSetF::Update(int64 counter)
 			if (t)
 			{
 				tAssert(CounterFreq > 0);
-				double td = double(counter - UpdateCount) / double(CounterFreq);
+				double td = double(count - UpdateCount) / double(CounterFreq);
 				if (td > MaxDeltaTime)
 					td = MaxDeltaTime;
 
@@ -69,7 +85,7 @@ void tTaskSetF::Update(int64 counter)
 
 				if (t->TardinessCompensation)
 				{
-					int64 tardiness = counter - keyCount;
+					int64 tardiness = count - keyCount;
 					nextTimeDelta -= tardiness;
 					// It is OK if nextDeltaTime becomes negative here.
 				}
@@ -80,7 +96,7 @@ void tTaskSetF::Update(int64 counter)
 				if (nextTimeDelta <= 0)
 					nextTimeDelta = 1;
 
-				qn.Key = counter + nextTimeDelta;
+				qn.Key = count + nextTimeDelta;
 				PriorityQueue.Insert(qn);
 			}
 		}
@@ -90,5 +106,5 @@ void tTaskSetF::Update(int64 counter)
 		}
 	}
 
-	UpdateCount = counter;
+	UpdateCount = count;
 }

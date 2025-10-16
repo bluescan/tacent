@@ -17,9 +17,9 @@
 #include <Foundation/tConstants.h>
 
 
-// All tasks that you want in a task-set must be derived from a tTask. You need to implement at least one of ExecuteF or
-// ExecuteI. Use ExecuteI if you want to put the task on a tTaskSetI which works by returning an integer rather than a
-// floating-point number for the next execution time.
+// All tasks that you want in a task-set must be derived from a tTask. You need to implement at least one of
+// Execute(double) or Execute(int64). Use int64 if you want to put the task on a tTaskSetI which works by returning an
+// integer rather than a floating-point number for the next execution time.
 struct tTask
 {
 	// Tasks get executed when a TaskSet's update is called. If too much time has passed and the count is too large, it
@@ -47,11 +47,17 @@ class tTaskSetF
 {
 public:
 	// CounterFreq must be given in Hz. If it is left at -1, this constructor will call tGetHardwareTimerFrequency for
-	// you. If you want to create an invalid task set and set the frequency later (with SetCounter), enter 0 for the
-	// counterFreq or <= 0 for the maxDeltaTime. MaxDeltaTime is the ceiling on the elapsed time that the Execute() fn gets called with in seconds.
-	// Useful for things like collision detection where we need some guarantees. If the max is hit because the fps is
-	// slow then the objects will, only at that point, start to slow down.
-	tTaskSetF(int64 counterFreq = -1, double maxDeltaTime = tMath::dMax);
+	// you. If you want to create an invalid task-set and set the frequency later (with SetCounter), enter 0 for the
+	// counterFreq or <= 0 for the maxDeltaTime.
+	//
+	// InitialCount is the counter value at the time the task-set is constructed. This is so the initial calls to
+	// Execute have correct dt values if a task is added to the set before the first Update. If you pass -1 as the
+	// initialCount, the constructor will retrieve the initial count by calling tGetHardwareTimerCount.
+	//
+	// MaxDeltaTime is the ceiling on the elapsed time that the Execute() fn
+	// gets called with in seconds. Useful for things like collision detection where we need some guarantees. If the max
+	// is hit because the fps is slow then the objects will, only at that point, start to slow down.
+	tTaskSetF(int64 counterFreq = -1, int64 initialCount = -1, double maxDeltaTime = tMath::dMax);
 	~tTaskSetF()																										{ }
 
 	bool IsValid() const																								{ return (CounterFreq > 0) && (MaxDeltaTime > 0.0); }
@@ -61,8 +67,17 @@ public:
 
 	// Inserts a task in O(lg(n)) time. Memory for tTask is managed by the caller. When a task is first inserted, it
 	// gets scheduled to be executed on the next call to Update. After that, the task controls the next execution time
-	// by returning the desired number of seconds.
+	// by returning the desired number of seconds. If you insert before the first call to Update, the dt passed to the
+	// first execute will be measure from the count supplied or computed when construction occurred.
 	void Insert(tTask* t)																								{ PriorityQueue.Insert( tPQ<tTask*>::tItem(t, UpdateCount) ); }
+
+	// This is an alternative Insert that allows a future count to be specified for the first execute time. If exeCount
+	// is smaller or equal to the last update count, the task will be run on the next update.
+	void Insert(tTask* t, int64 exeCount);
+
+	// Another variant that inserts deltaSeconds into the future by quering the high performant clock when this insert
+	// is called.
+	void Insert(tTask* t, double deltaSeconds);
 
 	// Removes a task in O(n) time. You'll probably want to delete it after. Internally the tQueueItem isn't removed
 	// until it's about to be executed again, but you don't need to know that.
@@ -70,7 +85,7 @@ public:
 
 	// Executes any tasks that are ready. O(lg(n)). Call this as often as you like. If you pass in a counter value <= 0
 	// the Update call will call tGetHardwareTimerCount for you.
-	void Update(int64 counter = 0);
+	void Update(int64 count = 0);
 
 private:
 	int64 UpdateCount;					// The count when Update was called last.
