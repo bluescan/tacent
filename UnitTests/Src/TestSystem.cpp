@@ -142,7 +142,7 @@ double MyTask::Execute(double timeDelta)
 tTestUnit(Task)
 {
 	int64 freq = tGetHardwareTimerFrequency();
-	tTaskSetF tasks(freq, 0.1);
+	tTaskSetF tasks(freq);
 	MyTask* t1 = new MyTask();
 	MyTask* t2 = new MyTask();
 

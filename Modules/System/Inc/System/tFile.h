@@ -216,9 +216,11 @@ bool tFilesIdentical(const tString& fileA, const tString& fileB);
 bool tCopyFile(const tString& destFile, const tString& srcFile, bool overWriteReadOnly = true);
 
 // Renames the file or directory specified by oldName to the newName. This function can only be used for renaming, not
-// moving. Returns true on success. The dir variable should contain the path to where the file or dir you want to rename
-// is located.
-bool tRenameFile(const tString& dir, const tString& oldPathName, const tString& newPathName);
+// moving between directories. The dir variable should contain the path to where the file or dir you want to rename is
+// located. Returns true on success. If oldName is equal (case-sensitive) to newName true is returned and no operation
+// is performed. Note that a case-sensitive compare is done even on Windows so that ThisName can be renamed to Thisname.
+bool tRenameFile(const tString& dir, const tString& oldName, const tString& newName);
+bool tRenameDir(const tString& dir, const tString& oldName, const tString& newName);
 
 // Creates an empty file.
 bool tCreateFile(const tString& file);
@@ -686,6 +688,12 @@ struct tFileError : public tError
 
 
 // Implementation below this line.
+
+
+inline bool tSystem::tRenameDir(const tString& dir, const tString& oldName, const tString& newName)
+{
+	return tRenameFile(dir, oldName, newName);
+}
 
 
 inline tFileHandle tSystem::tOpenFile(const char8_t* file, const char* mode)

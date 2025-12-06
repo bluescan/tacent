@@ -946,14 +946,15 @@ bool tSystem::tCopyFile(const tString& destFile, const tString& srcFile, bool ov
 }
 
 
-bool tSystem::tRenameFile(const tString& dir, const tString& oldPathName, const tString& newPathName)
+bool tSystem::tRenameFile(const tString& dir, const tString& oldName, const tString& newName)
 {
 	#if defined(PLATFORM_WINDOWS)
-	tString fullOldName = dir + oldPathName;
+	tString fullOldName = dir + oldName;
 	tPathWin(fullOldName);
-
-	tString fullNewName = dir + newPathName;
+	tString fullNewName = dir + newName;
 	tPathWin(fullNewName);
+	if (fullOldName == fullNewName)
+		return true;
 
 	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 fullOldName16(fullOldName);
@@ -966,12 +967,14 @@ bool tSystem::tRenameFile(const tString& dir, const tString& oldPathName, const 
 	return success ? true : false;
 
 	#else
-	tString fullOldName = dir + oldPathName;
+	tString fullOldName = dir + oldName;
 	tPathStd(fullOldName);
-	std::filesystem::path oldp(fullOldName.Chr());
-
-	tString fullNewName = dir + newPathName;
+	tString fullNewName = dir + newName;
 	tPathStd(fullNewName);
+	if (fullOldName == fullNewName)
+		return true;
+
+	std::filesystem::path oldp(fullOldName.Chr());
 	std::filesystem::path newp(fullNewName.Chr());
 
 	std::error_code ec;
