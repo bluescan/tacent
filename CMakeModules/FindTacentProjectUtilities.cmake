@@ -68,6 +68,7 @@ function(tacent_target_compile_options PROJNAME)
 			$<$<AND:$<CONFIG:Ship>,$<CXX_COMPILER_ID:MSVC>>:/O2>
 
 			# Clang compiler.
+			$<$<CXX_COMPILER_ID:Clang>:-Wno-nontrivial-memcall>
 
 			# GNU compiler. -std=c++20
 			$<$<CXX_COMPILER_ID:GNU>:-Wno-unused-result>
