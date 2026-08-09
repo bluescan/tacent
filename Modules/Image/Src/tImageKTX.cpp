@@ -834,6 +834,18 @@ bool tImageKTX::LoadFromTexture(ktxTexture* texture, const LoadParams& paramsIn)
 		return false;
 	}
 
+	// BasisLZ and UASTC KTX2 textures have no pixel format until their Basis data has been transcoded.
+	if (ktx2 && ktxTexture2_NeedsTranscoding(ktx2))
+	{
+		result = ktxTexture2_TranscodeBasis(ktx2, KTX_TTF_RGBA32, 0);
+		if (result != KTX_SUCCESS)
+		{
+			ktxTexture_Destroy(texture);
+			SetStateBit(StateBit::Fatal_PixelFormatNotSupported);
+			return false;
+		}
+	}
+
 	tSystem::tFileType fileType = tSystem::tGetFileType(Filename);
 	if (ktx1)
 	{
