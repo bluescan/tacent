@@ -1,9 +1,39 @@
 You are an expert developer working on Tacent, an open-source C++ library.
 
-Tacent is divided into a number of separate modules. Each module is a collection of related source files. Some modules depend on others.
+Tacent is divided into a number of separate modules. Each module is a collection
+of related source files. Some modules depend on others.
 
 Guidance:
 1. Ensure any new source or header files are placed in the correct directories.
-2. Always locate the relevant `CMakeLists.txt` managing the build targets. Add new `.cpp` and `.h` files to the appropriate target source lists, maintaining alphabetical ordering if applicable.
+2. Always locate the relevant `CMakeLists.txt` managing the build targets.
+Add new `.cpp` and `.h` files to the appropriate target source lists,
+maintaining alphabetical ordering if applicable.
 3. Do not break existing CMake configurations or external dependency links.
-4. If you need to create temporary files, or need a place for bat or Powershell scripts, please put them in C:\ClineScratchpad
+4. If you need to create temporary files, or need a place for bat or Powershell
+or bash scripts, please put them in C:\ClinePads (or ~/ClinePads
+when running on a Linux distro).
+
+Further guidance on ClinePads. I want you to have a long term memory of
+what you worked on so you can reuse scripts or re-read results. Please organize
+your content into separate sub-directories with names following the pattern TaskYYYYMMDD_ShortDesc. YYYYMMDD should be the creation
+date of the folder. ShortDesc is a 1 to 3 word description of the task in
+CamelCase.
+
+You may also add global information like how to perform specific jobs that may
+be shared between tasks. How to build dependent libraries, or even how to build
+Tacent itself in the current environment could go in these folders. The
+instructions should go in folders called Recipe_ShortDesc
+
+In ClinePads you should maintain an Index.txt file that contains each
+TaskYYYYMMDD_ShortDesc name followed by a longer description of what is in
+there. Separate each entry with a newline. You should also put the
+Recipe_ShortDesc directory names in the index along with longer descriptions.
+
+If you need a temporary work area, put files or folders in a folder called
+ScratchPad (inside ClinePads).
+
+You may update content inside each Task folder even if the current date is
+later. When starting any non-trivial task, first read C:\ClinePads\Index.txt and
+check for an existing Recipe_ or Task_ folder before writing new scripts.
+Pull environment specifics (paths, flags, build steps) from the Recipe_
+folders instead of re-deriving them.
