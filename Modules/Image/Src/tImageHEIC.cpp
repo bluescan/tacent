@@ -114,10 +114,13 @@ bool tImageHEIC::Load(const uint8* heicFileInMemory, int numBytes)
 	Pixels = new tPixel4b[Width * Height];
 
 	// Convert from libheif interleaved RGBA (8-bit per channel) to tPixel4b.
+	// libheif returns the decoded rows top-to-bottom, but the resulting image
+	// ends up upside down, so the rows are populated in reverse order
+	// (bottom-up): destination row y receives source row (Height - 1 - y).
 	for (int y = 0; y < Height; ++y)
 	{
 		const uint8_t* srcRow = pixel_data + (size_t)y * stride;
-		tPixel4b* dstRow = Pixels + y * Width;
+		tPixel4b* dstRow = Pixels + (Height - 1 - y) * Width;
 		for (int x = 0; x < Width; ++x)
 		{
 			const uint8_t* srcPx = srcRow + x * 4u;
