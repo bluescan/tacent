@@ -400,6 +400,8 @@ enum class tFileType
 	JP2,						// Image.
 	JPC,						// Image.
 	ICO,						// Image. Windows Icon.
+	HEIC,						// Image. High Efficiency Image Coding.
+	AVIF,						// Image. AV1 Image File Format.
 	TAC,						// Image. Tacent Image.
 	CFG,						// Config. Text Config File.
 	INI,						// Config. Ini Config File.

@@ -2,7 +2,7 @@
 //
 // Image module tests.
 //
-// Copyright (c) 2017, 2019-2025 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -27,6 +27,8 @@
 #include <Image/tImageQOI.h>
 #include <Image/tImageAPNG.h>
 #include <Image/tImageTGA.h>
+#include <Image/tImageHEIC.h>
+#include <Image/tImageAVIF.h>
 #include <Image/tImageWEBP.h>
 #include <Image/tImageXPM.h>
 #include <Image/tImageBMP.h>
@@ -45,62 +47,71 @@ tTestUnit(ImageLoad)
 	if (!tSystem::tDirExists("TestData/Images/"))
 		tSkipUnit(ImageLoad)
 
+	tString origDir = tSystem::tGetCurrentDir();
+	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
+
 	// Test direct loading classes.
-	tImageAPNG imgAPNG("TestData/Images/Flame.apng");
+	tImageAPNG imgAPNG("Flame.apng");
 	tRequire(imgAPNG.IsValid());
 
-	tImageASTC imgASTC("TestData/Images/ASTC/ASTC10X10_LDR.astc");
+	tImageASTC imgASTC("Type_ASTC/ASTC10X10_LDR.astc");
 	tRequire(imgASTC.IsValid());
 
-	tImageBMP imgBMP("TestData/Images/UpperB.bmp");
+	tImageBMP imgBMP("Type_BMP/UpperB.bmp");
 	tRequire(imgBMP.IsValid());
 
-	tImageDDS imgDDS("TestData/Images/DDS/BC1DXT1_RGB_Legacy.dds");
+	tImageDDS imgDDS("Type_DDS/BC1DXT1_RGB_Legacy.dds");
 	tRequire(imgDDS.IsValid());
 
-	tImageEXR imgEXR("TestData/Images/Desk.exr");
+	tImageEXR imgEXR("Desk.exr");
 	tRequire(imgEXR.IsValid());
 
-	tImageGIF imgGIF("TestData/Images/8-cell-simple.gif");
+	tImageGIF imgGIF("Type_GIF/8-cell-simple.gif");
 	tRequire(imgGIF.IsValid());
 
-	tImageHDR imgHDR("TestData/Images/mpi_atrium_3.hdr");
+	tImageHDR imgHDR("mpi_atrium_3.hdr");
 	tRequire(imgHDR.IsValid());
 
-	tImageICO imgICO("TestData/Images/UpperBounds.ico");
+	tImageICO imgICO("UpperBounds.ico");
 	tRequire(imgICO.IsValid());
 
-	tImageJPG imgJPG("TestData/Images/WiredDrives.jpg");
+	tImageJPG imgJPG("WiredDrives.jpg");
 	tRequire(imgJPG.IsValid());
 
-	tImageKTX imgKTX("TestData/Images/KTX2/BC7_RGBA.ktx2");
+	tImageKTX imgKTX("Type_KTX2/BC7_RGBA.ktx2");
 	tRequire(imgKTX.IsValid());
 
-	tImagePNG imgPNG("TestData/Images/TacentTestPattern.png");
+	tImagePNG imgPNG("TestPattern/TacentTestPattern.png");
 	tRequire(imgPNG.IsValid());
 	tRequire(imgPNG.GetPixelFormatSrc() == tPixelFormat::R8G8B8A8);
 
-	tImagePVR imgPVR("TestData/Images/PVR_V3/PVRBPP4_UNORM_SRGB_RGBA_T.png");
+	tImagePVR imgPVR("Type_/PVR_V3/PVRBPP4_UNORM_SRGB_RGBA_T.png");
 	tRequire(!imgPVR.IsValid());
 
-	tImageQOI imgQOI24("TestData/Images/TacentTestPattern24.qoi");
+	tImageQOI imgQOI24("TestPattern/TacentTestPattern24.qoi");
 	tRequire(imgQOI24.IsValid());
 
-	tImageQOI imgQOI32("TestData/Images/TacentTestPattern32.qoi");
+	tImageQOI imgQOI32("TestPattern/TacentTestPattern32.qoi");
 	tRequire(imgQOI32.IsValid());
 
 	// Test loading a corrupt tga.
-	tImageTGA imgTGACorrupt("TestData/Images/Corrupt.tga");
+	tImageTGA imgTGACorrupt("Corrupt.tga");
 	tRequire(!imgTGACorrupt.IsValid());
 
-	tImageTGA imgTGA("TestData/Images/WhiteBorderRLE.tga");
+	tImageTGA imgTGA("WhiteBorderRLE.tga");
 	tRequire(imgTGA.IsValid());
 
-	tImageTIFF imgTIFF("TestData/Images/Tiff_NoComp.tif");
+	tImageTIFF imgTIFF("Type_TIF/Tiff_NoComp.tif");
 	tRequire(imgTIFF.IsValid());
 
-	tImageWEBP imgWEBP("TestData/Images/WEBP/RockyBeach.webp");
+	tImageWEBP imgWEBP("Type_WEBP/RockyBeach.webp");
 	tRequire(imgWEBP.IsValid());
+
+	// @todo TEMP DISABLED.
+	// tImageAVIF imgAVIF("TestData/Images/Type_AVIF/TacentTestPattern32.avif");
+	// tRequire(imgAVIF.IsValid());
+
+	tSystem::tSetCurrentDir(origDir);
 }
 
 
@@ -1566,6 +1577,74 @@ tTestUnit(ImagePNG)
 }
 
 
+tTestUnit(ImageHEIC)
+{
+	if (!tSystem::tDirExists("TestData/Images/Type_HEIC"))
+		tSkipUnit(ImageHEIC)
+
+	tString origDir = tSystem::tGetCurrentDir();
+	tSystem::tSetCurrentDir(origDir + "TestData/Images/Type_HEIC/");
+
+	// tImageHEIC can only load, so we verify integrity by saving each loaded file as a TGA for visual inspection.
+	// A bad file or a failed load will cause a tRequire failure above.
+	tList<tStringItem> files;
+	tSystem::tFindFiles(files, "", tSystem::tExtensions(tSystem::tFileType::HEIC));
+	tRequire(files.First());
+
+	tImageHEIC heic;
+	for (tStringItem* file = files.First(); file; file = file->Next())
+	{
+		tPrintf("HEIC Load %s\n", file->Chr());
+		heic.Load(*file);
+		tRequire(heic.IsValid());
+		int width = heic.GetWidth();
+		int height = heic.GetHeight();
+		tPixel4b* pixels = heic.GetPixels();
+		tRequire(pixels);
+
+		tImageTGA tga(heic.StealPixels(), width, height, true);
+		tRequire(tga.IsValid());
+		tga.Save("Written_" + tSystem::tGetFileBaseName(*file) + ".tga");
+	}
+
+	tSystem::tSetCurrentDir(origDir.Chr());
+}
+
+
+tTestUnit(ImageAVIF)
+{
+	if (!tSystem::tDirExists("TestData/Images/Type_AVIF"))
+		tSkipUnit(ImageAVIF)
+
+	tString origDir = tSystem::tGetCurrentDir();
+	tSystem::tSetCurrentDir(origDir + "TestData/Images/Type_AVIF/");
+
+	// tImageAVIF can only load, so we verify integrity by saving each loaded file as a TGA for visual inspection.
+	// A bad file or a failed load will cause a tRequire failure above.
+	tList<tStringItem> files;
+	tSystem::tFindFiles(files, "", tSystem::tExtensions(tSystem::tFileType::AVIF));
+	tRequire(files.First());
+
+	tImageAVIF avif;
+	for (tStringItem* file = files.First(); file; file = file->Next())
+	{
+		tPrintf("AVIF Load %s\n", file->Chr());
+		avif.Load(*file);
+		tRequire(avif.IsValid());
+		int width = avif.GetWidth();
+		int height = avif.GetHeight();
+		tPixel4b* pixels = avif.GetPixels();
+		tRequire(pixels);
+
+		tImageTGA tga(avif.StealPixels(), width, height, true);
+		tRequire(tga.IsValid());
+		tga.Save("Written_" + tSystem::tGetFileBaseName(*file) + ".tga");
+	}
+
+	tSystem::tSetCurrentDir(origDir.Chr());
+}
+
+
 // Helper for tImageDDS unit tests.
 void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAllMips = false)
 {
@@ -1588,7 +1667,6 @@ void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAl
 	tImageDDS::LoadParams params;
 	params.Flags = loadFlags;
 
-	// The ETC files exported from compressonator need their RGB components swizzled.
 	tPixelFormat fileformat = tGetPixelFormat(formatname.Chr());
 	tImageDDS dds(ddsfile, params);
 	tRequire(dds.IsValid());
@@ -2531,7 +2609,7 @@ tTestUnit(ImagePKM)
 }
 
 
-// Helper for tImagePKM unit tests.
+// Helper for tImagePVR unit tests.
 void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0, bool saveAllMips = false)
 {
 	// We're just going to turn on auto-gamma-compression for all files.

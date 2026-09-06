@@ -1898,6 +1898,8 @@ tSystem::FileTypeExts tSystem::FileTypeExtTable[] =
 	{ "jp2" },							// JP2
 	{ "jpc" },							// JPC
 	{ "ico" },							// ICO
+	{ "heic", "heif" },					// HEIC
+	{ "avif" },							// AVIF
 	{ "tac" },							// TAC
 	{ "cfg" },							// CFG
 	{ "ini" },							// INI

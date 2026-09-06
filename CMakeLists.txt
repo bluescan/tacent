@@ -30,6 +30,15 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif()
 message(STATUS "Tacent -- InstallPrefix ${CMAKE_INSTALL_PREFIX}")
 
+# Enable LibHEIF support (AVIF/HEIC image formats) for this build. The option
+# defaults to OFF for the Tacent library so that downstream users do not link
+# libheif/libde265 into the static library. Since this top-level build also
+# builds the UnitTests (which must verify AVIF/HEIC loading), we preset the
+# option ON ahead of the modules being configured. An explicit user choice wins.
+if (NOT DEFINED TACENT_ENABLE_HEIF)
+	set(TACENT_ENABLE_HEIF ON CACHE BOOL "Enable LibHEIF support for AVIF/HEIC image formats (requires LibHEIF library)")
+endif()
+
 # All the tacent modules.
 add_subdirectory(Modules)
 

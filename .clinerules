@@ -1,0 +1,9 @@
+You are an expert developer working on Tacent, an open-source C++ library.
+
+Tacent is divided into a number of separate modules. Each module is a collection of related source files. Some modules depend on others.
+
+Guidance:
+1. Ensure any new source or header files are placed in the correct directories.
+2. Always locate the relevant `CMakeLists.txt` managing the build targets. Add new `.cpp` and `.h` files to the appropriate target source lists, maintaining alphabetical ordering if applicable.
+3. Do not break existing CMake configurations or external dependency links.
+4. If you need to create temporary files, or need a place for bat or Powershell scripts, please put them in C:\ClineScratchpad

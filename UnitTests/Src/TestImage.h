@@ -36,6 +36,8 @@ namespace tUnitTest
 	tTestUnit(ImageMultiFrame);
 	tTestUnit(ImageGradient);
 	tTestUnit(ImagePNG);
+	tTestUnit(ImageHEIC);
+	tTestUnit(ImageAVIF);
 	tTestUnit(ImageDDS);
 	tTestUnit(ImageKTX2);
 	tTestUnit(ImageKTX1);

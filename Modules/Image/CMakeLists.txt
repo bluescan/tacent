@@ -1,15 +1,19 @@
 find_package("TacentProjectUtilities" REQUIRED)
 project(Image VERSION ${TACENT_VERSION} LANGUAGES CXX)
 
+option(TACENT_ENABLE_HEIF "Enable LibHEIF support for AVIF/HEIC image formats (requires LibHEIF library)" OFF)
+
 add_library(
 	${PROJECT_NAME}
 	Src/tCubemap.cpp
 	Src/tImageAPNG.cpp
 	Src/tImageASTC.cpp
+	Src/tImageAVIF.cpp
 	Src/tImageBMP.cpp
 	Src/tImageDDS.cpp
 	Src/tImageEXR.cpp
 	Src/tImageGIF.cpp
+	Src/tImageHEIC.cpp
 	Src/tImageHDR.cpp
 	Src/tImageICO.cpp
 	Src/tImageJPG.cpp
@@ -40,11 +44,13 @@ add_library(
 	Inc/Image/tFrame.h
 	Inc/Image/tImageAPNG.h
 	Inc/Image/tImageASTC.h
+	Inc/Image/tImageAVIF.h
 	Inc/Image/tImageBMP.h
 	Inc/Image/tImageDDS.h
 	Inc/Image/tImageEXR.h
 	Inc/Image/tImageGIF.h
 	Inc/Image/tImageHDR.h
+	Inc/Image/tImageHEIC.h
 	Inc/Image/tImageICO.h
 	Inc/Image/tImageJPG.h
 	Inc/Image/tImageKTX.h
@@ -76,6 +82,7 @@ add_library(
 	Contrib/gifenc/gifenc.h
 	Contrib/gifenc/gifenc.c
 	Contrib/GifLoad/gif_load.h
+	Contrib/LibHEIF/include/libheif/heif.h
 	Contrib/LibKTX/include/ktx.h
 	Contrib/LibPNG/include/png.h
 	Contrib/LibSPNG/spng.h
@@ -108,11 +115,13 @@ target_include_directories(
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib>
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TinyXML2>
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/include>
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/include>
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/include>
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibSPNG>
 		$<INSTALL_INTERFACE:Contrib>
 		$<INSTALL_INTERFACE:Contrib/TinyXML2>
 		$<INSTALL_INTERFACE:Contrib/ZLib/include>
+		$<INSTALL_INTERFACE:Contrib/LibHEIF/include>
 		$<INSTALL_INTERFACE:Contrib/LibPNG/include>
 		$<INSTALL_INTERFACE:Contrib/LibSPNG>
 	PRIVATE
@@ -136,6 +145,23 @@ target_include_directories(
 )
 
 tacent_target_compile_definitions(${PROJECT_NAME})
+
+# LibHEIF and LibDE265 are supplied as static archives (heif.lib / libde265.lib
+# on Windows, libheif.a / libde265.a on Linux). Without this, heif_export.h
+# expands LIBHEIF_API to __declspec(dllimport) on Windows, so the compiler
+# emits __imp_heif_* references that the static archive does not provide
+# (LNK2019). Defining LIBHEIF_STATIC_BUILD collapses LIBHEIF_API to plain C
+# linkage so the static symbols resolve correctly.
+#
+# These are only needed (and the LibHEIF code path in the image classes is only
+# compiled) when HEIF support is enabled. HEIF support defaults to OFF so that
+# the Tacent static library does not link libheif/libde265 in by default; it is
+# turned ON for the in-repo test build (see the top-level CMakeLists.txt).
+if (TACENT_ENABLE_HEIF)
+	target_compile_definitions(${PROJECT_NAME} PRIVATE TACENT_ENABLE_HEIF=1)
+	target_compile_definitions(${PROJECT_NAME} PRIVATE LIBHEIF_STATIC_BUILD)
+endif()
+
 tacent_target_compile_options(${PROJECT_NAME})
 tacent_target_compile_features(${PROJECT_NAME})
 tacent_set_target_properties(${PROJECT_NAME})
@@ -227,14 +253,6 @@ target_link_libraries(
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/libIlmThread-2_5.a>
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/lib/libImath-2_5.a>
 
-		# ZLib. Shared by a few different image formats.
-		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstaticd.lib>
-		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
-		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
-		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
-		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
-		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/libz.a>
-
 		# LibTIFF.
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibTIFF/lib/libtiff.a>
 		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibTIFF/lib/tiff.lib>
@@ -242,6 +260,20 @@ target_link_libraries(
 		# LibTurboJPEG
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg/Linux/libturbojpeg.a>
 		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg/Windows/turbojpeg-static.lib>
+
+		# LibHEIF and LibDE265 (only when HEIF/AVIF support is enabled; OFF by default).
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libheif.a>
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libde265.a>
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/heif.lib>
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libde265.lib>
+		
+		# ZLib. Shared by a few different image formats.
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstaticd.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
+		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/libz.a>
 )
 
 tacent_install(${PROJECT_NAME})

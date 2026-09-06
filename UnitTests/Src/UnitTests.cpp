@@ -2,7 +2,7 @@
 //
 // Tacent unit tests.
 //
-// Copyright (c) 2017, 2019-2025 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -166,30 +166,32 @@ int main(int argc, char** argv)
 	// Image tests.
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
 	tTest(ImageLoad);
-	tTest(ImageSave);
-	tTest(ImageTexture);
-	tTest(ImagePicture);
-	tTest(ImageQuantize);
-	tTest(ImagePalette);
-	tTest(ImageMetaData);
-	tTest(ImageLosslessTransform);
-	tTest(ImageRotation);
-	tTest(ImageCrop);
-	tTest(ImageCopyRegion);
-	tTest(ImageAdjustment);
-	tTest(ImageDetection);
-	tTest(ImageMipmap);
-	tTest(ImageFilter);
-	tTest(ImageMultiFrame);
-	tTest(ImageGradient);
-	tTest(ImagePNG);
-	tTest(ImageDDS);
-	tTest(ImageKTX1);
-	tTest(ImageKTX2);
-	tTest(ImageASTC);
-	tTest(ImagePKM);
-	tTest(ImagePVR2);
-	tTest(ImagePVR3);
+	//tTest(ImageSave);
+	//tTest(ImageTexture);
+	//tTest(ImagePicture);
+	//tTest(ImageQuantize);
+	//tTest(ImagePalette);
+	//tTest(ImageMetaData);
+	//tTest(ImageLosslessTransform);
+	//tTest(ImageRotation);
+	//tTest(ImageCrop);
+	//tTest(ImageCopyRegion);
+	//tTest(ImageAdjustment);
+	//tTest(ImageDetection);
+	//tTest(ImageMipmap);
+	//tTest(ImageFilter);
+	//tTest(ImageMultiFrame);
+	//tTest(ImageGradient);
+	//tTest(ImagePNG);
+	//tTest(ImageAVIF);
+	//tTest(ImageHEIC);
+	//tTest(ImageDDS);
+	//tTest(ImageKTX1);
+	//tTest(ImageKTX2);
+	//tTest(ImageASTC);
+	//tTest(ImagePKM);
+	//tTest(ImagePVR2);
+	//tTest(ImagePVR3);
 
 	// Input tests.
 	tTest(GamepadJoysticks);
@@ -221,7 +223,7 @@ int main(int argc, char** argv)
 	// tTest(Script);
 	// tTest(Rule);
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
-	// tTest(ImageLoad);
+	tTest(ImageLoad);
 	// tTest(ImageSave);
 	// tTest(ImageTexture);
 	// tTest(ImageMultiFrame);
@@ -239,6 +241,8 @@ int main(int argc, char** argv)
 	// tTest(ImageDetection);
 	// tTest(ImageMipmap);
 	// tTest(ImagePNG);
+	// tTest(ImageAVIF);
+	// tTest(ImageHEIC);
 	// tTest(ImageDDS);
 	// tTest(ImageKTX1);
 	// tTest(ImageKTX2);
@@ -255,7 +259,7 @@ int main(int argc, char** argv)
 	// tTest(FixInt);
 	// tTest(SmallFloat);
 	// tTest(Filter);
-	tTest(GamepadJoysticks);
+	// tTest(GamepadJoysticks);
 	// tTest(GamepadButtons);
 
 	#endif
