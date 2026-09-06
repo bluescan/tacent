@@ -261,11 +261,30 @@ target_link_libraries(
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg/Linux/libturbojpeg.a>
 		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg/Windows/turbojpeg-static.lib>
 
-		# LibHEIF and LibDE265 (only when HEIF/AVIF support is enabled; OFF by default).
+		# LibHEIF + LibDE265 (HEIC) + dav1d (AVIF); only when HEIF/AVIF support is enabled.
+		# All three are static libraries. libheif references de265_* and dav1d_* symbols that are
+		# resolved by linking libde265 and dav1d alongside it. The decoders are compiled "built-in"
+		# (libheif configured with ENABLE_PLUGIN_LOADING=OFF), so no runtime plugin DLLs are needed.
+		# Windows: Debug and Release static libs are kept separate (MSVC ABI); the "d" suffix is Debug.
+		# Linux: only the release .a libs are linked for all configs (matches the other Linux contribs).
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/heifd.lib>
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libde265d.lib>
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libdav1dd.lib>
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/heif.lib>
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libde265.lib>
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libdav1d.lib>
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/heif.lib>
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libde265.lib>
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libdav1d.lib>
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/heif.lib>
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libde265.lib>
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libdav1d.lib>
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/heif.lib>
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libde265.lib>
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libdav1d.lib>
 		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libheif.a>
 		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libde265.a>
-		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/heif.lib>
-		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libde265.lib>
+		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libdav1d.a>
 		
 		# ZLib. Shared by a few different image formats.
 		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstaticd.lib>

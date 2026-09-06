@@ -36,6 +36,7 @@ enum tFaceIndex				: uint32
 	tFaceIndex_NumFaces
 };
 
+
 // Faces are always specified using a left-handed coord system even when using the OpenGL functions.
 enum tFaceFlag				: uint32
 {

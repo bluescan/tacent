@@ -107,9 +107,11 @@ tTestUnit(ImageLoad)
 	tImageWEBP imgWEBP("Type_WEBP/RockyBeach.webp");
 	tRequire(imgWEBP.IsValid());
 
-	// @todo TEMP DISABLED.
-	// tImageAVIF imgAVIF("TestData/Images/Type_AVIF/TacentTestPattern32.avif");
-	// tRequire(imgAVIF.IsValid());
+	tImageHEIC imgHEIC("TestPattern/TacentTestPattern.heic");
+	tRequire(imgHEIC.IsValid());
+
+	tImageAVIF imgAVIF("TestPattern/TacentTestPattern.avif");
+	tRequire(imgAVIF.IsValid());
 
 	tSystem::tSetCurrentDir(origDir);
 }

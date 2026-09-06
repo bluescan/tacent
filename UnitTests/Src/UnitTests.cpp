@@ -241,8 +241,8 @@ int main(int argc, char** argv)
 	// tTest(ImageDetection);
 	// tTest(ImageMipmap);
 	// tTest(ImagePNG);
-	// tTest(ImageAVIF);
-	// tTest(ImageHEIC);
+	tTest(ImageAVIF);
+	tTest(ImageHEIC);
 	// tTest(ImageDDS);
 	// tTest(ImageKTX1);
 	// tTest(ImageKTX2);

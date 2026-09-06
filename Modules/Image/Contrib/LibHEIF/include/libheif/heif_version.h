@@ -28,11 +28,11 @@
 #define LIBHEIF_HEIF_VERSION_H
 
 /* Numeric representation of the version */
-#define LIBHEIF_NUMERIC_VERSION ((1<<24) | (23<<16) | (2<<8) | 0)
+#define LIBHEIF_NUMERIC_VERSION ((1<<24) | (23<<16) | (3<<8) | 0)
 
 /* Version string */
-#define LIBHEIF_VERSION "1.23.2"
+#define LIBHEIF_VERSION "1.23.3"
 
-#define LIBHEIF_PLUGIN_DIRECTORY "C:/GitHub/libheif/install/lib/libheif"
+#define LIBHEIF_PLUGIN_DIRECTORY "C:/GitHub/libheif/install_win_release/lib/libheif"
 
 #endif  // LIBHEIF_HEIF_VERSION_H
