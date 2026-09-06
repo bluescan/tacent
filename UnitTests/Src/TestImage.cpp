@@ -173,7 +173,7 @@ tTestUnit(ImageSave)
 	tImageQOI::tFormat rresult32 = rqoi.Save("WrittenReversedAlpha16Bit_5551.qoi", tImageQOI::tFormat::BPP32);
 	tRequire(rresult32 == tImageQOI::tFormat::BPP32);
 
-	tImageTGA tgaPattern("TacentTestPattern32.tga");
+	tImageTGA tgaPattern("TestPattern/TacentTestPattern32.tga");
 	int tgaW = tgaPattern.GetWidth();
 	int tgaH = tgaPattern.GetHeight();
 	tPixel4b* tgaPixels = tgaPattern.StealPixels();
@@ -186,53 +186,53 @@ tTestUnit(ImageSave)
 	tList<tFrame> frames;
 
 	// Test dither from 0.0f (auto) to 1.5f.
-	tPrintf("Testing GIF save spatial quantization dither with 2-colour palette.\n"); 
+	tPrintf("Testing GIF save spatial quantization dither with 2-colour palette.\n");
 	for (int d = 0; d < 16; d++)
-		TestSaveGif("TacentTestPattern.png",tPixelFormat::PAL1BIT, tQuantize::Method::Spatial,	false, float(d)*0.1f);
+		TestSaveGif("TestPattern/TacentTestPattern.png", tPixelFormat::PAL1BIT, tQuantize::Method::Spatial,	false, float(d)*0.1f);
 
 	// Test writing a non-animated gif without transparency at different bit-depths.
 	tPrintf("Testing GIF save single frame opaque.\n");
-	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL1BIT, tQuantize::Method::Fixed,	false);
-	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL2BIT, tQuantize::Method::Spatial,	false);
-	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL3BIT, tQuantize::Method::Spatial,	false);
-	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL4BIT, tQuantize::Method::Spatial,	false);
-	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL5BIT, tQuantize::Method::Wu,		false);
-	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL6BIT, tQuantize::Method::Wu,		false);
-	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL7BIT, tQuantize::Method::Wu,		false);
-	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL8BIT, tQuantize::Method::Wu,		false);
+	TestSaveGif("TestPattern/TacentTestPattern.png",	tPixelFormat::PAL1BIT, tQuantize::Method::Fixed,	false);
+	TestSaveGif("TestPattern/TacentTestPattern.png",	tPixelFormat::PAL2BIT, tQuantize::Method::Spatial,	false);
+	TestSaveGif("TestPattern/TacentTestPattern.png",	tPixelFormat::PAL3BIT, tQuantize::Method::Spatial,	false);
+	TestSaveGif("TestPattern/TacentTestPattern.png",	tPixelFormat::PAL4BIT, tQuantize::Method::Spatial,	false);
+	TestSaveGif("TestPattern/TacentTestPattern.png",	tPixelFormat::PAL5BIT, tQuantize::Method::Wu,		false);
+	TestSaveGif("TestPattern/TacentTestPattern.png",	tPixelFormat::PAL6BIT, tQuantize::Method::Wu,		false);
+	TestSaveGif("TestPattern/TacentTestPattern.png",	tPixelFormat::PAL7BIT, tQuantize::Method::Wu,		false);
+	TestSaveGif("TestPattern/TacentTestPattern.png",	tPixelFormat::PAL8BIT, tQuantize::Method::Wu,		false);
 
 	// Test writing a non-animated gif with transparency at different bit-depths.
 	tPrintf("Testing GIF save single frame transparent.\n");
-	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL1BIT, tQuantize::Method::Fixed,	true);
-	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL2BIT, tQuantize::Method::Wu,		true);
-	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL3BIT, tQuantize::Method::Wu,		true);
-	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL4BIT, tQuantize::Method::Wu,		true);
-	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL5BIT, tQuantize::Method::Wu,		true);
-	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL6BIT, tQuantize::Method::Neu,		true);
-	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL7BIT, tQuantize::Method::Neu,		true);
-	TestSaveGif("TacentTestPattern.png",	tPixelFormat::PAL8BIT, tQuantize::Method::Neu,		true);
+	TestSaveGif("TestPattern/TacentTestPattern.png",	tPixelFormat::PAL1BIT, tQuantize::Method::Fixed,	true);
+	TestSaveGif("TestPattern/TacentTestPattern.png",	tPixelFormat::PAL2BIT, tQuantize::Method::Wu,		true);
+	TestSaveGif("TestPattern/TacentTestPattern.png",	tPixelFormat::PAL3BIT, tQuantize::Method::Wu,		true);
+	TestSaveGif("TestPattern/TacentTestPattern.png",	tPixelFormat::PAL4BIT, tQuantize::Method::Wu,		true);
+	TestSaveGif("TestPattern/TacentTestPattern.png",	tPixelFormat::PAL5BIT, tQuantize::Method::Wu,		true);
+	TestSaveGif("TestPattern/TacentTestPattern.png",	tPixelFormat::PAL6BIT, tQuantize::Method::Neu,		true);
+	TestSaveGif("TestPattern/TacentTestPattern.png",	tPixelFormat::PAL7BIT, tQuantize::Method::Neu,		true);
+	TestSaveGif("TestPattern/TacentTestPattern.png",	tPixelFormat::PAL8BIT, tQuantize::Method::Neu,		true);
 
 	// Test writing animated gif with transparency at different bit-depths.
 	tPrintf("Testing GIF save animated transparent.\n");
-	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL1BIT, tQuantize::Method::Fixed,	true);
-	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL2BIT, tQuantize::Method::Neu,		true);
-	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL3BIT, tQuantize::Method::Neu,		true);
-	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL4BIT, tQuantize::Method::Neu,		true);
-	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL5BIT, tQuantize::Method::Neu,		true);
-	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL6BIT, tQuantize::Method::Wu,		true);
-	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL7BIT, tQuantize::Method::Wu,		true);
-	TestSaveGif("Icos4D.apng",				tPixelFormat::PAL8BIT, tQuantize::Method::Wu,		true);
+	TestSaveGif("Type_APNG/Icos4D.apng",				tPixelFormat::PAL1BIT, tQuantize::Method::Fixed,	true);
+	TestSaveGif("Type_APNG/Icos4D.apng",				tPixelFormat::PAL2BIT, tQuantize::Method::Neu,		true);
+	TestSaveGif("Type_APNG/Icos4D.apng",				tPixelFormat::PAL3BIT, tQuantize::Method::Neu,		true);
+	TestSaveGif("Type_APNG/Icos4D.apng",				tPixelFormat::PAL4BIT, tQuantize::Method::Neu,		true);
+	TestSaveGif("Type_APNG/Icos4D.apng",				tPixelFormat::PAL5BIT, tQuantize::Method::Neu,		true);
+	TestSaveGif("Type_APNG/Icos4D.apng",				tPixelFormat::PAL6BIT, tQuantize::Method::Wu,		true);
+	TestSaveGif("Type_APNG/Icos4D.apng",				tPixelFormat::PAL7BIT, tQuantize::Method::Wu,		true);
+	TestSaveGif("Type_APNG/Icos4D.apng",				tPixelFormat::PAL8BIT, tQuantize::Method::Wu,		true);
 
-	tImagePNG pngA("PNG/Xeyes.png");
+	tImagePNG pngA("Type_PNG/Xeyes.png");
 	pngA.Save("WrittenNewA.png");
 	tRequire( tSystem::tFileExists("WrittenNewA.png"));
 
-	tImagePNG pngB("PNG/TextCursor.png");
+	tImagePNG pngB("Type_PNG/TextCursor.png");
 	pngB.Save("WrittenNewB.png");
 	tRequire( tSystem::tFileExists("WrittenNewB.png"));
 
 	// Test writing webp images. The basic pattern to save as a different type is to steal from one and give to the other.
-	tImageAPNG apng("Flame.apng");
+	tImageAPNG apng("Type_APNG/Flame.apng");
 	apng.StealFrames(frames);
 	tImageWEBP webp;
 	webp.Set(frames, true);
@@ -256,35 +256,38 @@ tTestUnit(ImageTexture)
 	if (!tSystem::tDirExists("TestData/Images/"))
 		tSkipUnit(ImageTexture)
 
+	tString origDir = tSystem::tGetCurrentDir();
+	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
+
 	// Test dxt1 texture.
-	tTexture dxt1Tex("TestData/Images/DDS/BC1DXT1_RGB_Legacy.dds");
+	tTexture dxt1Tex("Type_DDS/BC1DXT1_RGB_Legacy.dds");
 	tRequire(dxt1Tex.IsValid());
 
-	tChunkWriter writer("TestData/Images/Written_BC1DXT1_RGB_Legacy.tac");
+	tChunkWriter writer("Written_BC1DXT1_RGB_Legacy.tac");
 	dxt1Tex.Save(writer);
-	tRequire( tSystem::tFileExists("TestData/Images/Written_BC1DXT1_RGB_Legacy.tac") );
+	tRequire( tSystem::tFileExists("Written_BC1DXT1_RGB_Legacy.tac") );
 
-	tChunkReader reader("TestData/Images/Written_BC1DXT1_RGB_Legacy.tac");
+	tChunkReader reader("Written_BC1DXT1_RGB_Legacy.tac");
 	dxt1Tex.Load( reader.Chunk() );
 	tRequire(dxt1Tex.IsValid());
 
 	// Test cubemap.
-	tTexture cubemap("TestData/Images/DDS/CubemapLayoutGuide.dds");
+	tTexture cubemap("Type_DDS/CubemapLayoutGuide.dds");
 	tRequire(cubemap.IsValid());
 
 	// Test jpg to texture. This will do conversion to BC1.
-	tImageJPG jpg("TestData/Images/WiredDrives.jpg");
+	tImageJPG jpg("WiredDrives.jpg");
 	int w = jpg.GetWidth(); int h = jpg.GetHeight();
 	tPicture pic(w, h, jpg.StealPixels(), false); 
 	tTexture bc1Tex(pic, true);
 
 	tRequire(bc1Tex.IsValid());
-	tChunkWriter chunkWriterBC1("TestData/Images/Written_WiredDrives_BC1.tac");
+	tChunkWriter chunkWriterBC1("Written_WiredDrives_BC1.tac");
 	bc1Tex.Save(chunkWriterBC1);
-	tRequire( tSystem::tFileExists("TestData/Images/Written_WiredDrives_BC1.tac") );
+	tRequire( tSystem::tFileExists("Written_WiredDrives_BC1.tac") );
 
 	// Test ico with alpha to texture. This will do conversion to BC3.
-	tImageICO ico("TestData/Images/UpperBounds.ico");
+	tImageICO ico("UpperBounds.ico");
 	tFrame* frame = ico.StealFrame(0);
 	w = frame->Width; h = frame->Height;
 	pic.Set(w, h, frame->GetPixels(true), false);
@@ -292,9 +295,11 @@ tTestUnit(ImageTexture)
 	tTexture bc3Tex(pic, true);
 
 	tRequire(bc3Tex.IsValid());
-	tChunkWriter chunkWriterBC3("TestData/Images/Written_UpperBounds_BC3.tac");
+	tChunkWriter chunkWriterBC3("Written_UpperBounds_BC3.tac");
 	bc3Tex.Save(chunkWriterBC3);
-	tRequire( tSystem::tFileExists("TestData/Images/Written_UpperBounds_BC3.tac"));
+	tRequire( tSystem::tFileExists("Written_UpperBounds_BC3.tac"));
+
+	tSystem::tSetCurrentDir(origDir);
 }
 
 
@@ -1305,17 +1310,19 @@ tTestUnit(ImageMultiFrame)
 {
 	if (!tSystem::tDirExists("TestData/Images/"))
 		tSkipUnit(ImageMultiFrame)
+	tString origDir = tSystem::tGetCurrentDir();
+	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
 
 	#if 0
-	tImageWEBP webpSrc0("TestData/Images/Demux_Shy.webp");
+	tImageWEBP webpSrc0("Demux_Shy.webp");
 	tImageTIFF tiffDst0(webpSrc0.Frames, true);
-	tiffDst0.Save("TestData/Images/Demux_Shy.tiff");
-	tRequire(tSystem::tFileExists("TestData/Images/WrittenDemux_Shy.tiff"));
+	tiffDst0.Save("Demux_Shy.tiff");
+	tRequire(tSystem::tFileExists("WrittenDemux_Shy.tiff"));
 
-	tImageWEBP webpSrc1("TestData/Images/Demux_Confused.webp");
+	tImageWEBP webpSrc1("Demux_Confused.webp");
 	tImageTIFF tiffDst1(webpSrc1.Frames, true);
-	tiffDst1.Save("TestData/Images/Demux_Confused.tiff");
-	tRequire(tSystem::tFileExists("TestData/Images/WrittenDemux_Confused.tiff"));
+	tiffDst1.Save("Demux_Confused.tiff");
+	tRequire(tSystem::tFileExists("WrittenDemux_Confused.tiff"));
 	return;
 	#endif
 
@@ -1324,68 +1331,70 @@ tTestUnit(ImageMultiFrame)
 	tPicture pic;
 
 	// A multipage tiff.
-	tif.Load("TestData/Images/Tiff_Multipage_ZIP.tif");
+	tif.Load("Type_TIF/Tiff_Multipage_ZIP.tif");
 	tRequire(tif.IsValid());
 
 	tFrame* frame0 = tif.GetFrame(0);
 	pic.Set(frame0, false); tga.Set(pic);
-	tga.Save("TestData/Images/WrittenTiff_Multipage_ZIP_P1.tga");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenTiff_Multipage_ZIP_P1.tga"));
+	tga.Save("WrittenTiff_Multipage_ZIP_P1.tga");
+	tRequire( tSystem::tFileExists("WrittenTiff_Multipage_ZIP_P1.tga"));
 
 	tFrame* frame1 = tif.GetFrame(1);
 	pic.Set(frame1, false); tga.Set(pic);
-	tga.Save("TestData/Images/WrittenTiff_Multipage_ZIP_P2.tga");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenTiff_Multipage_ZIP_P2.tga"));
+	tga.Save("WrittenTiff_Multipage_ZIP_P2.tga");
+	tRequire( tSystem::tFileExists("WrittenTiff_Multipage_ZIP_P2.tga"));
 
 	tFrame* frame2 = tif.GetFrame(2);
 	pic.Set(frame2, false); tga.Set(pic);
-	tga.Save("TestData/Images/WrittenTiff_Multipage_ZIP_P3.tga");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenTiff_Multipage_ZIP_P3.tga"));
+	tga.Save("WrittenTiff_Multipage_ZIP_P3.tga");
+	tRequire( tSystem::tFileExists("WrittenTiff_Multipage_ZIP_P3.tga"));
 
 	// tImageWEBP also supports saving multi-frame webp files.
-	tImageAPNG apngSrc("TestData/Images/Flame.apng");
+	tImageAPNG apngSrc("Type_APNG/Flame.apng");
 	tImageWEBP webpDst( apngSrc.Frames, true);
-	webpDst.Save("TestData/Images/WrittenFlameManyFrames.webp");
-	tRequire(tSystem::tFileExists("TestData/Images/WrittenFlameManyFrames.webp"));
+	webpDst.Save("WrittenFlameManyFrames.webp");
+	tRequire(tSystem::tFileExists("WrittenFlameManyFrames.webp"));
 
-	tImageAPNG apngSrc2("TestData/Images/Icos4D.apng");
+	tImageAPNG apngSrc2("Type_APNG/Icos4D.apng");
 	tImageWEBP webpDst2( apngSrc2.Frames, true);
-	webpDst2.Save("TestData/Images/WrittenIcos4DManyFrames.webp");
-	tRequire(tSystem::tFileExists("TestData/Images/WrittenIcos4DManyFrames.webp"));
+	webpDst2.Save("WrittenIcos4DManyFrames.webp");
+	tRequire(tSystem::tFileExists("WrittenIcos4DManyFrames.webp"));
 
 	// tImageGIF supports saving multi-frame gif files.
-	tImageAPNG apngSrc3("TestData/Images/Icos4D.apng");
+	tImageAPNG apngSrc3("Type_APNG/Icos4D.apng");
 	tImageGIF gifDst(apngSrc3.Frames, true);
-	gifDst.Save("TestData/Images/WrittenIcos4DManyFrames.gif");
-	tRequire(tSystem::tFileExists("TestData/Images/WrittenIcos4DManyFrames.gif"));
+	gifDst.Save("WrittenIcos4DManyFrames.gif");
+	tRequire(tSystem::tFileExists("WrittenIcos4DManyFrames.gif"));
 
 	// tImageAPNG supports saving multi-frame apng files.
-	tImageAPNG apngSrc4("TestData/Images/Icos4D.apng");
+	tImageAPNG apngSrc4("Type_APNG/Icos4D.apng");
 	tImageAPNG apngDst(apngSrc4.Frames, true);
-	apngDst.Save("TestData/Images/WrittenIcos4DManyFrames.apng");
-	tRequire(tSystem::tFileExists("TestData/Images/WrittenIcos4DManyFrames.apng"));
+	apngDst.Save("WrittenIcos4DManyFrames.apng");
+	tRequire(tSystem::tFileExists("WrittenIcos4DManyFrames.apng"));
 
 	// Load a multipage tiff with no page duration info.
 	tPrintf("Test multipage TIFF load.\n");
-	tImageTIFF tiffMultipage("TestData/Images/Tiff_Multipage_ZIP.tif");
+	tImageTIFF tiffMultipage("Type_TIF/Tiff_Multipage_ZIP.tif");
 	tRequire(tiffMultipage.IsValid());
 
 	// Create a multipage tiff with page duration info.
-	tImageAPNG apngSrc5("TestData/Images/Icos4D.apng");
+	tImageAPNG apngSrc5("Type_APNG/Icos4D.apng");
 	tImageTIFF tiffDst(apngSrc5.Frames, true);
-	tiffDst.Save("TestData/Images/WrittenIcos4DManyFrames.tiff");
-	tRequire(tSystem::tFileExists("TestData/Images/WrittenIcos4DManyFrames.tiff"));
+	tiffDst.Save("WrittenIcos4DManyFrames.tiff");
+	tRequire(tSystem::tFileExists("WrittenIcos4DManyFrames.tiff"));
 
 	// Load a multipage tiff with page duration info since it was saved from Tacent.
-	tImageTIFF tiffWithDur("TestData/Images/WrittenIcos4DManyFrames.tiff");
-	tiffWithDur.Save("TestData/Images/WrittenIcos4DManyFrames2.tiff");
-	tRequire(tSystem::tFileExists("TestData/Images/WrittenIcos4DManyFrames2.tiff"));
+	tImageTIFF tiffWithDur("WrittenIcos4DManyFrames.tiff");
+	tiffWithDur.Save("WrittenIcos4DManyFrames2.tiff");
+	tRequire(tSystem::tFileExists("WrittenIcos4DManyFrames2.tiff"));
 
 	// Test loading an animated webp and saving as multpage tiff.
-	tImageWEBP webpSrc("TestData/Images/WEBP/AnimatedTest.webp");
+	tImageWEBP webpSrc("Type_WEBP/AnimatedTest.webp");
 	tImageTIFF tiffDst2(webpSrc.Frames, true);
-	tiffDst2.Save("TestData/Images/WrittenAnimatedTestManyFrames.tiff");
-	tRequire(tSystem::tFileExists("TestData/Images/WrittenAnimatedTestManyFrames.tiff"));
+	tiffDst2.Save("WrittenAnimatedTestManyFrames.tiff");
+	tRequire(tSystem::tFileExists("WrittenAnimatedTestManyFrames.tiff"));
+
+	tSystem::tSetCurrentDir(origDir);
 }
 
 

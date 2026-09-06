@@ -166,32 +166,32 @@ int main(int argc, char** argv)
 	// Image tests.
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
 	tTest(ImageLoad);
-	//tTest(ImageSave);
-	//tTest(ImageTexture);
-	//tTest(ImagePicture);
-	//tTest(ImageQuantize);
-	//tTest(ImagePalette);
-	//tTest(ImageMetaData);
-	//tTest(ImageLosslessTransform);
-	//tTest(ImageRotation);
-	//tTest(ImageCrop);
-	//tTest(ImageCopyRegion);
-	//tTest(ImageAdjustment);
-	//tTest(ImageDetection);
-	//tTest(ImageMipmap);
-	//tTest(ImageFilter);
-	//tTest(ImageMultiFrame);
-	//tTest(ImageGradient);
-	//tTest(ImagePNG);
-	//tTest(ImageAVIF);
-	//tTest(ImageHEIC);
-	//tTest(ImageDDS);
-	//tTest(ImageKTX1);
-	//tTest(ImageKTX2);
-	//tTest(ImageASTC);
-	//tTest(ImagePKM);
-	//tTest(ImagePVR2);
-	//tTest(ImagePVR3);
+	tTest(ImageSave);
+	tTest(ImageTexture);
+	tTest(ImagePicture);
+	tTest(ImageQuantize);
+	tTest(ImagePalette);
+	tTest(ImageMetaData);
+	tTest(ImageLosslessTransform);
+	tTest(ImageRotation);
+	tTest(ImageCrop);
+	tTest(ImageCopyRegion);
+	tTest(ImageAdjustment);
+	tTest(ImageDetection);
+	tTest(ImageMipmap);
+	tTest(ImageFilter);
+	tTest(ImageMultiFrame);
+	tTest(ImageGradient);
+	tTest(ImagePNG);
+	tTest(ImageAVIF);
+	tTest(ImageHEIC);
+	tTest(ImageDDS);
+	tTest(ImageKTX1);
+	tTest(ImageKTX2);
+	tTest(ImageASTC);
+	tTest(ImagePKM);
+	tTest(ImagePVR2);
+	tTest(ImagePVR3);
 
 	// Input tests.
 	tTest(GamepadJoysticks);
