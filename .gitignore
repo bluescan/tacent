@@ -16,9 +16,5 @@ compile_flags.txt
 # Specific files.
 /Woboq/compile_commands_generated.json
 
-# Oversized prebuilt Debug lib (heifd.lib exceeds GitHub's 100MB per-file limit).
-# Kept locally for Debug linking, but never committed.
-/Modules/Image/Contrib/LibHEIF/lib/heifd.lib
-
 # Filetypes everywhere.
 *.ext
