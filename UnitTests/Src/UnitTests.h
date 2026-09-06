@@ -2,7 +2,7 @@
 //
 // Tacent unit test framework.
 //
-// Copyright (c) 2017, 2019-2025 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -15,7 +15,7 @@
 #pragma once
 #include <System/tPrint.h>
 #include <System/tFile.h>
-#define UNIT_TEST_FORCE_PRINT_ALL_OUTPUT
+//#define UNIT_TEST_FORCE_PRINT_ALL_OUTPUT
 #define UNIT_TEST_ONLY_ONE_TEST
 //#define UNIT_TEST_CALLSTACK_ON_FAIL_REQUIREMENT
 //#define UNIT_TEST_CALLSTACK_ON_FAIL_GOAL

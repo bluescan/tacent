@@ -9,7 +9,7 @@
 // page, and gif/webp images may be animated and have more than one frame. A tPicture can only prepresent _one_ of 
 // these frames.
 //
-// Copyright (c) 2006, 2016, 2017, 2020-2024 Tristan Grimmer.
+// Copyright (c) 2006, 2016, 2017, 2020-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -113,26 +113,26 @@ public:
 
 	// Sets the image to the dimensions provided. Image will be opaque black after this call. Internally, if the
 	// existing buffer is the right size, it is reused. In all cases, the entire image is cleared to black.
-	void Set(int width, int height, const tPixel4b& colour = tPixel4b::black);
+	bool Set(int width, int height, const tPixel4b& colour = tPixel4b::black);
 
 	// Sets the image to the dimensions provided. Allows you to specify an external buffer of pixels to use. If
 	// copyPixels is true, it simply copies the values from the buffer you supply. In this case it will attempt to
 	// reuse it's existing buffer if it can. If copyPixels is false, it means you are giving the buffer to the
 	// tPicture. In this case the tPicture will delete[] the buffer for you when appropriate. In all cases, existing
 	// pixel data is lost. Other members of the tPicture are unmodified.
-	void Set(int width, int height, tPixel4b* pixelBuffer, bool copyPixels = true);
+	bool Set(int width, int height, tPixel4b* pixelBuffer, bool copyPixels = true);
 
 	// Sets from a tFrame. If steal is true the tPicture will take ownership of the tFrame. If steal is false it will
 	// copy the pixels out. The frame duration is also taken from the frame.
-	void Set(tFrame* frame, bool steal);
+	bool Set(tFrame* frame, bool steal);
 
 	// Sets from any type derived from tImageBase (eg. tImageASTC). If steal is true the tImageBase MAY be
 	// modified. In particular it may be invalid afterwards because the pixels may have been stolen from it. For
 	// multiframe images it meay still be valid after but down a frame. On the other hand with steal false you are
 	// guaranteed that image remains unmodified, but at the cost of duplicating memory for the pixels.
-	void Set(tBaseImage& image, bool steal = true);
+	bool Set(tBaseImage& image, bool steal = true);
 
-	void Set(const tPicture& src);
+	bool Set(const tPicture& src);
 
 	// Save and Load to tChunk format.
 	void Save(tChunkWriter&) const;
@@ -391,9 +391,13 @@ inline void tPicture::Clear()
 }
 
 
-inline void tPicture::Set(int width, int height, const tPixel4b& colour)
+inline bool tPicture::Set(int width, int height, const tPixel4b& colour)
 {
-	tAssert((width > 0) && (height > 0));
+	if ((width <= 0) || (height <= 0))
+	{
+		Clear();
+		return false;
+	}
 
 	// Reuse the existing buffer if possible.
 	if (width*height != Width*Height)
@@ -407,12 +411,17 @@ inline void tPicture::Set(int width, int height, const tPixel4b& colour)
 		Pixels[pixel] = colour;
 
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	return true;
 }
 
 
-inline void tPicture::Set(int width, int height, tPixel4b* pixelBuffer, bool copyPixels)
+inline bool tPicture::Set(int width, int height, tPixel4b* pixelBuffer, bool copyPixels)
 {
-	tAssert((width > 0) && (height > 0) && pixelBuffer);
+	if ((width <= 0) || (height <= 0) || !pixelBuffer)
+	{
+		Clear();
+		return false;
+	}
 
 	// If we're copying the pixels we may be able to reuse the existing buffer if it's the right size. If we're not
 	// copying and the buffer is being handed to us, we just need to free our current buffer.
@@ -436,44 +445,57 @@ inline void tPicture::Set(int width, int height, tPixel4b* pixelBuffer, bool cop
 		tStd::tMemcpy(Pixels, pixelBuffer, Width*Height*sizeof(tPixel4b));
 
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	return true;
 }
 
 
-inline void tPicture::Set(tFrame* frame, bool steal)
+inline bool tPicture::Set(tFrame* frame, bool steal)
 {
 	if (!frame || !frame->IsValid())
-		return;
+	{
+		Clear();
+		return false;
+	}
 
 	Set(frame->Width, frame->Height, frame->GetPixels(steal), !steal);
 	Duration = frame->Duration;
 	if (steal)
 		delete frame;
+
+	return true;
 }
 
 
-inline void tPicture::Set(tBaseImage& image, bool steal)
+inline bool tPicture::Set(tBaseImage& image, bool steal)
 {
 	if (!image.IsValid())
-		return;
+	{
+		Clear();
+		return false;
+	}
 
 	tFrame* frame = image.GetFrame(steal);
 
 	// The true here is correct. Whether steal was true or not, we now have a frame that is under our
 	// management and must be eventually deleted.
-	Set(frame, true);
+	return Set(frame, true);
 }
 
 
-inline void tPicture::Set(const tPicture& src)
+inline bool tPicture::Set(const tPicture& src)
 {
 	Clear();
 	if (!src.IsValid())
-		return;
+	{
+		Clear();
+		return false;
+	}
 
 	Set(src.Width, src.Height, src.Pixels);
 	Filename = src.Filename;
 	PixelFormatSrc = src.PixelFormatSrc;
 	Duration = src.Duration;
+	return true;
 }
 
 
