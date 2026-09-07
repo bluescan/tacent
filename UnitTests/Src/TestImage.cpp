@@ -42,7 +42,7 @@ namespace tUnitTest
 {
 
 
-#define tImageDataDir "TestData/Images/"
+#define tImageDataDir "Data/Images/"
 #define tSetImageDir() if (!tSystem::tDirExists(tImageDataDir)) tSkipUnit() tString origDir = tSystem::tGetCurrentDir(); tSystem::tSetCurrentDir(origDir + tImageDataDir);
 #define tSetImageSubDir(subdir) if (!tSystem::tDirExists(tImageDataDir)) tSkipUnit() tString origDir = tSystem::tGetCurrentDir(); tSystem::tSetCurrentDir(origDir + tImageDataDir + subdir);
 #define tRestoreDir() tSystem::tSetCurrentDir(origDir);
