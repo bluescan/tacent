@@ -21,7 +21,7 @@ All photos can be downloaded and used for free
 Commercial and non-commercial purposes
 No permission needed (though attribution is appreciated!)
 
-What is not permitted 👎
+What is not permitted
 Photos cannot be sold without significant modification.
 Compiling photos from Unsplash to replicate a similar or competing service.
 
@@ -66,4 +66,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-

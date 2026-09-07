@@ -43,14 +43,16 @@ namespace tUnitTest
 
 
 #define tImageDataDir "Data/Images/"
-#define tSetImageDir() if (!tSystem::tDirExists(tImageDataDir)) tSkipUnit() tString origDir = tSystem::tGetCurrentDir(); tSystem::tSetCurrentDir(origDir + tImageDataDir);
-#define tSetImageSubDir(subdir) if (!tSystem::tDirExists(tImageDataDir)) tSkipUnit() tString origDir = tSystem::tGetCurrentDir(); tSystem::tSetCurrentDir(origDir + tImageDataDir + subdir);
-#define tRestoreDir() tSystem::tSetCurrentDir(origDir);
+#define tImageDir() if (!tSystem::tDirExists(tImageDataDir)) tSkipUnit() tString origDir = tSystem::tGetCurrentDir(); tSystem::tSetCurrentDir(origDir + tImageDataDir);
+#define tImageSubDir(subdir) if (!tSystem::tDirExists(tImageDataDir)) tSkipUnit() tString origDir = tSystem::tGetCurrentDir(); tSystem::tSetCurrentDir(origDir + tImageDataDir + subdir);
+#define tImageResetDir() tSystem::tSetCurrentDir(origDir + tImageDataDir);
+#define tImageChangeDir(subdir) tSystem::tSetCurrentDir(origDir + tImageDataDir + subdir);
+#define tImageRestoreDir() tSystem::tSetCurrentDir(origDir);
 
 
 tTestUnit(ImageLoad)
 {
-	tSetImageDir()
+	tImageDir()
 
 	// Test direct loading classes.
 	tImageAPNG imgAPNG("Flame.apng");
@@ -115,7 +117,7 @@ tTestUnit(ImageLoad)
 	tImageAVIF imgAVIF("TestPattern/TacentTestPattern.avif");
 	tRequire(imgAVIF.IsValid());
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
@@ -161,7 +163,7 @@ void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method 
 
 tTestUnit(ImageSave)
 {
-	tSetImageDir()
+	tImageDir()
 
 	tImageTGA::LoadParams tgaParams;
 	tgaParams.Flags &= ~tImageTGA::LoadFlag_AlphaOpacity;
@@ -247,13 +249,13 @@ tTestUnit(ImageSave)
 	tRequire(frames.IsEmpty());
 	tRequire(tSystem::tFileExists("WrittenDesk.webp"));
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
 tTestUnit(ImageTexture)
 {
-	tSetImageDir()
+	tImageDir()
 
 	// Test dxt1 texture.
 	tTexture dxt1Tex("Type_DDS/BC1DXT1_RGB_Legacy.dds");
@@ -295,13 +297,13 @@ tTestUnit(ImageTexture)
 	bc3Tex.Save(chunkWriterBC3);
 	tRequire( tSystem::tFileExists("Written_UpperBounds_BC3.tac"));
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
 tTestUnit(ImagePicture)
 {
-	tSetImageDir()
+	tImageDir()
 
 	//
 	// tPicture loading/saving tests. These all save as tga and to the corresponding format if save is supported.
@@ -473,13 +475,13 @@ tTestUnit(ImagePicture)
 	// tga.Save("WrittenCrane.tga");
 	// tRequire( tSystem::tFileExists("WrittenCrane.tga"));
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
 tTestUnit(ImageQuantize)
 {
-	tSetImageDir()
+	tImageDir()
 
 	tImageTGA srctga; srctga.Load("Dock512.tga");
 	int w = srctga.GetWidth(); int h = srctga.GetHeight(); tPixel4b* srcpixels = srctga.GetPixels();
@@ -547,7 +549,7 @@ tTestUnit(ImageQuantize)
 
 	delete[] indices;
 	delete[] palette;
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
@@ -574,7 +576,7 @@ void PalettizeImage(int w, int h, tPixel4b* pixels, tPixelFormat fmt, tImage::tQ
 
 tTestUnit(ImagePalette)
 {
-	tSetImageDir()
+	tImageDir()
 
 	tImageTGA tga; int w = 0; int h = 0; tPixel4b* pixels = nullptr;
 	
@@ -626,7 +628,7 @@ tTestUnit(ImagePalette)
 	PalettizeImage(w, h, pixels, tPixelFormat::PAL7BIT, tImage::tQuantize::Method::Wu);
 	PalettizeImage(w, h, pixels, tPixelFormat::PAL8BIT, tImage::tQuantize::Method::Wu);
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
@@ -669,7 +671,7 @@ static void PrintMetaDataTag(const tMetaData& metaData, tMetaTag tag)
 
 tTestUnit(ImageMetaData)
 {
-	tSetImageSubDir("EXIF_XMP/")
+	tImageSubDir("EXIF_XMP/JPG/")
 
 	#if 0
 	tList<tStringItem> images;
@@ -683,7 +685,7 @@ tTestUnit(ImageMetaData)
 	return;
 	#endif
 
-	tImageJPG jpgWithMeta("HasLatLong.jpg");
+	tImageJPG jpgWithMeta("HasLatLong_EXIF_XMP.jpg");
 	tRequire(jpgWithMeta.MetaData.IsValid());
 	tMetaData& metaData = jpgWithMeta.MetaData;
 
@@ -715,14 +717,12 @@ tTestUnit(ImageMetaData)
 	PrintMetaDataTag(metaData, tMetaTag::VelZ);
 	PrintMetaDataTag(metaData, tMetaTag::Speed);
 
-	jpgWithMeta.Load("HasUTCDateTime.jpg");
-
+	jpgWithMeta.Load("HasUTCDateTime_EXIF_XMP.jpg");
 	PrintMetaDataTag(metaData, tMetaTag::GPSSurvey);
 	PrintMetaDataTag(metaData, tMetaTag::GPSTimeStamp);
 
 	// Go back to original file.
-	jpgWithMeta.Load("HasLatLong.jpg");
-
+	jpgWithMeta.Load("HasLatLong_EXIF_XMP.jpg");
 	PrintMetaDataTag(metaData, tMetaTag::ShutterSpeed);
 	PrintMetaDataTag(metaData, tMetaTag::ExposureTime);
 	PrintMetaDataTag(metaData, tMetaTag::ExposureBias);
@@ -733,14 +733,14 @@ tTestUnit(ImageMetaData)
 	PrintMetaDataTag(metaData, tMetaTag::Brightness);
 	PrintMetaDataTag(metaData, tMetaTag::MeteringMode);
 
-	jpgWithMeta.Load("NoFlashComp.jpg");
+	jpgWithMeta.Load("NoFlashComp_EXIF.jpg");
 	PrintMetaDataTag(metaData, tMetaTag::FlashHardware);
 	PrintMetaDataTag(metaData, tMetaTag::FlashUsed);
 	PrintMetaDataTag(metaData, tMetaTag::FlashStrobe);
 	PrintMetaDataTag(metaData, tMetaTag::FlashMode);
 	PrintMetaDataTag(metaData, tMetaTag::FlashRedEye);
-	jpgWithMeta.Load("HasLatLong.jpg");
 
+	jpgWithMeta.Load("HasLatLong_EXIF_XMP.jpg");
 	PrintMetaDataTag(metaData, tMetaTag::FocalLength);
 	PrintMetaDataTag(metaData, tMetaTag::Orientation);
 	PrintMetaDataTag(metaData, tMetaTag::LengthUnit);
@@ -755,36 +755,37 @@ tTestUnit(ImageMetaData)
 	PrintMetaDataTag(metaData, tMetaTag::DateTimeOrig);
 	PrintMetaDataTag(metaData, tMetaTag::DateTimeDigit);
 
-	jpgWithMeta.Load("HasAuthorNotes.jpg");
-
+	jpgWithMeta.Load("HasAuthorNotes_EXIF_XMP.jpg");
 	PrintMetaDataTag(metaData, tMetaTag::Software);
 	PrintMetaDataTag(metaData, tMetaTag::Description);
 	PrintMetaDataTag(metaData, tMetaTag::Copyright);
+
+	tImageChangeDir("EXIF_XMP/")
 
 	// Test loading/saving with compensation for exif orientation tags.
 	for (int i = 0; i < 9; i++)
 	{
 		tString file;
 		tsPrintf(file, "Landscape_%d.jpg", i);
-		tImageJPG jpg(tString("ExifOrientation/") + file);
-		jpg.Save(tString("ExifOrientation/Written") + file);
+		tImageJPG jpg(tString("Orientation/") + file);
+		jpg.Save(tString("Orientation/Written") + file);
 	}
 
 	for (int i = 0; i < 9; i++)
 	{
 		tString file;
 		tsPrintf(file, "Portrait_%d.jpg", i);
-		tImageJPG jpg(tString("ExifOrientation/") + file);
-		jpg.Save(tString("ExifOrientation/Written") + file);
+		tImageJPG jpg(tString("Orientation/") + file);
+		jpg.Save(tString("Orientation/Written") + file);
 	}
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
 tTestUnit(ImageLosslessTransform)
 {
-	tSetImageDir()
+	tImageDir()
 
 	tImageJPG::Transform trans;
 	tImageJPG::LoadParams params;
@@ -861,13 +862,13 @@ tTestUnit(ImageLosslessTransform)
 	imgJPG_NO_FV.Save("WrittenLosslessNO_FV.jpg");
 	tRequire( tSystem::tFileExists("WrittenLosslessNO_FV.jpg"));
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
 tTestUnit(ImageRotation)
 {
-	tSetImageDir()
+	tImageDir()
 
 	// Test writing rotated images.
 	tImagePNG aropng("Type_PNG/RightArrow.png");
@@ -917,13 +918,13 @@ tTestUnit(ImageRotation)
 	h = planePic.GetHeight();
 	planePic.RotateCenter(-tMath::fPiOver4, tColour4b::transparent);
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
 tTestUnit(ImageCrop)
 {
-	tSetImageDir()
+	tImageDir()
 
 	// Crop black pixels ignoring alpha (RGB channels only).
 	tImagePNG png("Type_PNG/plane.png");
@@ -936,13 +937,13 @@ tTestUnit(ImageCrop)
 	tImagePNG::tFormat fmt = png.Save("Type_PNG/WrittenPlane.png");
 	tRequire(fmt != tImagePNG::tFormat::Invalid);
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
 tTestUnit(ImageCopyRegion)
 {
-	tSetImageSubDir("TestPattern/")
+	tImageSubDir("TestPattern/")
 
 	// The canvas is 1280x720. RGBA.
 	tImageTGA tgaCanvas("TacentTestPattern32.tga");
@@ -1005,13 +1006,13 @@ tTestUnit(ImageCopyRegion)
 	fmt = tgaWrite.Save("Written_CopyRegion_LeftTopGreenOnly.tga", tImageTGA::tFormat::BPP32);
 	tRequire(fmt == tImageTGA::tFormat::BPP32);
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
 tTestUnit(ImageAdjustment)
 {
-	tSetImageSubDir("TestPattern/")
+	tImageSubDir("TestPattern/")
 
 	// Test brightness.
 	for (int level = 0; level <= 10; level++)
@@ -1109,13 +1110,13 @@ tTestUnit(ImageAdjustment)
 		tRequire(fmt != tImagePNG::tFormat::Invalid);
 	}
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
 tTestUnit(ImageDetection)
 {
-	tSetImageDir()
+	tImageDir()
 
 	// Test APNG detection.
 	bool isAnimA = tImageAPNG::IsAnimatedPNG("TextCursor.png");
@@ -1141,7 +1142,7 @@ tTestUnit(ImageDetection)
 	float exrBPPf	= tImage::tGetBitsPerPixelFloat(tPixelFormat::OPENEXR);
 	tPrintf("EXR BPP:%d BPPf:%f\n", exrBPP, exrBPPf);
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
@@ -1240,7 +1241,7 @@ tTestUnit(ImageMipmap)
 
 tTestUnit(ImageFilter)
 {
-	tSetImageDir()
+	tImageDir()
 
 	for (int filt = 0; filt < int(tResampleFilter::NumFilters); filt++)
 		tPrintf("Filter Name %d: %s\n", filt, tResampleFilterNames[filt]);
@@ -1306,13 +1307,13 @@ tTestUnit(ImageFilter)
 	tga.Set(pic); fmt = tga.Save("WrittenResampledLanczosWide.tga");
 	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
 tTestUnit(ImageMultiFrame)
 {
-	tSetImageDir()
+	tImageDir()
 
 	#if 0
 	tImageWEBP webpSrc0("Demux_Shy.webp");
@@ -1395,13 +1396,13 @@ tTestUnit(ImageMultiFrame)
 	tiffDst2.Save("WrittenAnimatedTestManyFrames.tiff");
 	tRequire(tSystem::tFileExists("WrittenAnimatedTestManyFrames.tiff"));
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
 tTestUnit(ImageGradient)
 {
-	tSetImageDir()
+	tImageDir()
 
 	const int width = 640;
 	const int height = 90;
@@ -1482,13 +1483,13 @@ tTestUnit(ImageGradient)
 	saveParams.Format = tImagePNG::tFormat::BPP48_RGB_BPC16;
 	wcgGreenGradient.Save("Written_WcgGreenGradient_16BPC.png", saveParams);
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
 tTestUnit(ImagePNG)
 {
-	tSetImageSubDir("Type_PNG/")
+	tImageSubDir("Type_PNG/")
 
 	tImagePNG png;
 	tImagePNG::LoadParams loadParams;
@@ -1581,13 +1582,13 @@ tTestUnit(ImagePNG)
 	saveParams.Format = tImagePNG::tFormat::BPP48_RGB_BPC16;
 	png.Save("Written_R16G16B16_From_16BPC.png", saveParams); 
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
 tTestUnit(ImageHEIC)
 {
-	tSetImageSubDir("Type_HEIC/")
+	tImageSubDir("Type_HEIC/")
 
 	// tImageHEIC can only load, so we verify integrity by saving each loaded file as a TGA for visual inspection.
 	// A bad file or a failed load will cause a tRequire failure above.
@@ -1611,13 +1612,13 @@ tTestUnit(ImageHEIC)
 		tga.Save("Written_" + tSystem::tGetFileBaseName(*file) + ".tga");
 	}
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
 tTestUnit(ImageAVIF)
 {
-	tSetImageSubDir("Type_AVIF/")
+	tImageSubDir("Type_AVIF/")
 
 	// tImageAVIF can only load, so we verify integrity by saving each loaded file as a TGA for visual inspection.
 	// A bad file or a failed load will cause a tRequire failure above.
@@ -1641,7 +1642,7 @@ tTestUnit(ImageAVIF)
 		tga.Save("Written_" + tSystem::tGetFileBaseName(*file) + ".tga");
 	}
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
@@ -1720,7 +1721,7 @@ void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAl
 
 tTestUnit(ImageDDS)
 {
-	tSetImageSubDir("Type_DDS/")
+	tImageSubDir("Type_DDS/")
 
 	uint32 decode = tImageDDS::LoadFlag_Decode;
 	uint32 revrow = tImageDDS::LoadFlag_ReverseRowOrder;
@@ -1921,7 +1922,7 @@ tTestUnit(ImageDDS)
 	DDSLoadDecodeSave("B10G11R11uf_RGB_Modern.dds",		revrow);
 	DDSLoadDecodeSave("E5B9G9R9uf_RGB_Modern.dds",		revrow);
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
@@ -2005,7 +2006,7 @@ void KTXLoadDecodeSave(const tString& ktxfile, uint32 loadFlags = 0, bool saveAl
 
 tTestUnit(ImageKTX1)
 {
-	tSetImageSubDir("Type_KTX1/")
+	tImageSubDir("Type_KTX1/")
 
 	uint32 decode = tImageKTX::LoadFlag_Decode;
 	uint32 revrow = tImageKTX::LoadFlag_ReverseRowOrder;
@@ -2141,13 +2142,13 @@ tTestUnit(ImageKTX1)
 	KTXLoadDecodeSave("B10G11R11uf_RGB.ktx",			revrow);
 	KTXLoadDecodeSave("E5B9G9R9uf_RGB.ktx",				revrow);
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
 tTestUnit(ImageKTX2)
 {
-	tSetImageSubDir("Type_KTX2/")
+	tImageSubDir("Type_KTX2/")
 
 	uint32 decode = tImageKTX::LoadFlag_Decode;
 	uint32 revrow = tImageKTX::LoadFlag_ReverseRowOrder;
@@ -2344,7 +2345,7 @@ tTestUnit(ImageKTX2)
 	KTXLoadDecodeSave("B10G11R11uf_RGB.ktx2",			revrow);
 	KTXLoadDecodeSave("E5B9G9R9uf_RGB.ktx2",			revrow);
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
@@ -2403,7 +2404,7 @@ void ASTCLoadDecodeSave(const tString& astcfile, const tImageASTC::LoadParams& p
 
 tTestUnit(ImageASTC)
 {
-	tSetImageSubDir("Type_ASTC/")
+	tImageSubDir("Type_ASTC/")
 
 	tPrintf("Testing ASTC Loading/Decoding using astcenc V %s\n\n", tImage::Version_ASTCEncoder);
 	tPrintf("D = Decode\n");
@@ -2489,7 +2490,7 @@ tTestUnit(ImageASTC)
 	ASTCLoadDecodeSave("ASTC12X10_HDR.astc",			hdrParams);
 	ASTCLoadDecodeSave("ASTC12X12_HDR.astc",			hdrParams);
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
@@ -2551,7 +2552,7 @@ void PKMLoadDecodeSave(const tString& pkmfile, uint32 loadFlags = 0)
 
 tTestUnit(ImagePKM)
 {
-	tSetImageSubDir("Type_PKM/")
+	tImageSubDir("Type_PKM/")
 
 	uint32 decode = tImagePKM::LoadFlag_Decode;
 	uint32 revrow = tImagePKM::LoadFlag_ReverseRowOrder;
@@ -2590,7 +2591,7 @@ tTestUnit(ImagePKM)
 	PKMLoadDecodeSave("ETC2RGBA1_RGBA.pkm",				decode | revrow);
 	PKMLoadDecodeSave("ETC2RGBA1_sRGBA.pkm",			decode | revrow);
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
@@ -2687,7 +2688,7 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0, bool saveAl
 
 tTestUnit(ImagePVR2)
 {
-	tSetImageSubDir("Type_PVR_V2/")
+	tImageSubDir("Type_PVR_V2/")
 
 	uint32 decode = tImagePVR::LoadFlag_Decode;
 	uint32 revrow = tImagePVR::LoadFlag_ReverseRowOrder;
@@ -2710,13 +2711,13 @@ tTestUnit(ImagePVR2)
 	PVRLoadDecodeSave("R8G8B8A8_RGBA_TM.pvr",			revrow);
 	PVRLoadDecodeSave("ETC1_RGB_TM.pvr",				revrow);
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 
 tTestUnit(ImagePVR3)
 {
-	tSetImageSubDir("Type_PVR_V3/")
+	tImageSubDir("Type_PVR_V3/")
 
 	uint32 decode = tImagePVR::LoadFlag_Decode;
 	uint32 revrow = tImagePVR::LoadFlag_ReverseRowOrder;
@@ -2804,7 +2805,7 @@ tTestUnit(ImagePVR3)
 	PVRLoadDecodeSave("PVRBPP4_UNORM_sRGB_RGB_T.pvr",				0,					false);
 	PVRLoadDecodeSave("PVRBPP4_UNORM_sRGB_RGBA_T.pvr",				revrow,				false);
 
-	tRestoreDir()
+	tImageRestoreDir()
 }
 
 

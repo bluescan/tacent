@@ -232,7 +232,7 @@ int main(int argc, char** argv)
 	// tTest(ImagePalette);
 	// tTest(ImageFilter);
 	// tTest(ImageGradient);
-	// tTest(ImageMetaData);
+	tTest(ImageMetaData);
 	// tTest(ImageLosslessTransform);
 	// tTest(ImageRotation);
 	// tTest(ImageCrop);
