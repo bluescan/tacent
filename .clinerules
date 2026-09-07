@@ -37,3 +37,6 @@ later. When starting any non-trivial task, first read C:\ClinePads\Index.txt and
 check for an existing Recipe_ or Task_ folder before writing new scripts.
 Pull environment specifics (paths, flags, build steps) from the Recipe_
 folders instead of re-deriving them.
+
+You share the ClinePads folder with other related projects. In particular with
+the TacentView image viewer that uses Tacent as a dependent library.
