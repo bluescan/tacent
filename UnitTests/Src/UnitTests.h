@@ -16,8 +16,8 @@
 #include <System/tPrint.h>
 #include <System/tFile.h>
 //#define UNIT_TEST_FORCE_PRINT_ALL_OUTPUT
-#define UNIT_TEST_ONLY_ONE_TEST
-//#define UNIT_TEST_CALLSTACK_ON_FAIL_REQUIREMENT
+//#define UNIT_TEST_ONLY_ONE_TEST
+//#define UNIT_TEST_BREAK_ON_FIRST_FAIL_REQUIREMENT
 //#define UNIT_TEST_CALLSTACK_ON_FAIL_GOAL
 
 
@@ -27,7 +27,7 @@ namespace tUnitTest
 
 // tRequire takes a boolean expression as input. A failure of a tRequire (false evaluation of the expression)
 // means the test will fail and the overall result of the unit tests will be a fail.
-#ifdef UNIT_TEST_CALLSTACK_ON_FAIL_REQUIREMENT
+#ifdef UNIT_TEST_BREAK_ON_FIRST_FAIL_REQUIREMENT
 	#define tRequire(expr) tCheckRequire((expr)?true:false, #expr, __FILE__, __LINE__, 0, true)
 #else
 	#define tRequire(expr) tCheckRequire((expr)?true:false, #expr, __FILE__, __LINE__, 0, false)
@@ -43,9 +43,9 @@ namespace tUnitTest
 #endif
 
 
-#define tTestUnit(name) void name()
-#define tSkipUnit(name) { tUnitTest::UnitsSkipped++; tUnitTest::rPrintf("Skipping " #name " Tests\n"); return; }
-#define tTest(name)  { tUnitTest::rPrintf("\nTesting " #name "\n"); tUnitTest::UnitRequirementNumber = tUnitTest::UnitGoalNumber = 0; tUnitTest::name(); }
+#define tTestUnit(name) void name(const char* unitnamestringlocal)
+#define tSkipUnit() { tUnitTest::UnitsSkipped++; tUnitTest::rPrintf("Skipped %s Tests\n", unitnamestringlocal); return; }
+#define tTest(name) { tUnitTest::rPrintf("Begin   " #name " Tests\n"); tUnitTest::UnitRequirementNumber = tUnitTest::UnitGoalNumber = 0; tUnitTest::name(#name); tUnitTest::rPrintf("End     " #name " Tests\n\n"); }
 int tTestResults();
 
 
@@ -126,7 +126,7 @@ inline int tTestResults()
 		errorCode = 0;
 	}
 
-	rPrintf("\nTests Complete\n");
+	rPrintf("Tacent Unit Tests Complete\n");
 	rPrintf("Units Skipped : %d\n", UnitsSkipped);
 	rPrintf("Requirements  : %d/%d\n", RequirementsPassed, TotalRequirements);
 	rPrintf("Goals Passed  : %d/%d\n", GoalsPassed, TotalGoals);

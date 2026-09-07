@@ -42,13 +42,15 @@ namespace tUnitTest
 {
 
 
+#define tImageDataDir "TestData/Images/"
+#define tSetImageDir() if (!tSystem::tDirExists(tImageDataDir)) tSkipUnit() tString origDir = tSystem::tGetCurrentDir(); tSystem::tSetCurrentDir(origDir + tImageDataDir);
+#define tSetImageSubDir(subdir) if (!tSystem::tDirExists(tImageDataDir)) tSkipUnit() tString origDir = tSystem::tGetCurrentDir(); tSystem::tSetCurrentDir(origDir + tImageDataDir + subdir);
+#define tRestoreDir() tSystem::tSetCurrentDir(origDir);
+
+
 tTestUnit(ImageLoad)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageLoad)
-
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
+	tSetImageDir()
 
 	// Test direct loading classes.
 	tImageAPNG imgAPNG("Flame.apng");
@@ -113,7 +115,7 @@ tTestUnit(ImageLoad)
 	tImageAVIF imgAVIF("TestPattern/TacentTestPattern.avif");
 	tRequire(imgAVIF.IsValid());
 
-	tSystem::tSetCurrentDir(origDir);
+	tRestoreDir()
 }
 
 
@@ -159,11 +161,7 @@ void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method 
 
 tTestUnit(ImageSave)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageSave)
-
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
+	tSetImageDir()
 
 	tImageTGA::LoadParams tgaParams;
 	tgaParams.Flags &= ~tImageTGA::LoadFlag_AlphaOpacity;
@@ -249,17 +247,13 @@ tTestUnit(ImageSave)
 	tRequire(frames.IsEmpty());
 	tRequire(tSystem::tFileExists("WrittenDesk.webp"));
 
-	tSystem::tSetCurrentDir(origDir);
+	tRestoreDir()
 }
 
 
 tTestUnit(ImageTexture)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageTexture)
-
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
+	tSetImageDir()
 
 	// Test dxt1 texture.
 	tTexture dxt1Tex("Type_DDS/BC1DXT1_RGB_Legacy.dds");
@@ -301,16 +295,13 @@ tTestUnit(ImageTexture)
 	bc3Tex.Save(chunkWriterBC3);
 	tRequire( tSystem::tFileExists("Written_UpperBounds_BC3.tac"));
 
-	tSystem::tSetCurrentDir(origDir);
+	tRestoreDir()
 }
 
 
 tTestUnit(ImagePicture)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImagePicture)
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
+	tSetImageDir()
 
 	//
 	// tPicture loading/saving tests. These all save as tga and to the corresponding format if save is supported.
@@ -482,16 +473,13 @@ tTestUnit(ImagePicture)
 	// tga.Save("WrittenCrane.tga");
 	// tRequire( tSystem::tFileExists("WrittenCrane.tga"));
 
-	tSystem::tSetCurrentDir(origDir);
+	tRestoreDir()
 }
 
 
 tTestUnit(ImageQuantize)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageQuantize)
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
+	tSetImageDir()
 
 	tImageTGA srctga; srctga.Load("Dock512.tga");
 	int w = srctga.GetWidth(); int h = srctga.GetHeight(); tPixel4b* srcpixels = srctga.GetPixels();
@@ -559,7 +547,7 @@ tTestUnit(ImageQuantize)
 
 	delete[] indices;
 	delete[] palette;
-	tSystem::tSetCurrentDir(origDir);
+	tRestoreDir()
 }
 
 
@@ -586,10 +574,7 @@ void PalettizeImage(int w, int h, tPixel4b* pixels, tPixelFormat fmt, tImage::tQ
 
 tTestUnit(ImagePalette)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImagePalette)
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
+	tSetImageDir()
 
 	tImageTGA tga; int w = 0; int h = 0; tPixel4b* pixels = nullptr;
 	
@@ -641,7 +626,7 @@ tTestUnit(ImagePalette)
 	PalettizeImage(w, h, pixels, tPixelFormat::PAL7BIT, tImage::tQuantize::Method::Wu);
 	PalettizeImage(w, h, pixels, tPixelFormat::PAL8BIT, tImage::tQuantize::Method::Wu);
 
-	tSystem::tSetCurrentDir(origDir);
+	tRestoreDir()
 }
 
 
@@ -684,12 +669,11 @@ static void PrintMetaDataTag(const tMetaData& metaData, tMetaTag tag)
 
 tTestUnit(ImageMetaData)
 {
-	if (!tSystem::tDirExists("TestData/Images/EXIF_XMP"))
-		tSkipUnit(ImageMetaData)
+	tSetImageSubDir("EXIF_XMP/")
 
 	#if 0
 	tList<tStringItem> images;
-	tSystem::tFindFiles(images, "TestData/Images/EXIF_XMP/", "jpg");
+	tSystem::tFindFiles(images, "", "jpg");
 	for (tStringItem* file = images.First(); file; file = file->Next())
 	{
 		tImageJPG tmpImg;
@@ -699,16 +683,16 @@ tTestUnit(ImageMetaData)
 	return;
 	#endif
 
-	tImageJPG jpgWithMeta("TestData/Images/EXIF_XMP/HasLatLong.jpg");
+	tImageJPG jpgWithMeta("HasLatLong.jpg");
 	tRequire(jpgWithMeta.MetaData.IsValid());
 	tMetaData& metaData = jpgWithMeta.MetaData;
 
 	// Test saving meta-data to a file and then reloading.
-	tChunkWriter writer("TestData/Images/EXIF_XMP/WrittenMetaData.bin");
+	tChunkWriter writer("WrittenMetaData.bin");
 	metaData.Save(writer);
 
 	tMetaData metaDataLoaded;
-	tChunkReader reader("TestData/Images/EXIF_XMP/WrittenMetaData.bin");
+	tChunkReader reader("WrittenMetaData.bin");
 	metaDataLoaded.Load(reader.Chunk());
 	tRequire(metaDataLoaded == metaData);
 
@@ -731,13 +715,13 @@ tTestUnit(ImageMetaData)
 	PrintMetaDataTag(metaData, tMetaTag::VelZ);
 	PrintMetaDataTag(metaData, tMetaTag::Speed);
 
-	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasUTCDateTime.jpg");
+	jpgWithMeta.Load("HasUTCDateTime.jpg");
 
 	PrintMetaDataTag(metaData, tMetaTag::GPSSurvey);
 	PrintMetaDataTag(metaData, tMetaTag::GPSTimeStamp);
 
 	// Go back to original file.
-	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasLatLong.jpg");
+	jpgWithMeta.Load("HasLatLong.jpg");
 
 	PrintMetaDataTag(metaData, tMetaTag::ShutterSpeed);
 	PrintMetaDataTag(metaData, tMetaTag::ExposureTime);
@@ -749,13 +733,13 @@ tTestUnit(ImageMetaData)
 	PrintMetaDataTag(metaData, tMetaTag::Brightness);
 	PrintMetaDataTag(metaData, tMetaTag::MeteringMode);
 
-	jpgWithMeta.Load("TestData/Images/EXIF_XMP/NoFlashComp.jpg");
+	jpgWithMeta.Load("NoFlashComp.jpg");
 	PrintMetaDataTag(metaData, tMetaTag::FlashHardware);
 	PrintMetaDataTag(metaData, tMetaTag::FlashUsed);
 	PrintMetaDataTag(metaData, tMetaTag::FlashStrobe);
 	PrintMetaDataTag(metaData, tMetaTag::FlashMode);
 	PrintMetaDataTag(metaData, tMetaTag::FlashRedEye);
-	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasLatLong.jpg");
+	jpgWithMeta.Load("HasLatLong.jpg");
 
 	PrintMetaDataTag(metaData, tMetaTag::FocalLength);
 	PrintMetaDataTag(metaData, tMetaTag::Orientation);
@@ -771,7 +755,7 @@ tTestUnit(ImageMetaData)
 	PrintMetaDataTag(metaData, tMetaTag::DateTimeOrig);
 	PrintMetaDataTag(metaData, tMetaTag::DateTimeDigit);
 
-	jpgWithMeta.Load("TestData/Images/EXIF_XMP/HasAuthorNotes.jpg");
+	jpgWithMeta.Load("HasAuthorNotes.jpg");
 
 	PrintMetaDataTag(metaData, tMetaTag::Software);
 	PrintMetaDataTag(metaData, tMetaTag::Description);
@@ -782,24 +766,25 @@ tTestUnit(ImageMetaData)
 	{
 		tString file;
 		tsPrintf(file, "Landscape_%d.jpg", i);
-		tImageJPG jpg(tString("TestData/Images/ExifOrientation/") + file);
-		jpg.Save(tString("TestData/Images/ExifOrientation/Written") + file);
+		tImageJPG jpg(tString("ExifOrientation/") + file);
+		jpg.Save(tString("ExifOrientation/Written") + file);
 	}
 
 	for (int i = 0; i < 9; i++)
 	{
 		tString file;
 		tsPrintf(file, "Portrait_%d.jpg", i);
-		tImageJPG jpg(tString("TestData/Images/ExifOrientation/") + file);
-		jpg.Save(tString("TestData/Images/ExifOrientation/Written") + file);
+		tImageJPG jpg(tString("ExifOrientation/") + file);
+		jpg.Save(tString("ExifOrientation/Written") + file);
 	}
+
+	tRestoreDir()
 }
 
 
 tTestUnit(ImageLosslessTransform)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageRotation)
+	tSetImageDir()
 
 	tImageJPG::Transform trans;
 	tImageJPG::LoadParams params;
@@ -807,84 +792,85 @@ tTestUnit(ImageLosslessTransform)
 	bool ok = false;
 
 	trans = tImageJPG::Transform::Rotate90ACW;
-	tImageJPG imgJPG_ACW("TestData/Images/TacentTestPattern.jpg", params);
+	tImageJPG imgJPG_ACW("TestPattern/TacentTestPattern.jpg", params);
 	tRequire(imgJPG_ACW.IsValid());
 	tRequire(imgJPG_ACW.CanDoPerfectLosslessTransform(trans));
 	imgJPG_ACW.LosslessTransform(trans);
-	imgJPG_ACW.Save("TestData/Images/WrittenLosslessACW90.jpg");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenLosslessACW90.jpg"));
+	imgJPG_ACW.Save("WrittenLosslessACW90.jpg");
+	tRequire( tSystem::tFileExists("WrittenLosslessACW90.jpg"));
 
 	trans = tImageJPG::Transform::Rotate90CW;
-	tImageJPG imgJPG_CW("TestData/Images/TacentTestPattern.jpg", params);
+	tImageJPG imgJPG_CW("TestPattern/TacentTestPattern.jpg", params);
 	tRequire(imgJPG_CW.IsValid());
 	tRequire(imgJPG_CW.CanDoPerfectLosslessTransform(trans));
 	imgJPG_CW.LosslessTransform(trans);
-	imgJPG_CW.Save("TestData/Images/WrittenLosslessCW90.jpg");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenLosslessCW90.jpg"));
+	imgJPG_CW.Save("WrittenLosslessCW90.jpg");
+	tRequire( tSystem::tFileExists("WrittenLosslessCW90.jpg"));
 
 	trans = tImageJPG::Transform::FlipH;
-	tImageJPG imgJPG_FH("TestData/Images/TacentTestPattern.jpg", params);
+	tImageJPG imgJPG_FH("TestPattern/TacentTestPattern.jpg", params);
 	tRequire(imgJPG_FH.IsValid());
 	tRequire(imgJPG_FH.CanDoPerfectLosslessTransform(trans));
 	imgJPG_FH.LosslessTransform(trans);
-	imgJPG_FH.Save("TestData/Images/WrittenLosslessFlipH.jpg");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenLosslessFlipH.jpg"));
+	imgJPG_FH.Save("WrittenLosslessFlipH.jpg");
+	tRequire( tSystem::tFileExists("WrittenLosslessFlipH.jpg"));
 
 	trans = tImageJPG::Transform::FlipH;
-	tImageJPG imgJPG_FV("TestData/Images/TacentTestPattern.jpg", params);
+	tImageJPG imgJPG_FV("TestPattern/TacentTestPattern.jpg", params);
 	tRequire(imgJPG_FV.IsValid());
 	tRequire(imgJPG_FV.CanDoPerfectLosslessTransform(trans));
 	imgJPG_FV.LosslessTransform(trans);
-	imgJPG_FV.Save("TestData/Images/WrittenLosslessFlipV.jpg");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenLosslessFlipV.jpg"));
+	imgJPG_FV.Save("WrittenLosslessFlipV.jpg");
+	tRequire( tSystem::tFileExists("WrittenLosslessFlipV.jpg"));
 
 	// Test an image that can be perfectly ACW rotated or horizontally flipped, but cannot be
 	// CW rotated or vertically flipped perfectly.
 	trans = tImageJPG::Transform::Rotate90ACW;
-	tImageJPG imgJPG_OK_ACW("TestData/Images/EXIF_XMP/Bebop_2.jpg", params);
+	tImageJPG imgJPG_OK_ACW("EXIF_XMP/Bebop_2.jpg", params);
 	tRequire(imgJPG_OK_ACW.IsValid());
 	tRequire(imgJPG_OK_ACW.CanDoPerfectLosslessTransform(trans));
 	ok = imgJPG_OK_ACW.LosslessTransform(trans);
 	tRequire(ok);
-	imgJPG_OK_ACW.Save("TestData/Images/WrittenLosslessOK_ACW.jpg");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenLosslessOK_ACW.jpg"));
+	imgJPG_OK_ACW.Save("WrittenLosslessOK_ACW.jpg");
+	tRequire( tSystem::tFileExists("WrittenLosslessOK_ACW.jpg"));
 
 	trans = tImageJPG::Transform::Rotate90CW;
-	tImageJPG imgJPG_NO_CW("TestData/Images/EXIF_XMP/Bebop_2.jpg", params);
+	tImageJPG imgJPG_NO_CW("EXIF_XMP/Bebop_2.jpg", params);
 	tRequire(imgJPG_NO_CW.IsValid());
 	tRequire(!imgJPG_NO_CW.CanDoPerfectLosslessTransform(trans));
 	ok = imgJPG_NO_CW.LosslessTransform(trans);
 	tRequire(ok);
-	imgJPG_NO_CW.Save("TestData/Images/WrittenLosslessNO_CW.jpg");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenLosslessNO_CW.jpg"));
+	imgJPG_NO_CW.Save("WrittenLosslessNO_CW.jpg");
+	tRequire( tSystem::tFileExists("WrittenLosslessNO_CW.jpg"));
 
 	trans = tImageJPG::Transform::FlipH;
-	tImageJPG imgJPG_OK_FH("TestData/Images/EXIF_XMP/Bebop_2.jpg", params);
+	tImageJPG imgJPG_OK_FH("EXIF_XMP/Bebop_2.jpg", params);
 	tRequire(imgJPG_OK_FH.IsValid());
 	tRequire(imgJPG_OK_FH.CanDoPerfectLosslessTransform(trans));
 	ok = imgJPG_OK_FH.LosslessTransform(trans);
 	tRequire(ok);
-	imgJPG_OK_FH.Save("TestData/Images/WrittenLosslessOK_FH.jpg");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenLosslessOK_FH.jpg"));
+	imgJPG_OK_FH.Save("WrittenLosslessOK_FH.jpg");
+	tRequire( tSystem::tFileExists("WrittenLosslessOK_FH.jpg"));
 
 	trans = tImageJPG::Transform::FlipV;
-	tImageJPG imgJPG_NO_FV("TestData/Images/EXIF_XMP/Bebop_2.jpg", params);
+	tImageJPG imgJPG_NO_FV("EXIF_XMP/Bebop_2.jpg", params);
 	tRequire(imgJPG_NO_FV.IsValid());
 	tRequire(!imgJPG_NO_FV.CanDoPerfectLosslessTransform(trans));
 	ok = imgJPG_NO_FV.LosslessTransform(trans);
 	tRequire(ok);
-	imgJPG_NO_FV.Save("TestData/Images/WrittenLosslessNO_FV.jpg");
-	tRequire( tSystem::tFileExists("TestData/Images/WrittenLosslessNO_FV.jpg"));
+	imgJPG_NO_FV.Save("WrittenLosslessNO_FV.jpg");
+	tRequire( tSystem::tFileExists("WrittenLosslessNO_FV.jpg"));
+
+	tRestoreDir()
 }
 
 
 tTestUnit(ImageRotation)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageRotation)
+	tSetImageDir()
 
 	// Test writing rotated images.
-	tImagePNG aropng("TestData/Images/PNG/RightArrow.png");
+	tImagePNG aropng("Type_PNG/RightArrow.png");
 	int w = aropng.GetWidth(); int h = aropng.GetHeight();
 	tPicture aroPic(w, h, aropng.StealPixels8(), false);
 	tRequire(aroPic.IsValid());
@@ -900,11 +886,12 @@ tTestUnit(ImageRotation)
 
 		tPrintf("Rotated %05.1f Dimensions: W:%d H:%d\n", tMath::tRadToDeg(angle), rotPic.GetWidth(), rotPic.GetHeight());
 		tString writeFile;
-		tsPrintf(writeFile, "TestData/Images/WrittenRightArrow_NoResampRot%03d.tga", int(tMath::tRadToDeg(angle)));
+		tsPrintf(writeFile, "WrittenRightArrow_NoResampRot%03d.tga", int(tMath::tRadToDeg(angle)));
 
 		int w = rotPic.GetWidth(); int h = rotPic.GetHeight();
 		tImageTGA rottga(rotPic.StealPixels(), w, h, true);
-		rottga.Save(writeFile);
+		tImageTGA::tFormat fmt = rottga.Save(writeFile);
+		tRequire(fmt != tImageTGA::tFormat::Invalid);
 	}
 
 	// Test resampled (high quality) rotations.
@@ -929,40 +916,42 @@ tTestUnit(ImageRotation)
 	w = planePic.GetWidth();
 	h = planePic.GetHeight();
 	planePic.RotateCenter(-tMath::fPiOver4, tColour4b::transparent);
+
+	tRestoreDir()
 }
 
 
 tTestUnit(ImageCrop)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageCrop)
+	tSetImageDir()
 
 	// Crop black pixels ignoring alpha (RGB channels only).
-	tImagePNG png("TestData/Images/PNG/plane.png");
+	tImagePNG png("Type_PNG/plane.png");
 	tPicture planePic(png);
 	int w = planePic.GetWidth();
 	int h = planePic.GetHeight();
 	planePic.Deborder(tColour4b::black, tCompBit_RGB);
 	planePic.Crop(w, h, tPicture::Anchor::MiddleMiddle, tColour4b::transparent);
 	png.Set(planePic);
-	tImagePNG::tFormat fmt = png.Save("TestData/Images/PNG/WrittenPlane.png");
+	tImagePNG::tFormat fmt = png.Save("Type_PNG/WrittenPlane.png");
 	tRequire(fmt != tImagePNG::tFormat::Invalid);
+
+	tRestoreDir()
 }
 
 
 tTestUnit(ImageCopyRegion)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageCopyRegion)
+	tSetImageSubDir("TestPattern/")
 
 	// The canvas is 1280x720. RGBA.
-	tImageTGA tgaCanvas("TestData/Images/TacentTestPattern32.tga");
+	tImageTGA tgaCanvas("TacentTestPattern32.tga");
 	tImageTGA tgaWrite;
 	tImageTGA::tFormat fmt = tImageTGA::tFormat::Invalid;
 	tPicture canvas;
 
 	// The region is 640x360. RGB.
-	tImageTGA tgaRegion("TestData/Images/Desk640.tga");
+	tImageTGA tgaRegion("Desk640.tga");
 	int regW = tgaRegion.GetWidth();
 	int regH = tgaRegion.GetHeight();
 	tColour4b* regP = tgaRegion.GetPixels();
@@ -971,62 +960,63 @@ tTestUnit(ImageCopyRegion)
 	canvas.Set(tgaCanvas, false);
 	canvas.CopyRegion(regW, regH, regP, tPicture::Anchor::LeftBottom);
 	tgaWrite.Set(canvas);
-	fmt = tgaWrite.Save("TestData/Images/Written_CopyRegion_LeftBottom.tga", tImageTGA::tFormat::BPP32);
+	fmt = tgaWrite.Save("Written_CopyRegion_LeftBottom.tga", tImageTGA::tFormat::BPP32);
 	tRequire(fmt == tImageTGA::tFormat::BPP32);
 
 	// Left top.
 	canvas.Set(tgaCanvas, false);
 	canvas.CopyRegion(regW, regH, regP, tPicture::Anchor::LeftTop);
 	tgaWrite.Set(canvas);
-	fmt = tgaWrite.Save("TestData/Images/Written_CopyRegion_LeftTop.tga", tImageTGA::tFormat::BPP32);
+	fmt = tgaWrite.Save("Written_CopyRegion_LeftTop.tga", tImageTGA::tFormat::BPP32);
 	tRequire(fmt == tImageTGA::tFormat::BPP32);
 
 	// Right top.
 	canvas.Set(tgaCanvas, false);
 	canvas.CopyRegion(regW, regH, regP, tPicture::Anchor::RightTop);
 	tgaWrite.Set(canvas);
-	fmt = tgaWrite.Save("TestData/Images/Written_CopyRegion_RightTop.tga", tImageTGA::tFormat::BPP32);
+	fmt = tgaWrite.Save("Written_CopyRegion_RightTop.tga", tImageTGA::tFormat::BPP32);
 	tRequire(fmt == tImageTGA::tFormat::BPP32);
 
 	// Right bottom.
 	canvas.Set(tgaCanvas, false);
 	canvas.CopyRegion(regW, regH, regP, tPicture::Anchor::RightBottom);
 	tgaWrite.Set(canvas);
-	fmt = tgaWrite.Save("TestData/Images/Written_CopyRegion_RightBottom.tga", tImageTGA::tFormat::BPP32);
+	fmt = tgaWrite.Save("Written_CopyRegion_RightBottom.tga", tImageTGA::tFormat::BPP32);
 	tRequire(fmt == tImageTGA::tFormat::BPP32);
 
 	// Middle middle.
 	canvas.Set(tgaCanvas, false);
 	canvas.CopyRegion(regW, regH, regP, tPicture::Anchor::MiddleMiddle);
 	tgaWrite.Set(canvas);
-	fmt = tgaWrite.Save("TestData/Images/Written_CopyRegion_MiddleMiddle.tga", tImageTGA::tFormat::BPP32);
+	fmt = tgaWrite.Save("Written_CopyRegion_MiddleMiddle.tga", tImageTGA::tFormat::BPP32);
 	tRequire(fmt == tImageTGA::tFormat::BPP32);
 
 	// LeftBottom Negative Half.
 	canvas.Set(tgaCanvas, false);
 	canvas.CopyRegion(regW, regH, regP, -regW/2, -regH/2);
 	tgaWrite.Set(canvas);
-	fmt = tgaWrite.Save("TestData/Images/Written_CopyRegion_LeftBottomNegHalf.tga", tImageTGA::tFormat::BPP32);
+	fmt = tgaWrite.Save("Written_CopyRegion_LeftBottomNegHalf.tga", tImageTGA::tFormat::BPP32);
 	tRequire(fmt == tImageTGA::tFormat::BPP32);
 
 	// Left top green only.
 	canvas.Set(tgaCanvas, false);
 	canvas.CopyRegion(regW, regH, regP, tPicture::Anchor::LeftTop, tCompBit_G);
 	tgaWrite.Set(canvas);
-	fmt = tgaWrite.Save("TestData/Images/Written_CopyRegion_LeftTopGreenOnly.tga", tImageTGA::tFormat::BPP32);
+	fmt = tgaWrite.Save("Written_CopyRegion_LeftTopGreenOnly.tga", tImageTGA::tFormat::BPP32);
 	tRequire(fmt == tImageTGA::tFormat::BPP32);
+
+	tRestoreDir()
 }
 
 
 tTestUnit(ImageAdjustment)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageAdjustment)
+	tSetImageSubDir("TestPattern/")
 
 	// Test brightness.
 	for (int level = 0; level <= 10; level++)
 	{
-		tImagePNG png("TestData/Images/TacentTestPattern.png");
+		tImagePNG png("TacentTestPattern.png");
 		tPicture pic(png);
 
 		float brightness = float(level)/10.0f;
@@ -1036,7 +1026,7 @@ tTestUnit(ImageAdjustment)
 
 		// Save it out.
 		tString file;
-		tsPrintf(file, "TestData/Images/WrittenBright%3.1f.png", brightness);
+		tsPrintf(file, "WrittenBright%3.1f.png", brightness);
 		png.Set(pic, false);
 		tImagePNG::tFormat fmt = png.Save(file.Chr());
 		tRequire(fmt != tImagePNG::tFormat::Invalid);
@@ -1045,7 +1035,7 @@ tTestUnit(ImageAdjustment)
 	// Test contrast.
 	for (int level = 0; level <= 10; level++)
 	{
-		tImagePNG png("TestData/Images/TacentTestPattern.png");
+		tImagePNG png("TacentTestPattern.png");
 		tPicture pic(png);
 
 		float contrast = float(level)/10.0f;
@@ -1055,7 +1045,7 @@ tTestUnit(ImageAdjustment)
 
 		// Save it out.
 		tString file;
-		tsPrintf(file, "TestData/Images/WrittenContrast%3.1f.png", contrast);
+		tsPrintf(file, "WrittenContrast%3.1f.png", contrast);
 		png.Set(pic, false);
 		tImagePNG::tFormat fmt = png.Save(file.Chr());
 		tRequire(fmt != tImagePNG::tFormat::Invalid);
@@ -1064,7 +1054,7 @@ tTestUnit(ImageAdjustment)
 	// Test levels.
 	for (int level = 0; level <= 10; level++)
 	{
-		tImagePNG png("TestData/Images/TacentTestPattern.png");
+		tImagePNG png("TacentTestPattern.png");
 		tPicture pic(png);
 		float blackPoint = 0.0f;
 		float midPoint = float(level)/10.0f;
@@ -1075,7 +1065,7 @@ tTestUnit(ImageAdjustment)
 
 		// Save it out.
 		tString file;
-		tsPrintf(file, "TestData/Images/WrittenLevels_MidAdjPower_BP%3.1f_MP%3.1f_WP%3.1f.png", blackPoint, midPoint, whitePoint);
+		tsPrintf(file, "WrittenLevels_MidAdjPower_BP%3.1f_MP%3.1f_WP%3.1f.png", blackPoint, midPoint, whitePoint);
 		png.Set(pic, false);
 		tImagePNG::tFormat fmt = png.Save(file.Chr());
 		tRequire(fmt != tImagePNG::tFormat::Invalid);
@@ -1083,7 +1073,7 @@ tTestUnit(ImageAdjustment)
 
 	for (int level = 0; level <= 10; level++)
 	{
-		tImagePNG png("TestData/Images/TacentTestPattern.png");
+		tImagePNG png("TacentTestPattern.png");
 		tPicture pic(png);
 		float blackPoint = 0.0f;
 		float midPoint = float(level)/10.0f;
@@ -1094,7 +1084,7 @@ tTestUnit(ImageAdjustment)
 
 		// Save it out.
 		tString file;
-		tsPrintf(file, "TestData/Images/WrittenLevels_MidAdjPhoto_BP%3.1f_MP%3.1f_WP%3.1f.png", blackPoint, midPoint, whitePoint);
+		tsPrintf(file, "WrittenLevels_MidAdjPhoto_BP%3.1f_MP%3.1f_WP%3.1f.png", blackPoint, midPoint, whitePoint);
 		png.Set(pic, false);
 		tImagePNG::tFormat fmt = png.Save(file.Chr());
 		tRequire(fmt != tImagePNG::tFormat::Invalid);
@@ -1102,7 +1092,7 @@ tTestUnit(ImageAdjustment)
 
 	for (int level = 0; level <= 10; level++)
 	{
-		tImagePNG png("TestData/Images/TacentTestPattern.png");
+		tImagePNG png("TacentTestPattern.png");
 		tPicture pic(png);
 		float blackPoint = float(level)/10.0f;
 		float whitePoint = 1.0f;
@@ -1113,27 +1103,28 @@ tTestUnit(ImageAdjustment)
 
 		// Save it out.
 		tString file;
-		tsPrintf(file, "TestData/Images/WrittenLevels_BlkAdjPower_BP%3.1f_MP%3.1f_WP%3.1f.png", blackPoint, midPoint, whitePoint);
+		tsPrintf(file, "WrittenLevels_BlkAdjPower_BP%3.1f_MP%3.1f_WP%3.1f.png", blackPoint, midPoint, whitePoint);
 		png.Set(pic, false);
 		tImagePNG::tFormat fmt = png.Save(file.Chr());
 		tRequire(fmt != tImagePNG::tFormat::Invalid);
 	}
+
+	tRestoreDir()
 }
 
 
 tTestUnit(ImageDetection)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageDetection)
+	tSetImageDir()
 
 	// Test APNG detection.
-	bool isAnimA = tImageAPNG::IsAnimatedPNG("TestData/Images/TextCursor.png");
+	bool isAnimA = tImageAPNG::IsAnimatedPNG("TextCursor.png");
 	tRequire(!isAnimA);
 
-	bool isAnimB = tImageAPNG::IsAnimatedPNG("TestData/Images/Icos4D.apng");
+	bool isAnimB = tImageAPNG::IsAnimatedPNG("Type_APNG/Icos4D.apng");
 	tRequire(isAnimB);
 
-	bool isAnimC = tImageAPNG::IsAnimatedPNG("TestData/Images/Icos4D.png");
+	bool isAnimC = tImageAPNG::IsAnimatedPNG("Icos4D.png");
 	tRequire(isAnimC);
 
 	int rgbaBPP		= tImage::tGetBitsPerPixel(tPixelFormat::R8G8B8A8);
@@ -1149,6 +1140,8 @@ tTestUnit(ImageDetection)
 	int exrBPP		= tImage::tGetBitsPerPixel(tPixelFormat::OPENEXR);
 	float exrBPPf	= tImage::tGetBitsPerPixelFloat(tPixelFormat::OPENEXR);
 	tPrintf("EXR BPP:%d BPPf:%f\n", exrBPP, exrBPPf);
+
+	tRestoreDir()
 }
 
 
@@ -1247,73 +1240,79 @@ tTestUnit(ImageMipmap)
 
 tTestUnit(ImageFilter)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageFilter)
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
+	tSetImageDir()
 
 	for (int filt = 0; filt < int(tResampleFilter::NumFilters); filt++)
 		tPrintf("Filter Name %d: %s\n", filt, tResampleFilterNames[filt]);
 
 	// Resample tests of 512x256 image.
-	tImagePNG png("TextCursor.png");
+	tImagePNG png("Type_PNG/TextCursor.png");
 	tImageTGA tga;
 	tPicture pic;
+	tImage::tImageTGA::tFormat fmt = tImage::tImageTGA::tFormat::Invalid;
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Nearest);
-	tga.Set(pic); tga.Save("WrittenResampledNearest.tga");
+	tga.Set(pic); fmt = tga.Save("WrittenResampledNearest.tga");
+	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Box);
-	tga.Set(pic); tga.Save("WrittenResampledBox.tga");
+	tga.Set(pic); fmt = tga.Save("WrittenResampledBox.tga");
+	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Bilinear);
-	tga.Set(pic); tga.Save("WrittenResampledBilinear.tga");
+	tga.Set(pic); fmt = tga.Save("WrittenResampledBilinear.tga");
+	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Bicubic_Standard);
-	tga.Set(pic); tga.Save("WrittenResampledBicubicStandard.tga");
+	tga.Set(pic); fmt = tga.Save("WrittenResampledBicubicStandard.tga");
+	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Bicubic_CatmullRom);
-	tga.Set(pic); tga.Save("WrittenResampledBicubicCatmullRom.tga");
+	tga.Set(pic); fmt = tga.Save("WrittenResampledBicubicCatmullRom.tga");
+	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Bicubic_Mitchell);
-	tga.Set(pic); tga.Save("WrittenResampledBicubicMitchell.tga");
+	tga.Set(pic); fmt = tga.Save("WrittenResampledBicubicMitchell.tga");
+	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Bicubic_Cardinal);
-	tga.Set(pic); tga.Save("WrittenResampledBicubicCardinal.tga");
+	tga.Set(pic); fmt = tga.Save("WrittenResampledBicubicCardinal.tga");
+	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Bicubic_BSpline);
-	tga.Set(pic); tga.Save("WrittenResampledBicubicBSpline.tga");
+	tga.Set(pic); fmt = tga.Save("WrittenResampledBicubicBSpline.tga");
+	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Lanczos_Narrow);
-	tga.Set(pic); tga.Save("WrittenResampledLanczosNarrow.tga");
+	tga.Set(pic); fmt = tga.Save("WrittenResampledLanczosNarrow.tga");
+	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Lanczos_Normal);
-	tga.Set(pic); tga.Save("WrittenResampledLanczosNormal.tga");
+	tga.Set(pic); fmt = tga.Save("WrittenResampledLanczosNormal.tga");
+	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Lanczos_Wide);
-	tga.Set(pic); tga.Save("WrittenResampledLanczosWide.tga");
+	tga.Set(pic); fmt = tga.Save("WrittenResampledLanczosWide.tga");
+	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
-	tSystem::tSetCurrentDir(origDir);
+	tRestoreDir()
 }
 
 
 tTestUnit(ImageMultiFrame)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageMultiFrame)
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/");
+	tSetImageDir()
 
 	#if 0
 	tImageWEBP webpSrc0("Demux_Shy.webp");
@@ -1396,14 +1395,13 @@ tTestUnit(ImageMultiFrame)
 	tiffDst2.Save("WrittenAnimatedTestManyFrames.tiff");
 	tRequire(tSystem::tFileExists("WrittenAnimatedTestManyFrames.tiff"));
 
-	tSystem::tSetCurrentDir(origDir);
+	tRestoreDir()
 }
 
 
 tTestUnit(ImageGradient)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageGradient)
+	tSetImageDir()
 
 	const int width = 640;
 	const int height = 90;
@@ -1416,7 +1414,7 @@ tTestUnit(ImageGradient)
 			pixels[y*width + x] = tColour4b(256*x / width, 256*x / width, 256*x / width, 255);
 	tImageTGA blackToWhite(pixels, width, height, true);
 	tRequire(blackToWhite.IsValid());
-	blackToWhite.Save("TestData/Images/Written_Gradient_BlackToWhite.tga", tImageTGA::tFormat::BPP24, tImageTGA::tCompression::RLE);
+	blackToWhite.Save("Written_Gradient_BlackToWhite.tga", tImageTGA::tFormat::BPP24, tImageTGA::tCompression::RLE);
 
 	// Gradient black to transparent.
 	pixels = new tPixel4b[width*height];
@@ -1425,7 +1423,7 @@ tTestUnit(ImageGradient)
 			pixels[y*width + x] = tColour4b(0, 0, 0, 255 - 256*x / width);
 	tImageTGA blackToTrans(pixels, width, height, true);
 	tRequire(blackToTrans.IsValid());
-	blackToTrans.Save("TestData/Images/Written_Gradient_BlackToTrans.tga", tImageTGA::tFormat::BPP32, tImageTGA::tCompression::RLE);
+	blackToTrans.Save("Written_Gradient_BlackToTrans.tga", tImageTGA::tFormat::BPP32, tImageTGA::tCompression::RLE);
 
 	// Gradient transparent to white.
 	pixels = new tPixel4b[width*height];
@@ -1434,7 +1432,7 @@ tTestUnit(ImageGradient)
 			pixels[y*width + x] = tColour4b(255, 255, 255, 256*x / width);
 	tImageTGA transToWhite(pixels, width, height, true);
 	tRequire(transToWhite.IsValid());
-	transToWhite.Save("TestData/Images/Written_Gradient_TransToWhite.tga", tImageTGA::tFormat::BPP32, tImageTGA::tCompression::RLE);
+	transToWhite.Save("Written_Gradient_TransToWhite.tga", tImageTGA::tFormat::BPP32, tImageTGA::tCompression::RLE);
 
 	// Gradient red to yellow to green to cyan to blue to magenta to red.
 	const int section = width / 6;
@@ -1467,7 +1465,7 @@ tTestUnit(ImageGradient)
 	}
 	tImageTGA redToRed(pixels, width, height, true);
 	tRequire(redToRed.IsValid());
-	redToRed.Save("TestData/Images/Written_Gradient_RedToRed.tga", tImageTGA::tFormat::BPP24, tImageTGA::tCompression::RLE);
+	redToRed.Save("Written_Gradient_RedToRed.tga", tImageTGA::tFormat::BPP24, tImageTGA::tCompression::RLE);
 
 	// These gradients are 16-bpc png files that are useful for testing WCG (10 and 12-bit) monitors.
 	// For a 10-bpc display a width of 1024 means we should get different value displayed for every pixel.
@@ -1482,16 +1480,15 @@ tTestUnit(ImageGradient)
 
 	tImagePNG::SaveParams saveParams;
 	saveParams.Format = tImagePNG::tFormat::BPP48_RGB_BPC16;
-	wcgGreenGradient.Save("TestData/Images/Written_WcgGreenGradient_16BPC.png", saveParams);
+	wcgGreenGradient.Save("Written_WcgGreenGradient_16BPC.png", saveParams);
+
+	tRestoreDir()
 }
 
 
 tTestUnit(ImagePNG)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImagePNG)
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/PNG/");
+	tSetImageSubDir("Type_PNG/")
 
 	tImagePNG png;
 	tImagePNG::LoadParams loadParams;
@@ -1584,17 +1581,13 @@ tTestUnit(ImagePNG)
 	saveParams.Format = tImagePNG::tFormat::BPP48_RGB_BPC16;
 	png.Save("Written_R16G16B16_From_16BPC.png", saveParams); 
 
-	tSystem::tSetCurrentDir(origDir.Chr());
+	tRestoreDir()
 }
 
 
 tTestUnit(ImageHEIC)
 {
-	if (!tSystem::tDirExists("TestData/Images/Type_HEIC"))
-		tSkipUnit(ImageHEIC)
-
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/Type_HEIC/");
+	tSetImageSubDir("Type_HEIC/")
 
 	// tImageHEIC can only load, so we verify integrity by saving each loaded file as a TGA for visual inspection.
 	// A bad file or a failed load will cause a tRequire failure above.
@@ -1618,17 +1611,13 @@ tTestUnit(ImageHEIC)
 		tga.Save("Written_" + tSystem::tGetFileBaseName(*file) + ".tga");
 	}
 
-	tSystem::tSetCurrentDir(origDir.Chr());
+	tRestoreDir()
 }
 
 
 tTestUnit(ImageAVIF)
 {
-	if (!tSystem::tDirExists("TestData/Images/Type_AVIF"))
-		tSkipUnit(ImageAVIF)
-
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/Type_AVIF/");
+	tSetImageSubDir("Type_AVIF/")
 
 	// tImageAVIF can only load, so we verify integrity by saving each loaded file as a TGA for visual inspection.
 	// A bad file or a failed load will cause a tRequire failure above.
@@ -1652,7 +1641,7 @@ tTestUnit(ImageAVIF)
 		tga.Save("Written_" + tSystem::tGetFileBaseName(*file) + ".tga");
 	}
 
-	tSystem::tSetCurrentDir(origDir.Chr());
+	tRestoreDir()
 }
 
 
@@ -1731,10 +1720,7 @@ void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAl
 
 tTestUnit(ImageDDS)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageDDS)
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/DDS/");
+	tSetImageSubDir("Type_DDS/")
 
 	uint32 decode = tImageDDS::LoadFlag_Decode;
 	uint32 revrow = tImageDDS::LoadFlag_ReverseRowOrder;
@@ -1935,7 +1921,7 @@ tTestUnit(ImageDDS)
 	DDSLoadDecodeSave("B10G11R11uf_RGB_Modern.dds",		revrow);
 	DDSLoadDecodeSave("E5B9G9R9uf_RGB_Modern.dds",		revrow);
 
-	tSystem::tSetCurrentDir(origDir.Chr());
+	tRestoreDir()
 }
 
 
@@ -2019,10 +2005,7 @@ void KTXLoadDecodeSave(const tString& ktxfile, uint32 loadFlags = 0, bool saveAl
 
 tTestUnit(ImageKTX1)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageKTX1)
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/KTX1/");
+	tSetImageSubDir("Type_KTX1/")
 
 	uint32 decode = tImageKTX::LoadFlag_Decode;
 	uint32 revrow = tImageKTX::LoadFlag_ReverseRowOrder;
@@ -2158,16 +2141,13 @@ tTestUnit(ImageKTX1)
 	KTXLoadDecodeSave("B10G11R11uf_RGB.ktx",			revrow);
 	KTXLoadDecodeSave("E5B9G9R9uf_RGB.ktx",				revrow);
 
-	tSystem::tSetCurrentDir(origDir.Chr());
+	tRestoreDir()
 }
 
 
 tTestUnit(ImageKTX2)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageKTX2)
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/KTX2/");
+	tSetImageSubDir("Type_KTX2/")
 
 	uint32 decode = tImageKTX::LoadFlag_Decode;
 	uint32 revrow = tImageKTX::LoadFlag_ReverseRowOrder;
@@ -2364,7 +2344,7 @@ tTestUnit(ImageKTX2)
 	KTXLoadDecodeSave("B10G11R11uf_RGB.ktx2",			revrow);
 	KTXLoadDecodeSave("E5B9G9R9uf_RGB.ktx2",			revrow);
 
-	tSystem::tSetCurrentDir(origDir.Chr());
+	tRestoreDir()
 }
 
 
@@ -2423,10 +2403,7 @@ void ASTCLoadDecodeSave(const tString& astcfile, const tImageASTC::LoadParams& p
 
 tTestUnit(ImageASTC)
 {
-	if (!tSystem::tDirExists("TestData/Images/"))
-		tSkipUnit(ImageASTC)
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/ASTC/");
+	tSetImageSubDir("Type_ASTC/")
 
 	tPrintf("Testing ASTC Loading/Decoding using astcenc V %s\n\n", tImage::Version_ASTCEncoder);
 	tPrintf("D = Decode\n");
@@ -2512,7 +2489,7 @@ tTestUnit(ImageASTC)
 	ASTCLoadDecodeSave("ASTC12X10_HDR.astc",			hdrParams);
 	ASTCLoadDecodeSave("ASTC12X12_HDR.astc",			hdrParams);
 
-	tSystem::tSetCurrentDir(origDir.Chr());
+	tRestoreDir()
 }
 
 
@@ -2574,10 +2551,7 @@ void PKMLoadDecodeSave(const tString& pkmfile, uint32 loadFlags = 0)
 
 tTestUnit(ImagePKM)
 {
-	if (!tSystem::tDirExists("TestData/Images/PKM/"))
-		tSkipUnit(ImagePicture)
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/PKM/");
+	tSetImageSubDir("Type_PKM/")
 
 	uint32 decode = tImagePKM::LoadFlag_Decode;
 	uint32 revrow = tImagePKM::LoadFlag_ReverseRowOrder;
@@ -2616,7 +2590,7 @@ tTestUnit(ImagePKM)
 	PKMLoadDecodeSave("ETC2RGBA1_RGBA.pkm",				decode | revrow);
 	PKMLoadDecodeSave("ETC2RGBA1_sRGBA.pkm",			decode | revrow);
 
-	tSystem::tSetCurrentDir(origDir);
+	tRestoreDir()
 }
 
 
@@ -2713,10 +2687,7 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0, bool saveAl
 
 tTestUnit(ImagePVR2)
 {
-	if (!tSystem::tDirExists("TestData/Images/PVR_V2/"))
-		tSkipUnit(ImagePicture)
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/PVR_V2/");
+	tSetImageSubDir("Type_PVR_V2/")
 
 	uint32 decode = tImagePVR::LoadFlag_Decode;
 	uint32 revrow = tImagePVR::LoadFlag_ReverseRowOrder;
@@ -2739,16 +2710,13 @@ tTestUnit(ImagePVR2)
 	PVRLoadDecodeSave("R8G8B8A8_RGBA_TM.pvr",			revrow);
 	PVRLoadDecodeSave("ETC1_RGB_TM.pvr",				revrow);
 
-	tSystem::tSetCurrentDir(origDir);
+	tRestoreDir()
 }
 
 
 tTestUnit(ImagePVR3)
 {
-	if (!tSystem::tDirExists("TestData/Images/PVR_V3/"))
-		tSkipUnit(ImagePicture)
-	tString origDir = tSystem::tGetCurrentDir();
-	tSystem::tSetCurrentDir(origDir + "TestData/Images/PVR_V3/");
+	tSetImageSubDir("Type_PVR_V3/")
 
 	uint32 decode = tImagePVR::LoadFlag_Decode;
 	uint32 revrow = tImagePVR::LoadFlag_ReverseRowOrder;
@@ -2836,7 +2804,7 @@ tTestUnit(ImagePVR3)
 	PVRLoadDecodeSave("PVRBPP4_UNORM_sRGB_RGB_T.pvr",				0,					false);
 	PVRLoadDecodeSave("PVRBPP4_UNORM_sRGB_RGBA_T.pvr",				revrow,				false);
 
-	tSystem::tSetCurrentDir(origDir);
+	tRestoreDir()
 }
 
 

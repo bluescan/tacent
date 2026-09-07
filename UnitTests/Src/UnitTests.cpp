@@ -103,7 +103,7 @@ int main(int argc, char** argv)
 
 	tUnitTest::rPrintf
 	(
-		"Testing Tacent Version %d.%d.%d\n",
+		"Tacent Version %d.%d.%d Unit Tests\n\n",
 		tVersion::Major,
 		tVersion::Minor, 
 		tVersion::Revision
@@ -223,11 +223,11 @@ int main(int argc, char** argv)
 	// tTest(Script);
 	// tTest(Rule);
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
-	tTest(ImageLoad);
-	tTest(ImageSave);
-	tTest(ImageTexture);
+	// tTest(ImageLoad);
+	// tTest(ImageSave);
+	// tTest(ImageTexture);
 	// tTest(ImageMultiFrame);
-	tTest(ImagePicture);
+	// tTest(ImagePicture);
 	// tTest(ImageQuantize);
 	// tTest(ImagePalette);
 	// tTest(ImageFilter);
@@ -241,8 +241,8 @@ int main(int argc, char** argv)
 	// tTest(ImageDetection);
 	// tTest(ImageMipmap);
 	// tTest(ImagePNG);
-	tTest(ImageAVIF);
-	tTest(ImageHEIC);
+	// tTest(ImageAVIF);
+	// tTest(ImageHEIC);
 	// tTest(ImageDDS);
 	// tTest(ImageKTX1);
 	// tTest(ImageKTX2);

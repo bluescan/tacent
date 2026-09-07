@@ -32,7 +32,7 @@ struct TestRule : public tPipeline::tRule
 tTestUnit(Process)
 {
 	if (!tSystem::tDirExists("TestData/"))
-		tSkipUnit(Process)
+		tSkipUnit()
 
 	// Currenty tProcess only works on windows.
 	#ifdef PLATFORM_WINDOWS

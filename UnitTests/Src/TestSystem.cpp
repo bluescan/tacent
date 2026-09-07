@@ -657,7 +657,7 @@ tTestUnit(Regex)
 tTestUnit(Script)
 {
 	if (!tDirExists("TestData/"))
-		tSkipUnit(Script)
+		tSkipUnit()
 
 	{
 		tExprWriter ws("TestData/WrittenConfig.cfg");
@@ -881,7 +881,7 @@ tTestUnit(Script)
 tTestUnit(Chunk)
 {
 	if (!tDirExists("TestData/"))
-		tSkipUnit(Chunk)
+		tSkipUnit()
 
 	tPrintf("Testing writing a chunk file.\n");
 	{
@@ -1098,7 +1098,7 @@ tTestUnit(Directories)
 tTestUnit(File)
 {
 	if (!tDirExists("TestData/"))
-		tSkipUnit(File)
+		tSkipUnit()
 
 	tRequire(!tFileExists("TestData/ProbablyDoesntExist.txt"));
 
@@ -1240,7 +1240,7 @@ tTestUnit(File)
 tTestUnit(FindRec)
 {
 	if (!tDirExists("TestData/"))
-		tSkipUnit(File)
+		tSkipUnit()
 
 	#ifdef PLATFORM_WINDOWS
 	tSetHidden("TestData/.HiddenFile.txt");
