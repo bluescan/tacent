@@ -16,8 +16,6 @@
 #include <System/tFile.h>
 #include <Image/tFrame.h>
 #include <Image/tPicture.h>
-#include <cstring>
-#include <cstdint>
 #ifdef TACENT_ENABLE_HEIF
 #include "libheif/heif.h"
 #endif

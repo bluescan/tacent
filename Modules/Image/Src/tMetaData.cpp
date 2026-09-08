@@ -18,8 +18,6 @@
 #include "System/tPrint.h"
 #include "Math/tVector3.h"
 #include "TinyEXIF/TinyEXIF.h"
-#include <cstring>
-#include <vector>
 using namespace tImage;
 using namespace tMath;
 
