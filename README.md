@@ -177,6 +177,12 @@ Credits are found directly in the code where appropriate. Here is a list of some
 
 ### Legal
 
-Any 3rd party credits and licences may be found directly in the code at the top of the file and/or the licence may be found in the Docs directory. The image-loading module contains the most 3rd-party code. tImageHDR.cpp, that loads high-dynamic-range (hdr) images, includes Radiance software (http://radsite.lbl.gov/) developed by the Lawrence Berkeley National Laboratory (http://www.lbl.gov/). If the hdr code is incuded in your project, attribution is required either in your end-product or its documentation and the word "Radiance" is not to appear in the product name. tImageJPG.cpp, that loads and saves JPeg images, is based in part on the work of the Independent JPEG Group. Loading jpg images uses libjpeg-turbo - Neither the name of the libjpeg-turbo Project nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission. Woboq is used under the ShareAlike License with attribution links remaining in tact.
+Any 3rd party credits and licences may be found directly in the code at the top of the file and/or the licence may be found in the Docs directory. The image-loading module contains the most 3rd-party code.
+
+tImageHDR.cpp, that loads high-dynamic-range (hdr) images, includes Radiance software (http://radsite.lbl.gov/) developed by the Lawrence Berkeley National Laboratory (http://www.lbl.gov/). If the hdr code is incuded in your project, attribution is required either in your end-product or its documentation and the word "Radiance" is not to appear in the product name.
+
+tImageJPG.cpp, that loads and saves JPeg images, is based in part on the work of the Independent JPEG Group. Loading jpg images uses libjpeg-turbo - Neither the name of the libjpeg-turbo Project nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+Woboq is used under the ShareAlike License with attribution links remaining in tact.
 
 LibHEIF and LibDE265 are LGPLv3-licensed libraries and protected under LGPLv3. Their use is optional. Obligations when using LGPLv3 libraries in an ISC repository have been met -- in particular supplying source code/linking instructions, this notice, and supplying license text (including the GPLv3). Details, including the exact Commit IDs of both libraries, may be found at [libheif license readme](https://github.com/bluescan/tacent/blob/master/Modules/Image/Contrib/LibHEIF/Licence_Readme.txt)
