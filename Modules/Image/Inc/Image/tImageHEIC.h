@@ -16,7 +16,15 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tMetaData.h>
 #include <Image/tBaseImage.h>
+
+
+// Opaque libheif image handle (defined in the global namespace by <libheif/heif.h>). It is forward-declared here so
+// that PopulateMetaData can be declared without including the libheif headers.
+struct heif_image_handle;
+
+
 namespace tImage
 {
 
@@ -61,7 +69,15 @@ public:
 	tFrame* GetFrame(bool steal = true) override;
 	tPixel4b* GetPixels() const																							{ return Pixels; }
 
+	// A place to store EXIF and XMP metadata. HEIC files often contain this metadata. This field is populated by the
+	// Load() calls.
+	tMetaData MetaData;
+
 private:
+	// Populates MetaData from the EXIF and XMP metadata blocks found inside the HEIF container. Returns true if at
+	// least one metadata block was recognized and parsed.
+	bool PopulateMetaData(struct heif_image_handle*);
+
 	int Width			= 0;
 	int Height			= 0;
 	tPixel4b* Pixels	= nullptr;
@@ -74,6 +90,7 @@ inline void tImageHEIC::Clear()
 	Height = 0;
 	delete[] Pixels;
 	Pixels = nullptr;
+	MetaData.Clear();
 	tBaseImage::Clear();
 }
 

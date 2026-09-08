@@ -219,7 +219,7 @@ int main(int argc, char** argv)
 	// tTest(PriorityQueue);
 	// tTest(MemoryPool);
 	// tTest(Hash);
-	tTest(UTF);
+	// tTest(UTF);
 	// tTest(Name);
 	// tTest(SmallFloat);
 
@@ -262,7 +262,7 @@ int main(int argc, char** argv)
 	// tTest(ImagePicture);
 	// tTest(ImageQuantize);
 	// tTest(ImagePalette);
-	// tTest(ImageMetaData);
+	tTest(ImageMetaData);
 	// tTest(ImageLosslessTransform);
 	// tTest(ImageRotation);
 	// tTest(ImageCrop);

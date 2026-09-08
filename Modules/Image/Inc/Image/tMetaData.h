@@ -4,7 +4,7 @@
 // image. For example, jpg files may contain EXIF or XMP meta-data. This class is basically a map of key/value strings
 // that may be a member of some tImageXXX types, It currently knows how to parse EXIF and XMP meta-data.
 //
-// Copyright (c) 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2022, 2023, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -27,7 +27,7 @@ namespace tImage
 // These are the common metadata tags, often extracted from either EXIF and/or XMP data.
 enum class tMetaTag
 {
-//	Tag Name		Type		Description
+//	Tag Name			Type	Description
 	Invalid = -1,
 
 	// Camera Hardware Tags
@@ -177,12 +177,24 @@ class tMetaData
 public:
 	tMetaData()																											: NumTagsValid(0), Data() { }
 	tMetaData(const tMetaData& src)																						{ Set(src); }
-	tMetaData(const uint8* rawJpgImageData, int numBytes)																{ Set(rawJpgImageData, numBytes); }
-	virtual ~tMetaData()																								{ }
+	virtual ~tMetaData();
 
 	void Clear();
 	bool Set(const tMetaData& src);
-	bool Set(const uint8* rawJpgImageData, int numBytes);
+
+	// Adds meta-data parsed from a single raw meta-data segment or blob. Existing meta-data is preserved and the new
+	// fields are merged into it, so that e.g. an EXIF blob and an XMP blob can be added separately. If the same tag
+	// appears in more than one segment, the value from the last one added wins. The following formats are recognized:
+	//
+	//   - A complete JPEG image (the APP1 EXIF and/or XMP segments are located and parsed).
+	//   - An EXIF segment: "Exif\0\0" followed by TIFF data (a JPEG APP1 EXIF payload).
+	//   - A HEIF "Exif" item payload: A 4-byte offset followed by "Exif\0\0" and TIFF data, or bare TIFF data.
+	//   - An XMP segment: "http://ns.adobe.com/xap/1.0/\0" followed by XMP XML (a JPEG APP1 XMP payload).
+	//   - Bare XMP XML, such as the xpacket-wrapped blob found in a HEIF "mime" item.
+	//
+	// Returns true if the segment was recognized and parsed successfully.
+	bool Add(const uint8* rawMetaData, int numBytes);
+
 	bool IsValid() const																								{ return NumTagsValid > 0; }
 	int GetNumValidTags() const																							{ return NumTagsValid; }
 
@@ -210,6 +222,10 @@ private:
 	const int ChunkVersion																								= 1;
 	int NumTagsValid;
 	tMetaDatum Data[int(tMetaTag::NumTags)];
+
+	// Returns a reference to the datum for a tag index. If the tag was not already valid it is counted in NumTagsValid. 
+	// This lets multiple Add calls set the same tag (the last one wins) without double-counting it.
+	tMetaDatum& SetTagValid(int tag);
 
 	void SetTags_CamHardware(const TinyEXIF::EXIFInfo&);
 	void SetTags_GeoLocation(const TinyEXIF::EXIFInfo&);
@@ -254,24 +270,6 @@ inline bool tImage::tMetaDatum::operator==(const tMetaDatum& src) const
 	return false;
 }
 
-
-
-inline void tImage::tMetaData::Clear()
-{
-	NumTagsValid = 0;
-	for (int d = 0; d < int(tMetaTag::NumTags); d++)
-		Data[d].Clear();
-}
-
-
-inline bool tImage::tMetaData::Set(const tMetaData& src)
-{
-	NumTagsValid = src.NumTagsValid;
-	for (int d = 0; d < int(tMetaTag::NumTags); d++)
-		Data[d] = src.Data[d];
-
-	return IsValid();
-}
 
 
 inline bool tImage::tMetaData::operator==(const tMetaData& src) const

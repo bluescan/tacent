@@ -16,7 +16,15 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tMetaData.h>
 #include <Image/tBaseImage.h>
+
+
+// Opaque libheif image handle (defined in the global namespace by <libheif/heif.h>). It is forward-declared here so
+// that PopulateMetaData can be declared without including the libheif headers.
+struct heif_image_handle;
+
+
 namespace tImage
 {
 
@@ -25,8 +33,8 @@ class tImageAVIF : public tBaseImage
 {
 public:
 	tImageAVIF()																										{ }
-	tImageAVIF(const tString& avifFile)										{ Load(avifFile); }
-	tImageAVIF(const uint8* avifFileInMemory, int numBytes)					{ Load(avifFileInMemory, numBytes); }
+	tImageAVIF(const tString& avifFile)																					{ Load(avifFile); }
+	tImageAVIF(const uint8* avifFileInMemory, int numBytes)																{ Load(avifFileInMemory, numBytes); }
 	tImageAVIF(tPixel4b* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
 	tImageAVIF(tFrame* frame, bool steal = true)																		{ Set(frame, steal); }
 	tImageAVIF(tPicture& picture, bool steal = true)																	{ Set(picture, steal); }
@@ -51,7 +59,15 @@ public:
 	tFrame* GetFrame(bool steal = true) override;
 	tPixel4b* GetPixels() const																							{ return Pixels; }
 
+	// A place to store EXIF and XMP metadata. AVIF files often contain this metadata. This field is populated by the
+	// Load() calls.
+	tMetaData MetaData;
+
 private:
+	// Populates MetaData from the EXIF and XMP metadata blocks found inside the HEIF container. Returns true if at
+	// least one metadata block was recognized and parsed.
+	bool PopulateMetaData(struct heif_image_handle*);
+	
 	int Width			= 0;
 	int Height			= 0;
 	tPixel4b* Pixels	= nullptr;
@@ -64,6 +80,7 @@ inline void tImageAVIF::Clear()
 	Height = 0;
 	delete[] Pixels;
 	Pixels = nullptr;
+	MetaData.Clear();
 	tBaseImage::Clear();
 }
 

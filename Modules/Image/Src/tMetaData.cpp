@@ -4,7 +4,7 @@
 // image. For example, jpg files may contain EXIF or XMP meta-data. This class is basically a map of key/value strings
 // that may be a member of some tImageXXX types, It currently knows how to parse EXIF and XMP meta-data.
 //
-// Copyright (c) 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2022, 2023, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -18,8 +18,46 @@
 #include "System/tPrint.h"
 #include "Math/tVector3.h"
 #include "TinyEXIF/TinyEXIF.h"
+#include <cstring>
+#include <vector>
 using namespace tImage;
 using namespace tMath;
+
+
+namespace tMetaDataUtil
+{
+	// Returns true if the buffer appears to be the start of a TIFF/EXIF structure (little or big endian).
+	bool LooksLikeTIFF(const uint8* p, int n)
+	{
+		if (n < 8)
+			return false;
+		return ((p[0] == 0x49) && (p[1] == 0x49) && (p[2] == 0x2A)) || ((p[0] == 0x4D) && (p[1] == 0x4D) && (p[2] == 0x00) && (p[3] == 0x2A));
+	}
+}
+
+
+tMetaData::~tMetaData()
+{
+	Clear();
+}
+
+
+void tMetaData::Clear()
+{
+	NumTagsValid = 0;
+	for (int d = 0; d < int(tMetaTag::NumTags); d++)
+		Data[d].Clear();
+}
+
+
+bool tMetaData::Set(const tMetaData& src)
+{
+	Clear();
+	NumTagsValid = src.NumTagsValid;
+	for (int d = 0; d < int(tMetaTag::NumTags); d++)
+		Data[d] = src.Data[d];
+	return IsValid();
+}
 
 
 const char* tMetaTagNames[] =
@@ -204,20 +242,95 @@ const char* tImage::tGetMetaTagDesc(tMetaTag tag)
 }
 
 
-bool tMetaData::Set(const uint8* rawJpgImageData, int numBytes)
+bool tMetaData::Add(const uint8* rawMetaData, int numBytes)
 {
-	Clear();
-	TinyEXIF::EXIFInfo exifInfo;
-	int errorCode = exifInfo.parseFrom(rawJpgImageData, numBytes);
-	if (errorCode)
+	if ((!rawMetaData) || (numBytes <= 0))
 		return false;
 
+	// The EXIF/XMP info parsed from this blob is a temporary object; only the Data array persists. The tags parsed here
+	// are merged into it, overwriting any values set by an earlier Add call.
+	//
+	// Clear the fields first. parseFromEXIFSegment() and parseFromXMPSegmentXML() do not initialize the fields they
+	// don't find, so any tag set from a field that is absent in this blob would otherwise be garbage. With cleared
+	// defaults (0, DBL_MAX, "") the SetTags_* guards correctly skip absent fields.
+	TinyEXIF::EXIFInfo exifInfo;
+	exifInfo.clear();
+	bool parsed = false;
+
+	// A complete JPEG image: let TinyEXIF locate the APP1 EXIF and XMP segments itself.
+	if ((numBytes > 2) && (rawMetaData[0] == 0xFF) && (rawMetaData[1] == 0xD8))
+	{
+		parsed = (exifInfo.parseFrom(rawMetaData, (unsigned)numBytes) == TinyEXIF::PARSE_SUCCESS);
+	}
+	else
+	{
+		// An EXIF segment. Depending on the container, the TIFF data may be prefixed with the "Exif\0\0" magic (a JPEG
+		// APP1 payload), with the "Exif\0\0" magic (a HEIF Exif item), with a 4-byte offset and the "Exif\0\0" magic
+		// (a HEIF Exif item), with a 4-byte offset (a AVIF Exif item), or not at all (bare TIFF data). Rather than
+		// assume a fixed layout, scan the first few bytes for the TIFF header.
+		const uint8* tiff = nullptr;
+		for (int off = 0; (off + 8 <= numBytes) && (!tiff); off++)
+		{
+			if (tMetaDataUtil::LooksLikeTIFF(rawMetaData + off, numBytes - off))
+			{
+				tiff = rawMetaData + off;
+			}
+		}
+
+		if ((tiff) && tMetaDataUtil::LooksLikeTIFF(tiff, numBytes - (int)(tiff - rawMetaData)))
+		{
+			if (tiff == (rawMetaData + 6))
+			{
+				// The "Exif\0\0" magic is already present.
+				parsed = (exifInfo.parseFromEXIFSegment(rawMetaData, (unsigned)numBytes) == TinyEXIF::PARSE_SUCCESS);
+			}
+			else
+			{
+				// Synthesize the leading "Exif\0\0" magic that TinyEXIF expects before the TIFF data.
+				static const char ExifMagic[] = "Exif\0\0";
+				std::vector<uint8> wrapped(6 + (size_t)(numBytes - (int)(tiff - rawMetaData)));
+				memcpy(wrapped.data(), ExifMagic, 6);
+				memcpy(wrapped.data() + 6, tiff, numBytes - (int)(tiff - rawMetaData));
+				parsed = (exifInfo.parseFromEXIFSegment(wrapped.data(), (unsigned)wrapped.size()) == TinyEXIF::PARSE_SUCCESS);
+			}
+		}
+
+		// An XMP segment. Depending on the container, the XMP XML is either prefixed with the Adobe namespace
+		// "http://ns.adobe.com/xap/1.0/\0" (a JPEG APP1 payload) or is bare, xpacket-wrapped XML (a HEIF mime item).
+		if (!parsed)
+		{
+			const uint8* xml = nullptr;
+			static const char XmpNamespacePrefix[] = "http://ns.adobe.com/xap/1.0/\0";
+			const int XmpNamespacePrefixLen = 29;
+			if ((numBytes > XmpNamespacePrefixLen) && (memcmp(rawMetaData, XmpNamespacePrefix, XmpNamespacePrefixLen) == 0))
+				xml = rawMetaData + XmpNamespacePrefixLen;
+			else if ((numBytes > 1) && (rawMetaData[0] == '<'))
+				xml = rawMetaData;
+
+			if (xml)
+				parsed = (exifInfo.parseFromXMPSegmentXML(reinterpret_cast<const char*>(xml), (unsigned)(numBytes - (int)(xml - rawMetaData))) == TinyEXIF::PARSE_SUCCESS);
+		}
+	}
+
+	if (!parsed)
+		return false;
+
+	// Merge the tags parsed from this blob into the Data array. If the same tag was set by an earlier Add call its
+	// value is overwritten, so later segments in the file win.
 	SetTags_CamHardware(exifInfo);
 	SetTags_GeoLocation(exifInfo);
 	SetTags_CamSettings(exifInfo);
 	SetTags_AuthorNotes(exifInfo);
+	return true;
+}
 
-	return IsValid();
+
+tMetaDatum& tMetaData::SetTagValid(int tag)
+{
+	tMetaDatum& d = Data[tag];
+	if (!d.IsValid())
+		NumTagsValid++;
+	return d;
 }
 
 
@@ -227,24 +340,21 @@ void tMetaData::SetTags_CamHardware(const TinyEXIF::EXIFInfo& exifInfo)
 	tString make = exifInfo.Make.c_str();
 	if (make.IsValid())
 	{
-		Data[ int(tMetaTag::Make) ].Set(make);
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::Make)).Set(make);
 	}
 
 	// Model
 	tString model = exifInfo.Model.c_str();
 	if (model.IsValid())
 	{
-		Data[ int(tMetaTag::Model) ].Set(model);
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::Model)).Set(model);
 	}
 	
 	// SerialNumber
 	tString serial = exifInfo.SerialNumber.c_str();
 	if (serial.IsValid())
 	{
-		Data[ int(tMetaTag::SerialNumber) ].Set(serial);
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::SerialNumber)).Set(serial);
 	}
 
 	// MakeModelSerial
@@ -257,10 +367,7 @@ void tMetaData::SetTags_CamHardware(const TinyEXIF::EXIFInfo& exifInfo)
 	makeModelSerial.ExtractRight(" | ");
 
 	if (makeModelSerial.IsValid())
-	{
-		Data[ int(tMetaTag::MakeModelSerial) ].Set(makeModelSerial);
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::MakeModelSerial)).Set(makeModelSerial);
 }
 
 
@@ -271,8 +378,7 @@ void tMetaData::SetTags_GeoLocation(const TinyEXIF::EXIFInfo& exifInfo)
 	{
 		// LatitudeDD
 		double lat = exifInfo.GeoLocation.Latitude;
-		Data[ int(tMetaTag::LatitudeDD) 	].Set(float(lat));
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::LatitudeDD)).Set(float(lat));
 
 		// LatitudeDMS
 		// The exifInfo should not have fraction values for the degree and minutes if they did everythng right.
@@ -282,13 +388,11 @@ void tMetaData::SetTags_GeoLocation(const TinyEXIF::EXIFInfo& exifInfo)
 		char dirLat = exifInfo.GeoLocation.LatComponents.direction;
 		tString dmsLat;
 		tsPrintf(dmsLat, "%d°%d'%d\"%c", degLat, minLat, secLat, dirLat);
-		Data[ int(tMetaTag::LatitudeDMS) 	].Set(dmsLat);
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::LatitudeDMS)).Set(dmsLat);
 
 		// LongitudeDD
 		double lon = exifInfo.GeoLocation.Longitude;
-		Data[ int(tMetaTag::LongitudeDD) 	].Set(float(lon));
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::LongitudeDD)).Set(float(lon));
 
 		// LongitudeDMS
 		int degLon = int ( tMath::tRound(exifInfo.GeoLocation.LonComponents.degrees) );
@@ -297,15 +401,13 @@ void tMetaData::SetTags_GeoLocation(const TinyEXIF::EXIFInfo& exifInfo)
 		char dirLon = exifInfo.GeoLocation.LonComponents.direction;
 		tString dmsLon;
 		tsPrintf(dmsLon, "%d°%d'%d\"%c", degLon, minLon, secLon, dirLon);
-		Data[ int(tMetaTag::LongitudeDMS) 	].Set(dmsLon);
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::LongitudeDMS)).Set(dmsLon);
 	}
 
 	if (exifInfo.GeoLocation.hasAltitude())
 	{
 		double alt = exifInfo.GeoLocation.Altitude;
-		Data[ int(tMetaTag::Altitude) 	].Set(float(alt));
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::Altitude)).Set(float(alt));
 	}
 
 	if (exifInfo.GeoLocation.hasRelativeAltitude())
@@ -317,27 +419,22 @@ void tMetaData::SetTags_GeoLocation(const TinyEXIF::EXIFInfo& exifInfo)
 			case 0:		refStr = "Above Sea Level";		break;
 			case -1:	refStr = "Below Sea Level";		break;
 		}
-		Data[ int(tMetaTag::AltitudeRelRef) ].Set(refStr);
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::AltitudeRelRef)).Set(refStr);
 
 		double altRel = exifInfo.GeoLocation.RelativeAltitude;
-		Data[ int(tMetaTag::AltitudeRel) ].Set(float(altRel));
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::AltitudeRel)).Set(float(altRel));
 	}
 
 	if (exifInfo.GeoLocation.hasOrientation())
 	{
 		double roll = exifInfo.GeoLocation.RollDegree;
-		Data[ int(tMetaTag::Roll) ].Set(float(roll));
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::Roll)).Set(float(roll));
 
 		double pitch = exifInfo.GeoLocation.PitchDegree;
-		Data[ int(tMetaTag::Pitch) ].Set(float(pitch));
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::Pitch)).Set(float(pitch));
 
 		double yaw = exifInfo.GeoLocation.YawDegree;
-		Data[ int(tMetaTag::Yaw) ].Set(float(yaw));
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::Yaw)).Set(float(yaw));
 	}
 
 	if (exifInfo.GeoLocation.hasSpeed())
@@ -353,15 +450,13 @@ void tMetaData::SetTags_GeoLocation(const TinyEXIF::EXIFInfo& exifInfo)
 		Data[ int(tMetaTag::VelZ) ].Set(vel.z);
 		NumTagsValid += 3;
 
-		Data[ int(tMetaTag::Speed) ].Set( vel.Length() );
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::Speed)).Set( vel.Length() );
 	}
 
 	std::string survey = exifInfo.GeoLocation.GPSMapDatum;
 	if (!survey.empty())
 	{
-		Data[ int(tMetaTag::GPSSurvey) ].Set(survey.c_str());
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::GPSSurvey)).Set(survey.c_str());
 	}
 
 	// tString can handle nullptr.
@@ -383,8 +478,7 @@ void tMetaData::SetTags_GeoLocation(const TinyEXIF::EXIFInfo& exifInfo)
 		dateTime = utcTime;
 	if (dateTime.IsValid())
 	{
-		Data[ int(tMetaTag::GPSTimeStamp) ].Set(dateTime);
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::GPSTimeStamp)).Set(dateTime);
 	}
 }
 
@@ -402,181 +496,111 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 		exposureTime = 1.0 / shutterSpeed;
 
 	if (shutterSpeed > 0.0)
-	{
-		Data[ int(tMetaTag::ShutterSpeed) ].Set(float(shutterSpeed));
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::ShutterSpeed)).Set(float(shutterSpeed));
 
 	if (exposureTime > 0.0)
-	{
-		Data[ int(tMetaTag::ExposureTime) ].Set(float(exposureTime));
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::ExposureTime)).Set(float(exposureTime));
 
 	double exposureBias = exifInfo.ExposureBiasValue;
 	if (exposureBias > 0.0)
-	{
-		Data[ int(tMetaTag::ExposureBias) ].Set(float(exposureBias));
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::ExposureBias)).Set(float(exposureBias));
 
 	double fstop = exifInfo.FNumber;
 	if (fstop > 0.0)
-	{
-		Data[ int(tMetaTag::FStop) ].Set(float(fstop));
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::FStop)).Set(float(fstop));
 
 	// Only set exposure program if it's defined.
 	uint32 prog = exifInfo.ExposureProgram;
 	if (prog)
-	{
-		Data[ int(tMetaTag::ExposureProgram) ].Set(prog);
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::ExposureProgram)).Set(prog);
 
 	uint32 iso = exifInfo.ISOSpeedRatings;
 	if (iso > 0)
-	{
-		Data[ int(tMetaTag::ISO) ].Set(iso);
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::ISO)).Set(iso);
 
 	double aperture = exifInfo.ApertureValue;
 	if (aperture > 0.0)
-	{
-		Data[ int(tMetaTag::Aperture) ].Set(float(aperture));
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::Aperture)).Set(float(aperture));
 
 	double brightness = exifInfo.BrightnessValue;
 	if (brightness)
-	{
-		Data[ int(tMetaTag::Brightness) ].Set(float(brightness));
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::Brightness)).Set(float(brightness));
 
 	// Only set metering mode if it's known.
 	uint32 meterMode = exifInfo.MeteringMode;
 	if (meterMode)
-	{
-		Data[ int(tMetaTag::MeteringMode) ].Set(meterMode);
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::MeteringMode)).Set(meterMode);
 
 	uint32 flash = exifInfo.Flash;
 
 	// Flash bit 5. This bit is true if flash NOT present.
 	uint32 flashHardware = ((flash & 0x00000020) >> 5) ? 0 : 1;
-	Data[ int(tMetaTag::FlashHardware) ].Set(flashHardware);
-	NumTagsValid++;
+	SetTagValid(int(tMetaTag::FlashHardware)).Set(flashHardware);
 
 	if (flashHardware)
 	{
 		// Flash bit 0.
 		uint32 flashUsed = (flash & 0x00000001);
 		if (flashUsed)
-		{
-			Data[ int(tMetaTag::FlashUsed) ].Set(flashUsed);
-			NumTagsValid++;
-		}
+			SetTagValid(int(tMetaTag::FlashUsed)).Set(flashUsed);
 
 		// Flash bits 1 and 2. Only set if dectector present.
 		uint32 flashStrobe = (flash & 0x00000006) >> 1;
 		if (flashStrobe)
-		{
-			Data[ int(tMetaTag::FlashStrobe) ].Set(flashStrobe);
-			NumTagsValid++;
-		}
+			SetTagValid(int(tMetaTag::FlashStrobe)).Set(flashStrobe);
 
 		// Flash bits 3 and 4. Only set if mode not unknown.
 		uint32 flashMode = (flash & 0x00000018) >> 3;
 		if (flashMode)
-		{
-			Data[ int(tMetaTag::FlashMode) ].Set(flashMode);
-			NumTagsValid++;
-		}
+			SetTagValid(int(tMetaTag::FlashMode)).Set(flashMode);
 
 		// Flash bit 6.
 		uint32 flashRedEye = (flash & 0x00000040) >> 6;
 		if (flashRedEye)
-		{
-			Data[ int(tMetaTag::FlashRedEye) ].Set(flashRedEye);
-			NumTagsValid++;
-		}
+			SetTagValid(int(tMetaTag::FlashRedEye)).Set(flashRedEye);
 	}
 
 	double focalLength = exifInfo.FocalLength;
 	if (focalLength > 0.0)
-	{
-		Data[ int(tMetaTag::FocalLength) ].Set(float(focalLength));
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::FocalLength)).Set(float(focalLength));
 
 	// Only set orientation if it's specified.
 	uint32 orientation = exifInfo.Orientation;
 	if (orientation)
-	{
-		Data[ int(tMetaTag::Orientation) ].Set(orientation);
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::Orientation)).Set(orientation);
 
 	// Only set length unit if it's specified.
 	uint32 lengthUnit = exifInfo.ResolutionUnit;
 	if (lengthUnit)
-	{
-		Data[ int(tMetaTag::LengthUnit) ].Set(lengthUnit);
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::LengthUnit)).Set(lengthUnit);
 
 	double pixelsPerUnitX = exifInfo.XResolution;
 	if (pixelsPerUnitX > 0.0)
-	{
-		Data[ int(tMetaTag::XPixelsPerUnit) ].Set(float(pixelsPerUnitX));
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::XPixelsPerUnit)).Set(float(pixelsPerUnitX));
 
 	double pixelsPerUnitY = exifInfo.YResolution;
 	if (pixelsPerUnitY > 0.0)
-	{
-		Data[ int(tMetaTag::YPixelsPerUnit) ].Set(float(pixelsPerUnitY));
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::YPixelsPerUnit)).Set(float(pixelsPerUnitY));
 
 	uint32 bitsPerComponent = exifInfo.BitsPerSample;
 	if (bitsPerComponent)
-	{
-		Data[ int(tMetaTag::BitsPerSample) ].Set(bitsPerComponent);
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::BitsPerSample)).Set(bitsPerComponent);
 
 	uint32 imageWidth = exifInfo.ImageWidth;
 	if (imageWidth > 0)
-	{
-		Data[ int(tMetaTag::ImageWidth) ].Set(imageWidth);
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::ImageWidth)).Set(imageWidth);
 
 	uint32 imageHeight = exifInfo.ImageHeight;
 	if (imageHeight > 0)
-	{
-		Data[ int(tMetaTag::ImageHeight) ].Set(imageHeight);
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::ImageHeight)).Set(imageHeight);
 
 	uint32 imageWidthOrig = exifInfo.RelatedImageWidth;
 	if (imageWidthOrig > 0)
-	{
-		Data[ int(tMetaTag::ImageWidthOrig) ].Set(imageWidthOrig);
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::ImageWidthOrig)).Set(imageWidthOrig);
 
 	uint32 imageHeightOrig = exifInfo.RelatedImageHeight;
 	if (imageHeightOrig > 0)
-	{
-		Data[ int(tMetaTag::ImageHeightOrig) ].Set(imageHeightOrig);
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::ImageHeightOrig)).Set(imageHeightOrig);
 
 	tString dateTimeChange(exifInfo.DateTime.c_str());
 	if (dateTimeChange.IsValid())
@@ -585,8 +609,7 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 		yyyymmdd.Replace(':', '-');
 		dateTimeChange = yyyymmdd + " " + dateTimeChange;
 
-		Data[ int(tMetaTag::DateTimeChange) ].Set(dateTimeChange);
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::DateTimeChange)).Set(dateTimeChange);
 	}
 
 	tString dateTimeOrig(exifInfo.DateTimeOriginal.c_str());
@@ -596,8 +619,7 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 		yyyymmdd.Replace(':', '-');
 		dateTimeOrig = yyyymmdd + " " + dateTimeOrig;
 
-		Data[ int(tMetaTag::DateTimeOrig) ].Set(dateTimeOrig);
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::DateTimeOrig)).Set(dateTimeOrig);
 	}
 
 	tString dateTimeDig(exifInfo.DateTimeDigitized.c_str());
@@ -607,8 +629,7 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 		yyyymmdd.Replace(':', '-');
 		dateTimeDig = yyyymmdd + " " + dateTimeDig;
 
-		Data[ int(tMetaTag::DateTimeDigit) ].Set(dateTimeDig);
-		NumTagsValid++;
+		SetTagValid(int(tMetaTag::DateTimeDigit)).Set(dateTimeDig);
 	}
 }
 
@@ -618,26 +639,17 @@ void tMetaData::SetTags_AuthorNotes(const TinyEXIF::EXIFInfo& exifInfo)
 	// Software
 	tString software = exifInfo.Software.c_str();
 	if (software.IsValid())
-	{
-		Data[ int(tMetaTag::Software) ].Set(software);
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::Software)).Set(software);
 
 	// Description
 	tString description = exifInfo.ImageDescription.c_str();
 	if (description.IsValid())
-	{
-		Data[ int(tMetaTag::Description) ].Set(description);
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::Description)).Set(description);
 
 	// Copyright
 	tString copyright = exifInfo.Copyright.c_str();
 	if (copyright.IsValid())
-	{
-		Data[ int(tMetaTag::Copyright) ].Set(copyright);
-		NumTagsValid++;
-	}
+		SetTagValid(int(tMetaTag::Copyright)).Set(copyright);
 }
 
 

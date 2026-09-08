@@ -5,7 +5,7 @@
 // tPicture's constructor if a jpg file is specified. After the array is stolen the tImageJPG is invalid. This is
 // purely for performance. The loading and saving uses libjpeg-turbo. See Licence_LibJpegTurbo.txt for more info.
 //
-// Copyright (c) 2020, 2022-2024 Tristan Grimmer.
+// Copyright (c) 2020, 2022-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -35,6 +35,7 @@ void tImageJPG::Clear()
 	if (MemImage) tjFree(MemImage);
 	MemImage = nullptr;
 	MemImageSize = 0;
+	MetaData.Clear();
 
 	tBaseImage::Clear();
 }
@@ -417,7 +418,7 @@ bool tImageJPG::LosslessTransform(Transform trans, bool allowImperfect)
 bool tImageJPG::PopulateMetaData(const uint8* jpgFileInMemory, int numBytes)
 {
 	tAssert(jpgFileInMemory && (numBytes > 0));
-	MetaData.Set(jpgFileInMemory, numBytes);
+	MetaData.Add(jpgFileInMemory, numBytes);
 	return MetaData.IsValid();
 }
 

@@ -760,6 +760,60 @@ tTestUnit(ImageMetaData)
 	PrintMetaDataTag(metaData, tMetaTag::Description);
 	PrintMetaDataTag(metaData, tMetaTag::Copyright);
 
+	// Test meta-data extraction for AVIF files.
+	tImageChangeDir("EXIF_XMP/AVIF/")
+
+	tImageAVIF avifNoMeta("TacentTestPattern.avif");
+	tRequire(avifNoMeta.IsValid());
+	tRequire(!avifNoMeta.MetaData.IsValid());
+
+	tImageAVIF avifWithMeta("paris_icc_exif_xmp.avif");
+	tRequire(avifWithMeta.IsValid());
+	tRequire(avifWithMeta.MetaData.IsValid());
+	tMetaData& avifMetaData = avifWithMeta.MetaData;
+	PrintMetaDataTag(avifMetaData, tMetaTag::Make);
+	PrintMetaDataTag(avifMetaData, tMetaTag::Model);
+	PrintMetaDataTag(avifMetaData, tMetaTag::SerialNumber);
+	PrintMetaDataTag(avifMetaData, tMetaTag::LatitudeDD);
+	PrintMetaDataTag(avifMetaData, tMetaTag::LongitudeDD);
+	PrintMetaDataTag(avifMetaData, tMetaTag::ShutterSpeed);
+	PrintMetaDataTag(avifMetaData, tMetaTag::ExposureTime);
+	PrintMetaDataTag(avifMetaData, tMetaTag::FStop);
+	PrintMetaDataTag(avifMetaData, tMetaTag::ISO);
+	PrintMetaDataTag(avifMetaData, tMetaTag::FocalLength);
+	PrintMetaDataTag(avifMetaData, tMetaTag::Orientation);
+	PrintMetaDataTag(avifMetaData, tMetaTag::DateTimeOrig);
+	PrintMetaDataTag(avifMetaData, tMetaTag::Software);
+	PrintMetaDataTag(avifMetaData, tMetaTag::Description);
+	PrintMetaDataTag(avifMetaData, tMetaTag::Copyright);
+
+	// Test meta-data extraction for HEIC files.
+	tImageChangeDir("EXIF_XMP/HEIC/")
+
+	tImageHEIC heicNoMeta("TacentTestPattern.heic");
+	tRequire(heicNoMeta.IsValid());
+	tRequire(!heicNoMeta.MetaData.IsValid());
+
+	tImageHEIC heicWithMeta("chef-with-trumpet.heic");
+	tRequire(heicWithMeta.IsValid());
+	tRequire(heicWithMeta.MetaData.IsValid());
+	tMetaData& heicMetaData = heicWithMeta.MetaData;
+	PrintMetaDataTag(heicMetaData, tMetaTag::Make);
+	PrintMetaDataTag(heicMetaData, tMetaTag::Model);
+	PrintMetaDataTag(heicMetaData, tMetaTag::SerialNumber);
+	PrintMetaDataTag(heicMetaData, tMetaTag::LatitudeDD);
+	PrintMetaDataTag(heicMetaData, tMetaTag::LongitudeDD);
+	PrintMetaDataTag(heicMetaData, tMetaTag::ShutterSpeed);
+	PrintMetaDataTag(heicMetaData, tMetaTag::ExposureTime);
+	PrintMetaDataTag(heicMetaData, tMetaTag::FStop);
+	PrintMetaDataTag(heicMetaData, tMetaTag::ISO);
+	PrintMetaDataTag(heicMetaData, tMetaTag::FocalLength);
+	PrintMetaDataTag(heicMetaData, tMetaTag::Orientation);
+	PrintMetaDataTag(heicMetaData, tMetaTag::DateTimeOrig);
+	PrintMetaDataTag(heicMetaData, tMetaTag::Software);
+	PrintMetaDataTag(heicMetaData, tMetaTag::Description);
+	PrintMetaDataTag(heicMetaData, tMetaTag::Copyright);
+
 	tImageChangeDir("EXIF_XMP/")
 
 	// Test loading/saving with compensation for exif orientation tags.

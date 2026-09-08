@@ -71,6 +71,10 @@ bool tImageAVIF::Load(const uint8* avifFileInMemory, int numBytes)
 		return false;
 	}
 
+	// Extract EXIF and XMP metadata from the container. Failing to parse the metadata is not a load
+	// failure -- the image may still decode perfectly.
+	PopulateMetaData(handle);
+
 	// Decode the image
 	struct heif_image* image = nullptr;
 	error = heif_decode_image(handle, &image, heif_colorspace_RGB, heif_chroma_interleaved_RGBA, nullptr);
@@ -94,12 +98,10 @@ bool tImageAVIF::Load(const uint8* avifFileInMemory, int numBytes)
 
 	// Retrieve the decoded pixel data.
 	//
-	// Use the non-deprecated heif_image_get_plane2() together with its row
-	// stride. The deprecated heif_image_get_plane() returns NULL for a channel
-	// that is actually present (observed with the bundled libheif 1.23.2), and
-	// the plane's row stride may exceed Width * 4 when the plane is padded, so
-	// rows are copied using the stride rather than assuming a tightly packed
-	// layout.
+	// Use the non-deprecated heif_image_get_plane2() together with its row stride. The deprecated
+	// heif_image_get_plane() returns NULL for a channel that is actually present (observed with the bundled
+	// libheif 1.23.2), and the plane's row stride may exceed Width * 4 when the plane is padded, so rows are copied
+	// using the stride rather than assuming a tightly packed layout.
 	size_t stride = 0;
 	const uint8_t* pixel_data = heif_image_get_plane2(image, heif_channel_interleaved, &stride);
 	if ((!pixel_data) || (stride < ((size_t)Width * 4u)))
@@ -110,11 +112,11 @@ bool tImageAVIF::Load(const uint8* avifFileInMemory, int numBytes)
 		return false;
 	}
 
-	// Allocate memory for pixels
+	// Allocate memory for pixels.
 	Pixels = new tPixel4b[Width * Height];
-	// libheif returns the decoded rows top-to-bottom, but the resulting image
-	// ends up upside down, so the rows are populated in reverse order
-	// (bottom-up): destination row y receives source row (Height - 1 - y).
+
+	// libheif returns the decoded rows top-to-bottom, but the resulting image ends up upside down, so the rows are
+	// populated in reverse order (bottom-up): destination row y receives source row (Height - 1 - y).
 	for (int y = 0; y < Height; ++y)
 	{
 		const uint8_t* srcRow = pixel_data + (size_t)y * stride;
@@ -142,6 +144,60 @@ bool tImageAVIF::Load(const uint8* avifFileInMemory, int numBytes)
 
 	return true;
 #else
+	return false;
+#endif
+}
+
+
+bool tImageAVIF::PopulateMetaData(struct heif_image_handle* handle)
+{
+#ifdef TACENT_ENABLE_HEIF
+	tAssert(handle);
+
+	// Find all metadata blocks attached to the primary image. HEIF containers store EXIF in "Exif" items and XMP in
+	// "mime" or "meta" items with the content type "application/rdf+xml". Other items (e.g. ICC colour profiles inside
+	// "mime" items) are ignored.
+	int numMetaBlocks = heif_image_handle_get_number_of_metadata_blocks(handle, nullptr);
+	if (numMetaBlocks <= 0)
+		return false;
+
+	heif_item_id* metaBlockIDs = new heif_item_id[numMetaBlocks];
+	int numIDs = heif_image_handle_get_list_of_metadata_block_IDs(handle, nullptr, metaBlockIDs, numMetaBlocks);
+
+	bool found = false;
+	for (int i = 0; i < numIDs; i++)
+	{
+		const char* itemType = heif_image_handle_get_metadata_type(handle, metaBlockIDs[i]);
+		bool isExif = (strcmp(itemType, "Exif") == 0);
+		bool isXmp = false;
+		if ((!isExif) && (strcmp(itemType, "mime") == 0 || strcmp(itemType, "meta") == 0 || strcmp(itemType, "xmp ") == 0))
+		{
+			const char* contentType = heif_image_handle_get_metadata_content_type(handle, metaBlockIDs[i]);
+			isXmp = (contentType && (strstr(contentType, "rdf+xml") != nullptr));
+		}
+		if ((!isExif) && (!isXmp))
+			continue;
+
+		size_t numBytes = heif_image_handle_get_metadata_size(handle, metaBlockIDs[i]);
+		if ((numBytes <= 0) || (numBytes > ((size_t)0x7FFFFFFF)))
+			continue;
+
+		uint8* metaBytes = new uint8[numBytes];
+		struct heif_error metaError = heif_image_handle_get_metadata(handle, metaBlockIDs[i], metaBytes);
+		if (metaError.code == heif_error_Ok)
+		{
+			// tMetaData::Add() recognizes the raw "Exif" item payload (a 4-byte offset followed by "Exif\0\0" and TIFF
+			// data) and bare XMP XML, such as the xpacket-wrapped blob found in a "mime" item.
+			found |= MetaData.Add(metaBytes, (int)numBytes);
+		}
+		delete[] metaBytes;
+	}
+	
+	delete[] metaBlockIDs;
+	return found;
+
+#else
+	(void)handle;
 	return false;
 #endif
 }
