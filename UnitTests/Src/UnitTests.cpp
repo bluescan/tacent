@@ -262,8 +262,8 @@ int main(int argc, char** argv)
 	// tTest(ImagePicture);
 	// tTest(ImageQuantize);
 	// tTest(ImagePalette);
-	tTest(ImageMetaData);
-	// tTest(ImageLosslessTransform);
+	// tTest(ImageMetaData);
+	tTest(ImageLosslessTransform);
 	// tTest(ImageRotation);
 	// tTest(ImageCrop);
 	// tTest(ImageCopyRegion);

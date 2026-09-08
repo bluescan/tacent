@@ -881,7 +881,7 @@ tTestUnit(ImageLosslessTransform)
 	// Test an image that can be perfectly ACW rotated or horizontally flipped, but cannot be
 	// CW rotated or vertically flipped perfectly.
 	trans = tImageJPG::Transform::Rotate90ACW;
-	tImageJPG imgJPG_OK_ACW("EXIF_XMP/Bebop_2.jpg", params);
+	tImageJPG imgJPG_OK_ACW("EXIF_XMP/JPG/Bebop_2_EXIF_XMP.jpg", params);
 	tRequire(imgJPG_OK_ACW.IsValid());
 	tRequire(imgJPG_OK_ACW.CanDoPerfectLosslessTransform(trans));
 	ok = imgJPG_OK_ACW.LosslessTransform(trans);
@@ -890,7 +890,7 @@ tTestUnit(ImageLosslessTransform)
 	tRequire( tSystem::tFileExists("WrittenLosslessOK_ACW.jpg"));
 
 	trans = tImageJPG::Transform::Rotate90CW;
-	tImageJPG imgJPG_NO_CW("EXIF_XMP/Bebop_2.jpg", params);
+	tImageJPG imgJPG_NO_CW("EXIF_XMP/JPG/Bebop_2_EXIF_XMP.jpg", params);
 	tRequire(imgJPG_NO_CW.IsValid());
 	tRequire(!imgJPG_NO_CW.CanDoPerfectLosslessTransform(trans));
 	ok = imgJPG_NO_CW.LosslessTransform(trans);
@@ -899,7 +899,7 @@ tTestUnit(ImageLosslessTransform)
 	tRequire( tSystem::tFileExists("WrittenLosslessNO_CW.jpg"));
 
 	trans = tImageJPG::Transform::FlipH;
-	tImageJPG imgJPG_OK_FH("EXIF_XMP/Bebop_2.jpg", params);
+	tImageJPG imgJPG_OK_FH("EXIF_XMP/JPG/Bebop_2_EXIF_XMP.jpg", params);
 	tRequire(imgJPG_OK_FH.IsValid());
 	tRequire(imgJPG_OK_FH.CanDoPerfectLosslessTransform(trans));
 	ok = imgJPG_OK_FH.LosslessTransform(trans);
@@ -908,7 +908,7 @@ tTestUnit(ImageLosslessTransform)
 	tRequire( tSystem::tFileExists("WrittenLosslessOK_FH.jpg"));
 
 	trans = tImageJPG::Transform::FlipV;
-	tImageJPG imgJPG_NO_FV("EXIF_XMP/Bebop_2.jpg", params);
+	tImageJPG imgJPG_NO_FV("EXIF_XMP/JPG/Bebop_2_EXIF_XMP.jpg", params);
 	tRequire(imgJPG_NO_FV.IsValid());
 	tRequire(!imgJPG_NO_FV.CanDoPerfectLosslessTransform(trans));
 	ok = imgJPG_NO_FV.LosslessTransform(trans);
