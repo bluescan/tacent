@@ -1515,10 +1515,10 @@ tTestUnit(UTF)
 	char16_t* utf16str = new char16_t[length16+1];
 	tStd::tUTF16s(utf16str, utf8src);
 
-	const char* wfilename16 = "TestData/UTF/WrittenUTF16.txt";
+	const char* wfilename16 = "Data/UTF/WrittenUTF16.txt";
 	tPrintf("Writing UTF-16 string to %s\n", wfilename16);
 	tCreateFile(wfilename16, utf16str, length16, true);
-	const char* rfilename16 = "TestData/UTF/UTF16.txt";
+	const char* rfilename16 = "Data/UTF/UTF16.txt";
 	tRequire(tSystem::tFilesIdentical(wfilename16, rfilename16));
 
 	// Convert UTF-16 back to UTF-8 and write to file.
@@ -1527,10 +1527,10 @@ tTestUnit(UTF)
 	char8_t* utf8str = new char8_t[length8+1];
 	tStd::tUTF8s(utf8str, utf16str);
 
-	const char* wfilename8 = "TestData/UTF/WrittenUTF8.txt";
+	const char* wfilename8 = "Data/UTF/WrittenUTF8.txt";
 	tPrintf("Writing UTF-8 string to %s\n", wfilename8);
 	tCreateFile(wfilename8, utf8str, length8, false);
-	const char* rfilename8 = "TestData/UTF/UTF8.txt";
+	const char* rfilename8 = "Data/UTF/UTF8.txt";
 	tRequire(tSystem::tFilesIdentical(wfilename8, rfilename8));
 
 	// Convert UTF-8 to UTF-32 and write to file.
@@ -1539,10 +1539,10 @@ tTestUnit(UTF)
 	char32_t* utf32str = new char32_t[length32+1];
 	tStd::tUTF32s(utf32str, utf8src);
 
-	const char* wfilename32 = "TestData/UTF/WrittenUTF32.txt";
+	const char* wfilename32 = "Data/UTF/WrittenUTF32.txt";
 	tPrintf("Writing UTF-32 string to %s\n", wfilename32);
 	tCreateFile(wfilename32, utf32str, length32, true);
-	const char* rfilename32 = "TestData/UTF/UTF32.txt";
+	const char* rfilename32 = "Data/UTF/UTF32.txt";
 	tRequire(tSystem::tFilesIdentical(wfilename32, rfilename32));
 
 	delete[] utf8str;
@@ -1558,7 +1558,7 @@ tTestUnit(UTF)
 	testUTF16AndBack.SetUTF16(utf16str);
 	tRequire(testUTF16AndBack == orig16);
 	tPrintf("%s\n", testUTF16AndBack.Chr());
-	const char* wfilename8A = "TestData/UTF/WrittenUTF8_UTF16_UTF8.txt";
+	const char* wfilename8A = "Data/UTF/WrittenUTF8_UTF16_UTF8.txt";
 	tCreateFile(wfilename8A, testUTF16AndBack);
 
 	tString testUTF32AndBack(u8"wΔ𝒞 went from UTF-8 to UTF-32 and back to UTF-8");
@@ -1569,7 +1569,7 @@ tTestUnit(UTF)
 	testUTF16AndBack.SetUTF32(utf32str);
 	tRequire(testUTF32AndBack == orig32);
 	tPrintf("%s\n", testUTF32AndBack.Chr());
-	const char* wfilename8B = "TestData/UTF/WrittenUTF8_UTF32_UTF8.txt";
+	const char* wfilename8B = "Data/UTF/WrittenUTF8_UTF32_UTF8.txt";
 	tCreateFile(wfilename8B, testUTF32AndBack);
 
 	delete[] utf16str;

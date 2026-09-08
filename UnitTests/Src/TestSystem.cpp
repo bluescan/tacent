@@ -520,7 +520,7 @@ tTestUnit(Print)
 
 	tSetDefaultPrecision(4);
 
-	tFileHandle handle = tOpenFile("TestData/Written.log", "wt");
+	tFileHandle handle = tOpenFile("Data/Written.log", "wt");
 	ttfPrintf(handle, "Log: Here is some timestamped log data. Index = %d\n", 42);
 	ttfPrintf(handle, "Warning: And a second log line.\n");
 	tCloseFile(handle);
@@ -656,11 +656,11 @@ tTestUnit(Regex)
 
 tTestUnit(Script)
 {
-	if (!tDirExists("TestData/"))
+	if (!tDirExists("Data/"))
 		tSkipUnit()
 
 	{
-		tExprWriter ws("TestData/WrittenConfig.cfg");
+		tExprWriter ws("Data/WrittenConfig.cfg");
 		ws.Rem("This is a test config file.");
 		ws.CR();
 		ws.Comp("PosX", 10);
@@ -679,7 +679,7 @@ tTestUnit(Script)
 	}
 
 	{
-		tExprReader rs("TestData/WrittenConfig.cfg");
+		tExprReader rs("Data/WrittenConfig.cfg");
 		for (tExpression e = rs.First(); e.Valid(); e = e.Next())
 		{
 			tPrintf("ExpressionString: ___%s___\n", e.GetExpressionString().Pod());
@@ -745,7 +745,7 @@ tTestUnit(Script)
 	}
 
 	{
-		tExprWriter ws("TestData/WrittenScript.txt");
+		tExprWriter ws("Data/WrittenScript.txt");
 
 		ws.WriteComment();
 		ws.WriteComment("A comment!!");
@@ -781,7 +781,7 @@ tTestUnit(Script)
 	int numExceptions = 0;
 	try
 	{
-		tExprReader rs("TestData/TestScript.txt");
+		tExprReader rs("Data/TestScript.txt");
 
 		tExpression arg = rs.Arg0();			// [A [6.8 42 True]]
 
@@ -880,12 +880,12 @@ tTestUnit(Script)
 
 tTestUnit(Chunk)
 {
-	if (!tDirExists("TestData/"))
+	if (!tDirExists("Data/"))
 		tSkipUnit()
 
 	tPrintf("Testing writing a chunk file.\n");
 	{
-		tChunkWriter c("TestData/WrittenChunk.bin");
+		tChunkWriter c("Data/WrittenChunk.bin");
 		c.Begin(0x02424242, 64);
 		c.Write(tString("Does this work?"));
 		c.Write( int8(0x12) );
@@ -902,11 +902,11 @@ tTestUnit(Chunk)
 		c.Write( int64(0x1234567812345678) );
 		c.End();
 	}
-	tRequire(tFileExists("TestData/WrittenChunk.bin"));
+	tRequire(tFileExists("Data/WrittenChunk.bin"));
 
 	tPrintf("Testing reading a chunk file.\n");
 	{
-		tChunkReader c("TestData/WrittenChunk.bin");
+		tChunkReader c("Data/WrittenChunk.bin");
 		tChunk ch = c.GetFirstChunk();
 		while (ch.Valid())
 		{
@@ -920,7 +920,7 @@ tTestUnit(Chunk)
 
 	tPrintf("Another way to read.\n");
 	{
-		tChunkReader c("TestData/WrittenChunk.bin");
+		tChunkReader c("Data/WrittenChunk.bin");
 		for (tChunk ch = c.GetFirstChunk(); ch != ch.GetLastChunk(); ch = ch.GetNextChunk())
 		{
 			tPrintf("Chunk ID %x\n", ch.ID());
@@ -930,8 +930,8 @@ tTestUnit(Chunk)
 
 	tPrintf("Reading but managing the memory myself.\n");
 	{
-		uint8* buffer = (uint8*)tMem::tMalloc(tChunkReader::GetBufferSizeNeeded("TestData/WrittenChunk.bin"), tChunkReader::GetBufferAlignmentNeeded());
-		tChunkReader c("TestData/WrittenChunk.bin", buffer);
+		uint8* buffer = (uint8*)tMem::tMalloc(tChunkReader::GetBufferSizeNeeded("Data/WrittenChunk.bin"), tChunkReader::GetBufferAlignmentNeeded());
+		tChunkReader c("Data/WrittenChunk.bin", buffer);
 
 		for (tChunk ch = c.GetFirstChunk(); ch != ch.GetLastChunk(); ch = ch.GetNextChunk())
 		{
@@ -983,7 +983,7 @@ tTestUnit(FileTypes)
 
 	// Test implicit type conversion of string literal.
 	tList<tStringItem> foundFiles;
-	tSystem::tFindFiles(foundFiles, "TestData/", "bin");
+	tSystem::tFindFiles(foundFiles, "Data/", "bin");
 
 	tExtensions extsAll(FileTypesGlobal, false);
 	tPrintf("All extensions:\n");
@@ -1097,21 +1097,21 @@ tTestUnit(Directories)
 
 tTestUnit(File)
 {
-	if (!tDirExists("TestData/"))
+	if (!tDirExists("Data/"))
 		tSkipUnit()
 
-	tRequire(!tFileExists("TestData/ProbablyDoesntExist.txt"));
+	tRequire(!tFileExists("Data/ProbablyDoesntExist.txt"));
 
 	#ifdef PLATFORM_WINDOWS
-	tSetHidden("TestData/.HiddenFile.txt");
+	tSetHidden("Data/.HiddenFile.txt");
 	#endif
 
 	// This file is now hidden in both Linux and Windows.
-	tRequire(tIsHidden("TestData/.HiddenFile.txt"));
+	tRequire(tIsHidden("Data/.HiddenFile.txt"));
 
 	tList<tFileInfo> dirs;
 	tPrintf("tFindDirs Backend::Stndrd\n");
-	tFindDirs(dirs, "TestData/", true, tSystem::Backend::Stndrd);
+	tFindDirs(dirs, "Data/", true, tSystem::Backend::Stndrd);
 	for (tFileInfo* i = dirs.First(); i; i = i->Next())
 	{
 		std::tm localTime = tConvertTimeToLocal(i->ModificationTime);
@@ -1123,7 +1123,7 @@ tTestUnit(File)
 
 	dirs.Empty();
 	tPrintf("tFindDirs Backend::Native\n");
-	tFindDirs(dirs, "TestData/", true, tSystem::Backend::Native);
+	tFindDirs(dirs, "Data/", true, tSystem::Backend::Native);
 	for (tFileInfo* i = dirs.First(); i; i = i->Next())
 	{
 		std::tm localTime = tConvertTimeToLocal(i->ModificationTime);
@@ -1134,12 +1134,12 @@ tTestUnit(File)
 	}
 
 	tList<tStringItem> filesStd;
-	tFindFiles(filesStd, "TestData/", false, Backend::Stndrd);
+	tFindFiles(filesStd, "Data/", false, Backend::Stndrd);
 	for (tStringItem* file = filesStd.Head(); file; file = file->Next())
 		tPrintf("Found file standard: %s\n", file->Text());
 
 	tList<tStringItem> filesNat;
-	tFindFiles(filesNat, "TestData/", false, Backend::Native);
+	tFindFiles(filesNat, "Data/", false, Backend::Native);
 	for (tStringItem* file = filesNat.Head(); file; file = file->Next())
 		tPrintf("Found file native: %s\n", file->Text());
 
@@ -1156,12 +1156,12 @@ tTestUnit(File)
 	extensions.Add("ZZZ");
 
 	tList<tStringItem> filesMultStd;
-	tFindFiles(filesMultStd, "TestData/", extensions, false, Backend::Stndrd);
+	tFindFiles(filesMultStd, "Data/", extensions, false, Backend::Stndrd);
 	for (tStringItem* file = filesMultStd.Head(); file; file = file->Next())
 		tPrintf("Found file standard (bmp, txt, zzz): %s\n", file->Text());
 
 	tList<tStringItem> filesMultNat;
-	tFindFiles(filesMultNat, "TestData/", extensions, false, Backend::Native);
+	tFindFiles(filesMultNat, "Data/", extensions, false, Backend::Native);
 	for (tStringItem* file = filesMultNat.Head(); file; file = file->Next())
 		tPrintf("Found file native (bmp, txt, zzz): %s\n", file->Text());
 
@@ -1174,27 +1174,27 @@ tTestUnit(File)
 	tRequire(tGetDir(testLinPath) == "/ADir/");
 	
 	tList<tStringItem> subDirs;
-	tFindDirs(subDirs, "TestData/", true);
+	tFindDirs(subDirs, "Data/", true);
 	for (tStringItem* subd = subDirs.Head(); subd; subd = subd->Next())
 		tPrintf("SubDir: %s\n", subd->Text());
 
 	// Create a directory. Create a file in it. Then delete the directory with the file in it.
-	tCreateDir("TestData/CreatedDirectory/");
-	tRequire(tDirExists("TestData/CreatedDirectory/"));
-	tRequire(!tIsReadOnly("TestData/CreatedDirectory/"));
+	tCreateDir("Data/CreatedDirectory/");
+	tRequire(tDirExists("Data/CreatedDirectory/"));
+	tRequire(!tIsReadOnly("Data/CreatedDirectory/"));
 
-	tCreateFile("TestData/CreatedDirectory/CreatedFile.txt", "File Contents");
-	tRequire(tFileExists("TestData/CreatedDirectory/CreatedFile.txt"));
+	tCreateFile("Data/CreatedDirectory/CreatedFile.txt", "File Contents");
+	tRequire(tFileExists("Data/CreatedDirectory/CreatedFile.txt"));
 
-	tDeleteDir("TestData/CreatedDirectory/");
-	tRequire(!tDirExists("TestData/CreatedDirectory/"));
+	tDeleteDir("Data/CreatedDirectory/");
+	tRequire(!tDirExists("Data/CreatedDirectory/"));
 
 	// Create multiple directories in one go.
-	tCreateDirs("TestData/CreatedA/CreatedB/CreatedC/");
-	tRequire(tDirExists("TestData/CreatedA/CreatedB/CreatedC/"));
+	tCreateDirs("Data/CreatedA/CreatedB/CreatedC/");
+	tRequire(tDirExists("Data/CreatedA/CreatedB/CreatedC/"));
 
-	tDeleteDir("TestData/CreatedA/");
-	tRequire(!tDirExists("TestData/CreatedA/"));
+	tDeleteDir("Data/CreatedA/");
+	tRequire(!tDirExists("Data/CreatedA/"));
 
 	tString normalPath = "Q:/Projects/Calamity/Crypto/../../Reign/./Squiggle/";
 	tPrintf("Testing GetSimplifiedPath on '%s'\n", normalPath.Pod());
@@ -1239,15 +1239,15 @@ tTestUnit(File)
 
 tTestUnit(FindRec)
 {
-	if (!tDirExists("TestData/"))
+	if (!tDirExists("Data/"))
 		tSkipUnit()
 
 	#ifdef PLATFORM_WINDOWS
-	tSetHidden("TestData/.HiddenFile.txt");
+	tSetHidden("Data/.HiddenFile.txt");
 	#endif
 
 	// This file is now hidden in both Linux and Windows.
-	tRequire(tIsHidden("TestData/.HiddenFile.txt"));
+	tRequire(tIsHidden("Data/.HiddenFile.txt"));
 
 	tList<tStringItem> filesStd;
 	tList<tStringItem> filesNat;
@@ -1260,24 +1260,24 @@ tTestUnit(FindRec)
 	// as order is not guaranteed. The below tests find files recursively.
 	filesStd.Empty();
 	tPrintf("\nRecursive Find Files. Incl Hidden. All Extensions. Standard Backend.\n");
-	tFindFilesRec(filesStd, "TestData/", true, Backend::Stndrd);
+	tFindFilesRec(filesStd, "Data/", true, Backend::Stndrd);
 	for (tStringItem* file = filesStd.Head(); file; file = file->Next())
 		tPrintf("Found File: %s\n", file->Text());
 	filesNat.Empty();
 	tPrintf("\nRecursive Find Files. Incl Hidden. All Extensions. Native Backend.\n");
-	tFindFilesRec(filesNat, "TestData/", true, Backend::Native);
+	tFindFilesRec(filesNat, "Data/", true, Backend::Native);
 	for (tStringItem* file = filesNat.Head(); file; file = file->Next())
 		tPrintf("Found File: %s\n", file->Text());
 	tRequire(filesStd.NumItems() == filesNat.NumItems());
 
 	filesStd.Empty();
 	tPrintf("\nRecursive Find Files. Incl Hidden. TGA Extensions. Standard Backend.\n");
-	tFindFilesRec(filesStd, "TestData/", "tga", true, Backend::Stndrd);
+	tFindFilesRec(filesStd, "Data/", "tga", true, Backend::Stndrd);
 	for (tStringItem* file = filesStd.Head(); file; file = file->Next())
 		tPrintf("Found File: %s\n", file->Text());
 	filesNat.Empty();
 	tPrintf("\nRecursive Find Files. Incl Hidden. TGA Extensions. Native Backend.\n");
-	tFindFilesRec(filesNat, "TestData/", "tga", true, Backend::Native);
+	tFindFilesRec(filesNat, "Data/", "tga", true, Backend::Native);
 	for (tStringItem* file = filesNat.Head(); file; file = file->Next())
 		tPrintf("Found File: %s\n", file->Text());
 	tRequire(filesStd.NumItems() == filesNat.NumItems());
@@ -1285,12 +1285,12 @@ tTestUnit(FindRec)
 	infosStd.Empty();
 	tPrintf("\nRecursive Find Files (FileInfo). Excl Hidden. TGA and JPG Extensions. Standard Backend.\n");
 	tExtensions exts( tFileTypes(tFileType::TGA, tFileType::JPG, tFileType::EOL) );
-	tFindFilesRec(infosStd, "TestData/", exts, false, Backend::Stndrd);
+	tFindFilesRec(infosStd, "Data/", exts, false, Backend::Stndrd);
 	for (tFileInfo* info = infosStd.Head(); info; info = info->Next())
 		tPrintf("Found File info: %s\n", info->FileName.Chr());
 	infosNat.Empty();
 	tPrintf("\nRecursive Find Files (FileInfo). Excl Hidden. TGA and JPG Extensions. Native Backend.\n");
-	tFindFilesRec(infosNat, "TestData/", exts, false, Backend::Native);
+	tFindFilesRec(infosNat, "Data/", exts, false, Backend::Native);
 	for (tFileInfo* info = infosNat.Head(); info; info = info->Next())
 		tPrintf("Found File info: %s\n", info->FileName.Chr());
 	tRequire(infosStd.NumItems() == infosNat.NumItems());
@@ -1298,24 +1298,24 @@ tTestUnit(FindRec)
 	// Below are tests for finding dirs.
 	dirsStd.Empty();
 	tPrintf("\nRecursive Find Dirs. Incl Hidden. Standard Backend.\n");
-	tFindDirsRec(dirsStd, "TestData/", true, Backend::Stndrd);
+	tFindDirsRec(dirsStd, "Data/", true, Backend::Stndrd);
 	for (tStringItem* dir = dirsStd.Head(); dir; dir = dir->Next())
 		tPrintf("Found Dir: %s\n", dir->Text());
 	dirsNat.Empty();
 	tPrintf("\nRecursive Find Dirs. Incl Hidden. Native Backend.\n");
-	tFindDirsRec(dirsNat, "TestData/", true, Backend::Native);
+	tFindDirsRec(dirsNat, "Data/", true, Backend::Native);
 	for (tStringItem* dir = dirsNat.Head(); dir; dir = dir->Next())
 		tPrintf("Found Dir: %s\n", dir->Text());
 	tRequire(dirsStd.NumItems() == dirsNat.NumItems());
 
 	infosStd.Empty();
 	tPrintf("\nRecursive Find Dirs (FileInfo). Excl Hidden. Standard Backend.\n");
-	tFindDirsRec(infosStd, "TestData/", false, Backend::Stndrd);
+	tFindDirsRec(infosStd, "Data/", false, Backend::Stndrd);
 	for (tFileInfo* info = infosStd.Head(); info; info = info->Next())
 		tPrintf("Found Dir: %s\n", info->FileName.Chr());
 	infosNat.Empty();
 	tPrintf("\nRecursive Find Dirs (FileInfo). Excl Hidden. Native Backend.\n");
-	tFindDirsRec(infosNat, "TestData/", false, Backend::Native);
+	tFindDirsRec(infosNat, "Data/", false, Backend::Native);
 	for (tFileInfo* info = infosNat.Head(); info; info = info->Next())
 		tPrintf("Found Dir: %s\n", info->FileName.Chr());
 	tRequire(infosStd.NumItems() == infosNat.NumItems());

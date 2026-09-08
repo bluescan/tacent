@@ -904,14 +904,14 @@ tTestUnit(ImageRotation)
 
 		tPrintf("Rotated %05.1f Dimensions: W:%d H:%d\n", tMath::tRadToDeg(angle), rotPic.GetWidth(), rotPic.GetHeight());
 		tString writeFile;
-		tsPrintf(writeFile, "TestData/Images/WrittenRightArrow_BilinearResampleRot%03d.tga", int(tMath::tRadToDeg(angle)));
+		tsPrintf(writeFile, "Data/Images/WrittenRightArrow_BilinearResampleRot%03d.tga", int(tMath::tRadToDeg(angle)));
 		int w = rotPic.GetWidth(); int h = rotPic.GetHeight();
 		tImageTGA rottga(rotPic.StealPixels(), w, h, true);
 		rottga.Save(writeFile);
 	}
 
 	tPrintf("Test 'plane' rotation.\n");
-	tImagePNG planepng("TestData/Images/PNG/plane.png");
+	tImagePNG planepng("Data/Images/PNG/plane.png");
 	w = planepng.GetWidth(); h = planepng.GetHeight();
 	tPicture planePic(w, h, planepng.StealPixels8(), false);
 	w = planePic.GetWidth();

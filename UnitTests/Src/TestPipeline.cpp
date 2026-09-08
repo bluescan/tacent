@@ -31,7 +31,7 @@ struct TestRule : public tPipeline::tRule
 
 tTestUnit(Process)
 {
-	if (!tSystem::tDirExists("TestData/"))
+	if (!tSystem::tDirExists("Data/"))
 		tSkipUnit()
 
 	// Currenty tProcess only works on windows.
@@ -42,7 +42,7 @@ tTestUnit(Process)
 	try
 	{
 		// This constructor blocks. It fills in the exitCode if you supply it. Output is appended to the output string.
-		tProcess("cmd.exe dir", "TestData/", output, &exitCode);
+		tProcess("cmd.exe dir", "Data/", output, &exitCode);
 		tPrintf("Output:\n[\n%s\n]\n", output.Pod());
 	}
 	catch (tError error)
@@ -53,7 +53,7 @@ tTestUnit(Process)
 
 	try
 	{
-		tProcess("cmd.exe dir", "TestData/DoesNotExist/", output, &exitCode);
+		tProcess("cmd.exe dir", "Data/DoesNotExist/", output, &exitCode);
 		tPrintf("Output:\n[\n%s\n]\n", output.Pod());
 	}
 	catch (tError error)
@@ -88,11 +88,11 @@ tTestUnit(Rule)
 	tItList<TestRule> localRules(tListMode::UserOwns);
 	TestRule tr(12);
 	localRules.Append(&tr);
-	tSystem::tCreateFile("TestData/WrittenOlderFile.txt", "This is the older file contents.");
+	tSystem::tCreateFile("Data/WrittenOlderFile.txt", "This is the older file contents.");
 	tSystem::tSleep(2000);
-	tSystem::tCreateFile("TestData/WrittenNewerFile.txt", "This is the newer file contents.");
+	tSystem::tCreateFile("Data/WrittenNewerFile.txt", "This is the newer file contents.");
 	tr.SetTarget("WrittenOlderFile.txt");
-	localRules.Head()->AddDep("TestData/WrittenNewerFile.txt");
+	localRules.Head()->AddDep("Data/WrittenNewerFile.txt");
 	tRequire(tr.OutOfDate());
 }
 

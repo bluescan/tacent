@@ -194,16 +194,52 @@ int main(int argc, char** argv)
 	tTest(ImagePVR3);
 
 	// Input tests.
+	tTest(Filter);
 	tTest(GamepadJoysticks);
 	tTest(GamepadButtons);
-
 	#endif
 
 	#else
 
 	// If UNIT_TEST_ONLY_ONE_TEST is defined, this is the test.
+	// Foundation tests.
+	// tTest(Types);
+	// tTest(Array);
+	// tTest(List);
+	// tTest(ListExtra);
+	// tTest(ListSort);
+	// tTest(Map);
+	// tTest(Promise);
+	// tTest(Sort);
+	// tTest(BitArray);
+	// tTest(BitField);
+	// tTest(FixInt);
+	// tTest(String);
+	// tTest(RingBuffer);
+	// tTest(PriorityQueue);
+	// tTest(MemoryPool);
+	// tTest(Hash);
+	tTest(UTF);
+	// tTest(Name);
+	// tTest(SmallFloat);
+
+	// Math tests.
 	// tTest(Fundamentals);
 	// tTest(Interval);
+	// tTest(Spline);
+	// tTest(Random);
+	// tTest(Matrix);
+	// tTest(Quaternion);
+	// tTest(Geometry);
+	// tTest(Colour);
+
+	// System tests.
+	// tTest(CmdLine);
+	// tTest(Task);
+	// tTest(Print);
+	// tTest(Regex);
+	// tTest(Script);
+	// tTest(Chunk);
 	// tTest(FileTypes);
 	// tTest(Directories);
 	// tTest(File);
@@ -211,28 +247,22 @@ int main(int argc, char** argv)
 	// tTest(Network);
 	// tTest(Time);
 	// tTest(Machine);
-	// tTest(CmdLine);
-	// tTest(String);
-	// tTest(List);
-	// tTest(ListExtra);
-	// tTest(ListSort);
-	// tTest(Colour);
-	// tTest(Print);
-	// tTest(Map);
-	// tTest(Promise);
-	// tTest(Script);
+
+	// Pipeline tests.
+	#ifdef PLATFORM_WINDOWS
+	// tTest(Process);
 	// tTest(Rule);
+	#endif
+
+	// Image tests.
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
 	// tTest(ImageLoad);
 	// tTest(ImageSave);
 	// tTest(ImageTexture);
-	// tTest(ImageMultiFrame);
 	// tTest(ImagePicture);
 	// tTest(ImageQuantize);
 	// tTest(ImagePalette);
-	// tTest(ImageFilter);
-	// tTest(ImageGradient);
-	tTest(ImageMetaData);
+	// tTest(ImageMetaData);
 	// tTest(ImageLosslessTransform);
 	// tTest(ImageRotation);
 	// tTest(ImageCrop);
@@ -240,6 +270,9 @@ int main(int argc, char** argv)
 	// tTest(ImageAdjustment);
 	// tTest(ImageDetection);
 	// tTest(ImageMipmap);
+	// tTest(ImageFilter);
+	// tTest(ImageMultiFrame);
+	// tTest(ImageGradient);
 	// tTest(ImagePNG);
 	// tTest(ImageAVIF);
 	// tTest(ImageHEIC);
@@ -250,17 +283,12 @@ int main(int argc, char** argv)
 	// tTest(ImagePKM);
 	// tTest(ImagePVR2);
 	// tTest(ImagePVR3);
-	#endif
-	// tTest(UTF);
-	// tTest(Name);
-	// tTest(Hash);
-	// tTest(BitArray);
-	// tTest(BitField);
-	// tTest(FixInt);
-	// tTest(SmallFloat);
+
+	// Input tests.
 	// tTest(Filter);
 	// tTest(GamepadJoysticks);
 	// tTest(GamepadButtons);
+	#endif
 
 	#endif
 
