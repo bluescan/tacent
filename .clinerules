@@ -38,9 +38,10 @@ check for an existing Recipe_ or Task_ folder before writing new scripts.
 Pull environment specifics (paths, flags, build steps) from the Recipe_
 folders instead of re-deriving them.
 
-You may find it helpful to maintain a build of Tacent. Use a folder called
-Build_Tacent inside ClinePads. Configure it as an out of source build using
-cmake commands with the "install" build target.
+You may find it helpful to maintain a build of Tacent. Use folders called
+Build_Tacent_DescriptionInCamelCase inside ClinePads. Configure it as an out of
+source build using cmake commands with the "install" build target. Ninja and
+CMake are available if you use the Visual Studio x64 Command prompt.
 
 You share the ClinePads folder with other related projects. In particular with
 the TacentView image viewer that uses Tacent as a dependent library.
