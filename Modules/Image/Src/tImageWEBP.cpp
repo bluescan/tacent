@@ -3,7 +3,7 @@
 // This knows how to load/save WebPs. It knows the details of the webp file format and loads the data into multiple
 // tPixel arrays, one for each frame (WebPs may be animated). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020-2024 Tristan Grimmer.
+// Copyright (c) 2020-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -24,6 +24,46 @@
 using namespace tSystem;
 namespace tImage
 {
+
+
+bool tImageWEBP::PopulateMetaData(const uint8* webpFileInMemory, int numBytes)
+{
+	if ((!webpFileInMemory) || (numBytes <= 0))
+		return false;
+
+	// WebP is a RIFF container. EXIF lives in an "EXIF" chunk (a couple of bytes of padding followed by the bare TIFF)
+	// and XMP in an "XMP " chunk (raw XML). Walk the chunk list and hand the bare payloads to tMetaData.
+	bool found = false;
+	if ((numBytes < 12) || (tStd::tMemcmp(webpFileInMemory, "RIFF", 4) != 0) || (tStd::tMemcmp(webpFileInMemory + 8, "WEBP", 4) != 0))
+		return false;
+
+	int offs = 12;
+	while ((offs + 8) <= numBytes)
+	{
+		const uint8* chunk = webpFileInMemory + offs;
+		const int chunkSize = (int)(chunk[4] | (chunk[5] << 8) | (chunk[6] << 16) | (chunk[7] << 24));
+		const uint8* payload = chunk + 8;
+		if ((chunkSize < 0) || ((offs + 8 + chunkSize) > numBytes))
+			// Truncated/malformed chunk; stop scanning.
+			break;
+
+		if (tStd::tMemcmp(chunk, "EXIF", 4) == 0)
+		{
+			// The EXIF chunk is 2 bytes of padding followed by the bare TIFF (WebP RIFF spec); skip the known padding.
+			if (chunkSize >= 2)
+				found |= MetaData.AddEXIF(payload + 2, chunkSize - 2);
+		}
+		else if (tStd::tMemcmp(chunk, "XMP ", 4) == 0)
+		{
+			found |= MetaData.AddXMP(payload, chunkSize);
+		}
+
+		// WebP chunk payloads are padded to an even-size boundary.
+		offs += 8 + chunkSize + (chunkSize & 1);
+	}
+
+	return found;
+}
 
 
 bool tImageWEBP::Load(const tString& webpFile)
@@ -50,6 +90,10 @@ bool tImageWEBP::Load(const uint8* webpFileInMemory, int numBytes)
 	Clear();
 	if ((numBytes <= 0) || !webpFileInMemory)
 		return false;
+
+	// Extract EXIF and XMP metadata from the RIFF chunks. Failing to parse is not a load failure -- the image may
+	// still decode perfectly.
+	PopulateMetaData(webpFileInMemory, numBytes);
 
 	// Now we load and populate the frames.
 	WebPData webpData;

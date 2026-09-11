@@ -3,7 +3,7 @@
 // This knows how to load/save TIFFs. It knows the details of the tiff file format and loads the data into multiple
 // tPixel arrays, one for each frame (in a TIFF thay are called pages). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020-2024 Tristan Grimmer.
+// Copyright (c) 2020-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -19,6 +19,7 @@
 #include <Image/tPixelFormat.h>
 #include <Image/tFrame.h>
 #include <LibTIFF/include/tiffio.h>
+#include <Image/tMetaData.h>
 #include <Image/tBaseImage.h>
 namespace tImage
 {
@@ -30,6 +31,9 @@ public:
 	// Creates an invalid tImageTIFF. You must call Load manually.
 	tImageTIFF()																										{ }
 	tImageTIFF(const tString& tiffFile)																					{ Load(tiffFile); }
+
+	// The data is copied out of tiffFileInMemory. Go ahead and delete[] after if you want.
+	tImageTIFF(const uint8* tiffFileInMemory, int numBytes)																{ Load(tiffFileInMemory, numBytes); }
 
 	// Creates a tImageAPNG from a bunch of frames. If steal is true, the srcFrames will be empty after.
 	tImageTIFF(tList<tFrame>& srcFrames, bool stealFrames)																{ Set(srcFrames, stealFrames); }
@@ -48,9 +52,7 @@ public:
 
 	// Clears the current tImageTIFF before loading. If false returned object is invalid.
 	bool Load(const tString& tiffFile);
-
-	// @todo No current in-memory loader.
-	// bool Load(const uint8* tiffFileInMemory, int numBytes);
+	bool Load(const uint8* tiffFileInMemory, int numBytes);
 
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 
@@ -112,9 +114,14 @@ public:
 	// Returns a pointer to the frame, but it's not yours to delete. This object still owns it.
 	tFrame* GetFrame(int frameNum);
 
+	// A place to store EXIF and XMP metadata. TIFF files often contain this metadata. This field is populated by the
+	// Load calls.
+	tMetaData MetaData;
+
 private:
 	int ReadSoftwarePageDuration(TIFF*) const;
 	bool WriteSoftwarePageDuration(TIFF*, int milliseconds) const;
+	bool PopulateMetaData(TIFF*, const uint8* tiffFileInMemory, int numBytes);
 
 	tList<tFrame> Frames;
 };
@@ -158,6 +165,7 @@ inline void tImageTIFF::Clear()
 	while (tFrame* frame = Frames.Remove())
 		delete frame;
 
+	MetaData.Clear();
 	tBaseImage::Clear();
 }
 

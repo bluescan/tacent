@@ -3,7 +3,7 @@
 // This knows how to load/save WebPs. It knows the details of the webp file format and loads the data into multiple
 // tPixel arrays, one for each frame (WebPs may be animated). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020-2024 Tristan Grimmer.
+// Copyright (c) 2020-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -18,6 +18,7 @@
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
 #include <Image/tFrame.h>
+#include <Image/tMetaData.h>
 #include <Image/tBaseImage.h>
 namespace tImage
 {
@@ -29,6 +30,9 @@ public:
 	// Creates an invalid tImageWEBP. You must call Load manually.
 	tImageWEBP()																										{ }
 	tImageWEBP(const tString& webpFile)																					{ Load(webpFile); }
+
+	// The data is copied out of webpFileInMemory. Go ahead and delete[] after if you want.
+	tImageWEBP(const uint8* webpFileInMemory, int numBytes)																{ Load(webpFileInMemory, numBytes); }
 
 	// Creates a tImageWEBP from a bunch of frames. If steal is true, the srcFrames will be empty after.
 	tImageWEBP(tList<tFrame>& srcFrames, bool stealFrames)																{ Set(srcFrames, stealFrames); }
@@ -104,12 +108,17 @@ public:
 
 	tList<tFrame> Frames;
 
+	// A place to store EXIF and XMP metadata. WebP files may carry this in their "EXIF" and "XMP " RIFF chunks. This
+	// field is populated by the Load calls.
+	tMetaData MetaData;
+
 	// The background colour of webp files defaults to white only because that is what popular browsers default to.
 	// Animated webp files can override this colour. They store a background colour in the file itself.
 	// The Load function above sets this colour every time it is called.
 	tColour4b BackgroundColour = tColour4b::white;
 
 private:
+	bool PopulateMetaData(const uint8* webpFileInMemory, int numBytes);
 	bool CopyRegion(tPixel4b* dst, int dstW, int dstH, tPixel4b* src, int srcW, int srcH, int offsetX, int offsetY, bool blend);
 };
 
@@ -153,6 +162,7 @@ inline void tImageWEBP::Clear()
 		delete frame;
 	BackgroundColour = tColour4b::white;	
 
+	MetaData.Clear();
 	tBaseImage::Clear();
 }
 

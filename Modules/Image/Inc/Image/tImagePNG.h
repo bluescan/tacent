@@ -4,7 +4,7 @@
 // png file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor
 // if a png file is specified. After the array is stolen the tImagePNG is invalid. This is purely for performance.
 //
-// Copyright (c) 2020, 2022-2025 Tristan Grimmer.
+// Copyright (c) 2020, 2022-2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -18,6 +18,7 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tMetaData.h>
 #include <Image/tBaseImage.h>
 namespace tImage
 {
@@ -146,7 +147,14 @@ public:
 	tPixel4b* GetPixels8() const																						{ return Pixels8; }
 	tPixel4s* GetPixels16() const																						{ return Pixels16; }
 
+	// A place to store EXIF and XMP metadata. EXIF may be carried in an "eXIf" chunk, and XMP either in a "xMP "
+	// chunk or in a text chunk (tEXt/iTXt) with the keyword "XML:com.adobe.xmp" -- which is how Adobe and many other
+	// tools store XMP in PNGs. This member is populated by the Load() calls.
+	tMetaData MetaData;
+
 private:
+	bool PopulateMetaData(const uint8* pngFileInMemory, int numBytes);
+	bool ExtractXMPFromTextChunk(const uint8* chunkType, const uint8* payload, int chunkLength);
 	int Width						= 0;
 	int Height						= 0;
 
@@ -167,6 +175,7 @@ inline void tImagePNG::Clear()
 	Pixels8 = nullptr;
 	delete[] Pixels16;
 	Pixels16 = nullptr;
+	MetaData.Clear();
 	tBaseImage::Clear();
 }
 

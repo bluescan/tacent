@@ -16,6 +16,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #include <System/tFile.h>
+#include <Foundation/tStandard.h>
 #include "Image/tImageJPG.h"
 #include "Image/tPicture.h"
 #include "turbojpeg.h"
@@ -418,8 +419,61 @@ bool tImageJPG::LosslessTransform(Transform trans, bool allowImperfect)
 bool tImageJPG::PopulateMetaData(const uint8* jpgFileInMemory, int numBytes)
 {
 	tAssert(jpgFileInMemory && (numBytes > 0));
-	MetaData.Add(jpgFileInMemory, numBytes);
-	return MetaData.IsValid();
+
+	// Walk the JPEG segment table and pull out the APP1 segments. EXIF lives in an APP1 whose payload starts with
+	// "Exif\0\0"; XMP lives in an APP1 whose payload starts with the Adobe namespace "http://ns.adobe.com/xap/1.0/\0".
+	// Strip each APP1's framing and hand the bare EXIF TIFF / raw XMP XML to tMetaData.
+	bool found = false;
+	int offs = 0;
+
+	// Skip the SOI marker (0xFFD8) if present.
+	if ((numBytes > 2) && (jpgFileInMemory[0] == 0xFF) && (jpgFileInMemory[1] == 0xD8))
+		offs = 2;
+
+	while (offs + 4 <= numBytes)
+	{
+		if (jpgFileInMemory[offs] != 0xFF)
+			break; // Not a valid marker; stop scanning.
+
+		const uint8 marker = jpgFileInMemory[offs + 1];
+		// Standalone markers with no payload.
+		if ((marker == 0x01) || (marker == 0xD8) || ((marker >= 0xD0) && (marker <= 0xD9)))
+		{
+			offs += 2;
+			continue;
+		}
+		// Start-of-scan (compressed data follows) / end-of-image: stop scanning.
+		if ((marker == 0xD9) || (marker == 0xDA))
+			break;
+		if (marker == 0xFF)
+			break; // Fill byte; can't reliably continue.
+
+		const int segLen = (jpgFileInMemory[offs + 2] << 8) | jpgFileInMemory[offs + 3];
+		const int segEnd = offs + 2 + segLen; // segLen includes the 2 length bytes.
+		if ((segLen < 2) || (segEnd > numBytes))
+			break; // Truncated/malformed segment; stop scanning.
+
+		if (marker == 0xE1) // APP1
+		{
+			const uint8* payload = jpgFileInMemory + offs + 4;
+			const int payloadLen = segLen - 2;
+
+			// EXIF: payload is "Exif\0\0" followed by the bare TIFF.
+			if ((payloadLen >= 6) && (tStd::tMemcmp(payload, "Exif\0\0", 6) == 0))
+			{
+				found |= MetaData.AddEXIF(payload + 6, payloadLen - 6);
+			}
+			// XMP: payload is the 29-byte Adobe namespace prefix followed by the raw XML.
+			else if ((payloadLen >= 29) && (tStd::tMemcmp(payload, "http://ns.adobe.com/xap/1.0/\0", 29) == 0))
+			{
+				found |= MetaData.AddXMP(payload + 29, payloadLen - 29);
+			}
+		}
+
+		offs = segEnd;
+	}
+
+	return found;
 }
 
 

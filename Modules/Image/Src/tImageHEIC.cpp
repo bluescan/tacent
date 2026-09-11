@@ -185,9 +185,30 @@ bool tImageHEIC::PopulateMetaData(struct heif_image_handle* handle)
 		struct heif_error metaError = heif_image_handle_get_metadata(handle, metaBlockIDs[i], metaBytes);
 		if (metaError.code == heif_error_Ok)
 		{
-			// tMetaData::Add() recognizes the raw "Exif" item payload (a 4-byte offset followed by "Exif\0\0" and TIFF
-			// data) and bare XMP XML, such as the xpacket-wrapped blob found in a "mime" item.
-			found |= MetaData.Add(metaBytes, (int)numBytes);
+			if (isExif)
+			{
+				// "Exif" item layout: [exif_tiff_header_offset: u32][optional "Exif\0\0"][TIFF]. The offset is measured from the
+				// byte just past the 4-byte field (per the EXIF spec), so the TIFF header sits at 4 + off. In practice off is 0
+				// for AVIF and 6 for HEIC (whose item carries an "Exif\0\0" prefix). tMetaData::AddEXIF() wants the bare TIFF, so
+				// hand it metaBytes + (4 + off).
+				uint32 off = (uint32(metaBytes[0]) << 24) | (uint32(metaBytes[1]) << 16) | (uint32(metaBytes[2]) << 8) | uint32(metaBytes[3]);
+				size_t tiffStart = (size_t)4 + (size_t)off;
+				if ((tiffStart + 8) <= numBytes)
+					found |= MetaData.AddEXIF(metaBytes + tiffStart, (int)(numBytes - tiffStart));
+			}
+			else
+			{
+				// XMP item layout: [29-byte "http://ns.adobe.com/xap/1.0/\0" namespace prefix][xpacket]. tMetaData::AddXMP()
+				// wants the raw XML, so strip the namespace prefix when present.
+				const uint8* xmp = metaBytes;
+				size_t xmpBytes = numBytes;
+				if ((xmpBytes > 29) && (tStd::tMemcmp(metaBytes, "http://ns.adobe.com/xap/1.0/\0", 29) == 0))
+				{
+					xmp = metaBytes + 29;
+					xmpBytes = numBytes - 29;
+				}
+				found |= MetaData.AddXMP(xmp, (int)xmpBytes);
+			}
 		}
 		delete[] metaBytes;
 	}

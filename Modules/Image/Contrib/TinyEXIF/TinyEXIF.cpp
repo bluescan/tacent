@@ -31,6 +31,13 @@
   EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+/*
+Tacent Modifications.
+2026_09_10: Wanted parseFromEXIFSegment and parseFromXMPSegment to not require
+            any prolog/header information so they can more easily be called
+			directly. Modifications are surrounded by // Tacent Begin/End
+*/
+
 #include "TinyEXIF.h"
 
 #ifndef TINYEXIF_NO_XMP_SUPPORT
@@ -821,7 +828,23 @@ int EXIFInfo::parseFrom(EXIFStream& stream) {
 			sectionLength = EntryParser::parse16(buf, false);
 			if (sectionLength <= 2 || (buf=stream.GetBuffer(sectionLength-=2)) == NULL)
 				return app1s(PARSE_INVALID_JPEG);
-			switch (int ret=parseFromEXIFSegment(buf, sectionLength)) {
+
+			// Tacent Begin
+			// The JPEG EXIF APP1 payload is "Exif\0\0" followed by the bare TIFF. parseFromEXIFSegment() expects
+			// the buffer to start directly at the TIFF header, so strip the 6-byte JPEG magic before calling it.
+			// Declared without initializers (then assigned) because a switch label below jumps into this scope,
+			// and C++ forbids a jump from bypassing an initializer (C2361).
+			const uint8_t* exifData;
+			unsigned exifLen;
+			exifData = buf;
+			exifLen = sectionLength;
+			if ((sectionLength >= 6) && std::equal(buf, buf + 6, "Exif\0\0"))
+			{
+				exifData += 6;
+				exifLen -= 6;
+			}
+			switch (int ret=parseFromEXIFSegment(exifData, exifLen)) {
+			// Tacent End
 			case PARSE_ABSENT_DATA:
 #ifndef TINYEXIF_NO_XMP_SUPPORT
 				switch (ret=parseFromXMPSegment(buf, sectionLength)) {
@@ -912,25 +935,25 @@ int EXIFInfo::parseFrom(const uint8_t* buf, unsigned len) {
 }
 
 //
+// Tacent Begin
 // Main parsing function for an EXIF segment.
-// Do a sanity check by looking for bytes "Exif\0\0".
-// The marker has to contain at least the TIFF header, otherwise the
-// JM_APP1 data is corrupt. So the minimum length specified here has to be:
-//   6 bytes: "Exif\0\0" string
+// The buffer must be a bare EXIF/TIFF structure: it starts directly at the TIFF header (no "Exif\0\0"
+// JPEG/HEIF magic, no container offset or padding). The caller is responsible for stripping anything that
+// precedes the TIFF header. The marker has to contain at least the TIFF header, otherwise the data is corrupt.
+// So the minimum length specified here has to be:
 //   2 bytes: TIFF header (either "II" or "MM" string)
 //   2 bytes: TIFF magic (short 0x2a00 in Motorola byte order)
 //   4 bytes: Offset to first IFD
 // =========
-//  14 bytes
+//   8 bytes
 //
-// PARAM: 'buf' start of the EXIF TIFF, which must be the bytes "Exif\0\0".
+// PARAM: 'buf' start of the bare EXIF TIFF (the TIFF header: "II" or "MM").
 // PARAM: 'len' length of buffer
 //
 int EXIFInfo::parseFromEXIFSegment(const uint8_t* buf, unsigned len) {
-	unsigned offs = 6; // current offset into buffer
-	if (!buf || len < offs)
-		return PARSE_ABSENT_DATA;
-	if (!std::equal(buf, buf+offs, "Exif\0\0"))
+	unsigned offs = 0; // current offset into buffer
+	if (!buf || len < 8)
+// Tacent End
 		return PARSE_ABSENT_DATA;
 
 	// Now parsing the TIFF header. The first two bytes are either "II" or

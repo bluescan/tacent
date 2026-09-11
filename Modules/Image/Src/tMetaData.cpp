@@ -22,18 +22,6 @@ using namespace tImage;
 using namespace tMath;
 
 
-namespace tMetaDataUtil
-{
-	// Returns true if the buffer appears to be the start of a TIFF/EXIF structure (little or big endian).
-	bool LooksLikeTIFF(const uint8* p, int n)
-	{
-		if (n < 8)
-			return false;
-		return ((p[0] == 0x49) && (p[1] == 0x49) && (p[2] == 0x2A)) || ((p[0] == 0x4D) && (p[1] == 0x4D) && (p[2] == 0x00) && (p[3] == 0x2A));
-	}
-}
-
-
 tMetaData::~tMetaData()
 {
 	Clear();
@@ -240,86 +228,50 @@ const char* tImage::tGetMetaTagDesc(tMetaTag tag)
 }
 
 
-bool tMetaData::Add(const uint8* rawMetaData, int numBytes)
+bool tMetaData::AddEXIF(const uint8* exifSegment, int numBytes)
 {
-	if ((!rawMetaData) || (numBytes <= 0))
+	if ((!exifSegment) || (numBytes <= 0))
 		return false;
 
-	// The EXIF/XMP info parsed from this blob is a temporary object; only the Data array persists. The tags parsed here
-	// are merged into it, overwriting any values set by an earlier Add call.
-	//
-	// Clear the fields first. parseFromEXIFSegment() and parseFromXMPSegmentXML() do not initialize the fields they
-	// don't find, so any tag set from a field that is absent in this blob would otherwise be garbage. With cleared
-	// defaults (0, DBL_MAX, "") the SetTags_* guards correctly skip absent fields.
+	// The parsed EXIF info is a temporary object; only the Data array persists. parseFromEXIFSegment() does not
+	// initialize the fields it doesn't find, so clear() first: with cleared defaults (0, DBL_MAX, "") the SetTags_*
+	// guards correctly skip absent fields.
 	TinyEXIF::EXIFInfo exifInfo;
 	exifInfo.clear();
-	bool parsed = false;
-
-	// A complete JPEG image: let TinyEXIF locate the APP1 EXIF and XMP segments itself.
-	if ((numBytes > 2) && (rawMetaData[0] == 0xFF) && (rawMetaData[1] == 0xD8))
-	{
-		parsed = (exifInfo.parseFrom(rawMetaData, (unsigned)numBytes) == TinyEXIF::PARSE_SUCCESS);
-	}
-	else
-	{
-		// An EXIF segment. Depending on the container, the TIFF data may be prefixed with the "Exif\0\0" magic (a JPEG
-		// APP1 payload), with the "Exif\0\0" magic (a HEIF Exif item), with a 4-byte offset and the "Exif\0\0" magic
-		// (a HEIF Exif item), with a 4-byte offset (a AVIF Exif item), or not at all (bare TIFF data). Rather than
-		// assume a fixed layout, scan the first few bytes for the TIFF header.
-		const uint8* tiff = nullptr;
-		for (int off = 0; (off + 8 <= numBytes) && (!tiff); off++)
-		{
-			if (tMetaDataUtil::LooksLikeTIFF(rawMetaData + off, numBytes - off))
-			{
-				tiff = rawMetaData + off;
-			}
-		}
-
-		if ((tiff) && tMetaDataUtil::LooksLikeTIFF(tiff, numBytes - (int)(tiff - rawMetaData)))
-		{
-			if (tiff == (rawMetaData + 6))
-			{
-				// The "Exif\0\0" magic is already present.
-				parsed = (exifInfo.parseFromEXIFSegment(rawMetaData, (unsigned)numBytes) == TinyEXIF::PARSE_SUCCESS);
-			}
-			else
-			{
-				// Synthesize the leading "Exif\0\0" magic that TinyEXIF expects before the TIFF data.
-				static const char ExifMagic[] = "Exif\0\0";
-				std::vector<uint8> wrapped(6 + (size_t)(numBytes - (int)(tiff - rawMetaData)));
-				memcpy(wrapped.data(), ExifMagic, 6);
-				memcpy(wrapped.data() + 6, tiff, numBytes - (int)(tiff - rawMetaData));
-				parsed = (exifInfo.parseFromEXIFSegment(wrapped.data(), (unsigned)wrapped.size()) == TinyEXIF::PARSE_SUCCESS);
-			}
-		}
-
-		// An XMP segment. Depending on the container, the XMP XML is either prefixed with the Adobe namespace
-		// "http://ns.adobe.com/xap/1.0/\0" (a JPEG APP1 payload) or is bare, xpacket-wrapped XML (a HEIF mime item).
-		if (!parsed)
-		{
-			const uint8* xml = nullptr;
-			static const char XmpNamespacePrefix[] = "http://ns.adobe.com/xap/1.0/\0";
-			const int XmpNamespacePrefixLen = 29;
-			if ((numBytes > XmpNamespacePrefixLen) && (memcmp(rawMetaData, XmpNamespacePrefix, XmpNamespacePrefixLen) == 0))
-				xml = rawMetaData + XmpNamespacePrefixLen;
-			else if ((numBytes > 1) && (rawMetaData[0] == '<'))
-				xml = rawMetaData;
-
-			if (xml)
-				parsed = (exifInfo.parseFromXMPSegmentXML(reinterpret_cast<const char*>(xml), (unsigned)(numBytes - (int)(xml - rawMetaData))) == TinyEXIF::PARSE_SUCCESS);
-		}
-	}
-
-	if (!parsed)
+	if (exifInfo.parseFromEXIFSegment(exifSegment, (unsigned)numBytes) != TinyEXIF::PARSE_SUCCESS)
 		return false;
 
-	// Merge the tags parsed from this blob into the Data array. If the same tag was set by an earlier Add call its
-	// value is overwritten, so later segments in the file win.
+	// Merge the parsed tags into the Data array; a tag set by an earlier AddEXIF/AddXMP call is overwritten (last wins).
+	ApplyParsedEXIFInfo(exifInfo);
+	return true;
+}
+
+
+bool tMetaData::AddXMP(const uint8* xmpXML, int numBytes)
+{
+	if ((!xmpXML) || (numBytes <= 0))
+		return false;
+
+	// The parsed XMP info is a temporary object; only the Data array persists. parseFromXMPSegmentXML() does not
+	// initialize the fields it doesn't find, so clear() first: with cleared defaults (0, DBL_MAX, "") the SetTags_*
+	// guards correctly skip absent fields.
+	TinyEXIF::EXIFInfo exifInfo;
+	exifInfo.clear();
+	if (exifInfo.parseFromXMPSegmentXML(reinterpret_cast<const char*>(xmpXML), (unsigned)numBytes) != TinyEXIF::PARSE_SUCCESS)
+		return false;
+
+	// Merge the parsed tags into the Data array; a tag set by an earlier AddEXIF/AddXMP call is overwritten (last wins).
+	ApplyParsedEXIFInfo(exifInfo);
+	return true;
+}
+
+
+void tMetaData::ApplyParsedEXIFInfo(const TinyEXIF::EXIFInfo& exifInfo)
+{
 	SetTags_CamHardware(exifInfo);
 	SetTags_GeoLocation(exifInfo);
 	SetTags_CamSettings(exifInfo);
 	SetTags_AuthorNotes(exifInfo);
-	return true;
 }
 
 
@@ -530,10 +482,13 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& exifInfo)
 		SetTagValid(int(tMetaTag::MeteringMode)).Set(meterMode);
 
 	uint32 flash = exifInfo.Flash;
-
-	// Flash bit 5. This bit is true if flash NOT present.
-	uint32 flashHardware = ((flash & 0x00000020) >> 5) ? 0 : 1;
-	SetTagValid(int(tMetaTag::FlashHardware)).Set(flashHardware);
+	uint32 flashHardware = 0;
+	if (flash)
+	{
+		// Flash bit 5. This bit is true if flash NOT present.
+		flashHardware = ((flash & 0x00000020) >> 5) ? 0 : 1;
+		SetTagValid(int(tMetaTag::FlashHardware)).Set(flashHardware);
+	}
 
 	if (flashHardware)
 	{

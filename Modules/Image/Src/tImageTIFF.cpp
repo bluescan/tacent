@@ -3,7 +3,7 @@
 // This knows how to load/save TIFFs. It knows the details of the tiff file format and loads the data into multiple
 // tPixel arrays, one for each frame (in a TIFF thay are called pages). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020-2024 Tristan Grimmer.
+// Copyright (c) 2020-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -26,6 +26,97 @@
 using namespace tSystem;
 namespace tImage
 {
+
+
+namespace tTIFF
+{
+	// A TIFF file IS a bare TIFF structure ("II"/"MM" header at byte 0). To decode one from a memory buffer (instead of a
+	// file on disk) we drive LibTIFF through TIFFClientOpen with these file-IO callbacks. The clientData handle is a
+	// pointer to this small context, which tracks the buffer and the current read position.
+	struct TiffMemClient
+	{
+		const uint8*	Data;
+		int				Size;
+		toff_t			Pos;
+	};
+
+	tmsize_t TiffMemRead(thandle_t clientData, void* buf, tmsize_t size);
+	toff_t TiffMemSeek(thandle_t clientData, toff_t off, int whence);
+	toff_t TiffMemSize(thandle_t clientData);
+	int TiffMemClose(thandle_t);
+}
+
+
+tmsize_t tTIFF::TiffMemRead(thandle_t clientData, void* buf, tmsize_t size)
+{
+	TiffMemClient* c = (TiffMemClient*)clientData;
+	if (!c || !c->Data)
+		return 0;
+
+	toff_t avail = (((toff_t)c->Size) > c->Pos) ? (((toff_t)c->Size) - c->Pos) : 0;
+	if ((toff_t)size > avail)
+		size = (tmsize_t)avail;
+	if (size <= 0)
+		return 0;
+
+	tStd::tMemcpy(buf, c->Data + c->Pos, (int)size);
+	c->Pos += (toff_t)size;
+	return size;
+}
+
+
+toff_t tTIFF::TiffMemSeek(thandle_t clientData, toff_t off, int whence)
+{
+	TiffMemClient* c = (TiffMemClient*)clientData;
+	if (!c)
+		return 0;
+
+	toff_t newPos = c->Pos;
+	if (whence == SEEK_SET)
+		newPos = off;
+	else if (whence == SEEK_CUR)
+		newPos = c->Pos + off;
+	else if (whence == SEEK_END)
+		newPos = ((toff_t)c->Size) + off;
+	c->Pos = newPos;
+	return newPos;
+}
+
+
+toff_t tTIFF::TiffMemSize(thandle_t clientData)
+{
+	TiffMemClient* c = (TiffMemClient*)clientData;
+	return c ? (toff_t)c->Size : 0;
+}
+
+
+int tTIFF::TiffMemClose(thandle_t)
+{
+	// Nothing to release here -- the caller still owns the buffer and it stays valid until after TIFFClose.
+	return 0;
+}
+
+
+bool tImageTIFF::PopulateMetaData(TIFF* tiff, const uint8* tiffFileInMemory, int numBytes)
+{
+	bool found = false;
+
+	// EXIF: a TIFF file IS a bare TIFF structure (the "II"/"MM" header at byte 0), so hand the raw bytes to AddEXIF.
+	// Using the in-memory buffer means we never load the file a second time just to extract the metadata.
+	if (tiffFileInMemory && (numBytes > 0))
+		found |= MetaData.AddEXIF(tiffFileInMemory, numBytes);
+
+	// XMP: TIFF stores XMP in the XMLPacket (0x8649) field as a string.
+	if (tiff)
+	{
+		tmsize_t xmlCount = 0;
+		char* xmlData = nullptr;
+		if (TIFFGetField(tiff, TIFFTAG_XMLPACKET, &xmlCount, &xmlData) && xmlData && (xmlCount > 0))
+			found |= MetaData.AddXMP(reinterpret_cast<const uint8*>(xmlData), (int)xmlCount);
+	}
+
+	return found;
+}
 
 
 int tImageTIFF::ReadSoftwarePageDuration(TIFF* tiff) const
@@ -74,9 +165,46 @@ bool tImageTIFF::Load(const tString& tiffFile)
 	if (!tFileExists(tiffFile))
 		return false;
 
-	TIFF* tiff = TIFFOpen(tiffFile.Chr(), "rb");
+	int numBytes = 0;
+	uint8* tiffFileInMemory = tLoadFile(tiffFile, nullptr, &numBytes);
+	if (!tiffFileInMemory)
+		return false;
+
+	bool success = Load(tiffFileInMemory, numBytes);
+	delete[] tiffFileInMemory;
+
+	return success;
+}
+
+
+bool tImageTIFF::Load(const uint8* tiffFileInMemory, int numBytes)
+{
+	Clear();
+	if ((numBytes <= 0) || !tiffFileInMemory)
+		return false;
+
+	// A TIFF file IS a bare TIFF structure ("II"/"MM" header at byte 0), so we decode it straight from this in-memory
+	// buffer using LibTIFF's client-open -- no file handle and no second load of the file for the metadata.
+	tTIFF::TiffMemClient client;
+	client.Data = tiffFileInMemory;
+	client.Size = numBytes;
+	client.Pos = 0;
+	TIFF* tiff = TIFFClientOpen
+	(
+		"tiffMem", "rb",
+		(thandle_t)&client,
+		tTIFF::TiffMemRead, tTIFF::TiffMemRead,			// Read and (unused) write.
+		tTIFF::TiffMemSeek, tTIFF::TiffMemClose,
+		tTIFF::TiffMemSize,
+		nullptr, nullptr
+	);
+	
+	// No file mapping.
 	if (!tiff)
 		return false;
+
+	// Extract EXIF and XMP metadata. Failing to parse is not a load failure -- the image may still decode perfectly.
+	PopulateMetaData(tiff, tiffFileInMemory, numBytes);
 
 	// Create all frames.
 	tPixelFormat srcFormat = tPixelFormat::R8G8B8A8;
@@ -113,7 +241,8 @@ bool tImageTIFF::Load(const tString& tiffFile)
 
 		_TIFFfree(pixels);
 		Frames.Append(frame);
-	} while (TIFFReadDirectory(tiff));
+	}
+	while (TIFFReadDirectory(tiff));
 
 	TIFFClose(tiff);
 	if (Frames.GetNumItems() == 0)

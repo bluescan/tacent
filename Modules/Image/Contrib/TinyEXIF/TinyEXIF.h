@@ -31,6 +31,13 @@
   EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+/*
+Tacent Modifications.
+2026_09_10: Wanted parseFromEXIFSegment and parseFromXMPSegment to not require
+            any prolog/header information so they can more easily be called
+			directly. Modifications are surrounded by // Tacent Begin/End
+*/
+
 #ifndef __TINYEXIF_H__
 #define __TINYEXIF_H__
 
@@ -115,9 +122,12 @@ public:
 	int parseFrom(std::istream& stream); // NB: the stream must have been opened in binary mode
 	int parseFrom(const uint8_t* data, unsigned length);
 
+	// Tacent Begin
 	// Parsing function for an EXIF segment. This is used internally by parseFrom()
-	// but can be called for special cases where only the EXIF section is 
-	// available (i.e., a blob starting with the bytes "Exif\0\0").
+	// but can be called for special cases where only the EXIF section is available.
+	// The buffer must be a bare EXIF/TIFF structure (starting at the TIFF header, "II" or "MM"); any container
+	// framing (a JPEG "Exif\0\0" magic, a HEIF/AVIF 4-byte offset, ...) must be stripped by the caller first.
+	// Tacent End
 	int parseFromEXIFSegment(const uint8_t* buf, unsigned len);
 
 #ifndef TINYEXIF_NO_XMP_SUPPORT
