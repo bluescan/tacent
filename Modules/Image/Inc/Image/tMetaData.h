@@ -15,6 +15,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tList.h>
 #include <Foundation/tString.h>
 #include <System/tChunk.h>
 namespace TinyEXIF { class EXIFInfo; }
@@ -189,10 +190,17 @@ public:
 
 	// Describes one raw metadata segment found inside a container file: a pointer to the segment's bytes and their
 	// length. Callers collect these while walking their container and hand them to AddSegments().
-	struct tMetaSegment
+	//
+	// Segments live on a tList<tMetaSegment>. The list may own the segment objects (its default mode) but it never
+	// owns the Data bytes themselves; freeing those stays the caller's responsibility.
+	struct tMetaSegment : public tLink<tMetaSegment>
 	{
-		const uint8* Data;
-		int NumBytes;
+		tMetaSegment()																									: SegData(nullptr), SegNumBytes(0), UserData(nullptr) { }
+		tMetaSegment(const uint8* segData, int segNumBytes, const uint8* userData = nullptr)							: SegData(segData), SegNumBytes(segNumBytes), UserData(userData) { }
+
+		const uint8* SegData;
+		int SegNumBytes;
+		const uint8* UserData; 		// To be used however the client wants. Not managed owned by this struct.
 	};
 
 	// Adds meta-data from all the EXIF and XMP segments found in a file, in a single call. AddEXIF() and AddXMP()
@@ -200,11 +208,10 @@ public:
 	// applied first (and therefore wins); to make XMP win instead, simply swap the two loops below. This priority
 	// is independent of the order the segments appear in the file.
 	//
-	// 'numExif'/'numXmp' may be 0 (and the corresponding pointer null). Segments with null Data or NumBytes <= 0
-	// are skipped.
+	// The lists may be empty. Segments with null Data or NumBytes <= 0 are skipped.
 	//
 	// Returns true if at least one segment was parsed successfully.
-	bool AddSegments(const tMetaSegment* exifSegments, int numExif, const tMetaSegment* xmpSegments, int numXmp);
+	bool AddSegments(tList<tMetaSegment>& exifSegments, tList<tMetaSegment>& xmpSegments);
 
 	bool IsValid() const																								{ return NumTagsValid > 0; }
 	int GetNumValidTags() const																							{ return NumTagsValid; }

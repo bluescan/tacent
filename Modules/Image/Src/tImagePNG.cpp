@@ -912,8 +912,7 @@ bool tImagePNG::PopulateMetaData(const uint8* pngFileInMemory, int numBytes)
 	// chunk (a couple of bytes of padding followed by the bare TIFF), and XMP in an "xMP " chunk (raw XML) or, very
 	// frequently, in a text chunk under the keyword "XML:com.adobe.xmp". Walk the chunks, collect the bare payloads,
 	// and hand them to tMetaData in one call (which applies EXIF before XMP, so EXIF wins overlaps).
-	tMetaData::tMetaSegment exifSegments[8], xmpSegments[8];
-	int numExif = 0, numXmp = 0;
+	tList<tMetaData::tMetaSegment> exifSegments, xmpSegments;
 	const uint8 pngSignature[8] = { 0x89, 'P', 'N', 'G', 0x0D, 0x0A, 0x1A, 0x0A };
 	if ((numBytes < 12) || (tStd::tMemcmp(pngFileInMemory, pngSignature, 8) != 0))
 		return false;
@@ -930,22 +929,12 @@ bool tImagePNG::PopulateMetaData(const uint8* pngFileInMemory, int numBytes)
 		if (tStd::tMemcmp(chunk + 4, "eXIf", 4) == 0)
 		{
 			// The eXIf chunk is 2 bytes of padding followed by the bare TIFF (PNG eXIf spec); skip the known padding.
-			if ((chunkLength >= 2) && (numExif < tNumElements(exifSegments)))
-			{
-				exifSegments[numExif].Data = payload + 2;
-				exifSegments[numExif].NumBytes = chunkLength - 2;
-				numExif++;
-			}
+			if (chunkLength >= 2)
+				exifSegments.Append(new tMetaData::tMetaSegment(payload + 2, chunkLength - 2));
 		}
-		else if
-		(
-			(tStd::tMemcmp(chunk + 4, "xMP ", 4) == 0) &&
-			(numXmp < tNumElements(xmpSegments))
-		)
+		else if (tStd::tMemcmp(chunk + 4, "xMP ", 4) == 0)
 		{
-			xmpSegments[numXmp].Data = payload;
-			xmpSegments[numXmp].NumBytes = chunkLength;
-			numXmp++;
+			xmpSegments.Append(new tMetaData::tMetaSegment(payload, chunkLength));
 		}
 		else if
 		(
@@ -958,19 +947,15 @@ bool tImagePNG::PopulateMetaData(const uint8* pngFileInMemory, int numBytes)
 			// many other tools). Extract it if this chunk carries it.
 			const uint8* xmpData;
 			int xmpLength;
-			if ((numXmp < tNumElements(xmpSegments)) && ExtractXMPFromTextChunk(chunk + 4, payload, chunkLength, &xmpData, &xmpLength))
-			{
-				xmpSegments[numXmp].Data = xmpData;
-				xmpSegments[numXmp].NumBytes = xmpLength;
-				numXmp++;
-			}
+			if (ExtractXMPFromTextChunk(chunk + 4, payload, chunkLength, &xmpData, &xmpLength))
+				xmpSegments.Append(new tMetaData::tMetaSegment(xmpData, xmpLength));
 		}
 
 		// Advance past length(4) + type(4) + payload + crc(4).
 		offs += 12 + chunkLength;
 	}
 
-	return MetaData.AddSegments(numExif ? exifSegments : nullptr, numExif, numXmp ? xmpSegments : nullptr, numXmp);
+	return MetaData.AddSegments(exifSegments, xmpSegments);
 }
 
 

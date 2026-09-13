@@ -52,8 +52,9 @@ bool tImageAVIF::Load(const uint8* avifFileInMemory, int numBytes)
 	if (!ctx)
 		return false;
 
-	// Read the HEIF file
-	struct heif_error error = heif_context_read_from_memory(ctx, avifFileInMemory, numBytes, nullptr);
+	// Read the HEIF file. The _without_copy variant parses directly from the caller's buffer (avoiding a whole-file
+	// copy) -- valid here because the buffer is guaranteed to outlive the context (freed after Load() returns).
+	struct heif_error error = heif_context_read_from_memory_without_copy(ctx, avifFileInMemory, numBytes, nullptr);
 	if (error.code != heif_error_Ok)
 	{
 		heif_context_free(ctx);
@@ -162,12 +163,11 @@ bool tImageAVIF::PopulateMetaData(struct heif_image_handle* handle)
 	heif_item_id* metaBlockIDs = new heif_item_id[numMetaBlocks];
 	int numIDs = heif_image_handle_get_list_of_metadata_block_IDs(handle, nullptr, metaBlockIDs, numMetaBlocks);
 
-	// Collect the bare EXIF TIFF / raw XMP XML segments here; the per-block buffers are freed after the single
-	// AddSegments() call below.
-	tMetaData::tMetaSegment exifSegments[8], xmpSegments[8];
-	int numExif = 0, numXmp = 0;
-	uint8* buffers[16] = { };
-	int numBuffers = 0;
+	// Collect the bare EXIF TIFF / raw XMP XML segments here. Each segment's SegData points directly into the
+	// per-block buffer filled by libheif (no copy), and that buffer is recorded as the segment's UserData (the
+	// owner), so after the single AddSegments() call below we simply walk the two lists and delete[] each UserData.
+	// The lists own the segment objects but not the bytes.
+	tList<tMetaData::tMetaSegment> exifSegments, xmpSegments;
 	for (int i = 0; i < numIDs; i++)
 	{
 		const char* itemType = heif_image_handle_get_metadata_type(handle, metaBlockIDs[i]);
@@ -187,9 +187,10 @@ bool tImageAVIF::PopulateMetaData(struct heif_image_handle* handle)
 
 		uint8* metaBytes = new uint8[numBytes];
 		struct heif_error metaError = heif_image_handle_get_metadata(handle, metaBlockIDs[i], metaBytes);
+		const uint8* segmentData = nullptr;
+		size_t segmentNumBytes = 0;
 		if (metaError.code == heif_error_Ok)
 		{
-			tMetaData::tMetaSegment segment;
 			if (isExif)
 			{
 				// "Exif" item layout: [exif_tiff_header_offset: u32][optional "Exif\0\0"][TIFF]. The offset is measured from the
@@ -199,57 +200,45 @@ bool tImageAVIF::PopulateMetaData(struct heif_image_handle* handle)
 				size_t tiffStart = (size_t)4 + (size_t)off;
 				if ((tiffStart + 8) <= numBytes)
 				{
-					segment.Data = metaBytes + tiffStart;
-					segment.NumBytes = (int)(numBytes - tiffStart);
+					segmentData = metaBytes + tiffStart;
+					segmentNumBytes = numBytes - tiffStart;
 				}
-				else
-					segment.NumBytes = 0;
 			}
 			else
 			{
 				// XMP item layout: [29-byte "http://ns.adobe.com/xap/1.0/\0" namespace prefix][xpacket]. tMetaData wants the
 				// raw XML, so strip the namespace prefix when present.
-				segment.Data = metaBytes;
-				segment.NumBytes = (int)numBytes;
-				if ((segment.NumBytes > 29) && (tStd::tMemcmp(metaBytes, "http://ns.adobe.com/xap/1.0/\0", 29) == 0))
+				segmentData = metaBytes;
+				segmentNumBytes = numBytes;
+				if ((segmentNumBytes > 29) && (tStd::tMemcmp(metaBytes, "http://ns.adobe.com/xap/1.0/\0", 29) == 0))
 				{
-					segment.Data = metaBytes + 29;
-					segment.NumBytes = (int)numBytes - 29;
-				}
-			}
-			if (segment.NumBytes > 0)
-			{
-				if (isExif)
-				{
-					if ((numExif < tNumElements(exifSegments)) && (numBuffers < tNumElements(buffers)))
-					{
-						exifSegments[numExif++] = segment;
-						buffers[numBuffers++] = metaBytes;
-						metaBytes = nullptr; // Ownership moved to the buffers[] list.
-					}
-				}
-				else
-				{
-					if ((numXmp < tNumElements(xmpSegments)) && (numBuffers < tNumElements(buffers)))
-					{
-						xmpSegments[numXmp++] = segment;
-						buffers[numBuffers++] = metaBytes;
-						metaBytes = nullptr; // Ownership moved to the buffers[] list.
-					}
+					segmentData += 29;
+					segmentNumBytes -= 29;
 				}
 			}
 		}
-		if (metaBytes)
+		if (segmentNumBytes > 0)
+		{
+			// No copy is needed: the segment's SegData points directly into the metaBytes buffer, and the same
+			// buffer is recorded as the segment's UserData (the owner) so it can be freed after AddSegments() below.
+			(isExif ? exifSegments : xmpSegments).Append(new tMetaData::tMetaSegment(segmentData, (int)segmentNumBytes, metaBytes));
+		}
+		else
+		{
+			// No segment takes ownership of the buffer -- free it now.
 			delete[] metaBytes;
+		}
 	}
 
 	delete[] metaBlockIDs;
 
 	// Hand all collected segments to tMetaData in one call (which applies EXIF before XMP, so EXIF wins overlaps),
-	// then free the per-block buffers (the segment pointers dangle only for this call).
-	bool found = MetaData.AddSegments(numExif ? exifSegments : nullptr, numExif, numXmp ? xmpSegments : nullptr, numXmp);
-	for (int b = 0; b < numBuffers; b++)
-		delete[] buffers[b];
+	// then free the underlying per-block buffers via the segment UserDatas (the segment objects are owned by the lists).
+	bool found = MetaData.AddSegments(exifSegments, xmpSegments);
+	for (tMetaData::tMetaSegment* s = exifSegments.First(); s; s = s->Next())
+		delete[] s->UserData;
+	for (tMetaData::tMetaSegment* s = xmpSegments.First(); s; s = s->Next())
+		delete[] s->UserData;
 	return found;
 
 #else
@@ -276,7 +265,7 @@ bool tImageAVIF::Set(tPixel4b* pixels, int width, int height, bool steal)
 	else
 	{
 		Pixels = new tPixel4b[Width * Height];
-		memcpy(Pixels, pixels, Width * Height * sizeof(tPixel4b));
+		tStd::tMemcpy(Pixels, pixels, Width * Height * sizeof(tPixel4b));
 	}
 
 	return true;

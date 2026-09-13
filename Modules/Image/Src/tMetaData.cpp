@@ -234,16 +234,16 @@ const char* tImage::tGetMetaTagDesc(tMetaTag tag)
 }
 
 
-bool tMetaData::AddSegments(const tMetaSegment* exifSegments, int numExif, const tMetaSegment* xmpSegments, int numXmp)
+bool tMetaData::AddSegments(tList<tMetaSegment>& exifSegments, tList<tMetaSegment>& xmpSegments)
 {
 	bool found = false;
 	
 	// EXIF first: where the same tag appears in both, the EXIF value wins. XMP (applied below) only fills in tags
 	// that are not already set, so it can introduce new tags but never replace EXIF ones.
-	for (int i = 0; i < numExif; i++)
-		found |= AddEXIF(exifSegments[i].Data, exifSegments[i].NumBytes);
-	for (int i = 0; i < numXmp; i++)
-		found |= AddXMP(xmpSegments[i].Data, xmpSegments[i].NumBytes);
+	for (tMetaSegment* exif = exifSegments.First(); exif; exif = exif->Next())
+		found |= AddEXIF(exif->SegData, exif->SegNumBytes);
+	for (tMetaSegment* xmp = xmpSegments.First(); xmp; xmp = xmp->Next())
+		found |= AddXMP(xmp->SegData, xmp->SegNumBytes);
 	return found;
 }
 

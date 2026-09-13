@@ -99,17 +99,12 @@ int tTIFF::TiffMemClose(thandle_t)
 
 bool tImageTIFF::PopulateMetaData(TIFF* tiff, const uint8* tiffFileInMemory, int numBytes)
 {
-	tMetaData::tMetaSegment exifSegment, xmpSegment;
-	int numExif = 0, numXmp = 0;
+	tList<tMetaData::tMetaSegment> exifSegments, xmpSegments;
 
 	// EXIF: a TIFF file IS a bare TIFF structure (the "II"/"MM" header at byte 0). Using the in-memory buffer means
 	// we never load the file a second time just to extract the metadata.
 	if (tiffFileInMemory && (numBytes > 0))
-	{
-		exifSegment.Data = tiffFileInMemory;
-		exifSegment.NumBytes = numBytes;
-		numExif = 1;
-	}
+		exifSegments.Append(new tMetaData::tMetaSegment(tiffFileInMemory, numBytes));
 
 	// XMP: TIFF stores XMP in the XMLPacket (0x8649) field as a string.
 	if (tiff)
@@ -117,15 +112,11 @@ bool tImageTIFF::PopulateMetaData(TIFF* tiff, const uint8* tiffFileInMemory, int
 		tmsize_t xmlCount = 0;
 		char* xmlData = nullptr;
 		if (TIFFGetField(tiff, TIFFTAG_XMLPACKET, &xmlCount, &xmlData) && xmlData && (xmlCount > 0))
-		{
-			xmpSegment.Data = reinterpret_cast<const uint8*>(xmlData);
-			xmpSegment.NumBytes = (int)xmlCount;
-			numXmp = 1;
-		}
+			xmpSegments.Append(new tMetaData::tMetaSegment(reinterpret_cast<const uint8*>(xmlData), (int)xmlCount));
 	}
 
 	// Hand both segments to tMetaData in one call (which applies EXIF first, so EXIF wins overlaps).
-	return MetaData.AddSegments(numExif ? &exifSegment : nullptr, numExif, numXmp ? &xmpSegment : nullptr, numXmp);
+	return MetaData.AddSegments(exifSegments, xmpSegments);
 }
 
 

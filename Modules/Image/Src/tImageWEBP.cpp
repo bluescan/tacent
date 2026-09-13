@@ -34,8 +34,7 @@ bool tImageWEBP::PopulateMetaData(const uint8* webpFileInMemory, int numBytes)
 	// WebP is a RIFF container. EXIF lives in an "EXIF" chunk (a couple of bytes of padding followed by the bare TIFF)
 	// and XMP in an "XMP " chunk (raw XML). Walk the chunk list, collect the bare payloads, and hand them to
 	// tMetaData in one call (which applies EXIF before XMP, so EXIF wins overlaps).
-	tMetaData::tMetaSegment exifSegments[8], xmpSegments[8];
-	int numExif = 0, numXmp = 0;
+	tList<tMetaData::tMetaSegment> exifSegments, xmpSegments;
 	if ((numBytes < 12) || (tStd::tMemcmp(webpFileInMemory, "RIFF", 4) != 0) || (tStd::tMemcmp(webpFileInMemory + 8, "WEBP", 4) != 0))
 		return false;
 
@@ -52,25 +51,19 @@ bool tImageWEBP::PopulateMetaData(const uint8* webpFileInMemory, int numBytes)
 		if (tStd::tMemcmp(chunk, "EXIF", 4) == 0)
 		{
 			// The EXIF chunk is 2 bytes of padding followed by the bare TIFF (WebP RIFF spec); skip the known padding.
-			if ((chunkSize >= 2) && (numExif < tNumElements(exifSegments)))
-			{
-				exifSegments[numExif].Data = payload + 2;
-				exifSegments[numExif].NumBytes = chunkSize - 2;
-				numExif++;
-			}
+			if (chunkSize >= 2)
+				exifSegments.Append(new tMetaData::tMetaSegment(payload + 2, chunkSize - 2));
 		}
-		else if ((tStd::tMemcmp(chunk, "XMP ", 4) == 0) && (numXmp < tNumElements(xmpSegments)))
+		else if (tStd::tMemcmp(chunk, "XMP ", 4) == 0)
 		{
-			xmpSegments[numXmp].Data = payload;
-			xmpSegments[numXmp].NumBytes = chunkSize;
-			numXmp++;
+			xmpSegments.Append(new tMetaData::tMetaSegment(payload, chunkSize));
 		}
 
 		// WebP chunk payloads are padded to an even-size boundary.
 		offs += 8 + chunkSize + (chunkSize & 1);
 	}
 
-	return MetaData.AddSegments(numExif ? exifSegments : nullptr, numExif, numXmp ? xmpSegments : nullptr, numXmp);
+	return MetaData.AddSegments(exifSegments, xmpSegments);
 }
 
 
