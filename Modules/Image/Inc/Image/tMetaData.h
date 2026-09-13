@@ -138,6 +138,11 @@ enum class tMetaTag
 	Description,	//	string	Image description.
 	Copyright,		//	string	Copyright notice.
 
+	// Add new tags here, at the bottom, so that saved meta-data is not invalidated. Once these accumulate the version,
+	// stored in a version chunk, can be incremented and we can add a version check to the loading code. This will allow
+	// the new tags to be added above to the correct section.
+	LensModel,		//	string	Lens model. eg. "Nikon AF-S NIKKOR 24-70mm f/2.8E ED VR".
+
 	NumTags
 };
 
@@ -182,28 +187,24 @@ public:
 	void Clear();
 	bool Set(const tMetaData& src);
 
-	// Adds meta-data parsed from a single raw EXIF segment. Existing meta-data is preserved and the new fields are
-	// merged into it, so that an EXIF segment and an XMP segment can be added separately. If the same tag appears in
-	// more than one segment, the value from the last one added wins.
-	//
-	// 'exifSegment' must be a bare EXIF/TIFF structure: the buffer starts directly at the TIFF header ("II" or "MM").
-	// The container framing the caller owns (a JPEG APP1 "Exif\0\0" magic, a HEIF/AVIF 4-byte offset, a WebP/PNG
-	// 2-byte padding, ...) must have been stripped before calling; the container knows its own framing.
-	// 'numBytes' is the size of the bare TIFF data.
-	//
-	// Returns true if the segment was parsed successfully.
-	bool AddEXIF(const uint8* exifSegment, int numBytes);
+	// Describes one raw metadata segment found inside a container file: a pointer to the segment's bytes and their
+	// length. Callers collect these while walking their container and hand them to AddSegments().
+	struct tMetaSegment
+	{
+		const uint8* Data;
+		int NumBytes;
+	};
 
-	// Adds meta-data parsed from a single raw XMP segment. Existing meta-data is preserved and the new fields are
-	// merged into it, so that an EXIF segment and an XMP segment can be added separately. If the same tag appears in
-	// more than one segment, the value from the last one added wins.
+	// Adds meta-data from all the EXIF and XMP segments found in a file, in a single call. AddEXIF() and AddXMP()
+	// both apply their tags set-if-not-set, so the value that ends up in a tag is the one applied first. EXIF is
+	// applied first (and therefore wins); to make XMP win instead, simply swap the two loops below. This priority
+	// is independent of the order the segments appear in the file.
 	//
-	// 'xmpXML' must be raw XMP XML (the x:xmpmeta / rdf:RDF / rdf:Description structure). The container framing the
-	// caller owns (a JPEG APP1 "http://ns.adobe.com/xap/1.0/\0" prefix, ...) must have been stripped before calling.
-	// 'numBytes' is the size of the raw XML.
+	// 'numExif'/'numXmp' may be 0 (and the corresponding pointer null). Segments with null Data or NumBytes <= 0
+	// are skipped.
 	//
-	// Returns true if the segment was parsed successfully.
-	bool AddXMP(const uint8* xmpXML, int numBytes);
+	// Returns true if at least one segment was parsed successfully.
+	bool AddSegments(const tMetaSegment* exifSegments, int numExif, const tMetaSegment* xmpSegments, int numXmp);
 
 	bool IsValid() const																								{ return NumTagsValid > 0; }
 	int GetNumValidTags() const																							{ return NumTagsValid; }
@@ -233,13 +234,26 @@ private:
 	int NumTagsValid;
 	tMetaDatum Data[int(tMetaTag::NumTags)];
 
-	// Returns a reference to the datum for a tag index. If the tag was not already valid it is counted in NumTagsValid. 
-	// This lets multiple AddEXIF/AddXMP calls set the same tag (the last one wins) without double-counting it.
-	tMetaDatum& SetTagValid(int tag);
+	// Parses and merges one raw EXIF segment into the Data array, only setting tags that are not already set. The segment must
+	// be a bare EXIF/TIFF structure (the buffer starts directly at the "II"/"MM" header); the container framing
+	// (a JPEG APP1 "Exif\0\0" magic, a HEIF/AVIF 4-byte offset, a WebP/PNG 2-byte padding, ...) is the caller's
+	// responsibility. Private: callers must go through AddSegments().
+	bool AddEXIF(const uint8* exifSegment, int numBytes);
 
-	// Applies the parsed EXIF info to the Data array by running all the SetTags_* mappers in turn. Shared by
+	// Parses and merges one raw XMP segment (the raw x:xmpmeta / rdf:RDF / rdf:Description XML, container framing
+	// stripped by the caller) into the Data array. Like AddEXIF it is set-if-not-set: it only fills tags that are
+	// not already set, and never replaces them. Private: callers must go through AddSegments().
+	bool AddXMP(const uint8* xmpXML, int numBytes);
+
+	// If the tag is currently unset/invalid, these functions set the tag to value (making the tag valid), increment
+	// NumTagsValid, and return true. If the tag is already set/valid, these functions do nothing and return false.
+	bool SetTag(tMetaTag tag, uint32 value);
+	bool SetTag(tMetaTag tag, float value);
+	bool SetTag(tMetaTag tag, tString& value);
+
+	// Applies the parsed TinyEXIF info to the Data array by running all the SetTags_* mappers in turn. Shared by
 	// AddEXIF() and AddXMP() so the mapping order is defined in exactly one place.
-	void ApplyParsedEXIFInfo(const TinyEXIF::EXIFInfo&);
+	void ApplyParsedTinyInfo(const TinyEXIF::EXIFInfo&);
 
 	void SetTags_CamHardware(const TinyEXIF::EXIFInfo&);
 	void SetTags_GeoLocation(const TinyEXIF::EXIFInfo&);

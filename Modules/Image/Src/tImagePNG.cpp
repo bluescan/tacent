@@ -909,8 +909,11 @@ bool tImagePNG::PopulateMetaData(const uint8* pngFileInMemory, int numBytes)
 		return false;
 
 	// PNG is a stream of chunks: 4-byte big-endian length, 4-byte type, payload, 4-byte CRC. EXIF lives in an "eXIf"
-	// chunk (a couple of bytes of padding followed by the bare TIFF) and XMP in an "xMP " chunk (raw XML). Walk them.
-	bool found = false;
+	// chunk (a couple of bytes of padding followed by the bare TIFF), and XMP in an "xMP " chunk (raw XML) or, very
+	// frequently, in a text chunk under the keyword "XML:com.adobe.xmp". Walk the chunks, collect the bare payloads,
+	// and hand them to tMetaData in one call (which applies EXIF before XMP, so EXIF wins overlaps).
+	tMetaData::tMetaSegment exifSegments[8], xmpSegments[8];
+	int numExif = 0, numXmp = 0;
 	const uint8 pngSignature[8] = { 0x89, 'P', 'N', 'G', 0x0D, 0x0A, 0x1A, 0x0A };
 	if ((numBytes < 12) || (tStd::tMemcmp(pngFileInMemory, pngSignature, 8) != 0))
 		return false;
@@ -927,30 +930,51 @@ bool tImagePNG::PopulateMetaData(const uint8* pngFileInMemory, int numBytes)
 		if (tStd::tMemcmp(chunk + 4, "eXIf", 4) == 0)
 		{
 			// The eXIf chunk is 2 bytes of padding followed by the bare TIFF (PNG eXIf spec); skip the known padding.
-			if (chunkLength >= 2)
-				found |= MetaData.AddEXIF(payload + 2, chunkLength - 2);
+			if ((chunkLength >= 2) && (numExif < tNumElements(exifSegments)))
+			{
+				exifSegments[numExif].Data = payload + 2;
+				exifSegments[numExif].NumBytes = chunkLength - 2;
+				numExif++;
+			}
 		}
-		else if (tStd::tMemcmp(chunk + 4, "xMP ", 4) == 0)
+		else if
+		(
+			(tStd::tMemcmp(chunk + 4, "xMP ", 4) == 0) &&
+			(numXmp < tNumElements(xmpSegments))
+		)
 		{
-			found |= MetaData.AddXMP(payload, chunkLength);
+			xmpSegments[numXmp].Data = payload;
+			xmpSegments[numXmp].NumBytes = chunkLength;
+			numXmp++;
 		}
-		else if ((tStd::tMemcmp(chunk + 4, "tEXt", 4) == 0) || (tStd::tMemcmp(chunk + 4, "iTXt", 4) == 0) ||
-		         (tStd::tMemcmp(chunk + 4, "zTXt", 4) == 0))
+		else if
+		(
+			(tStd::tMemcmp(chunk + 4, "tEXt", 4) == 0) ||
+			(tStd::tMemcmp(chunk + 4, "iTXt", 4) == 0) ||
+			(tStd::tMemcmp(chunk + 4, "zTXt", 4) == 0)
+		)
 		{
 			// XMP is very frequently stored in a text chunk under the keyword "XML:com.adobe.xmp" (Adobe/Photoshop and
 			// many other tools). Extract it if this chunk carries it.
-			found |= ExtractXMPFromTextChunk(chunk + 4, payload, chunkLength);
+			const uint8* xmpData;
+			int xmpLength;
+			if ((numXmp < tNumElements(xmpSegments)) && ExtractXMPFromTextChunk(chunk + 4, payload, chunkLength, &xmpData, &xmpLength))
+			{
+				xmpSegments[numXmp].Data = xmpData;
+				xmpSegments[numXmp].NumBytes = xmpLength;
+				numXmp++;
+			}
 		}
 
 		// Advance past length(4) + type(4) + payload + crc(4).
 		offs += 12 + chunkLength;
 	}
 
-	return found;
+	return MetaData.AddSegments(numExif ? exifSegments : nullptr, numExif, numXmp ? xmpSegments : nullptr, numXmp);
 }
 
 
-bool tImagePNG::ExtractXMPFromTextChunk(const uint8* chunkType, const uint8* payload, int chunkLength)
+bool tImagePNG::ExtractXMPFromTextChunk(const uint8* chunkType, const uint8* payload, int chunkLength, const uint8** xmpData, int* xmpLength) const
 {
 	// All three text chunk types (tEXt/iTXt/zTXt) start with a null-terminated keyword of 1 to 79 bytes. Locate it.
 	int keywordEnd = 0;
@@ -993,11 +1017,10 @@ bool tImagePNG::ExtractXMPFromTextChunk(const uint8* chunkType, const uint8* pay
 	}
 	// tEXt: the text begins immediately after the keyword + null, which is where pos already points.
 
-	const int xmpLength = chunkLength - pos;
-	if (xmpLength <= 0)
-		return false;
-
-	return MetaData.AddXMP(payload + pos, xmpLength);
+	// Return the raw XMP text within the chunk.
+	*xmpData = payload + pos;
+	*xmpLength = chunkLength - pos;
+	return (chunkLength - pos) > 0;
 }
 
 

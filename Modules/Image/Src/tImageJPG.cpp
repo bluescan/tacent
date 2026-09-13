@@ -422,8 +422,10 @@ bool tImageJPG::PopulateMetaData(const uint8* jpgFileInMemory, int numBytes)
 
 	// Walk the JPEG segment table and pull out the APP1 segments. EXIF lives in an APP1 whose payload starts with
 	// "Exif\0\0"; XMP lives in an APP1 whose payload starts with the Adobe namespace "http://ns.adobe.com/xap/1.0/\0".
-	// Strip each APP1's framing and hand the bare EXIF TIFF / raw XMP XML to tMetaData.
-	bool found = false;
+	// Strip each APP1's framing, collect the bare EXIF TIFF / raw XMP XML segments, and hand them to tMetaData in
+	// one call (which applies EXIF before XMP, so EXIF wins overlaps), independent of segment order in the file.
+	tMetaData::tMetaSegment exifSegments[8], xmpSegments[8];
+	int numExif = 0, numXmp = 0;
 	int offs = 0;
 
 	// Skip the SOI marker (0xFFD8) if present.
@@ -461,19 +463,29 @@ bool tImageJPG::PopulateMetaData(const uint8* jpgFileInMemory, int numBytes)
 			// EXIF: payload is "Exif\0\0" followed by the bare TIFF.
 			if ((payloadLen >= 6) && (tStd::tMemcmp(payload, "Exif\0\0", 6) == 0))
 			{
-				found |= MetaData.AddEXIF(payload + 6, payloadLen - 6);
+				if (numExif < tNumElements(exifSegments))
+				{
+					exifSegments[numExif].Data = payload + 6;
+					exifSegments[numExif].NumBytes = payloadLen - 6;
+					numExif++;
+				}
 			}
 			// XMP: payload is the 29-byte Adobe namespace prefix followed by the raw XML.
 			else if ((payloadLen >= 29) && (tStd::tMemcmp(payload, "http://ns.adobe.com/xap/1.0/\0", 29) == 0))
 			{
-				found |= MetaData.AddXMP(payload + 29, payloadLen - 29);
+				if (numXmp < tNumElements(xmpSegments))
+				{
+					xmpSegments[numXmp].Data = payload + 29;
+					xmpSegments[numXmp].NumBytes = payloadLen - 29;
+					numXmp++;
+				}
 			}
 		}
 
 		offs = segEnd;
 	}
 
-	return found;
+	return MetaData.AddSegments(numExif ? exifSegments : nullptr, numExif, numXmp ? xmpSegments : nullptr, numXmp);
 }
 
 

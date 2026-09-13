@@ -163,7 +163,12 @@ bool tImageHEIC::PopulateMetaData(struct heif_image_handle* handle)
 	heif_item_id* metaBlockIDs = new heif_item_id[numMetaBlocks];
 	int numIDs = heif_image_handle_get_list_of_metadata_block_IDs(handle, nullptr, metaBlockIDs, numMetaBlocks);
 
-	bool found = false;
+	// Collect the bare EXIF TIFF / raw XMP XML segments here; the per-block buffers are freed after the single
+	// AddSegments() call below.
+	tMetaData::tMetaSegment exifSegments[8], xmpSegments[8];
+	int numExif = 0, numXmp = 0;
+	uint8* buffers[16] = { };
+	int numBuffers = 0;
 	for (int i = 0; i < numIDs; i++)
 	{
 		const char* itemType = heif_image_handle_get_metadata_type(handle, metaBlockIDs[i]);
@@ -185,34 +190,66 @@ bool tImageHEIC::PopulateMetaData(struct heif_image_handle* handle)
 		struct heif_error metaError = heif_image_handle_get_metadata(handle, metaBlockIDs[i], metaBytes);
 		if (metaError.code == heif_error_Ok)
 		{
+			tMetaData::tMetaSegment segment;
 			if (isExif)
 			{
 				// "Exif" item layout: [exif_tiff_header_offset: u32][optional "Exif\0\0"][TIFF]. The offset is measured from the
 				// byte just past the 4-byte field (per the EXIF spec), so the TIFF header sits at 4 + off. In practice off is 0
-				// for AVIF and 6 for HEIC (whose item carries an "Exif\0\0" prefix). tMetaData::AddEXIF() wants the bare TIFF, so
-				// hand it metaBytes + (4 + off).
+				// for AVIF and 6 for HEIC (whose item carries an "Exif\0\0" prefix). tMetaData wants the bare TIFF.
 				uint32 off = (uint32(metaBytes[0]) << 24) | (uint32(metaBytes[1]) << 16) | (uint32(metaBytes[2]) << 8) | uint32(metaBytes[3]);
 				size_t tiffStart = (size_t)4 + (size_t)off;
 				if ((tiffStart + 8) <= numBytes)
-					found |= MetaData.AddEXIF(metaBytes + tiffStart, (int)(numBytes - tiffStart));
+				{
+					segment.Data = metaBytes + tiffStart;
+					segment.NumBytes = (int)(numBytes - tiffStart);
+				}
+				else
+					segment.NumBytes = 0;
 			}
 			else
 			{
-				// XMP item layout: [29-byte "http://ns.adobe.com/xap/1.0/\0" namespace prefix][xpacket]. tMetaData::AddXMP()
-				// wants the raw XML, so strip the namespace prefix when present.
-				const uint8* xmp = metaBytes;
-				size_t xmpBytes = numBytes;
-				if ((xmpBytes > 29) && (tStd::tMemcmp(metaBytes, "http://ns.adobe.com/xap/1.0/\0", 29) == 0))
+				// XMP item layout: [29-byte "http://ns.adobe.com/xap/1.0/\0" namespace prefix][xpacket]. tMetaData wants the
+				// raw XML, so strip the namespace prefix when present.
+				segment.Data = metaBytes;
+				segment.NumBytes = (int)numBytes;
+				if ((segment.NumBytes > 29) && (tStd::tMemcmp(metaBytes, "http://ns.adobe.com/xap/1.0/\0", 29) == 0))
 				{
-					xmp = metaBytes + 29;
-					xmpBytes = numBytes - 29;
+					segment.Data = metaBytes + 29;
+					segment.NumBytes = (int)numBytes - 29;
 				}
-				found |= MetaData.AddXMP(xmp, (int)xmpBytes);
+			}
+			if (segment.NumBytes > 0)
+			{
+				if (isExif)
+				{
+					if ((numExif < tNumElements(exifSegments)) && (numBuffers < tNumElements(buffers)))
+					{
+						exifSegments[numExif++] = segment;
+						buffers[numBuffers++] = metaBytes;
+						metaBytes = nullptr; // Ownership moved to the buffers[] list.
+					}
+				}
+				else
+				{
+					if ((numXmp < tNumElements(xmpSegments)) && (numBuffers < tNumElements(buffers)))
+					{
+						xmpSegments[numXmp++] = segment;
+						buffers[numBuffers++] = metaBytes;
+						metaBytes = nullptr; // Ownership moved to the buffers[] list.
+					}
+				}
 			}
 		}
-		delete[] metaBytes;
+		if (metaBytes)
+			delete[] metaBytes;
 	}
 	delete[] metaBlockIDs;
+
+	// Hand all collected segments to tMetaData in one call (which applies EXIF before XMP, so EXIF wins overlaps),
+	// then free the per-block buffers (the segment pointers dangle only for this call).
+	bool found = MetaData.AddSegments(numExif ? exifSegments : nullptr, numExif, numXmp ? xmpSegments : nullptr, numXmp);
+	for (int b = 0; b < numBuffers; b++)
+		delete[] buffers[b];
 	return found;
 
 #else

@@ -795,17 +795,28 @@ tTestUnit(ImageMetaData)
 	PrintMetaDataTag(webpExifMeta, tMetaTag::Model);
 	PrintMetaDataTag(webpExifMeta, tMetaTag::Software);
 
-	// XMP only: TinyEXIF maps only a subset of XMP properties, so extracting a tag from a bare XMP packet is
-	// best-effort. The image must decode; metadata extraction is recorded as a goal, not a requirement.
+	// XMP only: the XMP packet's xmp:CreatorTool maps to Software and xmp:CreateDate/xmp:ModifyDate map to the date
+	// tags. A bare XMP packet carrying standard properties must populate metadata, so this is a hard requirement.
 	tImageWEBP webpXmp("FireBreathing_XMP.webp");
 	tRequire(webpXmp.IsValid());
-	tGoal(webpXmp.MetaData.IsValid());
+	tRequire(webpXmp.MetaData.IsValid());
+	tMetaData& webpXmpMeta = webpXmp.MetaData;
+	tRequire(webpXmpMeta[tMetaTag::Software].IsValid());
+	tRequire(webpXmpMeta[tMetaTag::Software].String == "TacentTest");
+	PrintMetaDataTag(webpXmpMeta, tMetaTag::Software);
 
-	// EXIF and XMP together: Make, Model and Software come from the EXIF chunk.
+	// EXIF and XMP together, with CONFLICTING values. The EXIF chunk carries Make='Tacent', Model='TacentFixture'
+	// and Software='TacentTest'; the XMP chunk offers Make='XMP-Only-Make', Model='XMP-Only-Model' and
+	// xmp:CreatorTool='XMP-Only-Tool'. The EXIF-wins-over-XMP policy must make the EXIF values appear in the result,
+	// so each tag is asserted against the EXIF value (the one that would be wrong if XMP had overwritten it).
 	tImageWEBP webpWithMeta("FireBreathing_EXIF_XMP.webp");
 	tRequire(webpWithMeta.IsValid());
 	tRequire(webpWithMeta.MetaData.IsValid());
 	tMetaData& webpMeta = webpWithMeta.MetaData;
+	tRequire(webpMeta[tMetaTag::Make].IsValid());
+	tRequire(webpMeta[tMetaTag::Make].String == "Tacent");          // EXIF wins over XMP 'XMP-Only-Make'
+	tRequire(webpMeta[tMetaTag::Model].String == "TacentFixture");  // EXIF wins over XMP 'XMP-Only-Model'
+	tRequire(webpMeta[tMetaTag::Software].String == "TacentTest");  // EXIF wins over XMP 'XMP-Only-Tool'
 	PrintMetaDataTag(webpMeta, tMetaTag::Make);
 	PrintMetaDataTag(webpMeta, tMetaTag::Model);
 	PrintMetaDataTag(webpMeta, tMetaTag::Software);
@@ -838,11 +849,16 @@ tTestUnit(ImageMetaData)
 	PrintMetaDataTag(pngMetaData, tMetaTag::ImageWidth);
 	PrintMetaDataTag(pngMetaData, tMetaTag::ImageHeight);
 
-	// A second PNG carrying XMP, to confirm extraction is not specific to a single file. As with the bare-XMP WEBP
-	// case above, extraction is best-effort and recorded as a goal.
+	// A second PNG carrying XMP, to confirm extraction is not specific to a single file. This fixture stores its
+	// XMP in an iTXt chunk whose exifEX:LensModel maps to the LensModel tag, so we assert the concrete value to
+	// prove the iTXt->XMP->LensModel path actually extracted data.
 	tImagePNG pngSecond("TextCursor_XMP.png");
 	tRequire(pngSecond.IsValid());
-	tGoal(pngSecond.MetaData.IsValid());
+	tRequire(pngSecond.MetaData.IsValid());
+	tMetaData& pngSecondMeta = pngSecond.MetaData;
+	tRequire(pngSecondMeta[tMetaTag::LensModel].IsValid());
+	tRequire(pngSecondMeta[tMetaTag::LensModel].String == "Tacent 50mm f/1.8");
+	PrintMetaDataTag(pngSecondMeta, tMetaTag::LensModel);
 
 	// Test meta-data extraction for TIFF files. A TIFF file is itself a bare TIFF structure, so EXIF is read directly
 	// from the bytes and XMP from the XMLPacket (0x8649) field.

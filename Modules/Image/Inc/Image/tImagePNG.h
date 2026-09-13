@@ -154,7 +154,7 @@ public:
 
 private:
 	bool PopulateMetaData(const uint8* pngFileInMemory, int numBytes);
-	bool ExtractXMPFromTextChunk(const uint8* chunkType, const uint8* payload, int chunkLength);
+	bool ExtractXMPFromTextChunk(const uint8* chunkType, const uint8* payload, int chunkLength, const uint8** xmpData, int* xmpLength) const;
 	int Width						= 0;
 	int Height						= 0;
 

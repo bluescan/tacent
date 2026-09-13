@@ -32,10 +32,17 @@
 */
 
 /*
-Tacent Modifications.
-2026_09_10: Wanted parseFromEXIFSegment and parseFromXMPSegment to not require
-            any prolog/header information so they can more easily be called
-			directly. Modifications are surrounded by // Tacent Begin/End
+
+Tacent Modifications. Search for TACENT_BEGIN and TACENT_END
+
+2026_09_10 Parse From Segments
+  parseFromEXIFSegment and parseFromXMPSegment no longer require any
+  prolog/header information so they can more easily be called directly.
+
+2026_09_12 Guarantee Parse Order
+  Formalize that EXIF sections take priority over XMP by calling the EXIF
+  parsing first. Rewrote time/date normalization function to be more robust.
+ 
 */
 
 #include "TinyEXIF.h"
@@ -46,6 +53,10 @@ Tacent Modifications.
 
 #include <cstdint>
 #include <cstdio>
+// TACENT_BEGIN 2026_09_12 Guarantee Parse Order
+#include <cctype>
+#include <cstring>
+// TACENT_END 2026_09_12 Guarantee Parse Order
 #include <cmath>
 #include <cfloat>
 #include <vector>
@@ -829,7 +840,7 @@ int EXIFInfo::parseFrom(EXIFStream& stream) {
 			if (sectionLength <= 2 || (buf=stream.GetBuffer(sectionLength-=2)) == NULL)
 				return app1s(PARSE_INVALID_JPEG);
 
-			// Tacent Begin
+// TACENT_BEGIN 2026_09_10 Parse From Segments
 			// The JPEG EXIF APP1 payload is "Exif\0\0" followed by the bare TIFF. parseFromEXIFSegment() expects
 			// the buffer to start directly at the TIFF header, so strip the 6-byte JPEG magic before calling it.
 			// Declared without initializers (then assigned) because a switch label below jumps into this scope,
@@ -844,7 +855,7 @@ int EXIFInfo::parseFrom(EXIFStream& stream) {
 				exifLen -= 6;
 			}
 			switch (int ret=parseFromEXIFSegment(exifData, exifLen)) {
-			// Tacent End
+// TACENT_END 2026_09_10 Parse From Segments
 			case PARSE_ABSENT_DATA:
 #ifndef TINYEXIF_NO_XMP_SUPPORT
 				switch (ret=parseFromXMPSegment(buf, sectionLength)) {
@@ -935,7 +946,7 @@ int EXIFInfo::parseFrom(const uint8_t* buf, unsigned len) {
 }
 
 //
-// Tacent Begin
+// TACENT_BEGIN 2026_09_10 Parse From Segments
 // Main parsing function for an EXIF segment.
 // The buffer must be a bare EXIF/TIFF structure: it starts directly at the TIFF header (no "Exif\0\0"
 // JPEG/HEIF magic, no container offset or padding). The caller is responsible for stripping anything that
@@ -953,8 +964,8 @@ int EXIFInfo::parseFrom(const uint8_t* buf, unsigned len) {
 int EXIFInfo::parseFromEXIFSegment(const uint8_t* buf, unsigned len) {
 	unsigned offs = 0; // current offset into buffer
 	if (!buf || len < 8)
-// Tacent End
 		return PARSE_ABSENT_DATA;
+// TACENT_END 2026_09_10 Parse From Segments
 
 	// Now parsing the TIFF header. The first two bytes are either "II" or
 	// "MM" for Intel or Motorola byte alignment. Sanity check by parsing
@@ -1068,123 +1079,313 @@ int EXIFInfo::parseFromXMPSegmentXML(const char* szXML, unsigned len) {
 		len = (unsigned)(szEnd - szXML);
 
 	// Try parsing the XML packet.
+// TACENT BEGIN 2026_09_12 Guarantee Parse Order
 	tinyxml2::XMLDocument doc;
-	const tinyxml2::XMLElement* document;
+	const tinyxml2::XMLElement* xmpmeta;
 	if (doc.Parse(szXML, len) != tinyxml2::XML_SUCCESS ||
-		((document=doc.FirstChildElement("x:xmpmeta")) == NULL && (document=doc.FirstChildElement("xmp:xmpmeta")) == NULL) ||
-		(document=document->FirstChildElement("rdf:RDF")) == NULL ||
-		(document=document->FirstChildElement("rdf:Description")) == NULL)
+		((xmpmeta=doc.FirstChildElement("x:xmpmeta")) == NULL && (xmpmeta=doc.FirstChildElement("xmp:xmpmeta")) == NULL) ||
+		(xmpmeta->FirstChildElement("rdf:RDF")) == NULL)
 		return PARSE_ABSENT_DATA;
 
-	// Try parsing the XMP content for tiff details.
-	if (Orientation == 0) {
-		uint32_t _Orientation(0);
-		document->QueryUnsignedAttribute("tiff:Orientation", &_Orientation);
-		Orientation = (uint16_t)_Orientation;
-	}
-	if (ImageWidth == 0 && ImageHeight == 0) {
-		document->QueryUnsignedAttribute("tiff:ImageWidth", &ImageWidth);
-		if (document->QueryUnsignedAttribute("tiff:ImageHeight", &ImageHeight) != tinyxml2::XML_SUCCESS)
-			document->QueryUnsignedAttribute("tiff:ImageLength", &ImageHeight) ;
-	}
-	if (XResolution == 0 && YResolution == 0 && ResolutionUnit == 0) {
-		document->QueryDoubleAttribute("tiff:XResolution", &XResolution);
-		document->QueryDoubleAttribute("tiff:YResolution", &YResolution);
-		uint32_t _ResolutionUnit(0);
-		document->QueryUnsignedAttribute("tiff:ResolutionUnit", &_ResolutionUnit);
-		ResolutionUnit = (uint16_t)_ResolutionUnit;
-	}
-
-	// Try parsing the XMP content for projection type.
+	// A single XMP packet can carry several rdf:Description elements (one per RDF resource, or simply split by the
+	// authoring tool), so visit them all. Every field is only filled while it is still in its cleared state, so the
+	// first non-empty property wins and nothing here overwrites data already parsed from EXIF.
+	bool foundDescription(false);
+	for (const tinyxml2::XMLElement* document = xmpmeta->FirstChildElement("rdf:RDF")->FirstChildElement("rdf:Description");
+	     document != NULL; document = document->NextSiblingElement("rdf:Description"))
 	{
-	const tinyxml2::XMLElement* const element(document->FirstChildElement("GPano:ProjectionType"));
-	if (element != NULL) {
-		const char* const szProjectionType(element->GetText());
-		if (szProjectionType != NULL) {
-			if (0 == strcasecmp(szProjectionType, "perspective"))
-				ProjectionType = 1;
-			else
-			if (0 == strcasecmp(szProjectionType, "equirectangular") ||
-				0 == strcasecmp(szProjectionType, "spherical"))
-				ProjectionType = 2;
-		}
-	}
-	}
+		foundDescription = true;
+// TACENT END 2026_09_12 Guarantee Parse Order
 
-	// Try parsing the XMP content for supported maker's info.
-	struct ParseXMP	{
-		// try yo fetch the value both from the attribute and child element
-		// and parse if needed rational numbers stored as string fraction
-		static bool Value(const tinyxml2::XMLElement* document, const char* name, double& value) {
-			const char* szAttribute = document->Attribute(name);
-			if (szAttribute == NULL) {
-				const tinyxml2::XMLElement* const element(document->FirstChildElement(name));
-				if (element == NULL || (szAttribute=element->GetText()) == NULL)
-					return false;
-			}
-			std::vector<std::string> values;
-			Tools::strSplit(szAttribute, '/', values);
-			switch (values.size()) {
-			case 1: value = strtod(values.front().c_str(), NULL); return true;
-			case 2: value = strtod(values.front().c_str(), NULL)/strtod(values.back().c_str(), NULL); return true;
-			}
-			return false;
+		// Try parsing the XMP content for tiff details.
+		if (Orientation == 0) {
+			uint32_t _Orientation(0);
+			document->QueryUnsignedAttribute("tiff:Orientation", &_Orientation);
+			Orientation = (uint16_t)_Orientation;
 		}
-		// same as previous function but with unsigned int results
-		static bool Value(const tinyxml2::XMLElement* document, const char* name, uint32_t& value) {
-			const char* szAttribute = document->Attribute(name);
-			if (szAttribute == NULL) {
-				const tinyxml2::XMLElement* const element(document->FirstChildElement(name));
-				if (element == NULL || (szAttribute = element->GetText()) == NULL)
-					return false;
-			}
-			value = strtoul(szAttribute, NULL, 0); return true;
-			return false;
+		if (ImageWidth == 0 && ImageHeight == 0) {
+			document->QueryUnsignedAttribute("tiff:ImageWidth", &ImageWidth);
+			if (document->QueryUnsignedAttribute("tiff:ImageHeight", &ImageHeight) != tinyxml2::XML_SUCCESS)
+				document->QueryUnsignedAttribute("tiff:ImageLength", &ImageHeight) ;
 		}
-	};
-	const char* szAbout(document->Attribute("rdf:about"));
-	if (0 == strcasecmp(Make.c_str(), "DJI") || (szAbout != NULL && 0 == strcasecmp(szAbout, "DJI Meta Data"))) {
-		ParseXMP::Value(document, "drone-dji:AbsoluteAltitude", GeoLocation.Altitude);
-		ParseXMP::Value(document, "drone-dji:RelativeAltitude", GeoLocation.RelativeAltitude);
-		ParseXMP::Value(document, "drone-dji:GimbalRollDegree", GeoLocation.RollDegree);
-		ParseXMP::Value(document, "drone-dji:GimbalPitchDegree", GeoLocation.PitchDegree);
-		ParseXMP::Value(document, "drone-dji:GimbalYawDegree", GeoLocation.YawDegree);
-		ParseXMP::Value(document, "drone-dji:CalibratedFocalLength", Calibration.FocalLength);
-		ParseXMP::Value(document, "drone-dji:CalibratedOpticalCenterX", Calibration.OpticalCenterX);
-		ParseXMP::Value(document, "drone-dji:CalibratedOpticalCenterY", Calibration.OpticalCenterY);
-	} else
-	if (0 == strcasecmp(Make.c_str(), "senseFly") || 0 == strcasecmp(Make.c_str(), "Sentera")) {
-		ParseXMP::Value(document, "Camera:Roll", GeoLocation.RollDegree);
-		if (ParseXMP::Value(document, "Camera:Pitch", GeoLocation.PitchDegree)) {
-			// convert to DJI format: senseFly uses pitch 0 as NADIR, whereas DJI -90
-			GeoLocation.PitchDegree = Tools::NormD180(GeoLocation.PitchDegree-90.0);
+		if (XResolution == 0 && YResolution == 0 && ResolutionUnit == 0) {
+			document->QueryDoubleAttribute("tiff:XResolution", &XResolution);
+			document->QueryDoubleAttribute("tiff:YResolution", &YResolution);
+			uint32_t _ResolutionUnit(0);
+			document->QueryUnsignedAttribute("tiff:ResolutionUnit", &_ResolutionUnit);
+			ResolutionUnit = (uint16_t)_ResolutionUnit;
 		}
-		ParseXMP::Value(document, "Camera:Yaw", GeoLocation.YawDegree);
-		ParseXMP::Value(document, "Camera:GPSXYAccuracy", GeoLocation.AccuracyXY);
-		ParseXMP::Value(document, "Camera:GPSZAccuracy", GeoLocation.AccuracyZ);
-	} else
-	if (0 == strcasecmp(Make.c_str(), "PARROT")) {
-		ParseXMP::Value(document, "Camera:Roll", GeoLocation.RollDegree) ||
-		ParseXMP::Value(document, "drone-parrot:CameraRollDegree", GeoLocation.RollDegree);
-		if (ParseXMP::Value(document, "Camera:Pitch", GeoLocation.PitchDegree) ||
-			ParseXMP::Value(document, "drone-parrot:CameraPitchDegree", GeoLocation.PitchDegree)) {
-			// convert to DJI format: senseFly uses pitch 0 as NADIR, whereas DJI -90
-			GeoLocation.PitchDegree = Tools::NormD180(GeoLocation.PitchDegree-90.0);
-		}
-		ParseXMP::Value(document, "Camera:Yaw", GeoLocation.YawDegree) ||
-		ParseXMP::Value(document, "drone-parrot:CameraYawDegree", GeoLocation.YawDegree);
-		ParseXMP::Value(document, "Camera:AboveGroundAltitude", GeoLocation.RelativeAltitude);
-	}
-	ParseXMP::Value(document, "GPano:PosePitchDegrees", GPano.PosePitchDegrees);
-	ParseXMP::Value(document, "GPano:PoseRollDegrees", GPano.PoseRollDegrees);
 
-	// parse GCamera:MicroVideo
-	if (document->Attribute("GCamera:MicroVideo")) {
-		ParseXMP::Value(document, "GCamera:MicroVideo", MicroVideo.HasMicroVideo);
-		ParseXMP::Value(document, "GCamera:MicroVideoVersion", MicroVideo.MicroVideoVersion);
-		ParseXMP::Value(document, "GCamera:MicroVideoOffset", MicroVideo.MicroVideoOffset);
-	}
+// TACENT BEGIN 2026_09_12 Guarantee Parse Order
+		// Helpers for reading XMP properties.
+// TACENT END 2026_09_12 Guarantee Parse Order
+		struct ParseXMP	{
+			// try yo fetch the value both from the attribute and child element
+			// and parse if needed rational numbers stored as string fraction
+			static bool Value(const tinyxml2::XMLElement* document, const char* name, double& value) {
+				const char* szAttribute = document->Attribute(name);
+				if (szAttribute == NULL) {
+					const tinyxml2::XMLElement* const element(document->FirstChildElement(name));
+					if (element == NULL || (szAttribute=element->GetText()) == NULL)
+						return false;
+				}
+				std::vector<std::string> values;
+				Tools::strSplit(szAttribute, '/', values);
+				switch (values.size()) {
+				case 1: value = strtod(values.front().c_str(), NULL); return true;
+				case 2: value = strtod(values.front().c_str(), NULL)/strtod(values.back().c_str(), NULL); return true;
+				}
+				return false;
+			}
+			// same as previous function but with unsigned int results
+			static bool Value(const tinyxml2::XMLElement* document, const char* name, uint32_t& value) {
+				const char* szAttribute = document->Attribute(name);
+				if (szAttribute == NULL) {
+					const tinyxml2::XMLElement* const element(document->FirstChildElement(name));
+					if (element == NULL || (szAttribute = element->GetText()) == NULL)
+						return false;
+				}
+				value = strtoul(szAttribute, NULL, 0); return true;
+				return false;
+			}
+// TACENT BEGIN 2026_09_12 Guarantee Parse Order
+			// Read a string property from an attribute, or (if not present) from a child element's text. Empty values
+			// (e.g. 'aux:Lens=""') do not count as data and are ignored.
+			static std::string ValueStr(const tinyxml2::XMLElement* document, const char* name) {
+				const char* szValue(document->Attribute(name));
+				if (szValue == NULL) {
+					const tinyxml2::XMLElement* const element(document->FirstChildElement(name));
+					if (element == NULL)
+						return std::string();
+					szValue = element->GetText();
+				}
+				if (szValue == NULL)
+					return std::string();
+				// Trim surrounding whitespace.
+				std::string value(szValue);
+				while ((!value.empty()) && isspace((unsigned char)value.front()))
+					value.erase(0, 1);
+				while ((!value.empty()) && isspace((unsigned char)value.back()))
+					value.erase(value.size() - 1);
+				return value;
+			}
+			// Return the first non-empty value among the given property names, or the empty string.
+			static std::string FirstNonEmpty(const tinyxml2::XMLElement* document, const char* a) {
+				return ValueStr(document, a);
+			}
+			static std::string FirstNonEmpty(const tinyxml2::XMLElement* document, const char* a, const char* b) {
+				std::string value(ValueStr(document, a));
+				return value.empty() ? ValueStr(document, b) : value;
+			}
+			static std::string FirstNonEmpty(const tinyxml2::XMLElement* document, const char* a, const char* b, const char* c) {
+				std::string value(FirstNonEmpty(document, a, b));
+				return value.empty() ? ValueStr(document, c) : value;
+			}
+			static std::string FirstNonEmpty(const tinyxml2::XMLElement* document, const char* a, const char* b, const char* c, const char* d) {
+				std::string value(FirstNonEmpty(document, a, b, c));
+				return value.empty() ? ValueStr(document, d) : value;
+			}
+			// Pull the first `max` consecutive runs of digits out of the string into `values`, remembering the
+			// start index of each run. Stops early once `max` runs have been collected. Returns the number of
+			// runs found (0 if none).
+			static int ExtractInts(const std::string& in, int values[6], int max, size_t starts[6]) {
+				int count = 0;
+				size_t i = 0;
+				while (i < in.size() && count < max) {
+					while (i < in.size() && !isdigit((unsigned char)in[i]))
+						++i;
+					if (i == in.size())
+						break;
+					starts[count] = i;
+					long long v(0);
+					bool overflow = false;
+					while (i < in.size() && isdigit((unsigned char)in[i])) {
+						v = v * 10 + (in[i] - '0');
+						if (v > 1000000LL)
+							overflow = true;
+						++i;
+					}
+					values[count++] = overflow ? -1 : (int)v;
+				}
+				return count;
+			}
+			// Normalize a date/timestamp into the EXIF form "YYYY-MM-DD [HH:MM:SS]" that the rest of the library
+			// expects, without altering the local time it represents. Works for EXIF forms ("2020:11:30 02:26:48",
+			// including 12-hour values written with am/pm) and XMP/ISO 8601 forms ("2026-09-08T10:35:44Z",
+			// "2020-11-30T02:26:48-08:00", with or without the time part, with fractional seconds, offsets in any
+			// legal shape). Rather than assuming a fixed layout, up to six numeric runs are extracted and range-
+			// checked (year 1900-2099, month 1-12, day 1-31, hour 0-23 or 1-12 with an am/pm marker,
+			// minute/second 0-59). A date-only input yields "YYYY-MM-DD"; any unrecognizable input is returned
+			// unchanged. The timezone/offset is intentionally dropped -- per your decision we display the local
+			// time as written rather than converting it.
+			static std::string NormalizeDate(const std::string& in) {
+				int v[6];
+				size_t start[6];
+				const int n(ExtractInts(in, v, 6, start));
+				if (n < 3 || v[0] < 1900 || v[0] > 2099 || v[1] < 1 || v[1] > 12 || v[2] < 1 || v[2] > 31)
+					return in;
+				char buf[16];
+				std::snprintf(buf, sizeof buf, "%04d-%02d-%02d", v[0], v[1], v[2]);
+				std::string out(buf);
+				if (n == 6) {
+					int h = v[3], m = v[4], s = v[5];
+					std::string lower;
+					lower.reserve(in.size());
+					for (const char c : in)
+						lower.push_back((char)tolower((unsigned char)c));
+					// Detect a 12-hour marker. Accept "am"/"pm" (any case) only as a standalone token --
+					// not embedded in a longer word such as a city name -- so a trailing string can't
+					// false-positive. We only reach here with 6 valid digits (a real timestamp).
+					auto hasTok = [&](const char* tok) -> bool {
+						const size_t len = lower.size();
+						const size_t tl = std::strlen(tok);
+						for (size_t k = 0; k + tl <= len; ++k) {
+							if (lower.compare(k, tl, tok) == 0 &&
+								(k == 0 || !isalpha((unsigned char)lower[k - 1])) &&
+								(k + tl >= len || !isalpha((unsigned char)lower[k + tl])))
+								return true;
+						}
+						return false;
+					};
+					const bool pm = hasTok("pm") || hasTok("p.m.");
+					const bool am = hasTok("am") || hasTok("a.m.");
+					if (am || pm) {
+						// 12-hour form (occasionally found even in EXIF, e.g. "11:30:00 PM"); fold into 24-hour.
+						// The hour must be a valid 12-hour value (1-12); anything else is malformed -> leave unchanged.
+						if (h < 1 || h > 12 || m > 59 || s > 59)
+							return in;
+						if (h == 12)
+							h = pm ? 12 : 0;
+						else if (pm)
+							h += 12;
+					} else if (h > 23 || m > 59 || s > 59) {
+						return in;
+					}
+					out.push_back(' ');
+					out.push_back((char)(h / 10 + '0'));
+					out.push_back((char)(h % 10 + '0'));
+					out.push_back(':');
+					out.push_back((char)(m / 10 + '0'));
+					out.push_back((char)(m % 10 + '0'));
+					out.push_back(':');
+					out.push_back((char)(s / 10 + '0'));
+					out.push_back((char)(s % 10 + '0'));
+				}
+				return out;
+			}
+		};
+
+		// Map the common XMP properties (xmp base schema, exif: namespace, Dublin Core, Photoshop) onto the EXIFInfo
+		// fields the consumers use. Only fill fields that are still in their cleared state so EXIF-parsed values
+		// always win. XMP is extensible (any namespace is legal) so this set is intentionally limited to properties
+		// with a home in EXIFInfo; there are always more that could be added.
+		if (Make.empty())
+			Make = ParseXMP::FirstNonEmpty(document, "exif:Make");
+		if (Model.empty())
+			Model = ParseXMP::FirstNonEmpty(document, "exif:Model");
+		if (Software.empty())
+			Software = ParseXMP::FirstNonEmpty(document, "xmp:CreatorTool", "xmp:Tool", "exif:Software");
+		if (DateTime.empty())
+			DateTime = ParseXMP::NormalizeDate(ParseXMP::FirstNonEmpty(document, "xmp:ModifyDate", "xmp:MetadataDate"));
+		if (DateTimeOriginal.empty())
+			DateTimeOriginal = ParseXMP::NormalizeDate(ParseXMP::FirstNonEmpty(document, "xmp:CreateDate", "exif:DateTimeOriginal"));
+		if (ImageDescription.empty())
+			ImageDescription = ParseXMP::FirstNonEmpty(document, "dc:title", "dc:description", "photoshop:Caption", "photoshop:Headline");
+		if (Copyright.empty())
+			Copyright = ParseXMP::FirstNonEmpty(document, "xmp:Rights", "dc:rights");
+		if (LensInfo.Model.empty())
+			LensInfo.Model = ParseXMP::FirstNonEmpty(document, "exifEX:LensModel", "aux:Lens", "exif:LensModel");
+		if (ImageWidth == 0) {
+			const std::string w(ParseXMP::FirstNonEmpty(document, "xmp:PixelWidth", "exif:PixelXDimension", "exif:ImageWidth"));
+			if (!w.empty())
+				ImageWidth = (uint32_t)strtoul(w.c_str(), NULL, 10);
+		}
+		if (ImageHeight == 0) {
+			const std::string h(ParseXMP::FirstNonEmpty(document, "xmp:PixelHeight", "exif:PixelYDimension", "exif:ImageHeight"));
+			if (!h.empty())
+				ImageHeight = (uint32_t)strtoul(h.c_str(), NULL, 10);
+		}
+		if (ExposureTime <= 0.0)
+			ParseXMP::Value(document, "exif:ExposureTime", ExposureTime);
+		if (FNumber <= 0.0)
+			ParseXMP::Value(document, "exif:FNumber", FNumber);
+		if (ISOSpeedRatings == 0) {
+			double _ISO(0);
+			if (ParseXMP::Value(document, "exif:ISO", _ISO))
+				ISOSpeedRatings = (uint16_t)_ISO;
+		}
+		if (FocalLength <= 0.0)
+			ParseXMP::Value(document, "exif:FocalLength", FocalLength);
+		// Tacent End
+
+		// Try parsing the XMP content for projection type.
+		{
+			const tinyxml2::XMLElement* const element(document->FirstChildElement("GPano:ProjectionType"));
+			if (element != NULL) {
+				const char* const szProjectionType(element->GetText());
+				if (szProjectionType != NULL) {
+					if (0 == strcasecmp(szProjectionType, "perspective"))
+						ProjectionType = 1;
+					else
+					if (0 == strcasecmp(szProjectionType, "equirectangular") ||
+						0 == strcasecmp(szProjectionType, "spherical"))
+						ProjectionType = 2;
+				}
+			}
+		}
+
+		// Try parsing the XMP content for supported maker's info.
+// TACENT END 2026_09_12 Guarantee Parse Order
+		const char* szAbout(document->Attribute("rdf:about"));
+		if (0 == strcasecmp(Make.c_str(), "DJI") || (szAbout != NULL && 0 == strcasecmp(szAbout, "DJI Meta Data"))) {
+			ParseXMP::Value(document, "drone-dji:AbsoluteAltitude", GeoLocation.Altitude);
+			ParseXMP::Value(document, "drone-dji:RelativeAltitude", GeoLocation.RelativeAltitude);
+			ParseXMP::Value(document, "drone-dji:GimbalRollDegree", GeoLocation.RollDegree);
+			ParseXMP::Value(document, "drone-dji:GimbalPitchDegree", GeoLocation.PitchDegree);
+			ParseXMP::Value(document, "drone-dji:GimbalYawDegree", GeoLocation.YawDegree);
+			ParseXMP::Value(document, "drone-dji:CalibratedFocalLength", Calibration.FocalLength);
+			ParseXMP::Value(document, "drone-dji:CalibratedOpticalCenterX", Calibration.OpticalCenterX);
+			ParseXMP::Value(document, "drone-dji:CalibratedOpticalCenterY", Calibration.OpticalCenterY);
+		} else
+		if (0 == strcasecmp(Make.c_str(), "senseFly") || 0 == strcasecmp(Make.c_str(), "Sentera")) {
+			ParseXMP::Value(document, "Camera:Roll", GeoLocation.RollDegree);
+			if (ParseXMP::Value(document, "Camera:Pitch", GeoLocation.PitchDegree)) {
+				// convert to DJI format: senseFly uses pitch 0 as NADIR, whereas DJI -90
+				GeoLocation.PitchDegree = Tools::NormD180(GeoLocation.PitchDegree-90.0);
+			}
+			ParseXMP::Value(document, "Camera:Yaw", GeoLocation.YawDegree);
+			ParseXMP::Value(document, "Camera:GPSXYAccuracy", GeoLocation.AccuracyXY);
+			ParseXMP::Value(document, "Camera:GPSZAccuracy", GeoLocation.AccuracyZ);
+		} else
+		if (0 == strcasecmp(Make.c_str(), "PARROT")) {
+			ParseXMP::Value(document, "Camera:Roll", GeoLocation.RollDegree) ||
+			ParseXMP::Value(document, "drone-parrot:CameraRollDegree", GeoLocation.RollDegree);
+			if (ParseXMP::Value(document, "Camera:Pitch", GeoLocation.PitchDegree) ||
+				ParseXMP::Value(document, "drone-parrot:CameraPitchDegree", GeoLocation.PitchDegree)) {
+				// convert to DJI format: senseFly uses pitch 0 as NADIR, whereas DJI -90
+				GeoLocation.PitchDegree = Tools::NormD180(GeoLocation.PitchDegree-90.0);
+			}
+			ParseXMP::Value(document, "Camera:Yaw", GeoLocation.YawDegree) ||
+			ParseXMP::Value(document, "drone-parrot:CameraYawDegree", GeoLocation.YawDegree);
+			ParseXMP::Value(document, "Camera:AboveGroundAltitude", GeoLocation.RelativeAltitude);
+		}
+		ParseXMP::Value(document, "GPano:PosePitchDegrees", GPano.PosePitchDegrees);
+		ParseXMP::Value(document, "GPano:PoseRollDegrees", GPano.PoseRollDegrees);
+
+		// parse GCamera:MicroVideo
+		if (document->Attribute("GCamera:MicroVideo")) {
+			ParseXMP::Value(document, "GCamera:MicroVideo", MicroVideo.HasMicroVideo);
+			ParseXMP::Value(document, "GCamera:MicroVideoVersion", MicroVideo.MicroVideoVersion);
+			ParseXMP::Value(document, "GCamera:MicroVideoOffset", MicroVideo.MicroVideoOffset);
+		}
+// TACENT BEGIN 2026_09_12 Guarantee Parse Order
+	} // done with this rdf:Description.
+
+	if (!foundDescription)
+		return PARSE_ABSENT_DATA;
+
 	return PARSE_SUCCESS;
+// TACENT END 2026_09_12 Guarantee Parse Order
 }
 
 #endif // TINYEXIF_NO_XMP_SUPPORT
