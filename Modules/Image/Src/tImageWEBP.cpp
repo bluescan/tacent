@@ -124,8 +124,8 @@ bool tImageWEBP::Load(const uint8* webpFileInMemory, int numBytes)
 		BackgroundColour.A = (col >> 0 ) & 0xFF;
 	}
 
-	// We start by creatng the initial canvas in memory set to the background colour.
-	// This is our 'working area' where we put the decoded frames. See CopyRegion below.
+	// We start by creatng the initial canvas in memory set to the background colour. This is our 'working area' where
+	// we put the decoded frames. See CopyRegion below.
 	tPixel4b* canvas = new tPixel4b[canvasWidth*canvasHeight];
 	for (int p = 0; p < canvasWidth*canvasHeight; p++)
 		canvas[p] = tColour4b::transparent;
@@ -133,10 +133,31 @@ bool tImageWEBP::Load(const uint8* webpFileInMemory, int numBytes)
 	// Iterate over all frames.
 	tPixelFormat srcFormat = tPixelFormat::R8G8B8;
 	WebPIterator iter;
+
+	// Per the WebP spec, a frame's dispose method says how to treat the area used by that frame BEFORE RENDERING THE
+	// NEXT FRAME. So we carry the previous frame's region and dispose flag across iterations and apply it at the start
+	// of the next one. (Disposing the current frame's own area before drawing it would punch holes in the very frame we
+	// are about to display.)
+	int prevX = 0, prevY = 0, prevW = 0, prevH = 0;
+	bool prevDispose = false;
+
 	if (WebPDemuxGetFrame(demux, 1, &iter))
 	{
 		do
 		{
+			// Apply the previous frame's dispose method to the canvas before drawing this frame.
+			if (prevDispose)
+			{
+				// Same flipped offset as CopyRegion below.
+				int prevOffsetY = canvasHeight - prevY - prevH;
+				for (int py = 0; py < prevH; py++)
+				{
+					tPixel4b* prevRow = canvas + ((prevOffsetY+py)*canvasWidth + prevX);
+					for (int px = 0; px < prevW; px++)
+						prevRow[px] = tColour4b::transparent;
+				}
+			}
+
 			WebPDecoderConfig config;
 			WebPInitDecoderConfig(&config);
 
@@ -146,16 +167,6 @@ bool tImageWEBP::Load(const uint8* webpFileInMemory, int numBytes)
 			int result = WebPDecode(iter.fragment.bytes, iter.fragment.size, &config);
 			if (result != VP8_STATUS_OK)
 				continue;
-
-			// What do we do with the canvas? If not animated it's not going to matter. From WebP source:
-			// Dispose method (animation only). Indicates how the area used by the current
-			// frame is to be treated before rendering the next frame on the canvas.
-			bool dispose = (iter.dispose_method == WEBP_MUX_DISPOSE_BACKGROUND);
-			if (dispose)
-			{
-				for (int p = 0; p < canvasWidth*canvasHeight; p++)
-					canvas[p] = tColour4b::transparent;
-			}
 
 			int fragWidth = config.output.width;
 			int fragHeight = config.output.height;
@@ -174,8 +185,8 @@ bool tImageWEBP::Load(const uint8* webpFileInMemory, int numBytes)
 			newFrame->Pixels = new tPixel4b[newFrame->Width * newFrame->Height];
 			newFrame->Duration = float(iter.duration) / 1000.0f;
 
-			// Next we need to grab the decoded pixels (which may be a sub-region of the canvas) and stick them in the canvas.
-			// How we stick the pixels in depends on the anim-blend. If not animated, force simple overwrite.
+			// Next we need to grab the decoded pixels (which may be a sub-region of the canvas) and stick them in the
+			// canvas. How we stick the pixels in depends on the anim-blend. If not animated, force simple overwrite.
 			bool blend = false;
 			if (iter.blend_method == WEBP_MUX_BLEND)
 				blend = true;
@@ -190,6 +201,14 @@ bool tImageWEBP::Load(const uint8* webpFileInMemory, int numBytes)
 
 			// Now the canvas is updated. Put the canvas in the new frame.
 			tStd::tMemcpy(newFrame->Pixels, canvas, canvasWidth * canvasHeight * sizeof(tPixel4b));
+
+			// Remember this frame's region and dispose method so the next iteration can dispose this area before
+			// drawing (see the start of the loop).
+			prevX = iter.x_offset;
+			prevY = iter.y_offset;
+			prevW = fragWidth;
+			prevH = fragHeight;
+			prevDispose = (iter.dispose_method == WEBP_MUX_DISPOSE_BACKGROUND);
 
 			WebPFreeDecBuffer(&config.output);
 			Frames.Append(newFrame);
