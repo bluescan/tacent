@@ -66,7 +66,7 @@ bool tImageSVG::Load(const uint8* svgFileInMemory, int numBytes, const LoadParam
 
 	// Work out the uniform scale factor to apply to the intrinsic size, based on the requested mode.
 	float scale = 1.0f;
-	if ((sw > 0.0f) && (sh > 0.0f) && (params.Dimension > 0.0f))
+	if ((sw > 0.0f) && (sh > 0.0f) && (params.Dimension > 0))
 	{
 		switch (params.Mode)
 		{

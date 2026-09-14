@@ -2983,7 +2983,7 @@ tTestUnit(ImageSVG)
 	//
 	tImageSVG::LoadParams heightParams;
 	heightParams.Mode = tImageSVG::DimensionMode_Height;
-	heightParams.Dimension = 64.0f;
+	heightParams.Dimension = 64;
 	tImageSVG svgH;
 	tRequire(svgH.Load("Ghostscript_Tiger.svg", heightParams));
 	tRequire(svgH.IsValid());
@@ -2996,7 +2996,7 @@ tTestUnit(ImageSVG)
 	//
 	tImageSVG::LoadParams fallbackParams;
 	fallbackParams.Mode = tImageSVG::DimensionMode_Width;
-	fallbackParams.Dimension = 0.0f;
+	fallbackParams.Dimension = 0;
 	tImageSVG svgFallback;
 	tRequire(svgFallback.Load("Ghostscript_Tiger.svg", fallbackParams));
 	tRequire(svgFallback.IsValid());

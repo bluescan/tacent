@@ -48,15 +48,15 @@ public:
 		LoadParams()																										{ Reset(); }
 		LoadParams(const LoadParams& src)																					: Mode(src.Mode), Dimension(src.Dimension), BackgroundColor(src.BackgroundColor) { }
 		LoadParams& operator=(const LoadParams& src)																		{ Mode = src.Mode; Dimension = src.Dimension; BackgroundColor = src.BackgroundColor; return *this; }
-		void Reset()																										{ Mode = DimensionMode_Auto; Dimension = 0.0f; BackgroundColor = tColour4b::transparent; }
+		void Reset()																										{ Mode = DimensionMode_Auto; Dimension = 512; BackgroundColor = tColour4b::transparent; }
 
 		// How Dimension should be interpreted. See the DimensionMode enum for details.
 		DimensionMode Mode;
 
 		// The target rasterization size in pixels: the target width in DimensionMode_Width, or the target height in
 		// DimensionMode_Height. Ignored in DimensionMode_Auto; a value of 0 or negative also uses the intrinsic size. The
-		// aspect ratio is always preserved.
-		float Dimension;
+		// aspect ratio is always preserved. Defaults to 512.
+		int Dimension;
 
 		// The colour that shows through wherever the SVG is transparent. If its alpha is 0 (the default) no background is
 		// used and the result keeps its per-pixel alpha. If its alpha is non-zero the image is flattened onto this
