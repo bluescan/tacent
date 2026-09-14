@@ -53,7 +53,6 @@ bool tImageSVG::Load(const uint8* svgFileInMemory, int numBytes, const LoadParam
 	if ((numBytes <= 0) || !svgFileInMemory)
 		return false;
 
-012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
 	// Parse the SVG document from memory. loadFromData returns a unique_ptr that owns the document, or nullptr if the
 	// data is not a valid SVG.
 	auto document = lunasvg::Document::loadFromData(reinterpret_cast<const char*>(svgFileInMemory), (size_t)numBytes);
