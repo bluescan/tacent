@@ -22,6 +22,7 @@ add_library(
 	Src/tImagePNG.cpp
 	Src/tImagePVR.cpp
 	Src/tImageQOI.cpp
+	Src/tImageSVG.cpp
 	Src/tImageTGA.cpp
 	Src/tImageTIFF.cpp
 	Src/tImageWEBP.cpp
@@ -58,6 +59,7 @@ add_library(
 	Inc/Image/tImagePNG.h
 	Inc/Image/tImagePVR.h
 	Inc/Image/tImageQOI.h
+	Inc/Image/tImageSVG.h
 	Inc/Image/tImageTGA.h
 	Inc/Image/tImageTIFF.h
 	Inc/Image/tImageWEBP.h
@@ -88,6 +90,7 @@ add_library(
 	Contrib/LibSPNG/spng.h
 	Contrib/LibSPNG/spng.c
 	Contrib/LibTIFF/include/tiff.h
+	Contrib/LunaSVG/include/lunasvg.h
 	Contrib/OpenEXR/loadImage.h
 	Contrib/OpenEXR/loadImage.cpp
 	Contrib/PVRTDecompress/PVRTDecompress.h
@@ -133,6 +136,7 @@ target_include_directories(
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/GifLoad
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/gifenc
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibKTX/include
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LunaSVG/include
 		# ${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibTIFF/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include
@@ -161,6 +165,9 @@ if (TACENT_ENABLE_HEIF)
 	target_compile_definitions(${PROJECT_NAME} PRIVATE TACENT_ENABLE_HEIF=1)
 	target_compile_definitions(${PROJECT_NAME} PRIVATE LIBHEIF_STATIC_BUILD)
 endif()
+
+# TODO NEEDED? LunaSVG is always linked in as a static library.
+# target_compile_definitions(${PROJECT_NAME} PRIVATE LUNASVG_BUILD_STATIC)
 
 tacent_target_compile_options(${PROJECT_NAME})
 tacent_target_compile_features(${PROJECT_NAME})
@@ -209,6 +216,20 @@ target_link_libraries(
 		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibKTX/lib/ktx.lib>
 		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibKTX/lib/ktx.lib>
 		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibKTX/lib/ktx.lib>
+
+		# LunaSVG (SVG) + PlutoVG (its 2D vector rasterizer). Both are static libraries.
+		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LunaSVG/lib/liblunasvg.a>
+		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LunaSVG/lib/libplutovg.a>
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LunaSVG/lib/lunasvgd.lib>
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LunaSVG/lib/plutovgd.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LunaSVG/lib/lunasvg.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LunaSVG/lib/plutovg.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LunaSVG/lib/lunasvg.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LunaSVG/lib/plutovg.lib>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LunaSVG/lib/lunasvg.lib>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LunaSVG/lib/plutovg.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LunaSVG/lib/lunasvg.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LunaSVG/lib/plutovg.lib>
 
 		# LibPNG
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/lib/libpng16.a>

@@ -1900,6 +1900,7 @@ tSystem::FileTypeExts tSystem::FileTypeExtTable[] =
 	{ "ico" },							// ICO
 	{ "heic", "heif" },					// HEIC
 	{ "avif" },							// AVIF
+	{ "svg" },							// SVG
 	{ "tac" },							// TAC
 	{ "cfg" },							// CFG
 	{ "ini" },							// INI

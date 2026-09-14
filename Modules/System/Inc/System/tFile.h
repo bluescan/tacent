@@ -402,6 +402,7 @@ enum class tFileType
 	ICO,						// Image. Windows Icon.
 	HEIC,						// Image. High Efficiency Image Coding.
 	AVIF,						// Image. AV1 Image File Format.
+	SVG,						// Image. Scalable Vector Graphics.
 	TAC,						// Image. Tacent Image.
 	CFG,						// Config. Text Config File.
 	INI,						// Config. Ini Config File.

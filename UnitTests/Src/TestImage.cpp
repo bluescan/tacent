@@ -25,6 +25,7 @@
 #include <Image/tImagePKM.h>
 #include <Image/tImagePNG.h>
 #include <Image/tImageQOI.h>
+#include <Image/tImageSVG.h>
 #include <Image/tImageAPNG.h>
 #include <Image/tImageTGA.h>
 #include <Image/tImageHEIC.h>
@@ -97,6 +98,11 @@ tTestUnit(ImageLoad)
 
 	tImageQOI imgQOI32("TestPattern/TacentTestPattern32.qoi");
 	tRequire(imgQOI32.IsValid());
+
+	tImageSVG imgSVG("Type_SVG/Ghostscript_Tiger.svg");
+	tRequire(imgSVG.IsValid());
+	tRequire(imgSVG.GetWidth() > 0);
+	tRequire(imgSVG.GetHeight() > 0);
 
 	// Test loading a corrupt tga.
 	tImageTGA imgTGACorrupt("Corrupt.tga");
@@ -2917,6 +2923,123 @@ tTestUnit(ImagePVR3)
 	// Do them again without decoding.
 	PVRLoadDecodeSave("PVRBPP4_UNORM_sRGB_RGB_T.pvr",				0,					false);
 	PVRLoadDecodeSave("PVRBPP4_UNORM_sRGB_RGBA_T.pvr",				revrow,				false);
+
+	tImageRestoreDir()
+}
+
+
+tTestUnit(ImageSVG)
+{
+	tImageSubDir("Type_SVG/")
+
+	// tImageSVG is load-only, so we verify by rasterizing the SVG and saving the result as a TGA for visual inspection.
+	tPrintf("Testing SVG Loading\n\n");
+
+	//
+	// Basic load at the SVG's native (intrinsic) size.
+	//
+	tImageSVG svg;
+	tRequire(svg.Load("Ghostscript_Tiger.svg"));
+	tRequire(svg.IsValid());
+	int width = svg.GetWidth();
+	int height = svg.GetHeight();
+	tPrintf("Loaded Ghostscript_Tiger.svg at %dx%d\n", width, height);
+	tRequire(width > 0);
+	tRequire(height > 0);
+	tRequire(svg.GetPixelFormatSrc() == tPixelFormat::R8G8B8A8);
+	tPixel4b* pixels = svg.GetPixels();
+	tRequire(pixels);
+
+	// Save the rasterized result for visual inspection.
+	tImageTGA tga(svg.StealPixels(), width, height, true);
+	tRequire(tga.IsValid());
+	tga.Save("Written_Ghostscript_Tiger.tga");
+
+	//
+	// Load with an explicit target size: DimensionMode_Width makes Dimension the target width in pixels (the SVG is 1:1 here, so this lands on 128 x 128).
+	//
+	tImageSVG::LoadParams params;
+	params.Mode	= tImageSVG::DimensionMode_Width;		// Dimension is the target width in pixels; the height follows from the aspect ratio.
+	params.Dimension = 128;
+	tImageSVG svgScaled;
+	tRequire(svgScaled.Load("Ghostscript_Tiger.svg", params));
+	tRequire(svgScaled.IsValid());
+	int scaledW = svgScaled.GetWidth();
+	int scaledH = svgScaled.GetHeight();
+	tPrintf("Loaded Ghostscript_Tiger.svg scaled to %dx%d\n", scaledW, scaledH);
+	tRequire(scaledW > 0);
+	tRequire(scaledH > 0);
+	tRequire(scaledW <= 128);
+	tRequire(scaledH <= 128);
+	tGoal(scaledW == 128 || scaledH == 128);	// Width mode targets exactly 128 wide (1:1 aspect here, so both dims come out 128).
+
+	// Save the scaled result for visual inspection.
+	tImageTGA tgaScaled(svgScaled.StealPixels(), scaledW, scaledH, true);
+	tRequire(tgaScaled.IsValid());
+	tgaScaled.Save("Written_Ghostscript_Tiger_128.tga");
+
+	//
+	// DimensionMode_Height: Dimension is the target height in pixels, with the width derived from the aspect ratio.
+	//
+	tImageSVG::LoadParams heightParams;
+	heightParams.Mode = tImageSVG::DimensionMode_Height;
+	heightParams.Dimension = 64.0f;
+	tImageSVG svgH;
+	tRequire(svgH.Load("Ghostscript_Tiger.svg", heightParams));
+	tRequire(svgH.IsValid());
+	tRequire(svgH.GetWidth() == 64);
+	tRequire(svgH.GetHeight() == 64);
+
+	//
+	// A non-positive Dimension in Width / Height mode must fall back to the SVG's intrinsic (native) size, exactly
+	// like DimensionMode_Auto.
+	//
+	tImageSVG::LoadParams fallbackParams;
+	fallbackParams.Mode = tImageSVG::DimensionMode_Width;
+	fallbackParams.Dimension = 0.0f;
+	tImageSVG svgFallback;
+	tRequire(svgFallback.Load("Ghostscript_Tiger.svg", fallbackParams));
+	tRequire(svgFallback.IsValid());
+	tRequire(svgFallback.GetWidth() == width);
+	tRequire(svgFallback.GetHeight() == height);
+
+	//
+	// Load with a solid background colour: transparency is flattened so every pixel must end up fully opaque.
+	//
+	tImageSVG::LoadParams bgParams;
+	bgParams.BackgroundColor = tColour4b(0, 255, 0, 255);	// Opaque green.
+	tImageSVG svgBG;
+	tRequire(svgBG.Load("Ghostscript_Tiger.svg", bgParams));
+	tRequire(svgBG.IsValid());
+	int bgW = svgBG.GetWidth();
+	int bgH = svgBG.GetHeight();
+	tPixel4b* bgPixels = svgBG.GetPixels();
+	tRequire(bgPixels);
+	tRequire(bgW > 0 && bgH > 0);
+
+	// Every pixel must now be fully opaque.
+	bool allOpaque = true;
+	for (int i = 0; i < bgW * bgH; i++)
+	{
+		if (bgPixels[i].A != 255)
+		{
+			allOpaque = false;
+			break;
+		}
+	}
+	tRequire(allOpaque);
+
+	// Save the flattened result for visual inspection.
+	tImageTGA tgaBG(svgBG.StealPixels(), bgW, bgH, true);
+	tRequire(tgaBG.IsValid());
+	tgaBG.Save("Written_Ghostscript_Tiger_GreenBG.tga");
+
+	//
+	// Loading a missing SVG must fail gracefully.
+	//
+	tImageSVG svgMissing;
+	tRequire(!svgMissing.Load("Does_Not_Exist.svg"));
+	tRequire(!svgMissing.IsValid());
 
 	tImageRestoreDir()
 }

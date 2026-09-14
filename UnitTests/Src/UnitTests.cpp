@@ -185,6 +185,7 @@ int main(int argc, char** argv)
 	tTest(ImagePNG);
 	tTest(ImageAVIF);
 	tTest(ImageHEIC);
+	tTest(ImageSVG);
 	tTest(ImageDDS);
 	tTest(ImageKTX1);
 	tTest(ImageKTX2);
@@ -262,7 +263,7 @@ int main(int argc, char** argv)
 	// tTest(ImagePicture);
 	// tTest(ImageQuantize);
 	// tTest(ImagePalette);
-	tTest(ImageMetaData);
+	// tTest(ImageMetaData);
 	// tTest(ImageLosslessTransform);
 	// tTest(ImageRotation);
 	// tTest(ImageCrop);
@@ -276,6 +277,7 @@ int main(int argc, char** argv)
 	// tTest(ImagePNG);
 	// tTest(ImageAVIF);
 	// tTest(ImageHEIC);
+	tTest(ImageSVG);
 	// tTest(ImageDDS);
 	// tTest(ImageKTX1);
 	// tTest(ImageKTX2);
