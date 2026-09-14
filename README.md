@@ -174,6 +174,7 @@ Credits are found directly in the code where appropriate. Here is a list of some
 * GitHub user ClangPan for the implementation of tNstrcmp.
 * Strukturag and authors for LibHEIF and LibDE265.
 * VideoLAN and the dav1d library authors.
+* Samuel Ugochukwu and contributors for the MIT-licensed LunaSVG and PlutoVG.
 
 
 ### Legal
