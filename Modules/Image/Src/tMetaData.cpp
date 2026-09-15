@@ -106,8 +106,10 @@ const char* tMetaTagNames[] =
 	"Description",
 	"Copyright",
 
-	// Appended after Copyright to match the tMetaTag::LensModel enum position (see the note there).
-	"Lens Model"
+	// Recently Appended
+	"Lens Model",
+	"Artist",
+	"Format"
 };
 tStaticAssert(tNumElements(tMetaTagNames) == int(tMetaTag::NumTags));
 
@@ -216,8 +218,10 @@ const char* tMetaTagDescs[] =
 	"Image description.",
 	"Copyright notice.",
 
-	// Appended after Copyright to match the tMetaTag::LensModel enum position (see the note there).
-	"Lens model."
+	// Recently Appended
+	"Lens model.",
+	"Image author/artist/creator.",
+	"Image format such as a MIME type like image/jpeg."
 };
 tStaticAssert(tNumElements(tMetaTagDescs) == int(tMetaTag::NumTags));
 
@@ -648,6 +652,16 @@ void tMetaData::SetTags_AuthorNotes(const TinyEXIF::EXIFInfo& tinyInfo)
 	tString copyright = tinyInfo.Copyright.c_str();
 	if (copyright.IsValid())
 		SetTag(tMetaTag::Copyright, copyright);
+
+	// Artist
+	tString artist = tinyInfo.Artist.c_str();
+	if (artist.IsValid())
+		SetTag(tMetaTag::Artist, artist);
+
+	// Format
+	tString format = tinyInfo.Format.c_str();
+	if (format.IsValid())
+		SetTag(tMetaTag::Format, format);
 }
 
 
@@ -867,6 +881,8 @@ tString tMetaData::GetPrettyValue(tMetaTag tag) const
 		case tMetaTag::Description:
 		case tMetaTag::Copyright:
 		case tMetaTag::LensModel:
+		case tMetaTag::Artist:
+		case tMetaTag::Format:
 			value = datum.String;
 			break;
 	}

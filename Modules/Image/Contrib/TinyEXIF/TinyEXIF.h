@@ -183,6 +183,10 @@ public:
 	std::string DateTimeDigitized;      // Digitization date and time (may not exist)
 	std::string SubSecTimeOriginal;     // Sub-second time that original picture was taken
 	std::string Copyright;              // File copyright information
+// TACENT BEGIN 2026_09_15 Additional Tag Parsing
+	std::string Artist;                 // Image artist / author (EXIF 0x013B Artist; XMP dc:creator)
+	std::string Format;                 // Image format, eg. a MIME type like "image/jpeg" (XMP dc:format)
+// TACENT END 2026_09_15 Additional Tag Parsing
 	double ExposureTime;                // Exposure time in seconds
 	double FNumber;                     // F/stop
 	uint16_t ExposureProgram;           // Exposure program

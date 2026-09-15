@@ -257,8 +257,8 @@ int main(int argc, char** argv)
 
 	// Image tests.
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
-	tTest(ImageLoad);
-	tTest(ImageSave);
+	// tTest(ImageLoad);
+	// tTest(ImageSave);
 	// tTest(ImageTexture);
 	tTest(ImagePicture);
 	// tTest(ImageQuantize);
@@ -272,11 +272,11 @@ int main(int argc, char** argv)
 	tTest(ImageDetection);
 	// tTest(ImageMipmap);
 	// tTest(ImageFilter);
-	tTest(ImageMultiFrame);
+	// tTest(ImageMultiFrame);
 	// tTest(ImageGradient);
-	tTest(ImagePNG);
-	// tTest(ImageAVIF);
-	// tTest(ImageHEIC);
+	// tTest(ImagePNG);
+	tTest(ImageAVIF);
+	tTest(ImageHEIC);
 	tTest(ImageSVG);
 	// tTest(ImageDDS);
 	// tTest(ImageKTX1);

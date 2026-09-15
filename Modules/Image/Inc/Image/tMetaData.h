@@ -143,6 +143,8 @@ enum class tMetaTag
 	// stored in a version chunk, can be incremented and we can add a version check to the loading code. This will allow
 	// the new tags to be added above to the correct section.
 	LensModel,		//	string	Lens model. eg. "Nikon AF-S NIKKOR 24-70mm f/2.8E ED VR".
+	Artist,			//	string	Image author/artist. EXIF Artist (0x013B); XMP dc:creator.
+	Format,			//	string	Image format, eg. a MIME type. eg. "image/jpeg". XMP dc:format.
 
 	NumTags
 };

@@ -3026,7 +3026,9 @@ tTestUnit(ImageSVG)
 
 	// An SVG carrying embedded XMP metadata must populate MetaData. The x:xmpmeta element lives inside the <metadata>
 	// element, and TinyEXIF maps the XMP properties onto tags (xmp:CreatorTool -> Software, xmp:CreateDate ->
-	// DateTimeOrig). Asserting the concrete values proves the x:xmpmeta extraction path actually parsed data, rather
+	// DateTimeOrig, xmpRights:UsageTerms -> Copyright, dc:title -> Description, dc:creator -> Artist,
+	// dc:format -> Format). The title, creator, and usage terms are RDF-wrapped (<rdf:Alt><rdf:li>), which exercises the
+	// rdf:li fallback; asserting the concrete values proves the x:xmpmeta extraction path actually parsed data, rather
 	// than merely leaving a non-empty container.
 	tImageSVG svgMeta;
 	tRequire(svgMeta.Load("MetaData_XMP.svg"));
@@ -3037,8 +3039,20 @@ tTestUnit(ImageSVG)
 	tRequire(svgMetaTags[tMetaTag::Software].String == "AI Assistant Sample Generator");
 	tRequire(svgMetaTags[tMetaTag::DateTimeOrig].IsValid());
 	tRequire(svgMetaTags[tMetaTag::DateTimeOrig].String == "2026-09-14 17:15:00");
+	tRequire(svgMetaTags[tMetaTag::Description].IsValid());
+	tRequire(svgMetaTags[tMetaTag::Description].String == "Test SVG with Embedded XMP Metadata");
+	tRequire(svgMetaTags[tMetaTag::Copyright].IsValid());
+	tRequire(svgMetaTags[tMetaTag::Copyright].String == "Creative Commons CC0 1.0 Universal");
+	tRequire(svgMetaTags[tMetaTag::Artist].IsValid());
+	tRequire(svgMetaTags[tMetaTag::Artist].String == "AI Assistant");
+	tRequire(svgMetaTags[tMetaTag::Format].IsValid());
+	tRequire(svgMetaTags[tMetaTag::Format].String == "image/svg+xml");
 	PrintMetaDataTag(svgMetaTags, tMetaTag::Software);
 	PrintMetaDataTag(svgMetaTags, tMetaTag::DateTimeOrig);
+	PrintMetaDataTag(svgMetaTags, tMetaTag::Description);
+	PrintMetaDataTag(svgMetaTags, tMetaTag::Copyright);
+	PrintMetaDataTag(svgMetaTags, tMetaTag::Artist);
+	PrintMetaDataTag(svgMetaTags, tMetaTag::Format);
 
 	// Ghostscript_Tiger.svg carries no XMP at all; it must still load fine with an empty MetaData member.
 	tRequire(!svg.MetaData.IsValid());

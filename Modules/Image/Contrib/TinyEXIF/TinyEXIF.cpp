@@ -42,7 +42,11 @@ Tacent Modifications. Search for TACENT_BEGIN and TACENT_END
 2026_09_12 Guarantee Parse Order
   Formalize that EXIF sections take priority over XMP by calling the EXIF
   parsing first. Rewrote time/date normalization function to be more robust.
- 
+
+2026_09_15 Additional Tag Parsing
+  Parsing of the 'about' EXIF tag as well as additional XMP tags like Creator,
+  Format, and UsageTerms.
+  
 */
 
 #include "TinyEXIF.h"
@@ -417,6 +421,13 @@ void EXIFInfo::parseIFDImage(EntryParser& parser, unsigned& exif_sub_ifd_offset,
 		// EXIF/TIFF date/time of image modification
 		parser.Fetch(DateTime);
 		break;
+
+// TACENT BEGIN 2026_09_15 Additional Tag Parsing
+	case 0x013B:
+		// Artist / author of the image
+		parser.Fetch(Artist);
+		break;
+// TACENT END 2026_09_15 Additional Tag Parsing
 
 	case 0x1001:
 		// Original Image width
@@ -1151,24 +1162,49 @@ int EXIFInfo::parseFromXMPSegmentXML(const char* szXML, unsigned len) {
 // TACENT BEGIN 2026_09_12 Guarantee Parse Order
 			// Read a string property from an attribute, or (if not present) from a child element's text. Empty values
 			// (e.g. 'aux:Lens=""') do not count as data and are ignored.
+// TACENT BEGIN 2026_09_15 Additional Tag Parsing
+			// Return the text of the first rdf:li descendant of element, or NULL. XMP properties frequently wrap
+			// their value(s) in an RDF container with no direct text of their own, eg.
+			// <dc:title><rdf:Alt><rdf:li xml:lang="x-default">My Title</rdf:li></rdf:Alt></dc:title>.
+			static const char* RdfLiText(const tinyxml2::XMLElement* element) {
+				for (const tinyxml2::XMLElement* child = element->FirstChildElement(); child != NULL; child = child->NextSiblingElement()) {
+					if (0 == strcmp(child->Name(), "rdf:li"))
+						return child->GetText();
+					const char* text = RdfLiText(child);
+					if (text != NULL)
+						return text;
+				}
+				return NULL;
+			}
 			static std::string ValueStr(const tinyxml2::XMLElement* document, const char* name) {
+				std::string value;
+				const tinyxml2::XMLElement* element(NULL);
 				const char* szValue(document->Attribute(name));
 				if (szValue == NULL) {
-					const tinyxml2::XMLElement* const element(document->FirstChildElement(name));
+					element = document->FirstChildElement(name);
 					if (element == NULL)
 						return std::string();
 					szValue = element->GetText();
+					if (szValue == NULL)
+						szValue = RdfLiText(element);
 				}
 				if (szValue == NULL)
 					return std::string();
+				value.assign(szValue);
 				// Trim surrounding whitespace.
-				std::string value(szValue);
 				while ((!value.empty()) && isspace((unsigned char)value.front()))
 					value.erase(0, 1);
 				while ((!value.empty()) && isspace((unsigned char)value.back()))
 					value.erase(value.size() - 1);
+				// A whitespace-only direct text means the real value lives in an rdf:li below (see RdfLiText).
+				if (value.empty() && (element != NULL)) {
+					const char* liText = RdfLiText(element);
+					if (liText != NULL)
+						value.assign(liText);
+				}
 				return value;
 			}
+// TACENT END 2026_09_15 Additional Tag Parsing
 			// Return the first non-empty value among the given property names, or the empty string.
 			static std::string FirstNonEmpty(const tinyxml2::XMLElement* document, const char* a) {
 				return ValueStr(document, a);
@@ -1291,8 +1327,17 @@ int EXIFInfo::parseFromXMPSegmentXML(const char* szXML, unsigned len) {
 			DateTimeOriginal = ParseXMP::NormalizeDate(ParseXMP::FirstNonEmpty(document, "xmp:CreateDate", "exif:DateTimeOriginal"));
 		if (ImageDescription.empty())
 			ImageDescription = ParseXMP::FirstNonEmpty(document, "dc:title", "dc:description", "photoshop:Caption", "photoshop:Headline");
+// TACENT BEGIN 2026_09_15 Additional Tag Parsing
+		// :dc:creator reuses the EXIF Artist (0x013B) home; dc:format has no EXIF equivalent so it maps to its own field.
+		if (Artist.empty())
+			Artist = ParseXMP::FirstNonEmpty(document, "dc:creator", "xmp:Creator");
+		if (Format.empty())
+			Format = ParseXMP::FirstNonEmpty(document, "dc:format", "xmp:Format");
 		if (Copyright.empty())
-			Copyright = ParseXMP::FirstNonEmpty(document, "xmp:Rights", "dc:rights");
+			// Also honour the xmpRights schema -- tools like Adobe record usage terms in xmpRights:UsageTerms
+			// (flagged by xmpRights:Marked) rather than in xmp:Rights / dc:rights.
+			Copyright = ParseXMP::FirstNonEmpty(document, "xmp:Rights", "dc:rights", "xmpRights:UsageTerms");
+// TACENT END 2026_09_15 Additional Tag Parsing
 		if (LensInfo.Model.empty())
 			LensInfo.Model = ParseXMP::FirstNonEmpty(document, "exifEX:LensModel", "aux:Lens", "exif:LensModel");
 		if (ImageWidth == 0) {
@@ -1458,6 +1503,10 @@ void EXIFInfo::clear() {
 	DateTimeDigitized = "";
 	SubSecTimeOriginal= "";
 	Copyright         = "";
+// TACENT BEGIN 2026_09_15 Additional Tag Parsing
+	Artist            = "";
+	Format            = "";
+// TACENT END 2026_09_15 Additional Tag Parsing
 
 	// Shorts / unsigned / double
 	ImageWidth        = 0;
