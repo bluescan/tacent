@@ -21,8 +21,6 @@
 #include "Image/tImageSVG.h"
 #include "Image/tPicture.h"
 #include "Image/tFrame.h"
-#include <algorithm>
-#include <cmath>
 #include <lunasvg.h>
 namespace tImage
 {
@@ -52,6 +50,10 @@ bool tImageSVG::Load(const uint8* svgFileInMemory, int numBytes, const LoadParam
 	Clear();
 	if ((numBytes <= 0) || !svgFileInMemory)
 		return false;
+
+	// Extract XMP metadata from the SVG document. Failing to parse it is not a load failure -- the image may still
+	// rasterize perfectly (most SVGs carry no metadata at all).
+	PopulateMetaData(svgFileInMemory, numBytes);
 
 	// Parse the SVG document from memory. loadFromData returns a unique_ptr that owns the document, or nullptr if the
 	// data is not a valid SVG.
@@ -146,6 +148,74 @@ bool tImageSVG::Load(const uint8* svgFileInMemory, int numBytes, const LoadParam
 	ColourProfile		= tColourProfile::sRGB;
 
 	return true;
+}
+
+
+static bool FindXMLElement(const uint8* base, int windowNumBytes, const char* openTag, const char* closeTag, const uint8** outStart, const uint8** outEnd)
+{
+	// Locate an XML element (its "<open" start through the end of its "</close>") within a window of [windowNumBytes]
+	// bytes starting at 'base'. Returns true and sets [outStart, outEnd) to the element's byte extent on success; false
+	// if either the open or the close tag is not present in the window.
+	if ((!base) || (windowNumBytes <= 0) || (!openTag) || (!closeTag))
+		return false;
+
+	const int openTagNumBytes = (int)tStd::tStrlen(openTag);
+	const int closeTagNumBytes = (int)tStd::tStrlen(closeTag);
+
+	const uint8* open = (const uint8*)tStd::tMemsrch(base, windowNumBytes, openTag, openTagNumBytes);
+	if (!open)
+		return false;
+
+	const int afterOpenNumBytes = windowNumBytes - (int)(open - base) - openTagNumBytes;
+	const uint8* close = (const uint8*)tStd::tMemsrch(open + openTagNumBytes, afterOpenNumBytes, closeTag, closeTagNumBytes);
+	if (!close)
+		return false;
+
+	*outStart = open;
+	*outEnd = close + closeTagNumBytes;
+	return true;
+}
+
+
+bool tImageSVG::PopulateMetaData(const uint8* svgFileInMemory, int numBytes)
+{
+	if ((!svgFileInMemory) || (numBytes <= 0))
+		return false;
+
+	tList<tMetaData::tMetaSegment> exifSegments, xmpSegments;
+
+	// SVG files don't carry EXIF, so only the XMP list can be populated. Per the SVG spec the XMP payload lives in the
+	// <metadata> element as an <x:xmpmeta> element, wrapped in xpacket begin/end processing-instruction comments. We
+	// therefore locate it structurally: first the <metadata> section (the container -- the SVG analogue of a PNG's
+	// "xMP " chunk that holds its payload), then the <x:xmpmeta> element within it, and hand that fragment to tMetaData,
+	// which parses it via TinyEXIF -- the same consumer already used for the PNG/WEBP chunks.
+	//
+	// We deliberately do not parse the whole document as an XML DOM: the only XML parser linked into this module
+	// (tinyxml2, via TinyEXIF) rejects the xpacket processing instructions, so a full-document parse fails on real-world
+	// files. The extracted <x:xmpmeta>...</x:xmpmeta> fragment is self-contained, PI-free XML -- exactly the shape
+	// TinyEXIF::parseFromXMPSegmentXML expects -- and TinyEXIF validates it as RDF, so a coincidental tag match outside
+	// the <metadata> section cannot produce metadata.
+	static const char metadataOpen[] = "<metadata";
+	static const char metadataClose[] = "</metadata>";
+	static const char xmpOpen[] = "<x:xmpmeta";
+	static const char xmpClose[] = "</x:xmpmeta>";
+
+	// 1. Locate the <metadata> ... </metadata> section. Its absence simply means "no XMP" (most SVGs carry none).
+	const uint8* metadataStart = nullptr;
+	const uint8* metadataEnd = nullptr;
+	if (!FindXMLElement(svgFileInMemory, numBytes, metadataOpen, metadataClose, &metadataStart, &metadataEnd))
+		return false;
+
+	// 2. Within it, locate the <x:xmpmeta> ... </x:xmpmeta> element.
+	const uint8* xmpStart = nullptr;
+	const uint8* xmpEnd = nullptr;
+	if (!FindXMLElement(metadataStart, (int)(metadataEnd - metadataStart), xmpOpen, xmpClose, &xmpStart, &xmpEnd))
+		return false;
+
+	// 3. Hand the fragment to tMetaData.
+	xmpSegments.Append(new tMetaData::tMetaSegment(xmpStart, (int)(xmpEnd - xmpStart)));
+
+	return MetaData.AddSegments(exifSegments, xmpSegments);
 }
 
 

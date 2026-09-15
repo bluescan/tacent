@@ -2935,9 +2935,7 @@ tTestUnit(ImageSVG)
 	// tImageSVG is load-only, so we verify by rasterizing the SVG and saving the result as a TGA for visual inspection.
 	tPrintf("Testing SVG Loading\n\n");
 
-	//
 	// Basic load at the SVG's native (intrinsic) size.
-	//
 	tImageSVG svg;
 	tRequire(svg.Load("Ghostscript_Tiger.svg"));
 	tRequire(svg.IsValid());
@@ -2955,9 +2953,7 @@ tTestUnit(ImageSVG)
 	tRequire(tga.IsValid());
 	tga.Save("Written_Ghostscript_Tiger.tga");
 
-	//
 	// Load with an explicit target size: DimensionMode_Width makes Dimension the target width in pixels (the SVG is 1:1 here, so this lands on 128 x 128).
-	//
 	tImageSVG::LoadParams params;
 	params.Mode	= tImageSVG::DimensionMode_Width;		// Dimension is the target width in pixels; the height follows from the aspect ratio.
 	params.Dimension = 128;
@@ -2978,9 +2974,7 @@ tTestUnit(ImageSVG)
 	tRequire(tgaScaled.IsValid());
 	tgaScaled.Save("Written_Ghostscript_Tiger_128.tga");
 
-	//
 	// DimensionMode_Height: Dimension is the target height in pixels, with the width derived from the aspect ratio.
-	//
 	tImageSVG::LoadParams heightParams;
 	heightParams.Mode = tImageSVG::DimensionMode_Height;
 	heightParams.Dimension = 64;
@@ -2990,10 +2984,8 @@ tTestUnit(ImageSVG)
 	tRequire(svgH.GetWidth() == 64);
 	tRequire(svgH.GetHeight() == 64);
 
-	//
 	// A non-positive Dimension in Width / Height mode must fall back to the SVG's intrinsic (native) size, exactly
 	// like DimensionMode_Auto.
-	//
 	tImageSVG::LoadParams fallbackParams;
 	fallbackParams.Mode = tImageSVG::DimensionMode_Width;
 	fallbackParams.Dimension = 0;
@@ -3003,9 +2995,7 @@ tTestUnit(ImageSVG)
 	tRequire(svgFallback.GetWidth() == width);
 	tRequire(svgFallback.GetHeight() == height);
 
-	//
 	// Load with a solid background colour: transparency is flattened so every pixel must end up fully opaque.
-	//
 	tImageSVG::LoadParams bgParams;
 	bgParams.BackgroundColor = tColour4b(0, 255, 0, 255);	// Opaque green.
 	tImageSVG svgBG;
@@ -3034,9 +3024,26 @@ tTestUnit(ImageSVG)
 	tRequire(tgaBG.IsValid());
 	tgaBG.Save("Written_Ghostscript_Tiger_GreenBG.tga");
 
-	//
+	// An SVG carrying embedded XMP metadata must populate MetaData. The x:xmpmeta element lives inside the <metadata>
+	// element, and TinyEXIF maps the XMP properties onto tags (xmp:CreatorTool -> Software, xmp:CreateDate ->
+	// DateTimeOrig). Asserting the concrete values proves the x:xmpmeta extraction path actually parsed data, rather
+	// than merely leaving a non-empty container.
+	tImageSVG svgMeta;
+	tRequire(svgMeta.Load("MetaData_XMP.svg"));
+	tRequire(svgMeta.IsValid());
+	tRequire(svgMeta.MetaData.IsValid());
+	tMetaData& svgMetaTags = svgMeta.MetaData;
+	tRequire(svgMetaTags[tMetaTag::Software].IsValid());
+	tRequire(svgMetaTags[tMetaTag::Software].String == "AI Assistant Sample Generator");
+	tRequire(svgMetaTags[tMetaTag::DateTimeOrig].IsValid());
+	tRequire(svgMetaTags[tMetaTag::DateTimeOrig].String == "2026-09-14 17:15:00");
+	PrintMetaDataTag(svgMetaTags, tMetaTag::Software);
+	PrintMetaDataTag(svgMetaTags, tMetaTag::DateTimeOrig);
+
+	// Ghostscript_Tiger.svg carries no XMP at all; it must still load fine with an empty MetaData member.
+	tRequire(!svg.MetaData.IsValid());
+
 	// Loading a missing SVG must fail gracefully.
-	//
 	tImageSVG svgMissing;
 	tRequire(!svgMissing.Load("Does_Not_Exist.svg"));
 	tRequire(!svgMissing.IsValid());

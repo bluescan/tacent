@@ -109,7 +109,7 @@ int main(int argc, char** argv)
 		tVersion::Revision
 	);
 
-	#if !defined(UNIT_TEST_ONLY_ONE_TEST)
+	#if !defined(UNIT_TEST_ONLY_SPECIFIC_TESTS)
 
 	// Foundation tests.
 	tTest(Types);
@@ -202,7 +202,7 @@ int main(int argc, char** argv)
 
 	#else
 
-	// If UNIT_TEST_ONLY_ONE_TEST is defined, this is the test.
+	// If UNIT_TEST_ONLY_SPECIFIC_TESTS is defined, these are the tests.
 	// Foundation tests.
 	// tTest(Types);
 	// tTest(Array);

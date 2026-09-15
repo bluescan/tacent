@@ -26,6 +26,7 @@
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
+#include <Image/tMetaData.h>
 #include <Image/tBaseImage.h>
 namespace tImage
 {
@@ -106,7 +107,18 @@ public:
 	tFrame* GetFrame(bool steal = true) override;
 	tPixel4b* GetPixels() const																								{ return Pixels; }
 
+	// A place to store XMP metadata. SVG files may carry this in an x:xmpmeta element, conventionally inside a
+	// <metadata> element. This field is populated by the Load calls.
+	tMetaData MetaData;
+
 private:
+	// Populates MetaData by locating the XMP in the <metadata> section (its <x:xmpmeta> element) and handing that
+	// fragment to tMetaData, which parses it via TinyEXIF -- the same consumer used for the PNG/WEBP chunks. We do not
+	// parse the whole document as an XML DOM because the only linked XML parser (tinyxml2) rejects the xpacket
+	// processing instructions that wrap an SVG's XMP. Returns true if XMP was found and parsed. Failing to find or
+	// parse XMP is not an error for the image itself -- most SVGs carry no metadata at all.
+	bool PopulateMetaData(const uint8* svgFileInMemory, int numBytes);
+
 	int Width			= 0;
 	int Height			= 0;
 	tPixel4b* Pixels	= nullptr;
@@ -123,6 +135,7 @@ inline void tImageSVG::Clear()
 	delete[]		Pixels;
 	Pixels		= nullptr;
 
+	MetaData.Clear();
 	tBaseImage::Clear();
 }
 
