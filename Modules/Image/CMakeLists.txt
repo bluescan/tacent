@@ -185,10 +185,6 @@ target_link_libraries(
 	PRIVATE
 		Threads::Threads
 
-		# TinyXML2 (XML parsing) and ZLib (compression). See the Contrib module.
-		TinyXML2
-		ZLib
-
 		# LibWEBP
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/lib/libwebp.a>
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/lib/libwebpdemux.a>
@@ -306,6 +302,14 @@ target_link_libraries(
 		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libheif.a>
 		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libde265.a>
 		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libdav1d.a>
+
+		# Linux static linking is order-sensitive (unlike the MSVC linker). Dependant libraries need to come last.
+
+		# TinyXML2 (XML parsing). See the Contrib module.
+		TinyXML2
+
+		# ZLib (compression). See the Contrib module.
+		ZLib
 )
 
 tacent_install(${PROJECT_NAME})
