@@ -46,6 +46,11 @@ const char* ASTCENCODER_VERSION_STRING		= VERSION_STRING;
 #include <demux.h>							// WebP
 #include <tinyxml2.h>
 #include <TinyEXIF.h>
+#include <libheif/heif_version.h>
+#include <dav1d/vcs_version.h>
+#include <libde265/de265-version.h>
+#include <lunasvg.h>
+#include <plutovg.h>
 #include "Image/tResample.h"
 
 
@@ -63,6 +68,7 @@ const char* tImage::Version_ApngDis			= APNGDIS_VERSION_STRING;
 const char* tImage::Version_ApngAsm			= APNGASM_VERSION_STRING;
 const char* tImage::Version_LibTIFF			= TIFFLIB_STANDARD_VERSION_STR;
 const char* tImage::Version_LibKTX			= LIBKTX_VERSION_STRING;
+const char* tImage::Version_LibDav1d		= DAV1D_VERSION;
 int tImage::Version_WEBP_Major				= WEBP_DECODER_ABI_VERSION >> 8;
 int tImage::Version_WEBP_Minor				= WEBP_DECODER_ABI_VERSION & 0xFF;
 int tImage::Version_BCDec_Major				= BCDEC_VERSION_MAJOR;
@@ -78,6 +84,18 @@ int tImage::Version_TinyXML2_Patch			= TINYXML2_PATCH_VERSION;
 int tImage::Version_TinyEXIF_Major			= TINYEXIF_MAJOR_VERSION;
 int tImage::Version_TinyEXIF_Minor			= TINYEXIF_MINOR_VERSION;
 int tImage::Version_TinyEXIF_Patch			= TINYEXIF_PATCH_VERSION;
+int tImage::Version_LibHEIF_Major			= (LIBHEIF_NUMERIC_VERSION >> 24) & 0xFF;
+int tImage::Version_LibHEIF_Minor			= (LIBHEIF_NUMERIC_VERSION >> 16) & 0xFF;
+int tImage::Version_LibHEIF_Patch			= (LIBHEIF_NUMERIC_VERSION >> 8) & 0xFF;
+int tImage::Version_LibDE265_Major			= (LIBDE265_NUMERIC_VERSION >> 24) & 0xFF;
+int tImage::Version_LibDE265_Minor			= (LIBDE265_NUMERIC_VERSION >> 16) & 0xFF;
+int tImage::Version_LibDE265_Patch			= (LIBDE265_NUMERIC_VERSION >> 8) & 0xFF;
+int tImage::Version_LunaSVG_Major			= LUNASVG_VERSION_MAJOR;
+int tImage::Version_LunaSVG_Minor			= LUNASVG_VERSION_MINOR;
+int tImage::Version_LunaSVG_Patch			= LUNASVG_VERSION_MICRO;
+int tImage::Version_PlutoVG_Major			= PLUTOVG_VERSION_MAJOR;
+int tImage::Version_PlutoVG_Minor			= PLUTOVG_VERSION_MINOR;
+int tImage::Version_PlutoVG_Patch			= PLUTOVG_VERSION_MICRO;
 
 
 void tPicture::Save(tChunkWriter& chunk) const

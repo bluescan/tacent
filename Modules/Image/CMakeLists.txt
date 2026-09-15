@@ -84,6 +84,8 @@ add_library(
 	Contrib/gifenc/gifenc.h
 	Contrib/gifenc/gifenc.c
 	Contrib/GifLoad/gif_load.h
+	Contrib/LibHEIF/include/dav1d/vcs_version.h
+	Contrib/LibHEIF/include/libde265/de265-version.h
 	Contrib/LibHEIF/include/libheif/heif.h
 	Contrib/LibKTX/include/ktx.h
 	Contrib/LibPNG/include/png.h
@@ -91,6 +93,7 @@ add_library(
 	Contrib/LibSPNG/spng.c
 	Contrib/LibTIFF/include/tiff.h
 	Contrib/LunaSVG/include/lunasvg.h
+	Contrib/LunaSVG/include/plutovg.h
 	Contrib/OpenEXR/loadImage.h
 	Contrib/OpenEXR/loadImage.cpp
 	Contrib/PVRTDecompress/PVRTDecompress.h

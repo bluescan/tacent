@@ -41,6 +41,7 @@ extern const char* Version_ZLIB;
 extern const char* Version_LibPNG;
 extern const char* Version_LibTIFF;
 extern const char* Version_LibKTX;
+extern const char* Version_LibDav1d;
 extern const char* Version_ApngDis;
 extern const char* Version_ApngAsm;
 extern int Version_WEBP_Major;
@@ -58,6 +59,18 @@ extern int Version_TinyXML2_Patch;
 extern int Version_TinyEXIF_Major;
 extern int Version_TinyEXIF_Minor;
 extern int Version_TinyEXIF_Patch;
+extern int Version_LibHEIF_Major;
+extern int Version_LibHEIF_Minor;
+extern int Version_LibHEIF_Patch;
+extern int Version_LibDE265_Major;
+extern int Version_LibDE265_Minor;
+extern int Version_LibDE265_Patch;
+extern int Version_LunaSVG_Major;
+extern int Version_LunaSVG_Minor;
+extern int Version_LunaSVG_Patch;
+extern int Version_PlutoVG_Major;
+extern int Version_PlutoVG_Minor;
+extern int Version_PlutoVG_Patch;
 
 
 // A tPicture is a single 2D image. A rectangular collection of R8G8B8A8 pixels (32bits per pixel). The origin is the
