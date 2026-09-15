@@ -98,13 +98,10 @@ add_library(
 	Contrib/QOI/qoi.h
 	Contrib/TinyEXIF/TinyEXIF.h
 	Contrib/TinyEXIF/TinyEXIF.cpp
-	Contrib/TinyXML2/tinyxml2.h
-	Contrib/TinyXML2/tinyxml2.cpp
 	Contrib/TurboJpeg/turbojpeg.h
 	Contrib/WebP/include/mux.h
 	Contrib/WebP/include/demux.h
 	Contrib/WebP/include/encode.h
-	Contrib/ZLib/include/zlib.h
 )
 
 tacent_target_include_directories(${PROJECT_NAME})
@@ -116,14 +113,10 @@ target_include_directories(
 	# PUBLIC means both building and for users of the lib. Populates both.
 	PUBLIC
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib>
-		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TinyXML2>
-		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/include>
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/include>
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/include>
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibSPNG>
 		$<INSTALL_INTERFACE:Contrib>
-		$<INSTALL_INTERFACE:Contrib/TinyXML2>
-		$<INSTALL_INTERFACE:Contrib/ZLib/include>
 		$<INSTALL_INTERFACE:Contrib/LibHEIF/include>
 		$<INSTALL_INTERFACE:Contrib/LibPNG/include>
 		$<INSTALL_INTERFACE:Contrib/LibSPNG>
@@ -188,6 +181,10 @@ target_link_libraries(
 		System
 	PRIVATE
 		Threads::Threads
+
+		# TinyXML2 (XML parsing) and ZLib (compression). See the Contrib module.
+		TinyXML2
+		ZLib
 
 		# LibWEBP
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/lib/libwebp.a>
@@ -306,14 +303,6 @@ target_link_libraries(
 		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libheif.a>
 		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libde265.a>
 		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libdav1d.a>
-		
-		# ZLib. Shared by a few different image formats.
-		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstaticd.lib>
-		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
-		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
-		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
-		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/zlibstatic.lib>
-		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/ZLib/lib/libz.a>
 )
 
 tacent_install(${PROJECT_NAME})

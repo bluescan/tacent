@@ -1,10 +1,12 @@
-Foundation is at the bottom. Depends on plat libs.
+Contrib depends on nothing (shared third-party libraries: TinyXML2, ZLib)
+
+Foundation is at the bottom. Depends on platform libs.
 
 Math depends on Foundation
 
 System depends on Foundation and Math
 
-Image depends on Foundation and Math and System
+Image depends on Foundation and Math and System and Contrib
 
 Build depends on Foundation and Math and System
 

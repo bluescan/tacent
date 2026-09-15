@@ -1,5 +1,6 @@
 project(Modules VERSION ${TACENT_VERSION})
 
+add_subdirectory(Contrib)
 add_subdirectory(Foundation)
 add_subdirectory(Math)
 add_subdirectory(System)
