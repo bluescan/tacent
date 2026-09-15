@@ -166,8 +166,8 @@ if (TACENT_ENABLE_HEIF)
 	target_compile_definitions(${PROJECT_NAME} PRIVATE LIBHEIF_STATIC_BUILD)
 endif()
 
-# TODO NEEDED? LunaSVG is always linked in as a static library.
-# target_compile_definitions(${PROJECT_NAME} PRIVATE LUNASVG_BUILD_STATIC)
+# LunaSVG is linked in as a static library.
+target_compile_definitions(${PROJECT_NAME} PRIVATE LUNASVG_BUILD_STATIC)
 
 tacent_target_compile_options(${PROJECT_NAME})
 tacent_target_compile_features(${PROJECT_NAME})
