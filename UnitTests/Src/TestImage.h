@@ -38,6 +38,7 @@ namespace tUnitTest
 	tTestUnit(ImagePNG);
 	tTestUnit(ImageHEIC);
 	tTestUnit(ImageAVIF);
+	tTestUnit(ImageJXL);
 	tTestUnit(ImageSVG);
 	tTestUnit(ImageDDS);
 	tTestUnit(ImageKTX2);

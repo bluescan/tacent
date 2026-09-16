@@ -277,6 +277,7 @@ int main(int argc, char** argv)
 	// tTest(ImagePNG);
 	tTest(ImageAVIF);
 	tTest(ImageHEIC);
+	tTest(ImageJXL);
 	tTest(ImageSVG);
 	// tTest(ImageDDS);
 	// tTest(ImageKTX1);

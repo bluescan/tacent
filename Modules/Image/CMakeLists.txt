@@ -17,6 +17,7 @@ add_library(
 	Src/tImageHDR.cpp
 	Src/tImageICO.cpp
 	Src/tImageJPG.cpp
+	Src/tImageJXL.cpp
 	Src/tImageKTX.cpp
 	Src/tImagePKM.cpp
 	Src/tImagePNG.cpp
@@ -54,6 +55,7 @@ add_library(
 	Inc/Image/tImageHEIC.h
 	Inc/Image/tImageICO.h
 	Inc/Image/tImageJPG.h
+	Inc/Image/tImageJXL.h
 	Inc/Image/tImageKTX.h
 	Inc/Image/tImagePKM.h
 	Inc/Image/tImagePNG.h
@@ -132,6 +134,7 @@ target_include_directories(
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/GifLoad
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/gifenc
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibKTX/include
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LunaSVG/include
 		# ${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibPNG/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibTIFF/include
@@ -164,6 +167,9 @@ endif()
 
 # LunaSVG is linked in as a static library.
 target_compile_definitions(${PROJECT_NAME} PRIVATE LUNASVG_BUILD_STATIC)
+
+# LibJXL is linked in as a static library.
+target_compile_definitions(${PROJECT_NAME} PRIVATE JXL_STATIC_DEFINE)
 
 tacent_target_compile_options(${PROJECT_NAME})
 tacent_target_compile_features(${PROJECT_NAME})
@@ -302,6 +308,53 @@ target_link_libraries(
 		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libheif.a>
 		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libde265.a>
 		$<$<AND:$<BOOL:${TACENT_ENABLE_HEIF}>,$<PLATFORM_ID:Linux>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibHEIF/lib/libdav1d.a>
+
+		# LibJXL (JPEG XL). Always enabled (BSD-3-Clause). Static archives: jxl + jxl_cms + jxl_threads +
+		# brotli (enc/dec/common) + highway (hwy). Windows keeps separate Debug (d-suffixed) and non-Debug
+		# sets (MSVC ABI); Linux links the same .a for all configs (matches the other Linux contribs).
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/jxld.lib>
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/jxl_cmsd.lib>
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/jxl_threadsd.lib>
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/brotliencd.lib>
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/brotlidecd.lib>
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/brotlicommond.lib>
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/hwyd.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/jxl.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/jxl_cms.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/jxl_threads.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/brotlienc.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/brotlidec.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/brotlicommon.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/hwy.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/jxl.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/jxl_cms.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/jxl_threads.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/brotlienc.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/brotlidec.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/brotlicommon.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/hwy.lib>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/jxl.lib>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/jxl_cms.lib>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/jxl_threads.lib>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/brotlienc.lib>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/brotlidec.lib>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/brotlicommon.lib>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/hwy.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/jxl.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/jxl_cms.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/jxl_threads.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/brotlienc.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/brotlidec.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/brotlicommon.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/hwy.lib>
+
+		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/libjxl.a>
+		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/libjxl_cms.a>
+		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/libjxl_threads.a>
+		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/libbrotlienc.a>
+		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/libbrotlidec.a>
+		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/libbrotlicommon.a>
+		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJXL/lib/libhwy.a>
 
 		# Linux static linking is order-sensitive (unlike the MSVC linker). Dependant libraries need to come last.
 

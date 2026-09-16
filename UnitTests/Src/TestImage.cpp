@@ -30,6 +30,7 @@
 #include <Image/tImageTGA.h>
 #include <Image/tImageHEIC.h>
 #include <Image/tImageAVIF.h>
+#include <Image/tImageJXL.h>
 #include <Image/tImageWEBP.h>
 #include <Image/tImageXPM.h>
 #include <Image/tImageBMP.h>
@@ -122,6 +123,9 @@ tTestUnit(ImageLoad)
 
 	tImageAVIF imgAVIF("TestPattern/TacentTestPattern.avif");
 	tRequire(imgAVIF.IsValid());
+
+	tImageJXL imgJXL("Type_JXL/Dice.jxl");
+	tRequire(imgJXL.IsValid());
 
 	tImageRestoreDir()
 }
@@ -1757,6 +1761,64 @@ tTestUnit(ImageAVIF)
 		tRequire(pixels);
 
 		tImageTGA tga(avif.StealPixels(), width, height, true);
+		tRequire(tga.IsValid());
+		tga.Save("Written_" + tSystem::tGetFileBaseName(*file) + ".tga");
+	}
+
+	tImageRestoreDir()
+}
+
+
+tTestUnit(ImageJXL)
+{
+	tImageSubDir("Type_JXL/")
+
+	// tImageJXL can only load, so we verify integrity by saving each loaded file as a TGA for visual inspection.
+	// A bad file or a failed load will cause a tRequire failure above.
+	tList<tStringItem> files;
+	tSystem::tFindFiles(files, "", tSystem::tExtensions(tSystem::tFileType::JXL));
+	tRequire(files.First());
+
+	tImageJXL jxl;
+	for (tStringItem* file = files.First(); file; file = file->Next())
+	{
+		tPrintf("JXL Load %s\n", file->Chr());
+		jxl.Load(*file);
+		tRequire(jxl.IsValid());
+
+		// Verify the decoded frame count. Icos4D.jxl was derived from Icos4D.gif, so it must decode to more than one
+		// frame (that is the point of the animation support). The other test assets are stills and must decode to one.
+		tString base = tSystem::tGetFileBaseName(*file);
+		int numFrames = jxl.GetNumFrames();
+		tRequire(numFrames >= 1);
+		tPrintf("JXL %s frames=%d first=%dx%d\n", base.Chr(), numFrames, jxl.GetWidth(), jxl.GetHeight());
+		if (base.IsEqualCI("Icos4D"))
+			tRequire(numFrames >= 2);
+		else if (base.IsEqualCI("Dice"))
+			tRequire(numFrames == 1);
+		else if (base.IsEqualCI("TimeTravel"))
+			tRequire(numFrames == 1);
+
+		// An animation should carry a duration (in seconds) on at least one of its frames.
+		if (base.IsEqualCI("Icos4D"))
+		{
+			int framesWithDuration = 0;
+			for (int i = 0; i < numFrames; i++)
+			{
+				tFrame* frame = jxl.GetFrame(i);
+				tRequire(frame);
+				if (frame->Duration > 0.0f)
+					framesWithDuration++;
+			}
+			tRequire(framesWithDuration > 0);
+		}
+
+		int width = jxl.GetWidth();
+		int height = jxl.GetHeight();
+		tPixel4b* pixels = jxl.GetPixels();
+		tRequire(pixels);
+
+		tImageTGA tga(jxl.StealPixels(), width, height, true);
 		tRequire(tga.IsValid());
 		tga.Save("Written_" + tSystem::tGetFileBaseName(*file) + ".tga");
 	}
