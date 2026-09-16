@@ -9,7 +9,7 @@
 // layer, and gif/webp/apng images may be animated and have more than one frame. A tPicture can only prepresent _one_
 // of these frames.
 //
-// Copyright (c) 2006, 2016, 2017, 2020-2024 Tristan Grimmer.
+// Copyright (c) 2006, 2016, 2017, 2020-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -51,6 +51,9 @@ const char* ASTCENCODER_VERSION_STRING		= VERSION_STRING;
 #include <libde265/de265-version.h>
 #include <lunasvg.h>
 #include <plutovg.h>
+#include <jxl/version.h>
+#include <hwy/base.h>
+#include <brotli/decode.h>
 #include "Image/tResample.h"
 
 
@@ -96,6 +99,17 @@ int tImage::Version_LunaSVG_Patch			= LUNASVG_VERSION_MICRO;
 int tImage::Version_PlutoVG_Major			= PLUTOVG_VERSION_MAJOR;
 int tImage::Version_PlutoVG_Minor			= PLUTOVG_VERSION_MINOR;
 int tImage::Version_PlutoVG_Patch			= PLUTOVG_VERSION_MICRO;
+int tImage::Version_LibJXL_Major			= JPEGXL_MAJOR_VERSION;
+int tImage::Version_LibJXL_Minor			= JPEGXL_MINOR_VERSION;
+int tImage::Version_LibJXL_Patch			= JPEGXL_PATCH_VERSION;
+int tImage::Version_Highway_Major			= HWY_MAJOR;
+int tImage::Version_Highway_Minor			= HWY_MINOR;
+int tImage::Version_Highway_Patch			= HWY_PATCH;
+// Brotli doesn't ship compile-time version macros; the vendored decode.h
+// (Contrib/LibJXL/include, MIT licensed) has BROTLI_VERSION_* defines added to it.
+int tImage::Version_Brotli_Major			= BROTLI_VERSION_MAJOR;
+int tImage::Version_Brotli_Minor			= BROTLI_VERSION_MINOR;
+int tImage::Version_Brotli_Patch			= BROTLI_VERSION_PATCH;
 
 
 void tPicture::Save(tChunkWriter& chunk) const

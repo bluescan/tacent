@@ -71,6 +71,15 @@ extern int Version_LunaSVG_Patch;
 extern int Version_PlutoVG_Major;
 extern int Version_PlutoVG_Minor;
 extern int Version_PlutoVG_Patch;
+extern int Version_LibJXL_Major;
+extern int Version_LibJXL_Minor;
+extern int Version_LibJXL_Patch;
+extern int Version_Highway_Major;
+extern int Version_Highway_Minor;
+extern int Version_Highway_Patch;
+extern int Version_Brotli_Major;
+extern int Version_Brotli_Minor;
+extern int Version_Brotli_Patch;
 
 
 // A tPicture is a single 2D image. A rectangular collection of R8G8B8A8 pixels (32bits per pixel). The origin is the
