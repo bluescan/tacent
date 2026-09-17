@@ -62,7 +62,8 @@ bool tImageJXL::Load(const uint8* jxlFileInMemory, int numBytes)
 	// already decoded. It runs on a second, independent decoder so that a box-reading hiccup can never affect pixels.
 	PopulateMetaData(jxlFileInMemory, numBytes);
 
-	PixelFormatSrc = tPixelFormat::R8G8B8A8;
+	// Reflect the source's actual channel layout (RGB or RGBA). Head must be valid or we would have failed the Decode.
+	PixelFormatSrc = Frames.Head()->PixelFormatSrc;
 	PixelFormat = tPixelFormat::R8G8B8A8;
 	ColourProfileSrc = tColourProfile::sRGB;
 	ColourProfile = tColourProfile::sRGB;
@@ -94,22 +95,29 @@ bool tImageJXL::Save(const tString& jxlFile, const SaveParams& params) const
 	int width = first->Width;
 	int height = first->Height;
 	bool animated = (numFrames > 1);
+	
+	// When every frame is fully opaque we can omit the alpha channel entirely (JXL supports 3-channel RGB). This keeps
+	// fully-opaque saves from carrying a pointless all-255 alpha plane and shows them as plain RGB in the details window.
+	const bool opaque = IsOpaque();
 
 	// Create the encoder. Everything below must be cleaned up with JxlEncoderDestroy on the way out.
 	JxlEncoder* enc = JxlEncoderCreate(nullptr);
 	if (!enc)
 		return false;
 
-	// The image is always written as 8-bit RGBA with straight (non-premultiplied) alpha. Even opaque frames carry a
-	// full-strength alpha channel (255) which losslessly round-trips, so this matches how Tacent stores pixels.
+	// The image is written as 8-bit, straight (non-premultiplied) alpha. If every frame is fully opaque (every pixel
+	// A == 255) we omit the alpha channel entirely and encode plain 3-channel RGB, since the alpha would be a pointless
+	// all-255 plane. Otherwise the image has transparency somewhere, so we keep the alpha channel and pass each frame's
+	// actual per-pixel alpha values through unchanged (not a filled 255 plane) -- preserving any transparency so that it
+	// losslessly round-trips. This matches how Tacent stores pixels and keeps fully-opaque saves free of a useless alpha.
 	JxlBasicInfo info;
 	tStd::tMemset(&info, 0, sizeof(info));
 	info.xsize = (uint32_t)width;
 	info.ysize = (uint32_t)height;
 	info.bits_per_sample = 8;
 	info.num_color_channels = 3;
-	info.num_extra_channels = 1;		// The main alpha channel.
-	info.alpha_bits = 8;
+	info.num_extra_channels = opaque ? 0 : 1;	// Omit the main alpha channel when every frame is opaque.
+	info.alpha_bits = opaque ? 0 : 8;
 	info.alpha_premultiplied = JXL_FALSE;
 	info.orientation = JXL_ORIENT_IDENTITY;
 	
@@ -139,9 +147,9 @@ bool tImageJXL::Save(const tString& jxlFile, const SaveParams& params) const
 	JxlColorEncodingSetToSRGB(&color, JXL_FALSE);
 	JxlEncoderSetColorEncoding(enc, &color);
 
-	// 8-bit RGBA, native endianness.
+	// 8-bit, native endianness. 4 channels (RGBA) when alpha is kept, 3 channels (RGB) when it is omitted.
 	JxlPixelFormat pixelFormat;
-	pixelFormat.num_channels = 4;
+	pixelFormat.num_channels = opaque ? 3 : 4;
 	pixelFormat.data_type = JXL_TYPE_UINT8;
 	pixelFormat.endianness = JXL_NATIVE_ENDIAN;
 	pixelFormat.align = 0;
@@ -166,6 +174,7 @@ bool tImageJXL::Save(const tString& jxlFile, const SaveParams& params) const
 
 	// Add every frame (JXL requires them all to be the same size).
 	bool framesAdded = true;
+	tArray<uint8> rgbBuffer;		// Reused per-frame scratch: the RGB (no-alpha) layout when we omit the alpha channel.
 	for (tFrame* frame = Frames.First(); frame; frame = frame->Next())
 	{
 		if ((frame->Width != width) || (frame->Height != height) || !frame->Pixels)
@@ -195,8 +204,27 @@ bool tImageJXL::Save(const tString& jxlFile, const SaveParams& params) const
 		// tImageWEBP::Save, which reverses a copied frame before WebPPictureImportRGBA.
 		tFrame normFrame(*frame);
 		normFrame.ReverseRows();
-		const size_t bufferBytes = (size_t)width * (size_t)height * sizeof(tPixel4b);
-		if (JxlEncoderAddImageFrame(settings, &pixelFormat, normFrame.Pixels, bufferBytes) != JXL_ENC_SUCCESS)
+
+		// When the alpha channel is omitted the encoder must receive 3-channel (RGB) data, but Tacent stores 4-channel
+		// (RGBA). Strip the (known-opaque) alpha into the reusable RGB buffer; otherwise pass the RGBA buffer directly.
+		const uint8* pixelsToEncode = (const uint8*)normFrame.Pixels;
+		size_t bufferBytes = (size_t)width * (size_t)height * (opaque ? 3 : 4);
+		if (opaque)
+		{
+			const int numPixels = width * height;
+			rgbBuffer.GrowTo((int)((size_t)numPixels * 3));
+			uint8* rgb = rgbBuffer.GetElements();
+			const tPixel4b* src = normFrame.Pixels;
+			for (int p = 0; p < numPixels; p++)
+			{
+				rgb[p * 3 + 0] = src[p].R;
+				rgb[p * 3 + 1] = src[p].G;
+				rgb[p * 3 + 2] = src[p].B;
+			}
+			pixelsToEncode = rgb;
+		}
+
+		if (JxlEncoderAddImageFrame(settings, &pixelFormat, pixelsToEncode, bufferBytes) != JXL_ENC_SUCCESS)
 		{
 			framesAdded = false;
 			break;
@@ -279,6 +307,7 @@ bool tImageJXL::DecodeFrames(const uint8* data, int numBytes)
 	int canvasHeight = 0;
 	float tickSeconds = 0.0f;		// Seconds per animation tick (derived from the codestream timescale). 0 => no durations.
 	tFrame* pendingFrame = nullptr;	// The frame whose pixels libjxl is about to write.
+	bool sourceHasAlpha = false;	// Whether the codestream carries an alpha channel; drives each frame's PixelFormatSrc.
 
 	// Provides the RGBA8 output buffer for one frame. libjxl fills alpha with 255 for opaque images, so every JXL image
 	// (grayscale, RGB, RGBA) maps cleanly onto tPixel4b (RGBA).
@@ -332,6 +361,9 @@ bool tImageJXL::DecodeFrames(const uint8* data, int numBytes)
 					break;
 				gotCanvas = true;
 
+				// JxlBasicInfo tells us whether the codestream carries an alpha channel.
+				sourceHasAlpha = (info.alpha_bits > 0);
+
 				// The animation timescale is expressed as ticks-per-second (numerator / denominator). Convert it to
 				// seconds-per-tick so a frame's tick duration (JxlFrameHeader::duration) can be scaled to seconds.
 				if (info.have_animation && (info.animation.tps_numerator > 0))
@@ -348,7 +380,7 @@ bool tImageJXL::DecodeFrames(const uint8* data, int numBytes)
 					tFrame* frame = new tFrame();
 					frame->Width = canvasWidth;
 					frame->Height = canvasHeight;
-					frame->PixelFormatSrc = tPixelFormat::R8G8B8A8;
+					frame->PixelFormatSrc = sourceHasAlpha ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
 					frame->Pixels = new tPixel4b[(size_t)canvasWidth * (size_t)canvasHeight];
 
 					// JxlDecoderGetFrameHeader is valid once the JXL_DEC_FRAME event has occurred for this frame. If it is
