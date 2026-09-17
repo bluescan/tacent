@@ -1813,6 +1813,49 @@ tTestUnit(ImageJXL)
 			tRequire(framesWithDuration > 0);
 		}
 
+		// Round-trip: re-encode the frames we just decoded (lossless), decode them again, and compare pixel-for-pixel.
+		// This validates tImageJXL::Save against the loader for both a still image and an animation, including alpha
+		// and per-frame durations.
+		{
+			tRequire(jxl.GetWidth() > 0 && jxl.GetHeight() > 0);
+
+			// Copy each decoded frame so that jxl stays intact (its pixels are stolen for the TGA save below).
+			tList<tFrame> saveFrames;
+			for (int i = 0; i < numFrames; i++)
+			{
+				tFrame* saveFrame = jxl.GetFrame(i);
+				tRequire(saveFrame);
+				saveFrames.Append(new tFrame(*saveFrame));
+			}
+			tImageJXL toSave(saveFrames, true);
+			tRequire(toSave.IsValid());
+
+			tImageJXL::SaveParams saveParams;
+			saveParams.Lossless = true;
+			tString rtFile = "Written_RT_" + base + ".jxl";
+			tRequire(toSave.Save(rtFile, saveParams));
+			tRequire(tSystem::tFileExists(rtFile));
+
+			tImageJXL reloaded(rtFile);
+			tRequire(reloaded.IsValid());
+			tRequire(reloaded.GetNumFrames() == numFrames);
+			tRequire(reloaded.GetWidth() == jxl.GetWidth() && reloaded.GetHeight() == jxl.GetHeight());
+
+			// Every reloaded frame must match the corresponding original frame exactly (lossless round-trip), and a
+			// frame that had a duration must still have one.
+			for (int i = 0; i < numFrames; i++)
+			{
+				tFrame* of = jxl.GetFrame(i);
+				tFrame* rf = reloaded.GetFrame(i);
+				tRequire(of && rf);
+				tRequire(of->Width == rf->Width && of->Height == rf->Height);
+				tRequire(of->Pixels && rf->Pixels);
+				tRequire(tStd::tMemcmp(of->Pixels, rf->Pixels, of->Width*of->Height*(int)sizeof(tPixel4b)) == 0);
+				if (of->Duration > 0.0f)
+					tRequire(rf->Duration > 0.0f);
+			}
+		}
+
 		int width = jxl.GetWidth();
 		int height = jxl.GetHeight();
 		tPixel4b* pixels = jxl.GetPixels();

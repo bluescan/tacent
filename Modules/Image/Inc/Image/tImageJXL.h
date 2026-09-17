@@ -65,6 +65,33 @@ public:
 	bool Load(const tString& jxlFile);
 	bool Load(const uint8* jxlFileInMemory, int numBytes);
 
+	// Parameters for saving to a JXL file.
+	struct SaveParams
+	{
+		SaveParams()																									{ Reset(); }
+		SaveParams(const SaveParams& src)																				: Lossless(src.Lossless), Distance(src.Distance) { }
+
+		SaveParams& operator=(const SaveParams& src)																	{ Lossless = src.Lossless; Distance = src.Distance; return *this; }
+
+		void Reset()																									{ Lossless = false; Distance = 1.0f; }
+
+		// If true, encode losslessly (Distance is ignored). Lossless mode round-trips 8-bit RGBA exactly.
+		// If you want compression, leave at the default of false.
+		bool Lossless = false;
+
+		// Target max Butteraugli distance for lossy encoding. Lower is higher quality. Max range is [0.0, 25.0].
+		// Recommended range is [0.5, 3.0]. Only used when Lossless is false. Default is 1.0. At this setting you likely
+		// won't perceive any compression. At 0.0 it is basically lossless, however it may not be bit-for-bit perfect so
+		// use Lossless set to true if you really want lossless. It will encode faster too.
+		float Distance = 1.0f;
+	};
+
+	// Saves the frames to a JXL file. A single frame is written as a still image; more than one frame is written as an
+	// animation (each frame's Duration, in seconds, is preserved). Pixels are always written as 8-bit RGBA with straight
+	// (non-premultiplied) alpha, matching how Tacent stores them. Returns true on success.
+	bool Save(const tString& jxlFile, bool lossless, float distance = 0.0f) const;
+	bool Save(const tString& jxlFile, const SaveParams& = SaveParams()) const;
+
 	// Creates a tImageJXL from a bunch of frames. If steal is true, the srcFrames will be empty after.
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 
@@ -81,16 +108,16 @@ public:
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear() override;
 	// Valid if at least one frame has been decoded.
-	bool IsValid() const override		{ return GetNumFrames() >= 1; }
+	bool IsValid() const override																						{ return GetNumFrames() >= 1; }
 
 	// Number of decoded frames. A still image has one; an animation has several.
-	int GetNumFrames() const			{ return Frames.GetNumItems(); }
+	int GetNumFrames() const																							{ return Frames.GetNumItems(); }
 
 	// Convenience accessors for the FIRST frame, so single-frame consumers keep working. Use the frame methods below to
 	// iterate an animation.
-	int GetWidth() const				{ tFrame* f = Frames.Head(); return f ? f->Width : 0; }
-	int GetHeight() const				{ tFrame* f = Frames.Head(); return f ? f->Height : 0; }
-	tPixel4b* GetPixels() const			{ tFrame* f = Frames.Head(); return f ? f->Pixels : nullptr; }
+	int GetWidth() const																								{ tFrame* f = Frames.Head(); return f ? f->Width : 0; }
+	int GetHeight() const																								{ tFrame* f = Frames.Head(); return f ? f->Height : 0; }
+	tPixel4b* GetPixels() const																							{ tFrame* f = Frames.Head(); return f ? f->Pixels : nullptr; }
 
 	// Returns true if ALL frames are opaque. Slow. Checks all pixels.
 	bool IsOpaque() const;

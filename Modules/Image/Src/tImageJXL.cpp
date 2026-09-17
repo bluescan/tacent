@@ -24,6 +24,9 @@
 #include <Image/tFrame.h>
 #include <Image/tPicture.h>
 #include "jxl/decode.h"
+#include "jxl/encode.h"
+//#include <algorithm>
+#include <vector>
 namespace tImage
 {
 
@@ -69,6 +72,188 @@ bool tImageJXL::Load(const uint8* jxlFileInMemory, int numBytes)
 }
 
 
+bool tImageJXL::Save(const tString& jxlFile, bool lossless, float distance) const
+{
+	SaveParams params;
+	params.Lossless = lossless;
+	params.Distance = distance;
+	return Save(jxlFile, params);
+}
+
+
+bool tImageJXL::Save(const tString& jxlFile, const SaveParams& params) const
+{
+	if (!IsValid())
+		return false;
+
+	if (tSystem::tGetFileType(jxlFile) != tSystem::tFileType::JXL)
+		return false;
+
+	int numFrames = GetNumFrames();
+	tFrame* first = Frames.Head();
+	int width = first->Width;
+	int height = first->Height;
+	bool animated = (numFrames > 1);
+
+	// Create the encoder. Everything below must be cleaned up with JxlEncoderDestroy on the way out.
+	JxlEncoder* enc = JxlEncoderCreate(nullptr);
+	if (!enc)
+		return false;
+
+	// The image is always written as 8-bit RGBA with straight (non-premultiplied) alpha. Even opaque frames carry a
+	// full-strength alpha channel (255) which losslessly round-trips, so this matches how Tacent stores pixels.
+	JxlBasicInfo info;
+	tStd::tMemset(&info, 0, sizeof(info));
+	info.xsize = (uint32_t)width;
+	info.ysize = (uint32_t)height;
+	info.bits_per_sample = 8;
+	info.num_color_channels = 3;
+	info.num_extra_channels = 1;		// The main alpha channel.
+	info.alpha_bits = 8;
+	info.alpha_premultiplied = JXL_FALSE;
+	info.orientation = JXL_ORIENT_IDENTITY;
+	
+	// Lossless encoding requires the encoder to preserve the original (sRGB) profile. libjxl rejects
+	// JxlEncoderSetFrameLossless(true) for the default xyb_encoded color path, asking for exactly this.
+	// For lossy encoding it should stay false (per the libjxl guidance).
+	info.uses_original_profile = params.Lossless ? JXL_TRUE : JXL_FALSE;
+	if (animated)
+	{
+		info.have_animation = JXL_TRUE;
+		// The timescale must match what the decoder assumes (1000 ticks per second) so a frame's duration in seconds
+		// round-trips back to itself. num_loops of 0 means repeat forever.
+		info.animation.tps_numerator = 1000;
+		info.animation.tps_denominator = 1;
+		info.animation.num_loops = 0;
+		info.animation.have_timecodes = JXL_FALSE;
+	}
+	if (JxlEncoderSetBasicInfo(enc, &info) != JXL_ENC_SUCCESS)
+	{
+		JxlEncoderDestroy(enc);
+		return false;
+	}
+
+	// Declare the pixel data as sRGB so a lossless round-trip is color-exact.
+	JxlColorEncoding color;
+	JxlColorEncodingSetToSRGB(&color, JXL_FALSE);
+	JxlEncoderSetColorEncoding(enc, &color);
+
+	// 8-bit RGBA, native endianness.
+	JxlPixelFormat pixelFormat;
+	pixelFormat.num_channels = 4;
+	pixelFormat.data_type = JXL_TYPE_UINT8;
+	pixelFormat.endianness = JXL_NATIVE_ENDIAN;
+	pixelFormat.align = 0;
+
+	// One shared set of frame settings. Only the per-frame duration changes from frame to frame.
+	JxlEncoderFrameSettings* settings = JxlEncoderFrameSettingsCreate(enc, nullptr);
+	if (!settings)
+	{
+		JxlEncoderDestroy(enc);
+		return false;
+	}
+	if (JxlEncoderSetFrameLossless(settings, params.Lossless ? JXL_TRUE : JXL_FALSE) != JXL_ENC_SUCCESS)
+	{
+		JxlEncoderDestroy(enc);
+		return false;
+	}
+	if (!params.Lossless && (JxlEncoderSetFrameDistance(settings, params.Distance) != JXL_ENC_SUCCESS))
+	{
+		JxlEncoderDestroy(enc);
+		return false;
+	}
+
+	// Add every frame (JXL requires them all to be the same size).
+	bool framesAdded = true;
+	for (tFrame* frame = Frames.First(); frame; frame = frame->Next())
+	{
+		if ((frame->Width != width) || (frame->Height != height) || !frame->Pixels)
+		{
+			framesAdded = false;
+			break;
+		}
+
+		// Set this frame's duration (in ticks) for an animation. A non-negative Duration is in seconds, so scale to
+		// the 1000-ticks-per-second timescale declared above.
+		JxlFrameHeader frameHeader;
+		tStd::tMemset(&frameHeader, 0, sizeof(frameHeader));
+		if (animated)
+			frameHeader.duration = (uint32_t)(frame->Duration * 1000.0f);
+		if (JxlEncoderSetFrameHeader(settings, &frameHeader) != JXL_ENC_SUCCESS)
+		{
+			framesAdded = false;
+			break;
+		}
+
+		// Tacent stores rows bottom-up, but libjxl expects top-to-bottom input. Reverse a copy of the frame so the
+		// encoded pixels are laid out the way the loader produced them (and will re-read them) -- mirroring
+		// tImageWEBP::Save, which reverses a copied frame before WebPPictureImportRGBA.
+		tFrame normFrame(*frame);
+		normFrame.ReverseRows();
+		const size_t bufferBytes = (size_t)width * (size_t)height * sizeof(tPixel4b);
+		if (JxlEncoderAddImageFrame(settings, &pixelFormat, normFrame.Pixels, bufferBytes) != JXL_ENC_SUCCESS)
+		{
+			framesAdded = false;
+			break;
+		}
+	}
+
+	if (!framesAdded)
+	{
+		JxlEncoderDestroy(enc);
+		return false;
+	}
+
+	// No more input is coming; produce the output.
+	JxlEncoderCloseInput(enc);
+
+	// Pull the encoded bytes out. The compressed size is not known until produced, so we offer room and grow on
+	// JXL_ENC_NEED_MORE_OUTPUT. The loop condition itself bounds the total output at kMaxEncodedBytes and always
+	// leaves room for at least one more >= 32-byte chunk (as JxlEncoderProcessOutput requires), so a pathological
+	// stream cannot drive unbounded memory growth. The buffer is RAII (std::vector), so there is no manual
+	// new[]/delete[]/tMemcpy to get wrong and nothing to leak on any exit path.
+	constexpr size_t kMaxEncodedBytes = 4ull * 1024 * 1024 * 1024;		// 4 GiB hard cap on accumulated output.
+	std::vector<uint8> output;
+	size_t collected = 0;
+	bool success = false;
+	while (collected + 32 <= kMaxEncodedBytes)
+	{
+		const size_t capacity = std::min<size_t>(std::max<size_t>(65536, collected * 2), kMaxEncodedBytes);
+		output.resize(capacity);
+
+		uint8* const start = output.data() + collected;
+		uint8* next_out = start;
+		size_t avail_out = capacity - collected;
+		const JxlEncoderStatus status = JxlEncoderProcessOutput(enc, &next_out, &avail_out);
+		const size_t produced = (size_t)(next_out - start);
+
+		if (status == JXL_ENC_SUCCESS)
+		{
+			collected += produced;
+			success = true;
+			break;
+		}
+		if (status == JXL_ENC_ERROR)
+			break;
+
+		// No progress despite needing more output; refuse to spin forever.
+		if (produced == 0)
+			break;
+
+		collected += produced;
+		// JXL_ENC_NEED_MORE_OUTPUT: the loop re-bounds against the cap and we make more room on the next pass.
+	}
+
+	// tCreateFile takes an int length, so refuse (rather than silently truncate) anything bigger than a 32-bit size.
+	const bool wrote =
+		success && (collected > 0) && (collected <= 0x7FFFFFFF) &&
+		tSystem::tCreateFile(jxlFile, output.data(), int(collected));
+
+	JxlEncoderDestroy(enc);
+	return wrote;
+}
+
+
 bool tImageJXL::DecodeFrames(const uint8* data, int numBytes)
 {
 	tAssert((numBytes > 0) && data);
@@ -87,7 +272,7 @@ bool tImageJXL::DecodeFrames(const uint8* data, int numBytes)
 	bool gotCanvas = false;
 	int canvasWidth = 0;
 	int canvasHeight = 0;
-	float tickSeconds = 0.0f;	// Seconds per animation tick (derived from the codestream timescale). 0 => no durations.
+	float tickSeconds = 0.0f;		// Seconds per animation tick (derived from the codestream timescale). 0 => no durations.
 	tFrame* pendingFrame = nullptr;	// The frame whose pixels libjxl is about to write.
 
 	// Provides the RGBA8 output buffer for one frame. libjxl fills alpha with 255 for opaque images, so every JXL image
@@ -102,13 +287,21 @@ bool tImageJXL::DecodeFrames(const uint8* data, int numBytes)
 		return JxlDecoderSetImageOutBuffer(dec, &format, frame.Pixels, (size_t)frame.Width * (size_t)frame.Height * sizeof(tPixel4b)) == JXL_DEC_SUCCESS;
 	};
 
-	if ((JxlDecoderSetInput(dec, data, numBytes) == JXL_DEC_SUCCESS) &&
-		(JxlDecoderSubscribeEvents(dec, JXL_DEC_BASIC_INFO | JXL_DEC_FRAME | JXL_DEC_FULL_IMAGE) == JXL_DEC_SUCCESS))
+	if
+	(
+		(JxlDecoderSetInput(dec, data, numBytes) == JXL_DEC_SUCCESS) &&
+		(
+			JxlDecoderSubscribeEvents
+			(
+				dec, JXL_DEC_BASIC_INFO | JXL_DEC_FRAME | JXL_DEC_FULL_IMAGE
+			) == JXL_DEC_SUCCESS
+		)
+	)
 	{
 		// We have the entire file in memory; tell the decoder no more input will arrive.
 		JxlDecoderCloseInput(dec);
 
-		for (;;)
+		while (1)
 		{
 			JxlDecoderStatus status = JxlDecoderProcessInput(dec);
 
@@ -118,7 +311,8 @@ bool tImageJXL::DecodeFrames(const uint8* data, int numBytes)
 				break;
 			}
 			if ((status == JXL_DEC_ERROR) || (status == JXL_DEC_NEED_MORE_INPUT))
-				break;		// A real error (NEED_MORE_INPUT should not happen since we closed the input).
+				// A real error (NEED_MORE_INPUT should not happen since we closed the input).
+				break;
 
 			if (status == JXL_DEC_BASIC_INFO)
 			{
@@ -365,38 +559,49 @@ bool tImageJXL::ReadBoxPayload(JxlDecoder* dec, uint8*& outData, int& outBytes)
 	outData = nullptr;
 	outBytes = 0;
 
-	size_t capacity = 65536;	// Initial room offered to the decoder; doubled each time the box outgrows it.
-	size_t collected = 0;		// Bytes of box content received so far.
-
-	for (;;)
+	// A single metadata box (EXIF/XMP) is expected to be small; cap it at 4 MiB so a crafted file cannot drive
+	// unbounded memory growth via a Brotli "zip bomb" brob box. The loop condition enforces the bound (no unbounded
+	// while(1)), and the buffer is RAII (std::vector), so there is nothing to leak on any exit path.
+	constexpr size_t kMaxBoxBytes = 4ull * 1024 * 1024;		// 4 MiB hard cap per box
+	std::vector<uint8> buffer;
+	size_t collected = 0;
+	bool complete = false;
+	while (collected + 1 <= kMaxBoxBytes)
 	{
-		uint8* grown = new uint8[capacity];
-		if (collected > 0)
-			tStd::tMemcpy(grown, outData, collected);
-		delete[] outData;
-		outData = grown;
+		const size_t capacity = std::min<size_t>(std::max<size_t>(65536, collected * 2), kMaxBoxBytes);
+		buffer.resize(capacity);
 
 		const size_t room = capacity - collected;
-		if (JxlDecoderSetBoxBuffer(dec, outData + collected, room) != JXL_DEC_SUCCESS)
-			return false;
+		if (JxlDecoderSetBoxBuffer(dec, buffer.data() + collected, room) != JXL_DEC_SUCCESS)
+			break;
 
 		const JxlDecoderStatus status = JxlDecoderProcessInput(dec);
-		const size_t remaining = JxlDecoderReleaseBoxBuffer(dec);	// Portion of `room` the decoder left unfilled.
-		collected += (room - remaining);
+
+		// Portion of `room` the decoder actually filled this pass.
+		const size_t produced = room - JxlDecoderReleaseBoxBuffer(dec);
 
 		if (status == JXL_DEC_BOX_COMPLETE)
 		{
-			outBytes = (int)collected;
-			return true;
+			collected += produced;
+			complete = true;
+			break;
 		}
-		if (status == JXL_DEC_BOX_NEED_MORE_OUTPUT)
-		{
-			capacity *= 2;		// Offered buffer filled; make more room and continue.
-			continue;
-		}
-		// JXL_DEC_ERROR / JXL_DEC_NEED_MORE_INPUT / anything unexpected -- the box could not be read.
-		return false;
+		if (status != JXL_DEC_BOX_NEED_MORE_OUTPUT)
+			break;		// JXL_DEC_ERROR / JXL_DEC_NEED_MORE_INPUT / unexpected -- the box could not be read.
+		if (produced == 0)
+			break;		// No progress despite needing more output; refuse to spin forever.
+		collected += produced;
+		// JXL_DEC_BOX_NEED_MORE_OUTPUT: the loop re-bounds against the cap and we make more room on the next pass.
 	}
+
+	if (!complete)
+		return false;
+
+	// Hand the collected bytes to the caller, which owns them and frees them with delete[] (see WalkBoxes).
+	outData = new uint8[collected];
+	tStd::tMemcpy(outData, buffer.data(), collected);
+	outBytes = (int)collected;
+	return true;
 }
 
 
@@ -412,6 +617,7 @@ bool tImageJXL::PopulateMetaData(const uint8* data, int numBytes)
 	if (JxlDecoderSetInput(dec, data, numBytes) == JXL_DEC_SUCCESS)
 	{
 		JxlDecoderCloseInput(dec);
+
 		// Decompress "brob" boxes so that EXIF/XMP stored in them are surfaced under their real ("Exif"/"xml ") type.
 		if (JxlDecoderSetDecompressBoxes(dec, JXL_TRUE) == JXL_DEC_SUCCESS)
 		{
