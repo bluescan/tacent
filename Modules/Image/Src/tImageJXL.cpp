@@ -19,14 +19,13 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
+#include <Foundation/tArray.h>
 #include <Image/tImageJXL.h>
 #include <System/tFile.h>
 #include <Image/tFrame.h>
 #include <Image/tPicture.h>
 #include "jxl/decode.h"
 #include "jxl/encode.h"
-//#include <algorithm>
-#include <vector>
 namespace tImage
 {
 
@@ -72,11 +71,12 @@ bool tImageJXL::Load(const uint8* jxlFileInMemory, int numBytes)
 }
 
 
-bool tImageJXL::Save(const tString& jxlFile, bool lossless, float distance) const
+bool tImageJXL::Save(const tString& jxlFile, bool lossless, float distance, int overrideFrameDuration) const
 {
 	SaveParams params;
 	params.Lossless = lossless;
 	params.Distance = distance;
+	params.OverrideFrameDuration = overrideFrameDuration;
 	return Save(jxlFile, params);
 }
 
@@ -120,6 +120,7 @@ bool tImageJXL::Save(const tString& jxlFile, const SaveParams& params) const
 	if (animated)
 	{
 		info.have_animation = JXL_TRUE;
+
 		// The timescale must match what the decoder assumes (1000 ticks per second) so a frame's duration in seconds
 		// round-trips back to itself. num_loops of 0 means repeat forever.
 		info.animation.tps_numerator = 1000;
@@ -174,11 +175,15 @@ bool tImageJXL::Save(const tString& jxlFile, const SaveParams& params) const
 		}
 
 		// Set this frame's duration (in ticks) for an animation. A non-negative Duration is in seconds, so scale to
-		// the 1000-ticks-per-second timescale declared above.
+		// the 1000-ticks-per-second timescale declared above. A non-negative OverrideFrameDuration (in milliseconds)
+		// replaces each frame's own duration.
 		JxlFrameHeader frameHeader;
 		tStd::tMemset(&frameHeader, 0, sizeof(frameHeader));
 		if (animated)
-			frameHeader.duration = (uint32_t)(frame->Duration * 1000.0f);
+		{
+			float ms = (params.OverrideFrameDuration >= 0) ? float(params.OverrideFrameDuration) : (frame->Duration * 1000.0f);
+			frameHeader.duration = uint32_t(ms);
+		}
 		if (JxlEncoderSetFrameHeader(settings, &frameHeader) != JXL_ENC_SUCCESS)
 		{
 			framesAdded = false;
@@ -210,18 +215,18 @@ bool tImageJXL::Save(const tString& jxlFile, const SaveParams& params) const
 	// Pull the encoded bytes out. The compressed size is not known until produced, so we offer room and grow on
 	// JXL_ENC_NEED_MORE_OUTPUT. The loop condition itself bounds the total output at kMaxEncodedBytes and always
 	// leaves room for at least one more >= 32-byte chunk (as JxlEncoderProcessOutput requires), so a pathological
-	// stream cannot drive unbounded memory growth. The buffer is RAII (std::vector), so there is no manual
+	// stream cannot drive unbounded memory growth. The buffer is RAII (tArray), so there is no manual
 	// new[]/delete[]/tMemcpy to get wrong and nothing to leak on any exit path.
 	constexpr size_t kMaxEncodedBytes = 4ull * 1024 * 1024 * 1024;		// 4 GiB hard cap on accumulated output.
-	std::vector<uint8> output;
+	tArray<uint8> output;
 	size_t collected = 0;
 	bool success = false;
 	while (collected + 32 <= kMaxEncodedBytes)
 	{
 		const size_t capacity = std::min<size_t>(std::max<size_t>(65536, collected * 2), kMaxEncodedBytes);
-		output.resize(capacity);
+		output.GrowTo(int(capacity));
 
-		uint8* const start = output.data() + collected;
+		uint8* const start = output.GetElements() + collected;
 		uint8* next_out = start;
 		size_t avail_out = capacity - collected;
 		const JxlEncoderStatus status = JxlEncoderProcessOutput(enc, &next_out, &avail_out);
@@ -247,7 +252,7 @@ bool tImageJXL::Save(const tString& jxlFile, const SaveParams& params) const
 	// tCreateFile takes an int length, so refuse (rather than silently truncate) anything bigger than a 32-bit size.
 	const bool wrote =
 		success && (collected > 0) && (collected <= 0x7FFFFFFF) &&
-		tSystem::tCreateFile(jxlFile, output.data(), int(collected));
+		tSystem::tCreateFile(jxlFile, output.GetElements(), int(collected));
 
 	JxlEncoderDestroy(enc);
 	return wrote;
@@ -561,18 +566,18 @@ bool tImageJXL::ReadBoxPayload(JxlDecoder* dec, uint8*& outData, int& outBytes)
 
 	// A single metadata box (EXIF/XMP) is expected to be small; cap it at 4 MiB so a crafted file cannot drive
 	// unbounded memory growth via a Brotli "zip bomb" brob box. The loop condition enforces the bound (no unbounded
-	// while(1)), and the buffer is RAII (std::vector), so there is nothing to leak on any exit path.
+	// while(1)), and the buffer is RAII (tArray), so there is nothing to leak on any exit path.
 	constexpr size_t kMaxBoxBytes = 4ull * 1024 * 1024;		// 4 MiB hard cap per box
-	std::vector<uint8> buffer;
+	tArray<uint8> buffer;
 	size_t collected = 0;
 	bool complete = false;
 	while (collected + 1 <= kMaxBoxBytes)
 	{
 		const size_t capacity = std::min<size_t>(std::max<size_t>(65536, collected * 2), kMaxBoxBytes);
-		buffer.resize(capacity);
+		buffer.GrowTo(int(capacity));
 
 		const size_t room = capacity - collected;
-		if (JxlDecoderSetBoxBuffer(dec, buffer.data() + collected, room) != JXL_DEC_SUCCESS)
+		if (JxlDecoderSetBoxBuffer(dec, buffer.GetElements() + collected, room) != JXL_DEC_SUCCESS)
 			break;
 
 		const JxlDecoderStatus status = JxlDecoderProcessInput(dec);
@@ -599,7 +604,7 @@ bool tImageJXL::ReadBoxPayload(JxlDecoder* dec, uint8*& outData, int& outBytes)
 
 	// Hand the collected bytes to the caller, which owns them and frees them with delete[] (see WalkBoxes).
 	outData = new uint8[collected];
-	tStd::tMemcpy(outData, buffer.data(), collected);
+	tStd::tMemcpy(outData, buffer.GetElements(), collected);
 	outBytes = (int)collected;
 	return true;
 }
@@ -646,6 +651,7 @@ bool tImageJXL::PopulateMetaData(const uint8* data, int numBytes)
 		delete[] s->UserData;
 	for (tMetaData::tMetaSegment* s = xmpSegments.First(); s; s = s->Next())
 		delete[] s->UserData;
+
 	return found;
 }
 

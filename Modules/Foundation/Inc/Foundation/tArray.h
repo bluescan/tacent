@@ -39,6 +39,11 @@ public:
 	// Grows the max size (capacity) of the array by the specified number of items.
 	bool GrowCapacity(int numElementsGrow);
 
+	// Grows the capacity to at least minCapacity, preserving the existing elements. The new region is zero-initialized.
+	// If the current capacity is already >= minCapacity nothing happens. Use this when you need a "resize to at least
+	// N" scratch buffer (e.g. to hand the encoder a buffer of a chosen size) instead of growing in GrowCount chunks.
+	bool GrowTo(int minCapacity);
+
 	// The append calls will grow the array if necessary. If growCount is 0 and there's no more room, false is returned.
 	bool Append(const T&);
 
@@ -101,6 +106,22 @@ template<typename T> inline bool tArray<T>::GrowCapacity(int numElementsGrow)
 	delete[] Elements;
 	Elements = newItems;
 	Capacity = newCap;
+	return true;
+}
+
+
+template<typename T> inline bool tArray<T>::GrowTo(int minCapacity)
+{
+	if (Capacity >= minCapacity)
+		return true;
+
+	T* newItems = new T[minCapacity];		// Zero-initialized: any region the caller does not overwrite stays well-defined.
+	for (int e = 0; e < Capacity; e++)
+		newItems[e] = Elements[e];
+
+	delete[] Elements;
+	Elements = newItems;
+	Capacity = minCapacity;
 	return true;
 }
 

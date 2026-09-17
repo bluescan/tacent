@@ -69,11 +69,11 @@ public:
 	struct SaveParams
 	{
 		SaveParams()																									{ Reset(); }
-		SaveParams(const SaveParams& src)																				: Lossless(src.Lossless), Distance(src.Distance) { }
+		SaveParams(const SaveParams& src)																				: Lossless(src.Lossless), Distance(src.Distance), OverrideFrameDuration(src.OverrideFrameDuration) { }
 
-		SaveParams& operator=(const SaveParams& src)																	{ Lossless = src.Lossless; Distance = src.Distance; return *this; }
+		SaveParams& operator=(const SaveParams& src)																	{ Lossless = src.Lossless; Distance = src.Distance; OverrideFrameDuration = src.OverrideFrameDuration; return *this; }
 
-		void Reset()																									{ Lossless = false; Distance = 1.0f; }
+		void Reset()																									{ Lossless = false; Distance = 1.0f; OverrideFrameDuration = -1; }
 
 		// If true, encode losslessly (Distance is ignored). Lossless mode round-trips 8-bit RGBA exactly.
 		// If you want compression, leave at the default of false.
@@ -84,12 +84,16 @@ public:
 		// won't perceive any compression. At 0.0 it is basically lossless, however it may not be bit-for-bit perfect so
 		// use Lossless set to true if you really want lossless. It will encode faster too.
 		float Distance = 1.0f;
+
+		// In milliseconds. Set to >= 0 to override the duration of all animation frames.
+		int OverrideFrameDuration = -1;
 	};
 
 	// Saves the frames to a JXL file. A single frame is written as a still image; more than one frame is written as an
-	// animation (each frame's Duration, in seconds, is preserved). Pixels are always written as 8-bit RGBA with straight
+	// animation (each frame's Duration, in seconds, is preserved). Set overrideFrameDuration to a value of 0 or greater
+	// (in milliseconds) to override every frame's duration. Pixels are always written as 8-bit RGBA with straight
 	// (non-premultiplied) alpha, matching how Tacent stores them. Returns true on success.
-	bool Save(const tString& jxlFile, bool lossless, float distance = 0.0f) const;
+	bool Save(const tString& jxlFile, bool lossless, float distance = 0.0f, int overrideFrameDuration = -1) const;
 	bool Save(const tString& jxlFile, const SaveParams& = SaveParams()) const;
 
 	// Creates a tImageJXL from a bunch of frames. If steal is true, the srcFrames will be empty after.
@@ -107,6 +111,7 @@ public:
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear() override;
+
 	// Valid if at least one frame has been decoded.
 	bool IsValid() const override																						{ return GetNumFrames() >= 1; }
 
