@@ -223,7 +223,7 @@ bool tImageJXL::Save(const tString& jxlFile, const SaveParams& params) const
 	bool success = false;
 	while (collected + 32 <= kMaxEncodedBytes)
 	{
-		const size_t capacity = std::min<size_t>(std::max<size_t>(65536, collected * 2), kMaxEncodedBytes);
+		const size_t capacity = tMath::tClamp(collected * 2, size_t(65536), kMaxEncodedBytes);
 		output.GrowTo(int(capacity));
 
 		uint8* const start = output.GetElements() + collected;
@@ -573,7 +573,7 @@ bool tImageJXL::ReadBoxPayload(JxlDecoder* dec, uint8*& outData, int& outBytes)
 	bool complete = false;
 	while (collected + 1 <= kMaxBoxBytes)
 	{
-		const size_t capacity = std::min<size_t>(std::max<size_t>(65536, collected * 2), kMaxBoxBytes);
+		const size_t capacity = tMath::tClamp(collected * 2, size_t(65536), kMaxBoxBytes);
 		buffer.GrowTo(int(capacity));
 
 		const size_t room = capacity - collected;
