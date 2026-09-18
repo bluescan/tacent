@@ -890,6 +890,8 @@ tTestUnit(ImageMetaData)
 
 	tImageJXL jxlExif("Waterfall_Exif.jxl");
 	tRequire(jxlExif.IsValid());
+	tFrame* exifFrame = jxlExif.GetFrame(false);
+	tRequire((exifFrame != nullptr) && (exifFrame->Width == 1920) && (exifFrame->Height == 1080));
 	tRequire(jxlExif.MetaData.IsValid());
 	tMetaData& jxlExifMeta = jxlExif.MetaData;
 	tRequire(jxlExifMeta[tMetaTag::Make].IsValid());
@@ -901,6 +903,8 @@ tTestUnit(ImageMetaData)
 
 	tImageJXL jxlXmp("Waterfall_Xmp.jxl");
 	tRequire(jxlXmp.IsValid());
+	tFrame* xmpFrame = jxlXmp.GetFrame(false);
+	tRequire((xmpFrame != nullptr) && (xmpFrame->Width == 1920) && (xmpFrame->Height == 1080));
 	tRequire(jxlXmp.MetaData.IsValid());
 	tMetaData& jxlXmpMeta = jxlXmp.MetaData;
 	tRequire(jxlXmpMeta[tMetaTag::Software].IsValid());
