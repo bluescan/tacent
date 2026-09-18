@@ -1,6 +1,6 @@
 TimeTravel.jxl
 Photo by Zoltan Tasi
-Unsplach licence.
+Unsplash licence.
 
 
 Dice.jxl
@@ -12,9 +12,11 @@ zlib license
 
 Icos4D.jxl
 From Icos4D.gif.
-It was created using POV-Ray by Wikipedia user Cyp in 2005
 www.jasonhise.com
 Created 21 Feb 2007
 CC0
 
 
+Waterfall.jxl
+Photo taken by me.
+ISC licence.

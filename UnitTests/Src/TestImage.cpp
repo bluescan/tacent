@@ -883,6 +883,33 @@ tTestUnit(ImageMetaData)
 	PrintMetaDataTag(tiffMeta, tMetaTag::XPixelsPerUnit);
 	PrintMetaDataTag(tiffMeta, tMetaTag::YPixelsPerUnit);
 
+	// Test meta-data extraction for JXL files. JXL carries EXIF in an "Exif" box (a 4-byte
+	// big-endian offset followed by a bare TIFF) and XMP in an "xml " box. tImageJXL walks the
+	// boxes (tImageJXL::WalkBoxes) and routes each to TinyEXIF's EXIF / XMP parsers.
+	tImageChangeDir("EXIF_XMP/JXL/")
+
+	tImageJXL jxlExif("Waterfall_Exif.jxl");
+	tRequire(jxlExif.IsValid());
+	tRequire(jxlExif.MetaData.IsValid());
+	tMetaData& jxlExifMeta = jxlExif.MetaData;
+	tRequire(jxlExifMeta[tMetaTag::Make].IsValid());
+	tRequire(jxlExifMeta[tMetaTag::Make].String == "Tacent");
+	PrintMetaDataTag(jxlExifMeta, tMetaTag::Make);
+	tRequire(jxlExifMeta[tMetaTag::Model].IsValid());
+	tRequire(jxlExifMeta[tMetaTag::Model].String == "Test");
+	PrintMetaDataTag(jxlExifMeta, tMetaTag::Model);
+
+	tImageJXL jxlXmp("Waterfall_Xmp.jxl");
+	tRequire(jxlXmp.IsValid());
+	tRequire(jxlXmp.MetaData.IsValid());
+	tMetaData& jxlXmpMeta = jxlXmp.MetaData;
+	tRequire(jxlXmpMeta[tMetaTag::Software].IsValid());
+	tRequire(jxlXmpMeta[tMetaTag::Software].String == "Generator");
+	PrintMetaDataTag(jxlXmpMeta, tMetaTag::Software);
+	tRequire(jxlXmpMeta[tMetaTag::Artist].IsValid());
+	tRequire(jxlXmpMeta[tMetaTag::Artist].String == "Tacent");
+	PrintMetaDataTag(jxlXmpMeta, tMetaTag::Artist);
+
 	tImageChangeDir("EXIF_XMP/")
 
 	// Test loading/saving with compensation for exif orientation tags.
