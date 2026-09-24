@@ -163,8 +163,10 @@ inline int32 tStrtoi32(const char* s, int base = -1)																	{ return tS
 inline uint32 tStrtoui32(const char* s, int base = -1)																	{ return tStrtoiT<uint32>(s, base); }
 inline int64 tStrtoi64(const char* s, int base = -1)																	{ return tStrtoiT<int64>(s, base); }
 inline uint64 tStrtoui64(const char* s, int base = -1)																	{ return tStrtoiT<uint64>(s, base); }
-inline int tStrtoui(const char* s, int base = -1)																		{ return tStrtoui32(s, base); }
-inline int tStrtoi(const char* s, int base = -1)																		{ return tStrtoi32(s, base); }
+inline int tStrtoi(const char* s, int base = -1)																		{ return tStrtoiT<int>(s, base); }
+inline uint tStrtoui(const char* s, int base = -1)																		{ return tStrtoiT<uint>(s, base); }
+inline long tStrtol(const char* s, int base = -1)																		{ return tStrtoiT<long>(s, base); }
+inline ulong tStrtoul(const char* s, int base = -1)																		{ return tStrtoiT<ulong>(s, base); }
 inline int tAtoi(const char* s)									/* Base 10 only. Use tStrtoi for arbitrary base. */		{ return tStrtoi32(s, 10); }
 
 template <typename IntegralType> IntegralType tStrtoiT(const char8_t*, int base = -1);
@@ -172,8 +174,10 @@ inline int32 tStrtoi32(const char8_t* s, int base = -1)																	{ return
 inline uint32 tStrtoui32(const char8_t* s, int base = -1)																{ return tStrtoiT<uint32>(s, base); }
 inline int64 tStrtoi64(const char8_t* s, int base = -1)																	{ return tStrtoiT<int64>(s, base); }
 inline uint64 tStrtoui64(const char8_t* s, int base = -1)																{ return tStrtoiT<uint64>(s, base); }
-inline int tStrtoui(const char8_t* s, int base = -1)																	{ return tStrtoui32(s, base); }
-inline int tStrtoi(const char8_t* s, int base = -1)																		{ return tStrtoi32(s, base); }
+inline int tStrtoi(const char8_t* s, int base = -1)																		{ return tStrtoiT<int>(s, base); }
+inline uint tStrtoui(const char8_t* s, int base = -1)																	{ return tStrtoiT<uint>(s, base); }
+inline long tStrtol(const char8_t* s, int base = -1)																	{ return tStrtoiT<long>(s, base); }
+inline ulong tStrtoul(const char8_t* s, int base = -1)																	{ return tStrtoiT<ulong>(s, base); }
 inline int tAtoi(const char8_t* s)								/* Base 10 only. Use tStrtoi for arbitrary base. */		{ return tStrtoi32(s, 10); }
 
 // These are just variants of above that are strict. If the conversion encounters any parsing errors (all characters are
@@ -184,8 +188,10 @@ inline bool tStrtoi32(int32& v, const char* s, int base = -1)															{ re
 inline bool tStrtoui32(uint32& v, const char* s, int base = -1)															{ return tStrtoiT<uint32>(v, s, base); }
 inline bool tStrtoi64(int64& v, const char* s, int base = -1)															{ return tStrtoiT<int64>(v, s, base); }
 inline bool tStrtoui64(uint64& v, const char* s, int base = -1)															{ return tStrtoiT<uint64>(v, s, base); }
-inline bool tStrtoui(uint32& v, const char* s, int base = -1)															{ return tStrtoui32(v, s, base); }
-inline bool tStrtoi(int& v, const char* s, int base = -1)																{ return tStrtoi32(v, s, base); }
+inline bool tStrtoi(int& v, const char* s, int base = -1)																{ return tStrtoiT<int>(v, s, base); }
+inline bool tStrtoui(uint& v, const char* s, int base = -1)																{ return tStrtoiT<uint>(v, s, base); }
+inline bool tStrtol(long& v, const char* s, int base = -1)																{ return tStrtoiT<long>(v, s, base); }
+inline bool tStrtoul(ulong& v, const char* s, int base = -1)															{ return tStrtoiT<ulong>(v, s, base); }
 inline bool tAtoi(int& v, const char* s)																				{ return tStrtoi32(v, s, 10); }
 
 template <typename IntegralType> bool tStrtoiT(IntegralType&, const char8_t*, int base = -1);
@@ -193,8 +199,10 @@ inline bool tStrtoi32(int32& v, const char8_t* s, int base = -1)														{ 
 inline bool tStrtoui32(uint32& v, const char8_t* s, int base = -1)														{ return tStrtoiT<uint32>(v, s, base); }
 inline bool tStrtoi64(int64& v, const char8_t* s, int base = -1)														{ return tStrtoiT<int64>(v, s, base); }
 inline bool tStrtoui64(uint64& v, const char8_t* s, int base = -1)														{ return tStrtoiT<uint64>(v, s, base); }
-inline bool tStrtoui(uint32& v, const char8_t* s, int base = -1)														{ return tStrtoui32(v, s, base); }
-inline bool tStrtoi(int& v, const char8_t* s, int base = -1)															{ return tStrtoi32(v, s, base); }
+inline bool tStrtoi(int& v, const char8_t* s, int base = -1)															{ return tStrtoiT<int>(v, s, base); }
+inline bool tStrtoui(uint& v, const char8_t* s, int base = -1)															{ return tStrtoiT<uint>(v, s, base); }
+inline bool tStrtol(long& v, const char8_t* s, int base = -1)															{ return tStrtoiT<long>(v, s, base); }
+inline bool tStrtoul(ulong& v, const char8_t* s, int base = -1)															{ return tStrtoiT<ulong>(v, s, base); }
 inline bool tAtoi(int& v, const char8_t* s)																				{ return tStrtoi32(v, s, 10); }
 
 // String to bool. Case insensitive. Interprets "true", "t", "yes", "y", "on", "enable", "enabled", "1", "+", and

@@ -3,7 +3,7 @@
 // Tacent functions and types that are standard across all platforms. Includes global functions like itoa which are not
 // available on some platforms, but are common enough that they should be.
 //
-// Copyright (c) 2004-2006, 2015, 2023-2025 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2023-2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -65,72 +65,88 @@ void* tStd::tMemsrch(void* haystack, int haystackNumBytes, void* needle, int nee
 
 int tStd::tNstrcmp(const char* a, const char* b)
 {
-	const char* origa = a;
-	const char* origb = b;
-
-	bool aStartsDig = a && tIsdigit(*a);	
-	bool bStartsDig = b && tIsdigit(*b);	
-
 	// This implementation of tNstrcmp is a modified version of the one written by GitHub user ClangPan.
+	enum class Mode
+	{
+		String,
+		Number
+	};
+	Mode mode = Mode::String;
+
 	while (*a && *b)
 	{
-		bool aDigit = tIsdigit(*a);
-		bool bDigit = tIsdigit(*b);
-
-		if (!aDigit && (*a == '-'))
+		if (mode == Mode::String)
 		{
-			++a;
-			continue;
+			char aChar, bChar;
+
+			// We lowercase the chars for proper comparison.
+			while ((aChar = tToLower(*a)) && (bChar = tToLower(*b)))
+			{
+				// Check if the chars are digits.
+				const bool aDigit = tIsdigit(aChar);
+				const bool bDigit = tIsdigit(bChar);
+
+				// If both chars are digits, we continue in NUMBER mode.
+				if (aDigit && bDigit)
+				{
+					mode = Mode::Number;
+					break;
+				}
+
+				#ifdef TACENT_CHECK_IF_HANDLES_NEGATIVES_LIKE_WINDOWS
+				// @todo Need to check the behaviour of this.
+				if (!aDigit && (*a == '-'))
+				{
+					++a;
+					continue;
+				}
+				if (!bDigit && (*b == '-'))
+				{
+					++b;
+					continue;
+				}			
+				#endif
+
+				// If only the left char is a digit, we have a result.
+				if (aDigit) return -1;
+
+				// If only the right char is a digit, we have a result.
+				if (bDigit) return +1;
+
+				// compute the difference of both characters.
+				const int diff = aChar - bChar;
+
+				// If they differ we have a result.
+				if (diff != 0) return diff;
+
+				// Otherwise process the next characters.
+				++a; ++b;
+			}
 		}
-
-		if (!bDigit && (*b == '-'))
+		else
 		{
-			++b;
-			continue;
-		}
-
-		// We're comparing (possibly multidigit) numbers.
-		if (aDigit && bDigit)
-		{
-			char* enda;
-			char* endb;
+			// Represents the end of the number string.
+			char* end;
 
 			// Get the left number.
-			int aInt = strtoul((char*)a, &enda, 10);
+			// @todo There is no tStd version of this that takes the **end pointer.
+			ulong aInt = strtoul(a, &end, 10);
+			a = end;
 
 			// Get the right number.
-			int bInt = strtoul((char*)b, &endb, 10);
+			// @todo There is no tStd version of this that takes the **end pointer.
+			ulong bInt = strtoul(b, &end, 10);
+			b = end;
 
-			// if the difference is not equal to zero, we have a comparison result
-			int sign = tMath::tSign(aInt - bInt);
-			if (sign) return sign;
+			// If the difference is not equal to zero, we have a comparison result.
+			const long diff = aInt - bInt;
+			if (diff != 0) return diff;
 
-			a = enda;
-			b = endb;
-			continue;
-		} 
-
-		// If only the left char is a digit, we have a result.
-		if (aDigit) return aStartsDig ? -1 : +1;
-
-		// If only the right char is a digit, we have a result.
-		if (bDigit) return bStartsDig ? +1 : -1;
-
-		// compute the difference of both characters
-		int sign = tMath::tSign(tToLower(*a) - tToLower(*b));
-
-		// If they differ we have a result.
-		if (sign) return sign;
-
-		// Otherwise process the next characters.
-		++a; ++b;
+			// Otherwise we process the next substring in STRING mode.
+			mode = Mode::String;
+		}
 	}
 
-	// If both a and b are at end, we consider letter-case and compare as if we had never done the tToLowers.
-	if (!(*a) && !(*b))
-		return tStrcmp(origa, origb);
-
-	// Now only one of *a or *b are non-zero.
 	if (*b) return -1;
 	if (*a) return +1;
 
