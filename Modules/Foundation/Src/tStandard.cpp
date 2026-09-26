@@ -93,19 +93,20 @@ int tStd::tNstrcmp(const char* a, const char* b)
 					break;
 				}
 
-				#ifdef TACENT_CHECK_IF_HANDLES_NEGATIVES_LIKE_WINDOWS
-				// @todo Need to check the behaviour of this.
-				if (!aDigit && (*a == '-'))
+				// This basically ignores hyphens if the next character is a digit. This largely matches windows
+				// explorer sort, but it does put A-B in front of AB (which I like), but explorer will do AB then A-B.
+				// The odd thing is you'd think then that it is putting a lower priority on hypens than CAP letters, but
+				// if I just have a file called -Hello, it puts it at the top. It's very... inconsistent behaviour.
+				if ((*a == '-') && tIsdigit(*(a+1)))
 				{
 					++a;
 					continue;
 				}
-				if (!bDigit && (*b == '-'))
+				if ((*b == '-') && tIsdigit(*(b+1)))
 				{
 					++b;
 					continue;
 				}			
-				#endif
 
 				// If only the left char is a digit, we have a result.
 				if (aDigit) return -1;
