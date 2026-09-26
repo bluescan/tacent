@@ -106,7 +106,7 @@ int tStd::tNstrcmp(const char* a, const char* b)
 				{
 					++b;
 					continue;
-				}			
+				}
 
 				// If only the left char is a digit, we have a result.
 				if (aDigit) return -1;
