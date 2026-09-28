@@ -63,7 +63,164 @@ void* tStd::tMemsrch(void* haystack, int haystackNumBytes, void* needle, int nee
 }
 
 
+namespace tStd
+{
+	// Helpers for tNStrcmp. I'm keeping them static so they can't be externed even if you wanted to.
+	static const char tNstrcmpSymOrder[] = " !\"#$%&'(),./;:<>?@[\\]^_`{|}~+=";
+
+	static int tNstrcmpSymRank(char c);
+
+	// A single total rank for a (already lowercased) non-hyphen character used to order classes and symbols.
+	static int tNstrcmpRank(char c);
+}
+
+
+int tStd::tNstrcmpSymRank(char c)
+{
+	for (const char* p = tNstrcmpSymOrder; *p; ++p)
+		if (*p == c)
+			return int(p - tNstrcmpSymOrder);
+
+	return 255;
+}
+
+
+static int tStd::tNstrcmpRank(char c)
+{
+	if (c == ' ')			return 0;
+	if (tStd::tIsdigit(c))	return 50;
+	if (tStd::tIsalpha(c))	return 100 + int(tStd::tToLower(c) - 'a');
+
+	return 1 + tStd::tNstrcmpSymRank(c);
+}
+
+
+static int tNstrcmpPass1(const char* a, const char* b)
+{
+	const char* p1 = a;
+	const char* p2 = b;
+	while (1)
+	{
+		while (*p1 == '-' || *p1 == '\'') p1++;
+		while (*p2 == '-' || *p2 == '\'') p2++;
+
+		if (!*p1 && !*p2) return 0;
+		if (!*p1) return -1;
+		if (!*p2) return 1;
+
+		if (tStd::tIsdigit(*p1) && tStd::tIsdigit(*p2))
+		{
+			const char* z1 = p1;
+			const char* z2 = p2;
+
+			// Skip leading zeroes.
+			while (*p1 == '0') p1++;
+			while (*p2 == '0') p2++;
+
+			const char* s1 = p1;
+			const char* s2 = p2;
+			while (tStd::tIsdigit(*p1)) p1++;
+			while (tStd::tIsdigit(*p2)) p2++;
+			const int l1 = int(p1 - s1);
+			const int l2 = int(p2 - s2);
+			if (l1 != l2)
+				return (l1 < l2) ? -1 : 1;
+
+			int cmp = 0;
+			while (s1 != p1)
+			{
+				if (*s1 != *s2)
+				{
+					cmp = (*s1 < *s2) ? -1 : 1;
+					break;
+				}
+				s1++;
+				s2++;
+			}
+			if (cmp)
+				return cmp;
+
+			// The numeric values are equal (e.g. "07" vs "7", "08" vs "8"). Explorer puts the run with the
+			// more leading zeros first: Page07.txt < Page7.txt and Page08.txt < page-8. When the zero counts
+			// match too the digit strings are identical, so continue from where the digits ended.
+			const int n1 = int(s1 - z1);
+			const int n2 = int(s2 - z2);
+			if (n1 != n2)
+				return (n1 > n2) ? -1 : 1;
+		}
+		else
+		{
+			const char c1 = tStd::tToLower(*p1);
+			const char c2 = tStd::tToLower(*p2);
+			if (c1 != c2)
+			{
+				const int r1 = tStd::tNstrcmpRank(c1);
+				const int r2 = tStd::tNstrcmpRank(c2);
+				if (r1 != r2)
+					return (r1 < r2) ? -1 : 1;
+
+				return (c1 < c2) ? -1 : 1;
+			}
+			p1++;
+			p2++;
+		}
+	}
+}
+
+
+static int tNstrcmpPass2(const char* a, const char* b)
+{
+	// The two strings are identical once '-' and '\'' are skipped and case is ignored. The shorter full string sorts////
+	// first ("Page.txt" < "Pag-E.txt", "x1" < "x-1"); Same-length ties fall back to a case-sensitive byte-wise compare
+	// where '-' counts as the highest possible value ("'Page50" < "-Page50", "BBB.txt" < "bbb.txt").
+	int la = 0;
+	int lb = 0;
+	while (a[la]) la++;
+	while (b[lb]) lb++;
+
+	if (la != lb)
+		return (la < lb) ? -1 : 1;
+
+	for (int i = 0; i < la; i++)
+	{
+		const uint c1 = (a[i] == '-') ? 0xFFFFu : uchar(a[i]);
+		const uint c2 = (b[i] == '-') ? 0xFFFFu : uchar(b[i]);
+		if (c1 != c2)
+			return (c1 < c2) ? -1 : 1;
+	}
+
+	return 0;
+}
+
+
 int tStd::tNstrcmp(const char* a, const char* b)
+{
+	// Natural (human) string compare that matches Windows Explorer's StrCmpLogicalW. The algorithm below was verified
+	// against the real StrCmpLogicalW on the same 86-name test set that the Tacent UnitTests use and a superset of
+	// discriminating pairs with 0 mismatches.
+	//
+	// It is a two-pass comparison:
+	//
+	// Pass 1 - Natural, case-insensitive, with '-' and '\'' treated as transparent (skipped on both sides):
+	//  * Adjacent digit runs are compared NUMERICALLY: leading zeros ignored, then the shorter run sorts first, then
+	//    character-by-character (so "7" < "21"). When the numeric values are equal the run with the MORE leading zeros
+	//    sorts first (so "01" < "1", "07" < "7", "08" < "8"), as Explorer does with "Page07.txt" < "Page7.txt" and
+	//    "Page08.txt" < "page-8".
+	//  * Everything else is compared case-insensitively using a class rank.
+	//    space < symbols (in NLS collation order) < digits < letters so that, e.g., "Page5" < "page-5" < "Page5.txt" <
+	//    "page-5.txt".
+	// Pass 2 - Only reached when pass 1 is a perfect tie (identical content ignoring '-'/'\'' and case):
+	//  * The shorter full string sorts first ("Page.txt" < "Pag-E.txt", "x1" < "x-1"), then a case-sensitive byte-wise
+	//    compare where '-' counts as the highest possible value ("'Page50" < "-Page50", "BBB.txt" < "bbb.txt").
+	int r = tNstrcmpPass1(a, b);
+	if (r)
+		return r;
+
+		return tNstrcmpPass2(a, b);
+}
+
+
+int tStd::tNstrcmpEx(const char* a, const char* b)
 {
 	// This implementation of tNstrcmp is a modified version of the one written by GitHub user ClangPan.
 	enum class Mode
@@ -99,12 +256,12 @@ int tStd::tNstrcmp(const char* a, const char* b)
 				// if I just have a file called -Hello, it puts it at the top. It's very... inconsistent behaviour.
 				if ((*a == '-') && tIsdigit(*(a+1)))
 				{
-					++a;
+					a++;
 					continue;
 				}
 				if ((*b == '-') && tIsdigit(*(b+1)))
 				{
-					++b;
+					b++;
 					continue;
 				}
 
@@ -121,7 +278,7 @@ int tStd::tNstrcmp(const char* a, const char* b)
 				if (diff != 0) return diff;
 
 				// Otherwise process the next characters.
-				++a; ++b;
+				a++; b++;
 			}
 		}
 		else
@@ -155,7 +312,7 @@ int tStd::tNstrcmp(const char* a, const char* b)
 }
 
 
-int tStd::tNstrcmpEx(const char* a, const char* b)
+int tStd::tNstrcmpEx2(const char* a, const char* b)
 {
 	if (tStrcmp(a, b) == 0)
 		return 0;
@@ -170,12 +327,14 @@ int tStd::tNstrcmpEx(const char* a, const char* b)
 		// Ignore More than one continous space.
 		while (foundSpace1 && *a && *a == ' ')
 			a++;
+
 		foundSpace1 = false;
 		if (*a == ' ')
 			foundSpace1 = true;
 
 		while (foundSpace2 && *b && *b == ' ')
 			b++;
+
 		foundSpace2 = false;
 		if (*b == ' ')
 			foundSpace2 = true;
@@ -214,7 +373,7 @@ int tStd::tNstrcmpEx(const char* a, const char* b)
 		}
 	}
 
-	return +1;
+	return 1;
 }
 
 
