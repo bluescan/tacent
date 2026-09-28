@@ -72,6 +72,9 @@ namespace tStd
 
 	// A single total rank for a (already lowercased) non-hyphen character used to order classes and symbols.
 	static int tNstrcmpRank(char c);
+
+	static int tNstrcmpPass1(const char* a, const char* b);
+	static int tNstrcmpPass2(const char* a, const char* b);
 }
 
 
@@ -85,7 +88,7 @@ int tStd::tNstrcmpSymRank(char c)
 }
 
 
-static int tStd::tNstrcmpRank(char c)
+int tStd::tNstrcmpRank(char c)
 {
 	if (c == ' ')			return 0;
 	if (tStd::tIsdigit(c))	return 50;
@@ -95,7 +98,7 @@ static int tStd::tNstrcmpRank(char c)
 }
 
 
-static int tNstrcmpPass1(const char* a, const char* b)
+int tStd::tNstrcmpPass1(const char* a, const char* b)
 {
 	const char* p1 = a;
 	const char* p2 = b;
@@ -168,7 +171,7 @@ static int tNstrcmpPass1(const char* a, const char* b)
 }
 
 
-static int tNstrcmpPass2(const char* a, const char* b)
+int tStd::tNstrcmpPass2(const char* a, const char* b)
 {
 	// The two strings are identical once '-' and '\'' are skipped and case is ignored. The shorter full string sorts////
 	// first ("Page.txt" < "Pag-E.txt", "x1" < "x-1"); Same-length ties fall back to a case-sensitive byte-wise compare
