@@ -473,97 +473,125 @@ bool MultiCompFunObj::operator()(const MultiObj& a, const MultiObj& b) const
 }
 
 
-void PrintMultiObjList(const tList<MultiObj>& multiObjList)
+static void PrintMultiObjList(const tList<MultiObj>& multiObjList)
 {
 	for (const MultiObj* obj = multiObjList.First(); obj; obj = obj->Next())
 		tPrintf("%s\n", obj->Name.Chr());
 }
 
 
+static void AddTOL(tList<MultiObj>& multiObjList, const tString& name)
+{
+	multiObjList.Append(new MultiObj(name));
+	multiObjList.Append(new MultiObj(name + ".txt"));
+}
+
+
 tTestUnit(ListSort)
 {
-	tList<MultiObj> multiObjList;
+	tList<MultiObj> objs;
 
-	// Add items with an extension.
-	multiObjList.Append(new MultiObj("21Num.txt"));
-	multiObjList.Append(new MultiObj("7Num.txt"));
-	multiObjList.Append(new MultiObj("page100.txt"));
-	multiObjList.Append(new MultiObj("Page20.txt"));
-	multiObjList.Append(new MultiObj("Page4.txt"));
-	multiObjList.Append(new MultiObj("Page.txt"));
-	multiObjList.Append(new MultiObj("PagE.txt"));
-	multiObjList.Append(new MultiObj("page5.txt"));
-	multiObjList.Append(new MultiObj("Page5.txt"));
-	multiObjList.Append(new MultiObj("aaa.txt"));
-	multiObjList.Append(new MultiObj("AAA.txt"));
-	multiObjList.Append(new MultiObj("zzz.txt"));
-	multiObjList.Append(new MultiObj("ZZZ.txt"));
-	multiObjList.Append(new MultiObj("Page-90.txt"));
-	multiObjList.Append(new MultiObj("page -90.txt"));
-	multiObjList.Append(new MultiObj("page-8.txt"));
-	multiObjList.Append(new MultiObj("page -8.txt"));
+	// Add items without and with a ".txt" extension.
+	AddTOL(objs, "21Num");		AddTOL(objs, "7Num");		AddTOL(objs, "page100");	AddTOL(objs, "Page20");
+	AddTOL(objs, "Page4");		AddTOL(objs, "Page");		AddTOL(objs, "Pag-E");		AddTOL(objs, "page-5");
+	AddTOL(objs, "Page5");		AddTOL(objs, "aaa");		AddTOL(objs, "A-A");		AddTOL(objs, "z-z");
+	AddTOL(objs, "z-zz");		AddTOL(objs, "ZZZ");		AddTOL(objs, "`Page50");	AddTOL(objs, "~Page50");
+	AddTOL(objs, "!Page50");	AddTOL(objs, "@Page50");	AddTOL(objs, "#Page50");	AddTOL(objs, "$Page50");
+	AddTOL(objs, "%Page50");	AddTOL(objs, "^Page50");	AddTOL(objs, "&Page50");	AddTOL(objs, "(Page50");
+	AddTOL(objs, ")Page50");	AddTOL(objs, "-Page50");	AddTOL(objs, "_Page50");	AddTOL(objs, "=Page50");
+	AddTOL(objs, "+Page50");	AddTOL(objs, "[Page50");	AddTOL(objs, "{Page50");	AddTOL(objs, "]Page50");
+	AddTOL(objs, "}Page50");	AddTOL(objs, ";Page50");	AddTOL(objs, "'Page50");	AddTOL(objs, ",Page50");
+	AddTOL(objs, ".Page50");	AddTOL(objs, "Page-90");	AddTOL(objs, "page -90");	AddTOL(objs, "page-8");
+	AddTOL(objs, "page -8");
 
-	// Add the same items without an extension.
-	multiObjList.Append(new MultiObj("21Num"));
-	multiObjList.Append(new MultiObj("7Num"));
-	multiObjList.Append(new MultiObj("page100"));
-	multiObjList.Append(new MultiObj("Page20"));
-	multiObjList.Append(new MultiObj("Page4"));
-	multiObjList.Append(new MultiObj("Page"));
-	multiObjList.Append(new MultiObj("PagE"));
-	multiObjList.Append(new MultiObj("page5"));
-	multiObjList.Append(new MultiObj("Page5"));
-	multiObjList.Append(new MultiObj("aaa"));
-	multiObjList.Append(new MultiObj("AAA"));
-	multiObjList.Append(new MultiObj("zzz"));
-	multiObjList.Append(new MultiObj("ZZZ"));
-	multiObjList.Append(new MultiObj("Page-90"));
-	multiObjList.Append(new MultiObj("page -90"));
-	multiObjList.Append(new MultiObj("page-8"));
-	multiObjList.Append(new MultiObj("page -8"));
+	// The four leading-zero test files exist only with the ".txt" extension (there are no extension-less
+	// Page7/Page07/Page08/Page070 files), so append them directly rather than via AddTOL.
+	objs.Append(new MultiObj("Page7.txt"));
+	objs.Append(new MultiObj("Page07.txt"));
+	objs.Append(new MultiObj("Page08.txt"));
+	objs.Append(new MultiObj("Page070.txt"));
 
 	bool ascending = true;
 	MultiCompFunObj compFunObj(MultiCompFunObj::SortKey::NameAlphaNumeric, ascending);
 	tPrintf("\nUnsorted\n");
-	PrintMultiObjList(multiObjList);
+	PrintMultiObjList(objs);
 
 	compFunObj.Key = MultiCompFunObj::SortKey::NameAlphaNumeric;
 	compFunObj.Ascending = true;
 	tPrintf("\nSorted Alpha Numeric Ascending\n");
-	multiObjList.Sort(compFunObj);
-	PrintMultiObjList(multiObjList);
+	objs.Sort(compFunObj);
+	PrintMultiObjList(objs);
 
 	compFunObj.Key = MultiCompFunObj::SortKey::NameAlphaNumeric;
 	compFunObj.Ascending = false;
 	tPrintf("\nSorted Alpha Numeric Descending\n");
-	multiObjList.Sort(compFunObj);
-	PrintMultiObjList(multiObjList);
+	objs.Sort(compFunObj);
+	PrintMultiObjList(objs);
 
 	// Except for the fact that there are extra items that are not supported by NTFS since you can't have two files
 	// that only differ by case, when this list gets sorted naturally it results in the same order as Windows explorer.
 	compFunObj.Key = MultiCompFunObj::SortKey::NameNatural;
 	compFunObj.Ascending = true;
 	tPrintf("\nSorted Natural Ascending\n");
-	multiObjList.Sort(compFunObj);
-	PrintMultiObjList(multiObjList);
+	objs.Sort(compFunObj);
+	PrintMultiObjList(objs);
+
+	// Verify that the Natural sort matches the name order that Windows uses. The expected order below was
+	// captured from Windows Explorer (default ascending Name-column sort) on UnitTests\Data\Filesystem\Sorting,
+	// where every name in this table exists as a real file (the four leading-zero test files are .txt-only).
+	static const char* const expectedOrder[] =
+	{
+		"!Page50",		"!Page50.txt",	"#Page50",		"#Page50.txt",
+		"$Page50",		"$Page50.txt",	"%Page50",		"%Page50.txt",
+		"&Page50",		"&Page50.txt",	"(Page50",		"(Page50.txt",
+		")Page50",		")Page50.txt",	",Page50",		",Page50.txt",
+		".Page50",		".Page50.txt",	";Page50",		";Page50.txt",
+		"@Page50",		"@Page50.txt",	"[Page50",		"[Page50.txt",
+		"]Page50",		"]Page50.txt",	"^Page50",		"^Page50.txt",
+		"_Page50",		"_Page50.txt",	"`Page50",		"`Page50.txt",
+		"{Page50",		"{Page50.txt",	"}Page50",		"}Page50.txt",
+		"~Page50",		"~Page50.txt",	"+Page50",		"+Page50.txt",
+		"=Page50",		"=Page50.txt",	"7Num",			"7Num.txt",
+		"21Num",		"21Num.txt",	"A-A",			"A-A.txt",
+		"aaa",			"aaa.txt",		"Page",			"Pag-E",
+		"page -8",		"page -8.txt",	"page -90",		"page -90.txt",
+		"Page.txt",		"Pag-E.txt",	"Page4",		"Page4.txt",
+		"Page5",		"page-5",		"Page5.txt",	"page-5.txt",
+		"Page07.txt",	"Page7.txt",	"Page08.txt",	"page-8",
+		"page-8.txt",	"Page20",		"Page20.txt",	"'Page50",
+		"-Page50",		"'Page50.txt",	"-Page50.txt",	"Page070.txt",
+		"Page-90",		"Page-90.txt",	"page100",		"page100.txt",
+		"z-z",			"z-z.txt",		"ZZZ",			"z-zz",
+		"ZZZ.txt",		"z-zz.txt"
+	};
+
+	int index = 0;
+	for (const MultiObj* obj = objs.First(); obj; obj = obj->Next())
+	{
+		tRequire(obj->Name == expectedOrder[index]);
+		if (obj->Name != expectedOrder[index])
+			tPrintf("Sort mismatch at position %d. Sorted: %s  Expected: %s\n", index, obj->Name.Chr(), expectedOrder[index]);
+		index++;
+	}
+	tRequire(index == tNumElements(expectedOrder));
 
 	compFunObj.Key = MultiCompFunObj::SortKey::NameNaturalEx;
 	compFunObj.Ascending = true;
 	tPrintf("\nSorted NaturalEx Ascending\n");
-	multiObjList.Sort(compFunObj);
-	PrintMultiObjList(multiObjList);
+	objs.Sort(compFunObj);
+	PrintMultiObjList(objs);
 
 	compFunObj.Key = MultiCompFunObj::SortKey::NameNatural;
 	compFunObj.Ascending = false;
 	tPrintf("\nSorted Natural Descending\n");
-	multiObjList.Sort(compFunObj);
-	PrintMultiObjList(multiObjList);
+	objs.Sort(compFunObj);
+	PrintMultiObjList(objs);
 
 	compFunObj.Key = MultiCompFunObj::SortKey::NameNaturalEx;
 	compFunObj.Ascending = false;
 	tPrintf("\nSorted NaturalEx Descending\n");
-	multiObjList.Sort(compFunObj);
-	PrintMultiObjList(multiObjList);
+	objs.Sort(compFunObj);
+	PrintMultiObjList(objs);
 }
 
 
