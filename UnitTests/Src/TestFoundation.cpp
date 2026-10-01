@@ -502,7 +502,7 @@ tTestUnit(ListSort)
 	AddTOL(objs, "+Page50");	AddTOL(objs, "[Page50");	AddTOL(objs, "{Page50");	AddTOL(objs, "]Page50");
 	AddTOL(objs, "}Page50");	AddTOL(objs, ";Page50");	AddTOL(objs, "'Page50");	AddTOL(objs, ",Page50");
 	AddTOL(objs, ".Page50");	AddTOL(objs, "Page-90");	AddTOL(objs, "page -90");	AddTOL(objs, "page-8");
-	AddTOL(objs, "page -8");
+	AddTOL(objs, "page -8");	AddTOL(objs, "RRA_WWW");	AddTOL(objs, "RRA0_WWW");	AddTOL(objs, "RRA1_WWW");
 
 	// The four leading-zero test files exist only with the ".txt" extension (there are no extension-less
 	// Page7/Page07/Page08/Page070 files), so append them directly rather than via AddTOL.
@@ -561,10 +561,12 @@ tTestUnit(ListSort)
 		"page-8.txt",	"Page20",		"Page20.txt",	"'Page50",
 		"-Page50",		"'Page50.txt",	"-Page50.txt",	"Page070.txt",
 		"Page-90",		"Page-90.txt",	"page100",		"page100.txt",
-		"z-z",			"z-z.txt",		"ZZZ",			"z-zz",
-		"ZZZ.txt",		"z-zz.txt"
+		"RRA_WWW",		"RRA_WWW.txt",	"RRA0_WWW",		"RRA0_WWW.txt",
+		"RRA1_WWW",		"RRA1_WWW.txt",	"z-z",			"z-z.txt",
+		"ZZZ",			"z-zz",			"ZZZ.txt",		"z-zz.txt"
 	};
 
+	PrintMultiObjList(objs);
 	int index = 0;
 	for (const MultiObj* obj = objs.First(); obj; obj = obj->Next())
 	{
