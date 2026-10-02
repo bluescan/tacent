@@ -492,6 +492,7 @@ tTestUnit(ListSort)
 	tList<MultiObj> objs;
 
 	// Add items without and with a ".txt" extension.
+	AddTOL(objs, "ΔGen");		AddTOL(objs, "ΩLast");
 	AddTOL(objs, "21Num");		AddTOL(objs, "7Num");		AddTOL(objs, "page100");	AddTOL(objs, "Page20");
 	AddTOL(objs, "Page4");		AddTOL(objs, "Page");		AddTOL(objs, "Pag-E");		AddTOL(objs, "page-5");
 	AddTOL(objs, "Page5");		AddTOL(objs, "aaa");		AddTOL(objs, "A-A");		AddTOL(objs, "z-z");
@@ -503,13 +504,7 @@ tTestUnit(ListSort)
 	AddTOL(objs, "}Page50");	AddTOL(objs, ";Page50");	AddTOL(objs, "'Page50");	AddTOL(objs, ",Page50");
 	AddTOL(objs, ".Page50");	AddTOL(objs, "Page-90");	AddTOL(objs, "page -90");	AddTOL(objs, "page-8");
 	AddTOL(objs, "page -8");	AddTOL(objs, "RRA_WWW");	AddTOL(objs, "RRA0_WWW");	AddTOL(objs, "RRA1_WWW");
-
-	// The four leading-zero test files exist only with the ".txt" extension (there are no extension-less
-	// Page7/Page07/Page08/Page070 files), so append them directly rather than via AddTOL.
-	objs.Append(new MultiObj("Page7.txt"));
-	objs.Append(new MultiObj("Page07.txt"));
-	objs.Append(new MultiObj("Page08.txt"));
-	objs.Append(new MultiObj("Page070.txt"));
+	AddTOL(objs, "Page7");		AddTOL(objs, "Page07");		AddTOL(objs, "Page08");		AddTOL(objs, "Page070");
 
 	bool ascending = true;
 	MultiCompFunObj compFunObj(MultiCompFunObj::SortKey::NameAlphaNumeric, ascending);
@@ -557,13 +552,15 @@ tTestUnit(ListSort)
 		"page -8",		"page -8.txt",	"page -90",		"page -90.txt",
 		"Page.txt",		"Pag-E.txt",	"Page4",		"Page4.txt",
 		"Page5",		"page-5",		"Page5.txt",	"page-5.txt",
-		"Page07.txt",	"Page7.txt",	"Page08.txt",	"page-8",
-		"page-8.txt",	"Page20",		"Page20.txt",	"'Page50",
-		"-Page50",		"'Page50.txt",	"-Page50.txt",	"Page070.txt",
+		"Page07",		"Page07.txt",	"Page7",		"Page7.txt", 
+		"Page08",		"Page08.txt",	"page-8",		"page-8.txt",
+		"Page20",		"Page20.txt",	"'Page50",		"-Page50",
+		"'Page50.txt",	"-Page50.txt",	"Page070",		"Page070.txt",
 		"Page-90",		"Page-90.txt",	"page100",		"page100.txt",
 		"RRA_WWW",		"RRA_WWW.txt",	"RRA0_WWW",		"RRA0_WWW.txt",
 		"RRA1_WWW",		"RRA1_WWW.txt",	"z-z",			"z-z.txt",
-		"ZZZ",			"z-zz",			"ZZZ.txt",		"z-zz.txt"
+		"ZZZ",			"z-zz",			"ZZZ.txt",		"z-zz.txt",
+		"ΔGen",			"ΔGen.txt",		"ΩLast",		"ΩLast.txt"
 	};
 
 	PrintMultiObjList(objs);
