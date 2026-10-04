@@ -35,7 +35,7 @@
 //
 // For conversions of arbitrary types to tStrings, see tsPrint in the higher level System module.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019-2025 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019-2026 Tristan Grimmer.
 // Copyright (c) 2020 Stefan Wessels.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
@@ -606,6 +606,13 @@ namespace tStd
 	// linefeeds. You'll get one item per line even if the line only contains a linefeed.
 	int tExplode(tList<tStringItem>& components, const tString& src, char divider = '_');
 	int tExplode(tList<tStringItem>& components, const tString& src, const tString& divider);
+
+	// Quote-aware tExplode. Splits src on divider exactly like the single-character version, but a quoted substring is
+	// treated as a single atomic component: dividers inside a quoted span do not split it. The quote character may be
+	// any character (typically '"' or '\''), or 0 for no quoting. A quote character immediately followed by a second
+	// quote character represents a single literal quote character in the output (so a quoted value may itself contain
+	// quotes). Empty components (leading, trailing, or between dividers) are preserved, as with the plain version.
+	int tExplode(tList<tStringItem>& components, const tString& src, char divider, char quote);
 }
 
 

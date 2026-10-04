@@ -5,6 +5,7 @@ add_library(
 	${PROJECT_NAME}
 	Src/tChunk.cpp
 	Src/tCmdLine.cpp
+	Src/tCSV.cpp
 	Src/tFile.cpp
 	Src/tMachine.cpp
 	Src/tPrint.cpp
@@ -15,6 +16,7 @@ add_library(
 	Src/tTime.cpp
 	Inc/System/tChunk.h
 	Inc/System/tCmdLine.h
+	Inc/System/tCSV.h
 	Inc/System/tFile.h
 	Inc/System/tMachine.h
 	Inc/System/tPrint.h

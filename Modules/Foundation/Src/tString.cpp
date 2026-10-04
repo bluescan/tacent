@@ -35,7 +35,7 @@
 //
 // For conversions of arbitrary types to tStrings, see tsPrint in the higher level System module.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019-2023, 2025 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019-2023, 2025, 2026 Tristan Grimmer.
 // Copyright (c) 2020 Stefan Wessels.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
@@ -746,6 +746,74 @@ int tStd::tExplode(tList<tStringItem>& components, const tString& src, char divi
 	// If there's anything left in source we need to add it.
 	if (!source.IsEmpty())
 		components.Append(new tStringItem(source));
+
+	return components.GetNumItems() - startCount;
+}
+
+
+int tStd::tExplode(tList<tStringItem>& components, const tString& src, char divider, char quote)
+{
+	// Split src into components using divider, treating quoted substrings as atomic (see the header for the quoting
+	// rules). A quoted span begins with a quote character and ends with a quote character not immediately followed by
+	// another quote character. Two consecutive quote characters inside a quoted span become one literal quote character.
+	// Like the plain tExplode, an empty src produces no components and empty components (eg. leading or trailing) are
+	// preserved. A quoted (or unquoted) component that runs to the end of src is still a component, even if empty.
+	const char8_t* text = src.Pod();
+	int textLen = src.Length();
+	int startCount = components.GetNumItems();
+
+	if (textLen == 0)
+		return 0;
+
+	int i = 0;
+	while (1)
+	{
+		tString value;
+
+		if (quote && (text[i] == quote))
+		{
+			// A quoted (atomic) component. Dividers inside are treated as ordinary characters.
+			i++;
+			while (1)
+			{
+				if (i >= textLen)
+					break;
+				if (text[i] == quote)
+				{
+					// Two quotes in a row represent a single literal quote character.
+					if ((i + 1) < textLen && (text[i+1] == quote))
+					{
+						value += quote;
+						i += 2;
+						continue;
+					}
+
+					// Otherwise this is the closing quote.
+					i++;
+					break;
+				}
+				value += text[i];
+				i++;
+			}
+		}
+		else
+		{
+			// An unquoted component, ending at the next divider, quote, or end of src.
+			while ((i < textLen) && (text[i] != divider) && ((quote == 0) || (text[i] != quote)))
+			{
+				value += text[i];
+				i++;
+			}
+		}
+
+		components.Append(new tStringItem(value));
+
+		// A divider after a component introduces the next component. Otherwise the row is complete.
+		if ((i < textLen) && (text[i] == divider))
+			i++;
+		else
+			break;
+	}
 
 	return components.GetNumItems() - startCount;
 }

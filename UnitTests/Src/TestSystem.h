@@ -19,6 +19,7 @@
 namespace tUnitTest
 {
 	tTestUnit(CmdLine);
+	tTestUnit(CSV);
 	tTestUnit(Task);
 	tTestUnit(Print);
 	tTestUnit(Regex);

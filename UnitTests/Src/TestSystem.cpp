@@ -22,6 +22,7 @@
 #include <Math/tQuaternion.h>
 #include <Math/tMatrix4.h>
 #include <System/tCmdLine.h>
+#include <System/tCSV.h>
 #include <System/tTask.h>
 #include <System/tMachine.h>
 #include <System/tRegex.h>
@@ -1500,6 +1501,117 @@ tTestUnit(Machine)
 	tPrintf("XDGRuntimeDir Set:%'B Dir:%s\n", runtimeDirSet, runtimeDir.Chr());
 	tRequire(tIsAbsolutePath(runtimeDir) || runtimeDir.IsEmpty());
 	#endif
+}
+
+
+// Returns the nth item of a list of strings, or nullptr if n is out of range. Used to check the contents of the lists
+// that tCSV::GetRow and tCSV::GetColumn fill in.
+static const tString* CSVNth(const tList<tStringItem>& list, int n)
+{
+	if (n < 0)
+		return nullptr;
+	tStringItem* item = list.First();
+	while (item && (n > 0))
+	{
+		item = item->Next();
+		--n;
+	}
+	return item;
+}
+
+
+tTestUnit(CSV)
+{
+	if (!tDirExists("Data/CSV/"))
+		tSkipUnit()
+
+	tPrintf("Testing tCSV quote-aware parsing.\n");
+
+	tCSV csv;
+	tRequire(csv.LoadFile("Data/CSV/TestCSV.csv"));
+	tRequire(csv.GetNumRows() == 4);
+	tRequire(csv.GetNumColumns() == 3);
+
+	// Row 0: plain, unquoted fields.
+	tRequire(csv.Get(0, 0).IsEqual("Name"));
+	tRequire(csv.Get(0, 1).IsEqual("Qty"));
+	tRequire(csv.Get(0, 2).IsEqual("Notes"));
+
+	// Row 1: a quoted field that itself contains the delimiter (a comma).
+	tRequire(csv.Get(1, 0).IsEqual("Small Widget"));
+	tRequire(csv.Get(1, 1).IsEqual("12"));
+	tRequire(csv.Get(1, 2).IsEqual("Fragile, handle with care"));
+
+	// Row 2: a quoted field containing a comma, and an empty trailing field.
+	tRequire(csv.Get(2, 0).IsEqual("Large, Deluxe"));
+	tRequire(csv.Get(2, 1).IsEqual("3"));
+	tRequire(csv.Get(2, 2).IsEmpty());
+
+	// Row 3: two consecutive quotes inside a quoted field collapse to a single literal quote. This row has only two
+	// columns, so cell (3,2) does not exist and therefore reads as empty.
+	tRequire(csv.Get(3, 0).IsEqual("Saying"));
+	tRequire(csv.Get(3, 1).IsEqual("He said \"hi\""));
+	tRequire(csv.Get(3, 2).IsEmpty());
+
+	// Out-of-range cells read as the empty string, so an empty cell and a missing cell cannot be told apart.
+	tRequire(csv.Get(4, 0).IsEmpty());
+	tRequire(csv.Get(0, 3).IsEmpty());
+
+	// GetRow fills a caller-supplied list with a row's cells.
+	tList<tStringItem> row;
+	tRequire(csv.GetRow(row, 1));
+	tRequire(row.GetNumItems() == 3);
+	tRequire(CSVNth(row, 0) && CSVNth(row, 0)->IsEqual("Small Widget"));
+	tRequire(CSVNth(row, 1) && CSVNth(row, 1)->IsEqual("12"));
+	tRequire(CSVNth(row, 2) && CSVNth(row, 2)->IsEqual("Fragile, handle with care"));
+	tRequire(CSVNth(row, 3) == nullptr);
+
+	// The last row has only two cells.
+	tList<tStringItem> lastRow;
+	tRequire(csv.GetRow(lastRow, 3));
+	tRequire(lastRow.GetNumItems() == 2);
+	tRequire(CSVNth(lastRow, 0) && CSVNth(lastRow, 0)->IsEqual("Saying"));
+	tRequire(CSVNth(lastRow, 1) && CSVNth(lastRow, 1)->IsEqual("He said \"hi\""));
+
+	// Out-of-range: GetRow returns false and leaves the supplied list unchanged.
+	tList<tStringItem> badRow;
+	badRow.Append(new tStringItem("sentinel"));
+	tRequire(!csv.GetRow(badRow, 4));
+	tRequire(badRow.GetNumItems() == 1);
+	tRequire(badRow.First() && badRow.First()->IsEqual("sentinel"));
+
+	// GetColumn fills a caller-supplied list with a column's cells, skipping any rows that have no such cell.
+	tList<tStringItem> col0;
+	tRequire(csv.GetColumn(col0, 0));
+	tRequire(col0.GetNumItems() == 4);
+	tRequire(CSVNth(col0, 0) && CSVNth(col0, 0)->IsEqual("Name"));
+	tRequire(CSVNth(col0, 1) && CSVNth(col0, 1)->IsEqual("Small Widget"));
+	tRequire(CSVNth(col0, 3) && CSVNth(col0, 3)->IsEqual("Saying"));
+
+	// Column 2 has cells in the first three rows, but not in row 3 (which has only two columns).
+	tList<tStringItem> col2;
+	tRequire(csv.GetColumn(col2, 2));
+	tRequire(col2.GetNumItems() == 3);
+	tRequire(CSVNth(col2, 0) && CSVNth(col2, 0)->IsEqual("Notes"));
+	tRequire(CSVNth(col2, 1) && CSVNth(col2, 1)->IsEqual("Fragile, handle with care"));
+	tRequire(CSVNth(col2, 2) && CSVNth(col2, 2)->IsEmpty());
+
+	// Out-of-range: GetColumn returns false and leaves the supplied list unchanged.
+	tList<tStringItem> badCol;
+	badCol.Append(new tStringItem("sentinel"));
+	tRequire(!csv.GetColumn(badCol, 3));
+	tRequire(badCol.GetNumItems() == 1);
+	tRequire(badCol.First() && badCol.First()->IsEqual("sentinel"));
+
+	// Line-ending normalisation: CRLF, LF and bare CR all separate rows.
+	tCSV endings;
+	endings.LoadString("A,B\r\nC,D\nE,F\rG,H");
+	tRequire(endings.GetNumRows() == 4);
+	tRequire(endings.Get(0, 1).IsEqual("B"));
+	tRequire(endings.Get(1, 0).IsEqual("C"));
+	tRequire(endings.Get(2, 1).IsEqual("F"));
+	tRequire(endings.Get(3, 0).IsEqual("G"));
+	tRequire(endings.Get(3, 1).IsEqual("H"));
 }
 
 

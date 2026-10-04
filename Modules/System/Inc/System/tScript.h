@@ -9,7 +9,7 @@
 //
 // The second format is a functional format. ex. a(b,c) See tFunExtression.
 //
-// Copyright (c) 2006, 2017, 2019, 2022-2024 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2022-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -255,7 +255,7 @@ public:
 	// Infinity, NAN, etc) will result in a value of 0.0 being written.
 	void WriteAtom(const tString&);
 	void WriteAtom(const char*);
-	void WriteAtom(const char8_t*);
+	void WriteAtom(const char8_t* atom)																					{ WriteAtom((const char*)atom); }
 	void WriteAtom(const bool);
 	void WriteAtom(const uint32);
 	void WriteAtom(const uint64);
@@ -275,22 +275,22 @@ public:
 	// the commas. These functions do still write the trailing space.
 	void WriteRaw(const tString&);
 	void WriteRaw(const char*);
-	void WriteRaw(const char8_t*);
+	void WriteRaw(const char8_t* atom)																					{ WriteRaw((const char*)atom); }
 
 	// Writes a single line comment to the script file.
 	void WriteComment(const char* = nullptr);
-	void WriteComment(const char8_t*);
+	void WriteComment(const char8_t* comment)																			{ WriteComment((const char*)comment); }
 
 	// Use these for multiline comments. They use the { } characters. They are not indented.
 	void WriteCommentBegin();
 	void WriteCommentLine(const char* = nullptr);
-	void WriteCommentLine(const char8_t*);
+	void WriteCommentLine(const char8_t* comment)																		{ WriteCommentLine((const char*)comment); }
 	void WriteCommentEnd();
 
 	// Use these for inline { } comments that don't go to end of line. ex. [ NotComment { This is a comment } AlsoNotComment ]
 	void WriteCommentInlineBegin();
 	void WriteCommentInline(const char* = nullptr);
-	void WriteCommentInline(const char8_t*);
+	void WriteCommentInline(const char8_t* comment)																		{ WriteCommentInline((const char*)comment); }
 	void WriteCommentInlineEnd();
 
 	// Indent and Dedent have no immediate effect. They affect the next Newline call, which does a newline and then
@@ -353,14 +353,7 @@ public:
 	template<typename T> void Coms(const tString& s, const T& a, const T& b, const T& c, const T& d)					{ Begin(); Atom(s); Atom(a); Atom(b); Atom(c); Atom(d); End(); }
 
 private:
-	int WriteIndents()
-	{
-		int numChars = TabWidth ? CurrIndent*TabWidth : CurrIndent;
-		char writeChar = TabWidth ? ' ' : '\t';
-		for (int c = 0; c < numChars; c++) tSystem::tWriteFile(ExprFile, &writeChar, 1);
-		return numChars;
-	}
-
+	int WriteIndents();
 	int CurrIndent;			// Number of tabs. If using spaces it's the number of groups of TabWidth spaces.
 	int TabWidth;
 
@@ -400,7 +393,7 @@ public:
 	tFunExpression* Last() const																						{ return Expressions.Last(); }
 
 	// A tFunScript is just a list of expressions. A tree may be more powerful?
-	tList<tFunExpression> Expressions;	
+	tList<tFunExpression> Expressions;
 
 private:
 	char8_t* EatWhiteAndComments(char8_t* c);
@@ -410,29 +403,8 @@ private:
 // The following error objects may be thrown by script parsing functions.
 struct tScriptError : public tError
 {
-	tScriptError(const char* format, ...) :
-		tError("tScript Module. ")
-	{
-		va_list marker;
-		va_start(marker, format);
-		tString msg;
-		Message += tsvPrintf(msg, format, marker);
-	}
-
-	tScriptError(int lineNumber, const char* format, ...) :
-		tError("tScript Module. ")
-	{
-		va_list marker;
-		va_start(marker, format);
-		tString msg;
-		tsvPrintf(msg, format, marker);
-		if (lineNumber > 0)
-		{
-			tString line;
-			Message += tsPrintf(line, "Line %d. ", lineNumber);
-		}
-		Message += msg;
-	}
+	tScriptError(const char* format, ...);
+	tScriptError(int lineNumber, const char* format, ...);
 	tScriptError()																										: tError("tScript Module.") { }
 };
 
@@ -440,33 +412,36 @@ struct tScriptError : public tError
 // Implementation only below this line.
 
 
-inline void tExprWriter::WriteAtom(const char8_t* atom)
+inline tScriptError::tScriptError(const char* format, ...)																: tError("tScript Module. ")
 {
-	// The non-UFT-8 version will write UTF-8 strings just fine.
-	WriteAtom((const char*)atom);
+	va_list marker;
+	va_start(marker, format);
+	tString msg;
+	Message += tsvPrintf(msg, format, marker);
 }
 
 
-inline void tExprWriter::WriteRaw(const char8_t* atom)
+inline tScriptError::tScriptError(int lineNumber, const char* format, ...)												: tError("tScript Module. ")
 {
-	// The non-UFT-8 version will write UTF-8 strings just fine.
-	WriteRaw((const char*)atom);
+	va_list marker;
+	va_start(marker, format);
+	tString msg;
+	tsvPrintf(msg, format, marker);
+	if (lineNumber > 0)
+	{
+		tString line;
+		Message += tsPrintf(line, "Line %d. ", lineNumber);
+	}
+	Message += msg;
 }
 
 
-inline void tExprWriter::WriteComment(const char8_t* comment)
+inline int tExprWriter::WriteIndents()
 {
-	WriteComment((const char*)comment);
-}
+	int numChars = TabWidth ? CurrIndent*TabWidth : CurrIndent;
+	char writeChar = TabWidth ? ' ' : '\t';
+	for (int c = 0; c < numChars; c++)
+		tSystem::tWriteFile(ExprFile, &writeChar, 1);
 
-
-inline void tExprWriter::WriteCommentLine(const char8_t* comment)
-{
-	WriteCommentLine((const char*)comment);
-}
-
-
-inline void tExprWriter::WriteCommentInline(const char8_t* comment)
-{
-	WriteCommentInline((const char*)comment);
+	return numChars;
 }

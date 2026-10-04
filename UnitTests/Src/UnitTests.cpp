@@ -209,7 +209,7 @@ int main(int argc, char** argv)
 	// tTest(Array);
 	// tTest(List);
 	// tTest(ListExtra);
-	tTest(ListSort);
+	// tTest(ListSort);
 	// tTest(Map);
 	// tTest(Promise);
 	// tTest(Sort);
@@ -241,6 +241,7 @@ int main(int argc, char** argv)
 	// tTest(Print);
 	// tTest(Regex);
 	// tTest(Script);
+	tTest(CSV);
 	// tTest(Chunk);
 	// tTest(FileTypes);
 	// tTest(Directories);
