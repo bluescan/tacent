@@ -7,8 +7,6 @@ Modern CMake (target-based) is used to generate the build files. Generators for 
 
 [Tacent Homepage](https://bluescan.github.io/tacent)
 
-Thanks to Woboq, the source may be viewed in a web browser [here](https://bluescan.github.io/tacent/codebrowser/Modules/index.html).
-
 ### Overview
 
 Tacent is divided into a number of separate modules. Each module is a collection of related source files. Some modules depend on others.
