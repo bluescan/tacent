@@ -5,11 +5,6 @@ title: Homepage
 [![latest](https://img.shields.io/github/v/release/bluescan/tacent.svg)](https://github.com/bluescan/tacent/releases) ![Unit Tests](https://github.com/bluescan/tacent/workflows/Unit%20Tests/badge.svg)
 
 ---
-## Source Browser
-
-_Tacent_ source code can be [Browsed Online](https://bluescan.github.io/tacent/codebrowser/Modules/index.html). This is useful for quickly inspecting what functionality is provided and how it is implemented.
-
----
 ## Overview
 
 Tacent is divided into a number of separate modules. Each module is a collection of related source files. Some modules depend on others.

@@ -1,3 +1,0 @@
-<dec f='include/signal.h' l='333' type='int sigaltstack(const stack_t *__restrict __ss, stack_t *__restrict __oss)'/>
-<doc f='include/signal.h' l='331'>/* Alternate signal handler stack interface.
-   This interface should always be preferred over `sigstack&apos;.  */</doc>

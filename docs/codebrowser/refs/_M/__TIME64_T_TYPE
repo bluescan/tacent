@@ -1,2 +1,0 @@
-<dec f='include/x86_64-linux-gnu/bits/time64.h' l='30'/>
-<doc f='include/x86_64-linux-gnu/bits/time64.h' l='29'>/* If we already have 64-bit time type then use it.  */</doc>

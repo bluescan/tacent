@@ -1,6 +1,0 @@
-<dec f='include/features.h' l='218'/>
-<use f='include/features.h' l='384' u='a'/>
-<use f='Modules/Image/Contrib/ZLib/include/zconf.h' l='468' u='a'/>
-<use f='Modules/Image/Contrib/ZLib/include/zconf.h' l='468' u='c'/>
-<use f='Modules/Image/Contrib/ZLib/include/zconf.h' l='476' u='a'/>
-<use f='Modules/Image/Contrib/ZLib/include/zconf.h' l='491' u='a'/>

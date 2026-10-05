@@ -1,3 +1,0 @@
-<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='99' type='free_func'/>
-<offset>576</offset>
-<doc f='Modules/Image/Contrib/ZLib/include/zlib.h' l='99'>/* used to free the internal state */</doc>

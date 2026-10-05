@@ -1,3 +1,0 @@
-<dec f='include/time.h' l='197' type='char * asctime_r(const struct tm *__restrict __tp, char *__restrict __buf)'/>
-<doc f='include/time.h' l='195'>/* Return in BUF a string of the form &quot;Day Mon dd hh:mm:ss yyyy\n&quot;
-   that is the representation of TP in this format.  */</doc>

@@ -1,4 +1,0 @@
-<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='102' type='int'/>
-<offset>704</offset>
-<doc f='Modules/Image/Contrib/ZLib/include/zlib.h' l='102'>/* best guess about the data type: binary or text
-                           for deflate, or the decoding state for inflate */</doc>

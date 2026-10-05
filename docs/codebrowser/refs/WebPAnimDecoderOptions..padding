@@ -1,3 +1,0 @@
-<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='256' type='uint32_t[7]'/>
-<offset>64</offset>
-<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='256'>// Padding for later use.</doc>

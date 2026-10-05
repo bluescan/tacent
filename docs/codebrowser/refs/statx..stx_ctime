@@ -1,3 +1,0 @@
-<dec f='include/linux/stat.h' l='118' type='struct statx_timestamp'/>
-<offset>768</offset>
-<doc f='include/linux/stat.h' l='118'>/* Last attribute change time */</doc>

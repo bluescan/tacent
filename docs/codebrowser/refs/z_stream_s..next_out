@@ -1,3 +1,0 @@
-<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='91' type='Bytef *'/>
-<offset>192</offset>
-<doc f='Modules/Image/Contrib/ZLib/include/zlib.h' l='91'>/* next output byte will go here */</doc>

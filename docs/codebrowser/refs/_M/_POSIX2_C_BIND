@@ -1,3 +1,0 @@
-<dec f='include/unistd.h' l='74'/>
-<doc f='include/unistd.h' l='72'>/* If defined, the implementation supports the
-   C Language Bindings Option.  */</doc>

@@ -1,3 +1,0 @@
-<dec f='include/linux/sysinfo.h' l='15' type='__kernel_ulong_t'/>
-<offset>512</offset>
-<doc f='include/linux/sysinfo.h' l='15'>/* Total swap space size */</doc>

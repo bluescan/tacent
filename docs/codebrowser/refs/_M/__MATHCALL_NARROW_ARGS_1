@@ -1,3 +1,0 @@
-<dec f='include/math.h' l='550'/>
-<use f='include/math.h' l='845' u='w'/>
-<doc f='include/math.h' l='549'>/* Declare functions returning a narrower type.  */</doc>

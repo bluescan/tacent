@@ -1,3 +1,0 @@
-<dec f='include/time.h' l='228' type='void tzset()'/>
-<doc f='include/time.h' l='226'>/* Set time conversion information from the TZ environment variable.
-   If TZ is not defined, a locale-dependent default is used.  */</doc>

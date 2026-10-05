@@ -1,3 +1,0 @@
-<dec f='include/ctype.h' l='57' type='2'/>
-<doc f='include/ctype.h' l='57'>/* Control character.  */</doc>
-<use f='include/x86_64-linux-gnu/c++/11/bits/ctype_base.h' l='57'/>

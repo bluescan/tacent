@@ -1,3 +1,0 @@
-<dec f='include/pthread.h' l='489' type='int pthread_setaffinity_np(pthread_t __th, size_t __cpusetsize, const cpu_set_t * __cpuset)'/>
-<doc f='include/pthread.h' l='487'>/* Limit specified thread TH to run only on the processors represented
-   in CPUSET.  */</doc>

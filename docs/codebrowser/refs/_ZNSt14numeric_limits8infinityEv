@@ -1,2 +1,0 @@
-<def f='include/c++/11/limits' l='340' ll='341' type='static _Tp std::numeric_limits::infinity()'/>
-<doc f='include/c++/11/limits' l='339'>/** The representation of positive infinity, if @c has_infinity.  */</doc>

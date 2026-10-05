@@ -1,1 +1,0 @@
-<def f='Modules/Image/Src/tImageTIFF.cpp' l='133' ll='156' type='bool tImage::tImageTIFF::Set(tList&lt;tImage::tFrame&gt; &amp; srcFrames, bool stealFrames)'/>

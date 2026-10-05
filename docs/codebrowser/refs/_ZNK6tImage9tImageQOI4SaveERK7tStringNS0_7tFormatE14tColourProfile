@@ -1,1 +1,0 @@
-<def f='Modules/Image/Src/tImageQOI.cpp' l='170' ll='176' type='tImageQOI::tFormat tImage::tImageQOI::Save(const tString &amp; qoiFile, tImage::tImageQOI::tFormat format, tColourProfile profile = tColourProfile::Auto) const'/>

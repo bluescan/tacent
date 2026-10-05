@@ -1,3 +1,0 @@
-<dec f='include/stdio.h' l='110'/>
-<dec f='include/unistd.h' l='317'/>
-<use f='Modules/System/Src/tFile.cpp' l='160' u='c'/>

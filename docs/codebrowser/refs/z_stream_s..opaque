@@ -1,3 +1,0 @@
-<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='100' type='voidpf'/>
-<offset>640</offset>
-<doc f='Modules/Image/Contrib/ZLib/include/zlib.h' l='100'>/* private data object passed to zalloc and zfree */</doc>

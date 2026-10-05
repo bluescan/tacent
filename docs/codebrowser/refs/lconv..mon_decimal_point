@@ -1,3 +1,0 @@
-<dec f='include/locale.h' l='70' type='char *'/>
-<offset>320</offset>
-<doc f='include/locale.h' l='70'>/* Decimal point character.  */</doc>

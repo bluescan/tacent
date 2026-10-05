@@ -1,3 +1,0 @@
-<dec f='include/stdlib.h' l='432' type='int32_t *'/>
-<offset>320</offset>
-<doc f='include/stdlib.h' l='432'>/* Pointer behind state table.  */</doc>

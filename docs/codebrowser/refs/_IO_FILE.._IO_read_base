@@ -1,3 +1,0 @@
-<dec f='include/x86_64-linux-gnu/bits/types/struct_FILE.h' l='56' type='char *'/>
-<offset>192</offset>
-<doc f='include/x86_64-linux-gnu/bits/types/struct_FILE.h' l='56'>/* Start of putback+get area. */</doc>

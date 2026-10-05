@@ -1,3 +1,0 @@
-<dec f='include/unistd.h' l='78'/>
-<doc f='include/unistd.h' l='76'>/* If defined, the implementation supports the
-   C Language Development Utilities Option.  */</doc>

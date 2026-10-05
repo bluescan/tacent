@@ -1,3 +1,0 @@
-<dec f='include/x86_64-linux-gnu/bits/types/struct_FILE.h' l='65' type='char *'/>
-<offset>640</offset>
-<doc f='include/x86_64-linux-gnu/bits/types/struct_FILE.h' l='65'>/* Pointer to first valid character of backup area */</doc>

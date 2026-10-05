@@ -1,3 +1,0 @@
-<dec f='include/linux/sysinfo.h' l='9' type='__kernel_long_t'/>
-<offset>0</offset>
-<doc f='include/linux/sysinfo.h' l='9'>/* Seconds since boot */</doc>

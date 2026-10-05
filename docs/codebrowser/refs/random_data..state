@@ -1,3 +1,0 @@
-<dec f='include/stdlib.h' l='428' type='int32_t *'/>
-<offset>128</offset>
-<doc f='include/stdlib.h' l='428'>/* Array of state values.  */</doc>

@@ -1,2 +1,0 @@
-<def f='Modules/Math/Inc/Math/tGeometry.h' l='33' type='void tMath::tEdge::tEdge(const tMath::tEdge &amp; s)'/>
-<use f='Modules/System/Src/tChunk.cpp' l='421' u='c' c='_ZN12tChunkWriter5WriteERKN5tMath5tEdgeE'/>

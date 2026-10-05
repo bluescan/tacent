@@ -1,3 +1,0 @@
-<dec f='include/linux/sysinfo.h' l='18' type='__u16'/>
-<offset>656</offset>
-<doc f='include/linux/sysinfo.h' l='18'>/* Explicit padding for m68k */</doc>

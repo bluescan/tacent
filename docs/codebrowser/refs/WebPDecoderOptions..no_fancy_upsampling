@@ -1,3 +1,0 @@
-<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='447' type='int'/>
-<offset>32</offset>
-<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='447'>// if true, use faster pointwise upsampler</doc>

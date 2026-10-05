@@ -1,3 +1,0 @@
-<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='619' type='unsigned int'/>
-<offset>128</offset>
-<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='618'>/** @brief The number of texels in the block. */</doc>

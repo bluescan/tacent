@@ -1,1 +1,0 @@
-<def f='Modules/Image/Src/tImageTGA.cpp' l='66' ll='82' type='bool tImage::tImageTGA::Load(const tString &amp; tgaFile, const tImage::tImageTGA::LoadParams &amp; params = tImage::tImageTGA::LoadParams())'/>

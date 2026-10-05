@@ -1,3 +1,0 @@
-<dec f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='406' type='unsigned int'/>
-<offset>64</offset>
-<doc f='Modules/Image/Contrib/ASTCEncoder/include/astcenc.h' l='405'>/** @brief The ASTC block size X dimension. */</doc>

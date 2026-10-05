@@ -1,3 +1,0 @@
-<dec f='include/unistd.h' l='995' type='int syncfs(int __fd)'/>
-<doc f='include/unistd.h' l='993'>/* Make all changes done to all files on the file system associated
-   with FD actually appear on disk.  */</doc>

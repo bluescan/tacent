@@ -1,2 +1,0 @@
-<def f='Modules/Math/Inc/Math/tQuaternion.h' l='63' type='float tMath::tQuaternion::NormalizeSafeGetLength()'/>
-<doc f='Modules/Math/Inc/Math/tQuaternion.h' l='63'>/* Returns pre-normalized length. 0.0f if no go. */</doc>

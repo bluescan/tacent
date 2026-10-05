@@ -1,3 +1,0 @@
-<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='352' type='void tStd::tStrrev(char * begin, char * end)'/>
-<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='693' u='c' c='_ZN4tStd8tItostrTEPDuiT_i'/>
-<def f='Modules/Foundation/Src/tStandard.cpp' l='275' ll='280' type='void tStd::tStrrev(char * begin, char * end)'/>

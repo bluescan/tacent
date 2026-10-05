@@ -1,2 +1,0 @@
-<dec f='include/stdio.h' l='584' type='int putw(int __w, FILE * __stream)'/>
-<doc f='include/stdio.h' l='583'>/* Write a word (int) to STREAM.  */</doc>

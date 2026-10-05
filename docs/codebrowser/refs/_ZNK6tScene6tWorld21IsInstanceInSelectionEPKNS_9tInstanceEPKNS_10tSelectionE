@@ -1,1 +1,0 @@
-<def f='Modules/Scene/Src/tWorld.cpp' l='1680' ll='1686' type='bool tScene::tWorld::IsInstanceInSelection(const tScene::tInstance * inst, const tScene::tSelection * sel) const'/>

@@ -1,3 +1,0 @@
-<dec f='include/stdio.h' l='885' type='int __uflow(FILE * )'/>
-<doc f='include/stdio.h' l='883'>/* Slow-path routines used by the optimized inline functions in
-   bits/stdio.h.  */</doc>

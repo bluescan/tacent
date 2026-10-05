@@ -1,3 +1,0 @@
-<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='104' type='uLong'/>
-<offset>768</offset>
-<doc f='Modules/Image/Contrib/ZLib/include/zlib.h' l='104'>/* Adler-32 or CRC-32 value of the uncompressed data */</doc>

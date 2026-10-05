@@ -1,2 +1,0 @@
-<dec f='include/x86_64-linux-gnu/sys/stat.h' l='165'/>
-<doc f='include/x86_64-linux-gnu/sys/stat.h' l='164'>/* Save swapped text after use (sticky bit).  This is pretty well obsolete.  */</doc>

@@ -1,6 +1,0 @@
-<use f='Modules/Input/Inc/Input/tContGamepad.h' l='91' u='m' c='_ZNK6tInput12tContGamepad9IsPollingEv'/>
-<dec f='Modules/Input/Inc/Input/tContGamepad.h' l='109' type='std::thread'/>
-<offset>13760</offset>
-<doc f='Modules/Input/Inc/Input/tContGamepad.h' l='108'>// We consider the controller connected if the PollingThread is joinable.</doc>
-<use f='Modules/Input/Src/tContGamepad.cpp' l='42' u='w' c='_ZN6tInput12tContGamepad12StartPollingEi'/>
-<use f='Modules/Input/Src/tContGamepad.cpp' l='60' u='m' c='_ZN6tInput12tContGamepad11StopPollingEv'/>

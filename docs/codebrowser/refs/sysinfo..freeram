@@ -1,3 +1,0 @@
-<dec f='include/linux/sysinfo.h' l='12' type='__kernel_ulong_t'/>
-<offset>320</offset>
-<doc f='include/linux/sysinfo.h' l='12'>/* Available memory size */</doc>

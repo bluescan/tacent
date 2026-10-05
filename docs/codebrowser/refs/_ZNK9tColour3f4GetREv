@@ -1,2 +1,0 @@
-<def f='Modules/Math/Inc/Math/tColour.h' l='702' type='int tColour3f::GetR() const'/>
-<use f='Modules/Math/Inc/Math/tColour.h' l='705' u='c' c='_ZNK9tColour3f3GetEPi'/>

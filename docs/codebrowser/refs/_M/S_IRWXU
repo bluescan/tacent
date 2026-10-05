@@ -1,2 +1,0 @@
-<dec f='include/x86_64-linux-gnu/sys/stat.h' l='172'/>
-<doc f='include/x86_64-linux-gnu/sys/stat.h' l='171'>/* Read, write, and execute by owner.  */</doc>

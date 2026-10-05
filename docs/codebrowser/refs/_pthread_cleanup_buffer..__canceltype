@@ -1,3 +1,0 @@
-<dec f='include/pthread.h' l='163' type='int'/>
-<offset>128</offset>
-<doc f='include/pthread.h' l='163'>/* Saved cancellation type. */</doc>

@@ -1,3 +1,0 @@
-<dec f='include/stdlib.h' l='429' type='int'/>
-<offset>192</offset>
-<doc f='include/stdlib.h' l='429'>/* Type of random number generator.  */</doc>

@@ -1,2 +1,0 @@
-<dec f='include/x86_64-linux-gnu/bits/posix_opt.h' l='164'/>
-<doc f='include/x86_64-linux-gnu/bits/posix_opt.h' l='163'>/* The monotonic clock might be available.  */</doc>

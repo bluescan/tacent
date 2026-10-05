@@ -1,1 +1,0 @@
-<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8243' type='VkResult vkGetPhysicalDeviceVideoCapabilitiesKHR(VkPhysicalDevice physicalDevice, const VkVideoProfileInfoKHR * pVideoProfile, VkVideoCapabilitiesKHR * pCapabilities)'/>

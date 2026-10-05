@@ -1,1 +1,0 @@
-<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='1772' type='int inflateInit2_(z_streamp strm, int windowBits, const char * version, int stream_size)'/>

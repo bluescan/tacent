@@ -1,3 +1,0 @@
-<dec f='include/linux/sysinfo.h' l='19' type='__kernel_ulong_t'/>
-<offset>704</offset>
-<doc f='include/linux/sysinfo.h' l='19'>/* Total high memory size */</doc>

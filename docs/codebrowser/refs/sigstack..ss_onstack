@@ -1,3 +1,0 @@
-<dec f='include/x86_64-linux-gnu/bits/types/struct_sigstack.h' l='26' type='int'/>
-<offset>64</offset>
-<doc f='include/x86_64-linux-gnu/bits/types/struct_sigstack.h' l='26'>/* Nonzero if executing on this stack.  */</doc>

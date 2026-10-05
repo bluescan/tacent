@@ -1,3 +1,0 @@
-<dec f='include/setjmp.h' l='74'/>
-<doc f='include/setjmp.h' l='72'>/* Store the calling environment in ENV, also saving the
-   signal mask if SAVEMASK is nonzero.  Return 0.  */</doc>

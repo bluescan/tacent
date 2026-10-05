@@ -1,2 +1,0 @@
-<dec f='include/x86_64-linux-gnu/sys/stat.h' l='184'/>
-<doc f='include/x86_64-linux-gnu/sys/stat.h' l='183'>/* Read, write, and execute by group.  */</doc>

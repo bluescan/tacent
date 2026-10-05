@@ -1,1 +1,0 @@
-<dec f='Modules/Image/Contrib/ZLib/include/zlib.h' l='775' type='int deflatePending(z_streamp strm, unsigned int * pending, int * bits)'/>
