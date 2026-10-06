@@ -501,6 +501,50 @@ int tString::RemoveTrailing(const char* removeThese)
 	return numRemoved;
 }
 
+
+tString& tString::Trim()
+{
+	// Count the code-units to strip from each end, then move the surviving range to the front in a single step.
+	// The trimmed characters are the ASCII whitespace set: space, tab, CR, LF, form feed and vertical tab. Because
+	// tString is UTF-8, every code-unit of a multi-byte sequence is >= 0x80 and can never equal one of those, so the
+	// direct char8_t comparisons below are UTF-8 safe (unlike passing a signed char to isspace).
+	int first = 0;
+	while
+	(
+		(first < StringLength) &&
+		(
+			CodeUnits[first] == ' '  || CodeUnits[first] == '\t' || CodeUnits[first] == '\r' ||
+			CodeUnits[first] == '\n' || CodeUnits[first] == '\f' || CodeUnits[first] == '\v'
+		)
+	)
+	{
+		first++;
+	}
+	
+	int last = StringLength;
+	while
+	(
+		(last > first) &&
+		(
+			CodeUnits[last-1] == ' '  || CodeUnits[last-1] == '\t' || CodeUnits[last-1] == '\r' ||
+			CodeUnits[last-1] == '\n' || CodeUnits[last-1] == '\f' || CodeUnits[last-1] == '\v'
+		)
+	)
+	{
+		last--;
+	}
+
+	// Move the surviving range to the front. The source and destination overlap, so tMemmov is required (not tMemcpy).
+	int newLength = last - first;
+	if ((newLength > 0) && (first > 0))
+		tStd::tMemmov(CodeUnits, CodeUnits + first, newLength);
+
+	StringLength = newLength;
+	CodeUnits[StringLength] = '\0';
+	return *this;
+}
+
+
 int tString::RemoveFirst()
 {
 	if (IsEmpty())

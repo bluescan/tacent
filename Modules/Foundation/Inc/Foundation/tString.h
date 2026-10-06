@@ -321,6 +321,12 @@ struct tString
 	// characters removed. Note that theseChars are ASCII.
 	int RemoveAnyNot(const char* theseChars);
 
+	// Trims leading and trailing ASCII whitespace (space, tab, CR, LF, form feed, vertical tab) in place, then returns
+	// a reference to this string so the call can be chained (eg. name.Trim().ToUpper()). This is UTF-8 safe: every
+	// code-unit of a multi-byte sequence is >= 0x80 and so can never equal one of the ASCII whitespace characters.
+	// (Unlike RemoveLeading/RemoveTrailing it does a single leading+trailing pass and one memory move.)
+	tString& Trim();
+
 	// ToUpper and ToLower both modify the object as well as return a reference to it. Returning a reference makes it
 	// easy to string together expressions such as: if (name.ToLower() == "ah")
 	tString& ToUpper()																									{ for (int n = 0; n < StringLength; n++) CodeUnits[n] = tStd::tToUpper(CodeUnits[n]); return *this; }
