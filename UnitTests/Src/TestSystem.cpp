@@ -1612,6 +1612,179 @@ tTestUnit(CSV)
 	tRequire(endings.Get(2, 1).IsEqual("F"));
 	tRequire(endings.Get(3, 0).IsEqual("G"));
 	tRequire(endings.Get(3, 1).IsEqual("H"));
+
+	// BOM tolerance: a UTF-8 byte order marker (EF BB BF) at the start of the text must be dropped, not treated as
+	// part of the first cell.
+	tCSV withBOM;
+	withBOM.LoadString("\xEF\xBB\xBFName,Qty\r\nWidget,5\r\n");
+	tRequire(withBOM.GetNumRows() == 2);
+	tRequire(withBOM.GetNumColumns() == 2);
+	tRequire(withBOM.Get(0, 0).IsEqual("Name"));
+	tRequire(withBOM.Get(1, 1).IsEqual("5"));
+
+	// BOM tolerance via LoadFile: a file starting with a UTF-8 BOM loads identically to one without.
+	{
+		char8_t bomText[] = { 'N', 'a', 'm', 'e', ',', 'Q', 't', 'y', (char8_t)0x0D, (char8_t)0x0A,
+		                      'W', 'i', 'd', 'g', 'e', ',', '5', (char8_t)0x0D, (char8_t)0x0A };
+		tRequire(tCreateFile("Data/CSV/BOMTest.csv", bomText, 19, true));
+		tCSV bomFile;
+		tRequire(bomFile.LoadFile("Data/CSV/BOMTest.csv"));
+		tRequire(bomFile.GetNumRows() == 2);
+		tRequire(bomFile.GetNumColumns() == 2);
+		tRequire(bomFile.Get(0, 0).IsEqual("Name"));
+		tRequire(bomFile.Get(1, 1).IsEqual("5"));
+		tRequire(tDeleteFile("Data/CSV/BOMTest.csv"));
+	}
+
+// --- Mutation: SetRow pads short rows, widens the document for longer rows, and appends missing rows. ---
+	tPrintf("Testing tCSV mutation (Set / SetRow / SetColumn) and SaveFile.\n");
+	tCSV built;
+	tRequire(built.GetNumRows() == 0);
+	tRequire(built.GetNumColumns() == 0);
+	{
+		tList<tStringItem> row;
+		row.Append(new tStringItem("Name"));
+		row.Append(new tStringItem("Qty"));
+		row.Append(new tStringItem("Notes"));
+		tRequire(built.SetRow(row, 0));
+	}
+	tRequire(built.GetNumRows() == 1);
+	tRequire(built.GetNumColumns() == 3);
+	tRequire(built.Get(0, 0).IsEqual("Name"));
+
+	// A shorter row is padded with an empty item to match the other rows.
+	{
+		tList<tStringItem> row;
+		row.Append(new tStringItem("Small Widget"));
+		row.Append(new tStringItem("12"));
+		tRequire(built.SetRow(row, 1));
+	}
+	tRequire(built.GetNumRows() == 2);
+	tRequire(built.GetNumColumns() == 3);
+	tRequire(built.Get(1, 0).IsEqual("Small Widget"));
+	tRequire(built.Get(1, 1).IsEqual("12"));
+	tRequire(built.Get(1, 2).IsEmpty());
+
+	// A longer row adds empty items to all the other rows.
+	{
+		tList<tStringItem> row;
+		row.Append(new tStringItem("Large, Deluxe"));
+		row.Append(new tStringItem("3"));
+		row.Append(new tStringItem("Heavy"));
+		row.Append(new tStringItem("Box"));
+		tRequire(built.SetRow(row, 2));
+	}
+	tRequire(built.GetNumRows() == 3);
+	tRequire(built.GetNumColumns() == 4);
+	tRequire(built.Get(0, 3).IsEmpty());
+	tRequire(built.Get(1, 3).IsEmpty());
+	tRequire(built.Get(2, 0).IsEqual("Large, Deluxe"));
+	tRequire(built.Get(2, 3).IsEqual("Box"));
+
+	// Set replaces a single cell.
+	tRequire(built.Set("Widget 9000", 1, 3));
+	tRequire(built.Get(1, 3).IsEqual("Widget 9000"));
+	tRequire(built.GetNumRows() == 3);
+	tRequire(built.GetNumColumns() == 4);
+	tRequire(built.Set("He said \"hi\"", 0, 1));
+	tRequire(built.Get(0, 1).IsEqual("He said \"hi\""));
+
+	// SetColumn replaces the whole column, creating the column in every row. Rows without a supplied item get an
+	// empty cell.
+	{
+		tList<tStringItem> col;
+		col.Append(new tStringItem("A"));
+		col.Append(new tStringItem("B"));
+		tRequire(built.SetColumn(col, 5));
+	}
+	tRequire(built.GetNumColumns() == 6);
+	tRequire(built.Get(0, 5).IsEqual("A"));
+	tRequire(built.Get(1, 5).IsEqual("B"));
+	tRequire(built.Get(2, 5).IsEmpty());
+	// ...and the rest of the row is left untouched.
+	tRequire(built.Get(0, 0).IsEqual("Name"));
+	tRequire(built.Get(1, 0).IsEqual("Small Widget"));
+
+	// SetColumn with more items than rows appends empty rows for the extra items.
+	{
+		tList<tStringItem> col;
+		col.Append(new tStringItem("1st"));
+		col.Append(new tStringItem("2nd"));
+		col.Append(new tStringItem("3rd"));
+		col.Append(new tStringItem("4th"));
+		tRequire(built.SetColumn(col, 4));
+	}
+	tRequire(built.GetNumRows() == 4);
+	tRequire(built.GetNumColumns() == 6);
+	tRequire(built.Get(0, 4).IsEqual("1st"));
+	tRequire(built.Get(1, 4).IsEqual("2nd"));
+	tRequire(built.Get(2, 4).IsEqual("3rd"));
+	tRequire(built.Get(3, 4).IsEqual("4th"));
+	tRequire(built.Get(3, 0).IsEmpty());
+	tRequire(built.Get(3, 5).IsEmpty());
+
+	// Negative indices are rejected.
+	{
+		tList<tStringItem> empty;
+		tRequire(!built.Set("x", -1, 0));
+		tRequire(!built.Set("x", 0, -1));
+		tRequire(!built.SetRow(empty, -1));
+		tRequire(!built.SetColumn(empty, -1));
+	}
+
+	// SaveFile: the RFC 4180 serialization is exact (quoting of special fields, empty fields, CRLF record
+	// terminators, no BOM).
+	tRequire(built.SaveFile("Data/CSV/SavedTest.csv"));
+	{
+		tString saved;
+		tRequire(tLoadFile("Data/CSV/SavedTest.csv", saved));
+		tRequire(saved.IsEqual("Name,\"He said \"\"hi\"\"\",Notes,,1st,A\r\n"
+		                        "Small Widget,12,,Widget 9000,2nd,B\r\n"
+		                        "\"Large, Deluxe\",3,Heavy,Box,3rd,\r\n"
+		                        ",,,,4th,\r\n"));
+	}
+	{
+		int size = 0;
+		uint8* data = tLoadFile("Data/CSV/SavedTest.csv", nullptr, &size);
+		tRequire(data != nullptr);
+		if (data)
+		{
+			// No BOM (RFC 4180 does not mandate one) and the file ends with a CRLF record terminator.
+			tRequire((data[0] != 0xEF) || (data[1] != 0xBB) || (data[2] != 0xBF));
+			tRequire(size >= 2);
+			tRequire(data[size - 2] == 0x0D);
+			tRequire(data[size - 1] == 0x0A);
+			delete[] data;
+		}
+	}
+
+	// Round-trip: a document that is saved and reloaded is identical cell by cell.
+	tCSV roundTrip;
+	tRequire(roundTrip.LoadFile("Data/CSV/SavedTest.csv"));
+	tRequire(roundTrip.GetNumRows() == 4);
+	tRequire(roundTrip.GetNumColumns() == 6);
+	tRequire(roundTrip.Get(0, 1).IsEqual("He said \"hi\""));
+	tRequire(roundTrip.Get(2, 0).IsEqual("Large, Deluxe"));
+	tRequire(roundTrip.Get(1, 3).IsEqual("Widget 9000"));
+	tRequire(roundTrip.Get(3, 4).IsEqual("4th"));
+	tRequire(roundTrip.Get(3, 0).IsEmpty());
+	tRequire(roundTrip.Get(2, 5).IsEmpty());
+	tRequire(tDeleteFile("Data/CSV/SavedTest.csv"));
+
+	// Saving an empty document produces an empty file.
+	{
+		tCSV emptyDoc;
+		tRequire(emptyDoc.SaveFile("Data/CSV/EmptyTest.csv"));
+		int size = -1;
+		uint8* data = tLoadFile("Data/CSV/EmptyTest.csv", nullptr, &size);
+		tRequire(data == nullptr);
+		tRequire(size == 0);
+		tCSV emptyReload;
+		tRequire(emptyReload.LoadFile("Data/CSV/EmptyTest.csv"));
+		tRequire(emptyReload.GetNumRows() == 0);
+		tRequire(emptyReload.GetNumColumns() == 0);
+		tRequire(tDeleteFile("Data/CSV/EmptyTest.csv"));
+	}
 }
 
 
