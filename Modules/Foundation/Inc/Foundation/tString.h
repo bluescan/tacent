@@ -187,9 +187,13 @@ struct tString
 	tString& operator+=(const tString& suffix)																			{ return Append(suffix); }
 
 	// All non-null characters must meet the criteria for these functions to return true.
-	bool IsAlphabetic(bool includeUnderscore = true) const;
-	bool IsNumeric(bool includeDecimal = false) const;
-	bool IsAlphaNumeric(bool includeUnderscore = true, bool includeDecimal = false) const;
+	bool IsAlphabetic(bool allowUnderscore = true) const;
+	bool IsAlphaNumeric(bool allowUnderscore = true, bool allowDecimal = false) const;
+
+	// This function tests if a string represents a decimal number (that's not in scientific or exponantial notation).
+	// "12340" returns true. "-12340" returns true is allowNegative is true. "-12340.56" returns true if both allow
+	// decimal and allowNegative are true. Negative numbers must start with a '-'. Only one decimal point is allowed. 
+	bool IsNumeric(bool allowDecimal = false, bool allowNegative = false) const;
 
 	// These only work well for ASCII strings as vars like 'count' are indexes into the text data and are not
 	// 'continuation-aware'. This comment applies to all below functions with the words 'Left', 'Right', and 'Mid' in
@@ -807,12 +811,12 @@ inline tString operator+(const tString& prefix, const tString& suffix)
 }
 
 
-inline bool tString::IsAlphabetic(bool includeUnderscore) const 
+inline bool tString::IsAlphabetic(bool allowUnderscore) const 
 {
 	for (int n = 0; n < StringLength; n++)
 	{
 		char c = char(CodeUnits[n]);
-		if ( !(tStd::tIsalpha(c) || (includeUnderscore && (c == '_'))) )
+		if ( !(tStd::tIsalpha(c) || (allowUnderscore && (c == '_'))) )
 			return false;
 	}
 
@@ -820,26 +824,41 @@ inline bool tString::IsAlphabetic(bool includeUnderscore) const
 }
 
 
-inline bool tString::IsNumeric(bool includeDecimal) const 
-{
-	for (int n = 0; n < StringLength; n++)
-	{
-		char c = char(CodeUnits[n]);
-		if ( !(tStd::tIsdigit(c) || (includeDecimal && (c == '.'))) )
-			return false;
-	}
-
-	return true;
-}
-
-
-inline bool tString::IsAlphaNumeric(bool includeUnderscore, bool includeDecimal) const
+inline bool tString::IsAlphaNumeric(bool allowUnderscore, bool allowDecimal) const
 {
 	// Doing them both in one loop.
 	for (int n = 0; n < StringLength; n++)
 	{
 		char c = char(CodeUnits[n]);
-		if ( !(tStd::tIsalnum(c) || (includeUnderscore && (c == '_')) || (includeDecimal && (c == '.'))) )
+		if ( !(tStd::tIsalnum(c) || (allowUnderscore && (c == '_')) || (allowDecimal && (c == '.'))) )
+			return false;
+	}
+
+	return true;
+}
+
+
+inline bool tString::IsNumeric(bool allowDecimal, bool allowNegative) const 
+{
+	bool decimalFound = false;
+	for (int n = 0; n < StringLength; n++)
+	{
+		char c = char(CodeUnits[n]);
+		if (allowNegative && (n == 0) && (c == '-'))
+			continue;
+		if (allowDecimal && (c == '.'))
+		{
+			if (decimalFound)
+			{
+				return false;
+			}
+			else
+			{
+				decimalFound = true;
+				continue;
+			}
+		}
+		if ( !tStd::tIsdigit(c) )
 			return false;
 	}
 
