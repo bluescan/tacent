@@ -205,10 +205,13 @@ tString tSystem::tGetFileName(const tString& file)
 
 tString tSystem::tGetFileBaseName(const tString& file)
 {
+	// Return the filename without its final extension. The extension is whatever follows the LAST period (consistent
+	// with tGetFileExtension), so names containing several periods (eg. "My.Trades.2026.csv") keep their leading ones.
 	tString r = tGetFileName(file);
-	if (r.FindChar('.') != -1)
-		return r.Left('.');
-	return r;
+	tString ext = tGetFileExtension(r);
+	if (ext.IsEmpty())
+		return r;
+	return r.Left(r.Length() - ext.Length() - 1);
 }
 
 
