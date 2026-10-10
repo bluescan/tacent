@@ -23,6 +23,14 @@ namespace tSystem
 
 bool tCSV::LoadFile(const tString& file)
 {
+	// Only load files that are actually CSV (i.e. whose extension maps to the CSV filetype). If the file is not a
+	// CSV file, discard any previous content and leave the document empty.
+	if (tGetFileType(file) != tFileType::CSV)
+	{
+		Rows.Empty();
+		return false;
+	}
+
 	tString text;
 	if (!tLoadFile(file, text))
 	{
@@ -206,6 +214,10 @@ void tCSV::AppendCSVField(tString& dst, const tString& field)
 
 bool tCSV::SaveFile(const tString& file) const
 {
+	// Only save to files that are actually CSV (i.e. whose extension maps to the CSV filetype).
+	if (tGetFileType(file) != tFileType::CSV)
+		return false;
+
 	// RFC 4180: comma-separated fields, double-quote quoting (embedded quotes doubled), records separated by CRLF,
 	// and every record having the same number of fields. The standard does not mandate a character encoding or a
 	// BOM, so the file is written as plain UTF-8 with no BOM.

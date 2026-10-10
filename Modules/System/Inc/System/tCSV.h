@@ -55,7 +55,9 @@ public:
 
 	// LoadFile reads the file as UTF-8 and parses it. LoadString parses the supplied text directly. Line endings are
 	// normalised (CRLF, LF and bare CR all separate records), blank lines are skipped, and a leading UTF-8 byte order
-	// marker (EF BB BF), if present, is dropped rather than treated as part of the first cell.
+	// marker (EF BB BF), if present, is dropped rather than treated as part of the first cell. The file must have a
+	// .csv extension (i.e. its extension must map to the CSV filetype); otherwise LoadFile does nothing and returns
+	// false.
 	bool LoadFile(const tString& file);
 	void LoadString(const tString& text);
 
@@ -83,7 +85,8 @@ public:
 	// double-quote, or a line break are enclosed in double-quotes with embedded double-quotes doubled, and records are
 	// separated by CRLF. RFC 4180 does not mandate a character encoding or a BOM, so the file is written as plain UTF-8
 	// with no BOM. Every record is written with the same number of fields (the widest row wins; shorter rows are padded
-	// with empty fields). Returns true on success.
+	// with empty fields). The file must have a .csv extension (i.e. its extension must map to the CSV filetype);
+	// otherwise SaveFile does nothing and returns false. Returns true on success.
 	bool SaveFile(const tString& file) const;
 
 private:
