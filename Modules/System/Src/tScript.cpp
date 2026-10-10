@@ -1004,8 +1004,6 @@ void tExprWriter::WriteCommentBlockEnd()
 	int numWritten = tSystem::tWriteFile(ExprFile, sc, 2);
 	if (numWritten != 2)
 		throw tScriptError("Cannot write to script file.");
-
-	NewLine();
 }
 
 
