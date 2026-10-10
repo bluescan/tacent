@@ -30,6 +30,8 @@ namespace tScript
 	// Block comment begin and end characters. Putting them here in case we need to change them (again).
 	static char BCB = '{';
 	static char BCE = '}';
+	#define BCBL "{"
+	#define BCEL "}"
 };
 using namespace tScript;
 
@@ -968,7 +970,18 @@ void tExprWriter::WriteComment(const char* comment)
 }
 
 
-void tExprWriter::WriteCommentLine(const char* comment)
+void tExprWriter::WriteCommentBlockBegin()
+{
+	char sc[] = BCBL " ";
+	int numWritten = tSystem::tWriteFile(ExprFile, sc, 2);
+	if (numWritten != 2)
+		throw tScriptError("Cannot write to script file.");
+
+	NewLine();
+}
+
+
+void tExprWriter::WriteCommentBlockLine(const char* comment)
 {
 	int numWritten = 0;
 	int commentLen = 0;
@@ -985,20 +998,20 @@ void tExprWriter::WriteCommentLine(const char* comment)
 }
 
 
-void tExprWriter::WriteCommentEnd()
+void tExprWriter::WriteCommentBlockEnd()
 {
-	char sc[] = ">\n";
-	sc[0] = BCE;
+	char sc[] = BCEL "\n";
 	int numWritten = tSystem::tWriteFile(ExprFile, sc, 2);
 	if (numWritten != 2)
 		throw tScriptError("Cannot write to script file.");
+
+	NewLine();
 }
 
 
 void tExprWriter::WriteCommentInlineBegin()
 {
-	char sc[] = "< ";
-	sc[0] = BCB;
+	char sc[] = BCBL " ";
 	int numWritten = tSystem::tWriteFile(ExprFile, sc, 2);
 	if (numWritten != 2)
 		throw tScriptError("Cannot write to script file.");
@@ -1022,8 +1035,7 @@ void tExprWriter::WriteCommentInline(const char* comment)
 
 void tExprWriter::WriteCommentInlineEnd()
 {
-	char sc[] = " > ";
-	sc[1] = BCE;
+	char sc[] = " " BCEL " ";
 	int numWritten = tSystem::tWriteFile(ExprFile, sc, 3);
 	if (numWritten != 3)
 		throw tScriptError("Cannot write to script file.");

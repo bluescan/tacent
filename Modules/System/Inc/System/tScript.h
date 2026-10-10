@@ -271,7 +271,7 @@ public:
 	void WriteAtom(const tColour4b&);
 
 	// These functions write a raw string. They do not check for spaces being used and will not add quotes if there is.
-	// This can be useful for qriting tuples like (a, b) that are still atoms even though they may contain a space after
+	// This can be useful for writing tuples like (a, b) that are still atoms even though they may contain a space after
 	// the commas. These functions do still write the trailing space.
 	void WriteRaw(const tString&);
 	void WriteRaw(const char*);
@@ -282,10 +282,10 @@ public:
 	void WriteComment(const char8_t* comment)																			{ WriteComment((const char*)comment); }
 
 	// Use these for multiline comments. They use the { } characters. They are not indented.
-	void WriteCommentBegin();
-	void WriteCommentLine(const char* = nullptr);
-	void WriteCommentLine(const char8_t* comment)																		{ WriteCommentLine((const char*)comment); }
-	void WriteCommentEnd();
+	void WriteCommentBlockBegin();
+	void WriteCommentBlockLine(const char* = nullptr);
+	void WriteCommentBlockLine(const char8_t* comment)																	{ WriteCommentBlockLine((const char*)comment); }
+	void WriteCommentBlockEnd();
 
 	// Use these for inline { } comments that don't go to end of line. ex. [ NotComment { This is a comment } AlsoNotComment ]
 	void WriteCommentInlineBegin();
@@ -324,12 +324,11 @@ public:
 	void Raw(const char8_t* s)																							{ WriteRaw(s); }
 
 	void Rem(const char* c = 0)																							{ WriteComment(c); }
-	void RemBegin()																										{ WriteCommentBegin(); }
-	void RemLine(const char* l = 0)																						{ WriteCommentLine(l); }
-	void RemEnd()																										{ WriteCommentEnd(); }
-
+	void RemBegin()																										{ WriteCommentBlockBegin(); }
+	void RemLine(const char* l = 0)																						{ WriteCommentBlockLine(l); }
+	void RemEnd()																										{ WriteCommentBlockEnd(); }
 	void RemInBegin()																									{ WriteCommentInlineBegin(); }
-	void RemIn(const char* l = 0)																						{ WriteCommentInline(l); }
+	void RemIn(const char* i = 0)																						{ WriteCommentInline(i); }
 	void RemInEnd()																										{ WriteCommentInlineEnd(); }
 
 	void Ind()																											{ Indent(); }

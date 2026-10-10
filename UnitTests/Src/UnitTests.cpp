@@ -240,7 +240,7 @@ int main(int argc, char** argv)
 	// tTest(Task);
 	// tTest(Print);
 	// tTest(Regex);
-	// tTest(Script);
+	tTest(Script);
 	tTest(CSV);
 	// tTest(Chunk);
 	// tTest(FileTypes);

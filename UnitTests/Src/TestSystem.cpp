@@ -753,6 +753,11 @@ tTestUnit(Script)
 		ws.WriteComment();
 		ws.NewLine();
 
+		ws.RemBegin();
+		ws.RemLine("Multiline comment line 1.");
+		ws.RemLine("Multiline comment line 2.");
+		ws.RemEnd();
+
 		ws.BeginExpression();
 		ws.WriteAtom("A");
 		ws.BeginExpression();
