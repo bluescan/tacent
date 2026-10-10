@@ -1909,6 +1909,7 @@ tSystem::FileTypeExts tSystem::FileTypeExtTable[] =
 	{ "cfg" },							// CFG
 	{ "ini" },							// INI
 	{ "txt" },							// TXT
+	{ "csv" },							// CSV
 };
 tStaticAssert(tNumElements(tSystem::FileTypeExtTable) == int(tSystem::tFileType::NumFileTypes));
 

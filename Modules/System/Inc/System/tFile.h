@@ -407,7 +407,8 @@ enum class tFileType
 	TAC,						// Image. Tacent Image.
 	CFG,						// Config. Text Config File.
 	INI,						// Config. Ini Config File.
-	TXT,						// Generic. Text File.
+	TXT,						// Text File.
+	CSV,						// Comma Separated Values Spreadsheet.
 	NumFileTypes
 };
 struct tFileTypes;
