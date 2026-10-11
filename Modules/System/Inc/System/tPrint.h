@@ -5,7 +5,7 @@
 // different type sizes and can print integral types in a variety of bases. Redirection via a callback as well as
 // visibility channels are also supported.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2019-2023, 2025 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2019-2023, 2025, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -471,3 +471,22 @@ inline int tmfPrintf(tSystem::tChannel channels, tFileHandle dest, const char* f
 	tvPrintf(channels, format, marker); 
 	return tfvPrintf(dest, format, marker);
 }
+
+
+inline tString& tString::SetFrom(int8 value)			{ return tsPrintf(*this, "%d", value); }
+inline tString& tString::SetFrom(uint8 value)			{ return tsPrintf(*this, "0x%02X", value); }
+inline tString& tString::SetFrom(int16 value)			{ return tsPrintf(*this, "%d", value); }
+inline tString& tString::SetFrom(uint16 value)			{ return tsPrintf(*this, "0x%04X", value); }
+inline tString& tString::SetFrom(int32 value)			{ return tsPrintf(*this, "%d", value); }
+inline tString& tString::SetFrom(uint32 value)			{ return tsPrintf(*this, "0x%08X", value); }
+inline tString& tString::SetFrom(int64 value)			{ return tsPrintf(*this, "%|64d", value); }
+inline tString& tString::SetFrom(uint64 value)			{ return tsPrintf(*this, "0x%016|64X", value); }
+inline tString& tString::SetFrom(tint128 value)			{ return tsPrintf(*this, "%|128d", value); }
+inline tString& tString::SetFrom(tuint128 value)		{ return tsPrintf(*this, "0x%032|128X", value); }
+inline tString& tString::SetFrom(tint256 value)			{ return tsPrintf(*this, "%|256d", value); }
+inline tString& tString::SetFrom(tuint256 value)		{ return tsPrintf(*this, "0x%064|256X", value); }
+inline tString& tString::SetFrom(tint512 value)			{ return tsPrintf(*this, "%|512d", value); }
+inline tString& tString::SetFrom(tuint512 value)		{ return tsPrintf(*this, "0x%0128|512X", value); }
+inline tString& tString::SetFrom(float value)			{ return tsPrintf(*this, "%f", value); }
+inline tString& tString::SetFrom(double value)			{ return tsPrintf(*this, "%f", value); }
+inline tString& tString::SetFrom(bool value)			{ Set(value ? "true" : "false"); return *this; }

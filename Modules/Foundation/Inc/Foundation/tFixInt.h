@@ -17,7 +17,7 @@
 //             compile time and must be a multiple of 32 bits. You get + - / * etc as well as all bitwise logic ops.
 //             You can construct a tFixInt from a tBitField of the same size.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2020, 2021, 2023 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2020, 2021, 2023, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -40,7 +40,6 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
-#include "Foundation/tString.h"
 #include "Foundation/tFundamentals.h"
 #include "Foundation/tBitField.h"
 template<int> class tFixInt;
@@ -112,7 +111,6 @@ public:
 
 	const tFixInt<NumBits>& AsSigned() const																			{ return reinterpret_cast<const tFixInt<NumBits>&>(*this); }
 	tFixInt<NumBits>& AsSigned()																						{ return reinterpret_cast<tFixInt<NumBits>&>(*this); }
-	tString GetAsString(int base) const;
 
 	void ClearBit(int index);
 	void SetBit(int index);
@@ -504,15 +502,6 @@ template<int N> inline tFixIntU<N>::operator double() const
 		result = result * multiplier + ElemData[i];
 
 	return result;
-}
-
-
-template<int N> inline tString tFixIntU<N>::GetAsString(int base) const
-{
-	// Worst case for string length required is base 2, where N characters are needed.
-	tString str(N);
-	tStd::tItostrT< tFixIntU<N> >(*this, str.Text(), N+1, base);
-	return str;
 }
 
 

@@ -2,7 +2,7 @@
 //
 // System module tests.
 //
-// Copyright (c) 2017, 2019-2025 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -657,11 +657,11 @@ tTestUnit(Regex)
 
 tTestUnit(Script)
 {
-	if (!tDirExists("Data/"))
+	if (!tDirExists("Data/Script/"))
 		tSkipUnit()
 
 	{
-		tExprWriter ws("Data/WrittenConfig.cfg");
+		tExprWriter ws("Data/Script/WrittenConfig.cfg");
 		ws.Rem("This is a test config file.");
 		ws.CR();
 		ws.Comp("PosX", 10);
@@ -680,7 +680,7 @@ tTestUnit(Script)
 	}
 
 	{
-		tExprReader rs("Data/WrittenConfig.cfg");
+		tExprReader rs("Data/Script/WrittenConfig.cfg");
 		for (tExpression e = rs.First(); e.Valid(); e = e.Next())
 		{
 			tPrintf("ExpressionString: ___%s___\n", e.GetExpressionString().Pod());
@@ -746,7 +746,7 @@ tTestUnit(Script)
 	}
 
 	{
-		tExprWriter ws("Data/WrittenScript.txt");
+		tExprWriter ws("Data/Script/WrittenScript.txt");
 
 		ws.WriteComment();
 		ws.WriteComment("A comment!!");
@@ -787,7 +787,7 @@ tTestUnit(Script)
 	int numExceptions = 0;
 	try
 	{
-		tExprReader rs("Data/TestScript.txt");
+		tExprReader rs("Data/Script/TestScript.txt");
 
 		tExpression arg = rs.Arg0();			// [A [6.8 42 True]]
 

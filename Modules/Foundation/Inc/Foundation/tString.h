@@ -49,6 +49,8 @@
 #pragma once
 #include "Foundation/tStandard.h"
 #include "Foundation/tList.h"
+#include "Foundation/tBitField.h"
+#include "Foundation/tFixInt.h"
 struct tStringUTF16;
 struct tStringUTF32;
 
@@ -383,6 +385,27 @@ struct tString
 	bool ToUInt32(uint32& v, int base = -1) const																		{ return tStd::tStrtoui32(v, CodeUnits, base); }
 	bool ToUInt64(uint64& v, int base = -1) const																		{ return tStd::tStrtoui64(v, CodeUnits, base); }
 
+	// These set functions completely overwrite the current contents of the tString. They return a reference to self and
+	// may be chained. Unsigned values result in a string starting with "0x" with the remainder being hexadecimal. Note
+	// that these functions are implemented in tPrint.h so we can leverage the tsPrintf function.
+	tString& SetFrom(int8 value);
+	tString& SetFrom(uint8 value);
+	tString& SetFrom(int16 value);
+	tString& SetFrom(uint16 value);
+	tString& SetFrom(int32 value);
+	tString& SetFrom(uint32 value);
+	tString& SetFrom(int64 value);
+	tString& SetFrom(uint64 value);
+	tString& SetFrom(tint128 value);
+	tString& SetFrom(tuint128 value);
+	tString& SetFrom(tint256 value);
+	tString& SetFrom(tuint256 value);
+	tString& SetFrom(tint512 value);
+	tString& SetFrom(tuint512 value);
+	tString& SetFrom(float value);
+	tString& SetFrom(double value);
+	tString& SetFrom(bool value);
+
 	// tString UTF encoding/decoding functions. tString is encoded in UTF-8. These functions allow you to convert from
 	// tString to UTF-16/32 arrays. If dst is nullptr returns the number of charN codeunits needed. If incNullTerminator
 	// is false the number needed will be one fewer. If dst is valid, writes the codeunits to dst and returns number
@@ -623,6 +646,16 @@ namespace tStd
 	// quote character represents a single literal quote character in the output (so a quoted value may itself contain
 	// quotes). Empty components (leading, trailing, or between dividers) are preserved, as with the plain version.
 	int tExplode(tList<tStringItem>& components, const tString& src, char divider, char quote);
+
+	// Gets the bit-field as a string in base 16. Upper case and no leading 0x. You can also use tPrintf, if you need
+	// leading zeroes or more control over formatting.
+	template<int N> tString GetAsHexString(const tBitField<N>&);
+
+	// Ditto but for binary.
+	template<int N> tString GetAsBinaryString(const tBitField<N>&);
+
+	// Convert a fixed size integer to a string in whatever base you like so long as it's in [2, 36].
+	template<int N> tString GetAsString(const tFixIntU<N>&, int base = 10);
 }
 
 
@@ -764,7 +797,7 @@ inline tString& tString::operator=(const tString& src)
 
 inline bool tString::IsEqual(const char8_t* str, int strLen) const
 {
-	if (!str || (Length() != strLen))
+	if (!str || (LengthNullTerminated() != strLen))
 		return false;
 
 	// We also compare the null so that we can compare strings of length 0.
@@ -774,7 +807,7 @@ inline bool tString::IsEqual(const char8_t* str, int strLen) const
 
 inline bool tString::IsEqualCI(const char8_t* str, int strLen) const
 {
-	if (!str || (Length() != strLen))
+	if (!str || (LengthNullTerminated() != strLen))
 		return false;
 
 	for (int n = 0; n < strLen; n++)
@@ -1252,4 +1285,66 @@ inline tStringItem& tStringItem::operator=(const tStringItem& src)
 	// The +1 gets us the internal null terminator in a single memcpy and also works with a StringLength of 0.
 	tStd::tMemcpy(CodeUnits, src.CodeUnits, StringLength+1);
 	return *this;
+}
+
+
+template<int N> inline tString tStd::GetAsHexString(const tBitField<N>& bf)
+{
+	int numNybbles = (N / 4) + ((N % 4) ? 1 : 0);
+
+	tString result(numNybbles);
+	for (int ny = 0; ny < numNybbles; ny++)
+	{
+		uint8 nybble = bf.GetNybble(ny);
+		int n = numNybbles-1-ny;
+		switch (nybble)
+		{
+			case 0x00:		result[n] = '0';	break;
+			case 0x01:		result[n] = '1';	break;
+			case 0x02:		result[n] = '2';	break;
+			case 0x03:		result[n] = '3';	break;
+			case 0x04:		result[n] = '4';	break;
+			case 0x05:		result[n] = '5';	break;
+			case 0x06:		result[n] = '6';	break;
+			case 0x07:		result[n] = '7';	break;
+			case 0x08:		result[n] = '8';	break;
+			case 0x09:		result[n] = '9';	break;
+			case 0x0A:		result[n] = 'A';	break;
+			case 0x0B:		result[n] = 'B';	break;
+			case 0x0C:		result[n] = 'C';	break;
+			case 0x0D:		result[n] = 'D';	break;
+			case 0x0E:		result[n] = 'E';	break;
+			case 0x0F:		result[n] = 'F';	break;
+		}
+	}
+	result.RemoveLeading("0");
+	return result;
+}
+
+
+template<int N> inline tString tStd::GetAsBinaryString(const tBitField<N>& bf)
+{
+	int numBits = N;
+
+	tString result(numBits);
+	for (int nb = 0; nb < numBits; nb++)
+	{
+		bool bit = bf.GetBit(nb);
+		int n = numBits-1-nb;
+		if (bit)
+			result[n] = '1';
+		else
+			result[n] = '0';
+	}
+	result.RemoveLeading("0");
+	return result;
+}
+
+
+template<int N> inline tString tStd::GetAsString(const tFixIntU<N>& fiu, int base)
+{
+	// Worst case for string length required is base 2, where N characters are needed.
+	tString str(N);
+	tStd::tItostrT< tFixIntU<N> >(str.Text(), N+1, fiu, base);
+	return str;
 }

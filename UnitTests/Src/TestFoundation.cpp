@@ -2,7 +2,7 @@
 //
 // Foundation module tests.
 //
-// Copyright (c) 2017, 2019-2022, 2025 Tristan Grimmer.
+// Copyright (c) 2017, 2019-2022, 2025, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -15,12 +15,12 @@
 #include <thread>
 #include <future>
 #include <Foundation/tVersion.cmake.h>
+#include <Foundation/tBitField.h>
 #include <Foundation/tStandard.h>
 #include <Foundation/tString.h>
 #include <Foundation/tName.h>
 #include <Foundation/tArray.h>
 #include <Foundation/tBitArray.h>
-#include <Foundation/tBitField.h>
 #include <Foundation/tFixInt.h>
 #include <Foundation/tList.h>
 #include <Foundation/tMap.h>
@@ -860,26 +860,26 @@ tTestUnit(BitField)
 	tBitField<33> bitset33;
 	tStaticAssert(sizeof(bitset33) == 8);
 	bitset33.Set("0x10000000A");
-	tPrintf("bitset 33 was set to: 0x%s\n", bitset33.GetAsHexString().Pod());
-	tRequire(bitset33.GetAsHexString() == "10000000A");
+	tPrintf("bitset 33 was set to: 0x%s\n", tStd::GetAsHexString(bitset33).Pod());
+	tRequire(tStd::GetAsHexString(bitset33) == "10000000A");
 
 	tBitField<10> bitset10;
 	bitset10.SetAll(true);
-	tPrintf("bitset10 SetAll yields: 0x%s\n", bitset10.GetAsHexString().Pod());
-	tRequire(bitset10.GetAsHexString() == "3FF");
+	tPrintf("bitset10 SetAll yields: 0x%s\n", tStd::GetAsHexString(bitset10).Pod());
+	tRequire(tStd::GetAsHexString(bitset10) == "3FF");
 
 	tBitField<12> bitset12;
 	bitset12.Set("abc");
-	tPrintf("bitset12: %s\n", bitset12.GetAsHexString().Pod());
-	tRequire(bitset12.GetAsHexString() == "ABC");
+	tPrintf("bitset12: %s\n", tStd::GetAsHexString(bitset12).Pod());
+	tRequire(tStd::GetAsHexString(bitset12) == "ABC");
 
 	bitset12 >>= 4;
-	tPrintf("bitset12: %s\n", bitset12.GetAsHexString().Pod());
-	tRequire(bitset12.GetAsHexString() == "AB");
+	tPrintf("bitset12: %s\n", tStd::GetAsHexString(bitset12).Pod());
+	tRequire(tStd::GetAsHexString(bitset12) == "AB");
 
 	bitset12 <<= 4;
-	tPrintf("bitset12: %s\n", bitset12.GetAsHexString().Pod());
-	tRequire(bitset12.GetAsHexString() == "AB0");
+	tPrintf("bitset12: %s\n", tStd::GetAsHexString(bitset12).Pod());
+	tRequire(tStd::GetAsHexString(bitset12) == "AB0");
 
 	tBitField<12> bitsetAB0("AB0");
 	tPrintf("bitsetAB0 == bitset12: %s\n", (bitsetAB0 == bitset12) ? "true" : "false");
@@ -889,14 +889,14 @@ tTestUnit(BitField)
 	tBitField<17> bitset17;
 	bitset17.SetBit(1, true);
 	if (bitset17)
-		tPrintf("bitset17: %s true\n", bitset17.GetAsHexString().Pod());
+		tPrintf("bitset17: %s true\n", tStd::GetAsHexString(bitset17).Pod());
 	else
-		tPrintf("bitset17: %s false\n", bitset17.GetAsHexString().Pod());
+		tPrintf("bitset17: %s false\n", tStd::GetAsHexString(bitset17).Pod());
 	tRequire(bitset17);
 
 	bitset17.InvertAll();
-	tPrintf("bitset17: after invert: %s\n", bitset17.GetAsHexString().Pod());
-	tRequire(bitset17.GetAsHexString() == "1FFFD");
+	tPrintf("bitset17: after invert: %s\n", tStd::GetAsHexString(bitset17).Pod());
+	tRequire(tStd::GetAsHexString(bitset17) == "1FFFD");
 
 	// Test extracting bytes from a bitfield. Start by creating a random bitfield.
 	tbit256 bitField;
@@ -908,7 +908,9 @@ tTestUnit(BitField)
 		"10010011_00111000_01000100_10000111_10001011_00010000_10101011_00100101"
 	);
 	tPrintf("VAL\n%0256|256b\n", bitField);
-	tPrintf("STR\n______%s\n", bitField.GetAsBinaryString().Chr());
+	tString binStr = tStd::GetAsBinaryString(bitField);
+	tPrintf("STR\n______%s\n", binStr.Chr());
+	tRequire(binStr == "1000100100100111111101010000100100100001010110001101001000001010010111101100111010010111110010011011010000111111111100110000011100111000100011100011010000001100111101101101001100001011101001001100111000010001001000011110001011000100001010101100100101");
 
 	tPrintf("BYT\n");
 	int cr = 0;
@@ -920,7 +922,7 @@ tTestUnit(BitField)
 
 	tBitField<33> bits33;
 	bits33.Set("1ABCDEF23");
-	tPrintf("\nbits33 was set to:\n%s\n", bits33.GetAsHexString().Pod());
+	tPrintf("\nbits33 was set to:\n%s\n", tStd::GetAsHexString(bits33).Pod());
 	for (int b = 4; b >= 0; b--)
 	{
 		uint8 byte = bits33.GetByte(b);
@@ -957,6 +959,32 @@ tTestUnit(BitField)
 tTestUnit(FixInt)
 {
 	// @todo Add a bunch of tRequire calls.
+	tuint512 uval512 = 4289842;
+	tString uval512AsBase10String = tStd::GetAsString(uval512);
+	tPrintf("uvalA_BASE10\n%s\n", uval512AsBase10String.Chr());
+	tRequire(uval512AsBase10String == "4289842");
+
+	tString uval512AsBase16String = tStd::GetAsString(uval512, 16);
+	tPrintf("uvalA_BASE16\n%s\n", uval512AsBase16String.Chr());
+	tRequire(uval512AsBase16String == "417532");
+
+	tString uval512AsBase36String = tStd::GetAsString(uval512, 36);
+	tPrintf("uvalA_BASE36\n%s\n", uval512AsBase36String.Chr());
+	tRequire(uval512AsBase36String == "2JY2A");
+
+	tint512 val512 = -4289842;
+	tString val512AsBase10String = tStd::GetAsString(val512);
+	tPrintf("valA_BASE10\n%s\n", val512AsBase10String.Chr());
+	tRequire(val512AsBase10String == "13407807929942597099574024998205846127479365820592393377723561443721764030073546976801874298166903427690031858186486050853753882811946569946433649001794254");
+
+	tString val512AsBase16String = tStd::GetAsString(val512, 16);
+	tPrintf("valA_BASE16\n%s\n", val512AsBase16String.Chr());
+	tRequire(val512AsBase16String == "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBE8ACE");
+
+	tString val512AsBase36String = tStd::GetAsString(val512, 36);
+	tPrintf("valA_BASE36\n%s\n\n", val512AsBase36String.Chr());
+	tRequire(val512AsBase36String == "14PLKI42MDV1MT36I2RNAK3GINNT5VCX207HPUF9X0VJ6I1I7H29NU12WLS3ULFV1YYABI94UA3WAUAMSXZ4SNWV27FYA36F6FGU");
+	
 	tuint256 uvalA = 42;
 	tuint256 uvalB(uvalA);
 	tint256 valA(99);
@@ -1517,7 +1545,69 @@ tTestUnit(String)
 	tPrintf("\nRemove Not Before: %s\n", remnot.Chr());
 	numRemoved = remnot.RemoveAnyNot("abc");
 	tPrintf("Remove Not After: %s\n", remnot.Chr());
-	tRequire((numRemoved == 4) && (remnot.Length() == 8));	
+	tRequire((numRemoved == 4) && (remnot.Length() == 8));
+
+	// Testing SetFrom functions.
+	int8 int8v = -55;
+	tString fint8; fint8.SetFrom(int8v);
+	tRequire(fint8 == "-55");
+	uint8 uint8v = 0x37;
+	tString fuint8;	fuint8.SetFrom(uint8v);
+	tRequire(fuint8 == "0x37");
+
+	int16 int16v = -31000;
+	tString fint16;	fint16.SetFrom(int16v);
+	tRequire(fint16 == "-31000");
+	uint16 uint16v = 0x0037;
+	tString fuint16; fuint16.SetFrom(uint16v);
+	tRequire(fuint16 == "0x0037");
+
+	int32 int32v = -42;
+	tString fint32; fint32.SetFrom(int32v);
+	tRequire(fint32 == "-42");
+	uint32 uint32v = 0x11112434;
+	tString fuint32; fuint32.SetFrom(uint32v);
+	tRequire(fuint32 == "0x11112434");
+
+	int64 int64v = -209;
+	tString fint64; fint64.SetFrom(int64v);
+	tRequire(fint64 == "-209");
+	uint64 uint64v = 299;
+	tString fuint64; fuint64.SetFrom(uint64v);
+	tRequire(fuint64 == "0x000000000000012B");
+
+	tint128 int128v = -77;
+	tString fint128; fint128.SetFrom(int128v);
+	tRequire(fint128 == "-77");
+	tuint128 uint128v = 47000;
+	tString fuint128; fuint128.SetFrom(uint128v);
+	tRequire(fuint128 == "0x0000000000000000000000000000B798");
+
+	tint256 int256v = -87444;
+	tString fint256; fint256.SetFrom(int256v);
+	tRequire(fint256 == "-87444");
+	tuint256 uint256v = 6700888;
+	tString fuint256; fuint256.SetFrom(uint256v);
+	tRequire(fuint256 == "0x0000000000000000000000000000000000000000000000000000000000663F58");
+
+	tint512 int512v = -654444;
+	tString fint512; fint512.SetFrom(int512v);
+	tRequire(fint512 == "-654444");
+	tuint512 uint512v = 88000111;
+	tString fuint512; fuint512.SetFrom(uint512v);
+	tRequire(fuint512 == "0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000053EC66F");
+
+	float floatv = 56.20f;
+	tString ffloat; ffloat.SetFrom(floatv);
+	tRequire(ffloat == "56.2000");
+
+	double doublev = 256.29;
+	tString fdouble; fdouble.SetFrom(doublev);
+	tRequire(fdouble == "256.2900");
+
+	bool boolv = true;
+	tString fbool; fbool.SetFrom(boolv);
+	tRequire(fbool == "true");
 }
 
 

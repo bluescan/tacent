@@ -13,7 +13,7 @@
 // tFixInt   - Use when you want full mathematical operations like any built-in integral type. Size must be known at
 //             compile time and must be a multiple of 32 bits. You get + - / * etc as well as all bitwise logic ops.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2020, 2021, 2023 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2020, 2021, 2023, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -24,7 +24,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
-#include "Foundation/tString.h"
+#include "Foundation/tStandard.h"
 
 
 // The tBitField class. NumBits represents the number of bits that can be stored by the instance. There are no
@@ -102,13 +102,6 @@ public:
 	bool AreAll(bool val) const;							/* Checks if all bits are set to val. */
 	int GetNumBits() const									/* Returns the number of bits stored by the bit-field. */	{ return NumBits; }
 	int CountBits(bool val) const;							/* Returns the number of bits that match val. */
-
-	// Gets the bit-field as a string in base 16. Upper case and no leading 0x. You can also use tPrintf, if you need
-	// leading zeroes or more control over formatting.
-	tString GetAsHexString() const;
-
-	// Ditto but for binary.
-	tString GetAsBinaryString() const;
 
 	// These deal with the internal uint32 elements that store the bit field. The elements are always least-significant
 	// at the beginning, regardless of machine endianness.
@@ -191,16 +184,33 @@ template<int N> inline void tBitField<N>::Set(const char* hexStr)
 		return;
 	}
 
+	int len = tStd::tStrlen(hexStr);
+	if (len <= 0)
+	{
+		ClearAll();
+		return;
+	}
+
 	tBitField< NumElements*32 > val;
 	tAssert(NumElements == val.GetNumElements());
-	tString hex(hexStr);
-	hex.ToUpper();
-	hex.ExtractLeft("0X");
-	int len = hex.Length();
+
+	char* hex = new char[len+1];
+	tStd::tStrcpy(hex, hexStr);
+	tStd::tStrupr(hex);
+
+	char* start = tStd::tStrstr(hex, "0X");
+	if (start)
+	{
+		start += 2;
+		len -= 2;
+	}
+	else
+		start = hex;
+	
 	int nybIdx = 0;
 	for (int i = len-1; i >= 0; i--)
 	{
-		char nybChar = hex[i];
+		char nybChar = start[i];
 		switch (nybChar)
 		{
 			case '0':	val.SetNybble(nybIdx++, 0x0); break;
@@ -222,6 +232,7 @@ template<int N> inline void tBitField<N>::Set(const char* hexStr)
 		}
 		// We simply skip unrecognized characters.
 	}
+	delete[] hex;
 	
 	for (int i = 0; i < NumElements; i++)
 		ElemData[i] = val.GetElement(i);
@@ -230,24 +241,41 @@ template<int N> inline void tBitField<N>::Set(const char* hexStr)
 }
 
 
-template<int N> inline void tBitField<N>::SetBinary(const char* binaryStr)
+template<int N> inline void tBitField<N>::SetBinary(const char* binStr)
 {
-	if (!binaryStr)
+	if (!binStr)
 	{
 		ClearAll();
 		return;
 	}
 
+	int len = tStd::tStrlen(binStr);
+	if (len <= 0)
+	{
+		ClearAll();
+		return;
+	}
+	
 	tBitField< NumElements*32 > val;
 	tAssert(NumElements == val.GetNumElements());
-	tString bin(binaryStr);
-	bin.ToUpper();
-	bin.ExtractLeft("0B");
-	int len = bin.Length();
+
+	char* bin = new char[len+1];
+	tStd::tStrcpy(bin, binStr);
+	tStd::tStrupr(bin);
+
+	char* start = tStd::tStrstr(bin, "0B");
+	if (start)
+	{
+		start += 2;
+		len -= 2;
+	}
+	else
+		start = bin;
+
 	int binIdx = 0;
 	for (int i = len-1; i >= 0; i--)
 	{
-		char binChar = bin[i];
+		char binChar = start[i];
 		if (binChar == '0')
 			val.SetBit(binIdx++, false);
 		else if (binChar == '1')
@@ -255,7 +283,8 @@ template<int N> inline void tBitField<N>::SetBinary(const char* binaryStr)
 
 		// We simply skip unrecognized characters.
 	}
-	
+	delete[] bin;
+
 	for (int i = 0; i < NumElements; i++)
 		ElemData[i] = val.GetElement(i);
 
@@ -381,68 +410,6 @@ template<int N> inline void tBitField<N>::Set(const uint64* src, int len)
 }
 
 
-template<int N> inline tString tBitField<N>::GetAsHexString() const
-{
-	tBitField< NumElements*32 > val;
-	tAssert(NumElements == val.GetNumElements());
-
-	for (int i = 0; i < NumElements; i++)
-		val.SetElement(i, ElemData[i]);
-
-	int numNybbles = 8*NumElements;
-	tString result(numNybbles);
-	for (int ny = 0; ny < numNybbles; ny++)
-	{
-		uint8 nybble = val.GetNybble(ny);
-		int n = numNybbles-1-ny;
-		switch (nybble)
-		{
-			case 0x00:		result[n] = '0';	break;
-			case 0x01:		result[n] = '1';	break;
-			case 0x02:		result[n] = '2';	break;
-			case 0x03:		result[n] = '3';	break;
-			case 0x04:		result[n] = '4';	break;
-			case 0x05:		result[n] = '5';	break;
-			case 0x06:		result[n] = '6';	break;
-			case 0x07:		result[n] = '7';	break;
-			case 0x08:		result[n] = '8';	break;
-			case 0x09:		result[n] = '9';	break;
-			case 0x0A:		result[n] = 'A';	break;
-			case 0x0B:		result[n] = 'B';	break;
-			case 0x0C:		result[n] = 'C';	break;
-			case 0x0D:		result[n] = 'D';	break;
-			case 0x0E:		result[n] = 'E';	break;
-			case 0x0F:		result[n] = 'F';	break;
-		}
-	}
-	result.RemoveLeading("0");
-	return result;
-}
-
-
-template<int N> inline tString tBitField<N>::GetAsBinaryString() const
-{
-	tBitField< NumElements*32 > val;
-	tAssert(NumElements == val.GetNumElements());
-	for (int i = 0; i < NumElements; i++)
-		val.SetElement(i, ElemData[i]);
-
-	int numBits = 32*NumElements;
-	tString result(numBits);
-	for (int nb = 0; nb < numBits; nb++)
-	{
-		bool bit = val.GetBit(nb);
-		int n = numBits-1-nb;
-		if (bit)
-			result[n] = '1';
-		else
-			result[n] = '0';
-	}
-	result.RemoveLeading("0");
-	return result;
-}
-
-
 template<int N> inline bool tBitField<N>::GetBit(int n) const
 {
 	tAssert(n < N);
@@ -554,15 +521,6 @@ template<int N> inline void tBitField<N>::SetByte(int n, uint8 b)
 
 template<int N> inline uint8 tBitField<N>::GetNybble(int n) const
 {
-/*
-	int numBytes = (N / 8) + ((N % 8) ? 1 : 0);
-	tAssert(n < numBytes);
-	int idx = n / 4;
-	int shift = (n % 4) << 3;
-	uint32 elem = ElemData[idx];
-	return (elem & (0xFF << shift)) >> shift;
-
-*/
 	int numNybbles = (N / 4) + ((N % 4) ? 1 : 0);
 	tAssert(n < numNybbles);
 	int idx = n / 8;

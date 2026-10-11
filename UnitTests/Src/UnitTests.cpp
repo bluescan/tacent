@@ -214,9 +214,9 @@ int main(int argc, char** argv)
 	// tTest(Promise);
 	// tTest(Sort);
 	// tTest(BitArray);
-	// tTest(BitField);
-	// tTest(FixInt);
-	// tTest(String);
+	tTest(BitField);
+	tTest(FixInt);
+	tTest(String);
 	// tTest(RingBuffer);
 	// tTest(PriorityQueue);
 	// tTest(MemoryPool);
