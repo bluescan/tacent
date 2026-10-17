@@ -1,0 +1,21 @@
+________________________________________________________________________________
+ParisIcc.avif SeineHdrSRGB.avif
+
+These files were downloaded from https://github.com/AOMediaCodec/libavif and are
+under the BSD 2-clause licence. From that site it states:
+
+"Copyright 2019 Joe Drago. All rights reserved."
+
+followed by the BSD 2-clause. Oddly the template for the BSD 2-clause does NOT
+include "All rights reserved." I am keeping it here even though it is likely
+meaningless when applied to a permissive licence that doesn't reserve all
+rights. The BSD 2-clause legal text may be found at
+../../Licences/Licence_BSD2CLAUSE.txt
+
+________________________________________________________________________________
+TacentTestPatternRGBA.avif
+
+This image is both ISC and CC0 licensed. Specifics may be found at
+../../Licences/Licence_TacentTestPattern.txt
+
+________________________________________________________________________________
