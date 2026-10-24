@@ -1,4 +1,4 @@
-// tPixelUtil.h
+// tUtilPixel.h
 //
 // Helper functions for manipulating and parsing pixel-data in packed and compressed block formats.
 //

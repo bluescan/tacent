@@ -185,6 +185,7 @@ int main(int argc, char** argv)
 	tTest(ImagePNG);
 	tTest(ImageAVIF);
 	tTest(ImageHEIC);
+	tTest(ImageHEICRotatePixelVerify);
 	tTest(ImageJXL);
 	tTest(ImageSVG);
 	tTest(ImageDDS);
@@ -214,9 +215,9 @@ int main(int argc, char** argv)
 	// tTest(Promise);
 	// tTest(Sort);
 	// tTest(BitArray);
-	tTest(BitField);
-	tTest(FixInt);
-	tTest(String);
+//	tTest(BitField);
+//	tTest(FixInt);
+//	tTest(String);
 	// tTest(RingBuffer);
 	// tTest(PriorityQueue);
 	// tTest(MemoryPool);
@@ -240,8 +241,8 @@ int main(int argc, char** argv)
 	// tTest(Task);
 	// tTest(Print);
 	// tTest(Regex);
-	tTest(Script);
-	tTest(CSV);
+//	tTest(Script);
+//	tTest(CSV);
 	// tTest(Chunk);
 	// tTest(FileTypes);
 	// tTest(Directories);
@@ -277,8 +278,9 @@ int main(int argc, char** argv)
 	// tTest(ImageMultiFrame);
 	// tTest(ImageGradient);
 	// tTest(ImagePNG);
-	// tTest(ImageAVIF);
-	// tTest(ImageHEIC);
+	tTest(ImageAVIF);
+	tTest(ImageHEIC);
+	// tTest(ImageHEICRotatePixelVerify);
 	// tTest(ImageJXL);
 	// tTest(ImageSVG);
 	// tTest(ImageDDS);

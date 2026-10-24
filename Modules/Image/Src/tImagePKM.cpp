@@ -16,7 +16,7 @@
 
 #include <System/tFile.h>
 #include "Image/tImagePKM.h"
-#include "Image/tPixelUtil.h"
+#include "Image/tUtilPixel.h"
 #include "Image/tPicture.h"
 #include "etcdec/etcdec.h"
 using namespace tSystem;

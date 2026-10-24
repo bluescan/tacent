@@ -17,7 +17,7 @@
 
 #include <Foundation/tString.h>
 #include "Image/tImagePVR.h"
-#include "Image/tPixelUtil.h"
+#include "Image/tUtilPixel.h"
 #include "Image/tPicture.h"
 namespace tImage
 {

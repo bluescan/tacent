@@ -12,18 +12,20 @@
 // AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#include <Image/tImageHEIC.h>
 #include <System/tFile.h>
-#include <Image/tFrame.h>
-#include <Image/tPicture.h>
+#include "Image/tImageHEIC.h"
+#include "Image/tFrame.h"
+#include "Image/tPicture.h"
+#include "Image/tUtilHEIF.h"
 #ifdef TACENT_ENABLE_HEIF
 #include "libheif/heif.h"
 #endif
+using namespace tSystem;
 namespace tImage
 {
 
 
-bool tImageHEIC::Load(const tString& heicFile)
+bool tImageHEIC::Load(const tString& heicFile, const LoadParams& params)
 {
 	Clear();
 
@@ -32,14 +34,14 @@ bool tImageHEIC::Load(const tString& heicFile)
 
 	int numBytes = 0;
 	uint8* heicFileInMemory = tSystem::tLoadFile(heicFile, nullptr, &numBytes);
-	bool success = Load(heicFileInMemory, numBytes);
+	bool success = Load(heicFileInMemory, numBytes, params);
 	delete[] heicFileInMemory;
 
 	return success;
 }
 
 
-bool tImageHEIC::Load(const uint8* heicFileInMemory, int numBytes)
+bool tImageHEIC::Load(const uint8* heicFileInMemory, int numBytes, const LoadParams& params)
 {
 	Clear();
 
@@ -68,6 +70,24 @@ bool tImageHEIC::Load(const uint8* heicFileInMemory, int numBytes)
 	{
 		heif_context_free(ctx);
 		return false;
+	}
+
+	// If NoDecompress we keep the original container bytes (lossless) and only read the signalled width/height from
+	// the image handle. No decode, no metadata. This enables the lossless flip/rotate transforms and a raw Save.
+	if ((params.Flags & LoadFlag_NoDecompress))
+	{
+		Width = heif_image_handle_get_width(handle);
+		Height = heif_image_handle_get_height(handle);
+
+		// We must copy the bytes because the caller's buffer (e.g. the temporary loaded with tLoadFile above) will be
+		// freed before this object is destroyed.
+		MemImage = new uint8[numBytes];
+		tStd::tMemcpy(MemImage, heicFileInMemory, numBytes);
+		MemImageSize = numBytes;
+
+		heif_image_handle_release(handle);
+		heif_context_free(ctx);
+		return (Width > 0) && (Height > 0);
 	}
 
 	// Extract EXIF and XMP metadata from the container. Failing to parse the metadata is not a load failure -- the
@@ -245,6 +265,58 @@ bool tImageHEIC::PopulateMetaData(struct heif_image_handle* handle)
 	(void)handle;
 	return false;
 #endif
+}
+
+
+bool tImageHEIC::Save(const tString& heicFile) const
+{
+	if (!IsValid())
+		return false;
+
+	// Saving is only possible if we are holding the original container bytes (i.e. loaded with LoadFlag_NoDecompress).
+	// There is no HEIC encoder available, so a decoded pixel image cannot be re-encoded.
+	if (!(MemImage && (MemImageSize > 0)))
+		return false;
+
+	tFileHandle fileHandle = tOpenFile(heicFile, "wb");
+	if (!fileHandle)
+		return false;
+
+	int numWritten = tWriteFile(fileHandle, MemImage, MemImageSize);
+	tCloseFile(fileHandle);
+	return (numWritten == MemImageSize);
+}
+
+
+bool tImageHEIC::LosslessTransform(HEIFTransform transform)
+{
+	// A lossless transform can only be applied to the original container bytes (NoDecompress mode).
+	if (!(MemImage && (MemImageSize > 0)))
+		return false;
+
+	// Run the transform on the in-memory bytes. An empty result means it could not be applied (e.g. not a HEIF
+	// container, or no orientation metadata to patch), so we leave the object unchanged and report failure.
+	std::vector<uint8_t> in(MemImage, MemImage + MemImageSize);
+	std::vector<uint8_t> out = TransformHEIFData(in, transform);
+	if (out.empty())
+		return false;
+
+	// Replace the stored bytes with the transformed bytes.
+	delete[] MemImage;
+	MemImage = new uint8[out.size()];
+	tStd::tMemcpy(MemImage, out.data(), out.size());
+	MemImageSize = int(out.size());
+
+	// 90-degree rotations swap the width and height.
+	if ((transform == HEIFTransform::Rotate90CW) || (transform == HEIFTransform::Rotate90ACW) ||
+	(transform == HEIFTransform::FlipMainDiag) || (transform == HEIFTransform::FlipAntiDiag))
+	{
+		int tmp = Width;
+		Width = Height;
+		Height = tmp;
+	}
+
+	return true;
 }
 
 

@@ -17,7 +17,7 @@
 #include <Foundation/tSmallFloat.h>
 #include <System/tMachine.h>
 #include "Image/tImageKTX.h"
-#include "Image/tPixelUtil.h"
+#include "Image/tUtilPixel.h"
 #include "Image/tPicture.h"
 #include "bcdec/bcdec.h"
 #include "etcdec/etcdec.h"

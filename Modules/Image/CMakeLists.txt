@@ -33,7 +33,6 @@ add_library(
 	Src/tPaletteImage.cpp
 	Src/tPicture.cpp
 	Src/tPixelFormat.cpp
-	Src/tPixelUtil.cpp
 	Src/tQuantize.cpp
 	Src/tQuantizeFixed.cpp
 	Src/tQuantizeSpatial.cpp
@@ -41,6 +40,8 @@ add_library(
 	Src/tQuantizeWu.cpp
 	Src/tTexture.cpp
 	Src/tResample.cpp
+	Src/tUtilHEIF.cpp
+	Src/tUtilPixel.cpp
 	Inc/Image/tBaseImage.h
 	Inc/Image/tCubemap.h
 	Inc/Image/tFrame.h
@@ -71,9 +72,10 @@ add_library(
 	Inc/Image/tPaletteImage.h
 	Inc/Image/tPicture.h
 	Inc/Image/tPixelFormat.h
-	Inc/Image/tPixelUtil.h
 	Inc/Image/tResample.h
 	Inc/Image/tTexture.h
+	Inc/Image/tUtilHEIF.h
+	Inc/Image/tUtilPixel.h
 	
 	# Contributed source including image loaders.
 	Contrib/ApngAsm/apngasm.h

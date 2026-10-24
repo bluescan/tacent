@@ -13,3 +13,12 @@ This image is both ISC and CC0 licensed. Specifics may be found at
 ../../Licences/Licence_TacentTestPattern.txt
 
 ________________________________________________________________________________
+SampleSushiSticker.heic
+
+Downloaded from https://convertico.com/samples/heic/
+From the Convert ICO website:
+"Download free HEIC image files for testing and development. High-quality sample
+HEIC photos to verify converter compatibility, test iOS workflows, and evaluate
+HEIF image support in your applications."
+
+________________________________________________________________________________

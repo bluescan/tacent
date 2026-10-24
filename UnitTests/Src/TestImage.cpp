@@ -1746,15 +1746,30 @@ tTestUnit(ImageHEIC)
 
 	// tImageHEIC can only load, so we verify integrity by saving each loaded file as a TGA for visual inspection.
 	// A bad file or a failed load will cause a tRequire failure above.
-	tList<tStringItem> files;
-	tSystem::tFindFiles(files, "", tSystem::tExtensions(tSystem::tFileType::HEIC));
-	tRequire(files.First());
+	// Explicit list of the HEIC images in this folder (PascalCase basenames). No directory scan: stray files
+	// (e.g. the output the lossless-transform test writes into this folder) must not affect results -- only the
+	// images named here are loaded.
+	const char* kImages[] =
+	{
+		"ChefWithTrumpet",
+		"ChildrensShowTheater",
+		"ClassicCar",
+		"GreyhoundsLookingForATable",
+		"OldSafeWall",
+		"SampleSushiSticker",
+		"SewingThreads",
+		"ShelfChristmasDecoration",
+		"Soundboard",
+		"TacentTestPattern"
+	};
 
 	tImageHEIC heic;
-	for (tStringItem* file = files.First(); file; file = file->Next())
+	for (const char* base : kImages)
 	{
-		tPrintf("HEIC Load %s\n", file->Chr());
-		heic.Load(*file);
+		tString name = tString(base) + ".heic";
+		tRequire(tSystem::tFileExists(name));
+		tPrintf("HEIC Load %s\n", name.Chr());
+		heic.Load(name);
 		tRequire(heic.IsValid());
 		int width = heic.GetWidth();
 		int height = heic.GetHeight();
@@ -1763,7 +1778,213 @@ tTestUnit(ImageHEIC)
 
 		tImageTGA tga(heic.StealPixels(), width, height, true);
 		tRequire(tga.IsValid());
-		tga.Save("Written_" + tSystem::tGetFileBaseName(*file) + ".tga");
+		tga.Save("Δ" + tString(base) + "_Decoded.tga");
+	}
+
+	// Lossless orientation transforms (rotate / flip) for HEIC are applied by rewriting the 'irot' / 'imir'
+	// item-property metadata (the compressed image data is never touched). For every image, apply all 8 D4
+	// orientations, save the rewritten-orientation container (Greek-Delta prefix), reload it, and require only
+	// that it is valid with the expected dimensions (we no longer compare individual pixels).
+	const HEIFTransform kAll[] =
+	{
+		HEIFTransform::Identity,
+		HEIFTransform::Rotate90CW,
+		HEIFTransform::Rotate90ACW,
+		HEIFTransform::Rotate180,
+		HEIFTransform::FlipH,
+		HEIFTransform::FlipV,
+		HEIFTransform::FlipMainDiag,
+		HEIFTransform::FlipAntiDiag,
+	};
+	const char* kNames[8] = { "Identity", "Rotate90CW", "Rotate90ACW", "Rotate180", "FlipH", "FlipV", "FlipMainDiag", "FlipAntiDiag" };
+	const int kNum = int(sizeof(kAll) / sizeof(kAll[0]));
+
+	for (const char* base : kImages)
+	{
+		tString src = tString(base) + ".heic";
+		tRequire(tSystem::tFileExists(src));
+
+		// Source dimensions (decoded) so we can compute each transform's expected output dimensions.
+		tImageHEIC probe(src);
+		tRequire(probe.IsValid());
+		const int sw = probe.GetWidth();
+		const int sh = probe.GetHeight();
+
+		for (int i = 0; i < kNum; i++)
+		{
+			// The four transforms that rotate by 90/270 degrees or flip across a diagonal swap width and height;
+			// the other four (identity, 180, horizontal flip, vertical flip) keep them.
+			const bool swapDims = (kAll[i] == HEIFTransform::Rotate90CW) || (kAll[i] == HEIFTransform::Rotate90ACW)
+				|| (kAll[i] == HEIFTransform::FlipMainDiag) || (kAll[i] == HEIFTransform::FlipAntiDiag);
+			const int ew = swapDims ? sh : sw;
+			const int eh = swapDims ? sw : sh;
+
+			// Load the container without decompressing, apply the lossless transform in memory, then save the
+			// rewritten-orientation container to disk (kept on disk for manual inspection).
+			tImageHEIC::LoadParams params;
+			params.Flags = tImageHEIC::LoadFlag_NoDecompress;
+			tImageHEIC work;
+			tRequire(work.Load(src, params));
+			tRequire(work.LosslessTransform(kAll[i]));
+			tString outName = tString("Δ") + base + "_" + kNames[i] + ".heic";
+			tSystem::tDeleteFile(outName, true, false);
+			tRequire(work.Save(outName));
+			tRequire(tSystem::tFileExists(outName));
+
+			// Reload the saved container (this decodes it) and verify it is valid with the expected dimensions.
+			tImageHEIC out(outName);
+			tRequire(out.IsValid());
+			tRequire(out.GetWidth() == ew);
+			tRequire(out.GetHeight() == eh);
+			tPrintf("HEIC %s: %dx%d -> %dx%d (expected %dx%d) OK\n", kNames[i], sw, sh, out.GetWidth(), out.GetHeight(), ew, eh);
+		}
+	}
+
+	tImageRestoreDir()
+}
+
+
+// ---------------------------------------------------------------------------
+// Pixel-level verification of the HEIC lossless orientation transforms.
+//
+// The dimension-only check in the ImageHEIC test above CANNOT distinguish Rotate90CW from
+// Rotate90ACW (both swap width and height), so it cannot catch a CW/ACW swap. This test decodes
+// the source and each transformed output and requires the output pixels to equal the source
+// pixels mapped by the requested D4 orientation (displayed_out = M * displayed_source). A wrong
+// orientation -- e.g. the irot decode bug that swapped CW/ACW for sources carrying irot=1/3 --
+// fails the pixel comparison.
+// ---------------------------------------------------------------------------
+static int tD4Round(double v)
+{
+	return (v >= 0.0) ? (int)(v + 0.5) : (int)(v - 0.5);
+}
+
+static bool tD4PixelsMatch(const tPixel4b* in, int iw, int ih,
+	int m00, int m01, int m10, int m11, const tPixel4b* out, int ow, int oh)
+{
+	// out = in * M  (Tacent's row-vector convention, as in tUtilHEIF::ApplyRotation), so in = out * M^T.
+	// For the 8 D4 matrices: in = (m00*cx + m01*cy, m10*cx + m11*cy).
+	int match = 0, total = 0;
+	for (int oy = 0; oy < oh; ++oy)
+		for (int ox = 0; ox < ow; ++ox)
+		{
+			double cx = ox - 0.5 * (ow - 1);
+			double cy = oy - 0.5 * (oh - 1);
+			int ix = tD4Round(m00 * cx + m01 * cy + 0.5 * (iw - 1));
+			int iy = tD4Round(m10 * cx + m11 * cy + 0.5 * (ih - 1));
+			if ((ix < 0) || (ix >= iw) || (iy < 0) || (iy >= ih))
+				return false;
+			++total;
+			if (memcmp(&in[iy * iw + ix], &out[oy * ow + ox], sizeof(tPixel4b)) == 0)
+				++match;
+		}
+	// HEVC is lossy, so allow compression noise. A CORRECT orientation must preserve most pixels
+	// (high ratio); a WRONG orientation (e.g. CW swapped with ACW) maps to the wrong half and
+	// collapses the ratio toward ~0. 50% cleanly separates the two.
+	const int ratioPct = total ? (100 * match / total) : 0;
+	tPrintf("   pixel-exact %d%% (%d/%d)\n", ratioPct, match, total);
+	return ratioPct >= 50;
+}
+
+static void tD4ScanAll(const tPixel4b* in, int iw, int ih, const tPixel4b* out, int ow, int oh)
+{
+	struct T { const char* n; int m00, m01, m10, m11; bool swap; };
+	const T k[] =
+	{
+		{ "Identity",     1,  0,  0,  1, false },
+		{ "Rotate90CW",   0, -1,  1,  0, true },
+		{ "Rotate90ACW",  0,  1, -1,  0, true },
+		{ "Rotate180",   -1,  0,  0, -1, false },
+		{ "FlipH",       -1,  0,  0,  1, false },
+		{ "FlipV",        1,  0,  0, -1, false },
+		{ "FlipMainDiag", 0,  1,  1,  0, true },
+		{ "FlipAntiDiag", 0, -1, -1,  0, true },
+	};
+	const int step = (ow > 96) ? (ow / 96 + 1) : 1;
+	for (const T& t : k)
+	{
+		int ew = t.swap ? ih : iw;
+		int eh = t.swap ? iw : ih;
+		if (ew != ow || eh != oh) { tPrintf("    scan %-14s (dims %dx%d) SKIP\n", t.n, ew, eh); continue; }
+		int match = 0, total = 0;
+		for (int oy = 0; oy < oh; oy += step)
+			for (int ox = 0; ox < ow; ox += step)
+			{
+				double cx = ox - 0.5 * (ow - 1);
+				double cy = oy - 0.5 * (oh - 1);
+				int ix = tD4Round(t.m00 * cx + t.m01 * cy + 0.5 * (iw - 1));
+				int iy = tD4Round(t.m10 * cx + t.m11 * cy + 0.5 * (ih - 1));
+				if ((ix < 0) || (ix >= iw) || (iy < 0) || (iy >= ih)) continue;
+				++total;
+				if (memcmp(&in[iy * iw + ix], &out[oy * ow + ox], sizeof(tPixel4b)) == 0) ++match;
+			}
+		int pct = total ? (100 * match / total) : 0;
+		tPrintf("    scan %-14s %d%% (%d/%d)\n", t.n, pct, match, total);
+	}
+}
+
+tTestUnit(ImageHEICRotatePixelVerify)
+{
+	tImageSubDir("Type_HEIC/")
+
+	const char* kImages[] =
+	{
+		"ChefWithTrumpet", "ChildrensShowTheater", "ClassicCar", "GreyhoundsLookingForATable",
+		"OldSafeWall", "SewingThreads", "ShelfChristmasDecoration", "Soundboard", "TacentTestPattern"
+	};
+
+	// The 8 D4 orientations: matrix (displayed = M * stored) and whether it swaps width/height.
+	struct T { HEIFTransform t; int m00, m01, m10, m11; bool swap; const char* name; };
+	const T kT[] =
+	{
+		{ HEIFTransform::Identity,      1,  0,  0,  1, false, "Identity" },
+		{ HEIFTransform::Rotate90CW,    0, -1,  1,  0, true,  "Rotate90CW" },
+		{ HEIFTransform::Rotate90ACW,   0,  1, -1,  0, true,  "Rotate90ACW" },
+		{ HEIFTransform::Rotate180,    -1,  0,  0, -1, false, "Rotate180" },
+		{ HEIFTransform::FlipH,        -1,  0,  0,  1, false, "FlipH" },
+		{ HEIFTransform::FlipV,         1,  0,  0, -1, false, "FlipV" },
+		{ HEIFTransform::FlipMainDiag,  0,  1,  1,  0, true,  "FlipMainDiag" },
+		{ HEIFTransform::FlipAntiDiag,  0, -1, -1,  0, true,  "FlipAntiDiag" },
+	};
+	const int kNum = int(sizeof(kT) / sizeof(kT[0]));
+
+	for (const char* base : kImages)
+	{
+		tString src = tString(base) + ".heic";
+
+		// Decode the source once (tacent's displayed orientation) as the reference pixel buffer.
+		tImageHEIC refImg(src);
+		tRequire(refImg.IsValid());
+		const int sw = refImg.GetWidth();
+		const int sh = refImg.GetHeight();
+		tPixel4b* spix = refImg.GetPixels();
+		tRequire(spix);
+
+		for (int i = 0; i < kNum; ++i)
+		{
+			const int ew = kT[i].swap ? sh : sw;
+			const int eh = kT[i].swap ? sw : sh;
+
+			tImageHEIC::LoadParams params;
+			params.Flags = tImageHEIC::LoadFlag_NoDecompress;
+			tImageHEIC work;
+			tRequire(work.Load(src, params));
+			tRequire(work.LosslessTransform(kT[i].t));
+			tString outName = tString("Pv_") + base + "_" + kT[i].name + ".heic";
+			tSystem::tDeleteFile(outName, true, false);
+			tRequire(work.Save(outName));
+
+			tImageHEIC out(outName);
+			tRequire(out.IsValid());
+			tRequire(out.GetWidth() == ew);
+			tRequire(out.GetHeight() == eh);
+			tPixel4b* opix = out.GetPixels();
+			tRequire(opix);
+			tPrintf("  [DIAG %s %s]\n", base, kT[i].name);
+			tD4ScanAll(spix, sw, sh, opix, ew, eh);
+			tRequire(tD4PixelsMatch(spix, sw, sh, kT[i].m00, kT[i].m01, kT[i].m10, kT[i].m11, opix, ew, eh));
+			tPrintf("HEIC pixel-verify %s %s: %dx%d -> %dx%d OK\n", base, kT[i].name, sw, sh, ew, eh);
+		}
 	}
 
 	tImageRestoreDir()
@@ -1776,15 +1997,23 @@ tTestUnit(ImageAVIF)
 
 	// tImageAVIF can only load, so we verify integrity by saving each loaded file as a TGA for visual inspection.
 	// A bad file or a failed load will cause a tRequire failure above.
-	tList<tStringItem> files;
-	tSystem::tFindFiles(files, "", tSystem::tExtensions(tSystem::tFileType::AVIF));
-	tRequire(files.First());
+	// Explicit list of the AVIF images in this folder (PascalCase basenames). No directory scan: stray files
+	// (e.g. the output the lossless-transform test writes into this folder) must not affect results -- only the
+	// images named here are loaded.
+	const char* kImages[] =
+	{
+		"ParisIcc",
+		"SeineHdrSRGB",
+		"TacentTestPatternRGBA"
+	};
 
 	tImageAVIF avif;
-	for (tStringItem* file = files.First(); file; file = file->Next())
+	for (const char* base : kImages)
 	{
-		tPrintf("AVIF Load %s\n", file->Chr());
-		avif.Load(*file);
+		tString name = tString(base) + ".avif";
+		tRequire(tSystem::tFileExists(name));
+		tPrintf("AVIF Load %s\n", name.Chr());
+		avif.Load(name);
 		tRequire(avif.IsValid());
 		int width = avif.GetWidth();
 		int height = avif.GetHeight();
@@ -1793,7 +2022,66 @@ tTestUnit(ImageAVIF)
 
 		tImageTGA tga(avif.StealPixels(), width, height, true);
 		tRequire(tga.IsValid());
-		tga.Save("Written_" + tSystem::tGetFileBaseName(*file) + ".tga");
+		tga.Save("Δ" + tString(base) + "_Decoded.tga");
+	}
+
+	// Lossless orientation transforms (rotate / flip) for AVIF work identically to HEIC: the 'irot' / 'imir'
+	// item-property metadata is rewritten (the compressed image data is never touched). For every image, apply
+	// all 8 D4 orientations, save the rewritten-orientation container (Greek-Delta prefix), reload it, and
+	// require only that it is valid with the expected dimensions (we no longer compare individual pixels).
+	const HEIFTransform kAll[] =
+	{
+		HEIFTransform::Identity,
+		HEIFTransform::Rotate90CW,
+		HEIFTransform::Rotate90ACW,
+		HEIFTransform::Rotate180,
+		HEIFTransform::FlipH,
+		HEIFTransform::FlipV,
+		HEIFTransform::FlipMainDiag,
+		HEIFTransform::FlipAntiDiag,
+	};
+	const char* kNames[8] = { "Identity", "Rotate90CW", "Rotate90ACW", "Rotate180", "FlipH", "FlipV", "FlipMainDiag", "FlipAntiDiag" };
+	const int kNum = int(sizeof(kAll) / sizeof(kAll[0]));
+
+	for (const char* base : kImages)
+	{
+		tString src = tString(base) + ".avif";
+		tRequire(tSystem::tFileExists(src));
+
+		// Source dimensions (decoded) so we can compute each transform's expected output dimensions.
+		tImageAVIF probe(src);
+		tRequire(probe.IsValid());
+		const int sw = probe.GetWidth();
+		const int sh = probe.GetHeight();
+
+		for (int i = 0; i < kNum; i++)
+		{
+			// The four transforms that rotate by 90/270 degrees or flip across a diagonal swap width and height;
+			// the other four (identity, 180, horizontal flip, vertical flip) keep them.
+			const bool swapDims = (kAll[i] == HEIFTransform::Rotate90CW) || (kAll[i] == HEIFTransform::Rotate90ACW)
+				|| (kAll[i] == HEIFTransform::FlipMainDiag) || (kAll[i] == HEIFTransform::FlipAntiDiag);
+			const int ew = swapDims ? sh : sw;
+			const int eh = swapDims ? sw : sh;
+
+			// Load the container without decompressing, apply the lossless transform in memory, then save the
+			// rewritten-orientation container to disk (kept on disk for manual inspection).
+			tImageAVIF::LoadParams params;
+			params.Flags = tImageAVIF::LoadFlag_NoDecompress;
+			tImageAVIF work;
+			tRequire(work.Load(src, params));
+			tRequire(work.LosslessTransform(kAll[i]));
+			tString outName = tString("Δ") + base + "_" + kNames[i] + ".avif";
+			tSystem::tDeleteFile(outName, true, false);
+			tRequire(work.Save(outName));
+			tRequire(tSystem::tFileExists(outName));
+
+			// Reload the saved container (this decodes it) and verify it is valid with the expected dimensions.
+			tImageAVIF out(outName);
+			tRequire(out.IsValid());
+			tRequire(out.GetWidth() == ew);
+			tRequire(out.GetHeight() == eh);
+			tPrintf("AVIF %s: %dx%d -> %dx%d (expected %dx%d) OK\n", kNames[i], sw, sh, out.GetWidth(), out.GetHeight(), ew, eh);
+		}
 	}
 
 	tImageRestoreDir()

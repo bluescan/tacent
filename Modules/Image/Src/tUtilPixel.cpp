@@ -1,4 +1,4 @@
-// tPixelUtil.cpp
+// tUtilPixel.cpp
 //
 // Helper functions for manipulating and parsing pixel-data in packed and compressed block formats.
 //
@@ -16,7 +16,7 @@
 #include <Foundation/tStandard.h>
 #include <Foundation/tSmallFloat.h>
 #include <System/tMachine.h>
-#include "Image/tPixelUtil.h"
+#include "Image/tUtilPixel.h"
 #include "PVRTDecompress/PVRTDecompress.h"
 #define BCDEC_IMPLEMENTATION
 #include "bcdec/bcdec.h"

@@ -17,7 +17,7 @@
 #include <System/tFile.h>
 #include <System/tMachine.h>
 #include "Image/tImageASTC.h"
-#include "Image/tPixelUtil.h"
+#include "Image/tUtilPixel.h"
 #include "Image/tPicture.h"
 #include "astcenc.h"
 namespace tImage
