@@ -1,11 +1,11 @@
 // tImageJPG.h
 //
-// This clas knows how to load and save a JPeg (.jpg and .jpeg) file. It does zero processing of image data. It knows
+// This class knows how to load and save a JPeg (.jpg and .jpeg) file. It does zero processing of image data. It knows
 // the details of the jpg file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the
 // tPicture's constructor if a jpg file is specified. After the array is stolen the tImageJPG is invalid. This is
 // purely for performance.
 //
-// Copyright (c) 2020, 2022-2024 Tristan Grimmer.
+// Copyright (c) 2020, 2022-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -108,10 +108,11 @@ public:
 
 	enum class Transform
 	{
-		Rotate90ACW,
-		Rotate90CW,
-		FlipH,
-		FlipV
+		Identity,			// Basically a no-op.
+		Rotate90ACW,		// Anti-clockwise rotation.
+		Rotate90CW,			// Clockwise rotation.
+		FlipH,				// A horizontal flip about the middle vertical axis.
+		FlipV				// A vertical (top to bottom) flip about the middle horizontal axis.
 	};
 
 	// A perfect lossless transfrom is one where the area of the image is the same before and after the transform.

@@ -321,6 +321,9 @@ bool tImageJPG::CanDoPerfectLosslessTransform(Transform trans) const
 	if (!MemImage || (MemImageSize <= 0))
 		return false;
 
+	if (trans == Transform::Identity)
+		return true;
+
 	tjhandle handle = tjInitTransform();
 	if (!handle)
 		return false;
@@ -364,6 +367,9 @@ bool tImageJPG::LosslessTransform(Transform trans, bool allowImperfect)
 {
 	if (!MemImage || (MemImageSize <= 0))
 		return false;
+
+	if (trans == Transform::Identity)
+		return true;
 
 	tjhandle handle = tjInitTransform();
 	if (!handle)
