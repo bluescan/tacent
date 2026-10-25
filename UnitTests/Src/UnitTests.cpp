@@ -209,7 +209,7 @@ int main(int argc, char** argv)
 	// If UNIT_TEST_ONLY_SPECIFIC_TESTS is defined, these are the tests.
 	// Foundation tests.
 	// tTest(Types);
-	// tTest(Array);
+	tTest(Array);
 	// tTest(List);
 	// tTest(ListExtra);
 	// tTest(ListSort);

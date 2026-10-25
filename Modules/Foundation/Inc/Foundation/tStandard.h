@@ -451,6 +451,20 @@ extern const char8_t* u8SeparatorDStr;
 extern const char8_t* u8SeparatorEStr;
 
 
+// tRemoveRef strips lvalue and rvalue references from a type.
+// tRemoveRefT<T> is the shorthand alias for typename tRemoveRef<T>::type.
+template<typename T> struct tRemoveRef							{ using type = T; };
+template<typename T> struct tRemoveRef<T&>					{ using type = T; };
+template<typename T> struct tRemoveRef<T&&>					{ using type = T; };
+template<typename T> using tRemoveRefT = typename tRemoveRef<T>::type;
+
+// rVal marks an lvalue as an rvalue so that move constructors/assignments are selected over copy.
+// It is equivalent to a static_cast to an rvalue reference. Use tStd::rVal(x) instead of std::move(x).
+template<typename T> inline tRemoveRefT<T>&& rVal(T&& t) noexcept
+{
+	return static_cast<tRemoveRefT<T>&&>(t);
+}
+
 }
 
 

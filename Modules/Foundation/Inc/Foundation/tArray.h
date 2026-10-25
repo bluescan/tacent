@@ -3,7 +3,7 @@
 // A simple array implementation that can grow its memory as needed. Adding elements or to an array or adding two
 // arrays together are the sorts if things that may cause an internal grow of the memory.
 //
-// Copyright (c) 2004-2005, 2017, 2020, 2023, 2024 Tristan Grimmer.
+// Copyright (c) 2004-2005, 2017, 2020, 2023, 2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -21,10 +21,14 @@
 template<typename T> class tArray
 {
 public:
-	tArray()												/* Initially empty array with growCount of 256.*/			{ }
-	tArray(int capacity, int growCount = 256)				/* Capacity and growcount must be >= 0. */					: GrowCount(growCount) { Clear(capacity); }
+	tArray()														/* Initially empty array with growCount of 256.*/	{ }
+	tArray(int capacity, int growCount = 256)						/* Capacity and growcount must be >= 0. */			: GrowCount(growCount) { Clear(capacity); }
+	tArray(const T* elements, int numElements, int growCount = 256)	/* Constructs from a pointer and count. */			: GrowCount(growCount) { Clear(numElements); Append(elements, numElements); }
 	tArray(const tArray& src)																							{ *this = src; }
+	tArray(tArray&& src) noexcept																						: Elements(src.Elements), Capacity(src.Capacity), NumElements(src.NumElements), GrowCount(src.GrowCount) { src.Elements = nullptr; src.Capacity = 0; src.NumElements = 0; }
 
+
+tArray& operator=(tArray&& src) noexcept;
 	virtual ~tArray()																									{ delete[] Elements; }
 
 	// Frees the current content. Allows you to optionally set the new initial capacity. If growCount == -1, the
@@ -32,6 +36,12 @@ public:
 	void Clear(int capacity = 0, int growCount = -1);
 	int GetNumElements() const																							{ return NumElements; }
 	T* GetElements() const																								{ return Elements; }
+
+	// Range-based for support: raw pointers act as iterators over the valid elements [0, NumElements).
+	T* begin()																											{ return Elements; }
+	T* end()																											{ return Elements + NumElements; }
+	const T* begin() const																								{ return Elements; }
+	const T* end() const																								{ return Elements + NumElements; }
 
 	// Returns the number of elements that may be stored in the array before a costly grow operation.
 	int GetCapacity() const																								{ return Capacity; }
@@ -44,10 +54,14 @@ public:
 	// N" scratch buffer (e.g. to hand the encoder a buffer of a chosen size) instead of growing in GrowCount chunks.
 	bool GrowTo(int minCapacity);
 
+	// Sets NumElements to newSize. If newSize > Capacity, the array is grown first. If newSize > current NumElements,
+	// the new region is zero-initialized. If newSize < current NumElements, the tail is discarded.
+	void ResizeTo(int newSize);
+
 	// The append calls will grow the array if necessary. If growCount is 0 and there's no more room, false is returned.
 	bool Append(const T&);
 
-	// The truncate call will return the last appended element and will reduce NumAppendedElements by 1
+	// The truncate call will return the last element and will reduce NumElements by 1.
 	T& Truncate()																										{ tAssert(NumElements); return Elements[--NumElements]; }
 
 	// For this append call if the GrowCount is 0 and there is not enough current room, false is returned and the array
@@ -126,6 +140,19 @@ template<typename T> inline bool tArray<T>::GrowTo(int minCapacity)
 }
 
 
+template<typename T> inline void tArray<T>::ResizeTo(int newSize)
+{
+	tAssert(newSize >= 0);
+	if (newSize > Capacity)
+		GrowTo(newSize);
+
+	if (newSize > NumElements)
+		memset(&Elements[NumElements], 0, (newSize - NumElements) * sizeof(T));
+
+	NumElements = newSize;
+}
+
+
 template<typename T> inline bool tArray<T>::Append(const T& item)
 {
 	if (NumElements >= Capacity)
@@ -191,6 +218,25 @@ template<typename T> inline const tArray<T>& tArray<T>::operator=(const tArray<T
 
 	for (int e = 0; e < Capacity; e++)
 		Elements[e] = src.Elements[e];
+
+	return *this;
+}
+
+
+template<typename T> inline tArray<T>& tArray<T>::operator=(tArray<T>&& src) noexcept
+{
+	if (&src == this)
+		return *this;
+
+	delete[] Elements;
+	Elements = src.Elements;
+	Capacity = src.Capacity;
+	NumElements = src.NumElements;
+	GrowCount = src.GrowCount;
+
+	src.Elements = nullptr;
+	src.Capacity = 0;
+	src.NumElements = 0;
 
 	return *this;
 }
