@@ -296,16 +296,16 @@ bool tImageAVIF::LosslessTransform(HEIFTransform transform)
 
 	// Run the transform on the in-memory bytes. An empty result means it could not be applied (e.g. not an AVIF
 	// container, or no orientation metadata to patch), so we leave the object unchanged and report failure.
-	std::vector<uint8_t> in(MemImage, MemImage + MemImageSize);
-	std::vector<uint8_t> out = TransformHEIFData(in, transform);
-	if (out.empty())
+	tArray<uint8> in(MemImage, MemImageSize);
+	tArray<uint8> out = TransformHEIFData(in, transform);
+	if (out.GetNumElements() == 0)
 		return false;
 
 	// Replace the stored bytes with the transformed bytes.
 	delete[] MemImage;
-	MemImage = new uint8[out.size()];
-	tStd::tMemcpy(MemImage, out.data(), out.size());
-	MemImageSize = int(out.size());
+	MemImage = new uint8[out.GetNumElements()];
+	tStd::tMemcpy(MemImage, out.GetElements(), out.GetNumElements());
+	MemImageSize = out.GetNumElements();
 
 	// 90-degree rotations swap the width and height.
 	if ((transform == HEIFTransform::Rotate90CW) || (transform == HEIFTransform::Rotate90ACW) ||

@@ -23,7 +23,7 @@
 
 #pragma once
 #include <Foundation/tString.h>
-#include <vector>
+#include <Foundation/tArray.h>
 
 
 namespace tImage
@@ -43,10 +43,10 @@ namespace tImage
 
 	// Rewrites the 'irot' / 'imir' item-property boxes (and the 'iloc' extent offsets) of an in-memory
 	// HEIF / AVIF buffer `in` to apply `transform`. The compressed coded data is untouched, so the
-	// result is byte-perfect and fast. Returns the transformed buffer, or an empty vector if `in` is
+	// result is byte-perfect and fast. Returns the transformed buffer, or an empty array if `in` is
 	// not a supported HEIF / AVIF container, or `transform` could not be applied (including Identity,
 	// which is a no-op).
-	std::vector<uint8> TransformHEIFData(const std::vector<uint8>& in, HEIFTransform transform);
+	tArray<uint8> TransformHEIFData(const tArray<uint8>& in, HEIFTransform transform);
 
 	// File convenience: read `file`, apply `transform` via TransformHEIFData, and write the result back
 	// over `file`. Returns true on success. (Provided for tests and for callers that work with files

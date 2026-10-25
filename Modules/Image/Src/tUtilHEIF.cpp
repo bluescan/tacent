@@ -24,10 +24,6 @@
 #include <Foundation/tString.h>
 #include <System/tFile.h>
 #include "Image/tUtilHEIF.h"
-#include <cstddef>
-#include <vector>
-#include <utility>
-#include <algorithm>
 #include <cstring>
 using namespace tStd;
 
@@ -62,7 +58,7 @@ namespace tImage
 			return memcmp(box.type, type, 4) == 0;
 		}
 
-		bool FindBox(const std::vector<BoxRef>& boxes, const char* type, BoxRef& out)
+		bool FindBox(const tArray<BoxRef>& boxes, const char* type, BoxRef& out)
 		{
 			for (const auto& box : boxes)
 				if (BoxTypeIs(box, type)) { out = box; return true; }
@@ -189,26 +185,26 @@ namespace tImage
 		// ------------------------------------------------------------------
 		// Small file helpers (tacent's tFile.h has no convenience reader).
 		// ------------------------------------------------------------------
-		bool ReadWholeFile(const tString& path, std::vector<uint8>& out)
+		bool ReadWholeFile(const tString& path, tArray<uint8>& out)
 		{
 			tFileHandle handle = tSystem::tOpenFile(path, "rb");
 			if (!handle) return false;
 			int length = tSystem::tGetFileSize(handle);
 			tSystem::tCloseFile(handle);
 			if (length <= 0) return false;
-			out.resize(size_t(length));
+			out.ResizeTo(length);
 			handle = tSystem::tOpenFile(path, "rb");
-			if (!handle) { out.clear(); return false; }
-			if (tSystem::tReadFile(handle, out.data(), length) != length) { tSystem::tCloseFile(handle); out.clear(); return false; }
+			if (!handle) { out.Clear(); return false; }
+			if (tSystem::tReadFile(handle, out.GetElements(), length) != length) { tSystem::tCloseFile(handle); out.Clear(); return false; }
 			tSystem::tCloseFile(handle);
 			return true;
 		}
 
-		bool WriteWholeFile(const tString& path, const std::vector<uint8>& data)
+		bool WriteWholeFile(const tString& path, const tArray<uint8>& data)
 		{
 			tFileHandle handle = tSystem::tOpenFile(path, "wb");
 			if (!handle) return false;
-			bool ok = (tSystem::tWriteFile(handle, (const void*)data.data(), int(data.size())) == int(data.size()));
+			bool ok = (tSystem::tWriteFile(handle, (const void*)data.GetElements(), data.GetNumElements()) == data.GetNumElements());
 			tSystem::tCloseFile(handle);
 			return ok;
 		}
@@ -221,10 +217,10 @@ namespace tImage
 	// `buffer` is the input HEIF / AVIF bytes; on success the transformed bytes are returned in `out` and
 	// true is returned. The verified box-rewriting algorithm is unchanged; only the I/O boundary moved.
 	// (The public TransformHEIFData / TransformHEIFFile wrappers are defined below.)
-	bool ApplyHEIFTransform_Impl(const std::vector<uint8>& buffer, HEIFTransform transform, std::vector<uint8>& out)
+	bool ApplyHEIFTransform_Impl(const tArray<uint8>& buffer, HEIFTransform transform, tArray<uint8>& out)
 	{
-		const int size = int(buffer.size());
-		const uint8* buf = buffer.data();
+		const int size = buffer.GetNumElements();
+		const uint8* buf = buffer.GetElements();
 		if (size < 8)
 			return false;
 
@@ -263,14 +259,14 @@ namespace tImage
 			return false;
 
 		// --- Collect the 'iprp' children. ---
-		std::vector<BoxRef> children;
+		tArray<BoxRef> children;
 		{
 			int offset = iprp.offset + 8;
 			while (offset + 8 <= iprp.offset + iprp.size)
 			{
 				uint32 boxSize = ReadU32(buf, offset);
 				if (boxSize < 8 || offset + boxSize > iprp.offset + iprp.size) break;
-				children.push_back(MakeBoxRef(offset, boxSize, reinterpret_cast<const char*>(buf + offset + 4)));
+				children.Append(MakeBoxRef(offset, boxSize, reinterpret_cast<const char*>(buf + offset + 4)));
 				offset += boxSize;
 			}
 		}
@@ -284,7 +280,7 @@ namespace tImage
 
 		// --- Walk the children of 'ipco' (an ItemPropertyContainer, a plain container: children start at
 		// --- offset+8). The 'irot' and 'imir' item properties live INSIDE 'ipco', not as siblings of it. ---
-		std::vector<BoxRef> ipcoChildren;
+		tArray<BoxRef> ipcoChildren;
 		{
 			const int childEnd = ipco.offset + ipco.size;
 			int offset = ipco.offset + 8;
@@ -292,11 +288,11 @@ namespace tImage
 			{
 				uint32 entrySize = ReadU32(buf, offset);
 				if (entrySize < 8 || offset + entrySize > childEnd) break;
-				ipcoChildren.push_back(MakeBoxRef(offset, entrySize, (const char*)(buf + offset + 4)));
+				ipcoChildren.Append(MakeBoxRef(offset, entrySize, (const char*)(buf + offset + 4)));
 				offset += entrySize;
 			}
 		}
-		int ipcoCount = uint32(ipcoChildren.size());
+		int ipcoCount = ipcoChildren.GetNumElements();
 
 		BoxRef irotBox;
 		BoxRef imirBox;
@@ -366,14 +362,14 @@ namespace tImage
 
 		// --- Build the new 'irot' / 'imir' boxes to append to 'ipco'. ---
 		// 'irot' box is 9 bytes: [size]["irot"][rot]. 'imir' box is 9 bytes: [size]["imir"][axis].
-		std::vector<uint8> ipcoAppend;
+		tArray<uint8> ipcoAppend;
 		if (createIrot)
 		{
 			uint8 box[9];
 			WriteU32BE(box, 0, 9);
 			memcpy(box + 4, "irot", 4);
 			box[8] = uint8(finalIrot);
-			ipcoAppend.insert(ipcoAppend.end(), box, box + 9);
+			ipcoAppend.Append(box, 9);
 		}
 		if (createImir)
 		{
@@ -381,10 +377,10 @@ namespace tImage
 			WriteU32BE(box, 0, 9);
 			memcpy(box + 4, "imir", 4);
 			box[8] = finalImir;
-			ipcoAppend.insert(ipcoAppend.end(), box, box + 9);
+			ipcoAppend.Append(box, 9);
 		}
 		const int ipcoInsertAt = ipco.offset + ipco.size; // original-buffer offset (end of 'ipco')
-		const int ipcoDelta = uint32(ipcoAppend.size());
+		const int ipcoDelta = uint32(ipcoAppend.GetNumElements());
 
 		// --- Associate the new orientation property(ies) with the item(s) that actually need them. ---
 		// libheif applies 'irot'/'imir' PER ITEM from that item's own 'ipma' association. An image's visible
@@ -394,9 +390,9 @@ namespace tImage
 		// the decoder corrupts them. So append the new index only to entries that are the primary item or that
 		// carry an auxiliary-type association. For simple alpha-less / primary+alpha files this is exactly the
 		// item(s) libheif renders, matching the prior behaviour.
-		std::vector<int> addIndices;
-		if (createIrot) addIndices.push_back(irotPropIndex);
-		if (createImir) addIndices.push_back(imirPropIndex);
+		tArray<int> addIndices;
+		if (createIrot) addIndices.Append(irotPropIndex);
+		if (createImir) addIndices.Append(imirPropIndex);
 
 		// Primary item id ('pitm' is a direct child of 'meta').
 		int primaryItemId = 0;
@@ -429,9 +425,9 @@ namespace tImage
 		};
 
 		int ipmaDelta = 0;                        // total bytes added to 'ipma'
-		std::vector<int> ipmaInsertAts;           // original-buffer offset where each entry's bytes go
-		std::vector<int> ipmaAssocCntFields;      // original-buffer offset of each entry's association_count
-		std::vector<std::vector<uint8>> ipmaInserts; // bytes to append to each entry
+		tArray<int> ipmaInsertAts;           // original-buffer offset where each entry's bytes go
+		tArray<int> ipmaAssocCntFields;      // original-buffer offset of each entry's association_count
+		tArray<tArray<uint8>> ipmaInserts; // bytes to append to each entry
 		if (createIrot || createImir)
 		{
 			// 'ipma' is a FullBox. Entry field widths depend on version (item_id 2 or 4 bytes) and
@@ -476,25 +472,25 @@ namespace tImage
 						continue;
 					}
 
-					std::vector<uint8> eIns;
+					tArray<uint8> eIns;
 					for (int idx : addIndices)
 					{
 						if (idxW == 1)
-							eIns.push_back(uint8(0x80 | (idx & 0x7F))); // essential bit | property index
+							eIns.Append(uint8(0x80 | (idx & 0x7F))); // essential bit | property index
 						else
 						{
 							uint8 t[2];
 							WriteU16BE(t, 0, uint16(0x8000 | (idx & 0x7FFF)));
-							eIns.insert(eIns.end(), t, t + 2);
+							eIns.Append(t, 2);
 						}
 					}
-					ipmaInsertAts.push_back(eEnd);
-					ipmaAssocCntFields.push_back(eOff + itemW);
-					ipmaDelta += uint32(eIns.size()); // accumulate BEFORE moving eIns (a moved-from vector has size 0)
-					ipmaInserts.push_back(std::move(eIns));
+					ipmaInsertAts.Append(eEnd);
+					ipmaAssocCntFields.Append(eOff + itemW);
+					ipmaDelta += uint32(eIns.GetNumElements()); // accumulate BEFORE moving eIns (a moved-from array has 0 elements)
+					ipmaInserts.Append(tStd::rVal(eIns));
 					eOff = eEnd;
 				}
-				if (ipmaInsertAts.empty())
+				if (ipmaInsertAts.GetNumElements() == 0)
 					return false; // no primary/auxiliary item to associate the orientation with
 			}
 		}
@@ -504,28 +500,36 @@ namespace tImage
 			return false; // nothing to change
 
 		// --- Rebuild the buffer, inserting the new bytes at each (original-buffer) offset. ---
-		struct Ins { int at; std::vector<uint8> bytes; };
-		std::vector<Ins> insList;
-		for (size_t k = 0; k < ipmaInserts.size(); ++k)
-			insList.push_back(Ins{ ipmaInsertAts[k], ipmaInserts[k] });
-		if (ipcoDelta != 0) insList.push_back(Ins{ ipcoInsertAt, ipcoAppend });
-		std::sort(insList.begin(), insList.end(), [](const Ins& a, const Ins& b) { return a.at < b.at; });
+		struct Ins { int at; tArray<uint8> bytes; };
+		tArray<Ins> insList;
+		for (int k = 0; k < ipmaInserts.GetNumElements(); ++k)
+			insList.Append(Ins{ ipmaInsertAts[k], ipmaInserts[k] });
+		if (ipcoDelta != 0) insList.Append(Ins{ ipcoInsertAt, ipcoAppend });
+		// Sort insList by insertion offset (insertion sort; the list is typically 1-3 elements).
+		for (int i = 1; i < insList.GetNumElements(); i++)
+		{
+			Ins val = insList[i];
+			int j = i - 1;
+			for (; j >= 0 && val.at < insList[j].at; j--)
+				insList[j + 1] = insList[j];
+			insList[j + 1] = val;
+		}
 
-		out.clear();
-		out.reserve(size + totalDelta);
-		size_t insIdx = 0;
+		out.Clear();
+		out.GrowTo(size + totalDelta);
+		int insIdx = 0;
 		for (int i = 0; i < size; ++i)
 		{
-			while (insIdx < insList.size() && insList[insIdx].at == i)
+			while (insIdx < insList.GetNumElements() && insList[insIdx].at == i)
 			{
-				out.insert(out.end(), insList[insIdx].bytes.begin(), insList[insIdx].bytes.end());
+				out.Append(insList[insIdx].bytes.GetElements(), insList[insIdx].bytes.GetNumElements());
 				++insIdx;
 			}
-			out.push_back(buf[i]);
+			out.Append(buf[i]);
 		}
-		while (insIdx < insList.size()) // insertion exactly at the end of the file
+		while (insIdx < insList.GetNumElements()) // insertion exactly at the end of the file
 		{
-			out.insert(out.end(), insList[insIdx].bytes.begin(), insList[insIdx].bytes.end());
+			out.Append(insList[insIdx].bytes.GetElements(), insList[insIdx].bytes.GetNumElements());
 			++insIdx;
 		}
 
@@ -534,42 +538,42 @@ namespace tImage
 		{
 			int shift = 0;
 			for (const Ins& ins : insList)
-				if (ins.at <= o) shift += uint32(ins.bytes.size());
+				if (ins.at <= o) shift += uint32(ins.bytes.GetNumElements());
 			return o + shift;
 		};
 
 		// --- Update the sizes of the enclosing boxes. A box is [size:4][type:4][...], so the size field is at
 		// --- the box's own offset (NOT offset+4, which would clobber the 4-char type). ---
-		WriteU32BE(out.data(), finalOf(meta.offset), meta.size + totalDelta);
-		WriteU32BE(out.data(), finalOf(iprp.offset), iprp.size + totalDelta);
-		WriteU32BE(out.data(), finalOf(ipco.offset), ipco.size + ipcoDelta);
+		WriteU32BE(out.GetElements(), finalOf(meta.offset), meta.size + totalDelta);
+		WriteU32BE(out.GetElements(), finalOf(iprp.offset), iprp.size + totalDelta);
+		WriteU32BE(out.GetElements(), finalOf(ipco.offset), ipco.size + ipcoDelta);
 		if (hasIpma)
 		{
-			WriteU32BE(out.data(), finalOf(ipma.offset), ipma.size + ipmaDelta);
+			WriteU32BE(out.GetElements(), finalOf(ipma.offset), ipma.size + ipmaDelta);
 			// Bump each entry's association_count by the number of indexes we appended to it.
 			if (ipmaDelta != 0)
-				for (size_t k = 0; k < ipmaAssocCntFields.size(); ++k)
-					WriteU8(out.data(), finalOf(ipmaAssocCntFields[k]),
-						uint8(ReadU8(buf, ipmaAssocCntFields[k]) + uint8(addIndices.size())));
+				for (int k = 0; k < ipmaAssocCntFields.GetNumElements(); ++k)
+					WriteU8(out.GetElements(), finalOf(ipmaAssocCntFields[k]),
+						uint8(ReadU8(buf, ipmaAssocCntFields[k]) + uint8(addIndices.GetNumElements())));
 		}
 
 		// --- Set the 'irot' / 'imir' values on the pre-existing boxes (new ones were written above). ---
 		// In both boxes the orientation/axis byte is the single payload byte at offset+8.
 		if (hasIrot)
-			WriteU8(out.data(), finalOf(irotBox.offset) + 8, uint8(finalIrot));
+			WriteU8(out.GetElements(), finalOf(irotBox.offset) + 8, uint8(finalIrot));
 		if (hasImir)
 		{
 			if (finalHasImir)
-				WriteU8(out.data(), finalOf(imirBox.offset) + 8, finalImir);
+				WriteU8(out.GetElements(), finalOf(imirBox.offset) + 8, finalImir);
 			else
-				memcpy(out.data() + finalOf(imirBox.offset) + 4, "free", 4); // inert ISOBMFF no-op
+				memcpy(out.GetElements() + finalOf(imirBox.offset) + 4, "free", 4); // inert ISOBMFF no-op
 		}
 		// Reuse a "free" box as a new 'imir': restore type + write the axis byte. No size changes needed.
 		if (reuseImir)
 		{
 			const int fOff = finalOf(freeBox.offset);
-			memcpy(out.data() + fOff + 4, "imir", 4);
-			WriteU8(out.data(), fOff + 8, finalImir);
+			memcpy(out.GetElements() + fOff + 4, "imir", 4);
+			WriteU8(out.GetElements(), fOff + 8, finalImir);
 		}
 
 		// --- Update the 'iloc' box. It stores ABSOLUTE file offsets to each item's data (in 'mdat' here).
@@ -624,19 +628,19 @@ namespace tImage
 						const uint64 fPos = bOff + oVal;
 						uint64 sh = 0;
 						for (const Ins& ins : insList)
-							if (uint64(ins.at) <= fPos) sh += uint64(ins.bytes.size());
+							if (uint64(ins.at) <= fPos) sh += uint64(ins.bytes.GetNumElements());
 						if (sh == 0) continue;
 						if (bos > 0)
 						{
 							const uint64 nb = bOff + sh;
-							if (bos == 4) WriteU32BE(out.data(), finalOf(bPos), uint32(nb));
-							else { WriteU32BE(out.data(), finalOf(bPos), uint32(nb >> 32)); WriteU32BE(out.data(), finalOf(bPos) + 4, uint32(nb)); }
+							if (bos == 4) WriteU32BE(out.GetElements(), finalOf(bPos), uint32(nb));
+							else { WriteU32BE(out.GetElements(), finalOf(bPos), uint32(nb >> 32)); WriteU32BE(out.GetElements(), finalOf(bPos) + 4, uint32(nb)); }
 						}
 						else if (os > 0)
 						{
 							const uint64 no = oVal + sh;
-							if (os == 4) WriteU32BE(out.data(), finalOf(oPos), uint32(no));
-							else { WriteU32BE(out.data(), finalOf(oPos), uint32(no >> 32)); WriteU32BE(out.data(), finalOf(oPos) + 4, uint32(no)); }
+							if (os == 4) WriteU32BE(out.GetElements(), finalOf(oPos), uint32(no));
+							else { WriteU32BE(out.GetElements(), finalOf(oPos), uint32(no >> 32)); WriteU32BE(out.GetElements(), finalOf(oPos) + 4, uint32(no)); }
 						}
 					}
 				}
@@ -652,13 +656,13 @@ namespace tImage
 	// Public API (declared in tUtilHEIF.h): a buffer-based transform and a file-based convenience wrapper,
 	// both built on the box-rewriting implementation above.
 	// ------------------------------------------------------------------
-	std::vector<uint8> TransformHEIFData(const std::vector<uint8>& in, HEIFTransform transform)
+	tArray<uint8> TransformHEIFData(const tArray<uint8>& in, HEIFTransform transform)
 	{
 		if (transform == HEIFTransform::Identity)
-			return std::vector<uint8>(in.begin(), in.end()); // no-op: return an unchanged copy
-		std::vector<uint8> out;
+			return in; // no-op: return an unchanged copy
+		tArray<uint8> out;
 		if (!ApplyHEIFTransform_Impl(in, transform, out))
-			return std::vector<uint8>();
+			return tArray<uint8>();
 		return out;
 	}
 
@@ -668,10 +672,10 @@ namespace tImage
 			return tSystem::tFileExists(file); // no-op: nothing to do
 		if (!tSystem::tFileExists(file))
 			return false;
-		std::vector<uint8> buffer;
+		tArray<uint8> buffer;
 		if (!ReadWholeFile(file, buffer))
 			return false;
-		std::vector<uint8> out;
+		tArray<uint8> out;
 		if (!ApplyHEIFTransform_Impl(buffer, transform, out))
 			return false;
 		return WriteWholeFile(file, out);

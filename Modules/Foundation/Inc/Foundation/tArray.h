@@ -58,6 +58,9 @@ public:
 	// The append calls will grow the array if necessary. If growCount is 0 and there's no more room, false is returned.
 	bool Append(const T&);
 
+	// Append (as above) but with move semantics. Use tStd::rVal() to invoke.
+	bool Append(T&&);
+
 	// The truncate call will return the last element and will reduce NumElements by 1.
 	T& Truncate()																										{ tAssert(NumElements); return Elements[--NumElements]; }
 
@@ -161,6 +164,20 @@ template<typename T> inline bool tArray<T>::Append(const T& item)
 
 	tAssert(NumElements < Capacity);
 	Elements[NumElements++] = item;
+	return true;
+}
+
+
+template<typename T> inline bool tArray<T>::Append(T&& item)
+{
+	if (NumElements >= Capacity)
+		GrowCapacity(GrowCount);
+
+	if (NumElements >= Capacity)
+		return false;
+
+	tAssert(NumElements < Capacity);
+	Elements[NumElements++] = tStd::rVal(item);
 	return true;
 }
 
