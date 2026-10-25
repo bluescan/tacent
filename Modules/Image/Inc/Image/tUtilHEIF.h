@@ -23,8 +23,6 @@
 
 #pragma once
 #include <Foundation/tString.h>
-#include <cstddef>
-#include <cstdint>
 #include <vector>
 
 
@@ -48,7 +46,7 @@ namespace tImage
 	// result is byte-perfect and fast. Returns the transformed buffer, or an empty vector if `in` is
 	// not a supported HEIF / AVIF container, or `transform` could not be applied (including Identity,
 	// which is a no-op).
-	std::vector<uint8_t> TransformHEIFData(const std::vector<uint8_t>& in, HEIFTransform transform);
+	std::vector<uint8> TransformHEIFData(const std::vector<uint8>& in, HEIFTransform transform);
 
 	// File convenience: read `file`, apply `transform` via TransformHEIFData, and write the result back
 	// over `file`. Returns true on success. (Provided for tests and for callers that work with files
