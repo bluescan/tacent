@@ -186,6 +186,7 @@ int main(int argc, char** argv)
 	tTest(ImageAVIF);
 	tTest(ImageHEIC);
 	tTest(ImageHEICRotatePixelVerify);
+	tTest(ImageFlipDouble);
 	tTest(ImageJXL);
 	tTest(ImageSVG);
 	tTest(ImageDDS);
@@ -280,6 +281,7 @@ int main(int argc, char** argv)
 	// tTest(ImagePNG);
 	tTest(ImageAVIF);
 	tTest(ImageHEIC);
+	tTest(ImageFlipDouble);
 	// tTest(ImageHEICRotatePixelVerify);
 	// tTest(ImageJXL);
 	// tTest(ImageSVG);

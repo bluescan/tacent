@@ -1991,6 +1991,132 @@ tTestUnit(ImageHEICRotatePixelVerify)
 }
 
 
+// ---------------------------------------------------------------------------
+// Double-flip tests: verify that applying the same flip twice (save + reload
+// between the two) returns to the identity orientation. This exercises the
+// 'imir' box removal/reuse path in tUtilHEIF -- the first flip writes/updates
+// the imir box, the second must remove it (rewriting to "free") or reuse the
+// ghost slot. A correct implementation must produce a file whose decoded pixels
+// match the original source.
+//
+// 4 test sequences x 2 saves each = 8 total saves:
+//   HEIC:  FlipH x2,  FlipV x2
+//   AVIF:  FlipH x2,  FlipV x2
+// ---------------------------------------------------------------------------
+static void tFlipDouble_HEIC(const char* base, HEIFTransform flip, const char* label)
+{
+	tString src = tString(base) + ".heic";
+
+	// Decode the source once for reference pixels.
+	tImageHEIC refImg(src);
+	tRequire(refImg.IsValid());
+	const int sw = refImg.GetWidth();
+	const int sh = refImg.GetHeight();
+	tPixel4b* spix = refImg.GetPixels();
+	tRequire(spix);
+
+	// --- First flip: load (no decompress) -> FlipH/V -> save ---
+	tImageHEIC::LoadParams params;
+	params.Flags = tImageHEIC::LoadFlag_NoDecompress;
+	tImageHEIC work1;
+	tRequire(work1.Load(src, params));
+	tRequire(work1.LosslessTransform(flip));
+	tString out1 = tString("\u0394") + base + "_" + label + "_1.heic";
+	tSystem::tDeleteFile(out1, true, false);
+	tRequire(work1.Save(out1));
+	tRequire(tSystem::tFileExists(out1));
+	tPrintf("  HEIC %s step1 saved: %s\n", label, out1.Chr());
+
+	// --- Second flip: reload (no decompress) -> FlipH/V again -> save ---
+	tImageHEIC work2;
+	tRequire(work2.Load(out1, params));
+	tRequire(work2.LosslessTransform(flip));
+	tString out2 = tString("\u0394") + base + "_" + label + "_2.heic";
+	tSystem::tDeleteFile(out2, true, false);
+	tRequire(work2.Save(out2));
+	tRequire(tSystem::tFileExists(out2));
+	tPrintf("  HEIC %s step2 saved: %s\n", label, out2.Chr());
+
+	// --- Verify: double-flip == identity, so pixels must match source ---
+	tImageHEIC out2dec(out2);
+	tRequire(out2dec.IsValid());
+	tRequire(out2dec.GetWidth() == sw);
+	tRequire(out2dec.GetHeight() == sh);
+	tPixel4b* opix = out2dec.GetPixels();
+	tRequire(opix);
+
+	// Identity: m00=1, m01=0, m10=0, m11=1
+	tRequire(tD4PixelsMatch(spix, sw, sh, 1, 0, 0, 1, opix, sw, sh));
+	tPrintf("  HEIC %s double-flip OK (%dx%d)\n", label, sw, sh);
+}
+
+static void tFlipDouble_AVIF(const char* base, HEIFTransform flip, const char* label)
+{
+	tString src = tString(base) + ".avif";
+
+	// Decode the source once for reference pixels.
+	tImageAVIF refImg(src);
+	tRequire(refImg.IsValid());
+	const int sw = refImg.GetWidth();
+	const int sh = refImg.GetHeight();
+	tPixel4b* spix = refImg.GetPixels();
+	tRequire(spix);
+
+	// --- First flip: load (no decompress) -> FlipH/V -> save ---
+	tImageAVIF::LoadParams params;
+	params.Flags = tImageAVIF::LoadFlag_NoDecompress;
+	tImageAVIF work1;
+	tRequire(work1.Load(src, params));
+	tRequire(work1.LosslessTransform(flip));
+	tString out1 = tString("\u0394") + base + "_" + label + "_1.avif";
+	tSystem::tDeleteFile(out1, true, false);
+	tRequire(work1.Save(out1));
+	tRequire(tSystem::tFileExists(out1));
+	tPrintf("  AVIF %s step1 saved: %s\n", label, out1.Chr());
+
+	// --- Second flip: reload (no decompress) -> FlipH/V again -> save ---
+	tImageAVIF work2;
+	tRequire(work2.Load(out1, params));
+	tRequire(work2.LosslessTransform(flip));
+	tString out2 = tString("\u0394") + base + "_" + label + "_2.avif";
+	tSystem::tDeleteFile(out2, true, false);
+	tRequire(work2.Save(out2));
+	tRequire(tSystem::tFileExists(out2));
+	tPrintf("  AVIF %s step2 saved: %s\n", label, out2.Chr());
+
+	// --- Verify: double-flip == identity, so pixels must match source ---
+	tImageAVIF out2dec(out2);
+	tRequire(out2dec.IsValid());
+	tRequire(out2dec.GetWidth() == sw);
+	tRequire(out2dec.GetHeight() == sh);
+	tPixel4b* opix = out2dec.GetPixels();
+	tRequire(opix);
+
+	// Identity: m00=1, m01=0, m10=0, m11=1
+	tRequire(tD4PixelsMatch(spix, sw, sh, 1, 0, 0, 1, opix, sw, sh));
+	tPrintf("  AVIF %s double-flip OK (%dx%d)\n", label, sw, sh);
+}
+
+tTestUnit(ImageFlipDouble)
+{
+	// HEIC double-flips.
+	tImageSubDir("Type_HEIC/")
+	const char* heicBase = "TacentTestPattern";
+	tFlipDouble_HEIC(heicBase, HEIFTransform::FlipH, "FlipH");
+	tFlipDouble_HEIC(heicBase, HEIFTransform::FlipV, "FlipV");
+	tImageRestoreDir()
+
+	// AVIF double-flips.
+	tImageChangeDir("Type_AVIF/")
+	const char* avifBase = "TacentTestPatternRGBA";
+	tFlipDouble_AVIF(avifBase, HEIFTransform::FlipH, "FlipH");
+	tFlipDouble_AVIF(avifBase, HEIFTransform::FlipV, "FlipV");
+	tImageRestoreDir()
+
+	tPrintf("ImageFlipDouble: all 8 flips OK\n");
+}
+
+
 tTestUnit(ImageAVIF)
 {
 	tImageSubDir("Type_AVIF/")

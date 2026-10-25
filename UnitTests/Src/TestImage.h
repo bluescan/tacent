@@ -38,6 +38,7 @@ namespace tUnitTest
 	tTestUnit(ImagePNG);
 	tTestUnit(ImageHEIC);
 	tTestUnit(ImageHEICRotatePixelVerify);
+	tTestUnit(ImageFlipDouble);
 	tTestUnit(ImageAVIF);
 	tTestUnit(ImageJXL);
 	tTestUnit(ImageSVG);

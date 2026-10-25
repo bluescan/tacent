@@ -301,8 +301,16 @@ namespace tImage
 
 		BoxRef irotBox;
 		BoxRef imirBox;
+		BoxRef freeBox;
 		bool hasIrot = FindBox(ipcoChildren, "irot", irotBox);
 		bool hasImir = FindBox(ipcoChildren, "imir", imirBox);
+		// A 9-byte "free" box in ipco is the remnant of a previously-removed imir (or irot).
+		// Reusing it avoids unbounded file growth when flipping back and forth.
+		bool hasFreeBox = false;
+		for (const auto& ch : ipcoChildren)
+		{
+			if (BoxTypeIs(ch, "free") && ch.size == 9) { freeBox = ch; hasFreeBox = true; break; }
+		}
 
 		// --- Read the current orientation. ---
 		// The 'irot' box is 9 bytes ([size]["irot"][rot]) and the 'imir' box is 9 bytes ([size]["imir"][axis]);
@@ -334,14 +342,18 @@ namespace tImage
 		if (!EncodeOrientation(targetMatrix, finalIrot, finalImir, finalHasImir))
 			return false;
 
-		// A pre-existing 'imir' box can only be overwritten, never removed. If the target needs no
-		// mirror but one is present we cannot express it, so refuse rather than silently corrupt.
-		if (hasImir && !finalHasImir)
-			return false;
+		// When a pre-existing 'imir' box must be effectively removed (target needs no mirror), we
+		// overwrite its type bytes with "free" (a valid ISOBMFF no-op box of the same size). This
+		// keeps all box sizes and ipma indices intact while making the property inert: decoders
+		// and Tacent's own box walker skip unrecognized types. A subsequent transform will see
+		// hasImir=false and create a fresh imir box if needed.
 
 		// --- Which boxes must be created (only those missing and non-identity). ---
+		// If a 9-byte "free" box exists (previously-removed imir), reuse it in place instead of
+		// appending a new box (which would grow the file unboundedly under repeated flips).
+		const bool reuseImir = !hasImir && finalHasImir && hasFreeBox;
 		const bool createIrot = !hasIrot && (finalIrot != 0);
-		const bool createImir = !hasImir && finalHasImir;
+		const bool createImir = !hasImir && finalHasImir && !reuseImir;
 		if ((createIrot || createImir) && !hasIpma)
 			return false; // cannot add a property without an 'ipma' to associate it with an item
 
@@ -547,7 +559,19 @@ namespace tImage
 		if (hasIrot)
 			WriteU8(out.data(), finalOf(irotBox.offset) + 8, uint8_t(finalIrot));
 		if (hasImir)
-			WriteU8(out.data(), finalOf(imirBox.offset) + 8, finalImir);
+		{
+			if (finalHasImir)
+				WriteU8(out.data(), finalOf(imirBox.offset) + 8, finalImir);
+			else
+				memcpy(out.data() + finalOf(imirBox.offset) + 4, "free", 4); // inert ISOBMFF no-op
+		}
+		// Reuse a "free" box as a new 'imir': restore type + write the axis byte. No size changes needed.
+		if (reuseImir)
+		{
+			const uint32_t fOff = finalOf(freeBox.offset);
+			memcpy(out.data() + fOff + 4, "imir", 4);
+			WriteU8(out.data(), fOff + 8, finalImir);
+		}
 
 		// --- Update the 'iloc' box. It stores ABSOLUTE file offsets to each item's data (in 'mdat' here).
 		// --- Inserting the new 'irot'/'imir' boxes (and any 'ipma' bytes) before that data shifts it forward,
