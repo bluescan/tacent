@@ -33,6 +33,7 @@ void tAssertPrintBreak(const char* expr, const char* fileName, int lineNum, cons
 #else
 	#define tStaticAssertMsg(expr, msg) static_assert(expr, #expr " \"" msg "\"")
 #endif
+#define tStaticAssertRaw static_assert
 
 
 void tAbort();

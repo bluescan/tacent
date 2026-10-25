@@ -462,6 +462,14 @@ template<typename T> using tRemoveRefT																					= typename tRemoveRef
 // static_cast to an rvalue reference. Use tStd::rVal(x) instead of std::move(x).
 template<typename T> inline tRemoveRefT<T>&& rVal(T&& t) noexcept														{ return static_cast<tRemoveRefT<T>&&>(t); }
 
+// Compile-time type identity check (variable template partial specialization).
+// Example Usage:
+//   tStaticAssertRaw(tStd::tIsSameType<tStd::tRemoveRefT<int&>, int>, "tRemoveRefT strips references");
+//   tStaticAssertRaw(!tStd::tIsSameType<int, float>, "int is not float");
+template<typename A, typename B> constexpr bool tIsSameType = false;
+template<typename T> constexpr bool tIsSameType<T, T> = true;
+
+
 }
 
 

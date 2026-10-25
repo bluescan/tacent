@@ -53,11 +53,6 @@ tTestUnit(Types)
 }
 
 
-// Compile-time type identity check (must be at file scope).
-template<typename A, typename B> struct tIsSame { static constexpr bool value = false; };
-template<typename T> struct tIsSame<T, T> { static constexpr bool value = true; };
-
-
 tTestUnit(Array)
 {
 	tArray<int> arr(2, 3);
@@ -71,24 +66,21 @@ tTestUnit(Array)
 	
 	// Grow by 3.
 	arr.Append(6);
-
-tRequire(arr.GetNumElements() == 6);
-tRequire(arr.GetCapacity() == 8);
+	tRequire(arr.GetNumElements() == 6);
+	tRequire(arr.GetCapacity() == 8);
 
 	for (int i = 0; i < arr.GetNumElements(); i++)
 		tPrintf("Array index %d has value %d\n", i, arr[i]);
-tPrintf("Num appended items: %d  Capacity: %d\n", arr.GetNumElements(), arr.GetCapacity());
+	tPrintf("Num appended items: %d  Capacity: %d\n", arr.GetNumElements(), arr.GetCapacity());
 
-tPrintf("Index 2 value change to 42.\n");
+	tPrintf("Index 2 value change to 42.\n");
 	arr[2] = 42;
 	for (int i = 0; i < arr.GetNumElements(); i++)
 		tPrintf("Array index %d has value %d\n", i, arr[i]);
-tPrintf("Num appended items: %d  Capacity: %d\n", arr.GetNumElements(), arr.GetCapacity());
-tRequire(arr.GetElements()[2] == 42);
+	tPrintf("Num appended items: %d  Capacity: %d\n", arr.GetNumElements(), arr.GetCapacity());
+	tRequire(arr.GetElements()[2] == 42);
 
-	//
 	// Pointer constructor.
-	//
 	{
 		const int data[] = {10, 20, 30, 40, 50};
 		tArray<int> ptrArr(data, 5);
@@ -96,13 +88,13 @@ tRequire(arr.GetElements()[2] == 42);
 		tRequire(ptrArr[0] == 10);
 		tRequire(ptrArr[4] == 50);
 		tPrintf("Pointer ctor: ");
-		int num = ptrArr.GetNumElements(); for (int i = 0; i < num; i++) tPrintf("%d ", ptrArr[i]);
+		int num = ptrArr.GetNumElements();
+		for (int i = 0; i < num; i++)
+			tPrintf("%d ", ptrArr[i]);
 		tPrintf("\n");
 	}
 
-	//
 	// ResizeTo.
-	//
 	{
 		tArray<int> rsArr(4);
 		rsArr.Append(100);
@@ -121,9 +113,7 @@ tRequire(arr.GetElements()[2] == 42);
 		tPrintf("ResizeTo(1): num=%d cap=%d\n", rsArr.GetNumElements(), rsArr.GetCapacity());
 	}
 
-	//
 	// Range-based for.
-	//
 	{
 		tArray<int> rngArr(10);
 		rngArr.Append(10);
@@ -135,20 +125,25 @@ tRequire(arr.GetElements()[2] == 42);
 		tRequire(sum == 100);
 		tPrintf("Range-for sum: %d\n", sum);
 		int count = 0;
-		for (int& v : rngArr) { v *= 2; count++; }
+		for (int& v : rngArr)
+		{
+			v *= 2;
+			count++;
+		}
 		tRequire(count == 4);
 		tRequire(rngArr[3] == 80);
 		tPrintf("Range-for doubled: ");
-		for (const int& v : rngArr) tPrintf("%d ", v);
+		for (const int& v : rngArr)
+			tPrintf("%d ", v);
 		tPrintf("\n");
 	}
 
-	//
 	// Move constructor.
-	//
 	{
 		tArray<int> src(16);
-		int i; for (i = 0; i < 8; i++) src.Append(i * 10);
+		int i;
+		for (i = 0; i < 8; i++)
+			src.Append(i * 10);
 		tArray<int> dst(tStd::rVal(src));
 		tRequire(dst.GetNumElements() == 8);
 		tRequire(dst[0] == 0);
@@ -156,16 +151,18 @@ tRequire(arr.GetElements()[2] == 42);
 		tRequire(dst.GetCapacity() == 16);
 		tRequire(src.GetNumElements() == 0);
 		tRequire(src.GetCapacity() == 0);
-		tPrintf("Move ctor: dst num=%d cap=%d, src num=%d cap=%d\n",
-			dst.GetNumElements(), dst.GetCapacity(), src.GetNumElements(), src.GetCapacity());
+		tPrintf
+		(
+			"Move ctor: dst num=%d cap=%d, src num=%d cap=%d\n",
+			dst.GetNumElements(), dst.GetCapacity(), src.GetNumElements(), src.GetCapacity()
+		);
 	}
 
-	//
 	// Move assignment.
-	//
 	{
 		tArray<int> src(32);
-		int i; for (i = 0; i < 4; i++) src.Append(i + 1);
+		int i; for (i = 0; i < 4; i++)
+			src.Append(i + 1);
 		tArray<int> dst;
 		dst.Append(999);
 		dst = tStd::rVal(src);
@@ -175,19 +172,21 @@ tRequire(arr.GetElements()[2] == 42);
 		tRequire(dst.GetCapacity() == 32);
 		tRequire(src.GetNumElements() == 0);
 		tRequire(src.GetCapacity() == 0);
-		tPrintf("Move assign: dst num=%d cap=%d, src num=%d cap=%d\n",
-			dst.GetNumElements(), dst.GetCapacity(), src.GetNumElements(), src.GetCapacity());
+		tPrintf
+		(
+			"Move assign: dst num=%d cap=%d, src num=%d cap=%d\n",
+			dst.GetNumElements(), dst.GetCapacity(), src.GetNumElements(), src.GetCapacity()
+		);
 	}
 
-	//
 	// tRemoveRef and rVal.
-	//
 	{
-		static_assert(tIsSame<tStd::tRemoveRefT<int>, int>::value, "tRemoveRefT<int> should be int");
-		static_assert(tIsSame<tStd::tRemoveRefT<int&>, int>::value, "tRemoveRefT<int&> should be int");
-		static_assert(tIsSame<tStd::tRemoveRefT<int&&>, int>::value, "tRemoveRefT<int&&> should be int");
-		static_assert(tIsSame<tStd::tRemoveRefT<int*>, int*>::value, "tRemoveRefT<int*> should be int*");
-		static_assert(tIsSame<tStd::tRemoveRefT<int*&>, int*>::value, "tRemoveRefT<int*&> should be int*");
+		tStaticAssertRaw(!tIsSameType<float, int*>, "float should be different than int");
+		tStaticAssertRaw(tIsSameType<tRemoveRefT<int>, int>, "tRemoveRefT<int> should be int");
+		tStaticAssertRaw(tIsSameType<tRemoveRefT<int&>, int>, "tRemoveRefT<int&> should be int");
+		tStaticAssertRaw(tIsSameType<tRemoveRefT<int&&>, int>, "tRemoveRefT<int&&> should be int");
+		tStaticAssertRaw(tIsSameType<tRemoveRefT<int*>, int*>, "tRemoveRefT<int*> should be int*");
+		tStaticAssertRaw(tIsSameType<tRemoveRefT<int*&>, int*>, "tRemoveRefT<int*&> should be int*");
 		tArray<int> mrArr(4);
 		mrArr.Append(42);
 		tArray<int> moved = tStd::rVal(mrArr);
