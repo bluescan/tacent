@@ -2116,6 +2116,153 @@ tTestUnit(ImageFlipDouble)
 	tPrintf("ImageFlipDouble: all 8 flips OK\n");
 }
 
+// ---------------------------------------------------------------------------
+// Triple-flip tests: verify that three consecutive flips (save + reload
+// between each) equals a single flip. This exercises the 'free' box reuse
+// path (Flip 3 must restore the "free" ghost back to "imir"), which was
+// previously blocked by the early-exit guard.
+//
+// 4 test sequences x 3 saves each = 12 total saves:
+//   HEIC:  FlipH x3,  FlipV x3
+//   AVIF:  FlipH x3,  FlipV x3
+// ---------------------------------------------------------------------------
+static void tFlipTriple_HEIC(const char* base, HEIFTransform flip, const char* label)
+{
+	tString src = tString(base) + ".heic";
+
+	tImageHEIC refImg(src);
+	tRequire(refImg.IsValid());
+	const int sw = refImg.GetWidth();
+	const int sh = refImg.GetHeight();
+	tPixel4b* spix = refImg.GetPixels();
+	tRequire(spix);
+
+	tImageHEIC::LoadParams params;
+	params.Flags = tImageHEIC::LoadFlag_NoDecompress;
+
+	// Flip 1
+	tImageHEIC work1;
+	tRequire(work1.Load(src, params));
+	tRequire(work1.LosslessTransform(flip));
+	tString out1 = tString("\u0394") + base + "_" + label + "_t1.heic";
+	tSystem::tDeleteFile(out1, true, false);
+	tRequire(work1.Save(out1));
+	tRequire(tSystem::tFileExists(out1));
+	tPrintf("  HEIC %s triple step1 saved: %s\n", label, out1.Chr());
+
+	// Flip 2
+	tImageHEIC work2;
+	tRequire(work2.Load(out1, params));
+	tRequire(work2.LosslessTransform(flip));
+	tString out2 = tString("\u0394") + base + "_" + label + "_t2.heic";
+	tSystem::tDeleteFile(out2, true, false);
+	tRequire(work2.Save(out2));
+	tRequire(tSystem::tFileExists(out2));
+	tPrintf("  HEIC %s triple step2 saved: %s\n", label, out2.Chr());
+
+	// Flip 3 (exercises the free-box reuse path)
+	tImageHEIC work3;
+	tRequire(work3.Load(out2, params));
+	tRequire(work3.LosslessTransform(flip));
+	tString out3 = tString("\u0394") + base + "_" + label + "_t3.heic";
+	tSystem::tDeleteFile(out3, true, false);
+	tRequire(work3.Save(out3));
+	tRequire(tSystem::tFileExists(out3));
+	tPrintf("  HEIC %s triple step3 saved: %s\n", label, out3.Chr());
+
+	// Verify: triple-flip == single-flip
+	tImageHEIC out3dec(out3);
+	tRequire(out3dec.IsValid());
+	tRequire(out3dec.GetWidth() == sw);
+	tRequire(out3dec.GetHeight() == sh);
+	tPixel4b* opix = out3dec.GetPixels();
+	tRequire(opix);
+
+	// FlipH: m00=-1, m01=0, m10=0, m11=1
+	// FlipV: m00=1,  m01=0, m10=0, m11=-1
+	const int m00 = (flip == HEIFTransform::FlipH) ? -1 : 1;
+	const int m11 = (flip == HEIFTransform::FlipV) ? -1 : 1;
+	tRequire(tD4PixelsMatch(spix, sw, sh, m00, 0, 0, m11, opix, sw, sh));
+	tPrintf("  HEIC %s triple-flip OK == single-flip (%dx%d)\n", label, sw, sh);
+}
+
+static void tFlipTriple_AVIF(const char* base, HEIFTransform flip, const char* label)
+{
+	tString src = tString(base) + ".avif";
+
+	tImageAVIF refImg(src);
+	tRequire(refImg.IsValid());
+	const int sw = refImg.GetWidth();
+	const int sh = refImg.GetHeight();
+	tPixel4b* spix = refImg.GetPixels();
+	tRequire(spix);
+
+	tImageAVIF::LoadParams params;
+	params.Flags = tImageAVIF::LoadFlag_NoDecompress;
+
+	// Flip 1
+	tImageAVIF work1;
+	tRequire(work1.Load(src, params));
+	tRequire(work1.LosslessTransform(flip));
+	tString out1 = tString("\u0394") + base + "_" + label + "_t1.avif";
+	tSystem::tDeleteFile(out1, true, false);
+	tRequire(work1.Save(out1));
+	tRequire(tSystem::tFileExists(out1));
+	tPrintf("  AVIF %s triple step1 saved: %s\n", label, out1.Chr());
+
+	// Flip 2
+	tImageAVIF work2;
+	tRequire(work2.Load(out1, params));
+	tRequire(work2.LosslessTransform(flip));
+	tString out2 = tString("\u0394") + base + "_" + label + "_t2.avif";
+	tSystem::tDeleteFile(out2, true, false);
+	tRequire(work2.Save(out2));
+	tRequire(tSystem::tFileExists(out2));
+	tPrintf("  AVIF %s triple step2 saved: %s\n", label, out2.Chr());
+
+	// Flip 3 (exercises the free-box reuse path)
+	tImageAVIF work3;
+	tRequire(work3.Load(out2, params));
+	tRequire(work3.LosslessTransform(flip));
+	tString out3 = tString("\u0394") + base + "_" + label + "_t3.avif";
+	tSystem::tDeleteFile(out3, true, false);
+	tRequire(work3.Save(out3));
+	tRequire(tSystem::tFileExists(out3));
+	tPrintf("  AVIF %s triple step3 saved: %s\n", label, out3.Chr());
+
+	// Verify: triple-flip == single-flip
+	tImageAVIF out3dec(out3);
+	tRequire(out3dec.IsValid());
+	tRequire(out3dec.GetWidth() == sw);
+	tRequire(out3dec.GetHeight() == sh);
+	tPixel4b* opix = out3dec.GetPixels();
+	tRequire(opix);
+
+	const int m00 = (flip == HEIFTransform::FlipH) ? -1 : 1;
+	const int m11 = (flip == HEIFTransform::FlipV) ? -1 : 1;
+	tRequire(tD4PixelsMatch(spix, sw, sh, m00, 0, 0, m11, opix, sw, sh));
+	tPrintf("  AVIF %s triple-flip OK == single-flip (%dx%d)\n", label, sw, sh);
+}
+
+tTestUnit(ImageFlipTriple)
+{
+	// HEIC triple-flips.
+	tImageSubDir("Type_HEIC/")
+	const char* heicBase = "TacentTestPattern";
+	tFlipTriple_HEIC(heicBase, HEIFTransform::FlipH, "FlipH");
+	tFlipTriple_HEIC(heicBase, HEIFTransform::FlipV, "FlipV");
+	tImageRestoreDir()
+
+	// AVIF triple-flips.
+	tImageChangeDir("Type_AVIF/")
+	const char* avifBase = "TacentTestPatternRGBA";
+	tFlipTriple_AVIF(avifBase, HEIFTransform::FlipH, "FlipH");
+	tFlipTriple_AVIF(avifBase, HEIFTransform::FlipV, "FlipV");
+	tImageRestoreDir()
+
+	tPrintf("ImageFlipTriple: all 12 flips OK\n");
+}
+
 
 tTestUnit(ImageAVIF)
 {

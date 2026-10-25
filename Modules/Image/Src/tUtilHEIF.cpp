@@ -501,7 +501,7 @@ namespace tImage
 		}
 
 		const uint32_t totalDelta = ipcoDelta + ipmaDelta;
-		if (totalDelta == 0 && !hasIrot && !hasImir)
+		if (totalDelta == 0 && !hasIrot && !hasImir && !reuseImir)
 			return false; // nothing to change
 
 		// --- Rebuild the buffer, inserting the new bytes at each (original-buffer) offset. ---
