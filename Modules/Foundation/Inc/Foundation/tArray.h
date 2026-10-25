@@ -25,10 +25,7 @@ public:
 	tArray(int capacity, int growCount = 256)						/* Capacity and growcount must be >= 0. */			: GrowCount(growCount) { Clear(capacity); }
 	tArray(const T* elements, int numElements, int growCount = 256)	/* Constructs from a pointer and count. */			: GrowCount(growCount) { Clear(numElements); Append(elements, numElements); }
 	tArray(const tArray& src)																							{ *this = src; }
-	tArray(tArray&& src) noexcept																						: Elements(src.Elements), Capacity(src.Capacity), NumElements(src.NumElements), GrowCount(src.GrowCount) { src.Elements = nullptr; src.Capacity = 0; src.NumElements = 0; }
-
-
-tArray& operator=(tArray&& src) noexcept;
+	tArray(tArray&& src) noexcept									/* Move semantics. Use tStd::rVal to use this. */	: Elements(src.Elements), Capacity(src.Capacity), NumElements(src.NumElements), GrowCount(src.GrowCount) { src.Elements = nullptr; src.Capacity = 0; src.NumElements = 0; }
 	virtual ~tArray()																									{ delete[] Elements; }
 
 	// Frees the current content. Allows you to optionally set the new initial capacity. If growCount == -1, the
@@ -79,6 +76,7 @@ tArray& operator=(tArray&& src) noexcept;
 	bool operator!=(const tArray& rhs) const																			{ return !(*this == rhs); }
 	const tArray& operator+(const tArray& src)																			{ Append(src.GetElements(), src.GetNumElements()); }
 	const tArray& operator=(const tArray&);
+	tArray& operator=(tArray&& src) noexcept;
 
 private:
 	T* Elements = nullptr;							// This is of Capacity size, not NumElements.
@@ -205,6 +203,22 @@ template<typename T> inline bool tArray<T>::Append(const T* elements, int numEle
 }
 
 
+template<typename T> inline bool tArray<T>::operator==(const tArray& rhs) const
+{
+	if (Capacity != rhs.Capacity)
+		return false;
+
+	if (NumElements != rhs.NumElements)
+		return false;
+
+	for (int e = 0; e < Capacity; e++)
+		if (Elements[e] != rhs.Elements[e])
+			return false;
+
+	return true;
+}
+
+
 template<typename T> inline const tArray<T>& tArray<T>::operator=(const tArray<T>& src)
 {
 	if (&src == this)
@@ -239,20 +253,4 @@ template<typename T> inline tArray<T>& tArray<T>::operator=(tArray<T>&& src) noe
 	src.NumElements = 0;
 
 	return *this;
-}
-
-
-template<typename T> inline bool tArray<T>::operator==(const tArray& rhs) const
-{
-	if (Capacity != rhs.Capacity)
-		return false;
-
-	if (NumElements != rhs.NumElements)
-		return false;
-
-	for (int e = 0; e < Capacity; e++)
-		if (Elements[e] != rhs.Elements[e])
-			return false;
-
-	return true;
 }

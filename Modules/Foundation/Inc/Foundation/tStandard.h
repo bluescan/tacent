@@ -3,7 +3,7 @@
 // Tacent functions and types that are standard across all platforms. Includes global functions like itoa which are not
 // available on some platforms, but are common enough that they should be.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2020-2024 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2020-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -450,20 +450,17 @@ extern const char8_t* u8SeparatorCStr;
 extern const char8_t* u8SeparatorDStr;
 extern const char8_t* u8SeparatorEStr;
 
+// tRemoveRef strips lvalue and rvalue references from a type. tRemoveRefT<T> is the shorthand alias for typename
+// tRemoveRef<T>::Type.
+template<typename T> struct tRemoveRef																					{ using Type = T; };
+template<typename T> struct tRemoveRef<T&>																				{ using Type = T; };
+template<typename T> struct tRemoveRef<T&&>																				{ using Type = T; };
+template<typename T> using tRemoveRefT																					= typename tRemoveRef<T>::Type;
 
-// tRemoveRef strips lvalue and rvalue references from a type.
-// tRemoveRefT<T> is the shorthand alias for typename tRemoveRef<T>::type.
-template<typename T> struct tRemoveRef							{ using type = T; };
-template<typename T> struct tRemoveRef<T&>					{ using type = T; };
-template<typename T> struct tRemoveRef<T&&>					{ using type = T; };
-template<typename T> using tRemoveRefT = typename tRemoveRef<T>::type;
-
-// rVal marks an lvalue as an rvalue so that move constructors/assignments are selected over copy.
-// It is equivalent to a static_cast to an rvalue reference. Use tStd::rVal(x) instead of std::move(x).
-template<typename T> inline tRemoveRefT<T>&& rVal(T&& t) noexcept
-{
-	return static_cast<tRemoveRefT<T>&&>(t);
-}
+// Move semantics. This is what you use to say an object is throwaway and can be discarded. Turns it into an rvalue.
+// rVal marks an lvalue as an rvalue so that move constructors/assignments are selected over copy. It is equivalent to a
+// static_cast to an rvalue reference. Use tStd::rVal(x) instead of std::move(x).
+template<typename T> inline tRemoveRefT<T>&& rVal(T&& t) noexcept														{ return static_cast<tRemoveRefT<T>&&>(t); }
 
 }
 
