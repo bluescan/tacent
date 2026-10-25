@@ -8,7 +8,7 @@
 // use backslashes, but consistency in using forward slashes is advised. Directory path specifications always end with
 // a trailing slash. Without the trailing separator the path will be interpreted as a file.
 //
-// Copyright (c) 2004-2006, 2017, 2019-2024 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2019-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -1263,6 +1263,40 @@ bool tSystem::tLoadFile(const tString& file, tString& dst, char convertZeroesTo)
 }
 
 
+bool tSystem::tLoadFile(const tString& file, tArray<uint8>& dst)
+{
+	dst.Clear();
+	tFileHandle f = tOpenFile(file.Chr(), "rb");
+	if (!f)
+		return false;
+
+	int size = tGetFileSize(f);
+	tCloseFile(f);
+	if (size < 0)
+		return false;
+	if (size == 0)
+		return true; // 0-byte file: valid but empty.
+
+	dst.ResizeTo(size);
+	f = tOpenFile(file.Chr(), "rb");
+	if (!f)
+	{
+		dst.Clear();
+		return false;
+	}
+
+	int numRead = tReadFile(f, dst.GetElements(), size);
+	tCloseFile(f);
+	if (numRead != size)
+	{
+		dst.Clear();
+		return false;
+	}
+
+	return true;
+}
+
+
 uint8* tSystem::tLoadFileHead(const tString& file, int& bytesToRead, uint8* buffer)
 {
 	tFileHandle f = tOpenFile(file, "rb");
@@ -1307,6 +1341,124 @@ uint8* tSystem::tLoadFileHead(const tString& file, int& bytesToRead, uint8* buff
 
 	tCloseFile(f);
 	return buffer;
+}
+
+
+bool tSystem::tLoadFileHead(const tString& file, int bytesToRead, tString& dst)
+{
+	if (bytesToRead <= 0)
+	{
+		dst.Clear();
+		return false;
+	}
+
+	tFileHandle f = tOpenFile(file.Chr(), "rb");
+	if (!f)
+	{
+		dst.Clear();
+		return false;
+	}
+
+	int size = tGetFileSize(f);
+	if (size < 0)
+	{
+		tCloseFile(f);
+		dst.Clear();
+		return false;
+	}
+	if (size == 0)
+	{
+		tCloseFile(f);
+		dst.Clear();
+		return false;
+	}
+
+	int toRead = (size < bytesToRead) ? size : bytesToRead;
+	dst.SetLength(toRead, false);
+	int numRead = tReadFile(f, (uint8*)dst.Text(), toRead);
+	tCloseFile(f);
+	if (numRead != toRead)
+	{
+		dst.Clear();
+		return false;
+	}
+
+	return true;
+}
+
+
+bool tSystem::tLoadFileHead(const tString& file, int bytesToRead, tArray<uint8>& dst)
+{
+	dst.Clear();
+	if (bytesToRead <= 0)
+		return false;
+
+	tFileHandle f = tOpenFile(file.Chr(), "rb");
+	if (!f)
+		return false;
+
+	int size = tGetFileSize(f);
+	if (size < 0)
+	{
+		tCloseFile(f);
+		return false;
+	}
+	if (size == 0)
+	{
+		tCloseFile(f);
+		return true; // 0-byte file: valid but empty.
+	}
+
+	int toRead = (size < bytesToRead) ? size : bytesToRead;
+	dst.ResizeTo(toRead);
+	int numRead = tReadFile(f, dst.GetElements(), toRead);
+	tCloseFile(f);
+	if (numRead != toRead)
+	{
+		dst.Clear();
+		return false;
+	}
+
+	return true;
+}
+
+
+bool tSystem::tSaveFile(const tString& file, const uint8* data, int sizeBytes)
+{
+	if (sizeBytes < 0)
+		return false;
+
+	tFileHandle f = tOpenFile(file.Chr(), "wb");
+	if (!f)
+		return false;
+
+	if (sizeBytes > 0)
+	{
+		if (!data)
+		{
+			tCloseFile(f);
+			return false;
+		}
+		int numWritten = tWriteFile(f, (const void*)data, sizeBytes);
+		tCloseFile(f);
+		return (numWritten == sizeBytes);
+	}
+
+	// sizeBytes == 0: just create an empty file.
+	tCloseFile(f);
+	return true;
+}
+
+
+bool tSystem::tSaveFile(const tString& file, const tString& data)
+{
+	return tSaveFile(file, (const uint8*)data.Chars(), data.Length());
+}
+
+
+bool tSystem::tSaveFile(const tString& file, const tArray<uint8>& data)
+{
+	return tSaveFile(file, data.GetElements(), data.GetNumElements());
 }
 
 

@@ -1240,6 +1240,66 @@ tTestUnit(File)
 	normalPath = "z:/Dir/../..";
 	simpPath = tGetSimplifiedPath(normalPath);
 	tRequire(simpPath == "Z:/");
+
+	// Binary-safe tLoadFile / tSaveFile / tLoadFileHead (tArray and tString) tests.
+	{
+		const char* path = "Data/LoadSaveTest.bin";
+		uint8 data[10] = { 0xAA, 0xBB, 0xCC, 0x00, 0xFF, 0x01, 0x02, 0x03, 0x04, 0x05 };
+
+		// tSaveFile (raw buffer) then tLoadFile into tArray.
+		tRequire(tSaveFile(path, data, 10));
+		tArray<uint8> buf;
+		tRequire(tLoadFile(path, buf));
+		tRequire(buf.GetNumElements() == 10);
+		bool match = true;
+		for (int i = 0; i < 10; i++)
+			if (buf[i] != data[i])
+			{
+				match = false;
+				break;
+			}
+		tRequire(match);
+
+		// tLoadFileHead into tArray (first 4 bytes).
+		tArray<uint8> head4;
+		tRequire(tLoadFileHead(path, 4, head4));
+		tRequire(head4.GetNumElements() == 4);
+		tRequire(head4[0] == 0xAA);
+		tRequire(head4[3] == 0x00);
+
+		// tLoadFileHead into tString (first 4 bytes).
+		tString headStr;
+		tRequire(tLoadFileHead(path, 4, headStr));
+		tRequire(headStr.Length() == 4);
+
+		// tSaveFile (tString) then tLoadFile (tString).
+		tString hello("Hello World");
+		tRequire(tSaveFile(path, hello));
+		tString helloBack;
+		tRequire(tLoadFile(path, helloBack));
+		tRequire(helloBack == "Hello World");
+
+		// tSaveFile (tArray) then tLoadFile (tArray).
+		tArray<uint8> arrData;
+		arrData.ResizeTo(5);
+		for (int i = 0; i < 5; i++)
+			arrData[i] = (uint8)(i + 1);
+		tRequire(tSaveFile(path, arrData));
+		tArray<uint8> arrBack;
+		tRequire(tLoadFile(path, arrBack));
+		tRequire(arrBack.GetNumElements() == 5);
+		tRequire(arrBack[4] == 5);
+
+		// Non-existent file: tLoadFile and tLoadFileHead both return false.
+		tArray<uint8> noFile;
+		tRequire(!tLoadFile("Data/DefinitelyDoesNotExist12345.bin", noFile));
+		tArray<uint8> noHead;
+		tRequire(!tLoadFileHead("Data/DefinitelyDoesNotExist12345.bin", 4, noHead));
+		tString noStr;
+		tRequire(!tLoadFileHead("Data/DefinitelyDoesNotExist12345.bin", 4, noStr));
+
+		tDeleteFile(path);
+	}
 }
 
 

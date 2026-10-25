@@ -18,7 +18,7 @@
 // A note on variable naming of paths in this API. If it can be a file or directory, the word 'path' is used. If the
 // path must be a directory, the word 'dir' is used. If the path must be a file, the word 'file' is used.
 //
-// Copyright (c) 2004-2006, 2017, 2020-2024 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2017, 2020-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -31,6 +31,7 @@
 #pragma once
 #include <ctime>
 #include <Foundation/tHash.h>
+#include <Foundation/tArray.h>
 #include "System/tThrow.h"
 #include "System/tPrint.h"
 #include "System/tStream.h"
@@ -250,19 +251,31 @@ uint8* tLoadFile(const tString& file, uint8* buffer = nullptr, int* fileSize = n
 // supplied.
 bool tLoadFile(const tString& file, tString& dst, char convertZeroesTo = 31);
 
+// Loads the entire file in binary mode into a tArray. Returns true on success.
+bool tLoadFile(const tString& file, tArray<uint8>& dst);
+
 // Same as LoadFile except only the first bytesToRead bytes are read. Also the actual number read is returned in
 // bytesToRead. This will be smaller than the number requested if the file is too small. If there are any problems,
 // bytesToRead will contain 0 and if a buffer was supplied it will be returned (perhaps modified). If one wasn't
 // supplied and there is a read problem, nullptr will be returned.
 uint8* tLoadFileHead(const tString& file, int& bytesToRead, uint8* buffer = nullptr);
 
-// @todo This variant is not implemented yet.
-uint8* tLoadFileHead(const tString& file, int bytesToRead, tString& dest);
+// Loads the first bytesToRead bytes of a file in binary mode into a tString. Returns true on success.
+bool tLoadFileHead(const tString& file, int bytesToRead, tString& dest);
+
+// Loads the first bytesToRead bytes of a file in binary mode into a tArray. Returns true on success.
+bool tLoadFileHead(const tString& file, int bytesToRead, tArray<uint8>& dest);
+
+// Saves data to a file in binary mode. Returns true on success.
+bool tSaveFile(const tString& file, const uint8* data, int sizeBytes);
+bool tSaveFile(const tString& file, const tString& data);
+bool tSaveFile(const tString& file, const tArray<uint8>& data);
 
 
 //
 // System path, drive, and network share information.
 //
+
 // Gets the home directory. On Linux usually something like "/home/username/". On windows usually something like "C:/Users/UserName/".
 tString tGetHomeDir();
 
