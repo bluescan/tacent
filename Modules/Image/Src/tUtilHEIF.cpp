@@ -182,33 +182,6 @@ namespace tImage
 			return false;
 		}
 
-		// ------------------------------------------------------------------
-		// Small file helpers (tacent's tFile.h has no convenience reader).
-		// ------------------------------------------------------------------
-		bool ReadWholeFile(const tString& path, tArray<uint8>& out)
-		{
-			tFileHandle handle = tSystem::tOpenFile(path, "rb");
-			if (!handle) return false;
-			int length = tSystem::tGetFileSize(handle);
-			tSystem::tCloseFile(handle);
-			if (length <= 0) return false;
-			out.ResizeTo(length);
-			handle = tSystem::tOpenFile(path, "rb");
-			if (!handle) { out.Clear(); return false; }
-			if (tSystem::tReadFile(handle, out.GetElements(), length) != length) { tSystem::tCloseFile(handle); out.Clear(); return false; }
-			tSystem::tCloseFile(handle);
-			return true;
-		}
-
-		bool WriteWholeFile(const tString& path, const tArray<uint8>& data)
-		{
-			tFileHandle handle = tSystem::tOpenFile(path, "wb");
-			if (!handle) return false;
-			bool ok = (tSystem::tWriteFile(handle, (const void*)data.GetElements(), data.GetNumElements()) == data.GetNumElements());
-			tSystem::tCloseFile(handle);
-			return ok;
-		}
-
 	}
 
 	// ApplyHEIFTransform_Impl: patch the 'irot'/'imir' item-property boxes to apply a lossless (metadata-only)
@@ -673,11 +646,11 @@ namespace tImage
 		if (!tSystem::tFileExists(file))
 			return false;
 		tArray<uint8> buffer;
-		if (!ReadWholeFile(file, buffer))
+		if (!tSystem::tLoadFile(file, buffer))
 			return false;
 		tArray<uint8> out;
 		if (!ApplyHEIFTransform_Impl(buffer, transform, out))
 			return false;
-		return WriteWholeFile(file, out);
+		return tSystem::tSaveFile(file, out);
 	}
 } // namespace tImage

@@ -248,7 +248,7 @@ int main(int argc, char** argv)
 	// tTest(Chunk);
 	// tTest(FileTypes);
 	// tTest(Directories);
-	// tTest(File);
+	tTest(File);
 	// tTest(FindRec);
 	// tTest(Network);
 	// tTest(Time);
