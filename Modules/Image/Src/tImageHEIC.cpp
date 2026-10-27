@@ -308,8 +308,11 @@ bool tImageHEIC::LosslessTransform(HEIFTransform transform)
 	MemImageSize = out.GetNumElements();
 
 	// 90-degree rotations swap the width and height.
-	if ((transform == HEIFTransform::Rotate90CW) || (transform == HEIFTransform::Rotate90ACW) ||
-	(transform == HEIFTransform::FlipMainDiag) || (transform == HEIFTransform::FlipAntiDiag))
+	if
+	(
+		(transform == HEIFTransform::Rotate90CW)	|| (transform == HEIFTransform::Rotate90ACW) ||
+		(transform == HEIFTransform::FlipMainDiag)	|| (transform == HEIFTransform::FlipAntiDiag)
+	)
 	{
 		int tmp = Width;
 		Width = Height;

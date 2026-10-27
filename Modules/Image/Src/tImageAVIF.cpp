@@ -94,7 +94,7 @@ bool tImageAVIF::Load(const uint8* avifFileInMemory, int numBytes, const LoadPar
 	// failure -- the image may still decode perfectly.
 	PopulateMetaData(handle);
 
-	// Decode the image
+	// Decode the image.
 	struct heif_image* image = nullptr;
 	error = heif_decode_image(handle, &image, heif_colorspace_RGB, heif_chroma_interleaved_RGBA, nullptr);
 	if (error.code != heif_error_Ok)
@@ -308,8 +308,11 @@ bool tImageAVIF::LosslessTransform(HEIFTransform transform)
 	MemImageSize = out.GetNumElements();
 
 	// 90-degree rotations swap the width and height.
-	if ((transform == HEIFTransform::Rotate90CW) || (transform == HEIFTransform::Rotate90ACW) ||
-	(transform == HEIFTransform::FlipMainDiag) || (transform == HEIFTransform::FlipAntiDiag))
+	if
+	(
+		(transform == HEIFTransform::Rotate90CW)	|| (transform == HEIFTransform::Rotate90ACW) ||
+		(transform == HEIFTransform::FlipMainDiag)	|| (transform == HEIFTransform::FlipAntiDiag)
+	)
 	{
 		int tmp = Width;
 		Width = Height;
