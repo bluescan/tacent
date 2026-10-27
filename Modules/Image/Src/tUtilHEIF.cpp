@@ -385,11 +385,12 @@ bool tHEIF::ApplyHEIFTransform_Impl(const tArray<uint8>& buffer, HEIFTransform t
 	bool hasPrimary = false;
 	{
 		const int metaEnd = meta.offset + meta.size;
-		int mo = meta.offset + 12; // 'meta' FullBox: children start after version/flags
+		int mo = meta.offset + 12;		// 'meta' FullBox: children start after version/flags.
 		while (mo + 8 <= metaEnd)
 		{
 			const uint32 sz = tReadU32BE(buf + mo);
-			if (sz < 8 || mo + sz > metaEnd) break;
+			if (sz < 8 || mo + sz > metaEnd)
+				break;
 			if (tMemcmp(buf + mo + 4, "pitm", 4) == 0)
 			{
 				const uint8 pv = tReadU8(buf + mo + 8);
@@ -517,24 +518,33 @@ bool tHEIF::ApplyHEIFTransform_Impl(const tArray<uint8>& buffer, HEIFTransform t
 		insList[j + 1] = val;
 	}
 
-	out.Clear();
-	out.GrowTo(size + totalDelta);
+	// Pre-allocate exact final size.
+	out.Clear(size + totalDelta);
 	int insIdx = 0;
-	for (int i = 0; i < size; i++)
+	int srcPos = 0;
+
+	// Rebuild the buffer: copy original data in chunks, splicing in the new payload byte ranges at their insertion
+	// offsets. insList is sorted by offset, so a single forward pass over the source suffices.
+	// Outer loop:	For each distinct insertion offset, copy the untouched source bytes leading up to it, then splice
+	//				in the inserted bytes.
+	// Inner loop:	Drain ALL insertions that share that same offset (insList may hold several) in one go.
+	// Final if:	Append any remaining source bytes past the last insertion point.
+	//
+	// Each step is a bulk Append of a contiguous range (not per-byte), which is why this is fast.
+	while (insIdx < insList.GetNumElements())
 	{
-		while (insIdx < insList.GetNumElements() && insList[insIdx].at == i)
+		const int nextIns = insList[insIdx].at;
+		if (nextIns > srcPos)
+			out.Append(buf + srcPos, nextIns - srcPos);
+		srcPos = nextIns;
+		while (insIdx < insList.GetNumElements() && insList[insIdx].at == nextIns)
 		{
 			out.Append(insList[insIdx].bytes.GetElements(), insList[insIdx].bytes.GetNumElements());
 			insIdx++;
 		}
-		out.Append(buf[i]);
 	}
-
-	while (insIdx < insList.GetNumElements())	// Insertion exactly at the end of the file.
-	{
-		out.Append(insList[insIdx].bytes.GetElements(), insList[insIdx].bytes.GetNumElements());
-		insIdx++;
-	}
+	if (srcPos < size)
+		out.Append(buf + srcPos, size - srcPos);
 
 	// Map an original offset to its offset in the rebuilt buffer.
 	auto finalOf = [&](int o) -> int
@@ -721,16 +731,13 @@ bool tHEIF::ApplyHEIFTransform_Impl(const tArray<uint8>& buffer, HEIFTransform t
 }
 
 
-tArray<uint8> tImage::TransformHEIFData(const tArray<uint8>& in, HEIFTransform transform)
+bool tImage::TransformHEIFData(const tArray<uint8>& src, HEIFTransform transform, tArray<uint8>& out)
 {
 	if (transform == HEIFTransform::Identity)
-		return in;									// No-op: return an unchanged copy.
+		return false;                                       // No-op: nothing to do.
 
-	tArray<uint8> out;
-	if (!tHEIF::ApplyHEIFTransform_Impl(in, transform, out))
-		return tArray<uint8>();
-
-	return out;
+	out.Clear();
+	return tHEIF::ApplyHEIFTransform_Impl(src, transform, out);
 }
 
 

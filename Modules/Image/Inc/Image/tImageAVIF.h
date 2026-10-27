@@ -84,7 +84,7 @@ public:
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear() override;
-	bool IsValid() const override																						{ return (Pixels || MemImage) ? true : false; }
+	bool IsValid() const override																						{ return (Pixels || MemImage.IsValid()) ? true : false; }
 
 	int GetWidth() const																								{ return Width; }
 	int GetHeight() const																								{ return Height; }
@@ -114,8 +114,7 @@ private:
 	int Width			= 0;
 	int Height			= 0;
 	tPixel4b* Pixels	= nullptr;
-	uint8* MemImage		= nullptr;
-	int MemImageSize	= 0;
+	tArray<uint8> MemImage;
 };
 
 
@@ -125,9 +124,7 @@ inline void tImageAVIF::Clear()
 	Height = 0;
 	delete[] Pixels;
 	Pixels = nullptr;
-	delete[] MemImage;
-	MemImage = nullptr;
-	MemImageSize = 0;
+	MemImage.Clear();
 	MetaData.Clear();
 	tBaseImage::Clear();
 }

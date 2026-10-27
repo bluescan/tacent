@@ -33,6 +33,7 @@ public:
 	void Clear(int capacity = 0, int growCount = -1);
 	int GetNumElements() const																							{ return NumElements; }
 	T* GetElements() const																								{ return Elements; }
+	bool IsValid() const																								{ return (NumElements > 0) ? true : false; }
 
 	// Range-based for support: raw pointers act as iterators over the valid elements [0, NumElements).
 	T* begin()																											{ return Elements; }

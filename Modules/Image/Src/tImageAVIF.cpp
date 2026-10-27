@@ -81,10 +81,7 @@ bool tImageAVIF::Load(const uint8* avifFileInMemory, int numBytes, const LoadPar
 
 		// We must copy the bytes because the caller's buffer (e.g. the temporary loaded with tLoadFile above) will be
 		// freed before this object is destroyed.
-		MemImage = new uint8[numBytes];
-		tStd::tMemcpy(MemImage, avifFileInMemory, numBytes);
-		MemImageSize = numBytes;
-
+		MemImage = tArray<uint8>(avifFileInMemory, numBytes);
 		heif_image_handle_release(handle);
 		heif_context_free(ctx);
 		return (Width > 0) && (Height > 0);
@@ -275,37 +272,26 @@ bool tImageAVIF::Save(const tString& avifFile) const
 
 	// Saving is only possible if we are holding the original container bytes (i.e. loaded with LoadFlag_NoDecompress).
 	// There is no AVIF encoder available, so a decoded pixel image cannot be re-encoded.
-	if (!(MemImage && (MemImageSize > 0)))
+	if (!MemImage.IsValid())
 		return false;
-
-	tFileHandle fileHandle = tOpenFile(avifFile, "wb");
-	if (!fileHandle)
-		return false;
-
-	int numWritten = tWriteFile(fileHandle, MemImage, MemImageSize);
-	tCloseFile(fileHandle);
-	return (numWritten == MemImageSize);
+	return tSystem::tSaveFile(avifFile, MemImage);
 }
 
 
 bool tImageAVIF::LosslessTransform(HEIFTransform transform)
 {
 	// A lossless transform can only be applied to the original container bytes (NoDecompress mode).
-	if (!(MemImage && (MemImageSize > 0)))
+	if (!MemImage.IsValid())
 		return false;
 
-	// Run the transform on the in-memory bytes. An empty result means it could not be applied (e.g. not an AVIF
-	// container, or no orientation metadata to patch), so we leave the object unchanged and report failure.
-	tArray<uint8> in(MemImage, MemImageSize);
-	tArray<uint8> out = TransformHEIFData(in, transform);
-	if (out.GetNumElements() == 0)
+	if (transform == HEIFTransform::Identity)
+		return true;	// No-op.
+
+	tArray<uint8> dest;
+	if (!TransformHEIFData(MemImage, transform, dest))
 		return false;
 
-	// Replace the stored bytes with the transformed bytes.
-	delete[] MemImage;
-	MemImage = new uint8[out.GetNumElements()];
-	tStd::tMemcpy(MemImage, out.GetElements(), out.GetNumElements());
-	MemImageSize = out.GetNumElements();
+	MemImage = tStd::rVal(dest);	// Move-assign.
 
 	// 90-degree rotations swap the width and height.
 	if

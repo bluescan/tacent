@@ -41,16 +41,15 @@ enum class HEIFTransform
 	FlipAntiDiag		// About the line y = -x
 };
 
-// Rewrites the 'irot' / 'imir' item-property boxes (and the 'iloc' extent offsets) of an in-memory
-// HEIF / AVIF buffer `in` to apply `transform`. The compressed coded data is untouched, so the
-// result is byte-perfect and fast. Returns the transformed buffer, or an empty array if `in` is
-// not a supported HEIF / AVIF container, or `transform` could not be applied (including Identity,
-// which is a no-op).
-tArray<uint8> TransformHEIFData(const tArray<uint8>& in, HEIFTransform transform);
+// Rewrites the 'irot' / 'imir' item-property boxes (and the 'iloc' extent offsets) of an in-memory HEIF / AVIF buffer
+// 'src' to apply 'transform'. The compressed coded data is untouched, so the result is byte-perfect and fast. The
+// transformed buffer is written into 'out' (which is cleared first). Returns true on success, false if 'src' is not a
+// supported HEIF / AVIF container, if 'transform' is Identity (a no-op), or if 'transform' could not be applied.
+bool TransformHEIFData(const tArray<uint8>& src, HEIFTransform transform, tArray<uint8>& out);
 
-// File convenience: read `file`, apply `transform` via TransformHEIFData, and write the result back
-// over `file`. Returns true on success. (Provided for tests and for callers that work with files
-// on disk rather than in-memory buffers.)
+// File convenience: read `file`, apply `transform` via TransformHEIFData, and write the result back over `file`.
+// Returns true on success. (Provided for tests and for callers that work with files on disk rather than in-memory
+// buffers.)
 bool TransformHEIFFile(const tString& file, HEIFTransform transform);
 
 
