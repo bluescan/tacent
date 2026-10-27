@@ -34,10 +34,16 @@
 using namespace tSystem;
 using namespace tMath;
 extern tCmdLine::tOption OptionShared;
-
-
 namespace tUnitTest
 {
+
+
+#define tSystemDataDir "Data/System/"
+#define tSystemDir() if (!tSystem::tDirExists(tSystemDataDir)) tSkipUnit() tString origDir = tSystem::tGetCurrentDir(); tSystem::tSetCurrentDir(origDir + tSystemDataDir);
+#define tSystemSubDir(subdir) if (!tSystem::tDirExists(tSystemDataDir)) tSkipUnit() tString origDir = tSystem::tGetCurrentDir(); tSystem::tSetCurrentDir(origDir + tSystemDataDir + subdir);
+#define tSystemResetDir() tSystem::tSetCurrentDir(origDir + tSystemDataDir);
+#define tSystemChangeDir(subdir) tSystem::tSetCurrentDir(origDir + tSystemDataDir + subdir);
+#define tSystemRestoreDir() tSystem::tSetCurrentDir(origDir);
 
 
 tTestUnit(CmdLine)
@@ -1103,21 +1109,20 @@ tTestUnit(Directories)
 
 tTestUnit(File)
 {
-	if (!tDirExists("Data/"))
-		tSkipUnit()
+	tSystemDir()
 
-	tRequire(!tFileExists("Data/ProbablyDoesntExist.txt"));
+	tRequire(!tFileExists("ProbablyDoesntExist.txt"));
 
 	#ifdef PLATFORM_WINDOWS
-	tSetHidden("Data/.HiddenFile.txt");
+	tSetHidden(".HiddenFile.txt");
 	#endif
 
 	// This file is now hidden in both Linux and Windows.
-	tRequire(tIsHidden("Data/.HiddenFile.txt"));
+	tRequire(tIsHidden(".HiddenFile.txt"));
 
 	tList<tFileInfo> dirs;
 	tPrintf("tFindDirs Backend::Stndrd\n");
-	tFindDirs(dirs, "Data/", true, tSystem::Backend::Stndrd);
+	tFindDirs(dirs, "", true, tSystem::Backend::Stndrd);
 	for (tFileInfo* i = dirs.First(); i; i = i->Next())
 	{
 		std::tm localTime = tConvertTimeToLocal(i->ModificationTime);
@@ -1129,7 +1134,7 @@ tTestUnit(File)
 
 	dirs.Empty();
 	tPrintf("tFindDirs Backend::Native\n");
-	tFindDirs(dirs, "Data/", true, tSystem::Backend::Native);
+	tFindDirs(dirs, "", true, tSystem::Backend::Native);
 	for (tFileInfo* i = dirs.First(); i; i = i->Next())
 	{
 		std::tm localTime = tConvertTimeToLocal(i->ModificationTime);
@@ -1140,12 +1145,12 @@ tTestUnit(File)
 	}
 
 	tList<tStringItem> filesStd;
-	tFindFiles(filesStd, "Data/", false, Backend::Stndrd);
+	tFindFiles(filesStd, "", false, Backend::Stndrd);
 	for (tStringItem* file = filesStd.Head(); file; file = file->Next())
 		tPrintf("Found file standard: %s\n", file->Text());
 
 	tList<tStringItem> filesNat;
-	tFindFiles(filesNat, "Data/", false, Backend::Native);
+	tFindFiles(filesNat, "", false, Backend::Native);
 	for (tStringItem* file = filesNat.Head(); file; file = file->Next())
 		tPrintf("Found file native: %s\n", file->Text());
 
@@ -1162,12 +1167,12 @@ tTestUnit(File)
 	extensions.Add("ZZZ");
 
 	tList<tStringItem> filesMultStd;
-	tFindFiles(filesMultStd, "Data/", extensions, false, Backend::Stndrd);
+	tFindFiles(filesMultStd, "", extensions, false, Backend::Stndrd);
 	for (tStringItem* file = filesMultStd.Head(); file; file = file->Next())
 		tPrintf("Found file standard (bmp, txt, zzz): %s\n", file->Text());
 
 	tList<tStringItem> filesMultNat;
-	tFindFiles(filesMultNat, "Data/", extensions, false, Backend::Native);
+	tFindFiles(filesMultNat, "", extensions, false, Backend::Native);
 	for (tStringItem* file = filesMultNat.Head(); file; file = file->Next())
 		tPrintf("Found file native (bmp, txt, zzz): %s\n", file->Text());
 
@@ -1180,27 +1185,27 @@ tTestUnit(File)
 	tRequire(tGetDir(testLinPath) == "/ADir/");
 	
 	tList<tStringItem> subDirs;
-	tFindDirs(subDirs, "Data/", true);
+	tFindDirs(subDirs, "", true);
 	for (tStringItem* subd = subDirs.Head(); subd; subd = subd->Next())
 		tPrintf("SubDir: %s\n", subd->Text());
 
 	// Create a directory. Create a file in it. Then delete the directory with the file in it.
-	tCreateDir("Data/CreatedDirectory/");
-	tRequire(tDirExists("Data/CreatedDirectory/"));
-	tRequire(!tIsReadOnly("Data/CreatedDirectory/"));
+	tCreateDir("CreatedDirectory/");
+	tRequire(tDirExists("CreatedDirectory/"));
+	tRequire(!tIsReadOnly("CreatedDirectory/"));
 
-	tCreateFile("Data/CreatedDirectory/CreatedFile.txt", "File Contents");
-	tRequire(tFileExists("Data/CreatedDirectory/CreatedFile.txt"));
+	tCreateFile("CreatedDirectory/CreatedFile.txt", "File Contents");
+	tRequire(tFileExists("CreatedDirectory/CreatedFile.txt"));
 
-	tDeleteDir("Data/CreatedDirectory/");
-	tRequire(!tDirExists("Data/CreatedDirectory/"));
+	tDeleteDir("CreatedDirectory/");
+	tRequire(!tDirExists("CreatedDirectory/"));
 
 	// Create multiple directories in one go.
-	tCreateDirs("Data/CreatedA/CreatedB/CreatedC/");
-	tRequire(tDirExists("Data/CreatedA/CreatedB/CreatedC/"));
+	tCreateDirs("CreatedA/CreatedB/CreatedC/");
+	tRequire(tDirExists("CreatedA/CreatedB/CreatedC/"));
 
-	tDeleteDir("Data/CreatedA/");
-	tRequire(!tDirExists("Data/CreatedA/"));
+	tDeleteDir("CreatedA/");
+	tRequire(!tDirExists("CreatedA/"));
 
 	tString normalPath = "Q:/Projects/Calamity/Crypto/../../Reign/./Squiggle/";
 	tPrintf("Testing GetSimplifiedPath on '%s'\n", normalPath.Pod());
@@ -1243,7 +1248,7 @@ tTestUnit(File)
 
 	// Binary-safe tLoadFile / tSaveFile / tLoadFileHead (tArray and tString) tests.
 	{
-		const char* path = "Data/LoadSaveTest.bin";
+		const char* path = "LoadSaveTest.bin";
 		uint8 data[10] = { 0xAA, 0xBB, 0xCC, 0x00, 0xFF, 0x01, 0x02, 0x03, 0x04, 0x05 };
 
 		// tSaveFile (raw buffer) then tLoadFile into tArray.
@@ -1292,14 +1297,16 @@ tTestUnit(File)
 
 		// Non-existent file: tLoadFile and tLoadFileHead both return false.
 		tArray<uint8> noFile;
-		tRequire(!tLoadFile("Data/DefinitelyDoesNotExist12345.bin", noFile));
+		tRequire(!tLoadFile("DefinitelyDoesNotExist12345.bin", noFile));
 		tArray<uint8> noHead;
-		tRequire(!tLoadFileHead("Data/DefinitelyDoesNotExist12345.bin", 4, noHead));
+		tRequire(!tLoadFileHead("DefinitelyDoesNotExist12345.bin", 4, noHead));
 		tString noStr;
-		tRequire(!tLoadFileHead("Data/DefinitelyDoesNotExist12345.bin", 4, noStr));
+		tRequire(!tLoadFileHead("DefinitelyDoesNotExist12345.bin", 4, noStr));
 
 		tDeleteFile(path);
 	}
+
+	tSystemRestoreDir()
 }
 
 

@@ -185,17 +185,28 @@ tEndianness tGetEndianness(tPlatform);						// Returns the native endianness of 
 tEndianness tGetEndianness();								// Performs a test on the current architecture.
 
 // These calls allow endianness swapping of variously sized types.
-template<typename T> inline T tGetSwapEndian(const T&);
-template<typename T> inline void tSwapEndian(T&);
-template<typename T> inline void tSwapEndian(T*, int numItems);
+template<typename T> T tGetSwapEndian(const T&);
+template<typename T> void tSwapEndian(T&);
+template<typename T> void tSwapEndian(T*, int numItems);
 constexpr uint16 tSwapEndian16(uint16);
 constexpr uint32 tSwapEndian32(uint32);
 
-
 // Converts to and from external data representation (XDR/Network) which is big-endian. Does not rely on the
 // PLATFORM define by performing an endianness test.
-template<typename T> inline T tNtoH(T val);
-template<typename T> inline T tHtoN(T val);
+template<typename T> T tNtoH(T val);
+template<typename T> T tHtoN(T val);
+
+// Read big-endian multi-byte values from a byte buffer. The pointer must already be positioned
+// at the start of the value (the caller adds any offset).
+uint8 tReadU8(const uint8* src);
+uint16 tReadU16BE(const uint8* src);
+uint32 tReadU32BE(const uint8* src);
+
+// Write big-endian multi-byte values to a byte buffer. The pointer must already be positioned
+// at the start of the value (the caller adds any offset).
+void tWriteU8(uint8* dst, uint8 v);
+void tWriteU16BE(uint8* dst, uint16 v);
+void tWriteU32BE(uint8* dst, uint32 v);
 
 
 // Implementation below this line.
@@ -293,6 +304,16 @@ template<typename T> inline T tHtoN(T val)
 {
 	return NtoH(val);
 }
+
+
+inline uint8 tReadU8(const uint8* b)																					{ return b[0]; }
+inline uint16 tReadU16BE(const uint8* b)																				{ return (uint16(b[0]) << 8) | uint16(b[1]); }
+inline uint32 tReadU32BE(const uint8* b)																				{ return (uint32(b[0]) << 24) | (uint32(b[1]) << 16) | (uint32(b[2]) << 8) | uint32(b[3]); }
+
+
+inline void tWriteU8(uint8* b, uint8 v)																					{ b[0] = v; }
+inline void tWriteU16BE(uint8* b, uint16 v)																				{ b[0] = uint8(v >> 8); b[1] = uint8(v); }
+inline void tWriteU32BE(uint8* b, uint32 v)																				{ b[0] = uint8(v >> 24); b[1] = uint8(v >> 16); b[2] = uint8(v >> 8); b[3] = uint8(v); }
 
 
 #if defined(PLATFORM_WINDOWS)

@@ -24,32 +24,34 @@
 #pragma once
 #include <Foundation/tString.h>
 #include <Foundation/tArray.h>
-
-
 namespace tImage
 {
-	// The 8 dihedral (orthogonal) orientations of a HEIF / AVIF image.
-	enum class HEIFTransform
-	{
-		Identity,
-		Rotate90CW,
-		Rotate90ACW,
-		Rotate180,
-		FlipH,				// About the vertical midline axis.
-		FlipV,				// About the horizontal midline axis.
-		FlipMainDiag,		// About the line y = x
-		FlipAntiDiag		// About the line y = -x
-	};
 
-	// Rewrites the 'irot' / 'imir' item-property boxes (and the 'iloc' extent offsets) of an in-memory
-	// HEIF / AVIF buffer `in` to apply `transform`. The compressed coded data is untouched, so the
-	// result is byte-perfect and fast. Returns the transformed buffer, or an empty array if `in` is
-	// not a supported HEIF / AVIF container, or `transform` could not be applied (including Identity,
-	// which is a no-op).
-	tArray<uint8> TransformHEIFData(const tArray<uint8>& in, HEIFTransform transform);
 
-	// File convenience: read `file`, apply `transform` via TransformHEIFData, and write the result back
-	// over `file`. Returns true on success. (Provided for tests and for callers that work with files
-	// on disk rather than in-memory buffers.)
-	bool TransformHEIFFile(const tString& file, HEIFTransform transform);
+// The 8 dihedral (orthogonal) orientations of a HEIF / AVIF image.
+enum class HEIFTransform
+{
+	Identity,
+	Rotate90CW,
+	Rotate90ACW,
+	Rotate180,
+	FlipH,				// About the vertical midline axis.
+	FlipV,				// About the horizontal midline axis.
+	FlipMainDiag,		// About the line y = x
+	FlipAntiDiag		// About the line y = -x
+};
+
+// Rewrites the 'irot' / 'imir' item-property boxes (and the 'iloc' extent offsets) of an in-memory
+// HEIF / AVIF buffer `in` to apply `transform`. The compressed coded data is untouched, so the
+// result is byte-perfect and fast. Returns the transformed buffer, or an empty array if `in` is
+// not a supported HEIF / AVIF container, or `transform` could not be applied (including Identity,
+// which is a no-op).
+tArray<uint8> TransformHEIFData(const tArray<uint8>& in, HEIFTransform transform);
+
+// File convenience: read `file`, apply `transform` via TransformHEIFData, and write the result back
+// over `file`. Returns true on success. (Provided for tests and for callers that work with files
+// on disk rather than in-memory buffers.)
+bool TransformHEIFFile(const tString& file, HEIFTransform transform);
+
+
 }
