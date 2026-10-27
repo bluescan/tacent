@@ -1258,11 +1258,13 @@ tTestUnit(File)
 		tRequire(buf.GetNumElements() == 10);
 		bool match = true;
 		for (int i = 0; i < 10; i++)
+		{
 			if (buf[i] != data[i])
 			{
 				match = false;
 				break;
 			}
+		}
 		tRequire(match);
 
 		// tLoadFileHead into tArray (first 4 bytes).
