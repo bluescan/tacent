@@ -24,7 +24,7 @@
 //
 // The modifications to use Tacent datatypes and conversion to C++ are under the ISC licence:
 //
-// Copyright (c) 2020, 2022-2024 Tristan Grimmer.
+// Copyright (c) 2020, 2022-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -50,22 +50,61 @@ bool tImageBMP::Load(const tString& bmpFile)
 	if ((tSystem::tGetFileType(bmpFile) != tSystem::tFileType::BMP) || !tFileExists(bmpFile))
 		return false;
 
-	tFileHandle file = tOpenFile(bmpFile.Chars(), "rb");
-	if (!file)
+	tArray<uint8> data;
+	if (!tLoadFile(bmpFile, data))
 		return false;
+
+	return Load(data);
+}
+
+
+bool tImageBMP::Load(const tArray<uint8>& bmpFileInMemory)
+{
+	// Reads the array directly (no copy); the source array is left unchanged.
+	return Load(bmpFileInMemory.GetElements(), bmpFileInMemory.GetNumElements());
+}
+
+
+bool tImageBMP::Load(tArray<uint8>&& bmpFileInMemory)
+{
+	const bool ok = Load(bmpFileInMemory.GetElements(), bmpFileInMemory.GetNumElements());
+	if (ok)
+		bmpFileInMemory.Clear();
+
+	return ok;
+}
+
+
+bool tImageBMP::Load(const uint8* bmpFileInMemory, int numBytes)
+{
+	// The supplied BMP data is parsed and decoded into pixel data.
+	return Decode(bmpFileInMemory, numBytes);
+}
+
+
+bool tImageBMP::Decode(const uint8* bmpFileInMemory, int numBytes)
+{
+	Clear();
+	if ((numBytes <= 0) || !bmpFileInMemory)
+		return false;
+
+	BMPReader reader;
+	reader.Data		= bmpFileInMemory;
+	reader.NumBytes	= numBytes;
+	reader.Offset	= 0;
 	
 	Header bmpHeader;
 	tStaticAssert(sizeof(bmpHeader) == 14);
-	tReadFile(file, &bmpHeader, 14);
-	if (bmpHeader.FourCC != FourCC)
-	{
-		tCloseFile(file);
+	if (!reader.Read(&bmpHeader, 14))
 		return false;
-	}
+
+	if (bmpHeader.FourCC != FourCC)
+		return false;
 
 	InfoHeader infoHeader;
 	tStaticAssert(sizeof(infoHeader) == 40);
-	tReadFile(file, &infoHeader, 40);
+	if (!reader.Read(&infoHeader, 40))
+		return false;
 
 	// Some sanity-checking.
 	// @todo Support jpeg and png compression.
@@ -77,7 +116,6 @@ bool tImageBMP::Load(const tString& bmpFile)
 		((infoHeader.Compression == 4) || (infoHeader.Compression == 5))
 	)
 	{
-		tCloseFile(file);
 		return false;
 	}
 
@@ -95,72 +133,70 @@ bool tImageBMP::Load(const tString& bmpFile)
 	PaletteColour* palette = nullptr;
 	if (infoHeader.BPP <= 8)
 	{
-		tFileSeek(file, 14 + infoHeader.HeaderSize, tSeekOrigin::Set);
+		reader.Offset = 14 + infoHeader.HeaderSize;
 		if (infoHeader.ColoursUsed == 0)
 		{
 			// Only 1, 4, and 8 bit indexes allowed.
 			if ((infoHeader.BPP != 1) && (infoHeader.BPP != 4) && (infoHeader.BPP != 8))
 			{
-				tCloseFile(file);
 				Clear();			// Clears Width and Height.
 				return false;
 			}
 			infoHeader.ColoursUsed = 1 << infoHeader.BPP;
 		}
 		palette = new PaletteColour[infoHeader.ColoursUsed];
-		tReadFile(file, palette, sizeof(PaletteColour)*infoHeader.ColoursUsed);
+		reader.Read(palette, sizeof(PaletteColour)*infoHeader.ColoursUsed);
 	}
 
 	uint8* buf = new uint8[Width * Height * 4];
 	tStd::tMemset(buf, 0x00, Width*Height * 4);
-	tFileSeek(file, bmpHeader.Offset, tSeekOrigin::Set);
+	reader.Offset = bmpHeader.Offset;
 	PixelFormatSrc = tPixelFormat::R8G8B8A8;
 
 	switch (infoHeader.BPP)
 	{
 		case 32:
-			ReadRow_Pixels32(file, buf);
+			ReadRow_Pixels32(reader, buf);
 			PixelFormatSrc = tPixelFormat::R8G8B8A8;
 			break;
 
 		case 24:
-			ReadRow_Pixels24(file, buf);
+			ReadRow_Pixels24(reader, buf);
 			PixelFormatSrc = tPixelFormat::R8G8B8;
 			break;
 
 		case 16: 
-			ReadRow_Pixels16(file, buf);
+			ReadRow_Pixels16(reader, buf);
 			PixelFormatSrc = tPixelFormat::G3B5A1R5G2;
 			break;
 
 		case 8:
 			tAssert(palette);
 			if (infoHeader.Compression == 1)
-				ReadRow_IndexedRLE8(file, buf, palette);
+				ReadRow_IndexedRLE8(reader, buf, palette);
 			else
-				ReadRow_Indexed8(file, buf, palette);
+				ReadRow_Indexed8(reader, buf, palette);
 			PixelFormatSrc = tPixelFormat::PAL8BIT;
 			break;
 
 		case 4:
 			tAssert(palette);
 			if (infoHeader.Compression == 2)
-				ReadRow_IndexedRLE4(file, buf, palette);
+				ReadRow_IndexedRLE4(reader, buf, palette);
 			else
-				ReadRow_Indexed4(file, buf, palette);
+				ReadRow_Indexed4(reader, buf, palette);
 			PixelFormatSrc = tPixelFormat::PAL4BIT;
 			break;
 
 		case 1:
 			tAssert(palette);
-			ReadRow_Indexed1(file, buf, palette);
+			ReadRow_Indexed1(reader, buf, palette);
 			PixelFormatSrc = tPixelFormat::PAL1BIT;
 			break;
 	}
 
 	Pixels = (tPixel4b*)buf;
 	delete[] palette;
-	tCloseFile(file);
 
 	if (flipped)
 	{
@@ -180,12 +216,12 @@ bool tImageBMP::Load(const tString& bmpFile)
 }
 
 
-void tImageBMP::ReadRow_Pixels32(tFileHandle file, uint8* dest)
+void tImageBMP::ReadRow_Pixels32(BMPReader& reader, uint8* dest)
 {
 	for (int p = 0; p < Width*Height; p++)
 	{
 		uint8 pixel[4];
-		tReadFile(file, pixel, 4);
+		reader.Read(pixel, 4);
 		*(dest++) = pixel[2];
 		*(dest++) = pixel[1];
 		*(dest++) = pixel[0];
@@ -194,7 +230,7 @@ void tImageBMP::ReadRow_Pixels32(tFileHandle file, uint8* dest)
 }
 
 
-void tImageBMP::ReadRow_Pixels24(tFileHandle file, uint8* dest)
+void tImageBMP::ReadRow_Pixels24(BMPReader& reader, uint8* dest)
 {
 	int rowPad = (Width*3 % 4) ? 4 - (Width*3 % 4) : 0;
 	for (int y = 0; y < Height; y++)
@@ -202,7 +238,7 @@ void tImageBMP::ReadRow_Pixels24(tFileHandle file, uint8* dest)
 		for (int x = 0; x < Width; x++)
 		{
 			uint8 pixel[3];
-			tReadFile(file, pixel, 3);
+			reader.Read(pixel, 3);
 			*(dest++) = pixel[2];
 			*(dest++) = pixel[1];
 			*(dest++) = pixel[0];
@@ -210,12 +246,12 @@ void tImageBMP::ReadRow_Pixels24(tFileHandle file, uint8* dest)
 		}
 
 		if (rowPad)
-			tFileSeek(file, rowPad, tSeekOrigin::Current);
+			reader.Seek(rowPad);
 	}
 }
 
 
-void tImageBMP::ReadRow_Pixels16(tFileHandle file, uint8* dest)
+void tImageBMP::ReadRow_Pixels16(BMPReader& reader, uint8* dest)
 {
 	int rowPad = (Width*2 % 4) ? 4 - (Width*2 % 4) : 0;
 	for (int y = 0; y < Height; y++)
@@ -223,7 +259,7 @@ void tImageBMP::ReadRow_Pixels16(tFileHandle file, uint8* dest)
 		for (int x = 0; x < Width; x++)
 		{
 			uint16 pixel;
-			tReadFile(file, &pixel, 2);
+			reader.Read(&pixel, 2);
 			uint16 b = (pixel >> 10)	& 0x1F;
 			uint16 g = (pixel >> 5)		& 0x1F;
 			uint16 r = (pixel >> 0)		& 0x1F;
@@ -234,12 +270,12 @@ void tImageBMP::ReadRow_Pixels16(tFileHandle file, uint8* dest)
 		}
 
 		if (rowPad)
-			tFileSeek(file, rowPad, tSeekOrigin::Current);
+			reader.Seek(rowPad);
 	}
 }
 
 
-void tImageBMP::ReadRow_Indexed8(tFileHandle file, uint8* dest, PaletteColour* palette)
+void tImageBMP::ReadRow_Indexed8(BMPReader& reader, uint8* dest, PaletteColour* palette)
 {
 	int rowPad = (Width % 4) ? 4 - (Width % 4) : 0;
 	for (int y = 0; y < Height; y++)
@@ -247,19 +283,19 @@ void tImageBMP::ReadRow_Indexed8(tFileHandle file, uint8* dest, PaletteColour* p
 		for (int x = 0; x < Width; x++)
 		{
 			uint8 index;
-			tReadFile(file, &index, 1);
+			reader.Read(&index, 1);
 			*(dest++) = palette[index].R;
 			*(dest++) = palette[index].G;
 			*(dest++) = palette[index].B;
 			*(dest++) = 0xFF;
 		}
 		if (rowPad)
-			tFileSeek(file, rowPad, tSeekOrigin::Current);
+			reader.Seek(rowPad);
 	}
 }
 
 
-void tImageBMP::ReadRow_Indexed4(tFileHandle file, uint8* dest, PaletteColour* palette)
+void tImageBMP::ReadRow_Indexed4(BMPReader& reader, uint8* dest, PaletteColour* palette)
 {
 	int size = (Width+1) / 2;
 	int rowPad = (size % 4) ? 4 - (size % 4) : 0;
@@ -267,7 +303,7 @@ void tImageBMP::ReadRow_Indexed4(tFileHandle file, uint8* dest, PaletteColour* p
 
 	for (int y = 0; y < Height; y++)
 	{
-		tReadFile(file, (uint8*)rowStride, size);
+		reader.Read((uint8*)rowStride, size);
 		for (int x = 0; x < Width; x++)
 		{
 			uint8 byte = rowStride[x/2];
@@ -278,12 +314,12 @@ void tImageBMP::ReadRow_Indexed4(tFileHandle file, uint8* dest, PaletteColour* p
 			*(dest++) = 0xFF;
 		}
 		if (rowPad)
-			tFileSeek(file, rowPad, tSeekOrigin::Current);
+			reader.Seek(rowPad);
 	}
 }
 
 
-void tImageBMP::ReadRow_Indexed1(tFileHandle file, uint8* dest, PaletteColour* palette)
+void tImageBMP::ReadRow_Indexed1(BMPReader& reader, uint8* dest, PaletteColour* palette)
 {
 	int size = (Width + 7) / 8;
 	int rowPad = (size % 4) ? 4 - (size % 4) : 0;
@@ -291,7 +327,7 @@ void tImageBMP::ReadRow_Indexed1(tFileHandle file, uint8* dest, PaletteColour* p
 	
 	for (int y = 0; y < Height; y++)
 	{
-		tReadFile(file, (uint8*)rowStride, size);
+		reader.Read((uint8*)rowStride, size);
 		for (int x = 0; x < Width; x++)
 		{
 			int bit = (x % 8) + 1;
@@ -304,12 +340,12 @@ void tImageBMP::ReadRow_Indexed1(tFileHandle file, uint8* dest, PaletteColour* p
 			*(dest++) = 0xFF;
 		}
 		if (rowPad)
-			tFileSeek(file, rowPad, tSeekOrigin::Current);
+			reader.Seek(rowPad);
 	}
 }
 
 
-void tImageBMP::ReadRow_IndexedRLE8(tFileHandle file, uint8* dest, PaletteColour* palette)
+void tImageBMP::ReadRow_IndexedRLE8(BMPReader& reader, uint8* dest, PaletteColour* palette)
 {
 	uint8 byte = 0;
 	int currentLine = 0;
@@ -318,10 +354,10 @@ void tImageBMP::ReadRow_IndexedRLE8(tFileHandle file, uint8* dest, PaletteColour
 	bool keepReading = true;
 	while (keepReading)
 	{
-		byte = tGetc(file);
+		byte = reader.Getc();
 		if (byte)
 		{
-			int index = tGetc(file);
+			int index = reader.Getc();
 			for (int i = 0; i < byte; i++)
 			{
 				*d++ = palette[index].R;
@@ -332,7 +368,7 @@ void tImageBMP::ReadRow_IndexedRLE8(tFileHandle file, uint8* dest, PaletteColour
 		}
 		else
 		{
-			byte = tGetc(file);
+			byte = reader.Getc();
 			switch (byte) 
 			{
 				case 0:
@@ -346,8 +382,8 @@ void tImageBMP::ReadRow_IndexedRLE8(tFileHandle file, uint8* dest, PaletteColour
 
 				case 2:
 				{
-					int xoffset = tGetc(file);
-					int yoffset = tGetc(file);
+					int xoffset = reader.Getc();
+					int yoffset = reader.Getc();
 					currentLine += yoffset;
 					d += yoffset*Width*4 + xoffset*4;
 					break;
@@ -357,14 +393,14 @@ void tImageBMP::ReadRow_IndexedRLE8(tFileHandle file, uint8* dest, PaletteColour
 				{
 					for (int i = 0; i < byte; i++)
 					{
-						int index = tGetc(file);
+						int index = reader.Getc();
 						*d++ = palette[index].R;
 						*d++ = palette[index].G;
 						*d++ = palette[index].B;
 						*d++ = 0xFF;
 					}
 					if (byte % 2)
-						tFileSeek(file, 1, tSeekOrigin::Current);
+						reader.Seek(1);
 					break;
 				}
 			}
@@ -375,17 +411,17 @@ void tImageBMP::ReadRow_IndexedRLE8(tFileHandle file, uint8* dest, PaletteColour
 }
 
 
-void tImageBMP::ReadRow_IndexedRLE4(tFileHandle file, uint8* dest, PaletteColour* palette)
+void tImageBMP::ReadRow_IndexedRLE4(BMPReader& reader, uint8* dest, PaletteColour* palette)
 {
 	int currentLine = 0;
 	uint8* d = dest;
 	bool keepReading = true;
 	while (keepReading)
 	{
-		uint8 byte1 = tGetc(file);
+		uint8 byte1 = reader.Getc();
 		if (byte1)
 		{
-			uint8 byte2 = tGetc(file);
+			uint8 byte2 = reader.Getc();
 			uint8 index1 = byte2 >> 4;
 			uint8 index2 = byte2 & 0x0F;
 			for (int i = 0; i < (byte1 / 2); i++)
@@ -410,7 +446,7 @@ void tImageBMP::ReadRow_IndexedRLE4(tFileHandle file, uint8* dest, PaletteColour
 		}
 		else // Absolute mode.
 		{	
-			uint8 byte2 = tGetc(file);
+			uint8 byte2 = reader.Getc();
 			switch (byte2)
 			{
 				case 0:
@@ -424,8 +460,8 @@ void tImageBMP::ReadRow_IndexedRLE4(tFileHandle file, uint8* dest, PaletteColour
 
 				case 2:
 				{
-					int xoffset = tGetc(file);
-					int yoffset = tGetc(file);
+					int xoffset = reader.Getc();
+					int yoffset = reader.Getc();
 					currentLine += yoffset;
 					d += yoffset*Width*4 + xoffset*4;
 					break;
@@ -434,7 +470,7 @@ void tImageBMP::ReadRow_IndexedRLE4(tFileHandle file, uint8* dest, PaletteColour
 				default:
 					for (int i = 0; i < (byte2/2); i++)
 					{
-						byte1 = tGetc(file);
+						byte1 = reader.Getc();
 						uint8 index1 = byte1 >> 4;
 						*(d++) = palette[index1].R;
 						*(d++) = palette[index1].G;
@@ -449,7 +485,7 @@ void tImageBMP::ReadRow_IndexedRLE4(tFileHandle file, uint8* dest, PaletteColour
 					}
 					if (byte2 % 2)
 					{
-						byte1 = tGetc(file);
+						byte1 = reader.Getc();
 						uint8 index = byte1 >> 4;
 						*(d++) = palette[index].R;
 						*(d++) = palette[index].G;
@@ -457,7 +493,7 @@ void tImageBMP::ReadRow_IndexedRLE4(tFileHandle file, uint8* dest, PaletteColour
 						*(d++) = 0x0F;
 					}
 					if (((byte2 + 1)/2) % 2)
-						tFileSeek(file, 1, tSeekOrigin::Current);
+						reader.Seek(1);
 					break;
 			}
 		}
@@ -651,3 +687,4 @@ tPixel4b* tImageBMP::StealPixels()
 
 
 }
+

@@ -4,7 +4,7 @@
 // file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if
 // an HDR file is specified. After the array is stolen the tImageHDR is invalid. This is purely for performance.
 //
-// Copyright (c) 2020, 2022-2025 Tristan Grimmer.
+// Copyright (c) 2020, 2022-2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -42,6 +42,7 @@
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
 #include <Image/tBaseImage.h>
+#include <Foundation/tArray.h>
 namespace tImage
 {
 
@@ -59,10 +60,19 @@ public:
 
 	// Creates an invalid tImageHDR. You must call Load manually.
 	tImageHDR()																											{ }
+
+	// Creates from an HDR file on the filesystem.
 	tImageHDR(const tString& hdrFile, const LoadParams& loadParams = LoadParams())										{ Load(hdrFile, loadParams); }
 
-	// hdrFileInMemory can be deleted after this runs.
-	tImageHDR(uint8* hdrFileInMemory, int numBytes, const LoadParams& loadParams = LoadParams())						{ Load(hdrFileInMemory, numBytes, loadParams); }
+	// The supplied HDR data is parsed and decoded into pixel data.
+	tImageHDR(const tArray<uint8>& hdrMem, const LoadParams& loadParams = LoadParams())									{ Load(hdrMem, loadParams); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can still use it.
+	tImageHDR(tArray<uint8>&& hdrMem, const LoadParams& loadParams = LoadParams())										{ Load(tStd::rVal(hdrMem), loadParams); }
+
+	// The supplied HDR data is parsed and decoded into pixel data.
+	tImageHDR(const uint8* hdrFileInMemory, int numBytes, const LoadParams& loadParams = LoadParams())					{ Load(hdrFileInMemory, numBytes, loadParams); }
 
 	// This one sets from a supplied pixel array. It just reads the data (or steals the array if steal set).
 	tImageHDR(tPixel4b* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
@@ -77,7 +87,15 @@ public:
 
 	// Clears the current tImageHDR before loading. If false returned object is invalid.
 	bool Load(const tString& hdrFile, const LoadParams& = LoadParams());
-	bool Load(uint8* hdrFileInMemory, int numBytes, const LoadParams& = LoadParams());
+
+	// Reads the array (the source is left unchanged).
+	bool Load(const tArray<uint8>& hdrMem, const LoadParams& = LoadParams());
+
+	// Consumes the array only on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& hdrMem, const LoadParams& = LoadParams());
+
+	// The supplied HDR data is parsed and decoded into pixel data.
+	bool Load(const uint8* hdrFileInMemory, int numBytes, const LoadParams& = LoadParams());
 
 	// This one sets from a supplied pixel array.
 	bool Set(tPixel4b* pixels, int width, int height, bool steal = false) override;
@@ -102,22 +120,29 @@ public:
 	tPixel4b* GetPixels() const																							{ return Pixels; }
 
 private:
+	// Decodes the in-memory HDR bytes. Reads them (never mutates the caller's buffer): the small header prefix is
+	// copied out to normalise/parse, and the pixel data is read directly from the original buffer.
+	bool Decode(const uint8* hdrFileInMemory, int numBytes, const LoadParams& loadParams);
 	bool LegacyReadRadianceColours(tPixel4b* scanline, int length);		// Older hdr files use this scanline format.
 	bool ReadRadianceColours(tPixel4b* scanline, int length);			// Most hdr files use the new scanline format. This will call the old as necessary.
 	bool ConvertRadianceToGammaCorrected(tPixel4b* scan, int len);
 	static void AdjustExposure(tPixel4b* scan, int len, int adjust);
 
 	void PutB(int v)																									{ *WriteP++ = uint8(v); }
-	uint8 GetB()																										{ return *ReadP++; }
-	void UngetB(int v)																									{ *(--ReadP) = v; }
+	uint8 GetB()																										{ if (haveUnread) { haveUnread = false; return unreadByte; } return *ReadP++; }
+	void UngetB(int v)																									{ unreadByte = uint8(v); haveUnread = true; }
 
 	int Width							= 0;
 	int Height							= 0;
 	tPixel4b* Pixels					= nullptr;
 
 	// Read and write pointers used during processing.
-	uint8* ReadP						= nullptr;
+	const uint8* ReadP					= nullptr;
 	uint8* WriteP						= nullptr;
+
+	// One-byte push-back so UngetB never has to write into the (const) caller's buffer.
+	bool haveUnread						= false;
+	uint8 unreadByte					= 0;
 
 	// While it would be more efficient to share these tables between instances, we need thread safety.
 	void SetupGammaTables(float gamma);
@@ -157,3 +182,4 @@ inline void tImageHDR::Clear()
 
 
 }
+

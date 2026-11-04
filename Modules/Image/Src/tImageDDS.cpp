@@ -4,7 +4,7 @@
 // the data into tLayers, optionally decompressing them. Saving is not implemented yet. The layers may be 'stolen' from
 // a tImageDDS so that excessive memcpys are avoided. After they are stolen the tImageDDS is invalid.
 //
-// Copyright (c) 2006, 2017, 2019, 2020, 2022-2024 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2020, 2022-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -856,24 +856,52 @@ void tDDS::GetFormatInfo_FromComponentMasks(tPixelFormat& format, tColourProfile
 }
 
 
-tImageDDS::tImageDDS()
+bool tImageDDS::Load(const tString& ddsFile, const LoadParams& loadParams)
 {
-	tStd::tMemset(Layers, 0, sizeof(Layers));
+	Clear();
+	Filename = ddsFile;
+	if (tSystem::tGetFileType(ddsFile) != tSystem::tFileType::DDS)
+	{
+		SetStateBit(StateBit::Fatal_IncorrectFileType);
+		return false;
+	}
+
+	if (!tSystem::tFileExists(ddsFile))
+	{
+		SetStateBit(StateBit::Fatal_FileDoesNotExist);
+		return false;
+	}
+
+	tArray<uint8> data;
+	if (!tSystem::tLoadFile(ddsFile, data))
+		return false;
+
+	return Load(data, loadParams);
 }
 
 
-tImageDDS::tImageDDS(const tString& ddsFile, const LoadParams& loadParams) :
-	Filename(ddsFile)
+bool tImageDDS::Load(const tArray<uint8>& ddsMem, const LoadParams& params)
 {
-	tStd::tMemset(Layers, 0, sizeof(Layers));
-	Load(ddsFile, loadParams);
+	// Read the array directly (no copy); the source array is left unchanged.
+	return Load(ddsMem.GetElements(), ddsMem.GetNumElements(), params);
 }
 
 
-tImageDDS::tImageDDS(const uint8* ddsFileInMemory, int numBytes, const LoadParams& loadParams)
+bool tImageDDS::Load(tArray<uint8>&& ddsMem, const LoadParams& params)
 {
-	tStd::tMemset(Layers, 0, sizeof(Layers));
-	Load(ddsFileInMemory, numBytes, loadParams);
+	// Hand the array's bytes directly to the decoder (no copy). Consume (clear) the array only on success.
+	const bool ok = Load(ddsMem.GetElements(), ddsMem.GetNumElements(), params);
+	if (ok)
+		ddsMem.Clear();
+
+	return ok;
+}
+
+
+bool tImageDDS::Load(const uint8* ddsMem, int numBytes, const LoadParams& loadParams)
+{
+	// The supplied DDS data is parsed and decoded into pixel data.
+	return Decode(ddsMem, numBytes, loadParams);
 }
 
 
@@ -1078,33 +1106,9 @@ int tImageDDS::GetCubemapLayers(tList<tLayer> layerLists[tFaceIndex_NumFaces], u
 }
 
 
-bool tImageDDS::Load(const tString& ddsFile, const LoadParams& loadParams)
+bool tImageDDS::Decode(const uint8* ddsData, int ddsDataSize, const LoadParams& paramsIn)
 {
-	Clear();
-	Filename = ddsFile;
-	if (tSystem::tGetFileType(ddsFile) != tSystem::tFileType::DDS)
-	{
-		SetStateBit(StateBit::Fatal_IncorrectFileType);
-		return false;
-	}
 
-	if (!tSystem::tFileExists(ddsFile))
-	{
-		SetStateBit(StateBit::Fatal_FileDoesNotExist);
-		return false;
-	}
-
-	int ddsSizeBytes = 0;
-	uint8* ddsData = (uint8*)tSystem::tLoadFile(ddsFile, 0, &ddsSizeBytes);
-	bool success = Load(ddsData, ddsSizeBytes, loadParams);
-	delete[] ddsData;
-
-	return success;
-}
-
-
-bool tImageDDS::Load(const uint8* ddsData, int ddsDataSize, const LoadParams& paramsIn)
-{
 	Clear();
 	LoadParams params(paramsIn);
 
@@ -1591,3 +1595,4 @@ tStaticAssert(int(tImageDDS::StateBit::NumStateBits) <= int(tImageDDS::StateBit:
 
 
 }
+

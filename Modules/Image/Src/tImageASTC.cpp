@@ -4,7 +4,7 @@
 // stored in a tLayer. If decode was requested the layer will store raw pixel data. The layer may be 'stolen'. IF it
 // is the tImageASTC is invalid afterwards. This is purely for performance.
 //
-// Copyright (c) 2022-2024 Tristan Grimmer.
+// Copyright (c) 2022-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -76,16 +76,40 @@ bool tImageASTC::Load(const tString& astcFile, const LoadParams& params)
 	if (!tSystem::tFileExists(astcFile))
 		return false;
 
-	int numBytes = 0;
-	uint8* astcFileInMemory = tSystem::tLoadFile(astcFile, nullptr, &numBytes);
-	bool success = Load(astcFileInMemory, numBytes, params);
-	delete[] astcFileInMemory;
+	// Read the file directly into a tArray (no raw-buffer intermediate) and move it into the canonical (rvalue) Load.
+	tArray<uint8> data;
+	if (!tSystem::tLoadFile(astcFile, data))
+		return false;
 
-	return success;
+	return Load(data, params);
 }
 
 
-bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams& paramsIn)
+bool tImageASTC::Load(const tArray<uint8>& data, const LoadParams& params)
+{
+	// Reads the array directly (no copy); the source array is left unchanged.
+	return Load(data.GetElements(), data.GetNumElements(), params);
+}
+
+
+bool tImageASTC::Load(tArray<uint8>&& data, const LoadParams& params)
+{
+	const bool ok = Load(data.GetElements(), data.GetNumElements(), params);
+	if (ok)
+		data.Clear();
+
+	return ok;
+}
+
+
+bool tImageASTC::Load(const uint8* astcInMemory, int numBytes, const LoadParams& params)
+{
+	// The supplied ASTC data is parsed and decoded into pixel data.
+	return Decode(astcInMemory, numBytes, params);
+}
+
+
+bool tImageASTC::Decode(const uint8* astcInMemory, int numBytes, const LoadParams& paramsIn)
 {
 	Clear();
 

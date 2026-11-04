@@ -3,7 +3,7 @@
 // This knows how to load and save gifs. It knows the details of the gif file format and loads the data into multiple
 // tPixel arrays, one for each frame (gifs may be animated). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020-2024 Tristan Grimmer.
+// Copyright (c) 2020-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -126,16 +126,39 @@ bool tImageGIF::Load(const tString& gifFile)
 	if (!tFileExists(gifFile))
 		return false;
 
-	int numBytes = 0;
-	uint8* gifFileInMemory = tLoadFile(gifFile, nullptr, &numBytes);
-	bool success = Load(gifFileInMemory, numBytes);
-	delete[] gifFileInMemory;
+	tArray<uint8> data;
+	if (!tLoadFile(gifFile, data))
+		return false;
 
-	return success;
+	return Load(data);
+}
+
+
+bool tImageGIF::Load(const tArray<uint8>& data)
+{
+	// Reads the array directly (no copy); the source array is left unchanged.
+	return Load(data.GetElements(), data.GetNumElements());
+}
+
+
+bool tImageGIF::Load(tArray<uint8>&& data)
+{
+	const bool ok = Load(data.GetElements(), data.GetNumElements());
+	if (ok)
+		data.Clear();
+
+	return ok;
 }
 
 
 bool tImageGIF::Load(const uint8* gifFileInMemory, int numBytes)
+{
+	// The supplied GIF data is parsed and decoded into pixel data.
+	return Decode(gifFileInMemory, numBytes);
+}
+
+
+bool tImageGIF::Decode(const uint8* gifFileInMemory, int numBytes)
 {
 	Clear();
 	if ((numBytes <= 0) || !gifFileInMemory)
@@ -448,3 +471,4 @@ bool tImageGIF::Save(const tString& gifFile, const SaveParams& saveParams) const
 
 
 }
+

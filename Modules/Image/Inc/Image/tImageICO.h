@@ -8,7 +8,7 @@
 // c) Supports widths and heights of 256.
 // Victor Laskin's header/licence in the original ico.cpp is shown below.
 //
-// Copyright (c) 2020-2024 Tristan Grimmer.
+// Copyright (c) 2020-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -31,6 +31,7 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 #pragma once
+#include <Foundation/tArray.h>
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
@@ -45,7 +46,19 @@ class tImageICO : public tBaseImage
 public:
 	// Creates an invalid tImageICO. You must call Load manually.
 	tImageICO()																											{ }
+
+	// Creates from an ICO file on the filesystem.
 	tImageICO(const tString& icoFile)																					{ Load(icoFile); }
+
+	// The supplied ICO data is parsed and decoded into pixel data.
+	tImageICO(const tArray<uint8>& icoFileInMemory)																		{ Load(icoFileInMemory); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can still use it.
+	tImageICO(tArray<uint8>&& icoFileInMemory)																			{ Load(tStd::rVal(icoFileInMemory)); }
+
+	// The supplied ICO data is parsed and decoded into pixel data.
+	tImageICO(const uint8* icoFileInMemory, int numBytes)																{ Load(icoFileInMemory, numBytes); }
 
 	// Creates a tImageICO from a bunch of frames. If steal is true, the srcFrames will be empty after.
 	tImageICO(tList<tFrame>& srcFrames, bool stealFrames)																{ Set(srcFrames, stealFrames); }
@@ -64,6 +77,14 @@ public:
 
 	// Clears the current tImageICO before loading. If false returned object is invalid.
 	bool Load(const tString& icoFile);
+
+	// Reads the array (the source is left unchanged).
+	bool Load(const tArray<uint8>& icoFileInMemory);
+
+	// Consumes the array only on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& icoFileInMemory);
+
+	// The supplied ICO data is parsed and decoded into pixel data.
 	bool Load(const uint8* icoFileInMemory, int numBytes);
 
 	// This one sets from a supplied pixel array.
@@ -97,6 +118,9 @@ public:
 	tFrame* GetFrame(int frameNum);
 
 private:
+	// Decodes the in-memory ICO bytes. Read-only: never mutates the caller's buffer.
+	bool Decode(const uint8* icoFileInMemory, int numBytes);
+
 	// Different frames of an ICO file may have different pixel formats. This function uses bpp as the metric to find
 	// the 'best' one used in all frames. It uses this function to set PixelFormatSrc.
 	tPixelFormat GetBestSrcPixelFormat() const;
@@ -171,3 +195,4 @@ inline tPixelFormat tImageICO::GetBestSrcPixelFormat() const
 
 
 }
+

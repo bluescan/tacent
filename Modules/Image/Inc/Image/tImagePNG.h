@@ -15,11 +15,12 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tArray.h>
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
-#include <Image/tPixelFormat.h>
-#include <Image/tMetaData.h>
-#include <Image/tBaseImage.h>
+#include "Image/tPixelFormat.h"
+#include "Image/tMetaData.h"
+#include "Image/tBaseImage.h"
 namespace tImage
 {
 
@@ -59,9 +60,18 @@ public:
 
 	// Creates an invalid tImagePNG. You must call Load manually.
 	tImagePNG()																											{ }
+
+	// Creates from PNG file on filesystem.
 	tImagePNG(const tString& pngFile, const LoadParams& params = LoadParams())											{ Load(pngFile, params); }
 
-	// The data is copied out of pngFileInMemory. Go ahead and delete after if you want.
+	// The supplied PNG data is parsed and decoded into pixel data.
+	tImagePNG(const tArray<uint8>& pngFileInMemory, const LoadParams& params = LoadParams())							{ Load(pngFileInMemory, params); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can still use it.
+	tImagePNG(tArray<uint8>&& pngFileInMemory, const LoadParams& params = LoadParams())									{ Load(tStd::rVal(pngFileInMemory), params); }
+
+	// The supplied PNG data is parsed and decoded into pixel data.
 	tImagePNG(const uint8* pngFileInMemory, int numBytes, const LoadParams& params = LoadParams())						{ Load(pngFileInMemory, numBytes, params); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
@@ -80,8 +90,16 @@ public:
 	virtual ~tImagePNG()																								{ Clear(); }
 
 	// Clears the current tImagePNG before loading. Returns success. If false returned, object is invalid.
-	bool Load(const tString& pngFile, const LoadParams& params = LoadParams());
-	bool Load(const uint8* pngFileInMemory, int numBytes, const LoadParams& params = LoadParams());
+	bool Load(const tString& pngFile, const LoadParams& = LoadParams());
+
+	// Reads the array (the source is left unchanged).
+	bool Load(const tArray<uint8>& pngFileInMemory, const LoadParams& = LoadParams());
+
+	// Consumes the array only on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& pngFileInMemory, const LoadParams& = LoadParams());
+
+	// The supplied PNG data is parsed and decoded into pixel data.
+	bool Load(const uint8* pngFileInMemory, int numBytes, const LoadParams& = LoadParams());
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
@@ -153,7 +171,10 @@ public:
 	tMetaData MetaData;
 
 private:
-	bool PopulateMetaData(const uint8* pngFileInMemory, int numBytes);
+	// Decodes the in-memory PNG bytes (kept tArray-based because the SPNG metadata path needs the array). Read-only.
+	bool Decode(const uint8* pngFileInMemory, int numBytes, const LoadParams& paramsIn);
+
+	bool PopulateMetaData(const uint8* data, int numBytes);
 	bool ExtractXMPFromTextChunk(const uint8* chunkType, const uint8* payload, int chunkLength, const uint8** xmpData, int* xmpLength) const;
 	int Width						= 0;
 	int Height						= 0;
@@ -181,3 +202,4 @@ inline void tImagePNG::Clear()
 
 
 }
+

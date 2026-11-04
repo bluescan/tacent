@@ -36,28 +36,51 @@ bool tImageSVG::Load(const tString& svgFile, const LoadParams& params)
 	if (!tSystem::tFileExists(svgFile))
 		return false;
 
-	int numBytes = 0;
-	uint8* svgFileInMemory = tSystem::tLoadFile(svgFile, nullptr, &numBytes);
-	bool success = Load(svgFileInMemory, numBytes, params);
-	delete[] svgFileInMemory;
+	tArray<uint8> data;
+	if (!tSystem::tLoadFile(svgFile, data))
+		return false;
 
-	return success;
+	return Load(data, params);
 }
 
 
-bool tImageSVG::Load(const uint8* svgFileInMemory, int numBytes, const LoadParams& params)
+bool tImageSVG::Load(const tArray<uint8>& svgFileInMemory, const LoadParams& params)
+{
+	// Read the array (the source is left unchanged).
+	return Decode(svgFileInMemory.GetElements(), svgFileInMemory.GetNumElements(), params);
+}
+
+
+bool tImageSVG::Load(tArray<uint8>&& svgFileInMemory, const LoadParams& params)
+{
+	bool ok = Decode(svgFileInMemory.GetElements(), svgFileInMemory.GetNumElements(), params);
+	if (ok)
+		svgFileInMemory.Clear();
+
+	return ok;
+}
+
+
+bool tImageSVG::Load(const uint8* svgFileInMemory, int numBytes, const LoadParams& loadParams)
+{
+	// The supplied SVG data is parsed and decoded into pixel data.
+	return Decode(svgFileInMemory, numBytes, loadParams);
+}
+
+
+bool tImageSVG::Decode(const uint8* data, int numBytes, const LoadParams& params)
 {
 	Clear();
-	if ((numBytes <= 0) || !svgFileInMemory)
+	if ((numBytes <= 0) || !data)
 		return false;
 
 	// Extract XMP metadata from the SVG document. Failing to parse it is not a load failure -- the image may still
 	// rasterize perfectly (most SVGs carry no metadata at all).
-	PopulateMetaData(svgFileInMemory, numBytes);
+	PopulateMetaData(data, numBytes);
 
 	// Parse the SVG document from memory. loadFromData returns a unique_ptr that owns the document, or nullptr if the
 	// data is not a valid SVG.
-	auto document = lunasvg::Document::loadFromData(reinterpret_cast<const char*>(svgFileInMemory), (size_t)numBytes);
+	auto document = lunasvg::Document::loadFromData(reinterpret_cast<const char*>(data), (size_t)numBytes);
 	if (!document)
 		return false;
 

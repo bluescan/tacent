@@ -4,7 +4,7 @@
 // tPicture's constructor if a targa file is specified. After the array is stolen the tImageTGA is invalid. This is
 // purely for performance.
 //
-// Copyright (c) 2006, 2017, 2019, 2020, 2022-2024 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2020, 2022-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -15,6 +15,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tArray.h>
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
@@ -54,9 +55,18 @@ public:
 
 	// Creates an invalid tImageTGA. You must call Load or Set manually.
 	tImageTGA()																											{ }
+
+	// Creates from a TGA file on the filesystem.
 	tImageTGA(const tString& tgaFile, const LoadParams& params = LoadParams())											{ Load(tgaFile, params); }
 
-	// The data is copied out of tgaFileInMemory. Go ahead and delete after if you want.
+	// The supplied TGA data is parsed and decoded into pixel data.
+	tImageTGA(const tArray<uint8>& tgaFileInMemory, const LoadParams& params = LoadParams())							{ Load(tgaFileInMemory, params); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can still use it.
+	tImageTGA(tArray<uint8>&& tgaFileInMemory, const LoadParams& params = LoadParams())									{ Load(tStd::rVal(tgaFileInMemory), params); }
+
+	// The supplied TGA data is parsed and decoded into pixel data.
 	tImageTGA(const uint8* tgaFileInMemory, int numBytes, const LoadParams& params = LoadParams())						{ Load(tgaFileInMemory, numBytes, params); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
@@ -74,8 +84,16 @@ public:
 	// Clears the current tImageTGA before loading. 16, 24, or 32 bit targas can be loaded. The tga may be uncompressed
 	// or RLE compressed. Other compression methods are rare and unsupported. Returns success. If false returned,
 	// object is invalid.
-	bool Load(const tString& tgaFile, const LoadParams& params = LoadParams());
-	bool Load(const uint8* tgaFileInMemory, int numBytes, const LoadParams& params = LoadParams());
+	bool Load(const tString& tgaFile, const LoadParams& = LoadParams());
+
+	// Reads the array (the source is left unchanged).
+	bool Load(const tArray<uint8>& tgaFileInMemory, const LoadParams& = LoadParams());
+
+	// Consumes the array only on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& tgaFileInMemory, const LoadParams& = LoadParams());
+
+	// The supplied TGA data is parsed and decoded into pixel data.
+	bool Load(const uint8* tgaFileInMemory, int numBytes, const LoadParams& = LoadParams());
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
@@ -139,6 +157,9 @@ private:
 	bool SaveCompressed(const tString& tgaFile, tFormat) const;
 	void ReadColourBytes(tColour4b& dest, const uint8* src, int bitDepth, bool alphaOpacity);
 
+	// Decodes the in-memory TGA bytes. Read-only: never mutates the caller's buffer.
+	bool Decode(const uint8* tgaFileInMemory, int numBytes, const LoadParams& params);
+
 	int Width					= 0;
 	int Height					= 0;
 	tPixel4b* Pixels			= nullptr;
@@ -160,6 +181,4 @@ inline void tImageTGA::Clear()
 
 
 }
-
-
 

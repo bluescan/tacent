@@ -20,12 +20,13 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tArray.h>
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
-#include <Image/tPixelFormat.h>
-#include <Image/tFrame.h>
-#include <Image/tMetaData.h>
-#include <Image/tBaseImage.h>
+#include "Image/tPixelFormat.h"
+#include "Image/tFrame.h"
+#include "Image/tMetaData.h"
+#include "Image/tBaseImage.h"
 
 
 // Opaque libjxl decoder handle (defined in the global namespace by <jxl/decode.h>). It is forward-declared here so that
@@ -42,9 +43,18 @@ class tImageJXL : public tBaseImage
 public:
 	// Creates an invalid tImageJXL. You must call Load manually.
 	tImageJXL()																											{ }
+
+	// Creates from a JXL file on the filesystem.
 	tImageJXL(const tString& jxlFile)																					{ Load(jxlFile); }
 
-	// The data is copied out of jxlFileInMemory. Go ahead and delete[] after if you want.
+	// The supplied JXL data is parsed and decoded into pixel data.
+	tImageJXL(const tArray<uint8>& jxlFileInMemory)																		{ Load(jxlFileInMemory); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can still use it.
+	tImageJXL(tArray<uint8>&& jxlFileInMemory)																			{ Load(tStd::rVal(jxlFileInMemory)); }
+
+	// The supplied JXL data is parsed and decoded into pixel data.
 	tImageJXL(const uint8* jxlFileInMemory, int numBytes)																{ Load(jxlFileInMemory, numBytes); }
 
 	// Creates a tImageJXL from a bunch of frames. If steal is true, the srcFrames will be empty after.
@@ -62,7 +72,16 @@ public:
 
 	virtual ~tImageJXL()																								{ Clear(); }
 
+	// Loads from a JXL file on the filesystem.
 	bool Load(const tString& jxlFile);
+
+	// Reads the array (the source is left unchanged).
+	bool Load(const tArray<uint8>& jxlFileInMemory);
+
+	// Consumes the array only on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& jxlFileInMemory);
+
+	// The supplied JXL data is parsed and decoded into pixel data.
 	bool Load(const uint8* jxlFileInMemory, int numBytes);
 
 	// Parameters for saving to a JXL file.
@@ -70,7 +89,6 @@ public:
 	{
 		SaveParams()																									{ Reset(); }
 		SaveParams(const SaveParams& src)																				: Lossless(src.Lossless), Distance(src.Distance), OverrideFrameDuration(src.OverrideFrameDuration) { }
-
 		SaveParams& operator=(const SaveParams& src)																	{ Lossless = src.Lossless; Distance = src.Distance; OverrideFrameDuration = src.OverrideFrameDuration; return *this; }
 
 		void Reset()																									{ Lossless = false; Distance = 1.0f; OverrideFrameDuration = -1; }
@@ -155,17 +173,25 @@ public:
 	tList<tFrame> Frames;
 
 private:
+	// The single workhorse behind every in-memory Load: clears any previous image, decodes the codestream (a still image
+	// or an animation, filling Frames in order), extracts the EXIF / XMP metadata (best-effort), and sets PixelFormat /
+	// ColourProfile. Returns true if at least one frame was decoded. Read-only: never mutates the caller's buffer.
+	bool Decode(const uint8* data, int numBytes);
+
 	// Decodes the codestream (a still image, or an animation of many frames) and fills Frames in order. libjxl
 	// coalesces each displayed frame (coalescing is on by default) so it arrives as a full, alpha-blended canvas that
 	// maps onto a single tFrame. Each frame's Duration is computed from the codestream animation timescale
 	// (ticks-per-second) and the frame's own duration (in ticks). libjxl emits rows top-to-bottom; Tacent stores them
 	// bottom-up (matching PNG/TGA), so the rows are reversed before each frame is appended. Returns true if at least
 	// one frame was decoded.
+	// The frame-decoding helper called by Decode (it does not clear the object or extract metadata). Read-only: never
+	// mutates the caller's buffer.
 	bool DecodeFrames(const uint8* data, int numBytes);
 
 	// Best-effort extraction of the EXIF and XMP boxes. A failure here is NOT a load failure -- the image may still
 	// have decoded fine. Returns true if at least one metadata segment was recognized and parsed into MetaData.
-	bool PopulateMetaData(const uint8* data, int numBytes);
+	// Pass 2 of the JXL load: extracts EXIF / XMP metadata. Read-only: never mutates the caller's buffer.
+	bool PopulateMetaData(const uint8* bytes, int numBytes);
 
 	// Walks the ISOBMFF container boxes of a libjxl decoder (which must be subscribed to JXL_DEC_BOX) and appends the
 	// bare EXIF-TIFF / raw XMP XML segments it finds to exifSegments / xmpSegments. Each segment's UserData records the
@@ -185,6 +211,8 @@ private:
 
 
 // Implementation only below.
+
+
 inline bool tImageJXL::IsOpaque() const
 {
 	if (Frames.GetNumItems() < 1)
@@ -262,3 +290,4 @@ inline void tImageJXL::Clear()
 
 
 }
+

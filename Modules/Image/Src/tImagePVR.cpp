@@ -5,7 +5,7 @@
 // tImagePVR so that excessive memcpys are avoided. After they are stolen the tImagePVR is invalid. The tImagePVR
 // class supports V1, V2, and V3 pvr files.
 //
-// Copyright (c) 2023, 2024 Tristan Grimmer.
+// Copyright (c) 2023, 2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -744,18 +744,44 @@ bool tImagePVR::Load(const tString& pvrFile, const LoadParams& loadParams)
 		return false;
 	}
 
-	int pvrSizeBytes = 0;
-	uint8* pvrData = (uint8*)tSystem::tLoadFile(pvrFile, 0, &pvrSizeBytes);
-	bool success = Load(pvrData, pvrSizeBytes, loadParams);
-	delete[] pvrData;
+	tArray<uint8> data;
+	if (!tSystem::tLoadFile(pvrFile, data))
+		return false;
 
-	return success;
+	return Load(data, loadParams);
 }
 
 
-bool tImagePVR::Load(const uint8* pvrData, int pvrDataSize, const LoadParams& paramsIn)
+bool tImagePVR::Load(const tArray<uint8>& pvrMem, const LoadParams& params)
+{
+	// Read the array directly (no copy); the source array is left unchanged.
+	return Load(pvrMem.GetElements(), pvrMem.GetNumElements(), params);
+}
+
+
+bool tImagePVR::Load(tArray<uint8>&& pvrMem, const LoadParams& params)
+{
+	// Hand the array's bytes directly to the decoder (no copy). Consume (clear) the array only on success.
+	bool ok = Load(pvrMem.GetElements(), pvrMem.GetNumElements(), params);
+	if (ok)
+		pvrMem.Clear();
+
+	return ok;
+}
+
+
+bool tImagePVR::Load(const uint8* pvrMem, int numBytes, const LoadParams& loadParams)
+{
+	// The supplied PVR data is parsed and decoded into pixel data.
+	return Decode(pvrMem, numBytes, loadParams);
+}
+
+
+bool tImagePVR::Decode(const uint8* pvrData, int pvrDataSize, const LoadParams& paramsIn)
 {
 	Clear();
+
+	// Copy params onto stack. These get modified later in this function to force consistency.
 	LoadParams params(paramsIn);
 
 	PVRVersion = tPVR::DetermineVersionFromFirstFourBytes(pvrData);

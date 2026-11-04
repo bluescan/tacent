@@ -14,6 +14,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tArray.h>
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
@@ -29,9 +30,18 @@ class tImageWEBP : public tBaseImage
 public:
 	// Creates an invalid tImageWEBP. You must call Load manually.
 	tImageWEBP()																										{ }
+
+	// Create from a WEBP image on the filesystem.
 	tImageWEBP(const tString& webpFile)																					{ Load(webpFile); }
 
-	// The data is copied out of webpFileInMemory. Go ahead and delete[] after if you want.
+	// The supplied WEBP data is parsed and decoded into pixel data.
+	tImageWEBP(const tArray<uint8>& webpFileInMemory)																	{ Load(webpFileInMemory); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can still use it.
+	tImageWEBP(tArray<uint8>&& webpFileInMemory)																		{ Load(tStd::rVal(webpFileInMemory)); }
+
+	// The supplied WEBP data is parsed and decoded into pixel data.
 	tImageWEBP(const uint8* webpFileInMemory, int numBytes)																{ Load(webpFileInMemory, numBytes); }
 
 	// Creates a tImageWEBP from a bunch of frames. If steal is true, the srcFrames will be empty after.
@@ -51,6 +61,14 @@ public:
 
 	// Clears the current tImageWEBP before loading. If false returned object is invalid.
 	bool Load(const tString& webpFile);
+
+	// Reads the array (the source is left unchanged).
+	bool Load(const tArray<uint8>& webpFileInMemory);
+
+	// Consumes the array only on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& webpFileInMemory);
+
+	// The supplied WEBP data is parsed and decoded into pixel data.
 	bool Load(const uint8* webpFileInMemory, int numBytes);
 	
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
@@ -118,6 +136,9 @@ public:
 	tColour4b BackgroundColour = tColour4b::white;
 
 private:
+	// Decodes the in-memory WebP bytes. Read-only: never mutates the caller's buffer.
+	bool Decode(const uint8* webpFileInMemory, int numBytes);
+
 	bool PopulateMetaData(const uint8* webpFileInMemory, int numBytes);
 	bool CopyRegion(tPixel4b* dst, int dstW, int dstH, tPixel4b* src, int srcW, int srcH, int offsetX, int offsetY, bool blend);
 };
@@ -168,3 +189,4 @@ inline void tImageWEBP::Clear()
 
 
 }
+

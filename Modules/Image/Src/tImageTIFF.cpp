@@ -166,19 +166,39 @@ bool tImageTIFF::Load(const tString& tiffFile)
 	if (!tFileExists(tiffFile))
 		return false;
 
-	int numBytes = 0;
-	uint8* tiffFileInMemory = tLoadFile(tiffFile, nullptr, &numBytes);
-	if (!tiffFileInMemory)
+	tArray<uint8> data;
+	if (!tLoadFile(tiffFile, data))
 		return false;
 
-	bool success = Load(tiffFileInMemory, numBytes);
-	delete[] tiffFileInMemory;
+	return Load(data);
+}
 
-	return success;
+
+bool tImageTIFF::Load(const tArray<uint8>& data)
+{
+	// Reads the array directly (no copy); the source array is left unchanged.
+	return Load(data.GetElements(), data.GetNumElements());
+}
+
+
+bool tImageTIFF::Load(tArray<uint8>&& data)
+{
+	bool ok = Load(data.GetElements(), data.GetNumElements());
+	if (ok)
+		data.Clear();
+
+	return ok;
 }
 
 
 bool tImageTIFF::Load(const uint8* tiffFileInMemory, int numBytes)
+{
+	// The supplied TIFF data is parsed and decoded into pixel data.
+	return Decode(tiffFileInMemory, numBytes);
+}
+
+
+bool tImageTIFF::Decode(const uint8* tiffFileInMemory, int numBytes)
 {
 	Clear();
 	if ((numBytes <= 0) || !tiffFileInMemory)

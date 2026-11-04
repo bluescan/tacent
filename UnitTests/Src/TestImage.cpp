@@ -44,6 +44,13 @@ namespace tUnitTest
 {
 
 
+// TEMPORARY: While test images are being migrated into the tacentfixtures repo, a few fixtures are not yet present
+// under "Data/Images/" and instead live in tacentfixtures. Point the affected loads at tFixImagesRoot (see imgJXL /
+// pngSecond / jxlExif / jxlXmp below). The image tests are disabled individually before pushing, so this is safe
+// locally. Remove this define and revert the tFixImagesRoot usages once the migration into Data/Images is complete.
+#define tFixImagesRoot "D:/GitHub/tacentfixtures/Images/"
+
+
 #define tImageDataDir "Data/Images/"
 #define tImageDir() if (!tSystem::tDirExists(tImageDataDir)) tSkipUnit() tString origDir = tSystem::tGetCurrentDir(); tSystem::tSetCurrentDir(origDir + tImageDataDir);
 #define tImageSubDir(subdir) if (!tSystem::tDirExists(tImageDataDir)) tSkipUnit() tString origDir = tSystem::tGetCurrentDir(); tSystem::tSetCurrentDir(origDir + tImageDataDir + subdir);
@@ -60,17 +67,69 @@ tTestUnit(ImageLoad)
 	tImageAPNG imgAPNG("Flame.apng");
 	tRequire(imgAPNG.IsValid());
 
+	// APNG in-memory (tArray<uint8> overload).
+	tArray<uint8> apngArray;
+	tRequire(tSystem::tLoadFile("Flame.apng", apngArray));
+	tImageAPNG imgAPNGArray(apngArray);
+	tRequire(imgAPNGArray.IsValid());
+
+	// APNG in-memory (const uint8* overload).
+	int apngSize = 0;
+	uint8* apngData = tSystem::tLoadFile("Flame.apng", nullptr, &apngSize);
+	tRequire(apngData != nullptr);
+	tImageAPNG imgAPNGPtr(apngData, apngSize);
+	tRequire(imgAPNGPtr.IsValid());
+	delete[] apngData;
+
+	// APNG in-memory (tArray<uint8>&& move overload; the array is consumed (cleared) on success).
+	tArray<uint8> apngMove;
+	tRequire(tSystem::tLoadFile("Flame.apng", apngMove));
+	tRequire(apngMove.GetNumElements() > 0);
+	tImageAPNG imgAPNGMove(tStd::rVal(apngMove));
+	tRequire(imgAPNGMove.IsValid());
+	tRequire(apngMove.GetNumElements() == 0);
+
 	tImageASTC imgASTC("Type_ASTC/ASTC10X10_LDR.astc");
 	tRequire(imgASTC.IsValid());
 
-	tImageBMP imgBMP("Type_BMP/UpperB.bmp");
+	tImageBMP imgBMP(tFixImagesRoot "Type_BMP/UpperBounds.bmp");
 	tRequire(imgBMP.IsValid());
+
+	// BMP in-memory (tArray<uint8> overload).
+	tArray<uint8> bmpArray;
+	tRequire(tSystem::tLoadFile(tFixImagesRoot "Type_BMP/UpperBounds.bmp", bmpArray));
+	tImageBMP imgBMPArray(bmpArray);
+	tRequire(imgBMPArray.IsValid());
+
+	// BMP in-memory (const uint8* overload).
+	int bmpSize = 0;
+	uint8* bmpData = tSystem::tLoadFile(tFixImagesRoot "Type_BMP/UpperBounds.bmp", nullptr, &bmpSize);
+	tRequire(bmpData != nullptr);
+	tImageBMP imgBMPPtr(bmpData, bmpSize);
+	tRequire(imgBMPPtr.IsValid());
+	delete[] bmpData;
+
+	// BMP in-memory (tArray<uint8>&& move overload; the array is consumed (cleared) on success).
+	tArray<uint8> bmpMove;
+	tRequire(tSystem::tLoadFile(tFixImagesRoot "Type_BMP/UpperBounds.bmp", bmpMove));
+	tRequire(bmpMove.GetNumElements() > 0);
+	tImageBMP imgBMPMove(tStd::rVal(bmpMove));
+	tRequire(imgBMPMove.IsValid());
+	tRequire(bmpMove.GetNumElements() == 0);
 
 	tImageDDS imgDDS("Type_DDS/BC1DXT1_RGB_Legacy.dds");
 	tRequire(imgDDS.IsValid());
 
 	tImageEXR imgEXR("Desk.exr");
 	tRequire(imgEXR.IsValid());
+
+	// EXR in-memory (tArray<uint8>&& move overload; the array is consumed (cleared) on success).
+	tArray<uint8> exrMove;
+	tRequire(tSystem::tLoadFile("Desk.exr", exrMove));
+	tRequire(exrMove.GetNumElements() > 0);
+	tImageEXR imgEXRMove(tStd::rVal(exrMove));
+	tRequire(imgEXRMove.IsValid());
+	tRequire(exrMove.GetNumElements() == 0);
 
 	tImageGIF imgGIF("Type_GIF/8-cell-simple.gif");
 	tRequire(imgGIF.IsValid());
@@ -124,8 +183,95 @@ tTestUnit(ImageLoad)
 	tImageAVIF imgAVIF("TestPattern/TacentTestPattern.avif");
 	tRequire(imgAVIF.IsValid());
 
-	tImageJXL imgJXL("Type_JXL/Dice.jxl");
+	tImageJXL imgJXL(tFixImagesRoot "Type_JXL/Dice.jxl");
 	tRequire(imgJXL.IsValid());
+
+	// Move semantics (&&) coverage. One entry point per class -- ctor OR Load. We require the tArray to be empty after
+	// construction/load.
+
+	// HDR (ctor &&).
+	tArray<uint8> hdrMove;
+	tRequire(tSystem::tLoadFile("mpi_atrium_3.hdr", hdrMove));
+	tImageHDR imgHDRMove(tStd::rVal(hdrMove));
+	tRequire(imgHDRMove.IsValid());
+	tRequire(hdrMove.GetNumElements() == 0);
+
+	// ICO (Load &&).
+	tArray<uint8> icoMove;
+	tRequire(tSystem::tLoadFile("UpperBounds.ico", icoMove));
+	tImageICO imgICOMove;
+	tRequire(imgICOMove.Load(tStd::rVal(icoMove)));
+	tRequire(icoMove.GetNumElements() == 0);
+
+	// TGA (ctor &&).
+	tArray<uint8> tgaMove;
+	tRequire(tSystem::tLoadFile("WhiteBorderRLE.tga", tgaMove));
+	tImageTGA imgTGAMove(tStd::rVal(tgaMove));
+	tRequire(imgTGAMove.IsValid());
+	tRequire(tgaMove.GetNumElements() == 0);
+
+	// TIFF (Load &&).
+	tArray<uint8> tiffMove;
+	tRequire(tSystem::tLoadFile("Type_TIF/Tiff_NoComp.tif", tiffMove));
+	tImageTIFF imgTIFFMove;
+	tRequire(imgTIFFMove.Load(tStd::rVal(tiffMove)));
+	tRequire(tiffMove.GetNumElements() == 0);
+
+	// WEBP (ctor &&).
+	tArray<uint8> webpMove;
+	tRequire(tSystem::tLoadFile("Type_WEBP/RockyBeach.webp", webpMove));
+	tImageWEBP imgWEBPMove(tStd::rVal(webpMove));
+	tRequire(imgWEBPMove.IsValid());
+	tRequire(webpMove.GetNumElements() == 0);
+
+	// GIF (ctor &&).
+	tArray<uint8> gifMove;
+	tRequire(tSystem::tLoadFile("Variety/8-cell-simple.gif", gifMove));
+	tImageGIF imgGIFMove(tStd::rVal(gifMove));
+	tRequire(imgGIFMove.IsValid());
+	tRequire(gifMove.GetNumElements() == 0);
+
+	// JPG (Load &&).
+	tArray<uint8> jpgMove;
+	tRequire(tSystem::tLoadFile("Variety/7-bebop.jpg", jpgMove));
+	tImageJPG imgJPGMove;
+	tRequire(imgJPGMove.Load(tStd::rVal(jpgMove)));
+	tRequire(jpgMove.GetNumElements() == 0);
+
+	// QOI (ctor &&).
+	tArray<uint8> qoiMove;
+	tRequire(tSystem::tLoadFile("Variety/TacentTestPattern24.qoi", qoiMove));
+	tImageQOI imgQOIMove(tStd::rVal(qoiMove));
+	tRequire(imgQOIMove.IsValid());
+	tRequire(qoiMove.GetNumElements() == 0);
+
+	// ASTC (Load &&).
+	tArray<uint8> astcMove;
+	tRequire(tSystem::tLoadFile("Variety/ASTC12X12_LDR.astc", astcMove));
+	tImageASTC imgASTCMove;
+	tRequire(imgASTCMove.Load(tStd::rVal(astcMove)));
+	tRequire(astcMove.GetNumElements() == 0);
+
+	// DDS (ctor &&).
+	tArray<uint8> ddsMove;
+	tRequire(tSystem::tLoadFile("Variety/ASTC12X12_RGB_Modern.dds", ddsMove));
+	tImageDDS imgDSMove(tStd::rVal(ddsMove));
+	tRequire(imgDSMove.IsValid());
+	tRequire(ddsMove.GetNumElements() == 0);
+
+	// KTX (Load &&).
+	tArray<uint8> ktxMove;
+	tRequire(tSystem::tLoadFile("Type_KTX2/BC7_RGBA.ktx2", ktxMove));
+	tImageKTX imgKTXMove;
+	tRequire(imgKTXMove.Load(tStd::rVal(ktxMove)));
+	tRequire(ktxMove.GetNumElements() == 0);
+
+	// JXL (ctor &&).
+	tArray<uint8> jxlMove;
+	tRequire(tSystem::tLoadFile(tFixImagesRoot "Type_JXL/Dice.jxl", jxlMove));
+	tImageJXL imgJXLMove2(tStd::rVal(jxlMove));
+	tRequire(imgJXLMove2.IsValid());
+	tRequire(jxlMove.GetNumElements() == 0);
 
 	tImageRestoreDir()
 }
@@ -322,7 +468,7 @@ tTestUnit(ImagePicture)
 	tImageTGA tga;
 
 	// Test generate layers.
-	tImageBMP bmpL("Type_BMP/UpperB.bmp");
+	tImageBMP bmpL(tFixImagesRoot "Type_BMP/UpperBounds.bmp");
 	tRequire(bmpL.IsValid());
 
 	// Test pixel constructor and mipmap gen.
@@ -351,19 +497,19 @@ tTestUnit(ImagePicture)
 	tRequire(tSystem::tFileExists("WrittenASTC10X10_LDR.tga"));
 
 	tImageBMP bmp;
-	bmp.Load("Type_BMP/UpperB.bmp");
+	bmp.Load(tFixImagesRoot "Type_BMP/UpperBounds.bmp");
 	bmp.Save("WrittenUpperB.bmp");
 	pic.Set(bmp); tga.Set(pic);
 	tga.Save("WrittenUpperB.tga");
 	tRequire( tSystem::tFileExists("WrittenUpperB.bmp"));
 
-	bmp.Load("Type_BMP/Bmp_Alpha.bmp");
+	bmp.Load(tFixImagesRoot "Type_BMP/Alpha.bmp");
 	bmp.Save("WrittenBmp_Alpha.bmp");
 	pic.Set(bmp); tga.Set(pic);
 	tga.Save("WrittenBmp_Alpha.tga");
 	tRequire( tSystem::tFileExists("WrittenBmp_Alpha.bmp"));
 
-	bmp.Load("Type_BMP/Bmp_Lambda.bmp");
+	bmp.Load(tFixImagesRoot "Type_BMP/Lambda.bmp");
 	bmp.Save("WrittenBmp_Lambda.bmp");
 	pic.Set(bmp); tga.Set(pic);
 	tga.Save("WrittenBmp_Lambda.tga");
@@ -862,7 +1008,7 @@ tTestUnit(ImageMetaData)
 	// A second PNG carrying XMP, to confirm extraction is not specific to a single file. This fixture stores its
 	// XMP in an iTXt chunk whose exifEX:LensModel maps to the LensModel tag, so we assert the concrete value to
 	// prove the iTXt->XMP->LensModel path actually extracted data.
-	tImagePNG pngSecond("TextCursor_XMP.png");
+	tImagePNG pngSecond(tFixImagesRoot "MetaData/PNG/TextCursor_XMP.png");
 	tRequire(pngSecond.IsValid());
 	tRequire(pngSecond.MetaData.IsValid());
 	tMetaData& pngSecondMeta = pngSecond.MetaData;
@@ -888,7 +1034,7 @@ tTestUnit(ImageMetaData)
 	// boxes (tImageJXL::WalkBoxes) and routes each to TinyEXIF's EXIF / XMP parsers.
 	tImageChangeDir("EXIF_XMP/JXL/")
 
-	tImageJXL jxlExif("Waterfall_Exif.jxl");
+	tImageJXL jxlExif(tFixImagesRoot "MetaData/JXL/Waterfall_EXIF.jxl");
 	tRequire(jxlExif.IsValid());
 	tFrame* exifFrame = jxlExif.GetFrame(false);
 	tRequire((exifFrame != nullptr) && (exifFrame->Width == 1920) && (exifFrame->Height == 1080));
@@ -901,7 +1047,7 @@ tTestUnit(ImageMetaData)
 	tRequire(jxlExifMeta[tMetaTag::Model].String == "Test");
 	PrintMetaDataTag(jxlExifMeta, tMetaTag::Model);
 
-	tImageJXL jxlXmp("Waterfall_Xmp.jxl");
+	tImageJXL jxlXmp(tFixImagesRoot "MetaData/JXL/Waterfall_XMP.jxl");
 	tRequire(jxlXmp.IsValid());
 	tFrame* xmpFrame = jxlXmp.GetFrame(false);
 	tRequire((xmpFrame != nullptr) && (xmpFrame->Width == 1920) && (xmpFrame->Height == 1080));
@@ -943,7 +1089,7 @@ tTestUnit(ImageLosslessTransform)
 
 	tImageJPG::Transform trans;
 	tImageJPG::LoadParams params;
-	params.Flags = tImageJPG::LoadFlag_NoDecompress;
+	params.Flags = tImageJPG::LoadFlag_NoDecode;
 	bool ok = false;
 
 	trans = tImageJPG::Transform::Rotate90ACW;
@@ -1736,6 +1882,13 @@ tTestUnit(ImagePNG)
 	saveParams.Format = tImagePNG::tFormat::BPP48_RGB_BPC16;
 	png.Save("Written_R16G16B16_From_16BPC.png", saveParams); 
 
+	// PNG && move-Load: the source array is consumed (cleared) on success. (entry point: Load)
+	tArray<uint8> pngMove;
+	tRequire(tSystem::tLoadFile("CubemapSide1PX_Right.png", pngMove));
+	tImagePNG imgPNGMove;
+	tRequire(imgPNGMove.Load(tStd::rVal(pngMove)));
+	tRequire(pngMove.GetNumElements() == 0);
+
 	tImageRestoreDir()
 }
 
@@ -1819,10 +1972,10 @@ tTestUnit(ImageHEIC)
 			const int ew = swapDims ? sh : sw;
 			const int eh = swapDims ? sw : sh;
 
-			// Load the container without decompressing, apply the lossless transform in memory, then save the
+			// Load the container without decoding, apply the lossless transform in memory, then save the
 			// rewritten-orientation container to disk (kept on disk for manual inspection).
 			tImageHEIC::LoadParams params;
-			params.Flags = tImageHEIC::LoadFlag_NoDecompress;
+			params.Flags = tImageHEIC::LoadFlag_NoDecode;
 			tImageHEIC work;
 			tRequire(work.Load(src, params));
 			tRequire(work.LosslessTransform(kAll[i]));
@@ -1840,32 +1993,42 @@ tTestUnit(ImageHEIC)
 		}
 	}
 
+	// HEIC && move-ctor. The source array is consumed (cleared) on success.
+	tArray<uint8> heicMove;
+	tRequire(tSystem::tLoadFile("ChefWithTrumpet.heic", heicMove));
+	tImageHEIC imgHEICMove(tStd::rVal(heicMove));
+	tRequire(imgHEICMove.IsValid());
+	tRequire(heicMove.GetNumElements() == 0);
+
 	tImageRestoreDir()
 }
 
 
-// ---------------------------------------------------------------------------
 // Pixel-level verification of the HEIC lossless orientation transforms.
 //
-// The dimension-only check in the ImageHEIC test above CANNOT distinguish Rotate90CW from
-// Rotate90ACW (both swap width and height), so it cannot catch a CW/ACW swap. This test decodes
-// the source and each transformed output and requires the output pixels to equal the source
-// pixels mapped by the requested D4 orientation (displayed_out = M * displayed_source). A wrong
-// orientation -- e.g. the irot decode bug that swapped CW/ACW for sources carrying irot=1/3 --
-// fails the pixel comparison.
-// ---------------------------------------------------------------------------
+// The dimension-only check in the ImageHEIC test above CANNOT distinguish Rotate90CW from Rotate90ACW (both swap width
+// and height), so it cannot catch a CW/ACW swap. This test decodes the source and each transformed output and requires
+// the output pixels to equal the source pixels mapped by the requested D4 orientation
+// (displayed_out = M * displayed_source). A wrong orientation -- e.g. the irot decode bug that swapped CW/ACW for
+// sources carrying irot=1/3 -- fails the pixel comparison.
 static int tD4Round(double v)
 {
 	return (v >= 0.0) ? (int)(v + 0.5) : (int)(v - 0.5);
 }
 
-static bool tD4PixelsMatch(const tPixel4b* in, int iw, int ih,
-	int m00, int m01, int m10, int m11, const tPixel4b* out, int ow, int oh)
+
+static bool tD4PixelsMatch
+(
+	const tPixel4b* in, int iw, int ih,
+	int m00, int m01, int m10, int m11,
+	const tPixel4b* out, int ow, int oh
+)
 {
 	// out = in * M  (Tacent's row-vector convention, as in tUtilHEIF::ApplyRotation), so in = out * M^T.
 	// For the 8 D4 matrices: in = (m00*cx + m01*cy, m10*cx + m11*cy).
 	int match = 0, total = 0;
 	for (int oy = 0; oy < oh; ++oy)
+	{
 		for (int ox = 0; ox < ow; ++ox)
 		{
 			double cx = ox - 0.5 * (ow - 1);
@@ -1878,6 +2041,8 @@ static bool tD4PixelsMatch(const tPixel4b* in, int iw, int ih,
 			if (memcmp(&in[iy * iw + ix], &out[oy * ow + ox], sizeof(tPixel4b)) == 0)
 				++match;
 		}
+	}
+
 	// HEVC is lossy, so allow compression noise. A CORRECT orientation must preserve most pixels
 	// (high ratio); a WRONG orientation (e.g. CW swapped with ACW) maps to the wrong half and
 	// collapses the ratio toward ~0. 50% cleanly separates the two.
@@ -1885,6 +2050,7 @@ static bool tD4PixelsMatch(const tPixel4b* in, int iw, int ih,
 	tPrintf("   pixel-exact %d%% (%d/%d)\n", ratioPct, match, total);
 	return ratioPct >= 50;
 }
+
 
 static void tD4ScanAll(const tPixel4b* in, int iw, int ih, const tPixel4b* out, int ow, int oh)
 {
@@ -1922,6 +2088,7 @@ static void tD4ScanAll(const tPixel4b* in, int iw, int ih, const tPixel4b* out, 
 		tPrintf("    scan %-14s %d%% (%d/%d)\n", t.n, pct, match, total);
 	}
 }
+
 
 tTestUnit(ImageHEICRotatePixelVerify)
 {
@@ -1966,7 +2133,7 @@ tTestUnit(ImageHEICRotatePixelVerify)
 			const int eh = kT[i].swap ? sw : sh;
 
 			tImageHEIC::LoadParams params;
-			params.Flags = tImageHEIC::LoadFlag_NoDecompress;
+			params.Flags = tImageHEIC::LoadFlag_NoDecode;
 			tImageHEIC work;
 			tRequire(work.Load(src, params));
 			tRequire(work.LosslessTransform(kT[i].t));
@@ -1991,18 +2158,14 @@ tTestUnit(ImageHEICRotatePixelVerify)
 }
 
 
-// ---------------------------------------------------------------------------
-// Double-flip tests: verify that applying the same flip twice (save + reload
-// between the two) returns to the identity orientation. This exercises the
-// 'imir' box removal/reuse path in tUtilHEIF -- the first flip writes/updates
-// the imir box, the second must remove it (rewriting to "free") or reuse the
-// ghost slot. A correct implementation must produce a file whose decoded pixels
-// match the original source.
+// Double-flip tests: verify that applying the same flip twice (save + reload between the two) returns to the identity
+// orientation. This exercises the 'imir' box removal/reuse path in tUtilHEIF -- the first flip writes/updates the imir
+// box, the second must remove it (rewriting to "free") or reuse the ghost slot. A correct implementation must produce a
+// file whose decoded pixels match the original source.
 //
 // 4 test sequences x 2 saves each = 8 total saves:
 //   HEIC:  FlipH x2,  FlipV x2
 //   AVIF:  FlipH x2,  FlipV x2
-// ---------------------------------------------------------------------------
 static void tFlipDouble_HEIC(const char* base, HEIFTransform flip, const char* label)
 {
 	tString src = tString(base) + ".heic";
@@ -2015,9 +2178,9 @@ static void tFlipDouble_HEIC(const char* base, HEIFTransform flip, const char* l
 	tPixel4b* spix = refImg.GetPixels();
 	tRequire(spix);
 
-	// --- First flip: load (no decompress) -> FlipH/V -> save ---
+	// First flip: load (no decode) -> FlipH/V -> save.
 	tImageHEIC::LoadParams params;
-	params.Flags = tImageHEIC::LoadFlag_NoDecompress;
+	params.Flags = tImageHEIC::LoadFlag_NoDecode;
 	tImageHEIC work1;
 	tRequire(work1.Load(src, params));
 	tRequire(work1.LosslessTransform(flip));
@@ -2027,7 +2190,7 @@ static void tFlipDouble_HEIC(const char* base, HEIFTransform flip, const char* l
 	tRequire(tSystem::tFileExists(out1));
 	tPrintf("  HEIC %s step1 saved: %s\n", label, out1.Chr());
 
-	// --- Second flip: reload (no decompress) -> FlipH/V again -> save ---
+	// Second flip: reload (no decode) -> FlipH/V again -> save.
 	tImageHEIC work2;
 	tRequire(work2.Load(out1, params));
 	tRequire(work2.LosslessTransform(flip));
@@ -2037,7 +2200,7 @@ static void tFlipDouble_HEIC(const char* base, HEIFTransform flip, const char* l
 	tRequire(tSystem::tFileExists(out2));
 	tPrintf("  HEIC %s step2 saved: %s\n", label, out2.Chr());
 
-	// --- Verify: double-flip == identity, so pixels must match source ---
+	// Verify: double-flip == identity, so pixels must match source.
 	tImageHEIC out2dec(out2);
 	tRequire(out2dec.IsValid());
 	tRequire(out2dec.GetWidth() == sw);
@@ -2049,6 +2212,7 @@ static void tFlipDouble_HEIC(const char* base, HEIFTransform flip, const char* l
 	tRequire(tD4PixelsMatch(spix, sw, sh, 1, 0, 0, 1, opix, sw, sh));
 	tPrintf("  HEIC %s double-flip OK (%dx%d)\n", label, sw, sh);
 }
+
 
 static void tFlipDouble_AVIF(const char* base, HEIFTransform flip, const char* label)
 {
@@ -2062,9 +2226,9 @@ static void tFlipDouble_AVIF(const char* base, HEIFTransform flip, const char* l
 	tPixel4b* spix = refImg.GetPixels();
 	tRequire(spix);
 
-	// --- First flip: load (no decompress) -> FlipH/V -> save ---
+	// First flip: load (no decode) -> FlipH/V -> save.
 	tImageAVIF::LoadParams params;
-	params.Flags = tImageAVIF::LoadFlag_NoDecompress;
+	params.Flags = tImageAVIF::LoadFlag_NoDecode;
 	tImageAVIF work1;
 	tRequire(work1.Load(src, params));
 	tRequire(work1.LosslessTransform(flip));
@@ -2074,7 +2238,7 @@ static void tFlipDouble_AVIF(const char* base, HEIFTransform flip, const char* l
 	tRequire(tSystem::tFileExists(out1));
 	tPrintf("  AVIF %s step1 saved: %s\n", label, out1.Chr());
 
-	// --- Second flip: reload (no decompress) -> FlipH/V again -> save ---
+	// Second flip: reload (no decode) -> FlipH/V again -> save.
 	tImageAVIF work2;
 	tRequire(work2.Load(out1, params));
 	tRequire(work2.LosslessTransform(flip));
@@ -2084,7 +2248,7 @@ static void tFlipDouble_AVIF(const char* base, HEIFTransform flip, const char* l
 	tRequire(tSystem::tFileExists(out2));
 	tPrintf("  AVIF %s step2 saved: %s\n", label, out2.Chr());
 
-	// --- Verify: double-flip == identity, so pixels must match source ---
+	// Verify: double-flip == identity, so pixels must match source.
 	tImageAVIF out2dec(out2);
 	tRequire(out2dec.IsValid());
 	tRequire(out2dec.GetWidth() == sw);
@@ -2096,6 +2260,7 @@ static void tFlipDouble_AVIF(const char* base, HEIFTransform flip, const char* l
 	tRequire(tD4PixelsMatch(spix, sw, sh, 1, 0, 0, 1, opix, sw, sh));
 	tPrintf("  AVIF %s double-flip OK (%dx%d)\n", label, sw, sh);
 }
+
 
 tTestUnit(ImageFlipDouble)
 {
@@ -2116,16 +2281,14 @@ tTestUnit(ImageFlipDouble)
 	tPrintf("ImageFlipDouble: all 8 flips OK\n");
 }
 
-// ---------------------------------------------------------------------------
-// Triple-flip tests: verify that three consecutive flips (save + reload
-// between each) equals a single flip. This exercises the 'free' box reuse
-// path (Flip 3 must restore the "free" ghost back to "imir"), which was
-// previously blocked by the early-exit guard.
+
+// Triple-flip tests: verify that three consecutive flips (save + reload between each) equals a single flip. This
+// exercises the 'free' box reuse path (Flip 3 must restore the "free" ghost back to "imir"), which was previously
+// blocked by the early-exit guard.
 //
 // 4 test sequences x 3 saves each = 12 total saves:
 //   HEIC:  FlipH x3,  FlipV x3
 //   AVIF:  FlipH x3,  FlipV x3
-// ---------------------------------------------------------------------------
 static void tFlipTriple_HEIC(const char* base, HEIFTransform flip, const char* label)
 {
 	tString src = tString(base) + ".heic";
@@ -2138,7 +2301,7 @@ static void tFlipTriple_HEIC(const char* base, HEIFTransform flip, const char* l
 	tRequire(spix);
 
 	tImageHEIC::LoadParams params;
-	params.Flags = tImageHEIC::LoadFlag_NoDecompress;
+	params.Flags = tImageHEIC::LoadFlag_NoDecode;
 
 	// Flip 1
 	tImageHEIC work1;
@@ -2186,6 +2349,7 @@ static void tFlipTriple_HEIC(const char* base, HEIFTransform flip, const char* l
 	tPrintf("  HEIC %s triple-flip OK == single-flip (%dx%d)\n", label, sw, sh);
 }
 
+
 static void tFlipTriple_AVIF(const char* base, HEIFTransform flip, const char* label)
 {
 	tString src = tString(base) + ".avif";
@@ -2198,7 +2362,7 @@ static void tFlipTriple_AVIF(const char* base, HEIFTransform flip, const char* l
 	tRequire(spix);
 
 	tImageAVIF::LoadParams params;
-	params.Flags = tImageAVIF::LoadFlag_NoDecompress;
+	params.Flags = tImageAVIF::LoadFlag_NoDecode;
 
 	// Flip 1
 	tImageAVIF work1;
@@ -2336,10 +2500,10 @@ tTestUnit(ImageAVIF)
 			const int ew = swapDims ? sh : sw;
 			const int eh = swapDims ? sw : sh;
 
-			// Load the container without decompressing, apply the lossless transform in memory, then save the
+			// Load the container without decoding, apply the lossless transform in memory, then save the
 			// rewritten-orientation container to disk (kept on disk for manual inspection).
 			tImageAVIF::LoadParams params;
-			params.Flags = tImageAVIF::LoadFlag_NoDecompress;
+			params.Flags = tImageAVIF::LoadFlag_NoDecode;
 			tImageAVIF work;
 			tRequire(work.Load(src, params));
 			tRequire(work.LosslessTransform(kAll[i]));
@@ -2356,6 +2520,13 @@ tTestUnit(ImageAVIF)
 			tPrintf("AVIF %s: %dx%d -> %dx%d (expected %dx%d) OK\n", kNames[i], sw, sh, out.GetWidth(), out.GetHeight(), ew, eh);
 		}
 	}
+
+	// AVIF && move-Load. The source array is consumed (cleared) on success.
+	tArray<uint8> avifMove;
+	tRequire(tSystem::tLoadFile("ParisIcc.avif", avifMove));
+	tImageAVIF imgAVIFMove;
+	tRequire(imgAVIFMove.Load(tStd::rVal(avifMove)));
+	tRequire(avifMove.GetNumElements() == 0);
 
 	tImageRestoreDir()
 }
@@ -3407,6 +3578,13 @@ tTestUnit(ImagePKM)
 	PKMLoadDecodeSave("ETC2RGBA1_RGBA.pkm",				decode | revrow);
 	PKMLoadDecodeSave("ETC2RGBA1_sRGBA.pkm",			decode | revrow);
 
+	// PKM && move-ctor. The source array is consumed (cleared) on success.
+	tArray<uint8> pkmMove;
+	tRequire(tSystem::tLoadFile("EACR11S_R.pkm", pkmMove));
+	tImagePKM imgPKMMove(tStd::rVal(pkmMove));
+	tRequire(imgPKMMove.IsValid());
+	tRequire(pkmMove.GetNumElements() == 0);
+
 	tImageRestoreDir()
 }
 
@@ -3526,6 +3704,13 @@ tTestUnit(ImagePVR2)
 	PVRLoadDecodeSave("B8G8R8A8_RGBA_T.pvr",			revrow);
 	PVRLoadDecodeSave("R8G8B8A8_RGBA_TM.pvr",			revrow);
 	PVRLoadDecodeSave("ETC1_RGB_TM.pvr",				revrow);
+
+	// PVR && move-Load. The source array is consumed (cleared) on success.
+	tArray<uint8> pvrMove;
+	tRequire(tSystem::tLoadFile("B8G8R8A8_RGBA_T.pvr", pvrMove));
+	tImagePVR imgPVRMove;
+	tRequire(imgPVRMove.Load(tStd::rVal(pvrMove)));
+	tRequire(pvrMove.GetNumElements() == 0);
 
 	tImageRestoreDir()
 }
@@ -3759,8 +3944,16 @@ tTestUnit(ImageSVG)
 	tRequire(!svgMissing.Load("Does_Not_Exist.svg"));
 	tRequire(!svgMissing.IsValid());
 
+	// SVG && move-Load. The source array is consumed (cleared) on success.
+	tArray<uint8> svgMove;
+	tRequire(tSystem::tLoadFile("Ghostscript_Tiger.svg", svgMove));
+	tImageSVG imgSVGMove;
+	tRequire(imgSVGMove.Load(tStd::rVal(svgMove)));
+	tRequire(svgMove.GetNumElements() == 0);
+
 	tImageRestoreDir()
 }
 
 
 }
+

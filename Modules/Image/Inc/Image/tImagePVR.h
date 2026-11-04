@@ -5,7 +5,7 @@
 // tImagePVR so that excessive memcpys are avoided. After they are stolen the tImagePVR is invalid. The tImagePVR
 // class supports V1, V2, and V3 pvr files.
 //
-// Copyright (c) 2023-2025 Tristan Grimmer.
+// Copyright (c) 2023-2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -19,6 +19,7 @@
 #include "Image/tLayer.h"
 #include "Image/tPixelFormat.h"
 #include <Image/tBaseImage.h>
+#include <Foundation/tArray.h>
 namespace tImage
 {
 
@@ -85,10 +86,18 @@ public:
 
 	// Creates an invalid tImagePVR. You must call Load manually.
 	tImagePVR()																											{ }
+
+	// Creates from a PVR file on the  filesystem.
 	tImagePVR(const tString& pvrFile, const LoadParams& params = LoadParams())											: Filename(pvrFile) { Load(pvrFile, params); }
 
-	// This load from memory constructor behaves a lot like the from-file version. The file image in memory is read from
-	// and the caller may delete it immediately after if desired.
+	// The supplied PVR data is parsed and decoded into pixel data.
+	tImagePVR(const tArray<uint8>& pvrMem, const LoadParams& params = LoadParams())										{ Load(pvrMem, params); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can still use it.
+	tImagePVR(tArray<uint8>&& pvrMem, const LoadParams& params = LoadParams())											{ Load(tStd::rVal(pvrMem), params); }
+
+	// The supplied PVR data is parsed and decoded into pixel data.
 	tImagePVR(const uint8* pvrMem, int numBytes, const LoadParams& params = LoadParams())								{ Load(pvrMem, numBytes, params); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
@@ -165,7 +174,15 @@ public:
 	// invalid object. A pvr may fail to load for a number of reasons: Some pixel-formats may not yet be supported, or
 	// inconsistent flags. Returns true on success or conditional-success.
 	bool Load(const tString& pvrFile, const LoadParams& = LoadParams());
-	bool Load(const uint8* pvrFileInMemory, int numBytes, const LoadParams& = LoadParams());
+
+	// Reads the array (the source is left unchanged).
+	bool Load(const tArray<uint8>& pvrMem, const LoadParams& = LoadParams());
+
+	// Consumes the array only on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& pvrMem, const LoadParams& = LoadParams());
+
+	// The supplied PVR data is parsed and decoded into pixel data.
+	bool Load(const uint8* pvrMem, int numBytes, const LoadParams& = LoadParams());
 
 	// After a load you can call GetStates() to find out what, if anything, went wrong.
 	uint32 GetStates() const																							{ return States; }
@@ -227,12 +244,15 @@ public:
 	tString Filename;
 
 private:
+	// Decodes the in-memory PVR bytes (no copy of the caller's buffer).
+	// Decodes the in-memory PVR bytes. Read-only: never mutates the caller's buffer.
+	bool Decode(const uint8* pvrData, int pvrDataSize, const LoadParams& loadParams);
 	bool ParseMetaData(const uint8* metaData, int metaDataSize);
 	int LayerIdx(int surf, int face = 0, int mip = 0, int depth = 0) const;
 	tLayer* CreateNewLayer(const LoadParams&, const uint8* srcPixelData, int numBytes, int width, int height);
-	void SetStateBit(StateBit state)		{ States |= 1 << int(state); }
 
 	// The states are bits in this States member.
+	void SetStateBit(StateBit state)		{ States |= 1 << int(state); }
 	uint32 States							= 0;
 	int PVRVersion							= 0;
 
@@ -292,3 +312,4 @@ public:
 
 
 }
+

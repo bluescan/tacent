@@ -217,9 +217,9 @@ int main(int argc, char** argv)
 	// tTest(Promise);
 	// tTest(Sort);
 	// tTest(BitArray);
-//	tTest(BitField);
-//	tTest(FixInt);
-//	tTest(String);
+	// tTest(BitField);
+	// tTest(FixInt);
+	// tTest(String);
 	// tTest(RingBuffer);
 	// tTest(PriorityQueue);
 	// tTest(MemoryPool);
@@ -243,8 +243,8 @@ int main(int argc, char** argv)
 	// tTest(Task);
 	// tTest(Print);
 	// tTest(Regex);
-//	tTest(Script);
-//	tTest(CSV);
+	// tTest(Script);
+	// tTest(CSV);
 	// tTest(Chunk);
 	// tTest(FileTypes);
 	// tTest(Directories);
@@ -262,14 +262,14 @@ int main(int argc, char** argv)
 
 	// Image tests.
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
-	// tTest(ImageLoad);
+	tTest(ImageLoad);
 	// tTest(ImageSave);
 	// tTest(ImageTexture);
 	// tTest(ImagePicture);
 	// tTest(ImageQuantize);
 	// tTest(ImagePalette);
-	// tTest(ImageMetaData);
-	// tTest(ImageLosslessTransform);
+	tTest(ImageMetaData);
+	tTest(ImageLosslessTransform);
 	// tTest(ImageRotation);
 	// tTest(ImageCrop);
 	// tTest(ImageCopyRegion);

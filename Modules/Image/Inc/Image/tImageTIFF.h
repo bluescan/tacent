@@ -14,6 +14,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tArray.h>
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
@@ -30,9 +31,18 @@ class tImageTIFF : public tBaseImage
 public:
 	// Creates an invalid tImageTIFF. You must call Load manually.
 	tImageTIFF()																										{ }
+
+	// Creates from a TIFF file on the filesystem.
 	tImageTIFF(const tString& tiffFile)																					{ Load(tiffFile); }
 
-	// The data is copied out of tiffFileInMemory. Go ahead and delete[] after if you want.
+	// The supplied TIFF data is parsed and decoded into pixel data.
+	tImageTIFF(const tArray<uint8>& tiffFileInMemory)																	{ Load(tiffFileInMemory); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can still use it.
+	tImageTIFF(tArray<uint8>&& tiffFileInMemory)																		{ Load(tStd::rVal(tiffFileInMemory)); }
+
+	// The supplied TIFF data is parsed and decoded into pixel data.
 	tImageTIFF(const uint8* tiffFileInMemory, int numBytes)																{ Load(tiffFileInMemory, numBytes); }
 
 	// Creates a tImageAPNG from a bunch of frames. If steal is true, the srcFrames will be empty after.
@@ -52,6 +62,14 @@ public:
 
 	// Clears the current tImageTIFF before loading. If false returned object is invalid.
 	bool Load(const tString& tiffFile);
+
+	// Reads the array (the source is left unchanged).
+	bool Load(const tArray<uint8>& tiffFileInMemory);
+
+	// Consumes the array only on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& tiffFileInMemory);
+
+	// The supplied TIFF data is parsed and decoded into pixel data.
 	bool Load(const uint8* tiffFileInMemory, int numBytes);
 
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
@@ -119,6 +137,9 @@ public:
 	tMetaData MetaData;
 
 private:
+	// Decodes the in-memory TIFF bytes. Read-only: never mutates the caller's buffer.
+	bool Decode(const uint8* tiffFileInMemory, int numBytes);
+
 	int ReadSoftwarePageDuration(TIFF*) const;
 	bool WriteSoftwarePageDuration(TIFF*, int milliseconds) const;
 	bool PopulateMetaData(TIFF*, const uint8* tiffFileInMemory, int numBytes);
@@ -171,3 +192,4 @@ inline void tImageTIFF::Clear()
 
 
 }
+

@@ -34,16 +34,40 @@ bool tImageQOI::Load(const tString& qoiFile)
 	if (!tSystem::tFileExists(qoiFile))
 		return false;
 
-	int numBytes = 0;
-	uint8* qoiFileInMemory = tSystem::tLoadFile(qoiFile, nullptr, &numBytes);
-	bool success = Load(qoiFileInMemory, numBytes);
-	delete[] qoiFileInMemory;
+	// Read the file directly into a tArray (no raw-buffer intermediate) and move it into the canonical (rvalue) Load.
+	tArray<uint8> data;
+	if (!tSystem::tLoadFile(qoiFile, data))
+		return false;
 
-	return success;
+	return Load(data);
+}
+
+
+bool tImageQOI::Load(const tArray<uint8>& data)
+{
+	// Reads the array directly (no copy); the source array is left unchanged.
+	return Load(data.GetElements(), data.GetNumElements());
+}
+
+
+bool tImageQOI::Load(tArray<uint8>&& data)
+{
+	 bool ok = Decode(data.GetElements(), data.GetNumElements());
+	 if (ok)
+		data.Clear();
+
+	return ok;
 }
 
 
 bool tImageQOI::Load(const uint8* qoiFileInMemory, int numBytes)
+{
+	// The supplied QOI data is parsed and decoded into pixel data.
+	return Decode(qoiFileInMemory, numBytes);
+}
+
+
+bool tImageQOI::Decode(const uint8* qoiFileInMemory, int numBytes)
 {
 	Clear();
 	if ((numBytes <= 0) || !qoiFileInMemory)

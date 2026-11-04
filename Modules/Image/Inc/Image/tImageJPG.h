@@ -16,6 +16,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tArray.h>
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
@@ -33,7 +34,7 @@ public:
 		LoadFlag_None			= 0,
 		LoadFlag_Strict			= 1 << 0,	// If the file is ill-formed even in a non-fatal way, the image will be invalid.
 		LoadFlag_ExifOrient		= 1 << 1,	// Undo orientation transformations in jpg image as indicated by Exif meta-data.
-		LoadFlag_NoDecompress	= 1 << 2,	// Do not decompress image. Loads as a memory image only. Flip and rotate functions can only be called if NoDecompress is set.
+		LoadFlag_NoDecode		= 1 << 2,	// Do not decode the image. Loads as a memory image only. Flip and rotate functions can only be called if NoDecode is set.
 		LoadFlags_Default		= LoadFlag_ExifOrient
 	};
 
@@ -48,9 +49,18 @@ public:
 
 	// Creates an invalid tImageJPG. You must call Load or Set manually.
 	tImageJPG()																											{ }
+
+	// Creates from a JPG file on the filesystem.
 	tImageJPG(const tString& jpgFile, const LoadParams& params = LoadParams())											{ Load(jpgFile, params); }
 
-	// The data is copied out of jpgFileInMemory. Go ahead and delete after if you want.
+	// The supplied JPG data is parsed and decoded into pixel data.
+	tImageJPG(const tArray<uint8>& jpgFileInMemory, const LoadParams& params = LoadParams())							{ Load(jpgFileInMemory, params); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can still use it.
+	tImageJPG(tArray<uint8>&& jpgFileInMemory, const LoadParams& params = LoadParams())									{ Load(tStd::rVal(jpgFileInMemory), params); }
+
+	// The supplied JPG data is parsed and decoded into pixel data.
 	tImageJPG(const uint8* jpgFileInMemory, int numBytes, const LoadParams& params = LoadParams())						{ Load(jpgFileInMemory, numBytes, params); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
@@ -67,6 +77,14 @@ public:
 
 	// Clears the current tImageJPG before loading. Returns success. If false returned, object is invalid.
 	bool Load(const tString& jpgFile, const LoadParams& params = LoadParams());
+
+	// Reads the array (the source is left unchanged).
+	bool Load(const tArray<uint8>& jpgFileInMemory, const LoadParams& params = LoadParams());
+
+	// Consumes the array only on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& jpgFileInMemory, const LoadParams& params = LoadParams());
+
+	// The supplied JPG data is parsed and decoded into pixel data.
 	bool Load(const uint8* jpgFileInMemory, int numBytes, const LoadParams& params = LoadParams());
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
@@ -91,14 +109,14 @@ public:
 	};
 
 	// Saves the tImageJPG to the JPeg file specified. The type of filename must be JPG (jpg or jpeg extension).
-	// The quality int is should be a percent in [1,100]. If the tImageJPG was loaded with LoadFlag_NoDecompress,
+	// The quality int is should be a percent in [1,100]. If the tImageJPG was loaded with LoadFlag_NoDecode,
 	// the quality setting is ignored. Returns true on success.
 	bool Save(const tString& jpgFile, int quality) const;
 	bool Save(const tString& jpgFile, const SaveParams& = SaveParams()) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
 	void Clear() override;
-	bool IsValid() const override																						{ return Pixels || MemImage ? true : false; }
+	bool IsValid() const override																						{ return (Pixels || MemImage.IsValid()) ? true : false; }
 
 	int GetWidth() const																								{ return Width; }
 	int GetHeight() const																								{ return Height; }
@@ -119,7 +137,7 @@ public:
 	// An imperfect lossless transform is still lossless, but some edges of the image need to be culled. For all
 	// lossless transforms (flips/rotates) to be perfect two things must be true:
 	//
-	// a) The NoDecompress load-flag must have been used.
+	// a) The NoDecode load-flag must have been used.
 	// b) The image's width and height must be evenly divisible by the MCU block size.
 	//
 	// For b) if both width and height are divisible, all transforms are possible. If one is divisible then the
@@ -140,23 +158,33 @@ public:
 	tPixel4b* GetPixels() const																							{ return Pixels; }
 
 	// A place to store EXIF and XMP metadata. JPeg files often contain this metadata. This field is not populated if
-	// NoDecompress flag was used during load.
+	// NoDecode flag was used during load.
 	tMetaData MetaData;
 
 private:
 	bool PopulateMetaData(const uint8* jpgFileInMemory, int numBytes);
 	void ClearPixelData();
 
+	// Decodes the image in place (zero-copy read of data.GetElements()); sets Width/Height from the decoded image.
+	// Requires that LoadFlag_NoDecode is NOT set (the caller handles the NoDecode path via LoadMemImage).
+	bool LoadDecode(const uint8* data, int numBytes, const LoadParams& params);
+
+	// Retains the encoded container bytes for lossless transforms + lossless Save. Does NOT set Width/Height.
+	// The const& overload copies the bytes; the rvalue overload moves them (no copy).
+	bool LoadMemImage(const tArray<uint8>& data);
+	bool LoadMemImage(tArray<uint8>&& data);
+	bool LoadMemImage(const uint8* data, int numBytes);
+
 	int GetIndex(int x, int y) const																					{ tAssert((x >= 0) && (y >= 0) && (x < Width) && (y < Height)); return y * Width + x; }
 	static int GetIndex(int x, int y, int w, int h)																		{ tAssert((x >= 0) && (y >= 0) && (x < w) && (y < h)); return y * w + x; }
+
 	void Rotate90(bool antiClockWise);
 	void Flip(bool horizontal);
 
 	int Width						= 0;
 	int Height						= 0;
 	tPixel4b* Pixels				= nullptr;
-	uint8* MemImage					= nullptr;
-	int MemImageSize				= 0;
+	tArray<uint8> MemImage;
 };
 
 
@@ -173,3 +201,4 @@ inline void tImageJPG::ClearPixelData()
 
 
 }
+

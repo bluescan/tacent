@@ -97,6 +97,24 @@ namespace EXR
 					IMF::Array<float*> &zbuffer,
 					IMF::Array<unsigned int> &sampleCount,
 					bool deepComp);
+
+	// @tacent
+	// Load an OpenEXR image from an in-memory buffer.
+	void loadImageMemory (const char *buffer, int byteCount,
+	                     const char channel[],
+	                     const char layer[],
+	                     bool preview,
+	                     int lx,
+	                     int ly,
+	                     int partnum,
+	                     int &zsize,
+	                     IMF::Header &header,
+	                     IMF::Array<IMF::Rgba> &pixels,
+	                     IMF::Array<float*> &zbuff,
+	                     IMF::Array<unsigned int> &sampleCount,
+	                     bool deepComp);
+
+	int getNumPartsMemory (const char *buffer, int byteCount);
 }
 
 

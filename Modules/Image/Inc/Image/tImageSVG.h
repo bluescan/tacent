@@ -24,6 +24,7 @@
 
 #pragma once
 #include <Foundation/tString.h>
+#include <Foundation/tArray.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
 #include <Image/tMetaData.h>
@@ -67,9 +68,18 @@ public:
 
 	// Creates an invalid tImageSVG. You must call Load manually.
 	tImageSVG()																												{ }
+
+	// Creates from an SVG file on the filesystem.
 	tImageSVG(const tString& svgFile, const LoadParams& params = LoadParams())												{ Load(svgFile, params); }
 
-	// The data is copied out of svgFileInMemory. Go ahead and delete[] it after the call if you want.
+	// The supplied SVG data is parsed and decoded into pixel data.
+	tImageSVG(const tArray<uint8>& svgFileInMemory, const LoadParams& params = LoadParams())								{ Load(svgFileInMemory, params); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can still use it.
+	tImageSVG(tArray<uint8>&& svgFileInMemory, const LoadParams& params = LoadParams())										{ Load(tStd::rVal(svgFileInMemory), params); }
+
+	// The supplied SVG data is parsed and decoded into pixel data.
 	tImageSVG(const uint8* svgFileInMemory, int numBytes, const LoadParams& params = LoadParams())							{ Load(svgFileInMemory, numBytes, params); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
@@ -86,7 +96,15 @@ public:
 
 	// Clears the current tImageSVG before loading. Returns success. If false is returned, the object is invalid.
 	bool Load(const tString& svgFile, const LoadParams& params = LoadParams());
-	bool Load(const uint8* svgFileInMemory, int numBytes, const LoadParams& params = LoadParams());
+
+	// Reads the array (the source is left unchanged).
+	bool Load(const tArray<uint8>& svgFileInMemory, const LoadParams& = LoadParams());
+
+	// Consumes the array only on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& svgFileInMemory, const LoadParams& = LoadParams());
+
+	// The supplied SVG data is parsed and decoded into pixel data.
+	bool Load(const uint8* svgFileInMemory, int numBytes, const LoadParams& = LoadParams());
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise it
 	// just copies the data out. After this call the object's ColourSpace is set to sRGB.
@@ -112,6 +130,10 @@ public:
 	tMetaData MetaData;
 
 private:
+	// Decodes the rasterized image from the SVG bytes. The source array is not modified (LunaSVG copies out what it needs).
+	// Decodes the in-memory SVG bytes. Read-only: never mutates the caller's buffer.
+	bool Decode(const uint8* data, int numBytes, const LoadParams& params);
+
 	// Populates MetaData by locating the XMP in the <metadata> section (its <x:xmpmeta> element) and handing that
 	// fragment to tMetaData, which parses it via TinyEXIF -- the same consumer used for the PNG/WEBP chunks. We do not
 	// parse the whole document as an XML DOM because the only linked XML parser (tinyxml2) rejects the xpacket
@@ -141,3 +163,4 @@ inline void tImageSVG::Clear()
 
 
 }
+

@@ -3,7 +3,7 @@
 // This knows how to load/save animated PNGs (APNGs). It knows the details of the apng file format and loads the data
 // into multiple tPixel arrays, one for each frame. These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020-2024 Tristan Grimmer.
+// Copyright (c) 2020-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -14,6 +14,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tArray.h>
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
@@ -28,7 +29,19 @@ class tImageAPNG : public tBaseImage
 public:
 	// Creates an invalid tImageAPNG. You must call Load manually.
 	tImageAPNG()																										{ }
+
+	// Load from a png or apng file.
 	tImageAPNG(const tString& apngFile)																					{ Load(apngFile); }
+
+	// The supplied APNG data is parsed and decoded into individual frames of pixel data.
+	tImageAPNG(const tArray<uint8>& apngFileInMemory)																	{ Load(apngFileInMemory); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can use it, possibly to inspect it for issues.
+	tImageAPNG(tArray<uint8>&& apngFileInMemory)																		{ Load(tStd::rVal(apngFileInMemory)); }
+
+	// The supplied APNG data is parsed and decoded into individual frames of pixel data.
+	tImageAPNG(const uint8* apngFileInMemory, int numBytes)																{ Load(apngFileInMemory, numBytes); }
 
 	// Creates a tImageAPNG from a bunch of frames. If steal is true, the srcFrames will be empty after.
 	tImageAPNG(tList<tFrame>& srcFrames, bool stealFrames)																{ Set(srcFrames, stealFrames); }
@@ -48,8 +61,14 @@ public:
 	// Clears the current tImageAPNG before loading. If false returned object is invalid.
 	bool Load(const tString& apngFile);
 
-	// @todo No current in-memory loader.
-	// bool Load(const uint8* apngFileInMemory, int numBytes);
+	// The supplied APNG data is parsed and decoded into individual frames of pixel data.
+	bool Load(const tArray<uint8>& apngFileInMemory);
+
+	// Consumes (clears) the array only on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& apngFileInMemory);
+
+	// The supplied APNG data is parsed and decoded into individual frames of pixel data.
+	bool Load(const uint8* apngFileInMemory, int numBytes);
 
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 
@@ -123,6 +142,10 @@ public:
 	static bool IsAnimatedPNG(const tString& pngFile);
 
 	tList<tFrame> Frames;
+
+private:
+	// Decodes the in-memory APNG bytes.
+	bool Decode(const uint8* apngFileInMemory, int numBytes);
 };
 
 
@@ -179,3 +202,4 @@ inline void tImageAPNG::Clear()
 
 
 }
+

@@ -3,7 +3,7 @@
 // This knows how to load gifs. It knows the details of the gif file format and loads the data into multiple tPixel
 // arrays, one for each frame (gifs may be animated). These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020-2024 Tristan Grimmer.
+// Copyright (c) 2020-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -14,6 +14,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tArray.h>
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
@@ -29,9 +30,18 @@ class tImageGIF : public tBaseImage
 public:
 	// Creates an invalid tImageGIF. You must call Load manually.
 	tImageGIF()																											{ }
+
+	// Creates from a GIF file on the filesystem.
 	tImageGIF(const tString& gifFile)																					{ Load(gifFile); }
 
-	// The data is copied out of gifFileInMemory. Go ahead and delete after if you want.
+	// The supplied GIF data is parsed and decoded into pixel data.
+	tImageGIF(const tArray<uint8>& gifFileInMemory)																		{ Load(gifFileInMemory); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can still use it.
+	tImageGIF(tArray<uint8>&& gifFileInMemory)																			{ Load(tStd::rVal(gifFileInMemory)); }
+
+	// The supplied GIF data is parsed and decoded into pixel data.
 	tImageGIF(const uint8* gifFileInMemory, int numBytes)																{ Load(gifFileInMemory, numBytes); }
 
 	// Creates a tImageGIF from a bunch of frames. If steal is true, the srcFrames will be empty after.
@@ -51,6 +61,14 @@ public:
 
 	// Clears the current tImageGIF before loading. Returns success. If false returned, object is invalid.
 	bool Load(const tString& gifFile);
+
+	// Reads the array (the source is left unchanged).
+	bool Load(const tArray<uint8>& gifFileInMemory);
+
+	// Consumes the array only on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& gifFileInMemory);
+
+	// The supplied GIF data is parsed and decoded into pixel data.
 	bool Load(const uint8* gifFileInMemory, int numBytes);
 
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
@@ -129,6 +147,10 @@ public:
 	tFrame* GetFrame(int frameNum);
 
 private:
+	// Decodes the in-memory GIF bytes. Read-only: never mutates the caller's buffer.
+	bool Decode(const uint8* gifFileInMemory, int numBytes);
+
+
 	static void FrameLoadCallbackBridge(void* imgGifRaw, struct GIF_WHDR*);
 	void FrameLoadCallback(struct GIF_WHDR*);
 
@@ -195,3 +217,4 @@ inline void tImageGIF::Clear()
 
 
 }
+

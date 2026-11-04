@@ -32,31 +32,58 @@ bool tImageAVIF::Load(const tString& avifFile, const LoadParams& params)
 	if (!tSystem::tFileExists(avifFile))
 		return false;
 
-	int numBytes = 0;
-	uint8* avifFileInMemory = tSystem::tLoadFile(avifFile, nullptr, &numBytes);
-	bool success = Load(avifFileInMemory, numBytes, params);
-	delete[] avifFileInMemory;
+	// Read the file directly into a tArray (no raw-buffer intermediate) and move it into the canonical (rvalue) Load.
+	tArray<uint8> data;
+	if (!tSystem::tLoadFile(avifFile, data))
+		return false;
 
-	return success;
+	return Load(tStd::rVal(data), params);
 }
 
 
-bool tImageAVIF::Load(const uint8* avifFileInMemory, int numBytes, const LoadParams& params)
+bool tImageAVIF::Load(const tArray<uint8>& data, const LoadParams& params)
+{
+	// Reads the array directly (no copy) for decoding; the store-bytes (NoDecode) path copies the container into MemImage.
+	return Load(data.GetElements(), data.GetNumElements(), params);
+}
+
+
+bool tImageAVIF::Load(tArray<uint8>&& data, const LoadParams& params)
+{
+	if (params.Flags & LoadFlag_NoDecode)
+		return LoadMemImage(tStd::rVal(data));	// We own the array here: move the bytes into MemImage (no copy).
+
+	const bool ok = LoadDecode(data.GetElements(), data.GetNumElements());
+	if (ok)
+		data.Clear();
+
+	return ok;
+}
+
+
+bool tImageAVIF::Load(const uint8* data, int numBytes, const LoadParams& params)
+{
+	if (params.Flags & LoadFlag_NoDecode)
+		return LoadMemImage(data, numBytes);	// Store-bytes: copy the raw bytes into our owned MemImage container.
+
+	return LoadDecode(data, numBytes);		// Zero-copy decode: the decoder reads directly from the buffer.
+}
+
+
+bool tImageAVIF::LoadDecode(const uint8* data, int numBytes)
 {
 	Clear();
 
-	if ((numBytes <= 0) || !avifFileInMemory)
+	if ((numBytes <= 0) || !data)
 		return false;
 
 #ifdef TACENT_ENABLE_HEIF
-	// Create libheif context
+	// Create the libheif context and read the container directly from data (zero-copy decode).
 	struct heif_context* ctx = heif_context_alloc();
 	if (!ctx)
 		return false;
 
-	// Read the HEIF file. The _without_copy variant parses directly from the caller's buffer (avoiding a whole-file
-	// copy) -- valid here because the buffer is guaranteed to outlive the context (freed after Load() returns).
-	struct heif_error error = heif_context_read_from_memory_without_copy(ctx, avifFileInMemory, numBytes, nullptr);
+	struct heif_error error = heif_context_read_from_memory_without_copy(ctx, data, numBytes, nullptr);
 	if (error.code != heif_error_Ok)
 	{
 		heif_context_free(ctx);
@@ -70,21 +97,6 @@ bool tImageAVIF::Load(const uint8* avifFileInMemory, int numBytes, const LoadPar
 	{
 		heif_context_free(ctx);
 		return false;
-	}
-
-	// If NoDecompress we keep the original container bytes (lossless) and only read the signalled width/height from
-	// the image handle. No decode, no metadata. This enables the lossless flip/rotate transforms and a raw Save.
-	if ((params.Flags & LoadFlag_NoDecompress))
-	{
-		Width = heif_image_handle_get_width(handle);
-		Height = heif_image_handle_get_height(handle);
-
-		// We must copy the bytes because the caller's buffer (e.g. the temporary loaded with tLoadFile above) will be
-		// freed before this object is destroyed.
-		MemImage = tArray<uint8>(avifFileInMemory, numBytes);
-		heif_image_handle_release(handle);
-		heif_context_free(ctx);
-		return (Width > 0) && (Height > 0);
 	}
 
 	// Extract EXIF and XMP metadata from the container. Failing to parse the metadata is not a load
@@ -153,7 +165,7 @@ bool tImageAVIF::Load(const uint8* avifFileInMemory, int numBytes, const LoadPar
 	ColourProfileSrc = tColourProfile::sRGB;
 	ColourProfile = tColourProfile::sRGB;
 
-	// Cleanup
+	// Cleanup.
 	heif_image_release(image);
 	heif_image_handle_release(handle);
 	heif_context_free(ctx);
@@ -162,6 +174,36 @@ bool tImageAVIF::Load(const uint8* avifFileInMemory, int numBytes, const LoadPar
 #else
 	return false;
 #endif
+}
+
+
+bool tImageAVIF::LoadMemImage(const tArray<uint8>& data)
+{
+	Clear();
+
+	// Const source: the container bytes must be copied.
+	MemImage = data;
+	return MemImage.IsValid();
+}
+
+
+bool tImageAVIF::LoadMemImage(tArray<uint8>&& data)
+{
+	Clear();
+	MemImage = tStd::rVal(data);
+	return MemImage.IsValid();
+}
+
+
+bool tImageAVIF::LoadMemImage(const uint8* data, int numBytes)
+{
+	Clear();
+	if ((numBytes <= 0) || !data)
+		return false;
+
+	// The raw bytes must be copied into our owned container.
+	MemImage = tArray<uint8>(data, numBytes);
+	return MemImage.IsValid();
 }
 
 
@@ -270,7 +312,7 @@ bool tImageAVIF::Save(const tString& avifFile) const
 	if (!IsValid())
 		return false;
 
-	// Saving is only possible if we are holding the original container bytes (i.e. loaded with LoadFlag_NoDecompress).
+	// Saving is only possible if we are holding the original container bytes (i.e. loaded with LoadFlag_NoDecode).
 	// There is no AVIF encoder available, so a decoded pixel image cannot be re-encoded.
 	if (!MemImage.IsValid())
 		return false;
@@ -280,7 +322,7 @@ bool tImageAVIF::Save(const tString& avifFile) const
 
 bool tImageAVIF::LosslessTransform(HEIFTransform transform)
 {
-	// A lossless transform can only be applied to the original container bytes (NoDecompress mode).
+	// A lossless transform can only be applied to the original container bytes (NoDecode mode).
 	if (!MemImage.IsValid())
 		return false;
 

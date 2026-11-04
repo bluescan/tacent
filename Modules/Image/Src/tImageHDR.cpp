@@ -4,7 +4,7 @@
 // file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if
 // an HDR file is specified. After the array is stolen the tImageHDR is invalid. This is purely for performance.
 //
-// Copyright (c) 2020, 2022-2024 Tristan Grimmer.
+// Copyright (c) 2020, 2022-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -276,16 +276,40 @@ bool tImageHDR::Load(const tString& hdrFile, const LoadParams& loadParams)
 	if (!tFileExists(hdrFile))
 		return false;
 
-	int numBytes = 0;
-	uint8* hdrFileInMemory = tLoadFile(hdrFile, nullptr, &numBytes, true);
-	bool success = Load(hdrFileInMemory, numBytes, loadParams);
-	delete[] hdrFileInMemory;
+	tArray<uint8> data;
+	if (!tSystem::tLoadFile(hdrFile, data))
+		return false;
 
-	return success;
+	return Load(data, loadParams);
 }
 
 
-bool tImageHDR::Load(uint8* hdrFileInMemory, int numBytes, const LoadParams& loadParams)
+bool tImageHDR::Load(const tArray<uint8>& hdrMem, const LoadParams& loadParams)
+{
+	// Read the array directly (no copy); the source array is left unchanged.
+	return Load(hdrMem.GetElements(), hdrMem.GetNumElements(), loadParams);
+}
+
+
+bool tImageHDR::Load(tArray<uint8>&& hdrMem, const LoadParams& loadParams)
+{
+	// Hand the array's bytes directly to the decoder (no copy). Consume (clear) the array only on success.
+	const bool ok = Load(hdrMem.GetElements(), hdrMem.GetNumElements(), loadParams);
+	if (ok)
+		hdrMem.Clear();
+
+	return ok;
+}
+
+
+bool tImageHDR::Load(const uint8* hdrFileInMemory, int numBytes, const LoadParams& loadParams)
+{
+	// The supplied HDR data is parsed and decoded into pixel data.
+	return Decode(hdrFileInMemory, numBytes, loadParams);
+}
+
+
+bool tImageHDR::Decode(const uint8* hdrFileInMemory, int numBytes, const LoadParams& loadParams)
 {
 	Clear();
 	if ((numBytes <= 0) || !hdrFileInMemory)
@@ -295,10 +319,13 @@ bool tImageHDR::Load(uint8* hdrFileInMemory, int numBytes, const LoadParams& loa
 	int exposureAdj = loadParams.Exposure;
 	SetupGammaTables(gammaCorr);
 
-	// Search for the first double 0x0A (linefeed).
-	// Note that hdrFileInMemory has an extra EOF at the end. The (numBytes+1)th character.
+	// Tacent modification (the Radiance licence permits this): the original scan indexed buf[c+1] on its last
+	// iteration, which assumed a trailing scratch byte had always been appended to the buffer. Instead we bound the
+	// loop so c+1 stays inside the real data (c < numBytes - 1). That omitted final iteration could never match a
+	// double-LF anyway -- a trailing EOF byte is 0xFF, never 0x0A -- so this is behaviour-identical, removes the need
+	// for a +1 byte reservation, and eliminates a latent out-of-bounds read.
 	int doubleLFIndex = -1;
-	for (int c = 0; c < numBytes; c++)
+	for (int c = 0; c < numBytes - 1; c++)
 	{
 		if ((hdrFileInMemory[c] == 0x0A) && (hdrFileInMemory[c+1] == 0x0A))
 		{
@@ -312,13 +339,10 @@ bool tImageHDR::Load(uint8* hdrFileInMemory, int numBytes, const LoadParams& loa
 		return false;
 	}
 
-	// We are not allowed any '\0' characters in the header. Some Mac-generated images have one!
-	for (int c = 0; c < doubleLFIndex; c++)
-	{
-		if (hdrFileInMemory[c] == '\0')
-			hdrFileInMemory[c] = '_';
-	}
-
+	// Locate the resolution line ('-Y ... +X ...') on the (read-only) caller buffer. A valid HDR header has no '\0'
+	// bytes, so a plain C-string scan works. (The original code first rewrote stray '\0' bytes in the preamble -- seen in
+	// some Mac-generated files -- to '_' so a '\0' could not terminate that scan early; we keep that normalisation, but
+	// apply it on the small header copy below so the (const) caller's buffer is never written.)
 	char* foundY = tStd::tStrstr((char*)hdrFileInMemory, "-Y");
 	char* foundX = tStd::tStrstr((char*)hdrFileInMemory, "+X");
 	char* eolY = tStd::tStrchr(foundY, '\n');
@@ -328,10 +352,28 @@ bool tImageHDR::Load(uint8* hdrFileInMemory, int numBytes, const LoadParams& loa
 		CleanupGammaTables();
 		return false;
 	}
-	*eolX = '\0';
-	tString header((char*)hdrFileInMemory);
-	*eolX = '\n';
-	ReadP = (uint8*)(eolX+1);
+
+	// Copy just the header prefix [0, eolX] (inclusive of the '\n' at eolX) so we can normalise stray '\0' bytes and
+	// build the tString without ever writing into the caller's buffer. The pixel data -- which may legitimately contain
+	// 0x00 -- stays in the caller's buffer and is read directly from it below.
+	const int headerLen = (int)(eolX - (char*)hdrFileInMemory) + 1;
+	tArray<uint8> headerCopy(hdrFileInMemory, headerLen);
+	uint8* hc = headerCopy.GetElements();
+
+	// We are not allowed any '\0' characters in the header. Some Mac-generated images have one!
+	for (int c = 0; c < doubleLFIndex && c < headerLen; c++)
+	{
+		if (hc[c] == '\0')
+			hc[c] = '_';
+	}
+
+	// Temporarily NUL-terminate at the resolution line so we can build the tString, then restore the '\n'.
+	hc[headerLen - 1] = '\0';
+	tString header((char*)hc);
+	hc[headerLen - 1] = '\n';
+
+	// It is essential ReadP is set before ReadRadianceColours. It is what things like GetB() access.
+	ReadP = hdrFileInMemory + headerLen;   // == eolX+1: points into the (unmutated) caller's buffer
 
 	tList<tStringItem> lines;
 	tStd::tExplode(lines, header, '\n');
@@ -489,3 +531,4 @@ tPixel4b* tImageHDR::StealPixels()
 
 
 }
+

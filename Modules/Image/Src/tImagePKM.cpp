@@ -152,16 +152,39 @@ bool tImagePKM::Load(const tString& pkmFile, const LoadParams& params)
 	if (!tFileExists(pkmFile))
 		return false;
 
-	int numBytes = 0;
-	uint8* pkmFileInMemory = tLoadFile(pkmFile, nullptr, &numBytes);
-	bool success = Load(pkmFileInMemory, numBytes, params);
-	delete[] pkmFileInMemory;
+	tArray<uint8> data;
+	if (!tLoadFile(pkmFile, data))
+		return false;
 
-	return success;
+	return Load(data, params);
 }
 
 
-bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParams& paramsIn)
+bool tImagePKM::Load(const tArray<uint8>& data, const LoadParams& params)
+{
+	// Reads the array directly (no copy); the source array is left unchanged.
+	return Load(data.GetElements(), data.GetNumElements(), params);
+}
+
+
+bool tImagePKM::Load(tArray<uint8>&& data, const LoadParams& paramsIn)
+{
+	bool ok = Load(data.GetElements(), data.GetNumElements(), paramsIn);
+	if (ok)
+		data.Clear();
+
+	return ok;
+}
+
+
+bool tImagePKM::Load(const uint8* pkmFileInMemory, int numBytes, const LoadParams& params)
+{
+	// The supplied PKM data is parsed and decoded into pixel data.
+	return Decode(pkmFileInMemory, numBytes, params);
+}
+
+
+bool tImagePKM::Decode(const uint8* pkmFileInMemory, int numBytes, const LoadParams& paramsIn)
 {
 	Clear();
 	if ((numBytes <= 0) || !pkmFileInMemory)

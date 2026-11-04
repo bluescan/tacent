@@ -4,7 +4,7 @@
 // and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if a xpm file is
 // specified. After the array is stolen the tImageXPM is invalid. This is purely for performance.
 //
-// Copyright (c) 2020, 2022-2024 Tristan Grimmer.
+// Copyright (c) 2020, 2022-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -15,6 +15,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tArray.h>
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
@@ -29,9 +30,17 @@ public:
 	// Creates an invalid tImageXPM. You must call Load manually.
 	tImageXPM()																											{ }
 
+	// Creates from an XPM image on the filesystem.
 	tImageXPM(const tString& xpmFile)																					{ Load(xpmFile); }
 
-	// The data is copied out of xpmFileInMemory. Go ahead and delete after if you want.
+	// The supplied XPM data is parsed and decoded into pixel data.
+	tImageXPM(const tArray<uint8>& xpmFileInMemory)																		{ Load(xpmFileInMemory); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can still use it.
+	tImageXPM(tArray<uint8>&& xpmFileInMemory)																			{ Load(tStd::rVal(xpmFileInMemory)); }
+
+	// The supplied XPM data is parsed and decoded into pixel data.
 	tImageXPM(const uint8* xpmFileInMemory, int numBytes)																{ Load(xpmFileInMemory, numBytes); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
@@ -48,6 +57,14 @@ public:
 
 	// Clears the current tImageXPM before loading. Returns success. If false returned, object is invalid.
 	bool Load(const tString& xpmFile);
+
+	// Reads the array (the source is left unchanged).
+	bool Load(const tArray<uint8>& xpmFileInMemory);
+
+	// Consumes the array only on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& xpmFileInMemory);
+
+	// The supplied XPM data is parsed and decoded into pixel data.
 	bool Load(const uint8* xpmFileInMemory, int numBytes);
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
@@ -76,6 +93,9 @@ public:
 	tPixel4b* GetPixels() const																							{ return Pixels; }
 
 private:
+	// Decodes the in-memory XPM bytes. Read-only: never mutates the caller's buffer.
+	bool Decode(const uint8* xpmFileInMemory, int numBytes);
+
 	int Width					= 0;
 	int Height					= 0;
 	tPixel4b* Pixels			= nullptr;
@@ -89,6 +109,7 @@ inline void tImageXPM::Clear()
 {
 	Width			= 0;
 	Height			= 0;
+
 	delete[] Pixels;
 	Pixels = nullptr;
 
@@ -97,3 +118,4 @@ inline void tImageXPM::Clear()
 
 
 }
+

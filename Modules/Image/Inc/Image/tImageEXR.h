@@ -4,7 +4,7 @@
 // file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if
 // an EXR file is specified. After the array is stolen the tImageEXR is invalid. This is purely for performance.
 //
-// Copyright (c) 2020-2025 Tristan Grimmer.
+// Copyright (c) 2020-2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -15,6 +15,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tArray.h>
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
@@ -40,7 +41,19 @@ public:
 
 	// Creates an invalid tImageEXR. You must call Load manually.
 	tImageEXR()																											{ }
+
+	// Creates from an EXR file on disk. I guess they're not really 'disks' these days -- on filesystem.
 	tImageEXR(const tString& exrFile, const LoadParams& loadParams = LoadParams())										{ Load(exrFile, loadParams); }
+
+	// The supplied EXR data is parsed and decoded into pixel data.
+	tImageEXR(const tArray<uint8>& exrFileInMemory, const LoadParams& loadParams = LoadParams())						{ Load(exrFileInMemory, loadParams); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can still use it.
+	tImageEXR(tArray<uint8>&& exrFileInMemory, const LoadParams& loadParams = LoadParams())								{ Load(tStd::rVal(exrFileInMemory), loadParams); }
+
+	// The supplied EXR data is parsed and decoded into pixel data.
+	tImageEXR(const uint8* exrFileInMemory, int numBytes, const LoadParams& loadParams = LoadParams())					{ Load(exrFileInMemory, numBytes, loadParams); }
 
 	// Creates a tImageEXR from a bunch of frames. If steal is true, the srcFrames will be empty after.
 	tImageEXR(tList<tFrame>& srcFrames, bool stealFrames)																{ Set(srcFrames, stealFrames); }
@@ -60,8 +73,14 @@ public:
 	// Clears the current tImageEXR before loading. If false returned object is invalid.
 	bool Load(const tString& exrFile, const LoadParams& = LoadParams());
 
-	// @todo No current in-memory loader.
-	// bool Load(const uint8* exrFileInMemory, int numBytes, const LoadParams& = LoadParams());
+	// The supplied EXR data is parsed and decoded into pixel data.
+	bool Load(const tArray<uint8>& exrFileInMemory, const LoadParams& = LoadParams());
+
+	// Consumes the array only on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& exrFileInMemory, const LoadParams& = LoadParams());
+
+	// The supplied EXR data is parsed and decoded into pixel data.
+	bool Load(const uint8* exrFileInMemory, int numBytes, const LoadParams& = LoadParams());
 
 	bool Set(tList<tFrame>& srcFrames, bool stealFrames);
 
@@ -96,6 +115,7 @@ public:
 	tFrame* GetFrame(int frameNum);
 
 private:
+	bool Decode(const uint8 *buffer, int numBytes, const LoadParams& loadParams);
 	tList<tFrame> Frames;
 };
 
@@ -163,3 +183,4 @@ inline void tImageEXR::Clear()
 
 
 }
+

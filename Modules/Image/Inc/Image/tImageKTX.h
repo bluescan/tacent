@@ -3,7 +3,7 @@
 // This knows how to load/save KTX and KTX2 files. It knows the details of the ktx and ktx2 file format and loads the
 // data into multiple layers.
 //
-// Copyright (c) 2022-2025 Tristan Grimmer.
+// Copyright (c) 2022-2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -14,11 +14,12 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tArray.h>
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
-#include <Image/tPixelFormat.h>
-#include <Image/tLayer.h>
-#include <Image/tBaseImage.h>
+#include "Image/tPixelFormat.h"
+#include "Image/tLayer.h"
+#include "Image/tBaseImage.h"
 struct ktxTexture;
 namespace tImage
 {
@@ -74,6 +75,7 @@ public:
 	{
 		LoadParams()																									{ Reset(); }
 		LoadParams(const LoadParams& src)																				: Flags(src.Flags), Gamma(src.Gamma), Exposure(src.Exposure) { }
+
 		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::fDefaultGamma; Exposure = 1.0f; }
 		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Gamma = src.Gamma; Exposure = src.Exposure; return *this; }
 
@@ -83,13 +85,20 @@ public:
 	};
 
 	// Creates an invalid tImageKTX. You must call Load manually.
-	tImageKTX();
+	tImageKTX()																											{ tStd::tMemset(Layers, 0, sizeof(Layers)); }
 
-	tImageKTX(const tString& ktxFile, const LoadParams& = LoadParams());
+	// Creates from KTX file on filesystem.
+	tImageKTX(const tString& ktxFile, const LoadParams& loadParams = LoadParams())										: Filename(ktxFile) { tStd::tMemset(Layers, 0, sizeof(Layers)); Load(ktxFile, loadParams); }	
 
-	// This load from memory constructor behaves a lot like the from-file version. The file image in memory is read from
-	// and the caller may delete it immediately after if desired.
-	tImageKTX(const uint8* ktxMem, int numBytes, const LoadParams& = LoadParams());
+	// The supplied KTX data is parsed and decoded into pixel data.
+	tImageKTX(const tArray<uint8>& ktxMem, const LoadParams& loadParams = LoadParams())									{ tStd::tMemset(Layers, 0, sizeof(Layers)); Load(ktxMem, loadParams); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can still use it.
+	tImageKTX(tArray<uint8>&& ktxMem, const LoadParams& loadParams = LoadParams())										{ tStd::tMemset(Layers, 0, sizeof(Layers)); Load(tStd::rVal(ktxMem), loadParams); }
+
+	// The supplied KTX data is parsed and decoded into pixel data.
+	tImageKTX(const uint8* ktxMem, int numBytes, const LoadParams& params = LoadParams())								{ tStd::tMemset(Layers, 0, sizeof(Layers)); Load(ktxMem, numBytes, params); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out. Sets the colour space to sRGB. Call SetColourSpace after if you wanted linear.
@@ -143,6 +152,14 @@ public:
 	// invalid object. A ktx may fail to load for a number of reasons: Volume textures are not supported, some
 	// pixel-formats may not yet be supported, or inconsistent flags. Returns true on success or conditional-success.
 	bool Load(const tString& ktxFile, const LoadParams& = LoadParams());
+
+	// Reads the array (the source is left unchanged).
+	bool Load(const tArray<uint8>& ktxFileInMemory, const LoadParams& = LoadParams());
+
+	// Consumes the array only on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& ktxFileInMemory, const LoadParams& = LoadParams());
+
+	// The supplied KTX data is parsed and decoded into pixel data.
 	bool Load(const uint8* ktxFileInMemory, int numBytes, const LoadParams& = LoadParams());
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
@@ -213,6 +230,8 @@ public:
 	tString Filename;
 
 private:
+	// Decodes the in-memory KTX bytes. Read-only: never mutates the caller's buffer.
+	bool Decode(const uint8* ktxData, int ktxSizeBytes, const LoadParams& loadParams);
 	bool LoadFromTexture(ktxTexture* texture, const LoadParams& paramsIn);
 	void SetStateBit(StateBit state)		{ States |= 1 << int(state); }
 
@@ -243,3 +262,4 @@ public:
 
 
 }
+

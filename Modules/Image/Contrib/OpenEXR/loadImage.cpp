@@ -51,6 +51,7 @@
 #include <OpenEXR/ImfPreviewImage.h>
 #include <OpenEXR/ImfChannelList.h>
 #include <OpenEXR/Iex.h>
+#include <OpenEXR/ImfIO.h>
 
 #include <OpenEXR/ImfPartType.h>
 #include <OpenEXR/ImfMultiPartInputFile.h>
@@ -73,17 +74,18 @@ namespace {
 // @tacent
 #define TACENT_EXR_CHANGES
 #ifdef TACENT_EXR_CHANGES
-void loadImageChannel(const char fileName[], const char channelName[], int partnum, Header &header, Array<Rgba> &pixels);
+void loadImageChannel(MultiPartInputFile &inmaster, const char channelName[], int partnum, Header &header, Array<Rgba> &pixels);
 #endif
 
+// @tacent Added MultiPartInputFile
 void
-loadImage (const char fileName[],
+loadImage (MultiPartInputFile &inmaster,
            const char layer[],
            int partnum,
            Header &header,
            Array<Rgba> &pixels)
 {
-    MultiPartInputFile inmaster (fileName);
+
     InputPart in (inmaster, partnum);
     header = in.header();
 
@@ -91,7 +93,7 @@ loadImage (const char fileName[],
     if(ch.findChannel("Y"))
     {
 		#ifdef TACENT_EXR_CHANGES
-		loadImageChannel(fileName, "Y", partnum, header, pixels);
+		loadImageChannel(inmaster, "Y", partnum, header, pixels);
 
 		#else
         //
@@ -168,8 +170,9 @@ loadImage (const char fileName[],
     }
 }
 
+// @tacent Added MultiPartInputFile
 void
-loadTiledImage (const char fileName[],
+loadTiledImage (MultiPartInputFile &inmaster,
                 const char layer[],
                 int lx,
                 int ly,
@@ -177,7 +180,7 @@ loadTiledImage (const char fileName[],
                 Header &header,
                 Array<Rgba> &pixels)
 {
-    MultiPartInputFile inmaster (fileName);
+
     TiledInputPart in (inmaster, partnum);
     header = in.header();
 
@@ -191,7 +194,7 @@ loadTiledImage (const char fileName[],
 
         cout<<"Level (" << lx << ", " << ly << ") does "
 	      "not exist in part "<< partnum << " of file "
-	      << fileName << "."<<endl;
+	      << "."<<endl;
     }
     else
     {
@@ -294,13 +297,14 @@ loadTiledImage (const char fileName[],
 }
 
 
+// @tacent Added MultiPartInputFile
 void
-loadPreviewImage (const char fileName[],
+loadPreviewImage (MultiPartInputFile &inmaster,
                   int partnum,
                   Header &header,
                   Array<Rgba> &pixels)
 {
-    MultiPartInputFile inmaster (fileName);
+
     InputPart in (inmaster, partnum);
     header = in.header();
 
@@ -344,14 +348,15 @@ loadPreviewImage (const char fileName[],
     }
 }
 
+// @tacent Added MultiPartInputFile
 void
-loadImageChannel (const char fileName[],
+loadImageChannel (MultiPartInputFile &inmaster,
                   const char channelName[],
                   int partnum,
                   Header &header,
                   Array<Rgba> &pixels)
 {
-    MultiPartInputFile inmaster (fileName);
+
     InputPart in (inmaster, partnum);
 
     header = in.header();
@@ -411,7 +416,7 @@ loadImageChannel (const char fileName[],
     }
     else
     {
-        cerr << "Image file \"" << fileName << "\" has no "
+        cerr << "Image has no "
         "channel named \"" << channelName << "\"." << endl;
 
         //
@@ -422,8 +427,9 @@ loadImageChannel (const char fileName[],
     }
 }
 
+// @tacent Added MultiPartInputFile
 void
-loadTiledImageChannel (const char fileName[],
+loadTiledImageChannel (MultiPartInputFile &inmaster,
                        const char channelName[],
                        int lx,
                        int ly,
@@ -431,13 +437,13 @@ loadTiledImageChannel (const char fileName[],
                        Header &header,
                        Array<Rgba> &pixels)
 {
-    MultiPartInputFile inmaster (fileName);
+
     TiledInputPart in (inmaster, partnum);
 
     if (!in.isValidLevel (lx, ly))
     {
         THROW (IEX_NAMESPACE::InputExc, "Level (" << lx << ", " << ly << ") does "
-               "not exist in file " << fileName << ".");
+               "not exist in stream.");
     }
 
     header = in.header();
@@ -516,7 +522,7 @@ loadTiledImageChannel (const char fileName[],
     }
     else
     {
-        cerr << "Image file \"" << fileName << "\" part " << partnum << " "
+        cerr << "Image part " << partnum << " "
         "has no channel named \"" << channelName << "\"." << endl;
 
         //
@@ -966,16 +972,16 @@ EXR::loadImage (const char fileName[],
                               deepComp);
     }
 
-
+	// @tacent Pass inmaster instead of filename.
     else if (preview)
     {
-        loadPreviewImage (fileName, partnum, header, pixels);
+        loadPreviewImage (inmaster, partnum, header, pixels);
     }
     else if (lx >= 0 || ly >= 0)
     {
         if (channel)
         {
-            loadTiledImageChannel (fileName,
+            loadTiledImageChannel (inmaster,
                                    channel,
                                    lx, ly,
                                    partnum,
@@ -984,7 +990,7 @@ EXR::loadImage (const char fileName[],
         }
         else
         {
-            loadTiledImage (fileName,
+            loadTiledImage (inmaster,
                             layer,
                             lx, ly,
                             partnum,
@@ -997,7 +1003,7 @@ EXR::loadImage (const char fileName[],
         if (channel)
         {
 			//const char chan[] = { 'Y' };
-            loadImageChannel (fileName,
+            loadImageChannel (inmaster,
                               channel,
                               partnum,
                               header,
@@ -1005,7 +1011,7 @@ EXR::loadImage (const char fileName[],
         }
         else
         {
-            ::loadImage (fileName,
+            ::loadImage (inmaster,
                        layer,
                        partnum,
                        header,
@@ -1013,3 +1019,151 @@ EXR::loadImage (const char fileName[],
         }
     }
 }
+
+// @tacent
+//
+// In-memory IStream for loading OpenEXR images from a memory buffer.
+//
+class MemoryIStream : public IStream
+{
+  public:
+    MemoryIStream (const char *data, int length)
+      : IStream ("(memory)"), _data (data), _length (length), _pos (0)
+    {}
+
+    ~MemoryIStream ()
+    {}
+
+    bool read (char c[], int n)
+    {
+        if (n < 0 || _pos + n > _length)
+            THROW (IEX_NAMESPACE::InputExc, "MemoryIStream::read past end of buffer");
+        for (int i = 0; i < n; i++)
+            c[i] = _data[_pos + i];
+        _pos += n;
+        return (_pos < _length);
+    }
+
+    Int64 tellg ()
+    {
+        return _pos;
+    }
+
+    void seekg (Int64 pos)
+    {
+        if (pos < 0 || pos > _length)
+            THROW (IEX_NAMESPACE::InputExc, "MemoryIStream::seekg out of range");
+        _pos = (int) pos;
+    }
+
+  private:
+    const char * _data;
+    int           _length;
+    int           _pos;
+};
+
+
+void
+EXR::loadImageMemory (const char *buffer, int byteCount,
+                      const char channel[],
+                      const char layer[],
+                      bool preview,
+                      int lx,
+                      int ly,
+                      int partnum,
+                      int &zsize,
+                      Header &header,
+                      Array<Rgba> &pixels,
+                      Array<float*>  &zbuff,
+                      Array<unsigned int> &sampleCount,
+                      bool deepComp)
+{
+    zsize = 0;
+
+    if (buffer == 0 || byteCount <= 0)
+        THROW (IEX_NAMESPACE::InputExc, "EXR::loadImageMemory: empty or invalid buffer");
+
+    MemoryIStream instream (buffer, byteCount);
+    MultiPartInputFile inmaster (instream);
+    Header h = inmaster.header(partnum);
+    std::string  type = h.type();
+
+    if (type == DEEPTILE)
+    {
+        loadDeepTileImage(inmaster,
+                          partnum,
+                          zsize,
+                          header,
+                          pixels,
+                          zbuff,
+                          sampleCount,
+                          deepComp);
+    }
+    else if(type == DEEPSCANLINE)
+    {
+        loadDeepScanlineImage(inmaster,
+                              partnum,
+                              zsize,
+                              header,
+                              pixels,
+                              zbuff,
+                              sampleCount,
+                              deepComp);
+    }
+    else if (preview)
+    {
+        loadPreviewImage (inmaster, partnum, header, pixels);
+    }
+    else if (lx >= 0 || ly >= 0)
+    {
+        if (channel)
+        {
+            loadTiledImageChannel (inmaster,
+                                   channel,
+                                   lx, ly,
+                                   partnum,
+                                   header,
+                                   pixels);
+        }
+        else
+        {
+            loadTiledImage (inmaster,
+                            layer,
+                            lx, ly,
+                            partnum,
+                            header,
+                            pixels);
+        }
+    }
+    else
+    {
+        if (channel)
+        {
+            loadImageChannel (inmaster,
+                              channel,
+                              partnum,
+                              header,
+                              pixels);
+        }
+        else
+        {
+            ::loadImage (inmaster,
+                        layer,
+                        partnum,
+                        header,
+                        pixels);
+        }
+    }
+}
+
+
+int
+EXR::getNumPartsMemory (const char *buffer, int byteCount)
+{
+    if (buffer == 0 || byteCount <= 0)
+        return 0;
+    MemoryIStream instream (buffer, byteCount);
+    MultiPartInputFile inmaster (instream);
+    return inmaster.parts ();
+}
+

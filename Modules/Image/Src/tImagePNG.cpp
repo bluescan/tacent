@@ -50,21 +50,49 @@ bool tImagePNG::Load(const tString& pngFile, const LoadParams& params)
 	if (!tFileExists(pngFile))
 		return false;
 
-	int numBytes = 0;
-	uint8* pngFileInMemory = tLoadFile(pngFile, nullptr, &numBytes);
-	bool success = Load(pngFileInMemory, numBytes, params);
-	delete[] pngFileInMemory;
+	// Read the file directly into a tArray (no raw-buffer intermediate) and move it into the canonical (rvalue) Load.
+	tArray<uint8> data;
+	if (!tLoadFile(pngFile, data))
+		return false;
 
-	return success;
+	return Load(data, params);
 }
 
 
-#ifndef USE_SPNG_LIBRARY
-bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParams& paramsIn)
+bool tImagePNG::Load(const tArray<uint8>& data, const LoadParams& params)
 {
+	// Reads the array directly (no copy); the source array is left unchanged.
+	return Load(data.GetElements(), data.GetNumElements(), params);
+}
+
+
+bool tImagePNG::Load(tArray<uint8>&& data, const LoadParams& params)
+{
+	bool ok = Load(data.GetElements(), data.GetNumElements(), params);
+	if (ok)
+		data.Clear();
+
+	 return ok;
+}
+
+
+bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParams& params)
+{
+	// The supplied PNG data is parsed and decoded into pixel data.
+	return Decode(pngFileInMemory, numBytes, params);
+}
+
+
+bool tImagePNG::Decode(const uint8* pngFileInMemory, int numBytes, const LoadParams& paramsIn)
+{
+#ifndef USE_SPNG_LIBRARY
 	Clear();
 	if ((numBytes <= 0) || !pngFileInMemory)
 		return false;
+
+	// Extract EXIF and XMP metadata from the raw PNG chunks. Failing to parse is not a load failure -- the image may
+	// still decode perfectly.
+	PopulateMetaData(pngFileInMemory, numBytes);
 
 	LoadParams params(paramsIn);	
 	png_image pngImage;
@@ -78,7 +106,7 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 		if ((params.Flags & LoadFlag_AllowJPG))
 		{
 			tImageJPG jpg;
-			bool success = jpg.Load(pngFileInMemory, numBytes);
+			bool success = jpg.Load(tArray<uint8>(pngFileInMemory, numBytes));
 			if (!success)
 				return false;
 
@@ -210,13 +238,9 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 	if (params.Flags & LoadFlag_GammaCompression) ColourProfile = tColourProfile::gRGB;
 
 	return true;
-}
 #endif
 
-
 #ifdef USE_SPNG_LIBRARY
-bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParams& paramsIn)
-{
 	Clear();
 	if ((numBytes <= 0) || !pngFileInMemory)
 		return false;
@@ -249,7 +273,7 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 		if ((params.Flags & LoadFlag_AllowJPG))
 		{
 			tImageJPG jpg;
-			bool success = jpg.Load(pngFileInMemory, numBytes);
+			bool success = jpg.Load(tArray<uint8>(pngFileInMemory, numBytes));
 			if (!success)
 				return false;
 
@@ -417,8 +441,8 @@ bool tImagePNG::Load(const uint8* pngFileInMemory, int numBytes, const LoadParam
 	if (params.Flags & LoadFlag_SRGBCompression)  ColourProfile = tColourProfile::sRGB;
 	if (params.Flags & LoadFlag_GammaCompression) ColourProfile = tColourProfile::gRGB;
 	return true;
-}
 #endif
+}
 
 
 bool tImagePNG::Set(tPixel4b* pixels, int width, int height, bool steal)
@@ -1059,3 +1083,4 @@ tPixel4s* tImagePNG::StealPixels16()
 
 
 }
+

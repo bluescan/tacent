@@ -7,7 +7,7 @@
 // b) Supports embedded png images.
 // c) Supports widths and heights of 256.
 //
-// Copyright (c) 2020-2024 Tristan Grimmer.
+// Copyright (c) 2020-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -100,18 +100,43 @@ bool tImageICO::Load(const tString& icoFile)
 	if (!tFileExists(icoFile))
 		return false;
 
-	int numBytes = 0;
-	uint8* icoFileInMemory = tLoadFile(icoFile, nullptr, &numBytes);
-	bool success = Load(icoFileInMemory, numBytes);	
-	delete[] icoFileInMemory;
+	tArray<uint8> data;
+	if (!tLoadFile(icoFile, data))
+		return false;
 
-	return success;
+	return Load(data);
+}
+
+
+bool tImageICO::Load(const tArray<uint8>& data)
+{
+	// Reads the array directly (no copy); the source array is left unchanged.
+	return Load(data.GetElements(), data.GetNumElements());
+}
+
+
+bool tImageICO::Load(tArray<uint8>&& data)
+{
+	const bool ok = Load(data.GetElements(), data.GetNumElements());
+	if (ok)
+		data.Clear();
+
+	 return ok;
 }
 
 
 bool tImageICO::Load(const uint8* icoFileInMemory, int numBytes)
 {
+	// The supplied ICO data is parsed and decoded into pixel data.
+	return Decode(icoFileInMemory, numBytes);
+}
+
+
+bool tImageICO::Decode(const uint8* icoFileInMemory, int numBytes)
+{
 	Clear();
+	if ((numBytes <= 0) || !icoFileInMemory)
+		return false;
 	IconDir* icoDir = (IconDir*)icoFileInMemory;
 	int iconsCount = icoDir->Count;
 

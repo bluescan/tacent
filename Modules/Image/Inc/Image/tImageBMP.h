@@ -24,7 +24,7 @@
 //
 // The modifications to use Tacent datatypes and conversion to C++ are under the ISC licence:
 //
-// Copyright (c) 2020, 2022-2024 Tristan Grimmer.
+// Copyright (c) 2020, 2022-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -35,6 +35,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tArray.h>
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
@@ -48,7 +49,19 @@ class tImageBMP : public tBaseImage
 public:
 	// Creates an invalid tImageBMP. You must call Load manually.
 	tImageBMP()																											{ }
+
+	// Creates from a BMP file on disk.
 	tImageBMP(const tString& bmpFile)																					{ Load(bmpFile); }
+
+	// The supplied BMP data is parsed and decoded into pixel data.
+	tImageBMP(const tArray<uint8>& bmpFileInMemory)																		{ Load(bmpFileInMemory); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can still use/inspect it.
+	tImageBMP(tArray<uint8>&& bmpFileInMemory)																			{ Load(tStd::rVal(bmpFileInMemory)); }
+
+	// The supplied BMP data is parsed and decoded into pixel data.
+	tImageBMP(const uint8* bmpFileInMemory, int numBytes)																{ Load(bmpFileInMemory, numBytes); }
 
 	// This one sets from a supplied pixel array. It just reads the data (or steals the array if steal set).
 	tImageBMP(tPixel4b* pixels, int width, int height, bool steal = false)												{ Set(pixels, width, height, steal); }
@@ -65,8 +78,14 @@ public:
 	// indexed, and run-length encoded RLE4 and RLE8. Returns success. If false returned, object is invalid.
 	bool Load(const tString& bmpFile);
 
-	// @todo No current in-memory loader.
-	// bool Load(const uint8* bmpFileInMemory, int numBytes);
+	// Loads from a BMP memory image.
+	bool Load(const tArray<uint8>& bmpFileInMemory);
+
+	// Consumes (clears) the array on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& bmpFileInMemory);
+
+	// The supplied BMP data is parsed and decoded into pixel data.
+	bool Load(const uint8* bmpFileInMemory, int numBytes);
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
@@ -118,6 +137,9 @@ public:
 	tPixel4b* GetPixels() const																							{ return Pixels; }
 
 private:
+	// Decodes the in-memory BMP bytes.
+	bool Decode(const uint8* bmpFileInMemory, int numBytes);
+
 	const uint16 FourCC				= 0x4D42;
 
 	#pragma pack(push, r1, 1)
@@ -153,14 +175,27 @@ private:
 	};
 	#pragma pack(pop, r1)
 
-	void ReadRow_Pixels32	(tFileHandle, uint8* dest);
-	void ReadRow_Pixels24	(tFileHandle, uint8* dest);
-	void ReadRow_Pixels16	(tFileHandle, uint8* dest);
-	void ReadRow_Indexed8	(tFileHandle, uint8* dest, PaletteColour* palette);
-	void ReadRow_Indexed4	(tFileHandle, uint8* dest, PaletteColour* palette);
-	void ReadRow_Indexed1	(tFileHandle, uint8* dest, PaletteColour* palette);
-	void ReadRow_IndexedRLE8(tFileHandle, uint8* dest, PaletteColour* palette);
-	void ReadRow_IndexedRLE4(tFileHandle, uint8* dest, PaletteColour* palette);
+	// A read-only cursor over the BMP buffer. Replaces the old tFileHandle-based ReadRow helpers so the decode works
+	// identically from a file (read into a buffer first) or from a caller-supplied buffer.
+	struct BMPReader
+	{
+		const uint8* Data;
+		int NumBytes;
+		int Offset;
+		
+		uint8 Getc();
+		bool Read(void* buf, int size);
+		void Seek(int n);
+	};
+	
+	void ReadRow_Pixels32	(BMPReader& reader, uint8* dest);
+	void ReadRow_Pixels24	(BMPReader& reader, uint8* dest);
+	void ReadRow_Pixels16	(BMPReader& reader, uint8* dest);
+	void ReadRow_Indexed8	(BMPReader& reader, uint8* dest, PaletteColour* palette);
+	void ReadRow_Indexed4	(BMPReader& reader, uint8* dest, PaletteColour* palette);
+	void ReadRow_Indexed1	(BMPReader& reader, uint8* dest, PaletteColour* palette);
+	void ReadRow_IndexedRLE8(BMPReader& reader, uint8* dest, PaletteColour* palette);
+	void ReadRow_IndexedRLE4(BMPReader& reader, uint8* dest, PaletteColour* palette);
 
 	// So this is a neat C++11 feature. Allows simplified constructors.
 	int Width = 0;
@@ -182,4 +217,28 @@ inline void tImageBMP::Clear()
 }
 
 
+inline uint8 tImageBMP::BMPReader::Getc()
+{
+	return (Offset < NumBytes) ? Data[Offset++] : 0;
 }
+
+
+inline bool tImageBMP::BMPReader::Read(void* buf, int size)
+{
+	if (Offset + size > NumBytes)
+		return false;
+
+	tStd::tMemcpy(buf, Data + Offset, size);
+	Offset += size;
+	return true;
+}
+
+
+inline void tImageBMP::BMPReader::Seek(int n)
+{
+	Offset += n;
+}
+
+
+}
+

@@ -74,5 +74,8 @@ struct Image
 // Returns -1 on error.
 int load_apng(const char * szIn, std::vector<Image>& img);
 
+// @tacent Decodes an APNG from an in-memory buffer. Read-only: never mutates the caller's buffer. Returns -1 on error.
+int load_apng_memory(const unsigned char* data, unsigned long size, std::vector<Image>& img);
+
 
 }

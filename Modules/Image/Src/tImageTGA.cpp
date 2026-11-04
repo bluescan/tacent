@@ -4,7 +4,7 @@
 // tPicture's constructor if a targa file is specified. After the array is stolen the tImageTGA is invalid. This is
 // purely for performance.
 //
-// Copyright (c) 2006, 2017, 2019, 2020, 2023, 2024 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2020, 2023, 2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -73,16 +73,40 @@ bool tImageTGA::Load(const tString& tgaFile, const LoadParams& params)
 	if (!tFileExists(tgaFile))
 		return false;
 
-	int numBytes = 0;
-	uint8* tgaFileInMemory = tLoadFile(tgaFile, nullptr, &numBytes);
-	bool success = Load(tgaFileInMemory, numBytes, params);
-	delete[] tgaFileInMemory;
+	// Read the file directly into a tArray (no raw-buffer intermediate) and move it into the canonical (rvalue) Load.
+	tArray<uint8> data;
+	if (!tLoadFile(tgaFile, data))
+		return false;
 
-	return success;
+	return Load(data, params);
+}
+
+
+bool tImageTGA::Load(const tArray<uint8>& data, const LoadParams& params)
+{
+	// Reads the array directly (no copy); the source array is left unchanged.
+	return Decode(data.GetElements(), data.GetNumElements(), params);
+}
+
+
+bool tImageTGA::Load(tArray<uint8>&& data, const LoadParams& params)
+{
+	bool ok = Load(data.GetElements(), data.GetNumElements(), params);
+	if (ok)
+		data.Clear();
+
+	return ok;
 }
 
 
 bool tImageTGA::Load(const uint8* tgaFileInMemory, int numBytes, const LoadParams& params)
+{
+	// The supplied TGA data is parsed and decoded into pixel data.
+	return Decode(tgaFileInMemory, numBytes, params);
+}
+
+
+bool tImageTGA::Decode(const uint8* tgaFileInMemory, int numBytes, const LoadParams& params)
 {
 	Clear();
 	if ((numBytes <= 0) || !tgaFileInMemory)
@@ -604,3 +628,4 @@ tPixel4b* tImageTGA::StealPixels()
 
 
 }
+

@@ -3,7 +3,7 @@
 // This knows how to load/save animated PNGs (APNGs). It knows the details of the apng file format and loads the data
 // into multiple tPixel arrays, one for each frame. These arrays may be 'stolen' by tPictures.
 //
-// Copyright (c) 2020-2024 Tristan Grimmer.
+// Copyright (c) 2020-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -61,10 +61,46 @@ bool tImageAPNG::Load(const tString& apngFile)
 	if (!tFileExists(apngFile))
 		return false;
 
-	std::vector<APngDis::Image> frames;
+	tArray<uint8> data;
+	if (!tLoadFile(apngFile, data))
+		return false;
 
-	// We assume here that load_apng can hande UTF-8 filenames.
-	int result = APngDis::load_apng(apngFile.Chr(), frames);
+	return Load(data);
+}
+
+
+bool tImageAPNG::Load(const tArray<uint8>& apngFileInMemory)
+{
+	// Reads the array directly (no copy). The source array is left unchanged.
+	return Load(apngFileInMemory.GetElements(), apngFileInMemory.GetNumElements());
+}
+
+
+bool tImageAPNG::Load(tArray<uint8>&& apngFileInMemory)
+{
+	const bool ok = Load(apngFileInMemory.GetElements(), apngFileInMemory.GetNumElements());
+	if (ok)
+		apngFileInMemory.Clear();
+
+	return ok;
+}
+
+
+bool tImageAPNG::Load(const uint8* apngFileInMemory, int numBytes)
+{
+	// The supplied APNG data is parsed and decoded into individual frames of pixel data.
+	return Decode(apngFileInMemory, numBytes);
+}
+
+
+bool tImageAPNG::Decode(const uint8* apngFileInMemory, int numBytes)
+{
+	Clear();
+	if ((numBytes <= 0) || !apngFileInMemory)
+		return false;
+
+	std::vector<APngDis::Image> frames;
+	int result = APngDis::load_apng_memory((const unsigned char*)apngFileInMemory, (unsigned long)numBytes, frames);
 	if (result < 0)
 		return false;
 
@@ -327,3 +363,4 @@ tImageAPNG::tFormat tImageAPNG::Save(const tString& apngFile, const SaveParams& 
 
 
 }
+

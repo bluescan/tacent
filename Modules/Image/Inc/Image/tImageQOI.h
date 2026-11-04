@@ -15,6 +15,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tArray.h>
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
@@ -28,9 +29,18 @@ class tImageQOI : public tBaseImage
 public:
 	// Creates an invalid tImageQOI. You must call Load manually.
 	tImageQOI()																											{ }
+
+	// Creates from a QOI file on the filesystem.
 	tImageQOI(const tString& qoiFile)																					{ Load(qoiFile); }
 
-	// The data is copied out of qoiFileInMemory. Go ahead and delete[] after if you want.
+	// The supplied QOI data is parsed and decoded into pixel data.
+	tImageQOI(const tArray<uint8>& qoiFileInMemory)																		{ Load(qoiFileInMemory); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can still use it.
+	tImageQOI(tArray<uint8>&& qoiFileInMemory)																			{ Load(tStd::rVal(qoiFileInMemory)); }
+
+	// The supplied QOI data is parsed and decoded into pixel data.
 	tImageQOI(const uint8* qoiFileInMemory, int numBytes)																{ Load(qoiFileInMemory, numBytes); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
@@ -47,6 +57,14 @@ public:
 
 	// Clears the current tImageQOI before loading. Returns success. If false returned, object is invalid.
 	bool Load(const tString& qoiFile);
+
+	// Reads the array (the source is left unchanged).
+	bool Load(const tArray<uint8>& qoiFileInMemory);
+
+	// Consumes the array only on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& qoiFileInMemory);
+
+	// The supplied QOI data is parsed and decoded into pixel data.
 	bool Load(const uint8* qoiFileInMemory, int numBytes);
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
@@ -103,6 +121,9 @@ public:
 	tPixel4b* GetPixels() const																							{ return Pixels; }
 
 private:
+	// Decodes the in-memory QOI bytes. Read-only: never mutates the caller's buffer.
+	bool Decode(const uint8* qoiFileInMemory, int numBytes);
+
 	int Width						= 0;
 	int Height						= 0;
 	tPixel4b* Pixels				= nullptr;
@@ -124,3 +145,4 @@ inline void tImageQOI::Clear()
 
 
 }
+

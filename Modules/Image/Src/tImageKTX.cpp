@@ -518,24 +518,82 @@ void tKTX::GetFormatInfo_FromVKFormat(tPixelFormat& format, tColourProfile& prof
 }
 
 
-tImageKTX::tImageKTX()
+bool tImageKTX::Load(const tString& ktxFile, const LoadParams& loadParams)
 {
-	tStd::tMemset(Layers, 0, sizeof(Layers));
+	Clear();
+	Filename = ktxFile;
+	tSystem::tFileType fileType = tSystem::tGetFileType(ktxFile);
+	if ((fileType != tSystem::tFileType::KTX) && (fileType != tSystem::tFileType::KTX2))
+	{
+		SetStateBit(StateBit::Fatal_IncorrectFileType);
+		return false;
+	}
+
+	if (!tSystem::tFileExists(ktxFile))
+	{
+		SetStateBit(StateBit::Fatal_FileDoesNotExist);
+		return false;
+	}
+
+	#if 0
+	int ktxSizeBytes = 0;
+	uint8* ktxData = (uint8*)tSystem::tLoadFile(ktxFile, 0, &ktxSizeBytes);
+	bool success = Load(ktxData, ktxSizeBytes, loadParams);
+	delete[] ktxData;
+	return success;
+	#endif
+
+	ktx_error_code_e result = KTX_SUCCESS;
+	ktxTexture* texture = nullptr;
+	result = ktxTexture_CreateFromNamedFile(ktxFile.Chr(), KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT, &texture);
+	if (!texture || (result != KTX_SUCCESS))
+	{
+		SetStateBit(StateBit::Fatal_CouldNotParseFile);
+		return false;
+	}
+
+	return LoadFromTexture(texture, loadParams);
 }
 
 
-tImageKTX::tImageKTX(const tString& ktxFile, const LoadParams& loadParams) :
-	Filename(ktxFile)
+bool tImageKTX::Load(const tArray<uint8>& ktxFileInMemory, const LoadParams& params)
 {
-	tStd::tMemset(Layers, 0, sizeof(Layers));
-	Load(ktxFile, loadParams);
+	// KTX decoding does not modify the source, so hand the caller's bytes straight to the decoder (no copy, no consume).
+	return Load(ktxFileInMemory.GetElements(), ktxFileInMemory.GetNumElements(), params);
 }
 
 
-tImageKTX::tImageKTX(const uint8* ktxFileInMemory, int numBytes, const LoadParams& loadParams)
+bool tImageKTX::Load(tArray<uint8>&& ktxFileInMemory, const LoadParams& params)
 {
-	tStd::tMemset(Layers, 0, sizeof(Layers));
-	Load(ktxFileInMemory, numBytes, loadParams);
+	// Hand the array's bytes directly to the decoder (no copy). Consume (clear) the array only on success.
+	bool ok = Load(ktxFileInMemory.GetElements(), ktxFileInMemory.GetNumElements(), params);
+	if (ok)
+		ktxFileInMemory.Clear();
+	return ok;
+}
+
+
+bool tImageKTX::Load(const uint8* ktxFileInMemory, int numBytes, const LoadParams& loadParams)
+{
+	// The supplied KTX data is parsed and decoded into pixel data.
+	return Decode(ktxFileInMemory, numBytes, loadParams);
+}
+
+
+bool tImageKTX::Decode(const uint8* ktxData, int ktxSizeBytes, const LoadParams& params)
+{
+	Clear();
+
+	ktx_error_code_e result = KTX_SUCCESS;
+	ktxTexture* texture = nullptr;
+	result = ktxTexture_CreateFromMemory(ktxData, ktxSizeBytes, KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT, &texture);
+	if (!texture || (result != KTX_SUCCESS))
+	{
+		SetStateBit(StateBit::Fatal_CouldNotParseFile);
+		return false;
+	}
+
+	return LoadFromTexture(texture, params);
 }
 
 
@@ -734,61 +792,6 @@ int tImageKTX::GetCubemapLayers(tList<tLayer> layerLists[tFaceIndex_NumFaces], u
 	}
 
 	return faceCount;
-}
-
-
-bool tImageKTX::Load(const tString& ktxFile, const LoadParams& loadParams)
-{
-	Clear();
-	Filename = ktxFile;
-	tSystem::tFileType fileType = tSystem::tGetFileType(ktxFile);
-	if ((fileType != tSystem::tFileType::KTX) && (fileType != tSystem::tFileType::KTX2))
-	{
-		SetStateBit(StateBit::Fatal_IncorrectFileType);
-		return false;
-	}
-
-	if (!tSystem::tFileExists(ktxFile))
-	{
-		SetStateBit(StateBit::Fatal_FileDoesNotExist);
-		return false;
-	}
-
-	#if 0
-	int ktxSizeBytes = 0;
-	uint8* ktxData = (uint8*)tSystem::tLoadFile(ktxFile, 0, &ktxSizeBytes);
-	bool success = Load(ktxData, ktxSizeBytes, loadParams);
-	delete[] ktxData;
-	return success;
-	#endif
-
-	ktx_error_code_e result = KTX_SUCCESS;
-	ktxTexture* texture = nullptr;
-	result = ktxTexture_CreateFromNamedFile(ktxFile.Chr(), KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT, &texture);
-	if (!texture || (result != KTX_SUCCESS))
-	{
-		SetStateBit(StateBit::Fatal_CouldNotParseFile);
-		return false;
-	}
-
-	return LoadFromTexture(texture, loadParams);
-}
-
-
-bool tImageKTX::Load(const uint8* ktxData, int ktxSizeBytes, const LoadParams& paramsIn)
-{
-	Clear();
-
-	ktx_error_code_e result = KTX_SUCCESS;
-	ktxTexture* texture = nullptr;
-	result = ktxTexture_CreateFromMemory(ktxData, ktxSizeBytes, KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT, &texture);
-	if (!texture || (result != KTX_SUCCESS))
-	{
-		SetStateBit(StateBit::Fatal_CouldNotParseFile);
-		return false;
-	}
-
-	return LoadFromTexture(texture, paramsIn);
 }
 
 

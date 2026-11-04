@@ -4,7 +4,7 @@
 // stored in a tLayer. If decode was requested the layer will store raw pixel data. The layer may be 'stolen'. IF it
 // is the tImageASTC is invalid afterwards. This is purely for performance.
 //
-// Copyright (c) 2023-2025 Tristan Grimmer.
+// Copyright (c) 2023-2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -15,6 +15,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tArray.h>
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
@@ -29,7 +30,7 @@ class tImageASTC : public tBaseImage
 public:
 	enum LoadFlag
 	{
-		LoadFlag_Decode				= 1 << 0,	// Decode the astc texture data into RGBA 32 bit. If not set, the pixel data will remain unmodified.
+		LoadFlag_Decode				= 1 << 0,	// Decode the astc texture data into RGBA 32 bit. If not set, the pixel data will remain unmodified in the tLayer (which can store either).
 
 		// The remaining flags only apply when decode flag set. ReverseRowOrder is guaranteed to work if decoding, and
 		// guaranteed to not work if not decoding.
@@ -57,10 +58,19 @@ public:
 
 	// Creates an invalid tImageASTC. You must call Load manually.
 	tImageASTC()																										{ }
+
+	// Create from an ASTC file on disk.
 	tImageASTC(const tString& astcFile, const LoadParams& params = LoadParams())										{ Load(astcFile, params); }
 
-	// The data is copied out of astcFileInMemory. Go ahead and delete[] after if you want.
-	tImageASTC(const uint8* astcFileInMemory, int numBytes, const LoadParams& params = LoadParams())					{ Load(astcFileInMemory, numBytes, params); }
+	// The supplied ASTC data is parsed and decoded into pixel data.
+	tImageASTC(const tArray<uint8>& astcFileInMemory, const LoadParams& params = LoadParams())							{ Load(astcFileInMemory, params); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds. On failure the array is
+	// left intact so the caller can still use/inspect it.
+	tImageASTC(tArray<uint8>&& astcFileInMemory, const LoadParams& params = LoadParams())								{ Load(tStd::rVal(astcFileInMemory), params); }
+
+	// The supplied ASTC data is parsed and decoded into pixel data.
+	tImageASTC(const uint8* astcInMemory, int numBytes, const LoadParams& params = LoadParams())						{ Load(astcInMemory, numBytes, params); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
@@ -76,7 +86,13 @@ public:
 
 	// Clears the current tImageASTC before loading. Returns success. If false returned, object is invalid.
 	bool Load(const tString& astcFile, const LoadParams& params = LoadParams());
-	bool Load(const uint8* astcFileInMemory, int numBytes, const LoadParams& params = LoadParams());
+	bool Load(const tArray<uint8>& astcFileInMemory, const LoadParams& params = LoadParams());
+
+	// Consumes the array only on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& astcFileInMemory, const LoadParams& params = LoadParams());
+
+	// The supplied ASTC data is parsed and decoded into pixel data.
+	bool Load(const uint8* astcInMemory, int numBytes, const LoadParams& params = LoadParams());
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
@@ -106,6 +122,10 @@ public:
 	tFrame* GetFrame(bool steal = true) override;
 
 private:
+	// Decodes the in-memory ASTC bytes. Read-only: never mutates the caller's buffer.
+	bool Decode(const uint8* astcInMemory, int numBytes, const LoadParams& paramsIn);
+
+
 	// We store the data in a tLayer because that's the container we use for pixel data than may be in any format.
 	// The user of tImageASTC is not required to decode, so we can't just use a tPixel array.
 	tLayer* Layer				= nullptr;
@@ -124,3 +144,4 @@ inline void tImageASTC::Clear()
 
 
 }
+

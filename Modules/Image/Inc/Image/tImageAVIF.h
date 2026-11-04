@@ -13,6 +13,7 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#include <Foundation/tArray.h>
 #include <Foundation/tString.h>
 #include <Math/tColour.h>
 #include "Image/tPixelFormat.h"
@@ -35,9 +36,9 @@ public:
 	{
 		LoadFlag_None			= 0,
 
-		// Do not decompress image. Loads as a memory image only. Lossless flip/rotate transforms can only be called if
-		// NoDecompress is set.
-		LoadFlag_NoDecompress	= 1 << 0,
+		// Do not decode the image. Loads as a memory image only. Lossless flip/rotate transforms can only be called if
+		// NoDecode is set.
+		LoadFlag_NoDecode		= 1 << 0,
 		LoadFlags_Default		= LoadFlag_None
 	};
 
@@ -45,6 +46,7 @@ public:
 	{
 		LoadParams()																									{ Reset(); }
 		LoadParams(const LoadParams& src)																				: Flags(src.Flags) { }
+
 		void Reset()																									{ Flags = LoadFlags_Default; }
 		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; return *this; }
 		uint32 Flags;
@@ -52,9 +54,18 @@ public:
 
 	// Creates an invalid tImageAVIF. You must call Load manually.
 	tImageAVIF()																										{ }
+
+	// Creates from an avif file on disk.
 	tImageAVIF(const tString& avifFile, const LoadParams& params = LoadParams())										{ Load(avifFile, params); }
 
-	// The data is copied out of avifFileInMemory. Go ahead and delete[] after if you want.
+	// The supplied AVIF data is parsed and decoded into pixel data.
+	tImageAVIF(const tArray<uint8>& avifFileInMemory, const LoadParams& params = LoadParams())							{ Load(avifFileInMemory, params); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can still use it.
+	tImageAVIF(tArray<uint8>&& avifFileInMemory, const LoadParams& params = LoadParams())								{ Load(tStd::rVal(avifFileInMemory), params); }
+
+	// The supplied AVIF data is parsed and decoded into pixel data.
 	tImageAVIF(const uint8* avifFileInMemory, int numBytes, const LoadParams& params = LoadParams())					{ Load(avifFileInMemory, numBytes, params); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
@@ -71,6 +82,12 @@ public:
 
 	// Clears the current tImageAVIF before loading. Returns success. If false returned, object is invalid.
 	bool Load(const tString& avifFile, const LoadParams& params = LoadParams());
+	bool Load(const tArray<uint8>& avifFileInMemory, const LoadParams& params = LoadParams());
+
+	// Consumes (clears) the array only on success. On failure the array is left intact for the caller to inspect.
+	bool Load(tArray<uint8>&& avifFileInMemory, const LoadParams& params = LoadParams());
+
+	// The supplied AVIF data is parsed and decoded into pixel data.
 	bool Load(const uint8* avifFileInMemory, int numBytes, const LoadParams& params = LoadParams());
 
 	bool Set(tPixel4b* pixels, int width, int height, bool steal = false) override;
@@ -78,7 +95,7 @@ public:
 	bool Set(tPicture& picture, bool steal = true) override;
 
 	// Saves the tImageAVIF to the file specified. The file extension must be AVIF. If the tImageAVIF was loaded with
-	// LoadFlag_NoDecompress, the original container bytes are written to disk (lossless). Otherwise this returns
+	// LoadFlag_NoDecode, the original container bytes are written to disk (lossless). Otherwise this returns
 	// false, since there is no AVIF encoder available.
 	bool Save(const tString& avifFile) const;
 
@@ -91,7 +108,7 @@ public:
 	bool IsOpaque() const;
 
 	// A lossless transform is one where the compressed container data is untouched and only the orientation metadata
-	// is rewritten. This is only possible when the image was loaded with LoadFlag_NoDecompress (i.e. the original
+	// is rewritten. This is only possible when the image was loaded with LoadFlag_NoDecode (i.e. the original
 	// bytes are still held in memory). All 8 D4 orientations (HEIFTransform) are supported; Identity is a no-op that
 	// reports success. If false is returned the object is left unchanged and the image is invalid.
 	bool LosslessTransform(HEIFTransform);
@@ -103,7 +120,7 @@ public:
 	tPixel4b* GetPixels() const																							{ return Pixels; }
 
 	// A place to store EXIF and XMP metadata. AVIF files often contain this metadata. This field is not populated if
-	// the NoDecompress flag was used during load.
+	// the NoDecode flag was used during load.
 	tMetaData MetaData;
 
 private:
@@ -111,10 +128,19 @@ private:
 	// least one metadata block was recognized and parsed.
 	bool PopulateMetaData(struct heif_image_handle*);
 
+	// Decodes the image in place (zero-copy read of data.GetElements()); sets Width/Height from the decoded image.
+	bool LoadDecode(const uint8* data, int numBytes);
+
+	// Retains the encoded container bytes for lossless transforms + lossless Save. Does NOT set Width/Height.
+	// The const& overload copies the bytes; the rvalue overload moves them (no copy).
+	bool LoadMemImage(const tArray<uint8>& data);
+	bool LoadMemImage(tArray<uint8>&& data);
+	bool LoadMemImage(const uint8* data, int numBytes);
+
 	int Width			= 0;
 	int Height			= 0;
 	tPixel4b* Pixels	= nullptr;
-	tArray<uint8> MemImage;
+	tArray<uint8>		MemImage;
 };
 
 
@@ -131,3 +157,4 @@ inline void tImageAVIF::Clear()
 
 
 }
+

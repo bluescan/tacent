@@ -41,7 +41,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <vector>
-#include "png.h"     /* original (unpatched) libpng is ok */
+#include "png.h"		/* original (unpatched) libpng is ok */
 #include "zlib.h"
 #include "apngdis.h"	// @tacent
 
@@ -66,6 +66,37 @@ namespace APngDis
 
 struct CHUNK { unsigned char * p; unsigned int size; };
 const unsigned long cMaxPNGSize = 16384UL;
+
+// @tacent A small read cursor over either a FILE* or an in-memory buffer, so the chunk-based
+// APNG disassembly works for both file and memory sources without duplicating the body.
+struct Reader
+{
+  enum class Source { File, Memory };
+  Source source = Source::File;
+  FILE* file = nullptr;
+  const unsigned char* data = nullptr;
+  unsigned long numBytes = 0;
+  unsigned long offset = 0;
+
+  bool Read(unsigned char* dst, unsigned long n)
+  {
+    if (n == 0)
+      return true;
+    if (source == Source::File)
+      return (fread(dst, 1, n, file) == n);
+    if (offset + n > numBytes)
+      return false;
+    memcpy(dst, data + offset, n);
+    offset += n;
+    return true;
+  }
+  bool Eof() const
+  {
+    if (source == Source::File)
+      return feof(file);
+    return (offset >= numBytes);
+  }
+};
 
 void info_fn(png_structp png_ptr, png_infop info_ptr)
 {
@@ -120,12 +151,12 @@ void compose_frame(unsigned char ** rows_dst, unsigned char ** rows_src, unsigne
   }
 }
 
-inline unsigned int read_chunk(FILE * f, CHUNK * pChunk)
+inline unsigned int read_chunk(Reader& r, CHUNK * pChunk)
 {
   unsigned char len[4];
   pChunk->size = 0;
   pChunk->p = 0;
-  if (fread(&len, 4, 1, f) == 1)
+  if (r.Read(len, 4))
   {
     pChunk->size = png_get_uint_32(len);
     if (pChunk->size > PNG_USER_CHUNK_MALLOC_MAX)
@@ -133,7 +164,7 @@ inline unsigned int read_chunk(FILE * f, CHUNK * pChunk)
     pChunk->size += 12;
     pChunk->p = new unsigned char[pChunk->size];
     memcpy(pChunk->p, len, 4);
-    if (fread(pChunk->p + 4, pChunk->size - 4, 1, f) == 1)
+    if (r.Read(pChunk->p + 4, pChunk->size - 4))
       return *(unsigned int *)(pChunk->p + 4);
   }
   return 0;
@@ -201,9 +232,8 @@ int processing_finish(png_structp png_ptr, png_infop info_ptr)
   return 0;
 }
 
-int load_apng(const char * szIn, std::vector<Image>& img)
+int load_apng_impl(Reader& r, std::vector<Image>& img)
 {
-  FILE * fileHandle;
   unsigned int id, i, j, w, h, w0, h0, x0, y0;
   unsigned int delay_num, delay_den, dop, bop, imagesize;
   unsigned char sig[8];
@@ -220,202 +250,219 @@ int load_apng(const char * szIn, std::vector<Image>& img)
   Image frameNext;
   int res = -1;
 
-  if ((fileHandle = fopen(szIn, "rb")) != 0)
+  if (r.Read(sig, 8) && png_sig_cmp(sig, 0, 8) == 0)
   {
-    if (fread(sig, 1, 8, fileHandle) == 8 && png_sig_cmp(sig, 0, 8) == 0)
+    id = read_chunk(r, &chunkIHDR);
+    if (!id)
     {
-      id = read_chunk(fileHandle, &chunkIHDR);
-      if (!id)
+      return res;
+    }
+
+    if (id == id_IHDR && chunkIHDR.size == 25)
+    {
+      w0 = w = png_get_uint_32(chunkIHDR.p + 8);
+      h0 = h = png_get_uint_32(chunkIHDR.p + 12);
+
+      if (!w || w > cMaxPNGSize || !h || h > cMaxPNGSize)
       {
-        fclose(fileHandle);
         return res;
       }
 
-      if (id == id_IHDR && chunkIHDR.size == 25)
+      x0 = 0;
+      y0 = 0;
+      delay_num = 1;
+      delay_den = 10;
+      dop = 0;
+      bop = 0;
+      imagesize = w * h * 4;
+
+      frameRaw.init(w, h, 4);
+
+      if (!processing_start(png_ptr, info_ptr, (void *)&frameRaw, hasInfo, chunkIHDR, chunksInfo))
       {
-        w0 = w = png_get_uint_32(chunkIHDR.p + 8);
-        h0 = h = png_get_uint_32(chunkIHDR.p + 12);
+        frameCur.init(w, h, 4);
 
-        if (!w || w > cMaxPNGSize || !h || h > cMaxPNGSize)
+        while ( !r.Eof() )
         {
-          fclose(fileHandle);
-          return res;
-        }
+          id = read_chunk(r, &chunk);
+          if (!id)
+            break;
 
-        x0 = 0;
-        y0 = 0;
-        delay_num = 1;
-        delay_den = 10;
-        dop = 0;
-        bop = 0;
-        imagesize = w * h * 4;
-
-        frameRaw.init(w, h, 4);
-
-        if (!processing_start(png_ptr, info_ptr, (void *)&frameRaw, hasInfo, chunkIHDR, chunksInfo))
-        {
-          frameCur.init(w, h, 4);
-
-          while ( !feof(fileHandle) )
+          if (id == id_acTL && !hasInfo && !isAnimated)
           {
-            id = read_chunk(fileHandle, &chunk);
-            if (!id)
-              break;
-
-            if (id == id_acTL && !hasInfo && !isAnimated)
+            isAnimated = true;
+            skipFirst = true;
+          }
+          else
+          if (id == id_fcTL && (!hasInfo || isAnimated))
+          {
+            if (hasInfo)
             {
-              isAnimated = true;
-              skipFirst = true;
-            }
-            else
-            if (id == id_fcTL && (!hasInfo || isAnimated))
-            {
-              if (hasInfo)
+              if (!processing_finish(png_ptr, info_ptr))
               {
-                if (!processing_finish(png_ptr, info_ptr))
-                {
-                  frameNext.init(w, h, 4);
+                frameNext.init(w, h, 4);
 
-                  if (dop == 2)
-                    memcpy(frameNext.p, frameCur.p, imagesize);
-
-                  compose_frame(frameCur.rows, frameRaw.rows, bop, x0, y0, w0, h0);
-                  frameCur.delay_num = delay_num;
-                  frameCur.delay_den = delay_den;
-                  img.push_back(frameCur);
-
-                  if (dop != 2)
-                  {
-                    memcpy(frameNext.p, frameCur.p, imagesize);
-                    if (dop == 1)
-                      for (j=0; j<h0; j++)
-                        memset(frameNext.rows[y0 + j] + x0*4, 0, w0*4);
-                  }
-                  frameCur.p = frameNext.p;
-                  frameCur.rows = frameNext.rows;
-                }
-                else
-                {
-                  frameCur.free();
-                  delete[] chunk.p;
-                  break;
-                }
-              }
-
-              // At this point the old frame is done. Let's start a new one.
-              w0 = png_get_uint_32(chunk.p + 12);
-              h0 = png_get_uint_32(chunk.p + 16);
-              x0 = png_get_uint_32(chunk.p + 20);
-              y0 = png_get_uint_32(chunk.p + 24);
-              delay_num = png_get_uint_16(chunk.p + 28);
-              delay_den = png_get_uint_16(chunk.p + 30);
-              dop = chunk.p[32];
-              bop = chunk.p[33];
-
-              if (!w0 || w0 > cMaxPNGSize || !h0 || h0 > cMaxPNGSize
-                  || x0 + w0 > w || y0 + h0 > h || dop > 2 || bop > 1)
-              {
-                frameCur.free();
-                delete[] chunk.p;
-                break;
-              }
-
-              if (hasInfo)
-              {
-                memcpy(chunkIHDR.p + 8, chunk.p + 12, 8);
-                if (processing_start(png_ptr, info_ptr, (void *)&frameRaw, hasInfo, chunkIHDR, chunksInfo))
-                {
-                  frameCur.free();
-                  delete[] chunk.p;
-                  break;
-                }
-              }
-              else
-                skipFirst = false;
-
-              if (img.size() == (skipFirst ? 1 : 0))
-              {
-                bop = 0;
                 if (dop == 2)
-                  dop = 1;
-              }
-            }
-            else
-            if (id == id_IDAT)
-            {
-              hasInfo = true;
-              if (processing_data(png_ptr, info_ptr, chunk.p, chunk.size))
-              {
-                frameCur.free();
-                delete[] chunk.p;
-                break;
-              }
-            }
-            else
-            if (id == id_fdAT && isAnimated)
-            {
-              png_save_uint_32(chunk.p + 4, chunk.size - 16);
-              memcpy(chunk.p + 8, "IDAT", 4);
-              if (processing_data(png_ptr, info_ptr, chunk.p + 4, chunk.size - 4))
-              {
-                frameCur.free();
-                delete[] chunk.p;
-                break;
-              }
-            }
-            else
-            if (id == id_IEND)
-            {
-              if (hasInfo && !processing_finish(png_ptr, info_ptr))
-              {
+                  memcpy(frameNext.p, frameCur.p, imagesize);
+
                 compose_frame(frameCur.rows, frameRaw.rows, bop, x0, y0, w0, h0);
                 frameCur.delay_num = delay_num;
                 frameCur.delay_den = delay_den;
                 img.push_back(frameCur);
+
+                if (dop != 2)
+                {
+                  memcpy(frameNext.p, frameCur.p, imagesize);
+                  if (dop == 1)
+                    for (j=0; j<h0; j++)
+                      memset(frameNext.rows[y0 + j] + x0*4, 0, w0*4);
+                }
+                frameCur.p = frameNext.p;
+                frameCur.rows = frameNext.rows;
               }
               else
-                frameCur.free();
-
-              delete[] chunk.p;
-              break;
-            }
-            else
-            if (notabc(chunk.p[4]) || notabc(chunk.p[5]) || notabc(chunk.p[6]) || notabc(chunk.p[7]))
-            {
-              delete[] chunk.p;
-              break;
-            }
-            else
-            if (!hasInfo)
-            {
-              if (processing_data(png_ptr, info_ptr, chunk.p, chunk.size))
               {
                 frameCur.free();
                 delete[] chunk.p;
                 break;
               }
-              chunksInfo.push_back(chunk);
-              continue;
             }
-            delete[] chunk.p;
+
+            // At this point the old frame is done. Let's start a new one.
+            w0 = png_get_uint_32(chunk.p + 12);
+            h0 = png_get_uint_32(chunk.p + 16);
+            x0 = png_get_uint_32(chunk.p + 20);
+            y0 = png_get_uint_32(chunk.p + 24);
+            delay_num = png_get_uint_16(chunk.p + 28);
+            delay_den = png_get_uint_16(chunk.p + 30);
+            dop = chunk.p[32];
+            bop = chunk.p[33];
+
+            if (!w0 || w0 > cMaxPNGSize || !h0 || h0 > cMaxPNGSize
+                || x0 + w0 > w || y0 + h0 > h || dop > 2 || bop > 1)
+            {
+              frameCur.free();
+              delete[] chunk.p;
+              break;
+            }
+
+            if (hasInfo)
+            {
+              memcpy(chunkIHDR.p + 8, chunk.p + 12, 8);
+              if (processing_start(png_ptr, info_ptr, (void *)&frameRaw, hasInfo, chunkIHDR, chunksInfo))
+              {
+                frameCur.free();
+                delete[] chunk.p;
+                break;
+              }
+            }
+            else
+              skipFirst = false;
+
+            if (img.size() == (skipFirst ? 1 : 0))
+            {
+              bop = 0;
+              if (dop == 2)
+                dop = 1;
+            }
           }
+          else if (id == id_IDAT)
+          {
+            hasInfo = true;
+            if (processing_data(png_ptr, info_ptr, chunk.p, chunk.size))
+            {
+              frameCur.free();
+              delete[] chunk.p;
+              break;
+            }
+          }
+          else if (id == id_fdAT && isAnimated)
+          {
+            png_save_uint_32(chunk.p + 4, chunk.size - 16);
+            memcpy(chunk.p + 8, "IDAT", 4);
+            if (processing_data(png_ptr, info_ptr, chunk.p + 4, chunk.size - 4))
+            {
+              frameCur.free();
+              delete[] chunk.p;
+              break;
+            }
+          }
+          else if (id == id_IEND)
+          {
+            if (hasInfo && !processing_finish(png_ptr, info_ptr))
+            {
+              compose_frame(frameCur.rows, frameRaw.rows, bop, x0, y0, w0, h0);
+              frameCur.delay_num = delay_num;
+              frameCur.delay_den = delay_den;
+              img.push_back(frameCur);
+            }
+            else
+              frameCur.free();
+
+            delete[] chunk.p;
+            break;
+          }
+          else if (notabc(chunk.p[4]) || notabc(chunk.p[5]) || notabc(chunk.p[6]) || notabc(chunk.p[7]))
+          {
+            delete[] chunk.p;
+            break;
+          }
+          else if (!hasInfo)
+          {
+            if (processing_data(png_ptr, info_ptr, chunk.p, chunk.size))
+            {
+              frameCur.free();
+              delete[] chunk.p;
+              break;
+            }
+            chunksInfo.push_back(chunk);
+            continue;
+          }
+          delete[] chunk.p;
         }
-        frameRaw.free();
-
-        if (!img.empty())
-          res = (skipFirst) ? 0 : 1;
       }
+      frameRaw.free();
 
-      for (i=0; i<chunksInfo.size(); i++)
-        delete[] chunksInfo[i].p;
-
-      chunksInfo.clear();
-      delete[] chunkIHDR.p;
+      if (!img.empty())
+        res = (skipFirst) ? 0 : 1;
     }
-    fclose(fileHandle);
+
+    for (i=0; i<chunksInfo.size(); i++)
+      delete[] chunksInfo[i].p;
+
+    chunksInfo.clear();
+    delete[] chunkIHDR.p;
   }
 
   return res;
+}
+
+int load_apng(const char * szIn, std::vector<Image>& img)
+{
+  FILE * fileHandle;
+  if ((fileHandle = fopen(szIn, "rb")) != 0)
+  {
+    Reader r;
+    r.source = Reader::Source::File;
+    r.file = fileHandle;
+    int res = load_apng_impl(r, img);
+    fclose(fileHandle);
+    return res;
+  }
+  return -1;
+}
+
+int load_apng_memory(const unsigned char* data, unsigned long size, std::vector<Image>& img)
+{
+  if ((!data) || (size < 8))
+    return -1;
+
+  Reader r;
+  r.source = Reader::Source::Memory;
+  r.data = data;
+  r.numBytes = size;
+  r.offset = 0;
+  return load_apng_impl(r, img);
 }
 
 void save_strip_png(char * szOut, std::vector<Image>& img)

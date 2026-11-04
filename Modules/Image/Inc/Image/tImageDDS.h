@@ -4,7 +4,7 @@
 // the data into tLayers, optionally decompressing them. Saving is not implemented yet. The layers may be 'stolen' from
 // a tImageDDS so that excessive memcpys are avoided. After they are stolen the tImageDDS is invalid.
 //
-// Copyright (c) 2006, 2017, 2019, 2020, 2022-2025 Tristan Grimmer.
+// Copyright (c) 2006, 2017, 2019, 2020, 2022-2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -17,7 +17,8 @@
 #pragma once
 #include "Image/tLayer.h"
 #include "Image/tPixelFormat.h"
-#include <Image/tBaseImage.h>
+#include "Image/tBaseImage.h"
+#include <Foundation/tArray.h>
 namespace tImage
 {
 
@@ -80,13 +81,20 @@ public:
 	};
 
 	// Creates an invalid tImageDDS. You must call Load manually.
-	tImageDDS();
+	tImageDDS()																											{ tStd::tMemset(Layers, 0, sizeof(Layers)); }
 
-	tImageDDS(const tString& ddsFile, const LoadParams& = LoadParams());
+	// Creates from a DDS file on disk.
+	tImageDDS(const tString& ddsFile, const LoadParams& params = LoadParams())											: Filename(ddsFile) { tStd::tMemset(Layers, 0, sizeof(Layers)); Load(ddsFile, params); }
 
-	// This load from memory constructor behaves a lot like the from-file version. The file image in memory is read from
-	// and the caller may delete it immediately after if desired.
-	tImageDDS(const uint8* ddsMem, int numBytes, const LoadParams& = LoadParams());
+	// The supplied DDS data is parsed and decoded into pixel data.
+	tImageDDS(const tArray<uint8>& ddsMem, const LoadParams& params = LoadParams())										{ tStd::tMemset(Layers, 0, sizeof(Layers)); Load(ddsMem, params); }
+
+	// Moves (takes ownership of) the array. It is consumed (cleared) only if the load succeeds; on failure the array is
+	// left intact so the caller can still use/inspect it.
+	tImageDDS(tArray<uint8>&& ddsMem, const LoadParams& params = LoadParams())											{ tStd::tMemset(Layers, 0, sizeof(Layers)); Load(tStd::rVal(ddsMem), params); }
+
+	// The supplied DDS data is parsed and decoded into pixel data.
+	tImageDDS(const uint8* ddsMem, int numBytes, const LoadParams& params = LoadParams())								{ tStd::tMemset(Layers, 0, sizeof(Layers)); Load(ddsMem, numBytes, params); }
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out. Sets the colour space to sRGB.
@@ -146,7 +154,15 @@ public:
 	// invalid object. A dds may fail to load for a number of reasons: Volume textures are not supported, some
 	// pixel-formats may not yet be supported, or inconsistent flags. Returns true on success or conditional-success.
 	bool Load(const tString& ddsFile, const LoadParams& = LoadParams());
-	bool Load(const uint8* ddsFileInMemory, int numBytes, const LoadParams& = LoadParams());
+
+	// Reads the array (the source is left unchanged).
+	bool Load(const tArray<uint8>& ddsMem, const LoadParams& = LoadParams());
+
+	// Consumes the array only on success. On failure the array is left intact for the caller to retry or inspect.
+	bool Load(tArray<uint8>&& ddsMem, const LoadParams& = LoadParams());
+
+	// The supplied DDS data is parsed and decoded into pixel data.
+	bool Load(const uint8* ddsMem, int numBytes, const LoadParams& = LoadParams());
 
 	// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
 	// it just copies the data out.
@@ -223,6 +239,10 @@ public:
 	tString Filename;
 
 private:
+	// Decodes the in-memory DDS bytes (no copy of the caller's buffer). Returns true on success or conditional success.
+	// Read-only: never mutates the caller's buffer.
+	bool Decode(const uint8* ddsMem, int ddsDataSize, const LoadParams& loadParams);
+
 	void SetStateBit(StateBit state)		{ States |= 1 << int(state); }
 
 	// The states are bits in this States member.
@@ -254,3 +274,4 @@ public:
 
 
 }
+

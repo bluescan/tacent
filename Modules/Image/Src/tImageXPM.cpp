@@ -16,8 +16,6 @@
 
 #include <System/tFile.h>
 #include "Image/tImageXPM.h"
-
-
 using namespace tSystem;
 namespace tImage
 {
@@ -33,16 +31,39 @@ bool tImageXPM::Load(const tString& xpmFile)
 	if (!tFileExists(xpmFile))
 		return false;
 
-	int numBytes = 0;
-	uint8* xpmFileInMemory = tLoadFile(xpmFile, nullptr, &numBytes);
-	bool success = Load(xpmFileInMemory, numBytes);
-	delete[] xpmFileInMemory;
+	tArray<uint8> data;
+	if (!tLoadFile(xpmFile, data))
+		return false;
 
-	return success;
+	return Load(data);
+}
+
+
+bool tImageXPM::Load(const tArray<uint8>& data)
+{
+	// Reads the array directly (no copy); the source array is left unchanged.
+	return Load(data.GetElements(), data.GetNumElements());
+}
+
+
+bool tImageXPM::Load(tArray<uint8>&& data)
+{
+	bool ok = Load(data.GetElements(), data.GetNumElements());
+	if (ok)
+		data.Clear();
+
+	return ok;
 }
 
 
 bool tImageXPM::Load(const uint8* xpmFileInMemory, int numBytes)
+{
+	// The supplied XPM data is parsed and decoded into pixel data.
+	return Decode(xpmFileInMemory, numBytes);
+}
+
+
+bool tImageXPM::Decode(const uint8* xpmFileInMemory, int numBytes)
 {
 	Clear();
 	if ((numBytes <= 0) || !xpmFileInMemory)

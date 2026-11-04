@@ -37,38 +37,215 @@ bool tImageJXL::Load(const tString& jxlFile)
 	if (!tSystem::tFileExists(jxlFile))
 		return false;
 
-	int numBytes = 0;
-	uint8* jxlFileInMemory = tSystem::tLoadFile(jxlFile, nullptr, &numBytes);
-	bool success = Load(jxlFileInMemory, numBytes);
-	delete[] jxlFileInMemory;
+	tArray<uint8> data;
+	if (!tSystem::tLoadFile(jxlFile, data))
+		return false;
 
-	return success;
+	return Load(data);
+}
+
+
+bool tImageJXL::Load(const tArray<uint8>& data)
+{
+	// Reads the array directly (no copy); the source array is left unchanged.
+	return Load(data.GetElements(), data.GetNumElements());
+}
+
+
+bool tImageJXL::Load(tArray<uint8>&& data)
+{
+	bool ok = Load(data.GetElements(), data.GetNumElements());
+	if (ok)
+		data.Clear();
+
+	 return ok;
 }
 
 
 bool tImageJXL::Load(const uint8* jxlFileInMemory, int numBytes)
 {
+	// The supplied JXL data is parsed and decoded into pixel data.
+	return Decode(jxlFileInMemory, numBytes);
+}
+
+
+bool tImageJXL::Decode(const uint8* data, int numBytes)
+{
 	Clear();
 
-	if ((numBytes <= 0) || !jxlFileInMemory)
+	if ((numBytes <= 0) || !data)
 		return false;
 
 	// Pass 1: decode the frames. A still image yields one frame; an animation yields one per codestream frame, each with
 	// its own duration. This is the critical step; if it fails the load fails.
-	if (!DecodeFrames(jxlFileInMemory, numBytes))
+	if (!DecodeFrames(data, numBytes))
 		return false;
 
 	// Pass 2: extract EXIF / XMP metadata. This is best-effort and a failure here is not a load failure -- the image is
 	// already decoded. It runs on a second, independent decoder so that a box-reading hiccup can never affect pixels.
-	PopulateMetaData(jxlFileInMemory, numBytes);
+	PopulateMetaData(data, numBytes);
 
-	// Reflect the source's actual channel layout (RGB or RGBA). Head must be valid or we would have failed the Decode.
+	// Reflect the source's actual channel layout (RGB or RGBA). Head must be valid or the frame decode would have failed.
 	PixelFormatSrc = Frames.Head()->PixelFormatSrc;
 	PixelFormat = tPixelFormat::R8G8B8A8;
 	ColourProfileSrc = tColourProfile::sRGB;
 	ColourProfile = tColourProfile::sRGB;
 
 	return true;
+}
+
+
+bool tImageJXL::DecodeFrames(const uint8* data, int numBytes)
+{
+	tAssert((numBytes > 0) && data);
+
+	JxlDecoder* dec = JxlDecoderCreate(nullptr);
+	if (!dec)
+		return false;
+
+	// Coalescing is on by default; request it explicitly so every displayed frame is handed to us as a full, alpha-blended
+	// canvas. That means each animation frame maps onto a single, standalone tFrame with no reference-frame bookkeeping on
+	// our side (this is the whole point of the Frames model).
+	if (JxlDecoderSetCoalescing(dec, JXL_TRUE) != JXL_DEC_SUCCESS)
+	{
+		// Ignore -- coalescing-on is the default and the only value we actually want.
+	}
+
+	bool success			= false;
+	bool gotCanvas			= false;
+	int canvasWidth			= 0;
+	int canvasHeight		= 0;
+	float tickSeconds		= 0.0f;		// Seconds per animation tick (derived from the codestream timescale). 0 => no durations.
+	tFrame* pendingFrame	= nullptr;	// The frame whose pixels libjxl is about to write.
+	bool sourceHasAlpha		= false;	// Whether the codestream carries an alpha channel; drives each frame's PixelFormatSrc.
+
+	// Provides the RGBA8 output buffer for one frame. libjxl fills alpha with 255 for opaque images, so every JXL image
+	// (grayscale, RGB, RGBA) maps cleanly onto tPixel4b (RGBA).
+	auto offerOutBuffer = [&](tFrame& frame) -> bool
+	{
+		JxlPixelFormat format;
+		format.num_channels	= 4;
+		format.data_type	= JXL_TYPE_UINT8;
+		format.endianness	= JXL_NATIVE_ENDIAN;
+		format.align		= 0;
+		return JxlDecoderSetImageOutBuffer(dec, &format, frame.Pixels, size_t(frame.Width) * size_t(frame.Height) * sizeof(tPixel4b)) == JXL_DEC_SUCCESS;
+	};
+
+	if
+	(
+		(JxlDecoderSetInput(dec, data, numBytes) == JXL_DEC_SUCCESS) &&
+		(
+			JxlDecoderSubscribeEvents(dec, JXL_DEC_BASIC_INFO | JXL_DEC_FRAME | JXL_DEC_FULL_IMAGE) == JXL_DEC_SUCCESS
+		)
+	)
+	{
+		// We have the entire file in memory; tell the decoder no more input will arrive.
+		JxlDecoderCloseInput(dec);
+
+		while (1)
+		{
+			JxlDecoderStatus status = JxlDecoderProcessInput(dec);
+
+			if (status == JXL_DEC_SUCCESS)
+			{
+				success = (Frames.GetNumItems() >= 1);
+				break;
+			}
+			if ((status == JXL_DEC_ERROR) || (status == JXL_DEC_NEED_MORE_INPUT))
+				// A real error (NEED_MORE_INPUT should not happen since we closed the input).
+				break;
+
+			if (status == JXL_DEC_BASIC_INFO)
+			{
+				JxlBasicInfo info;
+				tStd::tMemset(&info, 0, sizeof(info));
+				if (JxlDecoderGetBasicInfo(dec, &info) != JXL_DEC_SUCCESS)
+					break;
+
+				canvasWidth = (int)info.xsize;
+				canvasHeight = (int)info.ysize;
+				if ((canvasWidth <= 0) || (canvasHeight <= 0))
+					break;
+				gotCanvas = true;
+
+				// JxlBasicInfo tells us whether the codestream carries an alpha channel.
+				sourceHasAlpha = (info.alpha_bits > 0);
+
+				// The animation timescale is expressed as ticks-per-second (numerator / denominator). Convert it to
+				// seconds-per-tick so a frame's tick duration (JxlFrameHeader::duration) can be scaled to seconds.
+				if (info.have_animation && (info.animation.tps_numerator > 0))
+					tickSeconds = (float)info.animation.tps_denominator / (float)info.animation.tps_numerator;
+			}
+			else if ((status == JXL_DEC_FRAME) || (status == JXL_DEC_NEED_IMAGE_OUT_BUFFER))
+			{
+				// A new displayed frame is starting. Build it (full canvas) and work out its duration in seconds.
+				if (!pendingFrame)
+				{
+					if (!gotCanvas)
+						break;
+
+					tFrame* frame = new tFrame();
+					frame->Width = canvasWidth;
+					frame->Height = canvasHeight;
+					frame->PixelFormatSrc = sourceHasAlpha ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
+					frame->Pixels = new tPixel4b[(size_t)canvasWidth * (size_t)canvasHeight];
+
+					// JxlDecoderGetFrameHeader is valid once the JXL_DEC_FRAME event has occurred for this frame. If it is
+					// not (yet) available we simply leave the duration at zero.
+					JxlFrameHeader frameHeader;
+					tStd::tMemset(&frameHeader, 0, sizeof(frameHeader));
+					if (JxlDecoderGetFrameHeader(dec, &frameHeader) == JXL_DEC_SUCCESS)
+						frame->Duration = tickSeconds * (float)frameHeader.duration;
+
+					pendingFrame = frame;
+				}
+
+				if (!offerOutBuffer(*pendingFrame))
+					break;
+			}
+			else if (status == JXL_DEC_FULL_IMAGE)
+			{
+				// The pending frame's pixels are now filled (coalesced, full canvas, rows top-to-bottom).
+				if (!pendingFrame)
+					break;
+
+				ReverseRows(pendingFrame);	// Convert libjxl's top-to-bottom layout to Tacent's bottom-up storage.
+				Frames.Append(pendingFrame);
+				pendingFrame = nullptr;
+			}
+		}
+	}
+	JxlDecoderDestroy(dec);
+
+	if (!success || pendingFrame)
+	{
+		if (pendingFrame)
+			delete pendingFrame;
+
+		Clear();
+		return false;
+	}
+
+	return true;
+}
+
+
+void tImageJXL::ReverseRows(tFrame* frame)
+{
+	if ((frame->Width <= 0) || (frame->Height <= 1) || !frame->Pixels)
+		return;
+
+	int bytesPerRow = frame->Width * (int)sizeof(tPixel4b);
+	uint8* tempRow = new uint8[bytesPerRow];
+	for (int y = 0; y < (frame->Height / 2); y++)
+	{
+		uint8* top = (uint8*)frame->Pixels + (size_t)y * (size_t)bytesPerRow;
+		uint8* bottom = (uint8*)frame->Pixels + (size_t)(frame->Height - 1 - y) * (size_t)bytesPerRow;
+		tStd::tMemcpy(tempRow, top, bytesPerRow);
+		tStd::tMemcpy(top, bottom, bytesPerRow);
+		tStd::tMemcpy(bottom, tempRow, bytesPerRow);
+	}
+	delete[] tempRow;
 }
 
 
@@ -287,160 +464,6 @@ bool tImageJXL::Save(const tString& jxlFile, const SaveParams& params) const
 }
 
 
-bool tImageJXL::DecodeFrames(const uint8* data, int numBytes)
-{
-	tAssert((numBytes > 0) && data);
-
-	JxlDecoder* dec = JxlDecoderCreate(nullptr);
-	if (!dec)
-		return false;
-
-	// Coalescing is on by default; request it explicitly so every displayed frame is handed to us as a full, alpha-blended
-	// canvas. That means each animation frame maps onto a single, standalone tFrame with no reference-frame bookkeeping on
-	// our side (this is the whole point of the Frames model).
-	if (JxlDecoderSetCoalescing(dec, JXL_TRUE) != JXL_DEC_SUCCESS)
-		;	// Ignore -- coalescing-on is the default and the only value we actually want.
-
-	bool success = false;
-	bool gotCanvas = false;
-	int canvasWidth = 0;
-	int canvasHeight = 0;
-	float tickSeconds = 0.0f;		// Seconds per animation tick (derived from the codestream timescale). 0 => no durations.
-	tFrame* pendingFrame = nullptr;	// The frame whose pixels libjxl is about to write.
-	bool sourceHasAlpha = false;	// Whether the codestream carries an alpha channel; drives each frame's PixelFormatSrc.
-
-	// Provides the RGBA8 output buffer for one frame. libjxl fills alpha with 255 for opaque images, so every JXL image
-	// (grayscale, RGB, RGBA) maps cleanly onto tPixel4b (RGBA).
-	auto offerOutBuffer = [&](tFrame& frame) -> bool
-	{
-		JxlPixelFormat format;
-		format.num_channels	= 4;
-		format.data_type		= JXL_TYPE_UINT8;
-		format.endianness	= JXL_NATIVE_ENDIAN;
-		format.align		= 0;
-		return JxlDecoderSetImageOutBuffer(dec, &format, frame.Pixels, (size_t)frame.Width * (size_t)frame.Height * sizeof(tPixel4b)) == JXL_DEC_SUCCESS;
-	};
-
-	if
-	(
-		(JxlDecoderSetInput(dec, data, numBytes) == JXL_DEC_SUCCESS) &&
-		(
-			JxlDecoderSubscribeEvents
-			(
-				dec, JXL_DEC_BASIC_INFO | JXL_DEC_FRAME | JXL_DEC_FULL_IMAGE
-			) == JXL_DEC_SUCCESS
-		)
-	)
-	{
-		// We have the entire file in memory; tell the decoder no more input will arrive.
-		JxlDecoderCloseInput(dec);
-
-		while (1)
-		{
-			JxlDecoderStatus status = JxlDecoderProcessInput(dec);
-
-			if (status == JXL_DEC_SUCCESS)
-			{
-				success = (Frames.GetNumItems() >= 1);
-				break;
-			}
-			if ((status == JXL_DEC_ERROR) || (status == JXL_DEC_NEED_MORE_INPUT))
-				// A real error (NEED_MORE_INPUT should not happen since we closed the input).
-				break;
-
-			if (status == JXL_DEC_BASIC_INFO)
-			{
-				JxlBasicInfo info;
-				tStd::tMemset(&info, 0, sizeof(info));
-				if (JxlDecoderGetBasicInfo(dec, &info) != JXL_DEC_SUCCESS)
-					break;
-
-				canvasWidth = (int)info.xsize;
-				canvasHeight = (int)info.ysize;
-				if ((canvasWidth <= 0) || (canvasHeight <= 0))
-					break;
-				gotCanvas = true;
-
-				// JxlBasicInfo tells us whether the codestream carries an alpha channel.
-				sourceHasAlpha = (info.alpha_bits > 0);
-
-				// The animation timescale is expressed as ticks-per-second (numerator / denominator). Convert it to
-				// seconds-per-tick so a frame's tick duration (JxlFrameHeader::duration) can be scaled to seconds.
-				if (info.have_animation && (info.animation.tps_numerator > 0))
-					tickSeconds = (float)info.animation.tps_denominator / (float)info.animation.tps_numerator;
-			}
-			else if ((status == JXL_DEC_FRAME) || (status == JXL_DEC_NEED_IMAGE_OUT_BUFFER))
-			{
-				// A new displayed frame is starting. Build it (full canvas) and work out its duration in seconds.
-				if (!pendingFrame)
-				{
-					if (!gotCanvas)
-						break;
-
-					tFrame* frame = new tFrame();
-					frame->Width = canvasWidth;
-					frame->Height = canvasHeight;
-					frame->PixelFormatSrc = sourceHasAlpha ? tPixelFormat::R8G8B8A8 : tPixelFormat::R8G8B8;
-					frame->Pixels = new tPixel4b[(size_t)canvasWidth * (size_t)canvasHeight];
-
-					// JxlDecoderGetFrameHeader is valid once the JXL_DEC_FRAME event has occurred for this frame. If it is
-					// not (yet) available we simply leave the duration at zero.
-					JxlFrameHeader frameHeader;
-					tStd::tMemset(&frameHeader, 0, sizeof(frameHeader));
-					if (JxlDecoderGetFrameHeader(dec, &frameHeader) == JXL_DEC_SUCCESS)
-						frame->Duration = tickSeconds * (float)frameHeader.duration;
-
-					pendingFrame = frame;
-				}
-
-				if (!offerOutBuffer(*pendingFrame))
-					break;
-			}
-			else if (status == JXL_DEC_FULL_IMAGE)
-			{
-				// The pending frame's pixels are now filled (coalesced, full canvas, rows top-to-bottom).
-				if (!pendingFrame)
-					break;
-
-				ReverseRows(pendingFrame);	// Convert libjxl's top-to-bottom layout to Tacent's bottom-up storage.
-				Frames.Append(pendingFrame);
-				pendingFrame = nullptr;
-			}
-		}
-	}
-	JxlDecoderDestroy(dec);
-
-	if (!success || pendingFrame)
-	{
-		if (pendingFrame)
-			delete pendingFrame;
-		Clear();
-		return false;
-	}
-
-	return true;
-}
-
-
-void tImageJXL::ReverseRows(tFrame* frame)
-{
-	if ((frame->Width <= 0) || (frame->Height <= 1) || !frame->Pixels)
-		return;
-
-	int bytesPerRow = frame->Width * (int)sizeof(tPixel4b);
-	uint8* tempRow = new uint8[bytesPerRow];
-	for (int y = 0; y < (frame->Height / 2); y++)
-	{
-		uint8* top = (uint8*)frame->Pixels + (size_t)y * (size_t)bytesPerRow;
-		uint8* bottom = (uint8*)frame->Pixels + (size_t)(frame->Height - 1 - y) * (size_t)bytesPerRow;
-		tStd::tMemcpy(tempRow, top, bytesPerRow);
-		tStd::tMemcpy(top, bottom, bytesPerRow);
-		tStd::tMemcpy(bottom, tempRow, bytesPerRow);
-	}
-	delete[] tempRow;
-}
-
-
 bool tImageJXL::Set(tList<tFrame>& srcFrames, bool stealFrames)
 {
 	Clear();
@@ -566,11 +589,12 @@ bool tImageJXL::WalkBoxes(JxlDecoder* dec, tList<tMetaData::tMetaSegment>& exifS
 			uint32 off = 0;
 			if (boxBytes >= 4)
 				off = (uint32(boxData[0]) << 24) | (uint32(boxData[1]) << 16) | (uint32(boxData[2]) << 8) | uint32(boxData[3]);
-			size_t tiffStart = (size_t)4 + (size_t)off;
-			if ((tiffStart + 8) <= (size_t)boxBytes)
+
+			size_t tiffStart = size_t(4) + size_t(off);
+			if ((tiffStart + 8) <= size_t(boxBytes))
 			{
 				// The segment points into boxData; boxData is recorded as the segment's UserData (the owner).
-				exifSegments.Append(new tMetaData::tMetaSegment(boxData + tiffStart, (int)(boxBytes - tiffStart), boxData));
+				exifSegments.Append(new tMetaData::tMetaSegment(boxData + tiffStart, int(boxBytes - tiffStart), boxData));
 				continue;
 			}
 			// Malformed / too small EXIF box -- drop it (but keep walking for other boxes).
@@ -623,10 +647,13 @@ bool tImageJXL::ReadBoxPayload(JxlDecoder* dec, uint8*& outData, int& outBytes)
 			complete = true;
 			break;
 		}
+
 		if (status != JXL_DEC_BOX_NEED_MORE_OUTPUT)
 			break;		// JXL_DEC_ERROR / JXL_DEC_NEED_MORE_INPUT / unexpected -- the box could not be read.
+
 		if (produced == 0)
 			break;		// No progress despite needing more output; refuse to spin forever.
+
 		collected += produced;
 		// JXL_DEC_BOX_NEED_MORE_OUTPUT: the loop re-bounds against the cap and we make more room on the next pass.
 	}
@@ -642,7 +669,7 @@ bool tImageJXL::ReadBoxPayload(JxlDecoder* dec, uint8*& outData, int& outBytes)
 }
 
 
-bool tImageJXL::PopulateMetaData(const uint8* data, int numBytes)
+bool tImageJXL::PopulateMetaData(const uint8* bytes, int numBytes)
 {
 	tList<tMetaData::tMetaSegment> exifSegments, xmpSegments;
 
@@ -651,7 +678,7 @@ bool tImageJXL::PopulateMetaData(const uint8* data, int numBytes)
 		return false;
 
 	bool walked = false;
-	if (JxlDecoderSetInput(dec, data, numBytes) == JXL_DEC_SUCCESS)
+	if (JxlDecoderSetInput(dec, bytes, numBytes) == JXL_DEC_SUCCESS)
 	{
 		JxlDecoderCloseInput(dec);
 
@@ -671,8 +698,10 @@ bool tImageJXL::PopulateMetaData(const uint8* data, int numBytes)
 		// The walk did not finish cleanly -- drop any segments we collected (they own their UserData buffers).
 		for (tMetaData::tMetaSegment* s = exifSegments.First(); s; s = s->Next())
 			delete[] s->UserData;
+
 		for (tMetaData::tMetaSegment* s = xmpSegments.First(); s; s = s->Next())
 			delete[] s->UserData;
+
 		return false;
 	}
 
@@ -681,6 +710,7 @@ bool tImageJXL::PopulateMetaData(const uint8* data, int numBytes)
 	bool found = MetaData.AddSegments(exifSegments, xmpSegments);
 	for (tMetaData::tMetaSegment* s = exifSegments.First(); s; s = s->Next())
 		delete[] s->UserData;
+
 	for (tMetaData::tMetaSegment* s = xmpSegments.First(); s; s = s->Next())
 		delete[] s->UserData;
 

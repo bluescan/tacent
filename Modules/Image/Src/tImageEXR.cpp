@@ -4,7 +4,7 @@
 // file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if
 // an EXR file is specified. After the array is stolen the tImageEXR is invalid. This is purely for performance.
 //
-// Copyright (c) 2020-2022, 2024 Tristan Grimmer.
+// Copyright (c) 2020-2022, 2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -151,10 +151,49 @@ float EXR::Gamma::operator()(half h)
 bool tImageEXR::Load(const tString& exrFile, const LoadParams& loadParams)
 {
 	Clear();
+
 	if (tSystem::tGetFileType(exrFile) != tSystem::tFileType::EXR)
 		return false;
 
 	if (!tFileExists(exrFile))
+		return false;
+
+	tArray<uint8> data;
+	if (!tLoadFile(exrFile, data))
+		return false;
+
+	return Load(data);
+}
+
+
+bool tImageEXR::Load(const tArray<uint8>& exrFileInMemory, const LoadParams& loadParams)
+{
+	// Reads the array directly (no copy); the source array is left unchanged.
+	return Load(exrFileInMemory.GetElements(), exrFileInMemory.GetNumElements(), loadParams);
+}
+
+
+bool tImageEXR::Load(tArray<uint8>&& exrFileInMemory, const LoadParams& loadParams)
+{
+	const bool ok = Load(exrFileInMemory.GetElements(), exrFileInMemory.GetNumElements(), loadParams);
+	if (ok)
+		exrFileInMemory.Clear();
+
+	return ok;
+}
+
+
+bool tImageEXR::Load(const uint8 *exrFileInMemory, int numBytes, const LoadParams& loadParams)
+{
+	// The supplied EXR data is parsed and decoded into pixel data.
+	return Decode(exrFileInMemory, numBytes, loadParams);
+}
+
+
+bool tImageEXR::Decode(const uint8 *buffer, int numBytes, const LoadParams& loadParams)
+{
+	Clear();
+	if ((numBytes <= 0) || !buffer)
 		return false;
 
 	float defog			= loadParams.Defog;
@@ -173,8 +212,7 @@ bool tImageEXR::Load(const tString& exrFile, const LoadParams& loadParams)
 	IMF::Array<float*> zbuffer;
 	IMF::Array<uint> sampleCount;
 
-	MultiPartInputFile mpfile(exrFile.Chr());
-	int numParts = mpfile.parts();
+	int numParts = EXR::getNumPartsMemory((const char*)buffer, numBytes);
 	if (numParts <= 0)
 		return false;
 
@@ -186,9 +224,9 @@ bool tImageEXR::Load(const tString& exrFile, const LoadParams& loadParams)
 			int lx = -1; int ly = -1;		// For tiled image shows level (lx,ly)
 			bool compositeDeep = true;
 
-			EXR::loadImage
+			EXR::loadImageMemory
 			(
-				exrFile.Chr(),
+				(const char*)buffer, numBytes,
 				nullptr,					// Channels. Null means all.
 				nullptr,					// Layers. O means first one.
 				preview, lx, ly,
@@ -224,8 +262,7 @@ bool tImageEXR::Load(const tString& exrFile, const LoadParams& loadParams)
 		// Map floating-point pixel values 0.0 and 1.0 to the display's white and black respectively.
 		// if bool zerooneexposure true.
 		// exposure = 1.02607f;
-		// kneeHigh = 3.5f;
-		
+		// kneeHigh = 3.5f;		
 		float fogR = 0.0f;
 		float fogG = 0.0f;
 		float fogB = 0.0f;
@@ -380,3 +417,4 @@ tFrame* tImageEXR::GetFrame(bool steal)
 
 	return steal ? Frames.Remove() : new tFrame( *Frames.First() );
 }
+

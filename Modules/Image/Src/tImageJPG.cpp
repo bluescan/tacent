@@ -1,4 +1,4 @@
-// tImageJPG.cpp
+﻿// tImageJPG.cpp
 //
 // This class knows how to load and save a JPeg (.jpg and .jpeg) file. It does zero processing of image data. It knows
 // the details of the jpg file format and loads the data into a tPixel array. These tPixels may be 'stolen' by the
@@ -33,9 +33,7 @@ void tImageJPG::Clear()
 	Height = 0;
 	delete[] Pixels;
 	Pixels = nullptr;
-	if (MemImage) tjFree(MemImage);
-	MemImage = nullptr;
-	MemImageSize = 0;
+	MemImage.Clear();
 	MetaData.Clear();
 
 	tBaseImage::Clear();
@@ -52,35 +50,55 @@ bool tImageJPG::Load(const tString& jpgFile, const LoadParams& params)
 	if (!tFileExists(jpgFile))
 		return false;
 
-	int numBytes = tGetFileSize(jpgFile);
-	if (numBytes <= 0)
+	// Read the file directly into a tArray (no raw-buffer intermediate) and move it into the canonical (rvalue) Load.
+	tArray<uint8> data;
+	if (!tSystem::tLoadFile(jpgFile, data))
 		return false;
 
-	uint8* jpgFileInMemory = tjAlloc(numBytes);
-	tLoadFile(jpgFile, jpgFileInMemory);
-	bool success = Load(jpgFileInMemory, numBytes, params);
-	delete[] jpgFileInMemory;
-
-	return success;
+	return Load(tStd::rVal(data), params);
 }
 
 
-bool tImageJPG::Load(const uint8* jpgFileInMemory, int numBytes, const LoadParams& params)
+bool tImageJPG::Load(const tArray<uint8>& data, const LoadParams& params)
 {
+	// Reads the array directly (no copy) for decoding; the store-bytes (NoDecode) path copies the container into MemImage.
+	return Load(data.GetElements(), data.GetNumElements(), params);
+}
+
+
+bool tImageJPG::Load(tArray<uint8>&& data, const LoadParams& params)
+{
+	if (params.Flags & LoadFlag_NoDecode)
+		return LoadMemImage(tStd::rVal(data));	// We own the array here: move the bytes into MemImage (no copy).
+
+	const bool ok = LoadDecode(data.GetElements(), data.GetNumElements(), params);
+	if (ok)
+		data.Clear();
+
+	return ok;
+}
+
+
+bool tImageJPG::Load(const uint8* data, int numBytes, const LoadParams& params)
+{
+	if (params.Flags & LoadFlag_NoDecode)
+		return LoadMemImage(data, numBytes);	// Store-bytes: copy the raw bytes into our owned MemImage container.
+
+	return LoadDecode(data, numBytes, params);	// Zero-copy decode: the decoder reads directly from the buffer.
+}
+
+
+bool tImageJPG::LoadDecode(const uint8* data, int numBytes, const LoadParams& params)
+{
+	// NoDecode is handled by the caller (Load(const tArray&) / Load(tArray&&)); a decode is never requested under NoDecode.
+	tAssert(!(params.Flags & LoadFlag_NoDecode));
 	Clear();
-	if ((numBytes <= 0) || !jpgFileInMemory)
+
+	if ((numBytes <= 0) || !data)
 		return false;
 
-	// If no decompress we simply set the MemImage members and we're done.
-	if ((params.Flags & LoadFlag_NoDecompress))
-	{
-		MemImage = tjAlloc(numBytes);
-		tStd::tMemcpy(MemImage, jpgFileInMemory, numBytes);
-		MemImageSize = numBytes;
-		return true;
-	}
-
-	PopulateMetaData(jpgFileInMemory, numBytes);
+	// Decode directly from the array's buffer (zero-copy) via libjpeg-turbo.
+	PopulateMetaData(data, numBytes);
 
 	tjhandle tjInstance = tjInitDecompress();
 	if (!tjInstance)
@@ -88,14 +106,17 @@ bool tImageJPG::Load(const uint8* jpgFileInMemory, int numBytes, const LoadParam
 
 	int subSamp = 0;
 	int colourSpace = 0;
-	int headerResult = tjDecompressHeader3(tjInstance, jpgFileInMemory, numBytes, &Width, &Height, &subSamp, &colourSpace);
+	int headerResult = tjDecompressHeader3(tjInstance, data, numBytes, &Width, &Height, &subSamp, &colourSpace);
 	if (headerResult < 0)
+	{
+		tjDestroy(tjInstance);
 		return false;
+	}
 
 	int numPixels = Width * Height;
 	Pixels = new tPixel4b[numPixels];
 
-    int jpgPixelFormat = TJPF_RGBA;
+	int jpgPixelFormat = TJPF_RGBA;
 	int flags = 0;
 	flags |= TJFLAG_BOTTOMUP;
 	//flags |= TJFLAG_FASTUPSAMPLE;
@@ -104,7 +125,7 @@ bool tImageJPG::Load(const uint8* jpgFileInMemory, int numBytes, const LoadParam
 
 	int decomResult = tjDecompress2
 	(
-		tjInstance, jpgFileInMemory, numBytes, (uint8*)Pixels,
+		tjInstance, data, numBytes, (uint8*)Pixels,
 		Width, 0, Height, jpgPixelFormat, flags
 	);
 
@@ -161,7 +182,7 @@ bool tImageJPG::Load(const uint8* jpgFileInMemory, int numBytes, const LoadParam
 					Flip(true);
 					Rotate90(true);
 					break;
-				
+
 				case 6:		// Rot-ACW90
 					Rotate90(false);
 					break;
@@ -186,6 +207,33 @@ bool tImageJPG::Load(const uint8* jpgFileInMemory, int numBytes, const LoadParam
 	ColourProfile = tColourProfile::sRGB;
 
 	return true;
+}
+
+
+bool tImageJPG::LoadMemImage(const tArray<uint8>& data)
+{
+	Clear();
+	MemImage = data;	// Const source: the container bytes must be copied.
+	return MemImage.IsValid();
+}
+
+
+bool tImageJPG::LoadMemImage(tArray<uint8>&& data)
+{
+	Clear();
+	MemImage = tStd::rVal(data);
+	return MemImage.IsValid();
+}
+
+
+bool tImageJPG::LoadMemImage(const uint8* data, int numBytes)
+{
+	Clear();
+	if ((numBytes <= 0) || !data)
+		return false;
+
+	MemImage = tArray<uint8>(data, numBytes);	// The raw bytes must be copied into our owned container.
+	return MemImage.IsValid();
 }
 
 
@@ -318,7 +366,7 @@ void tImageJPG::Flip(bool horizontal)
 
 bool tImageJPG::CanDoPerfectLosslessTransform(Transform trans) const
 {
-	if (!MemImage || (MemImageSize <= 0))
+	if (!MemImage.IsValid())
 		return false;
 
 	if (trans == Transform::Identity)
@@ -331,7 +379,7 @@ bool tImageJPG::CanDoPerfectLosslessTransform(Transform trans) const
 	int width = 0;
 	int height = 0;
 	int subsamp = 0;
-	tjDecompressHeader2(handle, MemImage, MemImageSize, &width, &height, &subsamp);
+	tjDecompressHeader2(handle, MemImage.GetElements(), MemImage.GetNumElements(), &width, &height, &subsamp);
 	tjDestroy(handle);
 
 	tMath::tiClamp(subsamp, 0, TJ_NUMSAMP-1);
@@ -365,7 +413,7 @@ bool tImageJPG::CanDoPerfectLosslessTransform(Transform trans) const
 
 bool tImageJPG::LosslessTransform(Transform trans, bool allowImperfect)
 {
-	if (!MemImage || (MemImageSize <= 0))
+	if (!MemImage.IsValid())
 		return false;
 
 	if (trans == Transform::Identity)
@@ -402,7 +450,7 @@ bool tImageJPG::LosslessTransform(Transform trans, bool allowImperfect)
 
 	int errorCode = tjTransform
 	(
-		handle, MemImage, MemImageSize, 1,
+		handle, MemImage.GetElements(), MemImage.GetNumElements(), 1,
 		dstBufs, dstSizes, transforms, flags
 	);
 	if ((errorCode != 0) || (dstBufs[0] == nullptr) || (dstSizes[0] <= 0))
@@ -411,11 +459,10 @@ bool tImageJPG::LosslessTransform(Transform trans, bool allowImperfect)
 		return false;
 	}
 
-	// Success. Simply hand the buffer over to the MemImage.
-	if (MemImage)
-		tjFree(MemImage);
-	MemImage = dstBufs[0];
-	MemImageSize = dstSizes[0];
+	// Success. Copy the transformed buffer into MemImage and release the tj-allocated scratch buffer. (MemImage owns
+	// its own heap memory, so we cannot simply adopt the tjAlloc'd scratch pointer.)
+	MemImage = tArray<uint8>(dstBufs[0], (int)dstSizes[0]);
+	tjFree(dstBufs[0]);
 
 	tjDestroy(handle);
 	return true;
@@ -501,14 +548,14 @@ bool tImageJPG::Save(const tString& jpgFile, const SaveParams& params) const
 		return false;
 
 	// If we're a simple memory image, just save the bytes to disk and we're done.
-	if (MemImage && (MemImageSize > 0))
+	if (MemImage.IsValid())
 	{
 		tFileHandle fileHandle = tOpenFile(jpgFile, "wb");
 		if (!fileHandle)
 			return false;
-		int numWritten = tWriteFile(fileHandle, MemImage, MemImageSize);
+		int numWritten = tWriteFile(fileHandle, MemImage.GetElements(), MemImage.GetNumElements());
 		tCloseFile(fileHandle);
-		return (numWritten == MemImageSize);
+		return (numWritten == MemImage.GetNumElements());
 	}
 
 	tjhandle tjInstance = tjInitCompress();
@@ -559,3 +606,4 @@ tPixel4b* tImageJPG::StealPixels()
 
 
 }
+

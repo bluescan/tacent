@@ -77,16 +77,39 @@ bool tImageWEBP::Load(const tString& webpFile)
 	if (!tFileExists(webpFile))
 		return false;
 
-	int numBytes = 0;
-	uint8* webpFileInMemory = tLoadFile(webpFile, nullptr, &numBytes);
-	bool success = Load(webpFileInMemory, numBytes);
-	delete[] webpFileInMemory;
+	tArray<uint8> data;
+	if (!tLoadFile(webpFile, data))
+		return false;
 
-	return success;
+	return Load(data);
+}
+
+
+bool tImageWEBP::Load(const tArray<uint8>& data)
+{
+	// Reads the array directly (no copy); the source array is left unchanged.
+	return Load(data.GetElements(), data.GetNumElements());
+}
+
+
+bool tImageWEBP::Load(tArray<uint8>&& data)
+{
+	bool ok = Load(data.GetElements(), data.GetNumElements());
+	if (ok)
+		data.Clear();
+
+	return ok;
 }
 
 
 bool tImageWEBP::Load(const uint8* webpFileInMemory, int numBytes)
+{
+	// The supplied WEBP data is parsed and decoded into pixel data.
+	return Decode(webpFileInMemory, numBytes);
+}
+
+
+bool tImageWEBP::Decode(const uint8* webpFileInMemory, int numBytes)
 {
 	Clear();
 	if ((numBytes <= 0) || !webpFileInMemory)
