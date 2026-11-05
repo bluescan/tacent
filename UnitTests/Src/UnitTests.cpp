@@ -208,7 +208,7 @@ int main(int argc, char** argv)
 
 	// If UNIT_TEST_ONLY_SPECIFIC_TESTS is defined, these are the tests.
 	// Foundation tests.
-	// tTest(Types);
+	tTest(Types);
 	tTest(Array);
 	// tTest(List);
 	// tTest(ListExtra);
@@ -216,8 +216,8 @@ int main(int argc, char** argv)
 	// tTest(Map);
 	// tTest(Promise);
 	// tTest(Sort);
-	// tTest(BitArray);
-	// tTest(BitField);
+	tTest(BitArray);
+	tTest(BitField);
 	// tTest(FixInt);
 	// tTest(String);
 	// tTest(RingBuffer);
@@ -262,14 +262,14 @@ int main(int argc, char** argv)
 
 	// Image tests.
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
-	tTest(ImageLoad);
+	// tTest(ImageLoad);
 	// tTest(ImageSave);
 	// tTest(ImageTexture);
 	// tTest(ImagePicture);
 	// tTest(ImageQuantize);
 	// tTest(ImagePalette);
-	tTest(ImageMetaData);
-	tTest(ImageLosslessTransform);
+	// tTest(ImageMetaData);
+	// tTest(ImageLosslessTransform);
 	// tTest(ImageRotation);
 	// tTest(ImageCrop);
 	// tTest(ImageCopyRegion);
@@ -280,10 +280,10 @@ int main(int argc, char** argv)
 	// tTest(ImageMultiFrame);
 	// tTest(ImageGradient);
 	// tTest(ImagePNG);
-	tTest(ImageAVIF);
-	tTest(ImageHEIC);
-	tTest(ImageFlipDouble);
-	tTest(ImageFlipTriple);
+	// tTest(ImageAVIF);
+	// tTest(ImageHEIC);
+	// tTest(ImageFlipDouble);
+	// tTest(ImageFlipTriple);
 	// tTest(ImageHEICRotatePixelVerify);
 	// tTest(ImageJXL);
 	// tTest(ImageSVG);
