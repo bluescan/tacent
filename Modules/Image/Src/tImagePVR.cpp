@@ -272,22 +272,32 @@ void tPVR::GetFormatInfo_FromV1V2Header(tPixelFormat& format, tColourProfile& pr
 	#define P(p) profile = tColourProfile::p;
 	#define M(m) alphaMode = tAlphaMode::m;
 	#define T(t) chanType = tChannelType::t;
+
+	// @todo PVR2 Pixel Format 
+	// For legacy V1 or V2 pvr files that encode the _pixel format_ PVR2BPP2 or PVR2BPP4 the undocumented
+	// header.PixelFormat codes are:
+	//	PVR2BPP4 : 0x1C (28)
+	//	PVR2BPP2 : 0x1D (29)
+	// PVR2 encoded pixels are not yet supported as there is no reference implementation or detailed specification that
+	// gives enough information to write a decoder. Decoders currently only exist in GPU driver implementations, which
+	// are a little opaque (at least to me).
 	switch (header.PixelFormat)
 	{
-		// Commented out PVRLFMT formats are not implemented yet.
+		// Unsupported PVRLFMT formats are not implemented yet and receive None for the colour profile.
+		//
 		//						Format				Profile		AlphaMode	ChanType	Break
 		C(ARGB_4444):			F(G4B4A4R4)												break;
 		C(ARGB_1555):			F(G3B5A1R5G2)											break;
 		C(RGB_565):				F(G3B5R5G3)												break;
-		//C(RGB_555):
+		C(RGB_555):				F(Unsupported)		P(None)								break;
 		C(RGB_888):				F(R8G8B8)												break;
 		C(ARGB_8888):			F(B8G8R8A8)												break;
-		//C(ARGB_8332):
+		C(ARGB_8332):			F(Unsupported)		P(None)								break;
 		C(I_8):					F(L8)													break;
 		C(AI_88):				F(A8L8)													break;
-		//C(1BPP):
-		//C(V_Y1_U_Y0):
-		//C(Y1_V_Y0_U):
+		C(1BPP):				F(Unsupported)		P(None)								break;
+		C(V_Y1_U_Y0):			F(Unsupported)		P(None)								break;
+		C(Y1_V_Y0_U):			F(Unsupported)		P(None)								break;
 		C(PVRTC2):				F(PVRBPP2)												break;
 		C(PVRTC4):				F(PVRBPP4)												break;
 
@@ -295,7 +305,7 @@ void tPVR::GetFormatInfo_FromV1V2Header(tPixelFormat& format, tColourProfile& pr
 		C(ARGB_1555_ALT):		F(G3B5A1R5G2)											break;
 		C(ARGB_8888_ALT):		F(R8G8B8A8)												break;
 		C(RGB_565_ALT):			F(G3B5R5G3)												break;
-		//C(RGB_555_ALT):
+		C(RGB_555_ALT):			F(Unsupported)		P(None)								break;
 		C(RGB_888_ALT):			F(R8G8B8)												break;
 		C(I_8_ALT):				F(L8)													break;
 		C(AI_88_ALT):			F(A8L8)													break;
@@ -308,17 +318,17 @@ void tPVR::GetFormatInfo_FromV1V2Header(tPixelFormat& format, tColourProfile& pr
 		C(DXT3):				F(BC2DXT2DXT3)											break;
 		C(DXT4):				F(BC3DXT4DXT5)					M(Mult)					break;
 		C(DXT5):				F(BC3DXT4DXT5)											break;
-		//C(RGB_332):
-		//C(AL_44):
-		//C(LVU_655):
-		//C(XLVU_8888):
-		//C(QWVU_8888):
-		//C(ABGR_2101010):
-		//C(ARGB_2101010):
-		//C(AWVU_2101010):
-		//C(GR_1616):
-		//C(VU_1616):
-		//C(ABGR_16161616):
+		C(RGB_332):				F(Unsupported)		P(None)								break;
+		C(AL_44):				F(Unsupported)		P(None)								break;
+		C(LVU_655):				F(Unsupported)		P(None)								break;
+		C(XLVU_8888):			F(Unsupported)		P(None)								break;
+		C(QWVU_8888):			F(Unsupported)		P(None)								break;
+		C(ABGR_2101010):		F(Unsupported)		P(None)								break;
+		C(ARGB_2101010):		F(Unsupported)		P(None)								break;
+		C(AWVU_2101010):		F(Unsupported)		P(None)								break;
+		C(GR_1616):				F(Unsupported)		P(None)								break;
+		C(VU_1616):				F(Unsupported)		P(None)								break;
+		C(ABGR_16161616):		F(Unsupported)		P(None)								break;
 		C(R_16F):				F(R16f)				P(lRGB)					T(SFLOAT)	break;
 		C(GR_1616F):			F(R16G16f)			P(lRGB)					T(SFLOAT)	break;
 		C(ABGR_16161616F):		F(R16G16B16A16f)	P(lRGB)					T(SFLOAT)	break;
@@ -329,14 +339,76 @@ void tPVR::GetFormatInfo_FromV1V2Header(tPixelFormat& format, tColourProfile& pr
 		// V2 ETC1 files generated from PVRTexTool are always in linear space. There is no sRGB option.
 		C(ETC):					F(ETC1)				P(lRGB)								break;
 		C(A_8):					F(A8)													break;
-		//C(VU_88):
-		//C(L16):
+		C(VU_88):				F(Unsupported)		P(None)								break;
+		C(L16):					F(Unsupported)		P(None)								break;
 		C(L8):					F(L8)				P(lRGB)					T(UINT)		break;
-		//C(AL_88):
-		//C(UYVY):
-		//C(YUY2):
+		C(AL_88):				F(Unsupported)		P(None)								break;
+		C(UYVY):				F(Unsupported)		P(None)								break;
+		C(YUY2):				F(Unsupported)		P(None)								break;
 		default:									P(None)								break;
 	}
+
+	// Some legacy files have an unrecognized PixelFormat ID yet still provide usable component masks. Infer only exact,
+	// supported layouts. No guess about formats such as 10:10:10:2 or padded 24-bit RGB in 32-bit pixels.
+	if (format == tPixelFormat::Invalid)
+	{
+		const uint32 r = header.RedMask;
+		const uint32 g = header.GreenMask;
+		const uint32 b = header.BlueMask;
+		const uint32 a = header.AlphaMask;
+
+		// Note we use sRGB profile for all formats except for L8, which gets linear (lRGB).
+		switch (header.BitsPerPixel)
+		{
+			case 2:
+				// PVR2BPP2 Pixel Format reports this.
+				break;
+
+			case 4:
+				// PVR2BPP4 Pixel Format reports this.
+				break;
+
+			case 8:
+				if ((r == 0) && (g == 0) && (b == 0) && (a == 0xFF))
+					F(A8)
+				else if ((r == 0xFF) && (g == 0) && (b == 0) && (a == 0))
+					{ F(L8) P(lRGB) }
+				break;
+
+			case 16:
+				if ((r == 0xF800) && (g == 0x07E0) && (b == 0x001F) && (a == 0))
+					F(G3B5R5G3)			// RGB 565.
+				else if ((r == 0x7C00) && (g == 0x03E0) && (b == 0x001F) && (a == 0x8000))
+					F(G3B5A1R5G2)		// A1 RGB 555.
+				else if ((r == 0x0F00) && (g == 0x00F0) && (b == 0x000F) && (a == 0xF000))
+					F(G4B4A4R4)			// ARGB 4444.
+				else if ((r == 0xF000) && (g == 0x0F00) && (b == 0x00F0) && (a == 0x000F))
+					F(B4A4R4G4)			// RGBA 4444.
+				else if ((r == 0xF800) && (g == 0x07C0) && (b == 0x003E) && (a == 0x0001))
+					F(G2B5A1R5G3)		// RGBA 5551.
+				break;
+
+			case 24:
+				if ((r == 0xFF0000) && (g == 0x00FF00) && (b == 0x0000FF) && (a == 0))
+					F(B8G8R8)
+				else if ((r == 0x0000FF) && (g == 0x00FF00) && (b == 0xFF0000) && (a == 0))
+					F(R8G8B8)
+				break;
+
+			case 32:
+				if ((r == 0x00FF0000) && (g == 0x0000FF00) && (b == 0x000000FF) && (a == 0xFF000000))
+					F(B8G8R8A8)
+				else if ((r == 0x000000FF) && (g == 0x0000FF00) && (b == 0x00FF0000) && (a == 0xFF000000))
+					F(R8G8B8A8)
+				break;
+		}
+	}
+
+	// If we're still set to an invalid format set the profile to None. Unsupported profiles already have their profile
+	// set to None. After this format is either valid, invalid, or unsupported.
+	if (format == tPixelFormat::Invalid)
+		P(None)
+
 	#undef C
 	#undef F
 	#undef P
@@ -401,7 +473,7 @@ void tPVR::GetFormatInfo_FromV3Header(tPixelFormat& format, tColourProfile& prof
 			C(PVRTC_4BPP_RGB):				F(PVRBPP4)												break;
 			C(PVRTC_4BPP_RGBA):				F(PVRBPP4)												break;
 
-			#ifdef PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED
+			#ifdef PIXEL_FORMAT_INCLUDE_UNSUPPORTED
 			C(PVRTC_II_2BPP):				F(PVR2BPP2)												break;
 			C(PVRTC_II_4BPP):				F(PVR2BPP4)												break;
 			#endif
@@ -807,11 +879,12 @@ bool tImagePVR::Decode(const uint8* pvrData, int pvrDataSize, const LoadParams& 
 		{
 			tPVR::HeaderV1V2* header = (tPVR::HeaderV1V2*)pvrData;
 			tPVR::GetFormatInfo_FromV1V2Header(PixelFormatSrc, ColourProfileSrc, AlphaMode, ChannelType,  *header);
-			if (PixelFormatSrc == tPixelFormat::Invalid)
+			if ((PixelFormatSrc == tPixelFormat::Invalid) || (PixelFormatSrc == tPixelFormat::Unsupported))
 			{
 				SetStateBit(StateBit::Fatal_PixelFormatNotSupported);
 				return false;
 			}
+
 			PixelFormat					= PixelFormatSrc;
 			ColourProfile				= ColourProfileSrc;
 			NumSurfaces					= (PVRVersion == 2) ? header->NumSurfaces : 1;		// NumSurfaces not supported by V1 files.

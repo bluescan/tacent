@@ -85,7 +85,7 @@ namespace tImage
 		// PVR (Power VR by Imagination) formats.
 		"PVRBPP4",
 		"PVRBPP2",
-		#ifdef PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED
+		#ifdef PIXEL_FORMAT_INCLUDE_UNSUPPORTED
 		"PVRHDRBPP8",
 		"PVRHDRBPP6",
 		"PVR2BPP4",
@@ -273,7 +273,7 @@ namespace tImage
 		"PVRBPP2 : PVRTC Version 1. 2BPP representing RGB or RGBA channels. One block\n"
 		"can encode 8x4 pixels but needs access to adjacent blocks during decompress.",
 
-		#ifdef PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED
+		#ifdef PIXEL_FORMAT_INCLUDE_UNSUPPORTED
 		"PVRHDRBPP8 : PVRTC Version 1. 8BPP representing HDR RGB.",
 		"PVRHDRBPP6 : PVRTC Version 1. 6BPP representing HDR RGB.",
 		"PVR2BPP4 : PVRTC Version 2. 4BPP representing RGB or RGBA channels.",
@@ -390,7 +390,7 @@ namespace tImage
 	{
 		4,				// PVRBPP4
 		8,				// PVRBPP2
-		#ifdef PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED
+		#ifdef PIXEL_FORMAT_INCLUDE_UNSUPPORTED
 		0,				// PVRHDRBPP8. Unknown block size.
 		0,				// PVRHDRBPP6. Unknown block size.
 		4,				// PVR2BPP4
@@ -405,7 +405,7 @@ namespace tImage
 	{
 		4,				// PVRBPP4
 		4,				// PVRBPP2
-		#ifdef PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED
+		#ifdef PIXEL_FORMAT_INCLUDE_UNSUPPORTED
 		0,				// PVRHDRBPP8. Unknown block size.
 		0,				// PVRHDRBPP6. Unknown block size.
 		4,				// PVR2BPP4
@@ -458,7 +458,7 @@ namespace tImage
 	{
 		4,				// PVRBPP4
 		2,				// PVRBPP2
-		#ifdef PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED
+		#ifdef PIXEL_FORMAT_INCLUDE_UNSUPPORTED
 		8,				// PVRHDRBPP8
 		6,				// PVRHDRBPP6
 		4,				// PVR2BPP4

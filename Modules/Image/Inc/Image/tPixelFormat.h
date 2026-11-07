@@ -185,7 +185,7 @@ enum class tPixelFormat
 	PVRBPP4					= FirstPVR,			// PVRTC Version 1. 4BPP representing RGB or RGBA channels. One block can encode 4x4 pixels (but needs access to adjacent blocks during decompress).
 	PVRBPP2,									// PVRTC Version 1. 2BPP representing RGB or RGBA channels. One block can encode 8x4 pixels.
 
-	#ifdef PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED
+	#ifdef PIXEL_FORMAT_INCLUDE_UNSUPPORTED
 	PVRHDRBPP8,									// PVRTC Version 1. 8BPP representing HDR RGB.
 	PVRHDRBPP6,									// PVRTC Version 1. 6BPP representing HDR RGB.
 	PVR2BPP4,									// PVRTC Version 2. 4BPP representing RGB or RGBA channels.
@@ -233,6 +233,7 @@ enum class tPixelFormat
 
 	LastValid				= LastPalette,
 	NumPixelFormats,
+	Unsupported				= NumPixelFormats,	// This is different than Invalid. It can be used when the pixel format is valid but unsupported by Tacent.
 	NumContiguousFormats	= LastContiguous	- FirstContiguous	+ 1,
 	NumPackedFormats		= LastPacked		- FirstPacked		+ 1,
 	NumBCFormats			= LastBC			- FirstBC			+ 1,
@@ -607,7 +608,7 @@ inline bool tImage::tIsHDRFormat(tPixelFormat format)
 		case tPixelFormat::BC6S:
 		case tPixelFormat::RADIANCE:
 		case tPixelFormat::OPENEXR:
-		#ifdef PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED
+		#ifdef PIXEL_FORMAT_INCLUDE_UNSUPPORTED
 		case tPixelFormat::PVRHDRBPP8:
 		case tPixelFormat::PVRHDRBPP6:
 		case tPixelFormat::PVR2HDRBPP8:

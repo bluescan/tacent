@@ -48,7 +48,8 @@ namespace tUnitTest
 // under "Data/Images/" and instead live in tacentfixtures. Point the affected loads at tFixImagesRoot (see imgJXL /
 // pngSecond / jxlExif / jxlXmp below). The image tests are disabled individually before pushing, so this is safe
 // locally. Remove this define and revert the tFixImagesRoot usages once the migration into Data/Images is complete.
-#define tFixImagesRoot "D:/GitHub/tacentfixtures/Images/"
+#define tFixImagesRoot "C:/GitHub/tacentfixtures/Images/"
+#define tFixImageSubDir(subdir) if (!tSystem::tDirExists(tFixImagesRoot)) tSkipUnit() tString origDir = tSystem::tGetCurrentDir(); tSystem::tSetCurrentDir(tString(tFixImagesRoot) + subdir);
 
 
 #define tImageDataDir "Data/Images/"
@@ -3656,6 +3657,7 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0, bool saveAl
 	}
 	else
 	{
+		// We use a capital Greek "D" Delta for Generated Files : Δ
 		if (saveAllMips)
 		{
 			int mipNum = 0;
@@ -3663,7 +3665,7 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0, bool saveAl
 			{
 				tImageTGA tga((tPixel4b*)layer->Data, layer->Width, layer->Height);
 				tString mipName;
-				tsPrintf(mipName, "Written_%s_Mip%02d.tga", savename.Chr(), mipNum);
+				tsPrintf(mipName, "Δ%s_Mip%02d.tga", savename.Chr(), mipNum);
 				tga.Save(mipName);
 			}
 		}
@@ -3672,7 +3674,7 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0, bool saveAl
 			if (tLayer* layer = layers.First())
 			{
 				tImageTGA tga((tPixel4b*)layer->Data, layer->Width, layer->Height);
-				tga.Save("Written_" + savename + ".tga");
+				tga.Save("Δ" + savename + ".tga");
 			}
 		}
 	}
@@ -3682,7 +3684,7 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0, bool saveAl
 
 tTestUnit(ImagePVR2)
 {
-	tImageSubDir("Type_PVR_V2/")
+	tFixImageSubDir("Type_PVR_V2/")
 
 	uint32 decode = tImagePVR::LoadFlag_Decode;
 	uint32 revrow = tImagePVR::LoadFlag_ReverseRowOrder;
@@ -3694,6 +3696,13 @@ tTestUnit(ImagePVR2)
 	PVRLoadDecodeSave("PVRBPP4_RGBA_TM.pvr",			decode | revrow,	true);
 	PVRLoadDecodeSave("PVRBPP2_RGB_TM.pvr",				decode | revrow,	true);
 	PVRLoadDecodeSave("PVRBPP2_RGBA_TM.pvr",			decode | revrow,	true);
+
+	// PVR2 compression is not fully documented and there is no decoder source code.
+	// We are just going to skip these unsupported test files for now.
+	#ifdef PIXEL_FORMAT_INCLUDE_UNSUPPORTED
+	PVRLoadDecodeSave("PVR2BPP2_RGBA_TM.pvr",		decode | revrow,	true);	
+	PVRLoadDecodeSave("PVR2BPP4_RGBA_TM.pvr",		decode | revrow,	true);	
+	#endif
 
 	// PVRLoadDecodeSave("B8G8R8A8_UNORM_SRGB_RGBA_TM.pvr",	decode | revrow,	true);
 	PVRLoadDecodeSave("B8G8R8A8_RGBA_T.pvr",			decode | revrow,	true);

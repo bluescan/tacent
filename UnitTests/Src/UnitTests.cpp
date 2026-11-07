@@ -208,8 +208,8 @@ int main(int argc, char** argv)
 
 	// If UNIT_TEST_ONLY_SPECIFIC_TESTS is defined, these are the tests.
 	// Foundation tests.
-	tTest(Types);
-	tTest(Array);
+	///tTest(Types);
+	///tTest(Array);
 	// tTest(List);
 	// tTest(ListExtra);
 	// tTest(ListSort);
@@ -248,7 +248,7 @@ int main(int argc, char** argv)
 	// tTest(Chunk);
 	// tTest(FileTypes);
 	// tTest(Directories);
-	tTest(File);
+	///tTest(File);
 	// tTest(FindRec);
 	// tTest(Network);
 	// tTest(Time);
