@@ -191,6 +191,8 @@ inline float tExp(float a)																								{ return expf(a); }
 inline double tExp(double a)																							{ return exp(a); }
 inline float tLog(float x)									/* Natural logarithm. */									{ return logf(x); }
 inline double tLog(double x)								/* Natural logarithm. */									{ return log(x); }
+inline float tLog2(float x) 								/* Base 2 logarithm. */ 									{ return log2f(x); }
+inline double tLog2(double x) 								/* Base 2 logarithm. */ 									{ return log2(x); }
 inline float tLog10(float x)								/* Base 10 logarithm. */									{ return log10f(x); }
 inline double tLog10(double x)								/* Base 10 logarithm. */									{ return log10(x); }
 inline float tSa(float x)									/* Unnormalized (sampling) sinc. */							{ if (x == 0.0f) return 1.0f; return tSin(x) / x; }
