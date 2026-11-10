@@ -48,7 +48,7 @@ namespace tUnitTest
 // under "Data/Images/" and instead live in tacentfixtures. Point the affected loads at tFixImagesRoot (see imgJXL /
 // pngSecond / jxlExif / jxlXmp below). The image tests are disabled individually before pushing, so this is safe
 // locally. Remove this define and revert the tFixImagesRoot usages once the migration into Data/Images is complete.
-#define tFixImagesRoot "C:/GitHub/tacentfixtures/Images/"
+#define tFixImagesRoot "D:/GitHub/tacentfixtures/Images/"
 #define tFixImageSubDir(subdir) if (!tSystem::tDirExists(tFixImagesRoot)) tSkipUnit() tString origDir = tSystem::tGetCurrentDir(); tSystem::tSetCurrentDir(tString(tFixImagesRoot) + subdir);
 
 
@@ -2409,6 +2409,7 @@ static void tFlipTriple_AVIF(const char* base, HEIFTransform flip, const char* l
 	tPrintf("  AVIF %s triple-flip OK == single-flip (%dx%d)\n", label, sw, sh);
 }
 
+
 tTestUnit(ImageFlipTriple)
 {
 	// HEIC triple-flips.
@@ -2628,6 +2629,90 @@ tTestUnit(ImageJXL)
 		tImageTGA tga(jxl.StealPixels(), width, height, true);
 		tRequire(tga.IsValid());
 		tga.Save("Written_" + tSystem::tGetFileBaseName(*file) + ".tga");
+	}
+
+	tImageRestoreDir()
+}
+
+
+tTestUnit(ImageHDR)
+{
+	tFixImageSubDir("Type_HDR/")
+
+	tPrintf("Testing HDR loading and auto-exposure (LoadFlag_AutoExposure*)\n\n");
+
+	// Mean 8-bit brightness (0-255) of a decoded image, ignoring alpha. Returns -1 if not decodable.
+	auto MeanBrightness = [](const tPixel4b* p, int n) -> int
+	{
+		if (!p || n <= 0) return -1;
+		double sum = 0;
+		for (int i = 0; i < n; i++) sum += (double)(p[i].R + p[i].G + p[i].B) / 3.0;
+		return int(sum/(double)n + 0.5);
+	};
+
+	// Count "white-out" pixels (all three colour channels maxed to 255). Returns -1 if not decodable.
+	auto CountClippedWhite = [](const tPixel4b* p, int n) -> int
+	{
+		if (!p || n <= 0) return -1;
+		int count = 0;
+		for (int i = 0; i < n; i++) if (p[i].R == 255 && p[i].G == 255 && p[i].B == 255) count++;
+		return count;
+	};
+
+	const char* atrium = "MpiAtrium3.hdr";
+	const char* forest = "ForestPath.hdr";
+
+	// 1. Default load. LoadFlags_Default is AutoExposureMean, so the mean is driven to 18% grey. It must be valid and
+	//    produce a decodable, non-degenerate image.
+	tImageHDR def;
+	tRequire(def.Load(atrium));
+	tRequire(def.IsValid());
+	tRequire(def.GetWidth() > 0 && def.GetHeight() > 0);
+	tRequire(def.GetPixels() != nullptr);
+	int n = def.GetWidth()*def.GetHeight();
+	tPrintf("HDR %s %dx%d  default(mean)  mean=%d  clipped=%d\n", atrium, def.GetWidth(), def.GetHeight(),
+			MeanBrightness(def.GetPixels(), n), CountClippedWhite(def.GetPixels(), n));
+
+	// 2. Manual exposure (no AutoExposure flag): Exposure is in stops (2^Exposure). Brighter can never be darker than
+	//    darker (per-pixel brightness is monotonic in exposure), and for real content the two should actually differ.
+	{
+		tImageHDR bright, dark;
+		tImageHDR::LoadParams brightParams, darkParams;
+		brightParams.Flags = 0; brightParams.Exposure = +4;
+		darkParams.Flags = 0; darkParams.Exposure = -4;
+		tRequire(bright.Load(atrium, brightParams));
+		tRequire(dark.Load(atrium, darkParams));
+		tRequire(bright.IsValid() && dark.IsValid());
+		int brightMean = MeanBrightness(bright.GetPixels(), bright.GetWidth()*bright.GetHeight());
+		int darkMean = MeanBrightness(dark.GetPixels(), dark.GetWidth()*dark.GetHeight());
+		tPrintf("HDR %s  manual +4 stops mean=%d ; -4 stops mean=%d\n", atrium, brightMean, darkMean);
+		tRequire(brightMean >= darkMean);
+		tGoal(brightMean > darkMean);
+	}
+
+	// 3. Auto-exposure must actually be applied. For an overexposed fixture the Mean (darken to 18% grey) decode must
+	//    clip no more white than a plain exposure-0 decode, and typically less. White (darken-only) must also load and
+	//    never brighten, so it should not clip more than the bidirectional Mean mode.
+	{
+		tImageHDR plain, meanAE, whiteAE;
+		tImageHDR::LoadParams plainParams, meanParams, whiteParams;
+		plainParams.Flags = 0; plainParams.Exposure = 0;
+		meanParams.Flags = tImageHDR::LoadFlag_AutoExposureMean;
+		whiteParams.Flags = tImageHDR::LoadFlag_AutoExposureWhite;
+		tRequire(plain.Load(forest, plainParams));
+		tRequire(meanAE.Load(forest, meanParams));
+		tRequire(whiteAE.Load(forest, whiteParams));
+		tRequire(plain.IsValid() && meanAE.IsValid() && whiteAE.IsValid());
+		int fn = plain.GetWidth()*plain.GetHeight();
+		int plainClipped = CountClippedWhite(plain.GetPixels(), fn);
+		int meanClipped = CountClippedWhite(meanAE.GetPixels(), fn);
+		int whiteClipped = CountClippedWhite(whiteAE.GetPixels(), fn);
+		tPrintf("HDR %s %dx%d  clipped-white  plain=%d  meanAE=%d  whiteAE=%d\n", forest,
+				plain.GetWidth(), plain.GetHeight(), plainClipped, meanClipped, whiteClipped);
+		tRequire(plainClipped >= 0 && meanClipped >= 0 && whiteClipped >= 0);
+		tGoal(plainClipped > 0);            // a bright fixture should clip something at exposure 0
+		tGoal(meanClipped < plainClipped);  // auto-exposure darkens the overexposed fixture, reducing white-out
+		tGoal(whiteClipped <= meanClipped); // darken-only never brightens, so it should not add white-out
 	}
 
 	tImageRestoreDir()

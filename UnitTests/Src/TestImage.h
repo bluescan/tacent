@@ -42,6 +42,7 @@ namespace tUnitTest
 	tTestUnit(ImageFlipTriple);
 	tTestUnit(ImageAVIF);
 	tTestUnit(ImageJXL);
+	tTestUnit(ImageHDR);
 	tTestUnit(ImageSVG);
 	tTestUnit(ImageDDS);
 	tTestUnit(ImageKTX2);

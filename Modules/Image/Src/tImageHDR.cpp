@@ -316,7 +316,6 @@ bool tImageHDR::Decode(const uint8* hdrFileInMemory, int numBytes, const LoadPar
 		return false;
 
 	float gammaCorr = loadParams.Gamma;
-	int exposureAdj = loadParams.Exposure;
 	SetupGammaTables(gammaCorr);
 
 	// Tacent modification (the Radiance licence permits this): the original scan indexed buf[c+1] on its last
@@ -390,27 +389,65 @@ bool tImageHDR::Decode(const uint8* hdrFileInMemory, int numBytes, const LoadPar
 
 	Pixels = new tPixel4b[Width*Height];
 	tPixel4b* scanin = new tPixel4b[Width];
-
 	bool ok = true;
-	for (int y = Height-1; y >= 0; y--)
+
+	// Pass 1: read every scanline (raw Radiance) into the pixel buffer, accumulating total luminance.
+	// Auto-exposure needs the whole-image mean before a shift can be applied, so decoding is two-pass.
+	double luminanceSum = 0.0;
+	for (int y = Height-1; ok && y >= 0; y--)
 	{
 		ok = ReadRadianceColours(scanin, Width);
 		if (!ok)
 			break;
 
-		AdjustExposure(scanin, Width, exposureAdj);
-
-		ok = ConvertRadianceToGammaCorrected(scanin, Width);
-		if (!ok)
-			break;
-
-		WriteP = (uint8*)&Pixels[y * Width];
+		tPixel4b* row = &Pixels[y*Width];
 		for (int x = 0; x < Width; x++)
 		{
-			PutB(scanin[x].R);
-			PutB(scanin[x].G);
-			PutB(scanin[x].B);
-			PutB(255);
+			row[x] = scanin[x];
+
+			// Luminance in white-point units (white = 1.0): (0.2126 R + 0.7152 G + 0.0722 B)/256 * 2^exponent.
+			const double lumCoeff = 0.2126*row[x].R + 0.7152*row[x].G + 0.0722*row[x].B;
+			luminanceSum += (lumCoeff/256.0) * tMath::tPow(2.0, double(row[x].A - ExpXS));
+		}
+	}
+
+	if (ok)
+	{
+		// Determine the whole-image exposure shift (in stops) from the auto-exposure mode. The target is 0.18
+		// (18% grey), the standard photographic metering target.
+		const int npix = Width*Height;
+		const double mean = (npix > 0) ? (luminanceSum/(double)npix) : 0.0;
+
+		// Select the auto-exposure mode from the AutoExposure* bits. If neither is set, use the manual Exposure.
+		const uint32 autoExposure = loadParams.Flags & (LoadFlag_AutoExposureWhite | LoadFlag_AutoExposureMean);
+		int exposureAdj = 0;
+		if (autoExposure == 0)
+		{
+			exposureAdj = loadParams.Exposure;
+		}
+		else
+		{
+			if (mean > 0.0)
+				exposureAdj = int(tMath::tRound(tMath::tLog2(0.18f/float(mean))));
+
+			// Darken-only mode: never brighten.
+			if ((autoExposure & LoadFlag_AutoExposureWhite) && (exposureAdj > 0))
+				exposureAdj = 0;
+		}
+		if (exposureAdj > 31)	exposureAdj = 31;
+		if (exposureAdj < -31)	exposureAdj = -31;
+
+		// Pass 2: apply the exposure shift and convert to gamma-corrected 8-bit, in place.
+		for (int y = Height-1; ok && y >= 0; y--)
+		{
+			tPixel4b* row = &Pixels[y*Width];
+			AdjustExposure(row, Width, exposureAdj);
+			ok = ConvertRadianceToGammaCorrected(row, Width);
+			if (!ok)
+				break;
+
+			for (int x = 0; x < Width; x++)
+				row[x].A = 255;
 		}
 	}
 

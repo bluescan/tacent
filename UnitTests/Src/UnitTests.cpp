@@ -286,6 +286,7 @@ int main(int argc, char** argv)
 	// tTest(ImageFlipTriple);
 	// tTest(ImageHEICRotatePixelVerify);
 	// tTest(ImageJXL);
+	/// tTest(ImageHDR);
 	// tTest(ImageSVG);
 	// tTest(ImageDDS);
 	// tTest(ImageKTX1);

@@ -50,12 +50,25 @@ namespace tImage
 class tImageHDR : public tBaseImage
 {
 public:
+	// Auto-exposure modes (see LoadParams.Flags). The AutoExposure* entries are individual bits in the LoadFlag
+	// bitmask and are mutually exclusive, so set at most one of them. If neither is set, the manual Exposure is used.
+	enum LoadFlag
+	{
+		LoadFlag_AutoExposureWhite	= 1 << 0,	// Darken-only: bring the mean to 18% grey, but never brighten.
+		LoadFlag_AutoExposureMean	= 1 << 1,	// Bidirectional: bring the mean to 18% grey in either direction. (Default)
+		LoadFlags_Default			= LoadFlag_AutoExposureMean
+	};
+
 	struct LoadParams
 	{
 		LoadParams()																									{ Reset(); }
-		void Reset();
-		float Gamma;
-		int Exposure;
+		LoadParams(const LoadParams& src)																				: Flags(src.Flags), Gamma(src.Gamma), Exposure(src.Exposure) { }
+		void Reset()																									{ Flags = LoadFlags_Default; Gamma = tMath::fDefaultGamma; Exposure = 0; }
+		LoadParams& operator=(const LoadParams& src)																	{ Flags = src.Flags; Gamma = src.Gamma; Exposure = src.Exposure; return *this; }
+
+		uint32	Flags;		// Bitmask of LoadFlag options (see enum above).
+		float	Gamma;		// Gamma correction to apply.
+		int		Exposure;	// [ -24, 24 ] stops (x2 each); 0 = no change. Used when no AutoExposure flag is set.
 	};
 
 	// Creates an invalid tImageHDR. You must call Load manually.
@@ -162,13 +175,6 @@ private:
 
 
 // Implementation below this line.
-
-
-inline void tImageHDR::LoadParams::Reset()
-{
-	Gamma			= tMath::fDefaultGamma;
-	Exposure		= 0;
-}
 
 
 inline void tImageHDR::Clear()
