@@ -1,1 +1,0 @@
-Not hidden file in a hidden directory.
