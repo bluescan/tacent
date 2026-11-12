@@ -42,6 +42,31 @@ endif()
 # All the tacent modules.
 add_subdirectory(Modules)
 
+# Grab the Tacent test fixtures (CSV, FileSystem, Images, Script, UTF) from the tacentfixtures
+# repository using a SPARSE checkout so we only pull the trees we need at configure time. This uses
+# the project-local FetchContent_Sparse_Declare (CMakeModules/FetchContent_Sparse.cmake, the same
+# implementation TacentView uses) which supports GIT_SPARSE_CHECKOUT; the standard
+# FetchContent_MakeAvailable below then reports the dependency as already populated.
+#   GIT_SPARSE_CHECKOUT = where to grab from (the fixture trees in the repo, plus its README.md)
+#   SOURCE_DIR          = where the files land (each path is placed there under its own name,
+#                         so Data\ ends up looking like the tacentfixtures repository root)
+#                       -> ${CMAKE_SOURCE_DIR}/Data/{CSV,FileSystem,Images,Script,UTF,README.md}
+# A re-fetch UPDATES the content (changed files only) and leaves any local/generated files
+# in Data\ alone; -DFETCHCONTENT_SPARSE_CLEAR=tacentfixtures forces a full mirror instead.
+# Only done when Tacent is the top-level project: when we are pulled in as a dependency (e.g. by
+# TacentView) the host project fetches the fixtures it needs itself, so we must not double-fetch.
+if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+	include(FetchContent_Sparse)
+	FetchContent_Sparse_Declare(
+		tacentfixtures
+		GIT_REPOSITORY https://github.com/bluescan/tacentfixtures.git
+		GIT_TAG master
+		GIT_SPARSE_CHECKOUT CSV FileSystem Images Script UTF README.md
+		SOURCE_DIR ${CMAKE_SOURCE_DIR}/Data
+	)
+	FetchContent_MakeAvailable(tacentfixtures)
+endif()
+
 # The UnitTests executable.
 add_subdirectory(UnitTests)
 

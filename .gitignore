@@ -5,6 +5,9 @@ build*/
 # Specific directories.
 #/Woboq/generated/
 
+# This Data folder is fetched from the tacentfixtures repository at configure time.
+/Data/
+
 # Filenames everywhere.
 compile_flags.txt
 .vscode/settings.json
