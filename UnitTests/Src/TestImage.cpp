@@ -52,12 +52,12 @@ namespace tUnitTest
 #define tFixImageSubDir(subdir) if (!tSystem::tDirExists(tFixImagesRoot)) tSkipUnit() tString origDir = tSystem::tGetCurrentDir(); tSystem::tSetCurrentDir(tString(tFixImagesRoot) + subdir);
 
 
-#define tImageDataDir "Data/Images/"
-#define tImageDir() if (!tSystem::tDirExists(tImageDataDir)) tSkipUnit() tString origDir = tSystem::tGetCurrentDir(); tSystem::tSetCurrentDir(origDir + tImageDataDir);
-#define tImageSubDir(subdir) if (!tSystem::tDirExists(tImageDataDir)) tSkipUnit() tString origDir = tSystem::tGetCurrentDir(); tSystem::tSetCurrentDir(origDir + tImageDataDir + subdir);
-#define tImageResetDir() tSystem::tSetCurrentDir(origDir + tImageDataDir);
-#define tImageChangeDir(subdir) tSystem::tSetCurrentDir(origDir + tImageDataDir + subdir);
-#define tImageRestoreDir() tSystem::tSetCurrentDir(origDir);
+#define tImageDataDir			"Data/Images/"
+#define tImageDir()				tString origDir = tSystem::tGetCurrentDir(); if (!tSystem::tDirExists(origDir+tImageDataDir))		tSkipUnit() tSystem::tSetCurrentDir(origDir+tImageDataDir);
+#define tImageSubDir(dir)		tString origDir = tSystem::tGetCurrentDir(); if (!tSystem::tDirExists(origDir+tImageDataDir+dir))	tSkipUnit() tSystem::tSetCurrentDir(origDir+tImageDataDir+dir);
+#define tImageResetDir()		tSystem::tSetCurrentDir(origDir+tImageDataDir);
+#define tImageChangeDir(dir)	tSystem::tSetCurrentDir(origDir+tImageDataDir+dir);
+#define tImageRestoreDir()		tSystem::tSetCurrentDir(origDir);
 
 
 tTestUnit(ImageLoad)

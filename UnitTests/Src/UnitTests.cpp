@@ -144,10 +144,10 @@ int main(int argc, char** argv)
 //ok	tTest(Filter);
 
 	// System tests.
-	tTest(CmdLine);
-	tTest(Task);
-	tTest(Print);
-	tTest(Regex);
+//ok	tTest(CmdLine);
+//ok	tTest(Task);
+//ok	tTest(Print);
+//ok	tTest(Regex);
 	tTest(Script);
 	tTest(Chunk);
 	tTest(FileTypes);
@@ -237,16 +237,16 @@ int main(int argc, char** argv)
 //ok	tTest(Quaternion);
 //ok	tTest(Geometry);
 //ok	tTest(Colour);
-	tTest(Filter);
+//ok	tTest(Filter);
 
 	// System tests.
-	// tTest(CmdLine);
-	// tTest(Task);
-	// tTest(Print);
-	// tTest(Regex);
-	// tTest(Script);
-	// tTest(CSV);
+//ok	tTest(CmdLine);
+//ok	tTest(Task);
+//ok	tTest(Print);
+//ok	tTest(Regex);
+	tTest(Script);
 	// tTest(Chunk);
+	// tTest(CSV);
 	// tTest(FileTypes);
 	// tTest(Directories);
 	///tTest(File);

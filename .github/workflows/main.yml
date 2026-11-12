@@ -48,9 +48,9 @@ jobs:
     - name: Unit Tests
       run: |
         echo 'Running Unit Tests'
-        cd build
-        cd UnitTests
-        powershell ".\UnitTests.exe | tee Windows_TestResults.txt"
+        # cd build
+        # cd UnitTests
+        powershell ".\build\UnitTests\UnitTests.exe | tee Windows_TestResults.txt"
         Write-Output "Exit Code: ${LASTEXITCODE}"
         echo '*** Done Running Unit Tests ***'
 
@@ -58,7 +58,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: unit_test_results_windows_CM_VS_VC
-        path: build/UnitTests/Windows_TestResults.txt
+        path: Windows_TestResults.txt
 
   # The Ubuntu_CM_NI_CL job buildsand tests tacent on ubuntu. CMake Ninja Clang
   Ubuntu_CM_NI_CL:
@@ -80,14 +80,14 @@ jobs:
     - name: Unit Tests
       run: |
         echo 'Running Unit Tests'
-        cd build
-        cd UnitTests
+        # cd build
+        # cd UnitTests
         set -o pipefail
-        ./UnitTests | tee Ubuntu_TestResults.txt ; echo Error Code $?
+        ./build/UnitTests/UnitTests | tee Ubuntu_TestResults.txt ; echo Error Code $?
         echo '*** Done Running Unit Tests ***'
 
     - name: Unit Test Results
       uses: actions/upload-artifact@v4
       with:
         name: unit_test_results_ubuntu_CM_NI_CL
-        path: build/UnitTests/Ubuntu_TestResults.txt
+        path: Ubuntu_TestResults.txt
