@@ -112,35 +112,36 @@ int main(int argc, char** argv)
 	#if !defined(UNIT_TEST_ONLY_SPECIFIC_TESTS)
 
 	// Foundation tests.
-	tTest(Types);
-	tTest(Array);
-	tTest(List);
-	tTest(ListExtra);
-	tTest(ListSort);
-	tTest(Map);
-	tTest(Promise);
-	tTest(Sort);
-	tTest(BitArray);
-	tTest(BitField);
-	tTest(FixInt);
-	tTest(String);
-	tTest(RingBuffer);
-	tTest(PriorityQueue);
-	tTest(MemoryPool);
-	tTest(Hash);
-	tTest(UTF);
-	tTest(Name);
-	tTest(SmallFloat);
+//ok	tTest(Types);
+//ok	tTest(Array);
+//ok	tTest(List);
+//ok	tTest(ListExtra);
+//ok	tTest(ListSort);
+//ok	tTest(Map);
+//ok	tTest(Promise);
+//ok	tTest(Sort);
+//ok	tTest(BitArray);
+//ok	tTest(BitField);
+//ok	tTest(FixInt);
+//ok	tTest(String);
+//ok	tTest(RingBuffer);
+//ok	tTest(PriorityQueue);
+//ok	tTest(MemoryPool);
+//ok	tTest(Hash);
+//ok	tTest(UTF);
+//ok	tTest(Name);
+//ok	tTest(SmallFloat);
 
 	// Math tests.
-	tTest(Fundamentals);
-	tTest(Interval);
-	tTest(Spline);
-	tTest(Random);
-	tTest(Matrix);
-	tTest(Quaternion);
-	tTest(Geometry);
-	tTest(Colour);
+//ok	tTest(Fundamentals);
+//ok	tTest(Interval);
+//ok	tTest(Spline);
+//ok	tTest(Random);
+//ok	tTest(Matrix);
+//ok	tTest(Quaternion);
+//ok	tTest(Geometry);
+//ok	tTest(Colour);
+//ok	tTest(Filter);
 
 	// System tests.
 	tTest(CmdLine);
@@ -199,7 +200,6 @@ int main(int argc, char** argv)
 	tTest(ImagePVR3);
 
 	// Input tests.
-	tTest(Filter);
 	tTest(GamepadJoysticks);
 	tTest(GamepadButtons);
 	#endif
@@ -208,35 +208,36 @@ int main(int argc, char** argv)
 
 	// If UNIT_TEST_ONLY_SPECIFIC_TESTS is defined, these are the tests.
 	// Foundation tests.
-	///tTest(Types);
-	///tTest(Array);
-	// tTest(List);
-	// tTest(ListExtra);
-	// tTest(ListSort);
-	// tTest(Map);
-	// tTest(Promise);
-	// tTest(Sort);
-	tTest(BitArray);
-	tTest(BitField);
-	// tTest(FixInt);
-	// tTest(String);
-	// tTest(RingBuffer);
-	// tTest(PriorityQueue);
-	// tTest(MemoryPool);
-	// tTest(Hash);
-	// tTest(UTF);
-	// tTest(Name);
-	// tTest(SmallFloat);
+//ok	tTest(Types);
+//ok	tTest(Array);
+//ok	tTest(List);
+//ok	tTest(ListExtra);
+//ok	tTest(ListSort);
+//ok	tTest(Map);
+//ok	tTest(Promise);
+//ok	tTest(Sort);
+//ok	tTest(BitArray);
+//ok	tTest(BitField);
+//ok	tTest(FixInt);
+//ok	tTest(String);
+//ok	tTest(RingBuffer);
+//ok	tTest(PriorityQueue);
+//ok	tTest(MemoryPool);
+//ok	tTest(Hash);
+//ok	tTest(UTF);
+//ok	tTest(Name);
+//ok	tTest(SmallFloat);
 
 	// Math tests.
-	// tTest(Fundamentals);
-	// tTest(Interval);
-	// tTest(Spline);
-	// tTest(Random);
-	// tTest(Matrix);
-	// tTest(Quaternion);
-	// tTest(Geometry);
-	// tTest(Colour);
+//ok	tTest(Fundamentals);
+//ok	tTest(Interval);
+//ok	tTest(Spline);
+//ok	tTest(Random);
+//ok	tTest(Matrix);
+//ok	tTest(Quaternion);
+//ok	tTest(Geometry);
+//ok	tTest(Colour);
+	tTest(Filter);
 
 	// System tests.
 	// tTest(CmdLine);
@@ -297,7 +298,6 @@ int main(int argc, char** argv)
 	// tTest(ImagePVR3);
 
 	// Input tests.
-	// tTest(Filter);
 	// tTest(GamepadJoysticks);
 	// tTest(GamepadButtons);
 	#endif

@@ -1725,136 +1725,6 @@ tTestUnit(String)
 }
 
 
-tTestUnit(UTF)
-{
-	// Test conversions between various UTF text encodings. Tacent supports:
-	// UTF-8  : The native encoding for tString and most char* functions.
-	// UTF-16 : For marshalling data to and from OS calls, especially on Windows.
-	// UTF-32 : For representing individual characters as a single data-type. This helps reduce complexity for some functions.
-	tPrintf("Testing conversions between UTF encodings.\n");
-
-	const char8_t* utf8src =
-		u8"wΔ𝒞\n"
-		"I refuse to prove that I exist for proof denies faith and without faith I am nothing.\n"
-		"Ah, but the Babel fish proves you exist, therefore you don't.\n"
-		"And here are some Unicode characters: wΔ𝒞 (the third should look similar to a C)\n"
-		"w is ASCII, Δ is in the Basic Multilingual Plane, and 𝒞 is in an Astral plane.";
-
-	// Convert UTF-8 to UTF-16 and write to file.
-	int length16 = tStd::tUTF16s(nullptr, utf8src);
-	tPrintf("%d char16 codeunits are needed for the UTF-16 encoding of:\n%s\n", length16, utf8src);
-	char16_t* utf16str = new char16_t[length16+1];
-	tStd::tUTF16s(utf16str, utf8src);
-
-	const char* wfilename16 = "Data/UTF/WrittenUTF16.txt";
-	tPrintf("Writing UTF-16 string to %s\n", wfilename16);
-	tCreateFile(wfilename16, utf16str, length16, true);
-	const char* rfilename16 = "Data/UTF/UTF16.txt";
-	tRequire(tSystem::tFilesIdentical(wfilename16, rfilename16));
-
-	// Convert UTF-16 back to UTF-8 and write to file.
-	int length8 = tStd::tUTF8s(nullptr, utf16str);
-	tPrintf("%d char8 codeunits are needed for the UTF-8 encoding.\n", length8);
-	char8_t* utf8str = new char8_t[length8+1];
-	tStd::tUTF8s(utf8str, utf16str);
-
-	const char* wfilename8 = "Data/UTF/WrittenUTF8.txt";
-	tPrintf("Writing UTF-8 string to %s\n", wfilename8);
-	tCreateFile(wfilename8, utf8str, length8, false);
-	const char* rfilename8 = "Data/UTF/UTF8.txt";
-	tRequire(tSystem::tFilesIdentical(wfilename8, rfilename8));
-
-	// Convert UTF-8 to UTF-32 and write to file.
-	int length32 = tStd::tUTF32s(nullptr, utf8src);
-	tPrintf("%d char32 codeunits are needed for the UTF-32 encoding.\n", length32);
-	char32_t* utf32str = new char32_t[length32+1];
-	tStd::tUTF32s(utf32str, utf8src);
-
-	const char* wfilename32 = "Data/UTF/WrittenUTF32.txt";
-	tPrintf("Writing UTF-32 string to %s\n", wfilename32);
-	tCreateFile(wfilename32, utf32str, length32, true);
-	const char* rfilename32 = "Data/UTF/UTF32.txt";
-	tRequire(tSystem::tFilesIdentical(wfilename32, rfilename32));
-
-	delete[] utf8str;
-	delete[] utf16str;
-	delete[] utf32str;
-
-	// Test the tString UTF conversion functions.
-	tString testUTF16AndBack(u8"wΔ𝒞 went from UTF-8 to UTF-16 and back to UTF-8");
-	tString orig16 = testUTF16AndBack;
-	int len16 = testUTF16AndBack.GetUTF16(nullptr);
-	utf16str = new char16_t[len16];
-	testUTF16AndBack.GetUTF16(utf16str);
-	testUTF16AndBack.SetUTF16(utf16str);
-	tRequire(testUTF16AndBack == orig16);
-	tPrintf("%s\n", testUTF16AndBack.Chr());
-	const char* wfilename8A = "Data/UTF/WrittenUTF8_UTF16_UTF8.txt";
-	tCreateFile(wfilename8A, testUTF16AndBack);
-
-	tString testUTF32AndBack(u8"wΔ𝒞 went from UTF-8 to UTF-32 and back to UTF-8");
-	tString orig32 = testUTF32AndBack;
-	int len32 = testUTF32AndBack.GetUTF32(nullptr);
-	utf32str = new char32_t[len32];
-	testUTF32AndBack.GetUTF32(utf32str);
-	testUTF16AndBack.SetUTF32(utf32str);
-	tRequire(testUTF32AndBack == orig32);
-	tPrintf("%s\n", testUTF32AndBack.Chr());
-	const char* wfilename8B = "Data/UTF/WrittenUTF8_UTF32_UTF8.txt";
-	tCreateFile(wfilename8B, testUTF32AndBack);
-
-	delete[] utf16str;
-	delete[] utf32str;
-
-	// Test tStringUTF16 and tStringUTF32.
-	tString utf8String(utf8src);
-
-	int numUTF16UnitsNeeded = tStd::tUTF16(nullptr, utf8String.Units(), utf8String.Length());
-	int numUTF16UnitsNeededStr = tStd::tUTF16s(nullptr, utf8String.Units());
-	tRequire(numUTF16UnitsNeeded == numUTF16UnitsNeededStr);
-	tStringUTF16 utf16String(utf8String);
-	tRequire(utf16String.Length() == numUTF16UnitsNeeded);
-	tRequire(*(utf16String.Units() + utf16String.Length()) == 0);
-	tString constructedFromStringUTF16(utf16String);
-	tRequire(constructedFromStringUTF16.IsValid());
-	tString constructedFromUTF16Ptr(utf16String.Chars(), utf16String.Length());
-	tRequire(constructedFromUTF16Ptr.IsValid());
-
-	int numUTF32UnitsNeeded = tStd::tUTF32(nullptr, utf8String.Units(), utf8String.Length());
-	int numUTF32UnitsNeededStr = tStd::tUTF32s(nullptr, utf8String.Units());
-	tRequire(numUTF32UnitsNeeded == numUTF32UnitsNeededStr);
-	tStringUTF32 utf32String(utf8String);
-	tRequire(utf32String.Length() == numUTF32UnitsNeeded);
-	tRequire(*(utf32String.Units() + utf32String.Length()) == 0);
-	tString constructedFromStringUTF32(utf32String);
-	tRequire(constructedFromStringUTF32.IsValid());
-	tString constructedFromUTF32Ptr(utf32String.Chars(), utf32String.Length());
-	tRequire(constructedFromUTF32Ptr.IsValid());
-}
-
-
-tTestUnit(Name)
-{
-	tName nameA;
-	tPrintf("NameA hash (invalid): %_016X\n", nameA.GetHash());
-	tRequire(nameA.IsInvalid());
-	tRequire(nameA.GetHash() == 0);
-
-	nameA.Set("AB");
-	tPrintf("NameA hash (AB)   : %_016|64X\n", nameA.GetHash());
-	tRequire(nameA.IsValid());
-	tRequire(nameA.GetHash() != 0);
-
-	tName nameB("ABC");
-	tPrintf("NameB hash (ABC)  : %_016|64X\n", nameB.GetHash());
-	tRequire(nameA != nameB);
-
-	nameB.Set("AB");
-	tPrintf("NameB hash (ABC)  : %_016|64X\n", nameB.GetHash());
-	tRequire(nameA == nameB);
-}
-
-
 tTestUnit(RingBuffer)
 {
 	// We're going to use the middle 10 characters as our buffer and write a pattern into the full buffer
@@ -2132,6 +2002,136 @@ tTestUnit(Hash)
 	shaCorr.Set("CDC76E5C 9914FB92 81A1C7E2 84D73E67 F1809A48 A497200E 046D39CC C7112CD0", 16);
 	tPrintf("Message : One million 'a's\n" "Computed: %0_64|256X\n" "Correct : %0_64|256X\n", shaComp, shaCorr);
 	tRequire(shaComp == shaCorr);
+}
+
+
+tTestUnit(UTF)
+{
+	// Test conversions between various UTF text encodings. Tacent supports:
+	// UTF-8  : The native encoding for tString and most char* functions.
+	// UTF-16 : For marshalling data to and from OS calls, especially on Windows.
+	// UTF-32 : For representing individual characters as a single data-type. This helps reduce complexity for some functions.
+	tPrintf("Testing conversions between UTF encodings.\n");
+
+	const char8_t* utf8src =
+		u8"wΔ𝒞\n"
+		"I refuse to prove that I exist for proof denies faith and without faith I am nothing.\n"
+		"Ah, but the Babel fish proves you exist, therefore you don't.\n"
+		"And here are some Unicode characters: wΔ𝒞 (the third should look similar to a C)\n"
+		"w is ASCII, Δ is in the Basic Multilingual Plane, and 𝒞 is in an Astral plane.";
+
+	// Convert UTF-8 to UTF-16 and write to file.
+	int length16 = tStd::tUTF16s(nullptr, utf8src);
+	tPrintf("%d char16 codeunits are needed for the UTF-16 encoding of:\n%s\n", length16, utf8src);
+	char16_t* utf16str = new char16_t[length16+1];
+	tStd::tUTF16s(utf16str, utf8src);
+
+	const char* wfilename16 = "Data/UTF/WrittenUTF16.txt";
+	tPrintf("Writing UTF-16 string to %s\n", wfilename16);
+	tCreateFile(wfilename16, utf16str, length16, true);
+	const char* rfilename16 = "Data/UTF/UTF16.txt";
+	tRequire(tSystem::tFilesIdentical(wfilename16, rfilename16));
+
+	// Convert UTF-16 back to UTF-8 and write to file.
+	int length8 = tStd::tUTF8s(nullptr, utf16str);
+	tPrintf("%d char8 codeunits are needed for the UTF-8 encoding.\n", length8);
+	char8_t* utf8str = new char8_t[length8+1];
+	tStd::tUTF8s(utf8str, utf16str);
+
+	const char* wfilename8 = "Data/UTF/WrittenUTF8.txt";
+	tPrintf("Writing UTF-8 string to %s\n", wfilename8);
+	tCreateFile(wfilename8, utf8str, length8, false);
+	const char* rfilename8 = "Data/UTF/UTF8.txt";
+	tRequire(tSystem::tFilesIdentical(wfilename8, rfilename8));
+
+	// Convert UTF-8 to UTF-32 and write to file.
+	int length32 = tStd::tUTF32s(nullptr, utf8src);
+	tPrintf("%d char32 codeunits are needed for the UTF-32 encoding.\n", length32);
+	char32_t* utf32str = new char32_t[length32+1];
+	tStd::tUTF32s(utf32str, utf8src);
+
+	const char* wfilename32 = "Data/UTF/WrittenUTF32.txt";
+	tPrintf("Writing UTF-32 string to %s\n", wfilename32);
+	tCreateFile(wfilename32, utf32str, length32, true);
+	const char* rfilename32 = "Data/UTF/UTF32.txt";
+	tRequire(tSystem::tFilesIdentical(wfilename32, rfilename32));
+
+	delete[] utf8str;
+	delete[] utf16str;
+	delete[] utf32str;
+
+	// Test the tString UTF conversion functions.
+	tString testUTF16AndBack(u8"wΔ𝒞 went from UTF-8 to UTF-16 and back to UTF-8");
+	tString orig16 = testUTF16AndBack;
+	int len16 = testUTF16AndBack.GetUTF16(nullptr);
+	utf16str = new char16_t[len16];
+	testUTF16AndBack.GetUTF16(utf16str);
+	testUTF16AndBack.SetUTF16(utf16str);
+	tRequire(testUTF16AndBack == orig16);
+	tPrintf("%s\n", testUTF16AndBack.Chr());
+	const char* wfilename8A = "Data/UTF/WrittenUTF8_UTF16_UTF8.txt";
+	tCreateFile(wfilename8A, testUTF16AndBack);
+
+	tString testUTF32AndBack(u8"wΔ𝒞 went from UTF-8 to UTF-32 and back to UTF-8");
+	tString orig32 = testUTF32AndBack;
+	int len32 = testUTF32AndBack.GetUTF32(nullptr);
+	utf32str = new char32_t[len32];
+	testUTF32AndBack.GetUTF32(utf32str);
+	testUTF16AndBack.SetUTF32(utf32str);
+	tRequire(testUTF32AndBack == orig32);
+	tPrintf("%s\n", testUTF32AndBack.Chr());
+	const char* wfilename8B = "Data/UTF/WrittenUTF8_UTF32_UTF8.txt";
+	tCreateFile(wfilename8B, testUTF32AndBack);
+
+	delete[] utf16str;
+	delete[] utf32str;
+
+	// Test tStringUTF16 and tStringUTF32.
+	tString utf8String(utf8src);
+
+	int numUTF16UnitsNeeded = tStd::tUTF16(nullptr, utf8String.Units(), utf8String.Length());
+	int numUTF16UnitsNeededStr = tStd::tUTF16s(nullptr, utf8String.Units());
+	tRequire(numUTF16UnitsNeeded == numUTF16UnitsNeededStr);
+	tStringUTF16 utf16String(utf8String);
+	tRequire(utf16String.Length() == numUTF16UnitsNeeded);
+	tRequire(*(utf16String.Units() + utf16String.Length()) == 0);
+	tString constructedFromStringUTF16(utf16String);
+	tRequire(constructedFromStringUTF16.IsValid());
+	tString constructedFromUTF16Ptr(utf16String.Chars(), utf16String.Length());
+	tRequire(constructedFromUTF16Ptr.IsValid());
+
+	int numUTF32UnitsNeeded = tStd::tUTF32(nullptr, utf8String.Units(), utf8String.Length());
+	int numUTF32UnitsNeededStr = tStd::tUTF32s(nullptr, utf8String.Units());
+	tRequire(numUTF32UnitsNeeded == numUTF32UnitsNeededStr);
+	tStringUTF32 utf32String(utf8String);
+	tRequire(utf32String.Length() == numUTF32UnitsNeeded);
+	tRequire(*(utf32String.Units() + utf32String.Length()) == 0);
+	tString constructedFromStringUTF32(utf32String);
+	tRequire(constructedFromStringUTF32.IsValid());
+	tString constructedFromUTF32Ptr(utf32String.Chars(), utf32String.Length());
+	tRequire(constructedFromUTF32Ptr.IsValid());
+}
+
+
+tTestUnit(Name)
+{
+	tName nameA;
+	tPrintf("NameA hash (invalid): %_016X\n", nameA.GetHash());
+	tRequire(nameA.IsInvalid());
+	tRequire(nameA.GetHash() == 0);
+
+	nameA.Set("AB");
+	tPrintf("NameA hash (AB)   : %_016|64X\n", nameA.GetHash());
+	tRequire(nameA.IsValid());
+	tRequire(nameA.GetHash() != 0);
+
+	tName nameB("ABC");
+	tPrintf("NameB hash (ABC)  : %_016|64X\n", nameB.GetHash());
+	tRequire(nameA != nameB);
+
+	nameB.Set("AB");
+	tPrintf("NameB hash (ABC)  : %_016|64X\n", nameB.GetHash());
+	tRequire(nameA == nameB);
 }
 
 
