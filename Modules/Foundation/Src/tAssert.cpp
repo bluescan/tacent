@@ -2,7 +2,7 @@
 //
 // Tacent asserts and warnings.
 //
-// Copyright (c) 2004-2006, 2015, 2017, 2022, 2023 Tristan Grimmer.
+// Copyright (c) 2004-2006, 2015, 2017, 2022, 2023, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -14,9 +14,7 @@
 
 #include <stdio.h>
 #include "Foundation/tPlatform.h"
-#ifdef TACENT_UTF16_API_CALLS
 #include "Foundation/tStandard.h"
-#endif
 #include <signal.h>
 #ifdef PLATFORM_WINDOWS
 #include <Windows.h>
@@ -56,8 +54,6 @@ void tAssertPrintBreak(const char* expr, const char* fileName, int lineNum, cons
 
 	#ifdef PLATFORM_WINDOWS
 	// In windows we bring up a message box.
-
-	#ifdef TACENT_UTF16_API_CALLS
 	// @todo Using more stack than is needed for the UTF-16 string.
 	char16_t utfmsg[assertMessageSize];
 	tStd::tUTF16s(utfmsg, (char8_t*)message);
@@ -66,13 +62,6 @@ void tAssertPrintBreak(const char* expr, const char* fileName, int lineNum, cons
 		0, LPWSTR(utfmsg), LPWSTR(u"Tacent Assert"),
 		MB_ABORTRETRYIGNORE | MB_ICONHAND | MB_SETFOREGROUND | MB_TASKMODAL
 	);
-	#else
-	int retCode = ::MessageBox
-	(
-		0, message, "Tacent Assert",
-		MB_ABORTRETRYIGNORE | MB_ICONHAND | MB_SETFOREGROUND | MB_TASKMODAL
-	);
-	#endif
 
 	switch (retCode)
 	{

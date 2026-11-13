@@ -415,13 +415,9 @@ void tProcess::CreateChildProcess(const tString& cmdLine, const tString& working
 		envBlock = "PIPELINE=true\0";
 
 	// Note that the environment block (arg 7) is allowed to contain non-UTF16 characters (ANSI according to the MS docs).
-	#ifdef TACENT_UTF16_API_CALLS
 	tStringUTF16 cmdLineUTF16(cmdLine);
 	tStringUTF16 workingDirUTF16(workingDir);
 	int success = CreateProcess(0, cmdLineUTF16.GetLPWSTR(), 0, 0, WinTrue, WinDetachedProcess, (char*)envBlock, workingDirUTF16.GetLPWSTR(), &startup, &procInfo);
-	#else
-	int success = CreateProcess(0, (char*)cmdLine.Chr(), 0, 0, WinTrue, WinDetachedProcess, (char*)envBlock, workingDir.Chr(), &startup, &procInfo);
-	#endif
 	if (!success)
 	{
 		ulong lastError = GetLastError();
@@ -715,19 +711,11 @@ uint32 tProcess::GetEnvironmentDataLength_Ascii(void* enviro)
 
 char* tProcess::BuildNewEnvironmentData_Ascii(bool appendToExisting, int numPairs, va_list args)
 {
-	#ifdef TACENT_UTF16_API_CALLS
 	wchar_t* oldEnv = nullptr;
-	#else
-	char* oldEnv = nullptr;
-	#endif
 	if (appendToExisting)
 		oldEnv = ::GetEnvironmentStrings();
 
-	#ifdef TACENT_UTF16_API_CALLS
 	tString oldEnvStr((char16_t*)oldEnv);
-	#else
-	tString oldEnvStr(oldEnv);
-	#endif
 	::FreeEnvironmentStrings(oldEnv);
 
 	const char pairSeparatingCharacter = '\0';

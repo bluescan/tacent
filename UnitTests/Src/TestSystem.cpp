@@ -892,12 +892,11 @@ tTestUnit(Script)
 
 tTestUnit(Chunk)
 {
-	if (!tDirExists("Data/"))
-		tSkipUnit()
+	tSystemSubDir("Chunk/");
 
 	tPrintf("Testing writing a chunk file.\n");
 	{
-		tChunkWriter c("Data/WrittenChunk.bin");
+		tChunkWriter c("ωChunk.bin");
 		c.Begin(0x02424242, 64);
 		c.Write(tString("Does this work?"));
 		c.Write( int8(0x12) );
@@ -914,11 +913,11 @@ tTestUnit(Chunk)
 		c.Write( int64(0x1234567812345678) );
 		c.End();
 	}
-	tRequire(tFileExists("Data/WrittenChunk.bin"));
+	tRequire(tFileExists("ωChunk.bin"));
 
 	tPrintf("Testing reading a chunk file.\n");
 	{
-		tChunkReader c("Data/WrittenChunk.bin");
+		tChunkReader c("Chunk.bin");
 		tChunk ch = c.GetFirstChunk();
 		while (ch.Valid())
 		{
@@ -932,7 +931,8 @@ tTestUnit(Chunk)
 
 	tPrintf("Another way to read.\n");
 	{
-		tChunkReader c("Data/WrittenChunk.bin");
+		// This time we'll read the written file.
+		tChunkReader c("ωChunk.bin");
 		for (tChunk ch = c.GetFirstChunk(); ch != ch.GetLastChunk(); ch = ch.GetNextChunk())
 		{
 			tPrintf("Chunk ID %x\n", ch.ID());
@@ -942,8 +942,8 @@ tTestUnit(Chunk)
 
 	tPrintf("Reading but managing the memory myself.\n");
 	{
-		uint8* buffer = (uint8*)tMem::tMalloc(tChunkReader::GetBufferSizeNeeded("Data/WrittenChunk.bin"), tChunkReader::GetBufferAlignmentNeeded());
-		tChunkReader c("Data/WrittenChunk.bin", buffer);
+		uint8* buffer = (uint8*)tMem::tMalloc(tChunkReader::GetBufferSizeNeeded("Chunk.bin"), tChunkReader::GetBufferAlignmentNeeded());
+		tChunkReader c("Chunk.bin", buffer);
 
 		for (tChunk ch = c.GetFirstChunk(); ch != ch.GetLastChunk(); ch = ch.GetNextChunk())
 		{
@@ -952,6 +952,8 @@ tTestUnit(Chunk)
 		}
 		tMem::tFree(buffer);
 	}
+
+	tSystemRestoreDir();
 }
 
 

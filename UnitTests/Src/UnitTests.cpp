@@ -55,6 +55,9 @@ namespace tUnitTest
 int main(int argc, char** argv)
 {
 	#ifdef PLATFORM_WINDOWS
+	// This affects MSVC CRT calls like fopen etc allowing them to take UTF-8 filenames. Unfortunaltely it does not
+	// affect Win32 API calls like FindFirstFile (or in particular FindFirstFileA when UNICODE is not defined).
+	// Basically this can't be relied upon to achieve UTF-8 conformance universally in Windows.
 	setlocale(LC_ALL, ".UTF8");
 	#endif
 
@@ -148,7 +151,7 @@ int main(int argc, char** argv)
 //ok	tTest(Task);
 //ok	tTest(Print);
 //ok	tTest(Regex);
-	tTest(Script);
+//ok	tTest(Script);
 	tTest(Chunk);
 	tTest(FileTypes);
 	tTest(Directories);
@@ -244,8 +247,8 @@ int main(int argc, char** argv)
 //ok	tTest(Task);
 //ok	tTest(Print);
 //ok	tTest(Regex);
-	tTest(Script);
-	// tTest(Chunk);
+//ok	tTest(Script);
+	tTest(Chunk);
 	// tTest(CSV);
 	// tTest(FileTypes);
 	// tTest(Directories);

@@ -716,13 +716,24 @@ inline bool tSystem::tRenameDir(const tString& dir, const tString& oldName, cons
 
 inline tFileHandle tSystem::tOpenFile(const char8_t* file, const char* mode)
 {
+#if defined(PLATFORM_WINDOWS)
+	// The narrow CRT fopen decodes its filename using the CRT's *active code page* (which follows
+	// setlocale(LC_CTYPE)) rather than UTF-8, so a UTF-8 filename gets mangled unless the process
+	// happens to call setlocale(LC_CTYPE, ".UTF8"). Convert to UTF-16 and use the wide CRT function
+	// so the filename is interpreted unambiguously regardless of locale.
+	tStringUTF16 fileUTF16(file);
+	tStringUTF16 modeUTF16((const char8_t*)mode);
+	return _wfopen(fileUTF16.GetLPWSTR(), modeUTF16.GetLPWSTR());
+#else
 	return fopen((const char*)file, mode);
+#endif
 }
 
 
 inline tFileHandle tSystem::tOpenFile(const char* file, const char* mode)
 {
-	return fopen(file, mode);
+	// All ASCII is valid UTF-8, so a char* filename can be interpreted as a UTF-8 string.
+	return tOpenFile((const char8_t*)file, mode);
 }
 
 

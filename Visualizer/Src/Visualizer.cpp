@@ -602,13 +602,16 @@ void Visualizer::SetStyleScaleAndFontSize()
 }
 
 
-#ifdef TACENT_UTF16_API_CALLS
+#ifdef PLATFORM_WINDOWS
 int wmain(int argc, wchar_t** argv)
 #else
 int main(int argc, char** argv)
 #endif
 {
 	#ifdef PLATFORM_WINDOWS
+	// This affects MSVC CRT calls like fopen etc allowing them to take UTF-8 filenames. Unfortunaltely it does not
+	// affect Win32 API calls like FindFirstFile (or in particular FindFirstFileA when UNICODE is not defined).
+	// Basically this can't be relied upon to achieve UTF-8 conformance universally in Windows.
 	setlocale(LC_ALL, ".UTF8");
 	#endif
 
