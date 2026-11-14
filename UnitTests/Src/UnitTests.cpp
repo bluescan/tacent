@@ -126,12 +126,12 @@ int main(int argc, char** argv)
 //ok	tTest(BitArray);
 //ok	tTest(BitField);
 //ok	tTest(FixInt);
-//ok	tTest(String);
+	tTest(String);
 //ok	tTest(RingBuffer);
 //ok	tTest(PriorityQueue);
 //ok	tTest(MemoryPool);
 //ok	tTest(Hash);
-//ok	tTest(UTF);
+////////////////////	tTest(UTF);
 //ok	tTest(Name);
 //ok	tTest(SmallFloat);
 
@@ -152,10 +152,11 @@ int main(int argc, char** argv)
 //ok	tTest(Print);
 //ok	tTest(Regex);
 //ok	tTest(Script);
-	tTest(Chunk);
-	tTest(FileTypes);
-	tTest(Directories);
-	tTest(File);
+//ok	tTest(Chunk);
+//ok	tTest(CSV);
+//ok	tTest(FileTypes);
+//ok	tTest(Directories);
+//ok	tTest(File);
 	tTest(FindRec);
 	tTest(Network);
 	tTest(Time);
@@ -227,7 +228,7 @@ int main(int argc, char** argv)
 //ok	tTest(PriorityQueue);
 //ok	tTest(MemoryPool);
 //ok	tTest(Hash);
-//ok	tTest(UTF);
+/////////////////////	tTest(UTF);
 //ok	tTest(Name);
 //ok	tTest(SmallFloat);
 
@@ -248,15 +249,15 @@ int main(int argc, char** argv)
 //ok	tTest(Print);
 //ok	tTest(Regex);
 //ok	tTest(Script);
-	tTest(Chunk);
-	// tTest(CSV);
-	// tTest(FileTypes);
-	// tTest(Directories);
-	///tTest(File);
-	// tTest(FindRec);
-	// tTest(Network);
-	// tTest(Time);
-	// tTest(Machine);
+//ok	tTest(Chunk);
+//ok	tTest(CSV);
+//ok	tTest(FileTypes);
+//ok	tTest(Directories);
+//ok	tTest(File);
+	tTest(FindRec);
+//	tTest(Network);
+//	tTest(Time);
+//	tTest(Machine);
 
 	// Pipeline tests.
 	#ifdef PLATFORM_WINDOWS

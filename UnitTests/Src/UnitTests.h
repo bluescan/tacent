@@ -21,6 +21,14 @@
 //#define UNIT_TEST_CALLSTACK_ON_FAIL_GOAL
 
 
+#define tFixtureDataDir			"Data/"
+#define tFixtureDir()			tString origDir = tSystem::tGetCurrentDir(); if (!tSystem::tDirExists(origDir+tFixtureDataDir))		tSkipUnit() tSystem::tSetCurrentDir(origDir+tFixtureDataDir);
+#define tFixtureSubDir(dir)		tString origDir = tSystem::tGetCurrentDir(); if (!tSystem::tDirExists(origDir+tFixtureDataDir+dir))	tSkipUnit() tSystem::tSetCurrentDir(origDir+tFixtureDataDir+dir);
+#define tFixtureResetDir()		tSystem::tSetCurrentDir(origDir+tFixtureDataDir);
+#define tFixtureChangeDir(dir)	tSystem::tSetCurrentDir(origDir+tFixtureDataDir+dir);
+#define tFixtureRestoreDir()	tSystem::tSetCurrentDir(origDir);
+
+
 namespace tUnitTest
 {
 

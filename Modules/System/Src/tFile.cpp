@@ -2443,8 +2443,13 @@ bool tSystem::tFindDirs_Stndrd(tList<tStringItem>* dirs, tList<tFileInfo>* infos
 bool tSystem::tFindDirs_Native(tList<tStringItem>* dirs, tList<tFileInfo>* infos, const tString& dir, bool hidden)
 {
 	#if defined(PLATFORM_WINDOWS)
+	// Use current directory if no dir supplied.
+	tString dirStr(dir);
+	if (dirStr.IsEmpty())
+		dirStr = tGetCurrentDir();
+
 	// First lets massage fileName a little.
-	tString massagedName = dir;
+	tString massagedName = dirStr;
 	if ((massagedName[massagedName.Length() - 1] == '/') || (massagedName[massagedName.Length() - 1] == '\\'))
 		massagedName += "*.*";
 

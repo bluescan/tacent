@@ -2007,6 +2007,8 @@ tTestUnit(Hash)
 
 tTestUnit(UTF)
 {
+	tFixtureSubDir("UTF/")
+
 	// Test conversions between various UTF text encodings. Tacent supports:
 	// UTF-8  : The native encoding for tString and most char* functions.
 	// UTF-16 : For marshalling data to and from OS calls, especially on Windows.
@@ -2100,6 +2102,59 @@ tTestUnit(UTF)
 	tString constructedFromUTF16Ptr(utf16String.Chars(), utf16String.Length());
 	tRequire(constructedFromUTF16Ptr.IsValid());
 
+	// tStringUTF16 / tStringUTF32 tests. These must never hold a null CodeUnits pointer.
+	{
+		tString optaBase(u8"Hello Option A copy test");
+		tRequire(optaBase.IsValid());
+
+		// A default-constructed (empty) string must still own valid, zeroed memory.
+		tStringUTF16 optaEmpty16;
+		tRequire(optaEmpty16.IsEmpty() && optaEmpty16.Length() == 0);
+		tRequire(optaEmpty16.Units() != nullptr);
+		tRequire(optaEmpty16.Units()[0] == 0);		// Points to a valid empty string, not nullptr.
+
+		tStringUTF32 optaEmpty32;
+		tRequire(optaEmpty32.IsEmpty() && optaEmpty32.Length() == 0);
+		tRequire(optaEmpty32.Units() != nullptr);
+		tRequire(optaEmpty32.Units()[0] == 0);
+
+		// Setting to an empty source, or Clear()/SetLength(0), must leave a valid, non-null buffer.
+		tString optaEmptyBase;						// Empty tString.
+		tStringUTF16 optaFromEmpty;
+		optaFromEmpty.Set(optaEmptyBase);
+		tRequire(optaFromEmpty.IsEmpty() && optaFromEmpty.Units() != nullptr && optaFromEmpty.Units()[0] == 0);
+
+		tStringUTF16 optaClear16(optaBase);
+		optaClear16.Clear();
+		tRequire(optaClear16.IsEmpty() && optaClear16.Units() != nullptr && optaClear16.Units()[0] == 0);
+
+		tStringUTF16 optaLen16(optaBase);
+		optaLen16.SetLength(0);
+		tRequire(optaLen16.IsEmpty() && optaLen16.Units() != nullptr && optaLen16.Units()[0] == 0);
+
+		// A non-empty source must round-trip intact when using Set.
+		tStringUTF32 optaSrc32(optaBase);
+		tRequire(optaSrc32.IsValid());
+		const int optaLen32 = optaSrc32.Length();
+
+		tStringUTF32 optaDst32;
+		optaDst32.Set(optaSrc32);
+		tRequire(optaDst32.IsValid());
+		tRequire(optaDst32.Length() == optaLen32);
+		tRequire(tStd::tMemcmp(optaDst32.Units(), optaSrc32.Units(), (size_t)optaLen32*sizeof(char32_t)) == 0);
+
+		// The tStringUTF16 copy path must round-trip too.
+		tStringUTF16 optaSrc16(optaBase);
+		tRequire(optaSrc16.IsValid());
+		const int optaLen16v = optaSrc16.Length();
+
+		tStringUTF16 optaDst16;
+		optaDst16.Set(optaSrc16);
+		tRequire(optaDst16.IsValid());
+		tRequire(optaDst16.Length() == optaLen16v);
+		tRequire(tStd::tMemcmp(optaDst16.Units(), optaSrc16.Units(), (size_t)optaLen16v*sizeof(char16_t)) == 0);
+	}
+	
 	int numUTF32UnitsNeeded = tStd::tUTF32(nullptr, utf8String.Units(), utf8String.Length());
 	int numUTF32UnitsNeededStr = tStd::tUTF32s(nullptr, utf8String.Units());
 	tRequire(numUTF32UnitsNeeded == numUTF32UnitsNeededStr);
@@ -2110,6 +2165,8 @@ tTestUnit(UTF)
 	tRequire(constructedFromStringUTF32.IsValid());
 	tString constructedFromUTF32Ptr(utf32String.Chars(), utf32String.Length());
 	tRequire(constructedFromUTF32Ptr.IsValid());
+
+	tFixtureRestoreDir()
 }
 
 
