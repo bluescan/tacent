@@ -64,6 +64,8 @@ tTestUnit(ImageLoad)
 {
 	tImageDir()
 
+	tImageChangeDir("Type_APNG/");
+
 	// Test direct loading classes.
 	tImageAPNG imgAPNG("Flame.apng");
 	tRequire(imgAPNG.IsValid());
@@ -90,21 +92,22 @@ tTestUnit(ImageLoad)
 	tRequire(imgAPNGMove.IsValid());
 	tRequire(apngMove.GetNumElements() == 0);
 
+	tImageResetDir()
 	tImageASTC imgASTC("Type_ASTC/ASTC10X10_LDR.astc");
 	tRequire(imgASTC.IsValid());
 
-	tImageBMP imgBMP(tFixImagesRoot "Type_BMP/UpperBounds.bmp");
+	tImageBMP imgBMP("Type_BMP/UpperBounds.bmp");
 	tRequire(imgBMP.IsValid());
 
 	// BMP in-memory (tArray<uint8> overload).
 	tArray<uint8> bmpArray;
-	tRequire(tSystem::tLoadFile(tFixImagesRoot "Type_BMP/UpperBounds.bmp", bmpArray));
+	tRequire(tSystem::tLoadFile("Type_BMP/UpperBounds.bmp", bmpArray));
 	tImageBMP imgBMPArray(bmpArray);
 	tRequire(imgBMPArray.IsValid());
 
 	// BMP in-memory (const uint8* overload).
 	int bmpSize = 0;
-	uint8* bmpData = tSystem::tLoadFile(tFixImagesRoot "Type_BMP/UpperBounds.bmp", nullptr, &bmpSize);
+	uint8* bmpData = tSystem::tLoadFile("Type_BMP/UpperBounds.bmp", nullptr, &bmpSize);
 	tRequire(bmpData != nullptr);
 	tImageBMP imgBMPPtr(bmpData, bmpSize);
 	tRequire(imgBMPPtr.IsValid());
@@ -112,7 +115,7 @@ tTestUnit(ImageLoad)
 
 	// BMP in-memory (tArray<uint8>&& move overload; the array is consumed (cleared) on success).
 	tArray<uint8> bmpMove;
-	tRequire(tSystem::tLoadFile(tFixImagesRoot "Type_BMP/UpperBounds.bmp", bmpMove));
+	tRequire(tSystem::tLoadFile("Type_BMP/UpperBounds.bmp", bmpMove));
 	tRequire(bmpMove.GetNumElements() > 0);
 	tImageBMP imgBMPMove(tStd::rVal(bmpMove));
 	tRequire(imgBMPMove.IsValid());
@@ -121,43 +124,43 @@ tTestUnit(ImageLoad)
 	tImageDDS imgDDS("Type_DDS/BC1DXT1_RGB_Legacy.dds");
 	tRequire(imgDDS.IsValid());
 
-	tImageEXR imgEXR("Desk.exr");
+	tImageEXR imgEXR("Type_EXR/Desk.exr");
 	tRequire(imgEXR.IsValid());
 
 	// EXR in-memory (tArray<uint8>&& move overload; the array is consumed (cleared) on success).
 	tArray<uint8> exrMove;
-	tRequire(tSystem::tLoadFile("Desk.exr", exrMove));
+	tRequire(tSystem::tLoadFile("Type_EXR/Desk.exr", exrMove));
 	tRequire(exrMove.GetNumElements() > 0);
 	tImageEXR imgEXRMove(tStd::rVal(exrMove));
 	tRequire(imgEXRMove.IsValid());
 	tRequire(exrMove.GetNumElements() == 0);
 
-	tImageGIF imgGIF("Type_GIF/8-cell-simple.gif");
+	tImageGIF imgGIF("Type_GIF/HyperCube.gif");
 	tRequire(imgGIF.IsValid());
 
-	tImageHDR imgHDR("mpi_atrium_3.hdr");
+	tImageHDR imgHDR("Type_HDR/MpiAtrium3.hdr");
 	tRequire(imgHDR.IsValid());
 
-	tImageICO imgICO("UpperBounds.ico");
+	tImageICO imgICO("Type_ICO/UpperBounds.ico");
 	tRequire(imgICO.IsValid());
 
-	tImageJPG imgJPG("WiredDrives.jpg");
+	tImageJPG imgJPG("Type_JPG/WiredDrives.jpg");
 	tRequire(imgJPG.IsValid());
 
 	tImageKTX imgKTX("Type_KTX2/BC7_RGBA.ktx2");
 	tRequire(imgKTX.IsValid());
 
-	tImagePNG imgPNG("TestPattern/TacentTestPattern.png");
+	tImagePNG imgPNG("TestPattern/TacentTestPatternRGBA.png");
 	tRequire(imgPNG.IsValid());
 	tRequire(imgPNG.GetPixelFormatSrc() == tPixelFormat::R8G8B8A8);
 
-	tImagePVR imgPVR("Type_/PVR_V3/PVRBPP4_UNORM_SRGB_RGBA_T.png");
+	tImagePVR imgPVR("Type_PVR_V3/PVRBPP4_UNORM_sRGB_RGBA_T.png");
 	tRequire(!imgPVR.IsValid());
 
-	tImageQOI imgQOI24("TestPattern/TacentTestPattern24.qoi");
+	tImageQOI imgQOI24("TestPattern/TacentTestPatternRGB.qoi");
 	tRequire(imgQOI24.IsValid());
 
-	tImageQOI imgQOI32("TestPattern/TacentTestPattern32.qoi");
+	tImageQOI imgQOI32("TestPattern/TacentTestPatternRGBA.qoi");
 	tRequire(imgQOI32.IsValid());
 
 	tImageSVG imgSVG("Type_SVG/Ghostscript_Tiger.svg");
@@ -166,10 +169,10 @@ tTestUnit(ImageLoad)
 	tRequire(imgSVG.GetHeight() > 0);
 
 	// Test loading a corrupt tga.
-	tImageTGA imgTGACorrupt("Corrupt.tga");
+	tImageTGA imgTGACorrupt("Type_TGA/Corrupt.tga");
 	tRequire(!imgTGACorrupt.IsValid());
 
-	tImageTGA imgTGA("WhiteBorderRLE.tga");
+	tImageTGA imgTGA("Type_TGA/WhiteBorderRLE.tga");
 	tRequire(imgTGA.IsValid());
 
 	tImageTIFF imgTIFF("Type_TIF/Tiff_NoComp.tif");
@@ -178,13 +181,13 @@ tTestUnit(ImageLoad)
 	tImageWEBP imgWEBP("Type_WEBP/RockyBeach.webp");
 	tRequire(imgWEBP.IsValid());
 
-	tImageHEIC imgHEIC("TestPattern/TacentTestPattern.heic");
+	tImageHEIC imgHEIC("TestPattern/TacentTestPatternRGBA.heic");
 	tRequire(imgHEIC.IsValid());
 
-	tImageAVIF imgAVIF("TestPattern/TacentTestPattern.avif");
+	tImageAVIF imgAVIF("TestPattern/TacentTestPatternRGBA.avif");
 	tRequire(imgAVIF.IsValid());
 
-	tImageJXL imgJXL(tFixImagesRoot "Type_JXL/Dice.jxl");
+	tImageJXL imgJXL("Type_JXL/Dice.jxl");
 	tRequire(imgJXL.IsValid());
 
 	// Move semantics (&&) coverage. One entry point per class -- ctor OR Load. We require the tArray to be empty after
@@ -192,21 +195,21 @@ tTestUnit(ImageLoad)
 
 	// HDR (ctor &&).
 	tArray<uint8> hdrMove;
-	tRequire(tSystem::tLoadFile("mpi_atrium_3.hdr", hdrMove));
+	tRequire(tSystem::tLoadFile("Type_HDR/MpiAtrium3.hdr", hdrMove));
 	tImageHDR imgHDRMove(tStd::rVal(hdrMove));
 	tRequire(imgHDRMove.IsValid());
 	tRequire(hdrMove.GetNumElements() == 0);
 
 	// ICO (Load &&).
 	tArray<uint8> icoMove;
-	tRequire(tSystem::tLoadFile("UpperBounds.ico", icoMove));
+	tRequire(tSystem::tLoadFile("Type_ICO/UpperBounds.ico", icoMove));
 	tImageICO imgICOMove;
 	tRequire(imgICOMove.Load(tStd::rVal(icoMove)));
 	tRequire(icoMove.GetNumElements() == 0);
 
 	// TGA (ctor &&).
 	tArray<uint8> tgaMove;
-	tRequire(tSystem::tLoadFile("WhiteBorderRLE.tga", tgaMove));
+	tRequire(tSystem::tLoadFile("Type_TGA/WhiteBorderRLE.tga", tgaMove));
 	tImageTGA imgTGAMove(tStd::rVal(tgaMove));
 	tRequire(imgTGAMove.IsValid());
 	tRequire(tgaMove.GetNumElements() == 0);
@@ -227,35 +230,35 @@ tTestUnit(ImageLoad)
 
 	// GIF (ctor &&).
 	tArray<uint8> gifMove;
-	tRequire(tSystem::tLoadFile("Variety/8-cell-simple.gif", gifMove));
+	tRequire(tSystem::tLoadFile("Type_GIF/HyperCube.gif", gifMove));
 	tImageGIF imgGIFMove(tStd::rVal(gifMove));
 	tRequire(imgGIFMove.IsValid());
 	tRequire(gifMove.GetNumElements() == 0);
 
 	// JPG (Load &&).
 	tArray<uint8> jpgMove;
-	tRequire(tSystem::tLoadFile("Variety/7-bebop.jpg", jpgMove));
+	tRequire(tSystem::tLoadFile("Type_JPG/SkyLeft.jpg", jpgMove));
 	tImageJPG imgJPGMove;
 	tRequire(imgJPGMove.Load(tStd::rVal(jpgMove)));
 	tRequire(jpgMove.GetNumElements() == 0);
 
 	// QOI (ctor &&).
 	tArray<uint8> qoiMove;
-	tRequire(tSystem::tLoadFile("Variety/TacentTestPattern24.qoi", qoiMove));
+	tRequire(tSystem::tLoadFile("TestPattern/TacentTestPatternRGB.qoi", qoiMove));
 	tImageQOI imgQOIMove(tStd::rVal(qoiMove));
 	tRequire(imgQOIMove.IsValid());
 	tRequire(qoiMove.GetNumElements() == 0);
 
 	// ASTC (Load &&).
 	tArray<uint8> astcMove;
-	tRequire(tSystem::tLoadFile("Variety/ASTC12X12_LDR.astc", astcMove));
+	tRequire(tSystem::tLoadFile("Type_ASTC/ASTC12X12_LDR.astc", astcMove));
 	tImageASTC imgASTCMove;
 	tRequire(imgASTCMove.Load(tStd::rVal(astcMove)));
 	tRequire(astcMove.GetNumElements() == 0);
 
 	// DDS (ctor &&).
 	tArray<uint8> ddsMove;
-	tRequire(tSystem::tLoadFile("Variety/ASTC12X12_RGB_Modern.dds", ddsMove));
+	tRequire(tSystem::tLoadFile("Type_DDS/ASTC12X12_RGB_Modern.dds", ddsMove));
 	tImageDDS imgDSMove(tStd::rVal(ddsMove));
 	tRequire(imgDSMove.IsValid());
 	tRequire(ddsMove.GetNumElements() == 0);
@@ -269,7 +272,7 @@ tTestUnit(ImageLoad)
 
 	// JXL (ctor &&).
 	tArray<uint8> jxlMove;
-	tRequire(tSystem::tLoadFile(tFixImagesRoot "Type_JXL/Dice.jxl", jxlMove));
+	tRequire(tSystem::tLoadFile("Type_JXL/Dice.jxl", jxlMove));
 	tImageJXL imgJXLMove2(tStd::rVal(jxlMove));
 	tRequire(imgJXLMove2.IsValid());
 	tRequire(jxlMove.GetNumElements() == 0);

@@ -170,7 +170,7 @@ int main(int argc, char** argv)
 
 	// Image tests.
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
-	tTest(ImageLoad);
+//ok	tTest(ImageLoad);
 	tTest(ImageSave);
 	tTest(ImageTexture);
 	tTest(ImagePicture);
@@ -257,7 +257,7 @@ int main(int argc, char** argv)
 //ok	tTest(FindRec);
 //ok	tTest(Network);
 //ok	tTest(Time);
-	tTest(Machine);
+//ok	tTest(Machine);
 
 	// Pipeline tests.
 	#ifdef PLATFORM_WINDOWS
@@ -267,7 +267,7 @@ int main(int argc, char** argv)
 
 	// Image tests.
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
-	// tTest(ImageLoad);
+	tTest(ImageLoad);
 	// tTest(ImageSave);
 	// tTest(ImageTexture);
 	// tTest(ImagePicture);
