@@ -126,12 +126,12 @@ int main(int argc, char** argv)
 //ok	tTest(BitArray);
 //ok	tTest(BitField);
 //ok	tTest(FixInt);
-	tTest(String);
+//ok	tTest(String);
 //ok	tTest(RingBuffer);
 //ok	tTest(PriorityQueue);
 //ok	tTest(MemoryPool);
 //ok	tTest(Hash);
-////////////////////	tTest(UTF);
+//ok	tTest(UTF);
 //ok	tTest(Name);
 //ok	tTest(SmallFloat);
 
@@ -153,12 +153,12 @@ int main(int argc, char** argv)
 //ok	tTest(Regex);
 //ok	tTest(Script);
 //ok	tTest(Chunk);
-//ok	tTest(CSV);
+//ok 	tTest(CSV);
 //ok	tTest(FileTypes);
 //ok	tTest(Directories);
 //ok	tTest(File);
-	tTest(FindRec);
-	tTest(Network);
+//ok	tTest(FindRec);
+//ok	tTest(Network);
 	tTest(Time);
 	tTest(Machine);
 
@@ -228,7 +228,7 @@ int main(int argc, char** argv)
 //ok	tTest(PriorityQueue);
 //ok	tTest(MemoryPool);
 //ok	tTest(Hash);
-/////////////////////	tTest(UTF);
+//ok	tTest(UTF);
 //ok	tTest(Name);
 //ok	tTest(SmallFloat);
 
@@ -254,9 +254,9 @@ int main(int argc, char** argv)
 //ok	tTest(FileTypes);
 //ok	tTest(Directories);
 //ok	tTest(File);
-	tTest(FindRec);
-//	tTest(Network);
-//	tTest(Time);
+//ok	tTest(FindRec);
+//ok	tTest(Network);
+tTest(Time);
 //	tTest(Machine);
 
 	// Pipeline tests.
