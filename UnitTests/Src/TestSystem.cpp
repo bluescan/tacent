@@ -236,6 +236,7 @@ template<typename T> static tString ConvertToString(T value)
 
 tTestUnit(Print)
 {
+	tFixtureSubDir("FileSystem/")
 	tSetDefaultPrecision(6);
 
 	// We test prints here. AKA print tests. How well does tPrintf work.
@@ -519,7 +520,7 @@ tTestUnit(Print)
 
 	tSetDefaultPrecision(4);
 
-	tFileHandle handle = tOpenFile("Data/Written.log", "wt");
+	tFileHandle handle = tOpenFile("ωPrintString.log", "wt");
 	ttfPrintf(handle, "Log: Here is some timestamped log data. Index = %d\n", 42);
 	ttfPrintf(handle, "Warning: And a second log line.\n");
 	tCloseFile(handle);
@@ -562,6 +563,8 @@ tTestUnit(Print)
 	tRequire(ConvertToString(tVector3(1.0f, 2.0f, 3.0f))			== "(1.0000, 2.0000, 3.0000)");
 	tRequire(ConvertToString(tVector4(1.0f, 2.0f, 3.0f, 4.0f))		== "(1.0000, 2.0000, 3.0000, 4.0000)");
 	tRequire(ConvertToString(tQuaternion(1.0f, 2.0f, 3.0f, 4.0f))	== "(1.0000, 2.0000, 3.0000, 4.0000)");
+
+	tFixtureRestoreDir()
 }
 
 

@@ -159,13 +159,13 @@ int main(int argc, char** argv)
 //ok	tTest(File);
 //ok	tTest(FindRec);
 //ok	tTest(Network);
-	tTest(Time);
-	tTest(Machine);
+//ok	tTest(Time);
+//ok	tTest(Machine);
 
 	// Pipeline tests.
 	#ifdef PLATFORM_WINDOWS
-	tTest(Process);
-	tTest(Rule);
+	//ok	tTest(Process);
+	//ok	tTest(Rule);
 	#endif
 
 	// Image tests.
@@ -256,13 +256,13 @@ int main(int argc, char** argv)
 //ok	tTest(File);
 //ok	tTest(FindRec);
 //ok	tTest(Network);
-tTest(Time);
-//	tTest(Machine);
+//ok	tTest(Time);
+	tTest(Machine);
 
 	// Pipeline tests.
 	#ifdef PLATFORM_WINDOWS
-	// tTest(Process);
-	// tTest(Rule);
+	//ok	tTest(Process);
+	//ok	tTest(Rule);
 	#endif
 
 	// Image tests.

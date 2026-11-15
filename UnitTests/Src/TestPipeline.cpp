@@ -2,7 +2,7 @@
 //
 // Pipeline module tests.
 //
-// Copyright (c) 2017, 2019, 2020, 2023 Tristan Grimmer.
+// Copyright (c) 2017, 2019, 2020, 2023, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -31,8 +31,7 @@ struct TestRule : public tPipeline::tRule
 
 tTestUnit(Process)
 {
-	if (!tSystem::tDirExists("Data/"))
-		tSkipUnit()
+	tFixtureDir()
 
 	// Currenty tProcess only works on windows.
 	#ifdef PLATFORM_WINDOWS
@@ -42,7 +41,7 @@ tTestUnit(Process)
 	try
 	{
 		// This constructor blocks. It fills in the exitCode if you supply it. Output is appended to the output string.
-		tProcess("cmd.exe dir", "Data/", output, &exitCode);
+		tProcess("cmd.exe dir", "./", output, &exitCode);
 		tPrintf("Output:\n[\n%s\n]\n", output.Pod());
 	}
 	catch (tError error)
@@ -53,7 +52,7 @@ tTestUnit(Process)
 
 	try
 	{
-		tProcess("cmd.exe dir", "Data/DoesNotExist/", output, &exitCode);
+		tProcess("cmd.exe dir", "DoesNotExist/", output, &exitCode);
 		tPrintf("Output:\n[\n%s\n]\n", output.Pod());
 	}
 	catch (tError error)
@@ -63,11 +62,15 @@ tTestUnit(Process)
 	}
 	tRequire(exitCode != 0);
 	#endif
+
+	tFixtureRestoreDir()
 }
 
 
 tTestUnit(Rule)
 {
+	tFixtureSubDir("FileSystem/")
+
 	tItList<TestRule> rules;
 	rules.Append(new TestRule(2));
 	rules.Append(new TestRule(4));
@@ -88,12 +91,14 @@ tTestUnit(Rule)
 	tItList<TestRule> localRules(tListMode::UserOwns);
 	TestRule tr(12);
 	localRules.Append(&tr);
-	tSystem::tCreateFile("Data/WrittenOlderFile.txt", "This is the older file contents.");
+	tSystem::tCreateFile("ωOlderFile.txt", "This is the older file contents.");
 	tSystem::tSleep(2000);
-	tSystem::tCreateFile("Data/WrittenNewerFile.txt", "This is the newer file contents.");
-	tr.SetTarget("WrittenOlderFile.txt");
-	localRules.Head()->AddDep("Data/WrittenNewerFile.txt");
+	tSystem::tCreateFile("ωNewerFile.txt", "This is the newer file contents.");
+	tr.SetTarget("ωOlderFile.txt");
+	localRules.Head()->AddDep("ωNewerFile.txt");
 	tRequire(tr.OutOfDate());
+
+	tFixtureRestoreDir()
 }
 
 
