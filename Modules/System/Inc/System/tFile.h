@@ -98,7 +98,9 @@ tString tGetFileBaseName(const tString& file);
 // dealing with network shares, a path like \\machinename\sharename/dir/subdir/ must have two backslashes before the
 // machine name and 1 backslash before the sharename. If this case is detected the three backslashes remain in-tact.
 // This function does not simplify "." or ".." strings that may be present. See tGetSimplifiedPath. This function _does_
-// remove any "s since they are invalid characters in a path but are sometimes present when paths have spaces.
+// remove any "s since they are invalid characters in a path but are sometimes present when paths have spaces. If any of
+// these functions is given an empty string, they leave the string empty. This avoids "" turning into "/" or something
+// similar that could cause the whole filesystem to be searched.
 void tPathStd    (tString& path);	// "C:\Hello\There\" -> "C:/Hello/There/". "C:\Hello\There" -> "C:/Hello/There".
 void tPathStdDir (tString& path);	// "C:\Hello\There\" -> "C:/Hello/There/". "C:\Hello\There" -> "C:/Hello/There/".
 void tPathStdFile(tString& path);	// "C:\Hello\There\" -> "C:/Hello/There".  "C:\Hello\There" -> "C:/Hello/There".
@@ -615,17 +617,22 @@ tString tGetFileOpenAssoc(const tString& extension);
 // cross-plat API, it can be quite slow... up to 10x slower on Linux. When the backend is Native (the default) then
 // platform-specific native file access functions are used (FindFirstFile etc for windows, readdir etc for Linux). They
 // are much faster. The order of items returned in files is not defined. In particular, Native and Stndrd may not
-// populated the results in the same order. If a platform is not supported and Native is specified, it falls back to
+// populate the results in the same order. If a platform is not supported and Native is specified, it falls back to
 // the Stndrd backend.
 //
-// Finds sub-directories inside the supplied dir. If the dir to search is empty, the current directory is used. If
-// hidden is true, includes hidden directories. The destination list (dirs) is appended to and not cleared so you can
-// collect results if necessary. Returns success.
-bool tFindDirs   (tList<tStringItem>& dirs, const tString& dir = tString(), bool hidden = true, Backend = Backend::Native);
+// Finds sub-directories inside the supplied dir. If the dir to search is empty, the current directory is used.
+// Generally directories should have a trailing "/" so "./" will work as well. As a convenience "." in also supported
+// for all calls that take a 'dir' to represent the current directory.  If hidden is true, includes hidden directories.
+// The destination list (dirs) is appended to and not cleared so you can collect results if necessary. Returns success.
+//
+// A note on relative vs absolute. When you call with 'dir' being any verion of the current directory, the returned file
+// or directories will be fully qualified (absolute). If you specify a sub-directory explicitly, like "SubDir/", the
+// returned files or directories will be relative to the current directory, like "SubDir/File.txt".
+bool tFindDirs(tList<tStringItem>& dirs, const tString& dir = tString(), bool hidden = true, Backend = Backend::Native);
 
 // This version of tFindDirs can be used if you need additional information along with each directory.
 // It is faster to use this than the tStringItem version above in conjunction with tGetFileInfo calls.
-bool tFindDirs   (tList<tFileInfo>&   dirs, const tString& dir = tString(), bool hidden = true, Backend = Backend::Native);
+bool tFindDirs(tList<tFileInfo>&   dirs, const tString& dir = tString(), bool hidden = true, Backend = Backend::Native);
 
 // This function finds files in a directory. The files list is always appended to. You must clear it first if that's what you intend. If empty dir
 // argument, the contents of the current directory are returned. If false returned files is unmodified. The order of

@@ -99,7 +99,7 @@ void tSystem::tPathStd(tString& path)
 void tSystem::tPathStdDir(tString& path)
 {
 	tPathStd(path);
-	if (path[path.Length() - 1] != '/')
+	if (!path.IsEmpty() && (path[path.Length() - 1] != '/'))
 		path += "/";
 }
 
@@ -2399,7 +2399,8 @@ tString tSystem::tGetFileOpenAssoc(const tString& extension)
 bool tSystem::tFindDirs_Stndrd(tList<tStringItem>* dirs, tList<tFileInfo>* infos, const tString& dir, bool hidden)
 {
 	tString dirPath(dir);
-	if (dirPath.IsEmpty())
+	tPathStdDir(dirPath);
+	if (dirPath.IsEmpty() || (dirPath == "./"))
 		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
 
 	std::error_code errorCode;
@@ -2444,22 +2445,21 @@ bool tSystem::tFindDirs_Native(tList<tStringItem>* dirs, tList<tFileInfo>* infos
 {
 	#if defined(PLATFORM_WINDOWS)
 	// Use current directory if no dir supplied.
-	tString dirStr(dir);
-	if (dirStr.IsEmpty())
-		dirStr = tGetCurrentDir();
+	tString dirPath(dir);
+	tPathStdDir(dirPath);
+	if (dirPath.IsEmpty() || (dirPath == "./"))
+		dirPath = tGetCurrentDir();
 
 	// First lets massage fileName a little.
-	tString massagedName = dirStr;
-	if ((massagedName[massagedName.Length() - 1] == '/') || (massagedName[massagedName.Length() - 1] == '\\'))
-		massagedName += "*.*";
+	tString path = dirPath;
+	dirPath += "*.*";
 
 	Win32FindData fd;
-	tStringUTF16 massagedName16(massagedName);
-	WinHandle h = FindFirstFile(massagedName16.GetLPWSTR(), &fd);
+	tStringUTF16 dirPath16(dirPath);
+	WinHandle h = FindFirstFile(dirPath16.GetLPWSTR(), &fd);
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
 
-	tString path = tGetDir(massagedName);
 	do
 	{
 		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
@@ -2532,11 +2532,9 @@ bool tSystem::tFindFiles_Stndrd(tList<tStringItem>* files, tList<tFileInfo>* inf
 
 	// Use current directory if no dirPath supplied.
 	tString dirPath(dir);
-	if (dirPath.IsEmpty())
+	tPathStdDir(dirPath);
+	if (dirPath.IsEmpty() || (dirPath == "./"))
 		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
-
-	if (dirPath.IsEmpty())
-		return false;
 
 	std::error_code errorCode;
 	for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dirPath.Text(), errorCode))
@@ -2584,13 +2582,14 @@ bool tSystem::tFindFiles_Native(tList<tStringItem>* files, tList<tFileInfo>* inf
 	if (extensions && extensions->IsEmpty())
 		return false;
 
-	tString dirStr(dir);
-	if (dirStr.IsEmpty())
-		dirStr = tGetCurrentDir();
+	tString dirPath(dir);
+	tPathStdDir(dirPath);
+	if (dirPath.IsEmpty() || (dirPath == "./"))
+		dirPath = tGetCurrentDir();
 
 	#ifdef PLATFORM_WINDOWS
 	// FindFirstFile etc seem to like backslashes better.
-	tPathWinDir(dirStr);
+	tPathWinDir(dirPath);
 
 	// There's some complexity here with windows, but it's still very fast. We need to loop through all the
 	// extensions doing the FindFirstFile business, while modifying the path appropriately for each one.
@@ -2605,7 +2604,7 @@ bool tSystem::tFindFiles_Native(tList<tStringItem>* files, tList<tFileInfo>* inf
 	for (tStringItem* extItem = exts.First(); extItem; extItem = extItem->Next())
 	{
 		tString ext(*extItem);
-		tString path = dirStr + "*.";
+		tString path = dirPath + "*.";
 		if (ext.IsEmpty())
 			path += "*";
 		else
@@ -2628,7 +2627,7 @@ bool tSystem::tFindFiles_Native(tList<tStringItem>* files, tList<tFileInfo>* inf
 				if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) || hidden)
 				{
 					tString fdFilename((char16_t*)fd.cFileName);
-					tString foundName = dirStr + fdFilename;
+					tString foundName = dirPath + fdFilename;
 					tPathStd(foundName);
 
 					tStringItem* newName = files ? new tStringItem(foundName) : nullptr;
@@ -2668,9 +2667,8 @@ bool tSystem::tFindFiles_Native(tList<tStringItem>* files, tList<tFileInfo>* inf
 	return allOk;
 
 	#elif defined(PLATFORM_LINUX)
-	tPathStdDir(dirStr);
-	DIR* dirEnt = opendir(dirStr.Chr());
-	if (dirStr.IsEmpty() || !dirEnt)
+	DIR* dirEnt = opendir(dirPath.Chr());
+	if (!dirEnt)
 		return false;
 
 	for (struct dirent* entry = readdir(dirEnt); entry; entry = readdir(dirEnt))
@@ -2685,7 +2683,7 @@ bool tSystem::tFindFiles_Native(tList<tStringItem>* files, tList<tFileInfo>* inf
 			continue;
 
 		tString foundFile((char*)entry->d_name);
-		foundFile = dirStr + foundFile;
+		foundFile = dirPath + foundFile;
 		tString foundExt = tGetFileExtension(foundFile);
 
 		// If extension list present and no match continue.
@@ -2797,7 +2795,8 @@ bool tSystem::tFindFiles(tList<tFileInfo>& files, const tString& dir, const tExt
 bool tSystem::tFindDirsRec_Stndrd(tList<tStringItem>* dirs, tList<tFileInfo>* infos, const tString& dir, bool hidden)
 {
 	tString dirPath(dir);
-	if (dirPath.IsEmpty())
+	tPathStdDir(dirPath);
+	if (dirPath.IsEmpty() || (dirPath == "./"))
 		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
 
 	// The std::filesystem API has a recursive iterator so we use it.
@@ -2898,11 +2897,9 @@ bool tSystem::tFindFilesRec_Stndrd(tList<tStringItem>* files, tList<tFileInfo>* 
 
 	// Use current directory if no dirPath supplied.
 	tString dirPath(dir);
-	if (dirPath.IsEmpty())
+	tPathStdDir(dirPath);
+	if (dirPath.IsEmpty() || (dirPath == "./"))
 		dirPath = (char*)std::filesystem::current_path().u8string().c_str();
-
-	if (dirPath.IsEmpty())
-		return false;
 
 	std::error_code errorCode;
 	for (const std::filesystem::directory_entry& entry : std::filesystem::recursive_directory_iterator(dirPath.Text(), errorCode))

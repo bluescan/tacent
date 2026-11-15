@@ -1616,7 +1616,7 @@ tTestUnit(FindRec)
 	tList<tFileInfo> infosNat;
 
 	// Note the ordering of the results varies between native and standard backends. This is fine,
-	// as order is not guaranteed. The below tests find files recursively.
+	// as order is not guaranteed. The below tests find files recursively
 	filesStd.Empty();
 	tPrintf("\nRecursive Find Files. Incl Hidden. All Extensions. Standard Backend.\n");
 	tFindFilesRec(filesStd, "", true, Backend::Stndrd);
@@ -1624,7 +1624,7 @@ tTestUnit(FindRec)
 		tPrintf("Found File STD: %s\n", file->Text());
 	filesNat.Empty();
 	tPrintf("\nRecursive Find Files. Incl Hidden. All Extensions. Native Backend.\n");
-	tFindFilesRec(filesNat, "", true, Backend::Native);
+	tFindFilesRec(filesNat, ".", true, Backend::Native);
 	for (tStringItem* file = filesNat.Head(); file; file = file->Next())
 		tPrintf("Found File NAT: %s\n", file->Text());
 	tRequire(filesStd.NumItems() == filesNat.NumItems());
@@ -1644,7 +1644,7 @@ tTestUnit(FindRec)
 	infosStd.Empty();
 	tPrintf("\nRecursive Find Files (FileInfo). Excl Hidden. TGA and JPG Extensions. Standard Backend.\n");
 	tExtensions exts( tFileTypes(tFileType::TGA, tFileType::JPG, tFileType::EOL) );
-	tFindFilesRec(infosStd, "", exts, false, Backend::Stndrd);
+	tFindFilesRec(infosStd, ".", exts, false, Backend::Stndrd);
 	for (tFileInfo* info = infosStd.Head(); info; info = info->Next())
 		tPrintf("Found File Info STD: %s\n", info->FileName.Chr());
 	infosNat.Empty();
@@ -1657,7 +1657,7 @@ tTestUnit(FindRec)
 	// Below are tests for finding dirs.
 	dirsStd.Empty();
 	tPrintf("\nRecursive Find Dirs. Incl Hidden. Standard Backend.\n");
-	tFindDirsRec(dirsStd, "", true, Backend::Stndrd);
+	tFindDirsRec(dirsStd, "./", true, Backend::Stndrd);
 	for (tStringItem* dir = dirsStd.Head(); dir; dir = dir->Next())
 		tPrintf("Found Dir STD: %s\n", dir->Text());
 	dirsNat.Empty();
@@ -1674,7 +1674,7 @@ tTestUnit(FindRec)
 		tPrintf("Found Dir STD: %s\n", info->FileName.Chr());
 	infosNat.Empty();
 	tPrintf("\nRecursive Find Dirs (FileInfo). Excl Hidden. Native Backend.\n");
-	tFindDirsRec(infosNat, "", false, Backend::Native);
+	tFindDirsRec(infosNat, "./", false, Backend::Native);
 	for (tFileInfo* info = infosNat.Head(); info; info = info->Next())
 		tPrintf("Found Dir NAT: %s\n", info->FileName.Chr());
 	tRequire(infosStd.NumItems() == infosNat.NumItems());
