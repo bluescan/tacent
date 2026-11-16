@@ -281,7 +281,7 @@ tTestUnit(ImageLoad)
 }
 
 
-void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method method, bool transparency, float dither = -1.0f)
+void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method method, bool transparency, float dither = -1.0f, bool forceBW = false)
 {
 	// We're going to save the gif in the same spot as the input png.
 	tString saveDir = tSystem::tGetDir(pngFile);
@@ -297,30 +297,31 @@ void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method 
 	tString dithStr;
 	if (method == tQuantize::Method::Spatial)
 	{
-		if (dither > 0.0f)
+		if (dither >= 0.0f)
 			tsPrintf(dithStr, "_Dith_%3.2f", dither);
-		else if (dither == 0.0f)
-			dithStr = "_Dith_None";
 		else
 			dithStr = "_Dith_Auto";
 	}
 
+	tString bwStr = forceBW ? "_BW" : "";
 	tString gifFile;
 	tsPrintf
 	(
 		gifFile,
-		"ωGIF_%s_%s_%s_%s%s.gif",
+		"ωGIF_%s_%s_%s_%s%s%s.gif",
 		(numFrames > 1) ? "Animat" : "Single",
 		transparency ? "Transp" : "Opaque",
 		tGetPixelFormatName(format),
 		tQuantize::GetMethodName(method),
-		dithStr.Chr()
+		dithStr.Chr(),
+		bwStr.Chr()
 	);
 	tImageGIF::SaveParams params;
 	params.Format = format;
 	params.Method = method;
 	params.DitherLevel = double(dither);
 	params.AlphaThreshold = transparency ? 127 : 255;		// 255 means force opaque.
+	params.ForceBlackAndWhite = forceBW;
 
 	gif.Save(saveDir+gifFile, params);
 	tRequire(tSystem::tFileExists(saveDir+gifFile));
@@ -355,9 +356,16 @@ tTestUnit(ImageSave)
 
 	// Test the spatial quantizer dither: auto (dither < 0), then 16 gradations 0.0 (no dither) up to 1.5.
 	tPrintf("Testing GIF save spatial quantization dither with 2-colour palette.\n");
-	TestSaveGif("TestPattern/TacentTestPatternRGBA_Small.png", tPixelFormat::PAL1BIT, tQuantize::Method::Spatial,	false, -1.0f);
+	TestSaveGif("TestPattern/TacentTestPatternRGBA_Small.png", tPixelFormat::PAL1BIT, tQuantize::Method::Spatial, false);
 	for (int d = 0; d < 16; d++)
-		TestSaveGif("TestPattern/TacentTestPatternRGBA_Small.png", tPixelFormat::PAL1BIT, tQuantize::Method::Spatial,	false, float(d)*0.1f);
+		TestSaveGif("TestPattern/TacentTestPatternRGBA_Small.png", tPixelFormat::PAL1BIT, tQuantize::Method::Spatial, false, float(d)*0.1f);
+
+	// Test ForceBlackAndWhite: a fixed black/white palette with spatial dithering. This is a Spatial-method flag (like
+	// FilterSize and DitherLevel): it is ignored for Fixed, Neu, and Wu. With the Spatial method, the GIF is forced to
+	// a 1-bit palette and the spatial quantizer dithers against the fixed black/white palette (numColours passed
+	// negative to select fixed-palette mode).
+	tPrintf("Testing GIF save ForceBlackAndWhite (fixed black/white palette, spatial dither).\n");
+	TestSaveGif("TestPattern/TacentTestPatternRGBA_Small.png", tPixelFormat::PAL1BIT, tQuantize::Method::Spatial,	false, -1.0f, true);
 
 	return;
 

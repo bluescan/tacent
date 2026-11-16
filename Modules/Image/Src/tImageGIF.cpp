@@ -305,6 +305,14 @@ tFrame* tImageGIF::GetFrame(bool steal)
 bool tImageGIF::Save(const tString& gifFile, const SaveParams& saveParams) const
 {
 	SaveParams params = saveParams;
+
+	// ForceBlackAndWhite is a flag for the Spatial method only (like FilterSize and DitherLevel). When the Spatial
+	// method is chosen it forces a 2-colour (1-bit) image that is dithered against a fixed black/white palette (so it
+	// is dithered rather than merely thresholded). It does not override the quantization method -- with Fixed, Neu, or
+	// Wu this flag is simply ignored.
+	if (params.ForceBlackAndWhite && (params.Method == tQuantize::Method::Spatial))
+		params.Format = tPixelFormat::PAL1BIT;
+
 	if (!IsValid() || !tIsPaletteFormat(params.Format) || (tGetFileType(gifFile) != tFileType::GIF))
 		return false;
 
@@ -414,7 +422,21 @@ bool tImageGIF::Save(const tString& gifFile, const SaveParams& saveParams) const
 			break;
 
 		case tQuantize::Method::Spatial:
-			tQuantizeSpatial::QuantizeImage(quantNumColours, width, height, pixels, gifPalette, gifIndices, checkExact, params.DitherLevel, params.FilterSize);
+			if (params.ForceBlackAndWhite)
+			{
+				// If ForceBlackAndWhite is true we should have already been forced to PAL1BIT (2 colours) without transparency.
+				tAssert(quantNumColours == 2);
+				
+				// Fixed black/white palette: pre-populate it, then pass a negative colour count so the quantizer dithers
+				// against this palette instead of generating its own.
+				gifPalette[0].Set(0, 0, 0);
+				gifPalette[1].Set(255, 255, 255);
+				tQuantizeSpatial::QuantizeImage(-quantNumColours, width, height, pixels, gifPalette, gifIndices, false, params.DitherLevel, params.FilterSize);
+			}
+			else
+			{
+				tQuantizeSpatial::QuantizeImage(quantNumColours, width, height, pixels, gifPalette, gifIndices, checkExact, params.DitherLevel, params.FilterSize);
+			}
 			break;
 	}
 	int bgIndex = -1;

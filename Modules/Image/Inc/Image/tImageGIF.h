@@ -114,9 +114,9 @@ public:
 	struct SaveParams
 	{
 		SaveParams()																									{ Reset(); }
-		SaveParams(const SaveParams& src)																				: Format(src.Format), Method(src.Method), Loop(src.Loop), AlphaThreshold(src.AlphaThreshold), OverrideFrameDuration(src.OverrideFrameDuration), DitherLevel(src.DitherLevel), FilterSize(src.FilterSize), SampleFactor(src.SampleFactor) { }
-		void Reset()																									{ Format = tPixelFormat::PAL8BIT; Method = tQuantize::Method::Wu; Loop = 0; AlphaThreshold = -1; OverrideFrameDuration = -1; DitherLevel = -1.0; FilterSize = 3; SampleFactor = 1; }
-		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; Method = src.Method; Loop = src.Loop; AlphaThreshold = src.AlphaThreshold; OverrideFrameDuration = src.OverrideFrameDuration; DitherLevel = src.DitherLevel; FilterSize = src.FilterSize; SampleFactor = src.SampleFactor; return *this; }
+		SaveParams(const SaveParams& src)																				: Format(src.Format), Method(src.Method), Loop(src.Loop), AlphaThreshold(src.AlphaThreshold), OverrideFrameDuration(src.OverrideFrameDuration), DitherLevel(src.DitherLevel), FilterSize(src.FilterSize), ForceBlackAndWhite(src.ForceBlackAndWhite), SampleFactor(src.SampleFactor) { }
+		void Reset()																									{ Format = tPixelFormat::PAL8BIT; Method = tQuantize::Method::Wu; Loop = 0; AlphaThreshold = -1; OverrideFrameDuration = -1; DitherLevel = -1.0; FilterSize = 3; ForceBlackAndWhite = false; SampleFactor = 1; }
+		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; Method = src.Method; Loop = src.Loop; AlphaThreshold = src.AlphaThreshold; OverrideFrameDuration = src.OverrideFrameDuration; DitherLevel = src.DitherLevel; FilterSize = src.FilterSize; ForceBlackAndWhite = src.ForceBlackAndWhite; SampleFactor = src.SampleFactor; return *this; }
 
 		tPixelFormat Format;		// See comment above. Must be one of the PALNBIT formats wher N is E [1, 8].
 		tQuantize::Method Method;	// See comment above. Choose one of the 4 available colour quantization methods.
@@ -127,6 +127,8 @@ public:
 		double DitherLevel;			// For Method::Spatial only. <0.0 = auto. 0.0 = no dither. >0.0 = manual dither
 									// amount. Values up to 2.0f are reasonable. Defaults to -1.0 (auto).
 		int FilterSize;				// For Method::Spatial only. Must be 1, 3, or 5. Default is 3.
+		bool ForceBlackAndWhite;	// For Method::Spatial only. If true, force Format to PAL1BIT and use a fixed
+									// black/white palette (still dithers). Ignored for the Fixed, Neu, and Wu methods.
 
 		int SampleFactor;			// For Method::Neu only. 1 = whole image learning. 10 = 1/10th image used. Max is 30.
 	};

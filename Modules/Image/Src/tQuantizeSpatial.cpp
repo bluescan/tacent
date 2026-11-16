@@ -179,7 +179,7 @@ namespace tQuantizeSpatial
 	(
 		array2d< vector_fixed<double, 3> >& image, array2d< vector_fixed<double, 3> >& filter_weights, array2d< int >& quantized_image,
 		std::vector< vector_fixed<double, 3> >& palette, array3d<double>*& p_coarse_variables,
-		double initial_temperature, double final_temperature, int temps_per_level, int repeats_per_temp,
+		double initial_temperature, double final_temperature, int temps_per_level, int repeats_per_temp, bool fixedPalette,
 		tMath::tRandom::tGenerator& randGen, std::default_random_engine& randEng
 	);
 }
@@ -565,7 +565,7 @@ bool tQuantizeSpatial::spatial_color_quant
 (
 	array2d< vector_fixed<double, 3> >& image, array2d< vector_fixed<double, 3> >& filter_weights, array2d< int >& quantized_image,
 	std::vector< vector_fixed<double, 3> >& palette, array3d<double>*& p_coarse_variables,
-	double initial_temperature, double final_temperature, int temps_per_level, int repeats_per_temp,
+	double initial_temperature, double final_temperature, int temps_per_level, int repeats_per_temp, bool fixedPalette,
 	tMath::tRandom::tGenerator& randGen, std::default_random_engine& randEng
 )
 {
@@ -630,7 +630,8 @@ bool tQuantizeSpatial::spatial_color_quant
 	int iters_at_current_level = 0;
 	bool skip_palette_maintenance = false;
 	array2d< vector_fixed<double,3> > s(palette.size(), palette.size());
-	compute_initial_s(s, coarse_variables, b_vec[coarse_level]);
+	if (!fixedPalette)
+		compute_initial_s(s, coarse_variables, b_vec[coarse_level]);
 	array2d< vector_fixed<double, 3> >* j_palette_sum =
 	new array2d< vector_fixed<double, 3> >(coarse_variables.get_width(), coarse_variables.get_height());
 	compute_initial_j_palette_sum(*j_palette_sum, coarse_variables, palette);
@@ -718,7 +719,7 @@ bool tQuantizeSpatial::spatial_color_quant
 					j_pal(0) += delta_m_iv*palette[v](0);
 					j_pal(1) += delta_m_iv*palette[v](1);
 					j_pal(2) += delta_m_iv*palette[v](2);
-					if (abs(delta_m_iv) > 0.001 && !skip_palette_maintenance)
+					if (!fixedPalette && (abs(delta_m_iv) > 0.001 && !skip_palette_maintenance))
 						update_s(s, coarse_variables, b, i_x, i_y, v, delta_m_iv);
 				}
 				int max_v = best_match_color(coarse_variables, i_x, i_y, palette);
@@ -754,11 +755,14 @@ bool tQuantizeSpatial::spatial_color_quant
 				#endif
 			}
 
-			if (skip_palette_maintenance)
+			if (!fixedPalette)
 			{
-				compute_initial_s(s, *p_coarse_variables, b_vec[coarse_level]);
+				if (skip_palette_maintenance)
+				{
+					compute_initial_s(s, *p_coarse_variables, b_vec[coarse_level]);
+				}
+				refine_palette(s, coarse_variables, a, palette);
 			}
-			refine_palette(s, coarse_variables, a, palette);
 			compute_initial_j_palette_sum(*j_palette_sum, coarse_variables, palette);
 		}
 
@@ -837,10 +841,12 @@ double tQuantizeSpatial::ComputeBaseDither(int width, int height, int numColours
 
 bool tQuantizeSpatial::QuantizeImage
 (
-	int numColours, int width, int height, const tPixel3b* pixels, tColour3b* destPalette, uint8* destIndices,
+	int numCols, int width, int height, const tPixel3b* pixels, tColour3b* destPalette, uint8* destIndices,
 	bool checkExact, double ditherLevel, int filterSize
 )
 {
+	int numColours = tMath::tAbs(numCols);
+	bool fixedPalette = (numCols < 0);
 	if ((numColours < 2) || (numColours > 256) || (width <= 0) || (height <= 0) || !pixels || !destPalette || !destIndices)
 		return false;
 
@@ -857,7 +863,7 @@ bool tQuantizeSpatial::QuantizeImage
 	if (ditherLevel == 0.0)
 		filterSize = 1;
 
-	if (checkExact)
+	if (checkExact && !fixedPalette)
 	{
 		bool success = tQuantize::QuantizeImageExact(numColours, width, height, pixels, destPalette, destIndices);
 		if (success)
@@ -881,9 +887,18 @@ bool tQuantizeSpatial::QuantizeImage
 	for (int i = 0; i < numColours; i++)
 	{
 		vector_fixed<double, 3> v;
-		v(0) = tMath::tRandom::tGetDouble(randGen);		// ((double)rand())/RAND_MAX;
-		v(1) = tMath::tRandom::tGetDouble(randGen);		// ((double)rand())/RAND_MAX;
-		v(2) = tMath::tRandom::tGetDouble(randGen);		// ((double)rand())/RAND_MAX;
+		if (fixedPalette)
+		{
+			v(0) = destPalette[i].R/255.0;
+			v(1) = destPalette[i].G/255.0;
+			v(2) = destPalette[i].B/255.0;
+		}
+		else
+		{
+			v(0) = tMath::tRandom::tGetDouble(randGen);		// ((double)rand())/RAND_MAX;
+			v(1) = tMath::tRandom::tGetDouble(randGen);		// ((double)rand())/RAND_MAX;
+			v(2) = tMath::tRandom::tGetDouble(randGen);		// ((double)rand())/RAND_MAX;
+		}
 		palette.push_back(v);
 	}
 
@@ -924,7 +939,7 @@ bool tQuantizeSpatial::QuantizeImage
 				filter5_weights(i,j)(k) /= sum;
 
 	array2d< vector_fixed<double, 3> >* filters[] = {NULL, &filter1_weights, NULL, &filter3_weights, NULL, &filter5_weights};
-	bool success = spatial_color_quant(image, *filters[filterSize], quantized_image, palette, coarse_variables, 1.0, 0.001, 3, 1, randGen, randEng);
+	bool success = spatial_color_quant(image, *filters[filterSize], quantized_image, palette, coarse_variables, 1.0, 0.001, 3, 1, fixedPalette, randGen, randEng);
 	// bool success = spatial_color_quant(image, filter3_weights, quantized_image, palette, coarse_variables, 0.05, 0.02);
 	if (!success)
 		return false;
@@ -933,11 +948,14 @@ bool tQuantizeSpatial::QuantizeImage
 		for (int x = 0; x < width; x++)
 			destIndices[x + y*width] = uint8(quantized_image(x,y));
 
-	for (int c = 0; c < numColours; c++)
+	if (!fixedPalette)
 	{
-		destPalette[c].R = uint8(255.0 * palette[c](0));
-		destPalette[c].G = uint8(255.0 * palette[c](1));
-		destPalette[c].B = uint8(255.0 * palette[c](2));
+		for (int c = 0; c < numColours; c++)
+		{
+			destPalette[c].R = uint8(255.0 * palette[c](0));
+			destPalette[c].G = uint8(255.0 * palette[c](1));
+			destPalette[c].B = uint8(255.0 * palette[c](2));
+		}
 	}
 
 	return true;
@@ -946,10 +964,11 @@ bool tQuantizeSpatial::QuantizeImage
 
 bool tQuantizeSpatial::QuantizeImage
 (
-	int numColours, int width, int height, const tPixel4b* pixels, tColour3b* destPalette, uint8* destIndices,
+	int numCols, int width, int height, const tPixel4b* pixels, tColour3b* destPalette, uint8* destIndices,
 	bool checkExact, double ditherLevel, int filterSize
 )
 {
+	int numColours = tMath::tAbs(numCols);
 	if ((numColours < 2) || (numColours > 256) || (width <= 0) || (height <= 0) || !pixels || !destPalette || !destIndices)
 		return false;
 
