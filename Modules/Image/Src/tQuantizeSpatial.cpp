@@ -10,7 +10,7 @@
 // colours. The official name of this algorith is 'scolorq'. Running on colours more than 32 takes a LONG time.
 // See https://github.com/samhocevar/scolorq/blob/master/spatial_color_quant.cpp
 //
-// Modifications Copyright (c) 2022-2024 Tristan Grimmer.
+// Modifications Copyright (c) 2022-2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -847,8 +847,15 @@ bool tQuantizeSpatial::QuantizeImage
 	if ((filterSize != 1) && (filterSize != 3) && (filterSize != 5))
 		return false;
 
-	if (ditherLevel <= 0.0)
+	// ditherLevel < 0.0 => auto (compute a sensible dither amount). ditherLevel == 0.0 => no dithering (select the 1x1
+	// delta filter so each pixel is quantized independently). ditherLevel > 0.0 => manual dither amount (gaussian stddev).
+	if (ditherLevel < 0.0)
 		ditherLevel = tQuantizeSpatial::ComputeBaseDither(width, height, numColours);
+
+	// "No dithering" is done by choosing the 1x1 delta filter (zero neighbour weight). We must NOT feed stddev 0 into the
+	// gaussian weight math below (the centre would be exp(-0/(0*0)) = 0/0 = NaN), hence the separate filter-size override.
+	if (ditherLevel == 0.0)
+		filterSize = 1;
 
 	if (checkExact)
 	{
@@ -891,7 +898,7 @@ bool tQuantizeSpatial::QuantizeImage
 	}	
 
 	array3d<double>* coarse_variables;
-	double stddev = ditherLevel;
+	double stddev = (ditherLevel > 0.0) ? ditherLevel : 0.001;
 	double sum = 0.0;
 	for(int i = 0; i < 3; i++)
 		for(int j = 0; j < 3; j++)

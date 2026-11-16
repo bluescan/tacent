@@ -2,7 +2,7 @@
 //
 // Generic interface for quantizing colours (creating colour palettes).
 //
-// Copyright (c) 2022, 2024 Tristan Grimmer.
+// Copyright (c) 2022, 2024, 2026 Tristan Grimmer.
 // Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
 // granted, provided that the above copyright notice and this permission notice appear in all copies.
 //
@@ -22,7 +22,8 @@ namespace tQuantize
 	enum class Method
 	{
 		Fixed,					// Supports from 2 to 256 colours. Low quality because used predefined palettes.
-		Spatial,				// AKA scolorq. Supports from 2 to 256 colours. Good for 32 colours or fewer. Very slow for 64 colours or higher.
+		Spatial,				// AKA scolorq. Supports from 2 to 256 colours. Good for 32 colours or fewer. Very slow
+								// for 64 colours or higher. Always employs dither. You may set the amount.
 		Neu,					// AKA NeuQuant. Supports from 2 to 256 colours. Best for 64 to 256.
 		Wu,						// AKA XiaolinWu. Supports from 2 to 256 colours. Best for 64 to 256.
 		NumMethods
@@ -96,7 +97,9 @@ namespace tQuantizeFixed
 
 namespace tQuantizeSpatial
 {
-	// If ditherLevel is 0.0 uses ComputeBaseDither, otherwise ditherLevel must be > 0.0. filterSize must be 1, 3, or 5.
+	// ditherLevel < 0.0 uses ComputeBaseDither (auto). ditherLevel == 0.0 means no dithering (the 1x1 delta filter is used,
+	// so filterSize is ignored). ditherLevel > 0.0 is used as the manual dither amount. For manual dither a reasonable
+	// ditherLevel would be in (0.0, 2.0]. filterSize must be 1, 3, or 5.
 	//
 	// If checkExact is true it will inspect all supplied pixels in case there are <= numColours of them. If that is
 	// true then the image is exactly representable given the palette size and the quantize is not needed. The operation
@@ -108,12 +111,12 @@ namespace tQuantizeSpatial
 	bool QuantizeImage
 	(
 		int numColours, int width, int height, const tPixel3b* pixels, tColour3b* destPalette, uint8* destIndices,
-		bool checkExact = true, double ditherLevel = 0.0, int filterSize = 3
+		bool checkExact = true, double ditherLevel = -1.0, int filterSize = 3
 	);
 	bool QuantizeImage
 	(
 		int numColours, int width, int height, const tPixel4b* pixels, tColour3b* destPalette, uint8* destIndices,
-		bool checkExact = true, double ditherLevel = 0.0, int filterSize = 3
+		bool checkExact = true, double ditherLevel = -1.0, int filterSize = 3
 	);
 
 	double ComputeBaseDither(int width, int height, int numColours);

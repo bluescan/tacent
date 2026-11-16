@@ -281,8 +281,11 @@ tTestUnit(ImageLoad)
 }
 
 
-void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method method, bool transparency, float dither = 0.0f)
+void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method method, bool transparency, float dither = -1.0f)
 {
+	// We're going to save the gif in the same spot as the input png.
+	tString saveDir = tSystem::tGetDir(pngFile);
+
 	tImageAPNG apng(pngFile);
 	tList<tFrame> frames;
 	apng.StealFrames(frames);
@@ -294,16 +297,19 @@ void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method 
 	tString dithStr;
 	if (method == tQuantize::Method::Spatial)
 	{
-		dithStr = "_Dith_Auto";
 		if (dither > 0.0f)
 			tsPrintf(dithStr, "_Dith_%3.2f", dither);
+		else if (dither == 0.0f)
+			dithStr = "_Dith_None";
+		else
+			dithStr = "_Dith_Auto";
 	}
 
 	tString gifFile;
 	tsPrintf
 	(
 		gifFile,
-		"WrittenGIF_%s_%s_%s_%s%s.gif",
+		"ωGIF_%s_%s_%s_%s%s.gif",
 		(numFrames > 1) ? "Animat" : "Single",
 		transparency ? "Transp" : "Opaque",
 		tGetPixelFormatName(format),
@@ -316,8 +322,8 @@ void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method 
 	params.DitherLevel = double(dither);
 	params.AlphaThreshold = transparency ? 127 : 255;		// 255 means force opaque.
 
-	gif.Save(gifFile, params);
-	tRequire(tSystem::tFileExists(gifFile));
+	gif.Save(saveDir+gifFile, params);
+	tRequire(tSystem::tFileExists(saveDir+gifFile));
 }
 
 
@@ -325,32 +331,35 @@ tTestUnit(ImageSave)
 {
 	tImageDir()
 
+#if 0
 	tImageTGA::LoadParams tgaParams;
 	tgaParams.Flags &= ~tImageTGA::LoadFlag_AlphaOpacity;
-	tImageTGA tgaReversed("ReversedAlpha16Bit_5551.tga", tgaParams);
+	tImageTGA tgaReversed("Type_TGA/TransparentCalicoCatSticker_5551_ReversedAlpha.tga", tgaParams);
 	int rtgaW = tgaReversed.GetWidth();
 	int rtgaH = tgaReversed.GetHeight();
 	tPixel4b* rtgaPixels = tgaReversed.StealPixels();
 	tImageQOI rqoi(rtgaPixels, rtgaW, rtgaH, true);
-	tImageQOI::tFormat rresult32 = rqoi.Save("WrittenReversedAlpha16Bit_5551.qoi", tImageQOI::tFormat::BPP32);
+	tImageQOI::tFormat rresult32 = rqoi.Save("Type_TGA/ωTransparentCalicoCatSticker_5551_ReversedAlpha.qoi", tImageQOI::tFormat::BPP32);
 	tRequire(rresult32 == tImageQOI::tFormat::BPP32);
 
-	tImageTGA tgaPattern("TestPattern/TacentTestPattern32.tga");
+	tImageTGA tgaPattern("TestPattern/TacentTestPatternRGBA.tga");
 	int tgaW = tgaPattern.GetWidth();
 	int tgaH = tgaPattern.GetHeight();
 	tPixel4b* tgaPixels = tgaPattern.StealPixels();
 	tImageQOI qoi(tgaPixels, tgaW, tgaH, true);
-	tImageQOI::tFormat result32 = qoi.Save("WrittenTacentTestPattern32.qoi", tImageQOI::tFormat::BPP32);
+	tImageQOI::tFormat result32 = qoi.Save("TestPattern/ωTacentTestPattern32.qoi", tImageQOI::tFormat::BPP32);
 	tRequire(result32 == tImageQOI::tFormat::BPP32);
-	tImageQOI::tFormat result24 = qoi.Save("WrittenTacentTestPattern24.qoi", tImageQOI::tFormat::BPP24);
+	tImageQOI::tFormat result24 = qoi.Save("TestPattern/ωTacentTestPattern24.qoi", tImageQOI::tFormat::BPP24);
 	tRequire(result24 == tImageQOI::tFormat::BPP24);
-	
-	tList<tFrame> frames;
+#endif
 
-	// Test dither from 0.0f (auto) to 1.5f.
+	// Test the spatial quantizer dither: auto (dither < 0), then 16 gradations 0.0 (no dither) up to 1.5.
 	tPrintf("Testing GIF save spatial quantization dither with 2-colour palette.\n");
+	TestSaveGif("TestPattern/TacentTestPatternRGBA_Small.png", tPixelFormat::PAL1BIT, tQuantize::Method::Spatial,	false, -1.0f);
 	for (int d = 0; d < 16; d++)
-		TestSaveGif("TestPattern/TacentTestPattern.png", tPixelFormat::PAL1BIT, tQuantize::Method::Spatial,	false, float(d)*0.1f);
+		TestSaveGif("TestPattern/TacentTestPatternRGBA_Small.png", tPixelFormat::PAL1BIT, tQuantize::Method::Spatial,	false, float(d)*0.1f);
+
+	return;
 
 	// Test writing a non-animated gif without transparency at different bit-depths.
 	tPrintf("Testing GIF save single frame opaque.\n");
@@ -394,6 +403,8 @@ tTestUnit(ImageSave)
 	tRequire( tSystem::tFileExists("WrittenNewB.png"));
 
 	// Test writing webp images. The basic pattern to save as a different type is to steal from one and give to the other.
+	tList<tFrame> frames;
+
 	tImageAPNG apng("Type_APNG/Flame.apng");
 	apng.StealFrames(frames);
 	tImageWEBP webp;

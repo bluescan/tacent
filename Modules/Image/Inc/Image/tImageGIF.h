@@ -88,7 +88,13 @@ public:
 	//
 	// Format must be one of the PALNBIT formats where N E [1,8]. i.e. Palette sizes 2, 4, 8, 16, 32, 64, 128, or 256.
 	//
-	// Method should be set to one of the 4 available quantization methods: fixed, neuquant, wu, or scolorq.
+	// Method should be set to one of the 4 available quantization methods: fixed, neuquant, wu, or scolorq. These are
+	// defined in tQuantize.h as:
+	//	Fixed	: Supports from 2 to 256 colours. Low quality because used predefined palettes.
+	//	Spatial	: AKA scolorq. Supports from 2 to 256 colours. Good for 32 colours or fewer. Very slow for 64 colours
+	//			  or higher. Supports (optional) dithering.
+	//	Neu		: AKA NeuQuant. Supports from 2 to 256 colours. Best for 64 to 256.
+	//	Wu		: AKA XiaolinWu. Supports from 2 to 256 colours. Best for 64 to 256.
 	//
 	// Loop only applies to multi-frame/animated gifs. 0 to loop forever. >0 to loop a specific number of times.
 	//
@@ -109,7 +115,7 @@ public:
 	{
 		SaveParams()																									{ Reset(); }
 		SaveParams(const SaveParams& src)																				: Format(src.Format), Method(src.Method), Loop(src.Loop), AlphaThreshold(src.AlphaThreshold), OverrideFrameDuration(src.OverrideFrameDuration), DitherLevel(src.DitherLevel), FilterSize(src.FilterSize), SampleFactor(src.SampleFactor) { }
-		void Reset()																									{ Format = tPixelFormat::PAL8BIT; Method = tQuantize::Method::Wu; Loop = 0; AlphaThreshold = -1; OverrideFrameDuration = -1; DitherLevel = 0.0; FilterSize = 3; SampleFactor = 1; }
+		void Reset()																									{ Format = tPixelFormat::PAL8BIT; Method = tQuantize::Method::Wu; Loop = 0; AlphaThreshold = -1; OverrideFrameDuration = -1; DitherLevel = -1.0; FilterSize = 3; SampleFactor = 1; }
 		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; Method = src.Method; Loop = src.Loop; AlphaThreshold = src.AlphaThreshold; OverrideFrameDuration = src.OverrideFrameDuration; DitherLevel = src.DitherLevel; FilterSize = src.FilterSize; SampleFactor = src.SampleFactor; return *this; }
 
 		tPixelFormat Format;		// See comment above. Must be one of the PALNBIT formats wher N is E [1, 8].
@@ -118,7 +124,8 @@ public:
 		int AlphaThreshold;			// See comment above. -1 = auto. 255 = opaque. else A<=threshold = transp pixel.
 		int OverrideFrameDuration;	// See comment above. -1 = use frame duration. >=0 = Set all to this many 1/100 sec.
 
-		double DitherLevel;			// For Method::Spatial only. 0.0 = auto. >0.0 = manual dither amount.
+		double DitherLevel;			// For Method::Spatial only. <0.0 = auto. 0.0 = no dither. >0.0 = manual dither
+									// amount. Values up to 2.0f are reasonable. Defaults to -1.0 (auto).
 		int FilterSize;				// For Method::Spatial only. Must be 1, 3, or 5. Default is 3.
 
 		int SampleFactor;			// For Method::Neu only. 1 = whole image learning. 10 = 1/10th image used. Max is 30.
@@ -149,7 +156,6 @@ public:
 private:
 	// Decodes the in-memory GIF bytes. Read-only: never mutates the caller's buffer.
 	bool Decode(const uint8* gifFileInMemory, int numBytes);
-
 
 	static void FrameLoadCallbackBridge(void* imgGifRaw, struct GIF_WHDR*);
 	void FrameLoadCallback(struct GIF_WHDR*);

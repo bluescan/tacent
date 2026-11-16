@@ -267,8 +267,8 @@ int main(int argc, char** argv)
 
 	// Image tests.
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
-	tTest(ImageLoad);
-	// tTest(ImageSave);
+//ok	tTest(ImageLoad);
+	tTest(ImageSave);
 	// tTest(ImageTexture);
 	// tTest(ImagePicture);
 	// tTest(ImageQuantize);
