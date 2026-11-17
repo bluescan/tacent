@@ -431,11 +431,11 @@ bool tImageGIF::Save(const tString& gifFile, const SaveParams& saveParams) const
 				// against this palette instead of generating its own.
 				gifPalette[0].Set(0, 0, 0);
 				gifPalette[1].Set(255, 255, 255);
-				tQuantizeSpatial::QuantizeImage(-quantNumColours, width, height, pixels, gifPalette, gifIndices, false, params.zDitherLevel, params.FilterSize);
+				tQuantizeSpatial::QuantizeImage(-quantNumColours, width, height, pixels, gifPalette, gifIndices, false, params.DitherLevel, params.FilterSize);
 			}
 			else
 			{
-				tQuantizeSpatial::QuantizeImage(quantNumColours, width, height, pixels, gifPalette, gifIndices, checkExact, params.zDitherLevel, params.FilterSize);
+				tQuantizeSpatial::QuantizeImage(quantNumColours, width, height, pixels, gifPalette, gifIndices, checkExact, params.DitherLevel, params.FilterSize);
 			}
 			break;
 	}

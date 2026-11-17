@@ -319,7 +319,7 @@ void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method 
 	tImageGIF::SaveParams params;
 	params.Format = format;
 	params.Method = method;
-	params.zDitherLevel = dither ;
+	params.DitherLevel = dither;
 	params.AlphaThreshold = transparency ? 127 : 255;		// 255 means force opaque.
 	params.ForceBlackAndWhite = forceBW;
 

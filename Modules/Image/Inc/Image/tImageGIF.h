@@ -114,9 +114,9 @@ public:
 	struct SaveParams
 	{
 		SaveParams()																									{ Reset(); }
-		SaveParams(const SaveParams& src)																				: Format(src.Format), Method(src.Method), Loop(src.Loop), AlphaThreshold(src.AlphaThreshold), OverrideFrameDuration(src.OverrideFrameDuration), zDitherLevel(src.zDitherLevel), FilterSize(src.FilterSize), ForceBlackAndWhite(src.ForceBlackAndWhite), SampleFactor(src.SampleFactor) { }
-		void Reset()																									{ Format = tPixelFormat::PAL8BIT; Method = tQuantize::Method::Wu; Loop = 0; AlphaThreshold = -1; OverrideFrameDuration = -1; zDitherLevel = -1.0f; FilterSize = 3; ForceBlackAndWhite = false; SampleFactor = 1; }
-		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; Method = src.Method; Loop = src.Loop; AlphaThreshold = src.AlphaThreshold; OverrideFrameDuration = src.OverrideFrameDuration; zDitherLevel = src.zDitherLevel; FilterSize = src.FilterSize; ForceBlackAndWhite = src.ForceBlackAndWhite; SampleFactor = src.SampleFactor; return *this; }
+		SaveParams(const SaveParams& src)																				: Format(src.Format), Method(src.Method), Loop(src.Loop), AlphaThreshold(src.AlphaThreshold), OverrideFrameDuration(src.OverrideFrameDuration), DitherLevel(src.DitherLevel), FilterSize(src.FilterSize), ForceBlackAndWhite(src.ForceBlackAndWhite), SampleFactor(src.SampleFactor) { }
+		void Reset()																									{ Format = tPixelFormat::PAL8BIT; Method = tQuantize::Method::Wu; Loop = 0; AlphaThreshold = -1; OverrideFrameDuration = -1; DitherLevel = -1.0f; FilterSize = 3; ForceBlackAndWhite = false; SampleFactor = 1; }
+		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; Method = src.Method; Loop = src.Loop; AlphaThreshold = src.AlphaThreshold; OverrideFrameDuration = src.OverrideFrameDuration; DitherLevel = src.DitherLevel; FilterSize = src.FilterSize; ForceBlackAndWhite = src.ForceBlackAndWhite; SampleFactor = src.SampleFactor; return *this; }
 
 		tPixelFormat Format;		// See comment above. Must be one of the PALNBIT formats wher N is E [1, 8].
 		tQuantize::Method Method;	// See comment above. Choose one of the 4 available colour quantization methods.
@@ -124,7 +124,7 @@ public:
 		int AlphaThreshold;			// See comment above. -1 = auto. 255 = opaque. else A<=threshold = transp pixel.
 		int OverrideFrameDuration;	// See comment above. -1 = use frame duration. >=0 = Set all to this many 1/100 sec.
 
-		float zDitherLevel;			// For Method::Spatial only. <0.0f = auto. 0.0f = no dither. >0.0f = manual dither
+		float DitherLevel;			// For Method::Spatial only. <0.0f = auto. 0.0f = no dither. >0.0f = manual dither
 									// amount. Values up to 2.0f are reasonable. Defaults to -1.0f (auto).
 		int FilterSize;				// For Method::Spatial only. Must be 1, 3, or 5. Default is 3.
 		bool ForceBlackAndWhite;	// For Method::Spatial only. If true, force Format to PAL1BIT and use a fixed
