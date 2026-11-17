@@ -205,7 +205,6 @@ void tQuantizeSpatial::fill_random(array3d<double>& a, tMath::tRandom::tGenerato
 	for (int i=0; i<a.get_width(); i++)
 		for (int j=0; j<a.get_height(); j++)
 			for (int k=0; k<a.get_depth(); k++)
-				//a(i,j,k) = ((double)rand())/RAND_MAX;
 				a(i,j,k) = tMath::tRandom::tGetDouble(gen);
 }
 
@@ -842,7 +841,7 @@ double tQuantizeSpatial::ComputeBaseDither(int width, int height, int numColours
 bool tQuantizeSpatial::QuantizeImage
 (
 	int numCols, int width, int height, const tPixel3b* pixels, tColour3b* destPalette, uint8* destIndices,
-	bool checkExact, double ditherLevel, int filterSize
+	bool checkExact, float ditherLevel, int filterSize
 )
 {
 	int numColours = tMath::tAbs(numCols);
@@ -853,14 +852,15 @@ bool tQuantizeSpatial::QuantizeImage
 	if ((filterSize != 1) && (filterSize != 3) && (filterSize != 5))
 		return false;
 
-	// ditherLevel < 0.0 => auto (compute a sensible dither amount). ditherLevel == 0.0 => no dithering (select the 1x1
-	// delta filter so each pixel is quantized independently). ditherLevel > 0.0 => manual dither amount (gaussian stddev).
-	if (ditherLevel < 0.0)
-		ditherLevel = tQuantizeSpatial::ComputeBaseDither(width, height, numColours);
+	// ditherLevel < 0.0f => auto (compute a sensible dither amount). ditherLevel == 0.0f => no dithering (select the
+	// 1x1 delta filter so each pixel is quantized independently). ditherLevel > 0.0f => manual dither amount (gaussian
+	// stddev).
+	if (ditherLevel < 0.0f)
+		ditherLevel = float(tQuantizeSpatial::ComputeBaseDither(width, height, numColours));
 
 	// "No dithering" is done by choosing the 1x1 delta filter (zero neighbour weight). We must NOT feed stddev 0 into the
 	// gaussian weight math below (the centre would be exp(-0/(0*0)) = 0/0 = NaN), hence the separate filter-size override.
-	if (ditherLevel == 0.0)
+	if (ditherLevel == 0.0f)
 		filterSize = 1;
 
 	if (checkExact && !fixedPalette)
@@ -913,7 +913,7 @@ bool tQuantizeSpatial::QuantizeImage
 	}	
 
 	array3d<double>* coarse_variables;
-	double stddev = (ditherLevel > 0.0) ? ditherLevel : 0.001;
+	double stddev = (ditherLevel > 0.0f) ? double(ditherLevel) : 0.001;
 	double sum = 0.0;
 	for(int i = 0; i < 3; i++)
 		for(int j = 0; j < 3; j++)
@@ -965,7 +965,7 @@ bool tQuantizeSpatial::QuantizeImage
 bool tQuantizeSpatial::QuantizeImage
 (
 	int numCols, int width, int height, const tPixel4b* pixels, tColour3b* destPalette, uint8* destIndices,
-	bool checkExact, double ditherLevel, int filterSize
+	bool checkExact, float ditherLevel, int filterSize
 )
 {
 	int numColours = tMath::tAbs(numCols);
@@ -976,7 +976,7 @@ bool tQuantizeSpatial::QuantizeImage
 	for (int p = 0; p < width*height; p++)
 		pixels3[p].Set( pixels[p].R, pixels[p].G, pixels[p].B );
 
-	bool success = QuantizeImage(numColours, width, height, pixels3, destPalette, destIndices, checkExact, ditherLevel, filterSize);
+	bool success = QuantizeImage(numCols, width, height, pixels3, destPalette, destIndices, checkExact, ditherLevel, filterSize);
 	delete[] pixels3;
 	return success;
 }

@@ -97,9 +97,9 @@ namespace tQuantizeFixed
 
 namespace tQuantizeSpatial
 {
-	// ditherLevel < 0.0 uses ComputeBaseDither (auto). ditherLevel == 0.0 means no dithering (the 1x1 delta filter is used,
-	// so filterSize is ignored). ditherLevel > 0.0 is used as the manual dither amount. For manual dither a reasonable
-	// ditherLevel would be in (0.0, 2.0]. filterSize must be 1, 3, or 5.
+	// ditherLevel < 0.0f uses ComputeBaseDither (auto). ditherLevel == 0.0f means no dithering (the 1x1 delta filter is used,
+	// so filterSize is ignored). ditherLevel > 0.0f is used as the manual dither amount. For manual dither a reasonable
+	// ditherLevel would be in (0.0f, 2.0f]. filterSize must be 1, 3, or 5.
 	//
 	// If numColours is negative, destPalette is assumed to already contain tAbs(numColours) palette colours (e.g. -2
 	// for black and white, or -16 for a fixed 16-colour set), so no palette is generated -- only the spatial dithering
@@ -116,12 +116,12 @@ namespace tQuantizeSpatial
 	bool QuantizeImage
 	(
 		int numColours, int width, int height, const tPixel3b* pixels, tColour3b* destPalette, uint8* destIndices,
-		bool checkExact = true, double ditherLevel = -1.0, int filterSize = 3
+		bool checkExact = true, float ditherLevel = -1.0f, int filterSize = 3
 	);
 	bool QuantizeImage
 	(
 		int numColours, int width, int height, const tPixel4b* pixels, tColour3b* destPalette, uint8* destIndices,
-		bool checkExact = true, double ditherLevel = -1.0, int filterSize = 3
+		bool checkExact = true, float ditherLevel = -1.0f, int filterSize = 3
 	);
 
 	double ComputeBaseDither(int width, int height, int numColours);
