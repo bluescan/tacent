@@ -581,15 +581,27 @@ bool tPicture::QuantizeFixed(int numColours, bool checkExact)
 }
 
 
-bool tPicture::QuantizeSpatial(int numColours, bool checkExact, double ditherLevel, int filterSize)
+bool tPicture::QuantizeSpatial(int numColours, bool checkExact, float ditherLevel, int filterSize, bool forceBlackAndWhite)
 {
 	if (!IsValid())
 		return false;
 
-	tColour3b* destPalette = new tColour3b[numColours];
+	// When forcing black-and-white the palette size is fixed at two and the caller's numColours is ignored entirely.
+	int paletteSize = forceBlackAndWhite ? 2 : numColours;
+	int quantNumColours = numColours;
+	tColour3b* destPalette = new tColour3b[paletteSize];
 	uint8* destIndices = new uint8[Width*Height];
 
-	bool ok = tQuantizeSpatial::QuantizeImage(numColours, Width, Height, Pixels, destPalette, destIndices, checkExact, ditherLevel, filterSize);
+	if (forceBlackAndWhite)
+	{
+		// Dither against a fixed black/white palette instead of generating one from the image. A negative colour count
+		// tells the spatial quantizer to use the provided palette rather than build its own.
+		destPalette[0].Set(0, 0, 0);
+		destPalette[1].Set(255, 255, 255);
+		quantNumColours = -2;
+	}
+
+	bool ok = tQuantizeSpatial::QuantizeImage(quantNumColours, Width, Height, Pixels, destPalette, destIndices, checkExact, ditherLevel, filterSize);
 	if (!ok)
 	{
 		delete[] destIndices;

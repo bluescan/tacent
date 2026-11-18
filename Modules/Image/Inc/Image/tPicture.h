@@ -258,10 +258,14 @@ public:
 	// desireable as the computed or fixed palette would not be used.
 	bool QuantizeFixed(int numColours, bool checkExact = true);
 
-	// Similar to above but uses spatial quantization to generate the palette. If ditherLevel is < 0.0 it will compute a
-	// good dither amount for you based on the image dimensions and number of colours. If ditherLevel is 0.0 no dither is
-	// applied. Filter size must be 1, 3, or 5.
-	bool QuantizeSpatial(int numColours, bool checkExact = true, double ditherLevel = -1.0, int filterSize = 3);
+	// Similar to above but uses spatial quantization to generate the palette. If ditherLevel is < 0.0f it will compute
+	// a good dither amount for you based on the image dimensions and number of colours. If ditherLevel is 0.0f no
+	// dither is applied. Filter size must be 1, 3, or 5. If forceBlackAndWhite is true then numColours is ignored and
+	// the palette is fixed at two entries, black (0,0,0) and white (255,255,255), and the image is dithered against
+	// that palette. Note that without this flag a 2-colour quantization does NOT necessarily produce black and white.
+	// The spatial algorithm inspects the actual colour distribution of the image and picks the two colours that best
+	// represent it, which are usually two shades of the dominant hue rather than pure black and white.
+	bool QuantizeSpatial(int numColours, bool checkExact = true, float ditherLevel = -1.0f, int filterSize = 3, bool forceBlackAndWhite = false);
 
 	// Similar to above but uses neuquant algorighm to generate the palette. With a sampling factor of 1 the entire
 	// image is used in the learning phase. With a factor of 10, a pseudo-random subset of 1/10 of the pixels are used
