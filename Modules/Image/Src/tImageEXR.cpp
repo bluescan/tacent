@@ -162,7 +162,7 @@ bool tImageEXR::Load(const tString& exrFile, const LoadParams& loadParams)
 	if (!tLoadFile(exrFile, data))
 		return false;
 
-	return Load(data);
+	return Load(data, loadParams);
 }
 
 
