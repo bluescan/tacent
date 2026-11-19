@@ -44,26 +44,36 @@ namespace tUnitTest
 {
 
 
-// TEMPORARY: While test images are being migrated into the tacentfixtures repo, a few fixtures are not yet present
-// under "Data/Images/" and instead live in tacentfixtures. Point the affected loads at tFixImagesRoot (see imgJXL /
-// pngSecond / jxlExif / jxlXmp below). The image tests are disabled individually before pushing, so this is safe
-// locally. Remove this define and revert the tFixImagesRoot usages once the migration into Data/Images is complete.
-#define tFixImagesRoot "D:/GitHub/tacentfixtures/Images/"
-#define tFixImageSubDir(subdir) if (!tSystem::tDirExists(tFixImagesRoot)) tSkipUnit() tString origDir = tSystem::tGetCurrentDir(); tSystem::tSetCurrentDir(tString(tFixImagesRoot) + subdir);
-
-
 #define tImageDataDir			"Data/Images/"
-#define tImageDir()				tString origDir = tSystem::tGetCurrentDir(); if (!tSystem::tDirExists(origDir+tImageDataDir))		tSkipUnit() tSystem::tSetCurrentDir(origDir+tImageDataDir);
-#define tImageSubDir(dir)		tString origDir = tSystem::tGetCurrentDir(); if (!tSystem::tDirExists(origDir+tImageDataDir+dir))	tSkipUnit() tSystem::tSetCurrentDir(origDir+tImageDataDir+dir);
-#define tImageResetDir()		tSystem::tSetCurrentDir(origDir+tImageDataDir);
-#define tImageChangeDir(dir)	tSystem::tSetCurrentDir(origDir+tImageDataDir+dir);
-#define tImageRestoreDir()		tSystem::tSetCurrentDir(origDir);
+#define tImageDir()				tString saveName; tString origDir = tSystem::tGetCurrentDir(); if (!tSystem::tDirExists(origDir+tImageDataDir))		tSkipUnit() tSystem::tSetCurrentDir(origDir+tImageDataDir)
+#define tImageSubDir(dir)		tString saveName; tString origDir = tSystem::tGetCurrentDir(); if (!tSystem::tDirExists(origDir+tImageDataDir+dir))	tSkipUnit() tSystem::tSetCurrentDir(origDir+tImageDataDir+dir)
+#define tImageResetDir()		tSystem::tSetCurrentDir(origDir+tImageDataDir)
+#define tImageChangeDir(dir)	tSystem::tSetCurrentDir(origDir+tImageDataDir+dir)
+#define tImageRestoreDir()		tSystem::tSetCurrentDir(origDir)
+
+
+namespace
+{
+	tString CreateModifiedSaveName(const char* path, const char* unitname)
+	{
+		tString modPath(path);
+		tString repName;
+		tsPrintf(repName, "ω%s_", unitname);
+		int count = modPath.Replace("ω", repName.Chr());
+		if (count != 1)
+			return tString(path);
+
+		return modPath;
+	}
+}
+
+
+#define SetSaveName(n) saveName = CreateModifiedSaveName(n, unitNameLocal)
 
 
 tTestUnit(ImageLoad)
 {
-	tImageDir()
-
+	tImageDir();
 	tImageChangeDir("Type_APNG/");
 
 	// Test direct loading classes.
@@ -92,7 +102,7 @@ tTestUnit(ImageLoad)
 	tRequire(imgAPNGMove.IsValid());
 	tRequire(apngMove.GetNumElements() == 0);
 
-	tImageResetDir()
+	tImageResetDir();
 	tImageASTC imgASTC("Type_ASTC/ASTC10X10_LDR.astc");
 	tRequire(imgASTC.IsValid());
 
@@ -277,65 +287,70 @@ tTestUnit(ImageLoad)
 	tRequire(imgJXLMove2.IsValid());
 	tRequire(jxlMove.GetNumElements() == 0);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
-namespace { int TestSaveGIFCounter = 0; } 
-
-
-void TestSaveGif(const tString& pngFile, tPixelFormat format, tQuantize::Method method, bool transparency, float dither = -1.0f, bool forceBW = false)
+namespace
 {
-	// We're going to save the gif in the same spot as the input png.
-	tString saveDir = tSystem::tGetDir(pngFile);
+	int SaveAsGIFCounter = 0;
+	tString SaveAsGIFUnitName;
 
-	tImageAPNG apng(pngFile);
-	tList<tFrame> frames;
-	apng.StealFrames(frames);
-	int numFrames = frames.Count();
-	tImageGIF gif;
-	gif.Set(frames, true);
-	tRequire(frames.IsEmpty());
-
-	tString dithStr;
-	if (method == tQuantize::Method::Spatial)
+	void SaveAsGIF(const tString& pngFile, tPixelFormat format, tQuantize::Method method, bool transparency, float dither = -1.0f, bool forceBW = false)
 	{
-		if (dither >= 0.0f)
-			tsPrintf(dithStr, "_Dith_%3.2f", dither);
-		else
-			dithStr = "_Dith_Auto";
+		// We're going to save the gif in the same spot as the input png.
+		tString saveDir = tSystem::tGetDir(pngFile);
+
+		tImageAPNG apng(pngFile);
+		tList<tFrame> frames;
+		apng.StealFrames(frames);
+		int numFrames = frames.Count();
+		tImageGIF gif;
+		gif.Set(frames, true);
+		tRequire(frames.IsEmpty());
+
+		tString dithStr;
+		if (method == tQuantize::Method::Spatial)
+		{
+			if (dither >= 0.0f)
+				tsPrintf(dithStr, "_Dith_%3.2f", dither);
+			else
+				dithStr = "_Dith_Auto";
+		}
+
+		tString bwStr = forceBW ? "_BW" : "";
+		tString gifFile;
+		tsPrintf
+		(
+			gifFile,
+			"ω%s_GIF%02d_%s_%s_%s_%s%s%s.gif",
+			SaveAsGIFUnitName.Chr(),
+			SaveAsGIFCounter++,
+			(numFrames > 1) ? "Animat" : "Single",
+			transparency ? "Transp" : "Opaque",
+			tGetPixelFormatName(format),
+			tQuantize::GetMethodName(method),
+			dithStr.Chr(),
+			bwStr.Chr()
+		);
+		tImageGIF::SaveParams params;
+		params.Format = format;
+		params.Method = method;
+		params.DitherLevel = dither;
+		params.AlphaThreshold = transparency ? 127 : 255;		// 255 means force opaque.
+		params.ForceBlackAndWhite = forceBW;
+
+		gif.Save(saveDir+gifFile, params);
+		tRequire(tSystem::tFileExists(saveDir+gifFile));
 	}
-
-	tString bwStr = forceBW ? "_BW" : "";
-	tString gifFile;
-	tsPrintf
-	(
-		gifFile,
-		"ωGIF%02d_%s_%s_%s_%s%s%s.gif",
-		TestSaveGIFCounter++, 
-		(numFrames > 1) ? "Animat" : "Single",
-		transparency ? "Transp" : "Opaque",
-		tGetPixelFormatName(format),
-		tQuantize::GetMethodName(method),
-		dithStr.Chr(),
-		bwStr.Chr()
-	);
-	tImageGIF::SaveParams params;
-	params.Format = format;
-	params.Method = method;
-	params.DitherLevel = dither;
-	params.AlphaThreshold = transparency ? 127 : 255;		// 255 means force opaque.
-	params.ForceBlackAndWhite = forceBW;
-
-	gif.Save(saveDir+gifFile, params);
-	tRequire(tSystem::tFileExists(saveDir+gifFile));
 }
 
 
 tTestUnit(ImageSave)
 {
-	tImageDir()
-	TestSaveGIFCounter = 0;
+	tImageDir();
+	SaveAsGIFCounter = 0;
+	SaveAsGIFUnitName = unitNameLocal;
 
 	tImageTGA::LoadParams tgaParams;
 	tgaParams.Flags &= ~tImageTGA::LoadFlag_AlphaOpacity;
@@ -344,7 +359,8 @@ tTestUnit(ImageSave)
 	int rtgaH = tgaReversed.GetHeight();
 	tPixel4b* rtgaPixels = tgaReversed.StealPixels();
 	tImageQOI rqoi(rtgaPixels, rtgaW, rtgaH, true);
-	tImageQOI::tFormat rresult32 = rqoi.Save("Type_TGA/ωTransparentCalicoCatSticker_5551_ReversedAlpha.qoi", tImageQOI::tFormat::BPP32);
+	SetSaveName("Type_TGA/ωTransparentCalicoCatSticker_5551_ReversedAlpha.qoi");
+	tImageQOI::tFormat rresult32 = rqoi.Save(saveName, tImageQOI::tFormat::BPP32);
 	tRequire(rresult32 == tImageQOI::tFormat::BPP32);
 
 	tImageTGA tgaPattern("TestPattern/TacentTestPatternRGBA.tga");
@@ -352,65 +368,69 @@ tTestUnit(ImageSave)
 	int tgaH = tgaPattern.GetHeight();
 	tPixel4b* tgaPixels = tgaPattern.StealPixels();
 	tImageQOI qoi(tgaPixels, tgaW, tgaH, true);
-	tImageQOI::tFormat result32 = qoi.Save("TestPattern/ωTacentTestPattern32.qoi", tImageQOI::tFormat::BPP32);
+	SetSaveName("TestPattern/ωTacentTestPattern32.qoi");
+	tImageQOI::tFormat result32 = qoi.Save(saveName, tImageQOI::tFormat::BPP32);
 	tRequire(result32 == tImageQOI::tFormat::BPP32);
-	tImageQOI::tFormat result24 = qoi.Save("TestPattern/ωTacentTestPattern24.qoi", tImageQOI::tFormat::BPP24);
+	SetSaveName("TestPattern/ωTacentTestPattern24.qoi");
+	tImageQOI::tFormat result24 = qoi.Save(saveName, tImageQOI::tFormat::BPP24);
 	tRequire(result24 == tImageQOI::tFormat::BPP24);
 
 	// Test the spatial quantizer dither: auto (dither < 0), then 16 gradations 0.0 (no dither) up to 1.5.
 	tPrintf("Testing GIF save spatial quantization dither with 2-colour palette.\n");
-	TestSaveGif("TestPattern/TacentTestPatternRGBA_Small.png", tPixelFormat::PAL1BIT, tQuantize::Method::Spatial, false);
+	SaveAsGIF("TestPattern/TacentTestPatternRGBA_Small.png", tPixelFormat::PAL1BIT, tQuantize::Method::Spatial, false);
 	for (int d = 0; d < 16; d++)
-		TestSaveGif("TestPattern/TacentTestPatternRGBA_Small.png", tPixelFormat::PAL1BIT, tQuantize::Method::Spatial, false, float(d)*0.1f);
+		SaveAsGIF("TestPattern/TacentTestPatternRGBA_Small.png", tPixelFormat::PAL1BIT, tQuantize::Method::Spatial, false, float(d)*0.1f);
 
 	// Test ForceBlackAndWhite: a fixed black/white palette with spatial dithering. This is a Spatial-method flag (like
 	// FilterSize and DitherLevel): it is ignored for Fixed, Neu, and Wu. With the Spatial method, the GIF is forced to
 	// a 1-bit palette and the spatial quantizer dithers against the fixed black/white palette (numColours passed
 	// negative to select fixed-palette mode).
 	tPrintf("Testing GIF save ForceBlackAndWhite (fixed black/white palette, spatial dither).\n");
-	TestSaveGif("TestPattern/TacentTestPatternRGBA_Small.png", tPixelFormat::PAL1BIT, tQuantize::Method::Spatial, false, -1.0f, true);
+	SaveAsGIF("TestPattern/TacentTestPatternRGBA_Small.png", tPixelFormat::PAL1BIT, tQuantize::Method::Spatial, false, -1.0f, true);
 
 	// Test writing a non-animated gif without transparency at different bit-depths.
 	tPrintf("Testing GIF save single frame opaque.\n");
-	TestSaveGif("TestPattern/TacentTestPatternRGB_Medium.png",	tPixelFormat::PAL1BIT, tQuantize::Method::Fixed,	false);
-	TestSaveGif("TestPattern/TacentTestPatternRGB_Medium.png",	tPixelFormat::PAL2BIT, tQuantize::Method::Spatial,	false);
-	TestSaveGif("TestPattern/TacentTestPatternRGB_Medium.png",	tPixelFormat::PAL3BIT, tQuantize::Method::Spatial,	false);
-	TestSaveGif("TestPattern/TacentTestPatternRGB_Medium.png",	tPixelFormat::PAL4BIT, tQuantize::Method::Spatial,	false);
-	TestSaveGif("TestPattern/TacentTestPatternRGB_Medium.png",	tPixelFormat::PAL5BIT, tQuantize::Method::Wu,		false);
-	TestSaveGif("TestPattern/TacentTestPatternRGB_Medium.png",	tPixelFormat::PAL6BIT, tQuantize::Method::Wu,		false);
-	TestSaveGif("TestPattern/TacentTestPatternRGB_Medium.png",	tPixelFormat::PAL7BIT, tQuantize::Method::Wu,		false);
-	TestSaveGif("TestPattern/TacentTestPatternRGB_Medium.png",	tPixelFormat::PAL8BIT, tQuantize::Method::Wu,		false);
+	SaveAsGIF("TestPattern/TacentTestPatternRGB_Medium.png",	tPixelFormat::PAL1BIT, tQuantize::Method::Fixed,	false);
+	SaveAsGIF("TestPattern/TacentTestPatternRGB_Medium.png",	tPixelFormat::PAL2BIT, tQuantize::Method::Spatial,	false);
+	SaveAsGIF("TestPattern/TacentTestPatternRGB_Medium.png",	tPixelFormat::PAL3BIT, tQuantize::Method::Spatial,	false);
+	SaveAsGIF("TestPattern/TacentTestPatternRGB_Medium.png",	tPixelFormat::PAL4BIT, tQuantize::Method::Spatial,	false);
+	SaveAsGIF("TestPattern/TacentTestPatternRGB_Medium.png",	tPixelFormat::PAL5BIT, tQuantize::Method::Wu,		false);
+	SaveAsGIF("TestPattern/TacentTestPatternRGB_Medium.png",	tPixelFormat::PAL6BIT, tQuantize::Method::Wu,		false);
+	SaveAsGIF("TestPattern/TacentTestPatternRGB_Medium.png",	tPixelFormat::PAL7BIT, tQuantize::Method::Wu,		false);
+	SaveAsGIF("TestPattern/TacentTestPatternRGB_Medium.png",	tPixelFormat::PAL8BIT, tQuantize::Method::Wu,		false);
 
 	// Test writing a non-animated gif with transparency at different bit-depths.
 	tPrintf("Testing GIF save single frame transparent.\n");
-	TestSaveGif("TestPattern/TacentTestPatternRGBA_Medium.png",	tPixelFormat::PAL1BIT, tQuantize::Method::Fixed,	true);
-	TestSaveGif("TestPattern/TacentTestPatternRGBA_Medium.png",	tPixelFormat::PAL2BIT, tQuantize::Method::Wu,		true);
-	TestSaveGif("TestPattern/TacentTestPatternRGBA_Medium.png",	tPixelFormat::PAL3BIT, tQuantize::Method::Wu,		true);
-	TestSaveGif("TestPattern/TacentTestPatternRGBA_Medium.png",	tPixelFormat::PAL4BIT, tQuantize::Method::Wu,		true);
-	TestSaveGif("TestPattern/TacentTestPatternRGBA_Medium.png",	tPixelFormat::PAL5BIT, tQuantize::Method::Wu,		true);
-	TestSaveGif("TestPattern/TacentTestPatternRGBA_Medium.png",	tPixelFormat::PAL6BIT, tQuantize::Method::Neu,		true);
-	TestSaveGif("TestPattern/TacentTestPatternRGBA_Medium.png",	tPixelFormat::PAL7BIT, tQuantize::Method::Neu,		true);
-	TestSaveGif("TestPattern/TacentTestPatternRGBA_Medium.png",	tPixelFormat::PAL8BIT, tQuantize::Method::Neu,		true);
+	SaveAsGIF("TestPattern/TacentTestPatternRGBA_Medium.png",	tPixelFormat::PAL1BIT, tQuantize::Method::Fixed,	true);
+	SaveAsGIF("TestPattern/TacentTestPatternRGBA_Medium.png",	tPixelFormat::PAL2BIT, tQuantize::Method::Wu,		true);
+	SaveAsGIF("TestPattern/TacentTestPatternRGBA_Medium.png",	tPixelFormat::PAL3BIT, tQuantize::Method::Wu,		true);
+	SaveAsGIF("TestPattern/TacentTestPatternRGBA_Medium.png",	tPixelFormat::PAL4BIT, tQuantize::Method::Wu,		true);
+	SaveAsGIF("TestPattern/TacentTestPatternRGBA_Medium.png",	tPixelFormat::PAL5BIT, tQuantize::Method::Wu,		true);
+	SaveAsGIF("TestPattern/TacentTestPatternRGBA_Medium.png",	tPixelFormat::PAL6BIT, tQuantize::Method::Neu,		true);
+	SaveAsGIF("TestPattern/TacentTestPatternRGBA_Medium.png",	tPixelFormat::PAL7BIT, tQuantize::Method::Neu,		true);
+	SaveAsGIF("TestPattern/TacentTestPatternRGBA_Medium.png",	tPixelFormat::PAL8BIT, tQuantize::Method::Neu,		true);
 
 	// Test writing animated gif with transparency at different bit-depths.
-	TestSaveGIFCounter = 0;
+	SaveAsGIFCounter = 0;
 	tPrintf("Testing GIF save animated transparent.\n");
-	TestSaveGif("Type_APNG/Icos4D.apng",				tPixelFormat::PAL1BIT, tQuantize::Method::Fixed,	true);
-	TestSaveGif("Type_APNG/Icos4D.apng",				tPixelFormat::PAL2BIT, tQuantize::Method::Neu,		true);
-	TestSaveGif("Type_APNG/Icos4D.apng",				tPixelFormat::PAL3BIT, tQuantize::Method::Neu,		true);
-	TestSaveGif("Type_APNG/Icos4D.apng",				tPixelFormat::PAL4BIT, tQuantize::Method::Neu,		true);
-	TestSaveGif("Type_APNG/Icos4D.apng",				tPixelFormat::PAL5BIT, tQuantize::Method::Neu,		true);
-	TestSaveGif("Type_APNG/Icos4D.apng",				tPixelFormat::PAL6BIT, tQuantize::Method::Wu,		true);
-	TestSaveGif("Type_APNG/Icos4D.apng",				tPixelFormat::PAL7BIT, tQuantize::Method::Wu,		true);
-	TestSaveGif("Type_APNG/Icos4D.apng",				tPixelFormat::PAL8BIT, tQuantize::Method::Wu,		true);
+	SaveAsGIF("Type_APNG/Icos4D.apng",							tPixelFormat::PAL1BIT, tQuantize::Method::Fixed,	true);
+	SaveAsGIF("Type_APNG/Icos4D.apng",							tPixelFormat::PAL2BIT, tQuantize::Method::Neu,		true);
+	SaveAsGIF("Type_APNG/Icos4D.apng",							tPixelFormat::PAL3BIT, tQuantize::Method::Neu,		true);
+	SaveAsGIF("Type_APNG/Icos4D.apng",							tPixelFormat::PAL4BIT, tQuantize::Method::Neu,		true);
+	SaveAsGIF("Type_APNG/Icos4D.apng",							tPixelFormat::PAL5BIT, tQuantize::Method::Neu,		true);
+	SaveAsGIF("Type_APNG/Icos4D.apng",							tPixelFormat::PAL6BIT, tQuantize::Method::Wu,		true);
+	SaveAsGIF("Type_APNG/Icos4D.apng",							tPixelFormat::PAL7BIT, tQuantize::Method::Wu,		true);
+	SaveAsGIF("Type_APNG/Icos4D.apng",							tPixelFormat::PAL8BIT, tQuantize::Method::Wu,		true);
 
 	tImagePNG pngA("Type_PNG/Dock512.png");
-	pngA.Save("Type_PNG/ωDock512.png");
-	tRequire( tSystem::tFileExists("Type_PNG/ωDock512.png"));
+	SetSaveName("Type_PNG/ωDock512.png");
+	pngA.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName));
 
 	tImagePNG pngB("Type_PNG/TextCursor.png");
-	pngB.Save("Type_PNG/ωTextCursor.png");
-	tRequire( tSystem::tFileExists("Type_PNG/ωTextCursor.png"));
+	SetSaveName("Type_PNG/ωTextCursor.png");
+	pngB.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName));
 
 	// Test writing webp images. The basic pattern to save as a different type is to steal from one and give to the other.
 	tList<tFrame> frames;
@@ -419,34 +439,37 @@ tTestUnit(ImageSave)
 	apng.StealFrames(frames);
 	tImageWEBP webp;
 	webp.Set(frames, true);
-	webp.Save("Type_APNG/ωFlame.webp");
+	SetSaveName("Type_APNG/ωFlame.webp");
+	webp.Save(saveName);
 	tRequire(frames.IsEmpty());
-	tRequire(tSystem::tFileExists("Type_APNG/ωFlame.webp"));
+	tRequire(tSystem::tFileExists(saveName));
 
 	tImageEXR exr("Type_EXR/Desk.exr");
 	exr.StealFrames(frames);
 	webp.Set(frames, true);
-	webp.Save("Type_EXR/ωDesk.webp");
+	SetSaveName("Type_EXR/ωDesk.webp");
+	webp.Save(saveName);
 	tRequire(frames.IsEmpty());
-	tRequire(tSystem::tFileExists("Type_EXR/ωDesk.webp"));
+	tRequire(tSystem::tFileExists(saveName));
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
 tTestUnit(ImageTexture)
 {
-	tImageDir()
+	tImageDir();
 
 	// Test dxt1 texture.
 	tTexture dxt1Tex("Type_DDS/BC1DXT1_RGB_Legacy.dds");
 	tRequire(dxt1Tex.IsValid());
 
-	tChunkWriter writer("Written_BC1DXT1_RGB_Legacy.tac");
+	SetSaveName("Type_DDS/ωBC1DXT1_RGB_Legacy.tac");
+	tChunkWriter writer(saveName);
 	dxt1Tex.Save(writer);
-	tRequire( tSystem::tFileExists("Written_BC1DXT1_RGB_Legacy.tac") );
+	tRequire(tSystem::tFileExists(saveName));
 
-	tChunkReader reader("Written_BC1DXT1_RGB_Legacy.tac");
+	tChunkReader reader(saveName);
 	dxt1Tex.Load( reader.Chunk() );
 	tRequire(dxt1Tex.IsValid());
 
@@ -455,18 +478,19 @@ tTestUnit(ImageTexture)
 	tRequire(cubemap.IsValid());
 
 	// Test jpg to texture. This will do conversion to BC1.
-	tImageJPG jpg("WiredDrives.jpg");
+	tImageJPG jpg("Type_JPG/WiredDrives.jpg");
 	int w = jpg.GetWidth(); int h = jpg.GetHeight();
 	tPicture pic(w, h, jpg.StealPixels(), false); 
 	tTexture bc1Tex(pic, true);
 
 	tRequire(bc1Tex.IsValid());
-	tChunkWriter chunkWriterBC1("Written_WiredDrives_BC1.tac");
+	SetSaveName("Type_JPG/ωWiredDrives_BC1.tac");
+	tChunkWriter chunkWriterBC1(saveName);
 	bc1Tex.Save(chunkWriterBC1);
-	tRequire( tSystem::tFileExists("Written_WiredDrives_BC1.tac") );
+	tRequire( tSystem::tFileExists(saveName) );
 
 	// Test ico with alpha to texture. This will do conversion to BC3.
-	tImageICO ico("UpperBounds.ico");
+	tImageICO ico("Type_ICO/UpperBounds.ico");
 	tFrame* frame = ico.StealFrame(0);
 	w = frame->Width; h = frame->Height;
 	pic.Set(w, h, frame->GetPixels(true), false);
@@ -474,17 +498,18 @@ tTestUnit(ImageTexture)
 	tTexture bc3Tex(pic, true);
 
 	tRequire(bc3Tex.IsValid());
-	tChunkWriter chunkWriterBC3("Written_UpperBounds_BC3.tac");
+	SetSaveName("Type_ICO/ωUpperBounds_BC3.tac");
+	tChunkWriter chunkWriterBC3(saveName);
 	bc3Tex.Save(chunkWriterBC3);
-	tRequire( tSystem::tFileExists("Written_UpperBounds_BC3.tac"));
+	tRequire( tSystem::tFileExists(saveName));
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
 tTestUnit(ImagePicture)
 {
-	tImageDir()
+	tImageDir();
 
 	//
 	// tPicture loading/saving tests. These all save as tga and to the corresponding format if save is supported.
@@ -493,7 +518,7 @@ tTestUnit(ImagePicture)
 	tImageTGA tga;
 
 	// Test generate layers.
-	tImageBMP bmpL(tFixImagesRoot "Type_BMP/UpperBounds.bmp");
+	tImageBMP bmpL("Type_BMP/UpperBounds.bmp");
 	tRequire(bmpL.IsValid());
 
 	// Test pixel constructor and mipmap gen.
@@ -510,91 +535,102 @@ tTestUnit(ImagePicture)
 
 	tImageAPNG apng;
 	apng.Load("Type_APNG/Flame.apng");
-	apng.Save("WrittenFlame.apng");
+	SetSaveName("Type_APNG/ωFlame.apng");
+	apng.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 	pic.Set(apng); tga.Set(pic);
-	tga.Save("WrittenFlame.tga");
-	tRequire( tSystem::tFileExists("WrittenFlame.apng"));
+	SetSaveName("Type_APNG/ωFlame.tga");
+	tga.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
+
+	return;
 
 	tImageASTC astc;
 	astc.Load("Type_ASTC/ASTC10X10_LDR.astc");
 	pic.Set(astc); tga.Set(pic);
-	tga.Save("WrittenASTC10X10_LDR.tga");
-	tRequire(tSystem::tFileExists("WrittenASTC10X10_LDR.tga"));
+	tga.Save("Type_ASTC/ωASTC10X10_LDR.tga");
+	tRequire( tSystem::tFileExists("Type_ASTC/ωASTC10X10_LDR.tga") );
 
 	tImageBMP bmp;
-	bmp.Load(tFixImagesRoot "Type_BMP/UpperBounds.bmp");
-	bmp.Save("WrittenUpperB.bmp");
+	bmp.Load("Type_BMP/UpperBounds.bmp");
+	bmp.Save("Type_BMP/ωUpperB.bmp");
 	pic.Set(bmp); tga.Set(pic);
-	tga.Save("WrittenUpperB.tga");
-	tRequire( tSystem::tFileExists("WrittenUpperB.bmp"));
+	tga.Save("Type_BMP/ωUpperB.tga");
+	tRequire( tSystem::tFileExists("Type_BMP/ωUpperB.bmp") );
+	tRequire( tSystem::tFileExists("Type_BMP/ωUpperB.tga") );
 
-	bmp.Load(tFixImagesRoot "Type_BMP/Alpha.bmp");
-	bmp.Save("WrittenBmp_Alpha.bmp");
+	bmp.Load("Type_BMP/Alpha.bmp");
+	bmp.Save("Type_BMP/ωAlpha.bmp");
 	pic.Set(bmp); tga.Set(pic);
-	tga.Save("WrittenBmp_Alpha.tga");
-	tRequire( tSystem::tFileExists("WrittenBmp_Alpha.bmp"));
+	tga.Save("Type_BMP/ωAlpha.tga");
+	tRequire( tSystem::tFileExists("Type_BMP/ωAlpha.bmp") );
+	tRequire( tSystem::tFileExists("Type_BMP/ωAlpha.tga") );
 
-	bmp.Load(tFixImagesRoot "Type_BMP/Lambda.bmp");
-	bmp.Save("WrittenBmp_Lambda.bmp");
+	bmp.Load("Type_BMP/Lambda.bmp");
+	bmp.Save("Type_BMP/ωLambda.bmp");
 	pic.Set(bmp); tga.Set(pic);
-	tga.Save("WrittenBmp_Lambda.tga");
-	tRequire( tSystem::tFileExists("WrittenBmp_Lambda.bmp"));
+	tga.Save("Type_BMP/ωLambda.tga");
+	tRequire( tSystem::tFileExists("Type_BMP/ωLambda.bmp") );
+	tRequire( tSystem::tFileExists("Type_BMP/ωLambda.tga") );
 
 	tImageDDS dds;
 	dds.Load("Type_DDS/BC1DXT1_RGB_Modern.dds");
 	pic.Set(dds); tga.Set(pic);
-	tga.Save("WrittenBC1DXT1_RGB_Modern.tga");
-	tRequire( tSystem::tFileExists("WrittenBC1DXT1_RGB_Modern.tga"));
+	tga.Save("Type_DDS/ωBC1DXT1_RGB_Modern.tga");
+	tRequire( tSystem::tFileExists("Type_DDS/ωBC1DXT1_RGB_Modern.tga") );
 
 	tImageEXR exr;
-	exr.Load("Desk.exr");
+	exr.Load("Type_EXR/Desk.exr");
 	pic.Set(exr); tga.Set(pic);
-	tga.Save("WrittenDesk.tga");
-	tRequire( tSystem::tFileExists("WrittenDesk.tga"));
+	tga.Save("Type_EXR/ωDesk.tga");
+	tRequire( tSystem::tFileExists("Type_EXR/ωDesk.tga"));
 
 	tImageGIF gif;
-	gif.Load("Type_GIF/8-cell-simple.gif");
-	gif.Save("Written8-cell-simple.gif");
+	gif.Load("Type_GIF/HyperCube.gif");
+	gif.Save("Type_GIF/ωHyperCube.gif");
 	pic.Set(gif); tga.Set(pic);
-	tga.Save("Written8-cell-simple.tga");
-	tRequire( tSystem::tFileExists("Written8-cell-simple.gif"));
+	tga.Save("Type_GIF/ωHyperCube.tga");
+	tRequire( tSystem::tFileExists("Type_GIF/ωHyperCube.gif"));
+	tRequire( tSystem::tFileExists("Type_GIF/ωHyperCube.tga"));
 
 	tImageHDR hdr;
-	hdr.Load("mpi_atrium_3.hdr");
+	hdr.Load("Type_HDR/MpiAtrium3.hdr");
 	pic.Set(hdr); tga.Set(pic);
-	tga.Save("Writtenmpi_atrium_3.tga");
-	tRequire( tSystem::tFileExists("Writtenmpi_atrium_3.tga"));
+	tga.Save("Type_HDR/ωMpiAtrium3.tga");
+	tRequire( tSystem::tFileExists("Type_HDR/ωMpiAtrium3.tga"));
 
 	tImageICO ico;
-	ico.Load("UpperBounds.ico");
+	ico.Load("Type_ICO/UpperBounds.ico");
 	pic.Set(ico); tga.Set(pic);
-	tga.Save("WrittenUpperBounds.tga");
-	tRequire( tSystem::tFileExists("WrittenUpperBounds.tga"));
+	tga.Save("Type_ICO/ωUpperBounds.tga");
+	tRequire( tSystem::tFileExists("Type_ICO/ωUpperBounds.tga"));
 
 	tImageJPG jpg;
-	jpg.Load("WiredDrives.jpg");
-	jpg.Save("WrittenWiredDrives.jpg");
+	jpg.Load("Type_JPG/WiredDrives.jpg");
+	jpg.Save("Type_JPG/ωWiredDrives.jpg");
 	pic.Set(jpg); tga.Set(pic);
-	tga.Save("WrittenWiredDrives.tga");
-	tRequire( tSystem::tFileExists("WrittenWiredDrives.jpg"));
+	tga.Save("Type_JPG/ωWiredDrives.tga");
+	tRequire( tSystem::tFileExists("Type_JPG/ωWiredDrives.jpg"));
+	tRequire( tSystem::tFileExists("Type_JPG/ωWiredDrives.tga"));
 
 	tImageKTX ktx;
 	ktx.Load("Type_KTX1/BC7_RGBA.ktx");
 	pic.Set(ktx); tga.Set(pic);
-	tga.Save("WrittenBC7_RGBA.tga");
-	tRequire( tSystem::tFileExists("WrittenBC7_RGBA.tga"));
+	tga.Save("Type_KTX1/ωBC7_RGBA.tga");
+	tRequire( tSystem::tFileExists("Type_KTX1/ωBC7_RGBA.tga"));
 
 	ktx.Load("Type_KTX2/R32G32B32A32f_RGBA.ktx2");
 	pic.Set(ktx); tga.Set(pic);
-	tga.Save("WrittenR32G32B32A32f_RGBA.tga");
-	tRequire( tSystem::tFileExists("WrittenR32G32B32A32f_RGBA.tga"));
+	tga.Save("Type_KTX2/ωR32G32B32A32f_RGBA.tga");
+	tRequire( tSystem::tFileExists("Type_KTX2/ωR32G32B32A32f_RGBA.tga"));
 
 	tImagePNG png;
-	png.Load("Icos4D.png");
-	png.Save("WrittenIcos4D.png");
+	png.Load("Type_PNG/Icos4D.png");
+	png.Save("Type_PNG/ωIcos4D.png");
 	pic.Set(png); tga.Set(pic);
-	tga.Save("WrittenIcos4D.tga");
-	tRequire( tSystem::tFileExists("WrittenIcos4D.png"));
+	tga.Save("Type_PNG/ωIcos4D.tga");
+	tRequire( tSystem::tFileExists("Type_PNG/ωIcos4D.png"));
+	tRequire( tSystem::tFileExists("Type_PNG/ωIcos4D.tga"));
 
 	png.Load("Type_PNG/Xeyes.png");
 	png.Save("WrittenXeyes.png");
@@ -656,13 +692,13 @@ tTestUnit(ImagePicture)
 	// tga.Save("WrittenCrane.tga");
 	// tRequire( tSystem::tFileExists("WrittenCrane.tga"));
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
 tTestUnit(ImageQuantize)
 {
-	tImageDir()
+	tImageDir();
 
 	tImageTGA srctga; srctga.Load("Dock512.tga");
 	int w = srctga.GetWidth(); int h = srctga.GetHeight(); tPixel4b* srcpixels = srctga.GetPixels();
@@ -730,7 +766,7 @@ tTestUnit(ImageQuantize)
 
 	delete[] indices;
 	delete[] palette;
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
@@ -757,7 +793,7 @@ void PalettizeImage(int w, int h, tPixel4b* pixels, tPixelFormat fmt, tImage::tQ
 
 tTestUnit(ImagePalette)
 {
-	tImageDir()
+	tImageDir();
 
 	tImageTGA tga; int w = 0; int h = 0; tPixel4b* pixels = nullptr;
 	
@@ -809,7 +845,7 @@ tTestUnit(ImagePalette)
 	PalettizeImage(w, h, pixels, tPixelFormat::PAL7BIT, tImage::tQuantize::Method::Wu);
 	PalettizeImage(w, h, pixels, tPixelFormat::PAL8BIT, tImage::tQuantize::Method::Wu);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
@@ -852,7 +888,7 @@ static void PrintMetaDataTag(const tMetaData& metaData, tMetaTag tag)
 
 tTestUnit(ImageMetaData)
 {
-	tImageSubDir("EXIF_XMP/JPG/")
+	tImageSubDir("EXIF_XMP/JPG/");
 
 	#if 0
 	tList<tStringItem> images;
@@ -936,7 +972,7 @@ tTestUnit(ImageMetaData)
 	}
 
 	// Test meta-data extraction for AVIF files.
-	tImageChangeDir("EXIF_XMP/AVIF/")
+	tImageChangeDir("EXIF_XMP/AVIF/");
 
 	tImageAVIF avifNoMeta("TacentTestPattern.avif");
 	tRequire(avifNoMeta.IsValid());
@@ -947,7 +983,7 @@ tTestUnit(ImageMetaData)
 	tRequire(avifWithMeta.MetaData.IsValid());
 
 	// Test meta-data extraction for HEIC files.
-	tImageChangeDir("EXIF_XMP/HEIC/")
+	tImageChangeDir("EXIF_XMP/HEIC/");
 
 	tImageHEIC heicNoMeta("TacentTestPattern.heic");
 	tRequire(heicNoMeta.IsValid());
@@ -960,7 +996,7 @@ tTestUnit(ImageMetaData)
 	// Test meta-data extraction for WEBP files. WEBP is a RIFF container: EXIF lives in an "EXIF" chunk (2 bytes
 	// padding + bare TIFF) and XMP in an "XMP " chunk (raw XML). The fixtures below are generated files whose VP8
 	// image data is byte-identical to the _NONE original -- only the EXIF/XMP chunks differ.
-	tImageChangeDir("EXIF_XMP/WEBP/")
+	tImageChangeDir("EXIF_XMP/WEBP/");
 
 	// No metadata chunks: the image must decode, but no metadata should be extracted.
 	tImageWEBP webpNoMeta("FireBreathing_NONE.webp");
@@ -1014,7 +1050,7 @@ tTestUnit(ImageMetaData)
 	// Test meta-data extraction for PNG files. XMP may be stored in a "xMP " chunk or in a text chunk (tEXt/iTXt)
 	// under the keyword "XML:com.adobe.xmp" -- which is how Adobe and many other tools store XMP in PNGs; EXIF, if
 	// present, lives in an "eXIf" chunk. The fixtures below carry their XMP in an uncompressed iTXt chunk.
-	tImageChangeDir("EXIF_XMP/PNG/")
+	tImageChangeDir("EXIF_XMP/PNG/");
 
 	tImagePNG pngWithMeta("RightArrow_EXIF_XMP.png");
 	tRequire(pngWithMeta.IsValid());
@@ -1033,7 +1069,7 @@ tTestUnit(ImageMetaData)
 	// A second PNG carrying XMP, to confirm extraction is not specific to a single file. This fixture stores its
 	// XMP in an iTXt chunk whose exifEX:LensModel maps to the LensModel tag, so we assert the concrete value to
 	// prove the iTXt->XMP->LensModel path actually extracted data.
-	tImagePNG pngSecond(tFixImagesRoot "MetaData/PNG/TextCursor_XMP.png");
+	tImagePNG pngSecond("MetaData/PNG/TextCursor_XMP.png");
 	tRequire(pngSecond.IsValid());
 	tRequire(pngSecond.MetaData.IsValid());
 	tMetaData& pngSecondMeta = pngSecond.MetaData;
@@ -1043,7 +1079,7 @@ tTestUnit(ImageMetaData)
 
 	// Test meta-data extraction for TIFF files. A TIFF file is itself a bare TIFF structure, so EXIF is read directly
 	// from the bytes and XMP from the XMLPacket (0x8649) field.
-	tImageChangeDir("EXIF_XMP/TIFF/")
+	tImageChangeDir("EXIF_XMP/TIFF/");
 
 	tImageTIFF tiffWithMeta("SkyRight_EXIF_XMP.tiff");
 	tRequire(tiffWithMeta.IsValid());
@@ -1057,9 +1093,9 @@ tTestUnit(ImageMetaData)
 	// Test meta-data extraction for JXL files. JXL carries EXIF in an "Exif" box (a 4-byte
 	// big-endian offset followed by a bare TIFF) and XMP in an "xml " box. tImageJXL walks the
 	// boxes (tImageJXL::WalkBoxes) and routes each to TinyEXIF's EXIF / XMP parsers.
-	tImageChangeDir("EXIF_XMP/JXL/")
+	tImageChangeDir("EXIF_XMP/JXL/");
 
-	tImageJXL jxlExif(tFixImagesRoot "MetaData/JXL/Waterfall_EXIF.jxl");
+	tImageJXL jxlExif("MetaData/JXL/Waterfall_EXIF.jxl");
 	tRequire(jxlExif.IsValid());
 	tFrame* exifFrame = jxlExif.GetFrame(false);
 	tRequire((exifFrame != nullptr) && (exifFrame->Width == 1920) && (exifFrame->Height == 1080));
@@ -1072,7 +1108,7 @@ tTestUnit(ImageMetaData)
 	tRequire(jxlExifMeta[tMetaTag::Model].String == "Test");
 	PrintMetaDataTag(jxlExifMeta, tMetaTag::Model);
 
-	tImageJXL jxlXmp(tFixImagesRoot "MetaData/JXL/Waterfall_XMP.jxl");
+	tImageJXL jxlXmp("MetaData/JXL/Waterfall_XMP.jxl");
 	tRequire(jxlXmp.IsValid());
 	tFrame* xmpFrame = jxlXmp.GetFrame(false);
 	tRequire((xmpFrame != nullptr) && (xmpFrame->Width == 1920) && (xmpFrame->Height == 1080));
@@ -1085,7 +1121,7 @@ tTestUnit(ImageMetaData)
 	tRequire(jxlXmpMeta[tMetaTag::Artist].String == "Tacent");
 	PrintMetaDataTag(jxlXmpMeta, tMetaTag::Artist);
 
-	tImageChangeDir("EXIF_XMP/")
+	tImageChangeDir("EXIF_XMP/");
 
 	// Test loading/saving with compensation for exif orientation tags.
 	for (int i = 0; i < 9; i++)
@@ -1104,13 +1140,13 @@ tTestUnit(ImageMetaData)
 		jpg.Save(tString("Orientation/Written") + file);
 	}
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
 tTestUnit(ImageLosslessTransform)
 {
-	tImageDir()
+	tImageDir();
 
 	tImageJPG::Transform trans;
 	tImageJPG::LoadParams params;
@@ -1187,13 +1223,13 @@ tTestUnit(ImageLosslessTransform)
 	imgJPG_NO_FV.Save("WrittenLosslessNO_FV.jpg");
 	tRequire( tSystem::tFileExists("WrittenLosslessNO_FV.jpg"));
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
 tTestUnit(ImageRotation)
 {
-	tImageDir()
+	tImageDir();
 
 	// Test writing rotated images.
 	tImagePNG aropng("Type_PNG/RightArrow.png");
@@ -1243,13 +1279,13 @@ tTestUnit(ImageRotation)
 	h = planePic.GetHeight();
 	planePic.RotateCenter(-tMath::fPiOver4, tColour4b::transparent);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
 tTestUnit(ImageCrop)
 {
-	tImageDir()
+	tImageDir();
 
 	// Crop black pixels ignoring alpha (RGB channels only).
 	tImagePNG png("Type_PNG/plane.png");
@@ -1262,13 +1298,13 @@ tTestUnit(ImageCrop)
 	tImagePNG::tFormat fmt = png.Save("Type_PNG/WrittenPlane.png");
 	tRequire(fmt != tImagePNG::tFormat::Invalid);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
 tTestUnit(ImageCopyRegion)
 {
-	tImageSubDir("TestPattern/")
+	tImageSubDir("TestPattern/");
 
 	// The canvas is 1280x720. RGBA.
 	tImageTGA tgaCanvas("TacentTestPattern32.tga");
@@ -1331,13 +1367,13 @@ tTestUnit(ImageCopyRegion)
 	fmt = tgaWrite.Save("Written_CopyRegion_LeftTopGreenOnly.tga", tImageTGA::tFormat::BPP32);
 	tRequire(fmt == tImageTGA::tFormat::BPP32);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
 tTestUnit(ImageAdjustment)
 {
-	tImageSubDir("TestPattern/")
+	tImageSubDir("TestPattern/");
 
 	// Test brightness.
 	for (int level = 0; level <= 10; level++)
@@ -1435,13 +1471,13 @@ tTestUnit(ImageAdjustment)
 		tRequire(fmt != tImagePNG::tFormat::Invalid);
 	}
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
 tTestUnit(ImageDetection)
 {
-	tImageDir()
+	tImageDir();
 
 	// Test APNG detection.
 	bool isAnimA = tImageAPNG::IsAnimatedPNG("TextCursor.png");
@@ -1467,7 +1503,7 @@ tTestUnit(ImageDetection)
 	float exrBPPf	= tImage::tGetBitsPerPixelFloat(tPixelFormat::OPENEXR);
 	tPrintf("EXR BPP:%d BPPf:%f\n", exrBPP, exrBPPf);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
@@ -1566,7 +1602,7 @@ tTestUnit(ImageMipmap)
 
 tTestUnit(ImageFilter)
 {
-	tImageDir()
+	tImageDir();
 
 	for (int filt = 0; filt < int(tResampleFilter::NumFilters); filt++)
 		tPrintf("Filter Name %d: %s\n", filt, tResampleFilterNames[filt]);
@@ -1632,13 +1668,13 @@ tTestUnit(ImageFilter)
 	tga.Set(pic); fmt = tga.Save("WrittenResampledLanczosWide.tga");
 	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
 tTestUnit(ImageMultiFrame)
 {
-	tImageDir()
+	tImageDir();
 
 	#if 0
 	tImageWEBP webpSrc0("Demux_Shy.webp");
@@ -1721,13 +1757,13 @@ tTestUnit(ImageMultiFrame)
 	tiffDst2.Save("WrittenAnimatedTestManyFrames.tiff");
 	tRequire(tSystem::tFileExists("WrittenAnimatedTestManyFrames.tiff"));
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
 tTestUnit(ImageGradient)
 {
-	tImageDir()
+	tImageDir();
 
 	const int width = 640;
 	const int height = 90;
@@ -1808,13 +1844,13 @@ tTestUnit(ImageGradient)
 	saveParams.Format = tImagePNG::tFormat::BPP48_RGB_BPC16;
 	wcgGreenGradient.Save("Written_WcgGreenGradient_16BPC.png", saveParams);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
 tTestUnit(ImagePNG)
 {
-	tImageSubDir("Type_PNG/")
+	tImageSubDir("Type_PNG/");
 
 	tImagePNG png;
 	tImagePNG::LoadParams loadParams;
@@ -1914,13 +1950,13 @@ tTestUnit(ImagePNG)
 	tRequire(imgPNGMove.Load(tStd::rVal(pngMove)));
 	tRequire(pngMove.GetNumElements() == 0);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
 tTestUnit(ImageHEIC)
 {
-	tImageSubDir("Type_HEIC/")
+	tImageSubDir("Type_HEIC/");
 
 	// tImageHEIC can only load, so we verify integrity by saving each loaded file as a TGA for visual inspection.
 	// A bad file or a failed load will cause a tRequire failure above.
@@ -2025,7 +2061,7 @@ tTestUnit(ImageHEIC)
 	tRequire(imgHEICMove.IsValid());
 	tRequire(heicMove.GetNumElements() == 0);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
@@ -2117,7 +2153,7 @@ static void tD4ScanAll(const tPixel4b* in, int iw, int ih, const tPixel4b* out, 
 
 tTestUnit(ImageHEICRotatePixelVerify)
 {
-	tImageSubDir("Type_HEIC/")
+	tImageSubDir("Type_HEIC/");
 
 	const char* kImages[] =
 	{
@@ -2179,7 +2215,7 @@ tTestUnit(ImageHEICRotatePixelVerify)
 		}
 	}
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
@@ -2290,18 +2326,18 @@ static void tFlipDouble_AVIF(const char* base, HEIFTransform flip, const char* l
 tTestUnit(ImageFlipDouble)
 {
 	// HEIC double-flips.
-	tImageSubDir("Type_HEIC/")
+	tImageSubDir("Type_HEIC/");
 	const char* heicBase = "TacentTestPattern";
 	tFlipDouble_HEIC(heicBase, HEIFTransform::FlipH, "FlipH");
 	tFlipDouble_HEIC(heicBase, HEIFTransform::FlipV, "FlipV");
-	tImageRestoreDir()
+	tImageRestoreDir();
 
 	// AVIF double-flips.
-	tImageChangeDir("Type_AVIF/")
+	tImageChangeDir("Type_AVIF/");
 	const char* avifBase = "TacentTestPatternRGBA";
 	tFlipDouble_AVIF(avifBase, HEIFTransform::FlipH, "FlipH");
 	tFlipDouble_AVIF(avifBase, HEIFTransform::FlipV, "FlipV");
-	tImageRestoreDir()
+	tImageRestoreDir();
 
 	tPrintf("ImageFlipDouble: all 8 flips OK\n");
 }
@@ -2437,18 +2473,18 @@ static void tFlipTriple_AVIF(const char* base, HEIFTransform flip, const char* l
 tTestUnit(ImageFlipTriple)
 {
 	// HEIC triple-flips.
-	tImageSubDir("Type_HEIC/")
+	tImageSubDir("Type_HEIC/");
 	const char* heicBase = "TacentTestPattern";
 	tFlipTriple_HEIC(heicBase, HEIFTransform::FlipH, "FlipH");
 	tFlipTriple_HEIC(heicBase, HEIFTransform::FlipV, "FlipV");
-	tImageRestoreDir()
+	tImageRestoreDir();
 
 	// AVIF triple-flips.
-	tImageChangeDir("Type_AVIF/")
+	tImageChangeDir("Type_AVIF/");
 	const char* avifBase = "TacentTestPatternRGBA";
 	tFlipTriple_AVIF(avifBase, HEIFTransform::FlipH, "FlipH");
 	tFlipTriple_AVIF(avifBase, HEIFTransform::FlipV, "FlipV");
-	tImageRestoreDir()
+	tImageRestoreDir();
 
 	tPrintf("ImageFlipTriple: all 12 flips OK\n");
 }
@@ -2456,7 +2492,7 @@ tTestUnit(ImageFlipTriple)
 
 tTestUnit(ImageAVIF)
 {
-	tImageSubDir("Type_AVIF/")
+	tImageSubDir("Type_AVIF/");
 
 	// tImageAVIF can only load, so we verify integrity by saving each loaded file as a TGA for visual inspection.
 	// A bad file or a failed load will cause a tRequire failure above.
@@ -2554,13 +2590,13 @@ tTestUnit(ImageAVIF)
 	tRequire(imgAVIFMove.Load(tStd::rVal(avifMove)));
 	tRequire(avifMove.GetNumElements() == 0);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
 tTestUnit(ImageJXL)
 {
-	tImageSubDir("Type_JXL/")
+	tImageSubDir("Type_JXL/");
 
 	// tImageJXL can only load, so we verify integrity by saving each loaded file as a TGA for visual inspection.
 	// A bad file or a failed load will cause a tRequire failure above.
@@ -2655,13 +2691,13 @@ tTestUnit(ImageJXL)
 		tga.Save("Written_" + tSystem::tGetFileBaseName(*file) + ".tga");
 	}
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
 tTestUnit(ImageHDR)
 {
-	tFixImageSubDir("Type_HDR/")
+	tImageSubDir("Type_HDR/");
 
 	tPrintf("Testing HDR loading and auto-exposure (LoadFlag_AutoExposure*)\n\n");
 
@@ -2739,7 +2775,7 @@ tTestUnit(ImageHDR)
 		tGoal(whiteClipped <= meanClipped); // darken-only never brightens, so it should not add white-out
 	}
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
@@ -2818,7 +2854,7 @@ void DDSLoadDecodeSave(const tString& ddsfile, uint32 loadFlags = 0, bool saveAl
 
 tTestUnit(ImageDDS)
 {
-	tImageSubDir("Type_DDS/")
+	tImageSubDir("Type_DDS/");
 
 	uint32 decode = tImageDDS::LoadFlag_Decode;
 	uint32 revrow = tImageDDS::LoadFlag_ReverseRowOrder;
@@ -3019,7 +3055,7 @@ tTestUnit(ImageDDS)
 	DDSLoadDecodeSave("B10G11R11uf_RGB_Modern.dds",		revrow);
 	DDSLoadDecodeSave("E5B9G9R9uf_RGB_Modern.dds",		revrow);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
@@ -3103,7 +3139,7 @@ void KTXLoadDecodeSave(const tString& ktxfile, uint32 loadFlags = 0, bool saveAl
 
 tTestUnit(ImageKTX1)
 {
-	tImageSubDir("Type_KTX1/")
+	tImageSubDir("Type_KTX1/");
 
 	uint32 decode = tImageKTX::LoadFlag_Decode;
 	uint32 revrow = tImageKTX::LoadFlag_ReverseRowOrder;
@@ -3239,13 +3275,13 @@ tTestUnit(ImageKTX1)
 	KTXLoadDecodeSave("B10G11R11uf_RGB.ktx",			revrow);
 	KTXLoadDecodeSave("E5B9G9R9uf_RGB.ktx",				revrow);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
 tTestUnit(ImageKTX2)
 {
-	tImageSubDir("Type_KTX2/")
+	tImageSubDir("Type_KTX2/");
 
 	uint32 decode = tImageKTX::LoadFlag_Decode;
 	uint32 revrow = tImageKTX::LoadFlag_ReverseRowOrder;
@@ -3442,7 +3478,7 @@ tTestUnit(ImageKTX2)
 	KTXLoadDecodeSave("B10G11R11uf_RGB.ktx2",			revrow);
 	KTXLoadDecodeSave("E5B9G9R9uf_RGB.ktx2",			revrow);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
@@ -3501,7 +3537,7 @@ void ASTCLoadDecodeSave(const tString& astcfile, const tImageASTC::LoadParams& p
 
 tTestUnit(ImageASTC)
 {
-	tImageSubDir("Type_ASTC/")
+	tImageSubDir("Type_ASTC/");
 
 	tPrintf("Testing ASTC Loading/Decoding using astcenc V %s\n\n", tImage::Version_ASTCEncoder);
 	tPrintf("D = Decode\n");
@@ -3587,7 +3623,7 @@ tTestUnit(ImageASTC)
 	ASTCLoadDecodeSave("ASTC12X10_HDR.astc",			hdrParams);
 	ASTCLoadDecodeSave("ASTC12X12_HDR.astc",			hdrParams);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
@@ -3649,7 +3685,7 @@ void PKMLoadDecodeSave(const tString& pkmfile, uint32 loadFlags = 0)
 
 tTestUnit(ImagePKM)
 {
-	tImageSubDir("Type_PKM/")
+	tImageSubDir("Type_PKM/");
 
 	uint32 decode = tImagePKM::LoadFlag_Decode;
 	uint32 revrow = tImagePKM::LoadFlag_ReverseRowOrder;
@@ -3695,7 +3731,7 @@ tTestUnit(ImagePKM)
 	tRequire(imgPKMMove.IsValid());
 	tRequire(pkmMove.GetNumElements() == 0);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
@@ -3793,7 +3829,7 @@ void PVRLoadDecodeSave(const tString& pvrFile, uint32 loadFlags = 0, bool saveAl
 
 tTestUnit(ImagePVR2)
 {
-	tFixImageSubDir("Type_PVR_V2/")
+	tImageSubDir("Type_PVR_V2/");
 
 	uint32 decode = tImagePVR::LoadFlag_Decode;
 	uint32 revrow = tImagePVR::LoadFlag_ReverseRowOrder;
@@ -3830,13 +3866,13 @@ tTestUnit(ImagePVR2)
 	tRequire(imgPVRMove.Load(tStd::rVal(pvrMove)));
 	tRequire(pvrMove.GetNumElements() == 0);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
 tTestUnit(ImagePVR3)
 {
-	tImageSubDir("Type_PVR_V3/")
+	tImageSubDir("Type_PVR_V3/");
 
 	uint32 decode = tImagePVR::LoadFlag_Decode;
 	uint32 revrow = tImagePVR::LoadFlag_ReverseRowOrder;
@@ -3924,13 +3960,13 @@ tTestUnit(ImagePVR3)
 	PVRLoadDecodeSave("PVRBPP4_UNORM_sRGB_RGB_T.pvr",				0,					false);
 	PVRLoadDecodeSave("PVRBPP4_UNORM_sRGB_RGBA_T.pvr",				revrow,				false);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 
 tTestUnit(ImageSVG)
 {
-	tImageSubDir("Type_SVG/")
+	tImageSubDir("Type_SVG/");
 
 	// tImageSVG is load-only, so we verify by rasterizing the SVG and saving the result as a TGA for visual inspection.
 	tPrintf("Testing SVG Loading\n\n");
@@ -4069,7 +4105,7 @@ tTestUnit(ImageSVG)
 	tRequire(imgSVGMove.Load(tStd::rVal(svgMove)));
 	tRequire(svgMove.GetNumElements() == 0);
 
-	tImageRestoreDir()
+	tImageRestoreDir();
 }
 
 

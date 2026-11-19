@@ -171,7 +171,7 @@ int main(int argc, char** argv)
 	// Image tests.
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
 //ok	tTest(ImageLoad);
-	tTest(ImageSave);
+//ok	tTest(ImageSave);
 	tTest(ImageTexture);
 	tTest(ImagePicture);
 	tTest(ImageQuantize);
@@ -267,10 +267,10 @@ int main(int argc, char** argv)
 
 	// Image tests.
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
-//ok	tTest(ImageLoad);
+	tTest(ImageLoad);
 	tTest(ImageSave);
-	// tTest(ImageTexture);
-	// tTest(ImagePicture);
+	tTest(ImageTexture);
+	tTest(ImagePicture);
 	// tTest(ImageQuantize);
 	// tTest(ImagePalette);
 	// tTest(ImageMetaData);
@@ -291,7 +291,7 @@ int main(int argc, char** argv)
 	// tTest(ImageFlipTriple);
 	// tTest(ImageHEICRotatePixelVerify);
 	// tTest(ImageJXL);
-	/// tTest(ImageHDR);
+	// tTest(ImageHDR);
 	// tTest(ImageSVG);
 	// tTest(ImageDDS);
 	// tTest(ImageKTX1);

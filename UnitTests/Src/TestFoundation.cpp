@@ -2007,7 +2007,7 @@ tTestUnit(Hash)
 
 tTestUnit(UTF)
 {
-	tFixtureSubDir("UTF/")
+	tFixtureSubDir("UTF/");
 
 	// Test conversions between various UTF text encodings. Tacent supports:
 	// UTF-8  : The native encoding for tString and most char* functions.
@@ -2176,7 +2176,7 @@ tTestUnit(UTF)
 	tString constructedFromUTF32Ptr(utf32String.Chars(), utf32String.Length());
 	tRequire(constructedFromUTF32Ptr.IsValid());
 
-	tFixtureRestoreDir()
+	tFixtureRestoreDir();
 }
 
 

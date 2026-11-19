@@ -236,7 +236,7 @@ template<typename T> static tString ConvertToString(T value)
 
 tTestUnit(Print)
 {
-	tFixtureSubDir("FileSystem/")
+	tFixtureSubDir("FileSystem/");
 	tSetDefaultPrecision(6);
 
 	// We test prints here. AKA print tests. How well does tPrintf work.
@@ -564,7 +564,7 @@ tTestUnit(Print)
 	tRequire(ConvertToString(tVector4(1.0f, 2.0f, 3.0f, 4.0f))		== "(1.0000, 2.0000, 3.0000, 4.0000)");
 	tRequire(ConvertToString(tQuaternion(1.0f, 2.0f, 3.0f, 4.0f))	== "(1.0000, 2.0000, 3.0000, 4.0000)");
 
-	tFixtureRestoreDir()
+	tFixtureRestoreDir();
 }
 
 
@@ -658,7 +658,7 @@ tTestUnit(Regex)
 
 tTestUnit(Script)
 {
-	tFixtureSubDir("Script/")
+	tFixtureSubDir("Script/");
 	{
 		tExprWriter ws("ωConfig.cfg");
 		ws.Rem("This is a test config file.");
@@ -881,13 +881,13 @@ tTestUnit(Script)
 	}
 	tRequire(numExceptions == 1);
 
-	tFixtureRestoreDir()
+	tFixtureRestoreDir();
 }
 
 
 tTestUnit(Chunk)
 {
-	tFixtureSubDir("Chunk/")
+	tFixtureSubDir("Chunk/");
 
 	tPrintf("Testing writing a chunk file.\n");
 	{
@@ -948,7 +948,7 @@ tTestUnit(Chunk)
 		tMem::tFree(buffer);
 	}
 
-	tFixtureRestoreDir()
+	tFixtureRestoreDir();
 }
 
 
@@ -970,7 +970,7 @@ static const tString* CSVNth(const tList<tStringItem>& list, int n)
 
 tTestUnit(CSV)
 {
-	tFixtureSubDir("CSV/")
+	tFixtureSubDir("CSV/");
 
 	tPrintf("Testing tCSV quote-aware parsing.\n");
 
@@ -1235,7 +1235,7 @@ tTestUnit(CSV)
 		tRequire(tDeleteFile("ωEmptyTest.csv"));
 	}
 
-	tFixtureRestoreDir()
+	tFixtureRestoreDir();
 }
 
 
@@ -1252,7 +1252,7 @@ tSystem::tFileTypes FileTypesGlobal
 
 tTestUnit(FileTypes)
 {
-	tFixtureDir()
+	tFixtureDir();
 
 	tFileTypes fileTypes;
 	fileTypes.
@@ -1318,7 +1318,7 @@ tTestUnit(FileTypes)
 	for (tFileTypes::tFileTypeItem* item = fileTypes.First(); item; item = item->Next())
 		tPrintf("SelectedType: %s\n", tGetFileTypeName(item->FileType).Chr());
 
-	tFixtureRestoreDir()
+	tFixtureRestoreDir();
 }
 
 
@@ -1397,7 +1397,7 @@ tTestUnit(Directories)
 
 tTestUnit(File)
 {
-	tFixtureSubDir("FileSystem/")
+	tFixtureSubDir("FileSystem/");
 
 	tRequire(!tFileExists("ProbablyDoesntExist.txt"));
 
@@ -1596,13 +1596,13 @@ tTestUnit(File)
 		tDeleteFile(path);
 	}
 
-	tFixtureRestoreDir()
+	tFixtureRestoreDir();
 }
 
 
 tTestUnit(FindRec)
 {
-	tFixtureSubDir("FileSystem/")
+	tFixtureSubDir("FileSystem/");
 
 	#ifdef PLATFORM_WINDOWS
 	tSetHidden(".HiddenFile.txt");
@@ -1682,7 +1682,7 @@ tTestUnit(FindRec)
 		tPrintf("Found Dir NAT: %s\n", info->FileName.Chr());
 	tRequire(infosStd.NumItems() == infosNat.NumItems());
 
-	tFixtureRestoreDir()
+	tFixtureRestoreDir();
 }
 
 

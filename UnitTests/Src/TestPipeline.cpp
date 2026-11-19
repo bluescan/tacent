@@ -31,7 +31,7 @@ struct TestRule : public tPipeline::tRule
 
 tTestUnit(Process)
 {
-	tFixtureDir()
+	tFixtureDir();
 
 	// Currenty tProcess only works on windows.
 	#ifdef PLATFORM_WINDOWS
@@ -63,13 +63,13 @@ tTestUnit(Process)
 	tRequire(exitCode != 0);
 	#endif
 
-	tFixtureRestoreDir()
+	tFixtureRestoreDir();
 }
 
 
 tTestUnit(Rule)
 {
-	tFixtureSubDir("FileSystem/")
+	tFixtureSubDir("FileSystem/");
 
 	tItList<TestRule> rules;
 	rules.Append(new TestRule(2));
@@ -98,7 +98,7 @@ tTestUnit(Rule)
 	localRules.Head()->AddDep("ωNewerFile.txt");
 	tRequire(tr.OutOfDate());
 
-	tFixtureRestoreDir()
+	tFixtureRestoreDir();
 }
 
 
