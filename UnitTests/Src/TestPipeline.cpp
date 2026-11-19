@@ -91,11 +91,16 @@ tTestUnit(Rule)
 	tItList<TestRule> localRules(tListMode::UserOwns);
 	TestRule tr(12);
 	localRules.Append(&tr);
-	tSystem::tCreateFile("ωOlderFile.txt", "This is the older file contents.");
+	SetSaveName("ωOlderFile.txt");
+	tSystem::tCreateFile(saveName, "This is the older file contents.");
 	tSystem::tSleep(2000);
-	tSystem::tCreateFile("ωNewerFile.txt", "This is the newer file contents.");
-	tr.SetTarget("ωOlderFile.txt");
-	localRules.Head()->AddDep("ωNewerFile.txt");
+	SetSaveName("ωNewerFile.txt");
+	tSystem::tCreateFile(saveName, "This is the newer file contents.");
+
+	SetSaveName("ωOlderFile.txt");
+	tr.SetTarget(saveName);
+	SetSaveName("ωNewerFile.txt");
+	localRules.Head()->AddDep(saveName);
 	tRequire(tr.OutOfDate());
 
 	tFixtureRestoreDir();

@@ -34,7 +34,7 @@ namespace tUnitTest
 	tTestUnit(PriorityQueue);
 	tTestUnit(MemoryPool);
 	tTestUnit(Hash);
-	tTestUnit(UTF);
+	tTestUnit(Unicode);
 	tTestUnit(Name);
 	tTestUnit(SmallFloat);
 }

@@ -52,25 +52,6 @@ namespace tUnitTest
 #define tImageRestoreDir()		tSystem::tSetCurrentDir(origDir)
 
 
-namespace
-{
-	tString CreateModifiedSaveName(const char* path, const char* unitname)
-	{
-		tString modPath(path);
-		tString repName;
-		tsPrintf(repName, "ω%s_", unitname);
-		int count = modPath.Replace("ω", repName.Chr());
-		if (count != 1)
-			return tString(path);
-
-		return modPath;
-	}
-}
-
-
-#define SetSaveName(n) saveName = CreateModifiedSaveName(n, unitNameLocal)
-
-
 tTestUnit(ImageLoad)
 {
 	tImageDir();

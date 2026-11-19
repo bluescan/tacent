@@ -131,7 +131,7 @@ int main(int argc, char** argv)
 //ok	tTest(PriorityQueue);
 //ok	tTest(MemoryPool);
 //ok	tTest(Hash);
-//ok	tTest(UTF);
+//ok	tTest(Unicode);
 //ok	tTest(Name);
 //ok	tTest(SmallFloat);
 
@@ -228,7 +228,7 @@ int main(int argc, char** argv)
 //ok	tTest(PriorityQueue);
 //ok	tTest(MemoryPool);
 //ok	tTest(Hash);
-//ok	tTest(UTF);
+//ok	tTest(Unicode);
 //ok	tTest(Name);
 //ok	tTest(SmallFloat);
 
@@ -261,15 +261,16 @@ int main(int argc, char** argv)
 
 	// Pipeline tests.
 	#ifdef PLATFORM_WINDOWS
-	//ok	tTest(Process);
-	//ok	tTest(Rule);
+		//ok	tTest(Process);
+		//ok	tTest(Rule);
 	#endif
 
 	// Image tests.
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
-	tTest(ImageLoad);
-	tTest(ImageSave);
-	tTest(ImageTexture);
+//ok	tTest(ImageLoad);
+//ok	tTest(ImageSave);
+//ok	tTest(ImageTexture);
+	// WIP. There is an early return.
 	tTest(ImagePicture);
 	// tTest(ImageQuantize);
 	// tTest(ImagePalette);
@@ -309,4 +310,17 @@ int main(int argc, char** argv)
 	#endif
 
 	return tUnitTest::tTestResults();
+}
+
+
+tString tUnitTest::CreateModifiedSaveName(const char* path, const char* unitname)
+{
+	tString modPath(path);
+	tString repName;
+	tsPrintf(repName, "ω%s_", unitname);
+	int count = modPath.Replace("ω", repName.Chr());
+	if (count != 1)
+		return tString(path);
+
+	return modPath;
 }

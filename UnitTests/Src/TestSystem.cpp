@@ -520,7 +520,8 @@ tTestUnit(Print)
 
 	tSetDefaultPrecision(4);
 
-	tFileHandle handle = tOpenFile("ωPrintString.log", "wt");
+	SetSaveName("ωPrintString.log");
+	tFileHandle handle = tOpenFile(saveName, "wt");
 	ttfPrintf(handle, "Log: Here is some timestamped log data. Index = %d\n", 42);
 	ttfPrintf(handle, "Warning: And a second log line.\n");
 	tCloseFile(handle);
@@ -660,7 +661,8 @@ tTestUnit(Script)
 {
 	tFixtureSubDir("Script/");
 	{
-		tExprWriter ws("ωConfig.cfg");
+		SetSaveName("ωConfig.cfg");
+		tExprWriter ws(saveName);
 		ws.Rem("This is a test config file.");
 		ws.CR();
 		ws.Comp("PosX", 10);
@@ -679,7 +681,7 @@ tTestUnit(Script)
 	}
 
 	{
-		tExprReader rs("ωConfig.cfg");
+		tExprReader rs(saveName);
 		for (tExpression e = rs.First(); e.Valid(); e = e.Next())
 		{
 			tPrintf("ExpressionString: ___%s___\n", e.GetExpressionString().Pod());
@@ -745,7 +747,8 @@ tTestUnit(Script)
 	}
 
 	{
-		tExprWriter ws("ωScript.txt");
+		SetSaveName("ωScript.txt");
+		tExprWriter ws(saveName);
 
 		ws.WriteComment();
 		ws.WriteComment("A comment!!");
@@ -891,24 +894,25 @@ tTestUnit(Chunk)
 
 	tPrintf("Testing writing a chunk file.\n");
 	{
-		tChunkWriter c("ωChunk.bin");
-		c.Begin(0x02424242, 64);
-		c.Write(tString("Does this work?"));
+		SetSaveName("ωChunk.bin");
+		tChunkWriter c(saveName);
+		c.Begin( 0x02424242, 64 );
+		c.Write( tString("Does this work?") );
 		c.Write( int8(0x12) );
 		c.Write( int16(0x1234) );
 		c.Write( int32(0x12345678) );
 		c.Write( int64(0x1234567812345678) );
 		c.End();
 
-		c.Begin(0x03434343, 32);
-		c.Write(tString("Next chunk..."));
+		c.Begin( 0x03434343, 32 );
+		c.Write( tString("Next chunk...") );
 		c.Write( int8(0x12) );
 		c.Write( int16(0x1234) );
 		c.Write( int32(0x12345678) );
 		c.Write( int64(0x1234567812345678) );
 		c.End();
 	}
-	tRequire(tFileExists("ωChunk.bin"));
+	tRequire(tFileExists(saveName));
 
 	tPrintf("Testing reading a chunk file.\n");
 	{
@@ -927,7 +931,7 @@ tTestUnit(Chunk)
 	tPrintf("Another way to read.\n");
 	{
 		// This time we'll read the written file.
-		tChunkReader c("ωChunk.bin");
+		tChunkReader c(saveName);
 		for (tChunk ch = c.GetFirstChunk(); ch != ch.GetLastChunk(); ch = ch.GetNextChunk())
 		{
 			tPrintf("Chunk ID %x\n", ch.ID());
@@ -1071,16 +1075,19 @@ tTestUnit(CSV)
 
 	// BOM tolerance via LoadFile: a file starting with a UTF-8 BOM loads identically to one without.
 	{
-		char8_t bomText[] = { 'N', 'a', 'm', 'e', ',', 'Q', 't', 'y', (char8_t)0x0D, (char8_t)0x0A,
-		                      'W', 'i', 'd', 'g', 'e', ',', '5', (char8_t)0x0D, (char8_t)0x0A };
-		tRequire(tCreateFile("ωBOMTest.csv", bomText, 19, true));
+		char8_t bomText[] =
+		{
+			'N', 'a', 'm', 'e', ',', 'Q', 't', 'y', (char8_t)0x0D, (char8_t)0x0A,
+			'W', 'i', 'd', 'g', 'e', ',', '5', (char8_t)0x0D, (char8_t)0x0A
+		};
+		SetSaveName("ωBOMTest.csv");
+		tRequire(tCreateFile(saveName, bomText, 19, true));
 		tCSV bomFile;
-		tRequire(bomFile.LoadFile("ωBOMTest.csv"));
+		tRequire(bomFile.LoadFile(saveName));
 		tRequire(bomFile.GetNumRows() == 2);
 		tRequire(bomFile.GetNumColumns() == 2);
 		tRequire(bomFile.Get(0, 0).IsEqual("Name"));
 		tRequire(bomFile.Get(1, 1).IsEqual("5"));
-		tRequire(tDeleteFile("ωBOMTest.csv"));
 	}
 
 	// Mutation: SetRow pads short rows, widens the document for longer rows, and appends missing rows. ---
@@ -1181,10 +1188,11 @@ tTestUnit(CSV)
 
 	// SaveFile: the RFC 4180 serialization is exact (quoting of special fields, empty fields, CRLF record
 	// terminators, no BOM).
-	tRequire(built.SaveFile("ωSavedTest.csv"));
+	SetSaveName("ωSavedTest.csv");
+	tRequire(built.SaveFile(saveName));
 	{
 		tString saved;
-		tRequire(tLoadFile("ωSavedTest.csv", saved));
+		tRequire(tLoadFile(saveName, saved));
 		tRequire(saved.IsEqual
 		(
 			"Name,\"He said \"\"hi\"\"\",Notes,,1st,A\r\n"
@@ -1195,7 +1203,7 @@ tTestUnit(CSV)
 	}
 	{
 		int size = 0;
-		uint8* data = tLoadFile("ωSavedTest.csv", nullptr, &size);
+		uint8* data = tLoadFile(saveName, nullptr, &size);
 		tRequire(data != nullptr);
 		if (data)
 		{
@@ -1210,7 +1218,7 @@ tTestUnit(CSV)
 
 	// Round-trip: a document that is saved and reloaded is identical cell by cell.
 	tCSV roundTrip;
-	tRequire(roundTrip.LoadFile("ωSavedTest.csv"));
+	tRequire(roundTrip.LoadFile(saveName));
 	tRequire(roundTrip.GetNumRows() == 4);
 	tRequire(roundTrip.GetNumColumns() == 6);
 	tRequire(roundTrip.Get(0, 1).IsEqual("He said \"hi\""));
@@ -1223,16 +1231,16 @@ tTestUnit(CSV)
 	// Saving an empty document produces an empty file.
 	{
 		tCSV emptyDoc;
-		tRequire(emptyDoc.SaveFile("ωEmptyTest.csv"));
+		SetSaveName("ωEmptyTest.csv");
+		tRequire(emptyDoc.SaveFile(saveName));
 		int size = -1;
-		uint8* data = tLoadFile("ωEmptyTest.csv", nullptr, &size);
+		uint8* data = tLoadFile(saveName, nullptr, &size);
 		tRequire(data == nullptr);
 		tRequire(size == 0);
 		tCSV emptyReload;
-		tRequire(emptyReload.LoadFile("ωEmptyTest.csv"));
+		tRequire(emptyReload.LoadFile(saveName));
 		tRequire(emptyReload.GetNumRows() == 0);
 		tRequire(emptyReload.GetNumColumns() == 0);
-		tRequire(tDeleteFile("ωEmptyTest.csv"));
 	}
 
 	tFixtureRestoreDir();
@@ -1478,6 +1486,8 @@ tTestUnit(File)
 		tPrintf("SubDir: %s\n", subd->Text());
 
 	// Create a directory. Create a file in it. Then delete the directory with the file in it.
+	// Since we end up with the directory deleted, we don't need to bother with the formal
+	// unit-test based naming convention by using SetSaveName.
 	tCreateDir("ωCreatedDirectory/");
 	tRequire(tDirExists("ωCreatedDirectory/"));
 	tRequire(!tIsReadOnly("ωCreatedDirectory/"));
@@ -1536,13 +1546,13 @@ tTestUnit(File)
 
 	// Binary-safe tLoadFile / tSaveFile / tLoadFileHead (tArray and tString) tests.
 	{
-		const char* path = "ωLoadSaveTest.bin";
+		SetSaveName("ωLoadSaveTest.bin");
 		uint8 data[10] = { 0xAA, 0xBB, 0xCC, 0x00, 0xFF, 0x01, 0x02, 0x03, 0x04, 0x05 };
 
 		// tSaveFile (raw buffer) then tLoadFile into tArray.
-		tRequire(tSaveFile(path, data, 10));
+		tRequire(tSaveFile(saveName, data, 10));
 		tArray<uint8> buf;
-		tRequire(tLoadFile(path, buf));
+		tRequire(tLoadFile(saveName, buf));
 		tRequire(buf.GetNumElements() == 10);
 		bool match = true;
 		for (int i = 0; i < 10; i++)
@@ -1557,21 +1567,21 @@ tTestUnit(File)
 
 		// tLoadFileHead into tArray (first 4 bytes).
 		tArray<uint8> head4;
-		tRequire(tLoadFileHead(path, 4, head4));
+		tRequire(tLoadFileHead(saveName, 4, head4));
 		tRequire(head4.GetNumElements() == 4);
 		tRequire(head4[0] == 0xAA);
 		tRequire(head4[3] == 0x00);
 
 		// tLoadFileHead into tString (first 4 bytes).
 		tString headStr;
-		tRequire(tLoadFileHead(path, 4, headStr));
+		tRequire(tLoadFileHead(saveName, 4, headStr));
 		tRequire(headStr.Length() == 4);
 
 		// tSaveFile (tString) then tLoadFile (tString).
 		tString hello("Hello World");
-		tRequire(tSaveFile(path, hello));
+		tRequire(tSaveFile(saveName, hello));
 		tString helloBack;
-		tRequire(tLoadFile(path, helloBack));
+		tRequire(tLoadFile(saveName, helloBack));
 		tRequire(helloBack == "Hello World");
 
 		// tSaveFile (tArray) then tLoadFile (tArray).
@@ -1579,9 +1589,9 @@ tTestUnit(File)
 		arrData.ResizeTo(5);
 		for (int i = 0; i < 5; i++)
 			arrData[i] = (uint8)(i + 1);
-		tRequire(tSaveFile(path, arrData));
+		tRequire(tSaveFile(saveName, arrData));
 		tArray<uint8> arrBack;
-		tRequire(tLoadFile(path, arrBack));
+		tRequire(tLoadFile(saveName, arrBack));
 		tRequire(arrBack.GetNumElements() == 5);
 		tRequire(arrBack[4] == 5);
 
@@ -1592,8 +1602,6 @@ tTestUnit(File)
 		tRequire(!tLoadFileHead("DefinitelyDoesNotExist12345.bin", 4, noHead));
 		tString noStr;
 		tRequire(!tLoadFileHead("DefinitelyDoesNotExist12345.bin", 4, noStr));
-
-		tDeleteFile(path);
 	}
 
 	tFixtureRestoreDir();

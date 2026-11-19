@@ -22,8 +22,8 @@
 
 
 #define tFixtureDataDir			"Data/"
-#define tFixtureDir()			tString origDir = tSystem::tGetCurrentDir(); if (!tSystem::tDirExists(origDir+tFixtureDataDir))		tSkipUnit() tSystem::tSetCurrentDir(origDir+tFixtureDataDir)
-#define tFixtureSubDir(dir)		tString origDir = tSystem::tGetCurrentDir(); if (!tSystem::tDirExists(origDir+tFixtureDataDir+dir))	tSkipUnit() tSystem::tSetCurrentDir(origDir+tFixtureDataDir+dir)
+#define tFixtureDir()			tString saveName; tString origDir = tSystem::tGetCurrentDir(); if (!tSystem::tDirExists(origDir+tFixtureDataDir))		tSkipUnit() tSystem::tSetCurrentDir(origDir+tFixtureDataDir)
+#define tFixtureSubDir(dir)		tString saveName; tString origDir = tSystem::tGetCurrentDir(); if (!tSystem::tDirExists(origDir+tFixtureDataDir+dir))	tSkipUnit() tSystem::tSetCurrentDir(origDir+tFixtureDataDir+dir)
 #define tFixtureResetDir()		tSystem::tSetCurrentDir(origDir+tFixtureDataDir)
 #define tFixtureChangeDir(dir)	tSystem::tSetCurrentDir(origDir+tFixtureDataDir+dir)
 #define tFixtureRestoreDir()	tSystem::tSetCurrentDir(origDir)
@@ -55,6 +55,10 @@ namespace tUnitTest
 #define tSkipUnit() { tUnitTest::UnitsSkipped++; tUnitTest::rPrintf("Skipped %s Tests\n", unitNameLocal); return; }
 #define tTest(name) { tUnitTest::rPrintf("Begin   " #name " Tests\n"); tUnitTest::UnitRequirementNumber = tUnitTest::UnitGoalNumber = 0; tUnitTest::name(#name); tUnitTest::rPrintf("End     " #name " Tests\n\n"); }
 int tTestResults();
+
+
+tString CreateModifiedSaveName(const char* path, const char* unitname);
+#define SetSaveName(n) saveName = tUnitTest::CreateModifiedSaveName(n, unitNameLocal)
 
 
 // Implementation below this line.
