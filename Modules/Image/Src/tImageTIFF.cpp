@@ -44,6 +44,16 @@ namespace tTIFF
 	toff_t TiffMemSeek(thandle_t clientData, toff_t off, int whence);
 	toff_t TiffMemSize(thandle_t clientData);
 	int TiffMemClose(thandle_t);
+
+	// FILE*-based callbacks for saving to a file. The file is opened with tSystem::tOpenFile (which uses the
+	// wide CRT _wfopen on Windows) and its FILE* passed as the clientData handle, so non-ASCII filenames
+	// (e.g. one containing U+03C9 'ω') are interpreted correctly. libtiff's own TIFFOpen goes through the
+	// ANSI CRT fopen, which mis-decodes such names on Windows (U+03C9 'ω' becomes U+00CF 'Ï').
+	tmsize_t TiffFileRead(thandle_t clientData, void* buf, tmsize_t size);
+	tmsize_t TiffFileWrite(thandle_t clientData, void* buf, tmsize_t size);
+	toff_t TiffFileSeek(thandle_t clientData, toff_t off, int whence);
+	toff_t TiffFileSize(thandle_t clientData);
+	int TiffFileClose(thandle_t);
 }
 
 
@@ -94,6 +104,64 @@ int tTIFF::TiffMemClose(thandle_t)
 {
 	// Nothing to release here -- the caller still owns the buffer and it stays valid until after TIFFClose.
 	return 0;
+}
+
+
+tmsize_t tTIFF::TiffFileRead(thandle_t clientData, void* buf, tmsize_t size)
+{
+	FILE* f = (FILE*)clientData;
+	if (!f || (size <= 0))
+		return 0;
+	return (tmsize_t)fread(buf, 1, (size_t)size, f);
+}
+
+
+tmsize_t tTIFF::TiffFileWrite(thandle_t clientData, void* buf, tmsize_t size)
+{
+	FILE* f = (FILE*)clientData;
+	if (!f || (size <= 0))
+		return 0;
+	return (tmsize_t)fwrite(buf, 1, (size_t)size, f);
+}
+
+
+toff_t tTIFF::TiffFileSeek(thandle_t clientData, toff_t off, int whence)
+{
+	FILE* f = (FILE*)clientData;
+	if (!f)
+		return 0;
+	if (fseek(f, (long)off, whence) != 0)
+		return 0;
+
+	long pos = ftell(f);
+	return (pos >= 0) ? (toff_t)pos : 0;
+}
+
+
+toff_t tTIFF::TiffFileSize(thandle_t clientData)
+{
+	FILE* f = (FILE*)clientData;
+	if (!f)
+		return 0;
+
+	long cur = ftell(f);
+	if (cur < 0)
+		return 0;
+	if (fseek(f, 0, SEEK_END) != 0)
+		return 0;
+
+	long sz = ftell(f);
+	fseek(f, cur, SEEK_SET);
+	return (sz >= 0) ? (toff_t)sz : 0;
+}
+
+
+int tTIFF::TiffFileClose(thandle_t clientData)
+{
+	FILE* f = (FILE*)clientData;
+	if (!f)
+		return 0;
+	return fclose(f);
 }
 
 
@@ -407,9 +475,28 @@ bool tImageTIFF::Save(const tString& tiffFile, const SaveParams& params) const
 	if (tSystem::tGetFileType(tiffFile) != tSystem::tFileType::TIFF)
 		return false;
 
-	TIFF* tiff = TIFFOpen(tiffFile.Chr(), "wb");
-	if (!tiff)
+	// Open the output via tSystem::tOpenFile (wide CRT _wfopen on Windows) and drive LibTIFF through
+	// TIFFClientOpen with FILE*-based callbacks, so a non-ASCII filename is interpreted correctly. Using
+	// libtiff's TIFFOpen here would go through the ANSI CRT fopen, which mis-decodes non-ASCII names on
+	// Windows (e.g. U+03C9 'ω' would be written as U+00CF 'Ï').
+	FILE* out = tSystem::tOpenFile(tiffFile.Chr(), "wb");
+	if (!out)
 		return false;
+
+	TIFF* tiff = TIFFClientOpen
+	(
+		tiffFile.Chr(), "wb",
+		(thandle_t)out,
+		tTIFF::TiffFileRead, tTIFF::TiffFileWrite,		// Read and write.
+		tTIFF::TiffFileSeek, tTIFF::TiffFileClose,
+		tTIFF::TiffFileSize,
+		nullptr, nullptr
+	);
+	if (!tiff)
+	{
+		tSystem::tCloseFile(out);
+		return false;
+	}
 
 	int rowSize = 0;
 	uint8* rowBuf = nullptr;

@@ -524,149 +524,175 @@ tTestUnit(ImagePicture)
 	tga.Save(saveName);
 	tRequire(tSystem::tFileExists(saveName));
 
-	return;
-
 	tImageASTC astc;
 	astc.Load("Type_ASTC/ASTC10X10_LDR.astc");
 	pic.Set(astc); tga.Set(pic);
-	tga.Save("Type_ASTC/ωASTC10X10_LDR.tga");
-	tRequire( tSystem::tFileExists("Type_ASTC/ωASTC10X10_LDR.tga") );
+	SetSaveName("Type_ASTC/ωASTC10X10_LDR.tga");
+	tga.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 
 	tImageBMP bmp;
 	bmp.Load("Type_BMP/UpperBounds.bmp");
-	bmp.Save("Type_BMP/ωUpperB.bmp");
+	SetSaveName("Type_BMP/ωUpperBounds.bmp");
+	bmp.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 	pic.Set(bmp); tga.Set(pic);
-	tga.Save("Type_BMP/ωUpperB.tga");
-	tRequire( tSystem::tFileExists("Type_BMP/ωUpperB.bmp") );
-	tRequire( tSystem::tFileExists("Type_BMP/ωUpperB.tga") );
+	SetSaveName("Type_BMP/ωUpperBounds.tga");
+	tga.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 
 	bmp.Load("Type_BMP/Alpha.bmp");
-	bmp.Save("Type_BMP/ωAlpha.bmp");
+	SetSaveName("Type_BMP/ωAlpha.bmp");
+	bmp.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 	pic.Set(bmp); tga.Set(pic);
-	tga.Save("Type_BMP/ωAlpha.tga");
-	tRequire( tSystem::tFileExists("Type_BMP/ωAlpha.bmp") );
-	tRequire( tSystem::tFileExists("Type_BMP/ωAlpha.tga") );
+	SetSaveName("Type_BMP/ωAlpha.tga");
+	tga.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 
 	bmp.Load("Type_BMP/Lambda.bmp");
-	bmp.Save("Type_BMP/ωLambda.bmp");
+	SetSaveName("Type_BMP/ωLambda.bmp");
+	bmp.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 	pic.Set(bmp); tga.Set(pic);
-	tga.Save("Type_BMP/ωLambda.tga");
-	tRequire( tSystem::tFileExists("Type_BMP/ωLambda.bmp") );
-	tRequire( tSystem::tFileExists("Type_BMP/ωLambda.tga") );
+	SetSaveName("Type_BMP/ωLambda.tga");
+	tga.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 
 	tImageDDS dds;
 	dds.Load("Type_DDS/BC1DXT1_RGB_Modern.dds");
 	pic.Set(dds); tga.Set(pic);
-	tga.Save("Type_DDS/ωBC1DXT1_RGB_Modern.tga");
-	tRequire( tSystem::tFileExists("Type_DDS/ωBC1DXT1_RGB_Modern.tga") );
+	SetSaveName("Type_DDS/ωBC1DXT1_RGB_Modern.tga");
+	tga.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 
 	tImageEXR exr;
 	exr.Load("Type_EXR/Desk.exr");
 	pic.Set(exr); tga.Set(pic);
-	tga.Save("Type_EXR/ωDesk.tga");
-	tRequire( tSystem::tFileExists("Type_EXR/ωDesk.tga"));
+	SetSaveName("Type_EXR/ωDesk.tga");
+	tga.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 
 	tImageGIF gif;
 	gif.Load("Type_GIF/HyperCube.gif");
-	gif.Save("Type_GIF/ωHyperCube.gif");
+	SetSaveName("Type_GIF/ωHyperCube.gif");
+	gif.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 	pic.Set(gif); tga.Set(pic);
-	tga.Save("Type_GIF/ωHyperCube.tga");
-	tRequire( tSystem::tFileExists("Type_GIF/ωHyperCube.gif"));
-	tRequire( tSystem::tFileExists("Type_GIF/ωHyperCube.tga"));
+	SetSaveName("Type_GIF/ωHyperCube.tga");
+	tga.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 
 	tImageHDR hdr;
 	hdr.Load("Type_HDR/MpiAtrium3.hdr");
 	pic.Set(hdr); tga.Set(pic);
-	tga.Save("Type_HDR/ωMpiAtrium3.tga");
-	tRequire( tSystem::tFileExists("Type_HDR/ωMpiAtrium3.tga"));
+	SetSaveName("Type_HDR/ωMpiAtrium3.tga");
+	tga.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 
 	tImageICO ico;
 	ico.Load("Type_ICO/UpperBounds.ico");
 	pic.Set(ico); tga.Set(pic);
-	tga.Save("Type_ICO/ωUpperBounds.tga");
-	tRequire( tSystem::tFileExists("Type_ICO/ωUpperBounds.tga"));
+	SetSaveName("Type_ICO/ωUpperBounds.tga");
+	tga.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 
 	tImageJPG jpg;
 	jpg.Load("Type_JPG/WiredDrives.jpg");
-	jpg.Save("Type_JPG/ωWiredDrives.jpg");
+	SetSaveName("Type_JPG/ωWiredDrives.jpg");
+	jpg.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 	pic.Set(jpg); tga.Set(pic);
-	tga.Save("Type_JPG/ωWiredDrives.tga");
-	tRequire( tSystem::tFileExists("Type_JPG/ωWiredDrives.jpg"));
-	tRequire( tSystem::tFileExists("Type_JPG/ωWiredDrives.tga"));
+	SetSaveName("Type_JPG/ωWiredDrives.tga");
+	tga.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 
 	tImageKTX ktx;
 	ktx.Load("Type_KTX1/BC7_RGBA.ktx");
 	pic.Set(ktx); tga.Set(pic);
-	tga.Save("Type_KTX1/ωBC7_RGBA.tga");
-	tRequire( tSystem::tFileExists("Type_KTX1/ωBC7_RGBA.tga"));
+	SetSaveName("Type_KTX1/ωBC7_RGBA.tga");
+	tga.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 
 	ktx.Load("Type_KTX2/R32G32B32A32f_RGBA.ktx2");
 	pic.Set(ktx); tga.Set(pic);
-	tga.Save("Type_KTX2/ωR32G32B32A32f_RGBA.tga");
-	tRequire( tSystem::tFileExists("Type_KTX2/ωR32G32B32A32f_RGBA.tga"));
+	SetSaveName("Type_KTX2/ωR32G32B32A32f_RGBA.tga");
+	tga.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 
 	tImagePNG png;
 	png.Load("Type_PNG/Icos4D.png");
-	png.Save("Type_PNG/ωIcos4D.png");
+	SetSaveName("Type_PNG/ωIcos4D.png");
+	png.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 	pic.Set(png); tga.Set(pic);
-	tga.Save("Type_PNG/ωIcos4D.tga");
-	tRequire( tSystem::tFileExists("Type_PNG/ωIcos4D.png"));
-	tRequire( tSystem::tFileExists("Type_PNG/ωIcos4D.tga"));
-
-	png.Load("Type_PNG/Xeyes.png");
-	png.Save("WrittenXeyes.png");
-	pic.Set(png); tga.Set(pic);
-	tga.Save("WrittenXeyes.tga");
-	tRequire( tSystem::tFileExists("WrittenXeyes.png"));
+	SetSaveName("Type_PNG/ωIcos4D.tga");
+	tga.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 
 	png.Load("Type_PNG/Mouse.png");
-	png.Save("WrittenMouse.png");
+	SetSaveName("Type_PNG/ωMouse.png");
+	png.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 	pic.Set(png); tga.Set(pic);
-	tga.Save("WrittenMouse.tga");
-	tRequire( tSystem::tFileExists("WrittenMouse.png"));
+	SetSaveName("Type_PNG/ωMouse.tga");
+	tga.Save(saveName);
 
 	tImageQOI qoi;
-	qoi.Load("TestPattern/TacentTestPattern32.qoi");
-	qoi.Save("WrittenTacentTestPattern32.qoi");
+	qoi.Load("TestPattern/TacentTestPatternRGBA.qoi");
+	SetSaveName("TestPattern/ωTacentTestPatternRGBA.qoi");
+	qoi.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 	pic.Set(qoi); tga.Set(pic);
-	tga.Save("WrittenTacentTestPattern32.tga");
-	tRequire( tSystem::tFileExists("WrittenTacentTestPattern32.qoi"));
+	SetSaveName("TestPattern/ωTacentTestPatternRGBA.tga");
+	tga.Save(saveName);
 
-	tga.Load("TestPattern/TacentTestPattern32RLE.tga");
-	tga.Save("WrittenTacentTestPattern32RLE.tga");
-	tRequire( tSystem::tFileExists("WrittenTacentTestPattern32RLE.tga"));
+	tga.Load("Type_TGA/TacentTestPattern_RLE_RGBA.tga");
+	SetSaveName("Type_TGA/ωTacentTestPattern_RLE_RGBA.tga");
+	tga.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 
 	tImageTIFF tif;
 	tif.Load("Type_TIF/Tiff_NoComp.tif");
-	tif.Save("WrittenTiff_NoComp.tif");
+	SetSaveName("Type_TIF/ωTiff_NoComp.tif");
+	tif.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 	pic.Set(tif); tga.Set(pic);
-	tga.Save("WrittenTiff_NoComp.tga");
-	tRequire( tSystem::tFileExists("WrittenTiff_NoComp.tif"));
+	SetSaveName("Type_TIF/ωTiff_NoComp.tga");
+	tga.Save(saveName);
 
 	tif.Load("Type_TIF/Tiff_Pack.tif");
-	tif.Save("WrittenTiff_Pack.tif");
+	SetSaveName("Type_TIF/ωTiff_Pack.tif");
+	tif.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 	pic.Set(tif); tga.Set(pic);
-	tga.Save("WrittenTiff_Pack.tga");
-	tRequire( tSystem::tFileExists("WrittenTiff_Pack.tif"));
+	SetSaveName("Type_TIF/ωTiff_Pack.tga");
+	tga.Save(saveName);
 
 	tif.Load("Type_TIF/Tiff_LZW.tif");
-	tif.Save("WrittenTiff_LZW.tif");
+	SetSaveName("Type_TIF/ωTiff_LZW.tif");
+	tif.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 	pic.Set(tif); tga.Set(pic);
-	tga.Save("WrittenTiff_LZW.tga");
-	tRequire( tSystem::tFileExists("WrittenTiff_LZW.tif"));
+	SetSaveName("Type_TIF/ωTiff_LZW.tga");
+	tga.Save(saveName);
 
 	tif.Load("Type_TIF/Tiff_ZIP.tif");
-	tif.Save("WrittenTiff_ZIP.tif");
+	SetSaveName("Type_TIF/ωTiff_ZIP.tif");
+	tif.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 	pic.Set(tif); tga.Set(pic);
-	tga.Save("WrittenTiff_ZIP.tga");
-	tRequire( tSystem::tFileExists("WrittenTiff_ZIP.tif"));
+	SetSaveName("Type_TIF/ωTiff_ZIP.tga");
+	tga.Save(saveName);
 
 	tImageWEBP webp;
 	webp.Load("Type_WEBP/RockyBeach.webp");
-	webp.Save("WrittenRockyBeach.webp");
+	SetSaveName("Type_WEBP/ωRockyBeach.webp");
+	webp.Save(saveName);
+	tRequire( tSystem::tFileExists(saveName) );
 	pic.Set(webp); tga.Set(pic);
-	tga.Save("WrittenRockyBeach.tga");
-	tRequire( tSystem::tFileExists("WrittenRockyBeach.webp"));
+	SetSaveName("Type_WEBP/ωRockyBeach.tga");
+	tga.Save(saveName);
 
 	// tImageXPM xpm;
 	// xpm.Load("Type_XPM/Crane.xmp"); pic.Set(xpm); tga.Set(pic);

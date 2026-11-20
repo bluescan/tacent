@@ -172,8 +172,8 @@ int main(int argc, char** argv)
 	#if !defined(ARCHITECTURE_ARM32) && !defined(ARCHITECTURE_ARM64)
 //ok	tTest(ImageLoad);
 //ok	tTest(ImageSave);
-	tTest(ImageTexture);
-	tTest(ImagePicture);
+//ok	tTest(ImageTexture);
+//ok	tTest(ImagePicture);
 	tTest(ImageQuantize);
 	tTest(ImagePalette);
 	tTest(ImageMetaData);
@@ -270,7 +270,6 @@ int main(int argc, char** argv)
 //ok	tTest(ImageLoad);
 //ok	tTest(ImageSave);
 //ok	tTest(ImageTexture);
-	// WIP. There is an early return.
 	tTest(ImagePicture);
 	// tTest(ImageQuantize);
 	// tTest(ImagePalette);
