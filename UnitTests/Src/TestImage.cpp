@@ -707,7 +707,7 @@ tTestUnit(ImageQuantize)
 {
 	tImageDir();
 
-	tImageTGA srctga; srctga.Load("Dock512.tga");
+	tImageTGA srctga; srctga.Load("Type_TGA/Dock_512x382.tga");
 	int w = srctga.GetWidth(); int h = srctga.GetHeight(); tPixel4b* srcpixels = srctga.GetPixels();
 
 	tColour3b* palette = new tColour3b[256];
@@ -734,8 +734,9 @@ tTestUnit(ImageQuantize)
 		tImageTGA dsttga; dsttga.Set(dstpixels, w, h, true);
 
 		// Save the quantized tga out.
-		tString filename; tsPrintf(filename, "Written_QuantizedFixed_%03dColours.tga", palSize);
-		dsttga.Save(filename); tRequire(tSystem::tFileExists(filename));
+		tString filename; tsPrintf(filename, "Type_TGA/ωQuantizedFixed_%03dColours.tga", palSize);
+		SetSaveName(filename.Chr());
+		dsttga.Save(saveName); tRequire(tSystem::tFileExists(saveName));
 	}
 
 	// Spatial Quantization
@@ -745,8 +746,9 @@ tTestUnit(ImageQuantize)
 		tPixel4b* dstpixels = new tPixel4b[w*h];
 		tQuantize::ConvertToPixels(dstpixels, w, h, palette, indices);
 		tImageTGA dsttga; dsttga.Set(dstpixels, w, h, true);
-		tString filename; tsPrintf(filename, "Written_QuantizedSpatial_%03dColours.tga", palSize);
-		dsttga.Save(filename); tRequire(tSystem::tFileExists(filename));
+		tString filename; tsPrintf(filename, "Type_TGA/ωQuantizedSpatial_%03dColours.tga", palSize);
+		SetSaveName(filename.Chr());
+		dsttga.Save(saveName); tRequire(tSystem::tFileExists(saveName));
 	}
 
 	// Neu Quantization
@@ -756,8 +758,9 @@ tTestUnit(ImageQuantize)
 		tPixel4b* dstpixels = new tPixel4b[w*h];
 		tQuantize::ConvertToPixels(dstpixels, w, h, palette, indices);
 		tImageTGA dsttga; dsttga.Set(dstpixels, w, h, true);
-		tString filename; tsPrintf(filename, "Written_QuantizedNeu_%03dColours.tga", palSize);
-		dsttga.Save(filename); tRequire(tSystem::tFileExists(filename));
+		tString filename; tsPrintf(filename, "Type_TGA/ωQuantizedNeu_%03dColours.tga", palSize);
+		SetSaveName(filename.Chr());
+		dsttga.Save(saveName); tRequire(tSystem::tFileExists(saveName));
 	}
 
 	// Wu Quantization
@@ -767,8 +770,9 @@ tTestUnit(ImageQuantize)
 		tPixel4b* dstpixels = new tPixel4b[w*h];
 		tQuantize::ConvertToPixels(dstpixels, w, h, palette, indices);
 		tImageTGA dsttga; dsttga.Set(dstpixels, w, h, true);
-		tString filename; tsPrintf(filename, "Written_QuantizedWu_%03dColours.tga", palSize);
-		dsttga.Save(filename); tRequire(tSystem::tFileExists(filename));
+		tString filename; tsPrintf(filename, "Type_TGA/ωQuantizedWu_%03dColours.tga", palSize);
+		SetSaveName(filename.Chr());
+		dsttga.Save(saveName); tRequire(tSystem::tFileExists(saveName));
 	}
 
 	delete[] indices;
