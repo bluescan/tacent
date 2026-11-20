@@ -781,7 +781,7 @@ tTestUnit(ImageQuantize)
 }
 
 
-void PalettizeImage(int w, int h, tPixel4b* pixels, tPixelFormat fmt, tImage::tQuantize::Method method)
+void PalettizeImage(int w, int h, tPixel4b* pixels, tPixelFormat fmt, tImage::tQuantize::Method method, const char* unitNameLocal)
 {
 	bool ok;
 	tPaletteImage pal;
@@ -796,7 +796,8 @@ void PalettizeImage(int w, int h, tPixel4b* pixels, tPixelFormat fmt, tImage::tQ
 	dstimg.Set(palpix, w, h, true);						// Give the pixels to the tga.
 
 	tString saveName;
-	tsPrintf(saveName, "Written_%s_%s.tga", tGetPixelFormatName(fmt), tQuantize::GetMethodName(method));
+	tsPrintf(saveName, "Type_TGA/ω%s_%s.tga", tGetPixelFormatName(fmt), tQuantize::GetMethodName(method));
+	SetSaveName(saveName.Chr());
 	dstimg.Save(saveName);								// And save it out.
 	tRequire(tSystem::tFileExists(saveName));
 }
@@ -806,55 +807,49 @@ tTestUnit(ImagePalette)
 {
 	tImageDir();
 
-	tImageTGA tga; int w = 0; int h = 0; tPixel4b* pixels = nullptr;
+	tImageTGA tga;
+	int w = 0; int h = 0;
+	tPixel4b* pixels = nullptr;
 	
 	// We'll start by loading a test image with only 4 colours and text quantization.
 	// It should always find an exact match for 2-bit palette formats and higher.
-	tga.Load("Dock640_4ColoursOnly.tga");
+	tga.Load("Type_TGA/Dock_640x360_4Colour.tga");
 	w = tga.GetWidth(); h = tga.GetHeight(); pixels = tga.GetPixels();
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL8BIT, tImage::tQuantize::Method::Fixed);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL8BIT, tImage::tQuantize::Method::Fixed, unitNameLocal);
 
 	// And now load the image with full colours for the remainder of the tests.
-	tga.Load("Dock512.tga");
+	tga.Load("Type_TGA/Dock_512x382.tga");
 	w = tga.GetWidth(); h = tga.GetHeight(); pixels = tga.GetPixels();
 
-	//
 	// Fixed quantization.
-	//
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL8BIT, tImage::tQuantize::Method::Fixed);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL8BIT, tImage::tQuantize::Method::Fixed, unitNameLocal);
 
-	//
 	// Spatial quantization (scolorq).
-	//
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL1BIT, tImage::tQuantize::Method::Spatial);
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL2BIT, tImage::tQuantize::Method::Spatial);
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL3BIT, tImage::tQuantize::Method::Spatial);
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL4BIT, tImage::tQuantize::Method::Spatial);
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL5BIT, tImage::tQuantize::Method::Spatial);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL1BIT, tImage::tQuantize::Method::Spatial, unitNameLocal);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL2BIT, tImage::tQuantize::Method::Spatial, unitNameLocal);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL3BIT, tImage::tQuantize::Method::Spatial, unitNameLocal);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL4BIT, tImage::tQuantize::Method::Spatial, unitNameLocal);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL5BIT, tImage::tQuantize::Method::Spatial, unitNameLocal);
 
-	//
 	// NeuQuant quantization.
-	//
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL1BIT, tImage::tQuantize::Method::Neu);
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL2BIT, tImage::tQuantize::Method::Neu);
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL3BIT, tImage::tQuantize::Method::Neu);
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL4BIT, tImage::tQuantize::Method::Neu);
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL5BIT, tImage::tQuantize::Method::Neu);
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL6BIT, tImage::tQuantize::Method::Neu);
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL7BIT, tImage::tQuantize::Method::Neu);
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL8BIT, tImage::tQuantize::Method::Neu);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL1BIT, tImage::tQuantize::Method::Neu, unitNameLocal);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL2BIT, tImage::tQuantize::Method::Neu, unitNameLocal);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL3BIT, tImage::tQuantize::Method::Neu, unitNameLocal);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL4BIT, tImage::tQuantize::Method::Neu, unitNameLocal);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL5BIT, tImage::tQuantize::Method::Neu, unitNameLocal);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL6BIT, tImage::tQuantize::Method::Neu, unitNameLocal);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL7BIT, tImage::tQuantize::Method::Neu, unitNameLocal);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL8BIT, tImage::tQuantize::Method::Neu, unitNameLocal);
 
-	//
 	// Wu quantization.
-	//
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL1BIT, tImage::tQuantize::Method::Wu);
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL2BIT, tImage::tQuantize::Method::Wu);
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL3BIT, tImage::tQuantize::Method::Wu);
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL4BIT, tImage::tQuantize::Method::Wu);
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL5BIT, tImage::tQuantize::Method::Wu);
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL6BIT, tImage::tQuantize::Method::Wu);
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL7BIT, tImage::tQuantize::Method::Wu);
-	PalettizeImage(w, h, pixels, tPixelFormat::PAL8BIT, tImage::tQuantize::Method::Wu);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL1BIT, tImage::tQuantize::Method::Wu, unitNameLocal);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL2BIT, tImage::tQuantize::Method::Wu, unitNameLocal);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL3BIT, tImage::tQuantize::Method::Wu, unitNameLocal);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL4BIT, tImage::tQuantize::Method::Wu, unitNameLocal);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL5BIT, tImage::tQuantize::Method::Wu, unitNameLocal);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL6BIT, tImage::tQuantize::Method::Wu, unitNameLocal);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL7BIT, tImage::tQuantize::Method::Wu, unitNameLocal);
+	PalettizeImage(w, h, pixels, tPixelFormat::PAL8BIT, tImage::tQuantize::Method::Wu, unitNameLocal);
 
 	tImageRestoreDir();
 }
