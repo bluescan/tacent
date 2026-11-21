@@ -588,7 +588,7 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& tinyInfo)
 	{
 		// Join the per-sample values into one string, e.g. "8, 8, 8".
 		tString bitsPerSample;
-		for (size_t i = 0; i < tinyInfo.BitsPerSample.size(); i++)
+		for (int i = 0; i < int(tinyInfo.BitsPerSample.size()); i++)
 		{
 			if (i)
 				bitsPerSample += tString(", ");
