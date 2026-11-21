@@ -57,7 +57,8 @@ namespace tUnitTest
 int tTestResults();
 
 
-tString CreateModifiedSaveName(const char* path, const char* unitname);
+tString CreateModifiedSaveName(const char* path, const char* unitName);
+tString CreateModifiedSaveName(const tString& path, const char* unitName);
 #define SetSaveName(n) saveName = tUnitTest::CreateModifiedSaveName(n, unitNameLocal)
 
 

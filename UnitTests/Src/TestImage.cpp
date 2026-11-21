@@ -894,23 +894,11 @@ static void PrintMetaDataTag(const tMetaData& metaData, tMetaTag tag)
 
 tTestUnit(ImageMetaData)
 {
-	tImageSubDir("EXIF_XMP/JPG/");
-
-	#if 0
-	tList<tStringItem> images;
-	tSystem::tFindFiles(images, "", "jpg");
-	for (tStringItem* file = images.First(); file; file = file->Next())
-	{
-		tImageJPG tmpImg;
-		tPrintf("OpeningFile:%s\n", file->Chr());
-		tmpImg.Load(*file);
-	}
-	return;
-	#endif
+	tImageSubDir("MetaData/JPG/");
 
 	// A "rich" fixture carrying lots of EXIF + XMP tags (including full GPS). It is also the file used for the
 	// save/reload round-trip test below.
-	tImageJPG jpgWithMeta("HasLatLong_EXIF_XMP.jpg");
+	tImageJPG jpgWithMeta("AerialParking_EXIF_XMP.jpg");
 	tRequire(jpgWithMeta.MetaData.IsValid());
 	tMetaData& metaData = jpgWithMeta.MetaData;
 	PrintMetaDataTag(metaData, tMetaTag::Make);
@@ -935,18 +923,19 @@ tTestUnit(ImageMetaData)
 	PrintMetaDataTag(metaData, tMetaTag::Description);
 
 	// Test saving meta-data to a file and then reloading.
-	tChunkWriter writer("WrittenMetaData.bin");
+	SetSaveName("ωMetaData.bin");
+	tChunkWriter writer(saveName);
 	metaData.Save(writer);
 
 	tMetaData metaDataLoaded;
-	tChunkReader reader("WrittenMetaData.bin");
+	tChunkReader reader(saveName);
 	metaDataLoaded.Load(reader.Chunk());
 	tRequire(metaDataLoaded == jpgWithMeta.MetaData);
 
 	// A fixture carrying a UTC GPS timestamp.
 	{
-		tPrintf("Parsing MetaData: %s\n", "HasUTCDateTime_EXIF_XMP.jpg");
-		tImageJPG jpg("HasUTCDateTime_EXIF_XMP.jpg");
+		tPrintf("Parsing MetaData: %s\n", "AerialField_EXIF_XMP.jpg");
+		tImageJPG jpg("AerialField_EXIF_XMP.jpg");
 		tRequire(jpg.MetaData.IsValid());
 		tMetaData& meta = jpg.MetaData;
 		PrintMetaDataTag(meta, tMetaTag::Make);
@@ -968,8 +957,8 @@ tTestUnit(ImageMetaData)
 
 	// A fixture carrying authoring notes (software / description / copyright).
 	{
-		tPrintf("Parsing MetaData: %s\n", "HasAuthorNotes_EXIF_XMP.jpg");
-		tImageJPG jpg("HasAuthorNotes_EXIF_XMP.jpg");
+		tPrintf("Parsing MetaData: %s\n", "Sais-tu_ta_leçon_EXIF_XMP.jpg");
+		tImageJPG jpg("Sais-tu_ta_leçon_EXIF_XMP.jpg");
 		tRequire(jpg.MetaData.IsValid());
 		tMetaData& meta = jpg.MetaData;
 		PrintMetaDataTag(meta, tMetaTag::Software);
@@ -978,31 +967,31 @@ tTestUnit(ImageMetaData)
 	}
 
 	// Test meta-data extraction for AVIF files.
-	tImageChangeDir("EXIF_XMP/AVIF/");
+	tImageChangeDir("MetaData/AVIF/");
 
-	tImageAVIF avifNoMeta("TacentTestPattern.avif");
+	tImageAVIF avifNoMeta("TacentTestPattern_NONE.avif");
 	tRequire(avifNoMeta.IsValid());
 	tRequire(!avifNoMeta.MetaData.IsValid());
 
-	tImageAVIF avifWithMeta("paris_icc_exif_xmp.avif");
+	tImageAVIF avifWithMeta("ParisIcc_EXIF_XMP.avif");
 	tRequire(avifWithMeta.IsValid());
 	tRequire(avifWithMeta.MetaData.IsValid());
 
 	// Test meta-data extraction for HEIC files.
-	tImageChangeDir("EXIF_XMP/HEIC/");
+	tImageChangeDir("MetaData/HEIC/");
 
-	tImageHEIC heicNoMeta("TacentTestPattern.heic");
+	tImageHEIC heicNoMeta("TacentTestPattern_NONE.heic");
 	tRequire(heicNoMeta.IsValid());
 	tRequire(!heicNoMeta.MetaData.IsValid());
 
-	tImageHEIC heicWithMeta("chef-with-trumpet.heic");
+	tImageHEIC heicWithMeta("ChefWithTrumpet_EXIF_XMP.heic");
 	tRequire(heicWithMeta.IsValid());
 	tRequire(heicWithMeta.MetaData.IsValid());
 
 	// Test meta-data extraction for WEBP files. WEBP is a RIFF container: EXIF lives in an "EXIF" chunk (2 bytes
 	// padding + bare TIFF) and XMP in an "XMP " chunk (raw XML). The fixtures below are generated files whose VP8
 	// image data is byte-identical to the _NONE original -- only the EXIF/XMP chunks differ.
-	tImageChangeDir("EXIF_XMP/WEBP/");
+	tImageChangeDir("MetaData/WEBP/");
 
 	// No metadata chunks: the image must decode, but no metadata should be extracted.
 	tImageWEBP webpNoMeta("FireBreathing_NONE.webp");
@@ -1056,9 +1045,9 @@ tTestUnit(ImageMetaData)
 	// Test meta-data extraction for PNG files. XMP may be stored in a "xMP " chunk or in a text chunk (tEXt/iTXt)
 	// under the keyword "XML:com.adobe.xmp" -- which is how Adobe and many other tools store XMP in PNGs; EXIF, if
 	// present, lives in an "eXIf" chunk. The fixtures below carry their XMP in an uncompressed iTXt chunk.
-	tImageChangeDir("EXIF_XMP/PNG/");
+	tImageChangeDir("MetaData/PNG/");
 
-	tImagePNG pngWithMeta("RightArrow_EXIF_XMP.png");
+	tImagePNG pngWithMeta("RightArrow_XMP.png");
 	tRequire(pngWithMeta.IsValid());
 	tRequire(pngWithMeta.MetaData.IsValid());
 	tMetaData& pngMetaData = pngWithMeta.MetaData;
@@ -1075,7 +1064,7 @@ tTestUnit(ImageMetaData)
 	// A second PNG carrying XMP, to confirm extraction is not specific to a single file. This fixture stores its
 	// XMP in an iTXt chunk whose exifEX:LensModel maps to the LensModel tag, so we assert the concrete value to
 	// prove the iTXt->XMP->LensModel path actually extracted data.
-	tImagePNG pngSecond("MetaData/PNG/TextCursor_XMP.png");
+	tImagePNG pngSecond("TextCursor_XMP.png");
 	tRequire(pngSecond.IsValid());
 	tRequire(pngSecond.MetaData.IsValid());
 	tMetaData& pngSecondMeta = pngSecond.MetaData;
@@ -1085,7 +1074,7 @@ tTestUnit(ImageMetaData)
 
 	// Test meta-data extraction for TIFF files. A TIFF file is itself a bare TIFF structure, so EXIF is read directly
 	// from the bytes and XMP from the XMLPacket (0x8649) field.
-	tImageChangeDir("EXIF_XMP/TIFF/");
+	tImageChangeDir("MetaData/TIFF/");
 
 	tImageTIFF tiffWithMeta("SkyRight_EXIF_XMP.tiff");
 	tRequire(tiffWithMeta.IsValid());
@@ -1099,9 +1088,9 @@ tTestUnit(ImageMetaData)
 	// Test meta-data extraction for JXL files. JXL carries EXIF in an "Exif" box (a 4-byte
 	// big-endian offset followed by a bare TIFF) and XMP in an "xml " box. tImageJXL walks the
 	// boxes (tImageJXL::WalkBoxes) and routes each to TinyEXIF's EXIF / XMP parsers.
-	tImageChangeDir("EXIF_XMP/JXL/");
+	tImageChangeDir("MetaData/JXL/");
 
-	tImageJXL jxlExif("MetaData/JXL/Waterfall_EXIF.jxl");
+	tImageJXL jxlExif("Waterfall_EXIF.jxl");
 	tRequire(jxlExif.IsValid());
 	tFrame* exifFrame = jxlExif.GetFrame(false);
 	tRequire((exifFrame != nullptr) && (exifFrame->Width == 1920) && (exifFrame->Height == 1080));
@@ -1114,7 +1103,7 @@ tTestUnit(ImageMetaData)
 	tRequire(jxlExifMeta[tMetaTag::Model].String == "Test");
 	PrintMetaDataTag(jxlExifMeta, tMetaTag::Model);
 
-	tImageJXL jxlXmp("MetaData/JXL/Waterfall_XMP.jxl");
+	tImageJXL jxlXmp("Waterfall_XMP.jxl");
 	tRequire(jxlXmp.IsValid());
 	tFrame* xmpFrame = jxlXmp.GetFrame(false);
 	tRequire((xmpFrame != nullptr) && (xmpFrame->Width == 1920) && (xmpFrame->Height == 1080));
@@ -1127,23 +1116,25 @@ tTestUnit(ImageMetaData)
 	tRequire(jxlXmpMeta[tMetaTag::Artist].String == "Tacent");
 	PrintMetaDataTag(jxlXmpMeta, tMetaTag::Artist);
 
-	tImageChangeDir("EXIF_XMP/");
+	tImageChangeDir("MetaData/Orientation/");
 
 	// Test loading/saving with compensation for exif orientation tags.
 	for (int i = 0; i < 9; i++)
 	{
 		tString file;
-		tsPrintf(file, "Landscape_%d.jpg", i);
-		tImageJPG jpg(tString("Orientation/") + file);
-		jpg.Save(tString("Orientation/Written") + file);
+		tsPrintf(file, "Landscape%d_EXIF.jpg", i);
+		tImageJPG jpg(file);
+		SetSaveName(tString("ω") + file);
+		jpg.Save(saveName);
 	}
 
 	for (int i = 0; i < 9; i++)
 	{
 		tString file;
-		tsPrintf(file, "Portrait_%d.jpg", i);
-		tImageJPG jpg(tString("Orientation/") + file);
-		jpg.Save(tString("Orientation/Written") + file);
+		tsPrintf(file, "Portrait%d_EXIF.jpg", i);
+		tImageJPG jpg(file);
+		SetSaveName(tString("ω") + file);
+		jpg.Save(saveName);
 	}
 
 	tImageRestoreDir();

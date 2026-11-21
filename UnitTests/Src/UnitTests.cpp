@@ -272,8 +272,8 @@ int main(int argc, char** argv)
 //ok	tTest(ImageTexture);
 //ok	tTest(ImagePicture);
 //ok	tTest(ImageQuantize);
-	tTest(ImagePalette);
-	// tTest(ImageMetaData);
+//ok	tTest(ImagePalette);
+	tTest(ImageMetaData);
 	// tTest(ImageLosslessTransform);
 	// tTest(ImageRotation);
 	// tTest(ImageCrop);
@@ -312,14 +312,17 @@ int main(int argc, char** argv)
 }
 
 
-tString tUnitTest::CreateModifiedSaveName(const char* path, const char* unitname)
+tString tUnitTest::CreateModifiedSaveName(const char* path, const char* unitName)
 {
 	tString modPath(path);
 	tString repName;
-	tsPrintf(repName, "ω%s_", unitname);
-	int count = modPath.Replace("ω", repName.Chr());
-	if (count != 1)
-		return tString(path);
-
+	tsPrintf(repName, "ω%s_", unitName);
+	modPath.Replace("ω", repName.Chr());
 	return modPath;
+}
+
+
+tString tUnitTest::CreateModifiedSaveName(const tString& path, const char* unitName)
+{
+	return CreateModifiedSaveName(path.Chr(), unitName);
 }

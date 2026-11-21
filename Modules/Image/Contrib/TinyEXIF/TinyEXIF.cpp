@@ -245,7 +245,16 @@ public:
 	bool Fetch(uint16_t& val) const {
 		if (!IsShort() || length == 0)
 			return false;
-		val = parse16(buf + offs + 8, alignIntel);
+		// TACENT_BEGIN 2026_11_21 Follow out-of-line SHORT arrays
+		// A SHORT fits inline in the 4-byte IFD value field only when count <= 2 (count*2 <= 4).
+		// With count >= 3 (e.g. BitsPerSample [8,8,8]) the value is stored out-of-line and the field
+		// holds an offset pointer. Reading it here returns only the low 16 bits of that pointer (a
+		// bogus byte-offset like 19796), so follow the offset and read the first real element instead.
+		if (length * 2 > 4)
+			val = parse16(buf + GetSubIFD(), alignIntel);
+		else
+			val = parse16(buf + offs + 8, alignIntel);
+		// TACENT_END 2026_11_21 Follow out-of-line SHORT arrays
 		return true;
 	}
 	bool Fetch(uint16_t& val, uint32_t idx) const {
