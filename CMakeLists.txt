@@ -68,10 +68,3 @@ if (IsArm)
 else()
 	add_subdirectory(Visualizer)
 endif()
-
-# The WoboqGen executable.
-if (IsArm)
-	message(STATUS "Tacent -- Arm Architecture. Excluding Woboq.")
-else()
-	add_subdirectory(Woboq)
-endif()
