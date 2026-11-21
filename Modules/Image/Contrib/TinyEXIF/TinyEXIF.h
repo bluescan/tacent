@@ -176,7 +176,7 @@ public:
 									    // 1: no absolute unit of measurement. Used for images that may have a non-square aspect ratio, but no meaningful absolute dimensions
 									    // 2: inch
 									    // 3: centimeter
-	uint16_t BitsPerSample;             // Number of bits per component
+	std::vector<uint16_t> BitsPerSample; // Bits per colour component, one per sample/channel (e.g. [8,8,8] for RGB)
 	std::string Software;               // Software used
 	std::string DateTime;               // File change date and time
 	std::string DateTimeOriginal;       // Original file date and time (may not exist)

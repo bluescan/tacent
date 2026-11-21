@@ -45,8 +45,13 @@ int main(int argc, const char** argv)
 		std::cout << "Orientation " << imageEXIF.Orientation << "\n";
 	if (imageEXIF.XResolution || imageEXIF.YResolution || imageEXIF.ResolutionUnit)
 		std::cout << "Resolution " << imageEXIF.XResolution << "x" << imageEXIF.YResolution << " (" << imageEXIF.ResolutionUnit << ")\n";
-	if (imageEXIF.BitsPerSample)
-		std::cout << "BitsPerSample " << imageEXIF.BitsPerSample << "\n";
+	if (!imageEXIF.BitsPerSample.empty())
+	{
+		std::cout << "BitsPerSample";
+		for (auto b : imageEXIF.BitsPerSample)
+			std::cout << " " << b;
+		std::cout << "\n";
+	}
 	if (!imageEXIF.Software.empty())
 		std::cout << "Software " << imageEXIF.Software << "\n";
 	if (!imageEXIF.DateTime.empty())

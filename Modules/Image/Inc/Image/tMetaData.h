@@ -125,7 +125,7 @@ enum class tMetaTag
 					//			3: cm.
 	XPixelsPerUnit,	//	float	Horizontal pixels per DistanceUnit. AKA: XResolution.
 	YPixelsPerUnit,	//	float	Veritical pixels per Distanceunit.  AKA: YResolution.
-	BitsPerSample,	//	uint32	Bits per colour component. Not bits per pixel.
+	BitsPerSample,	//	string	Bits per colour component, one per sample (e.g. "8, 8, 8"). Not bits per pixel.
 	ImageWidth,		//	uint32	Width in pixels.
 	ImageHeight,	//	uint32	Height in pixels.
 	ImageWidthOrig,	//	uint32	Original image width in pixels.

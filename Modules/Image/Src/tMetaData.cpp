@@ -584,9 +584,18 @@ void tMetaData::SetTags_CamSettings(const TinyEXIF::EXIFInfo& tinyInfo)
 	if (pixelsPerUnitY > 0.0)
 		SetTag(tMetaTag::YPixelsPerUnit, float(pixelsPerUnitY));
 
-	uint32 bitsPerComponent = tinyInfo.BitsPerSample;
-	if (bitsPerComponent)
-		SetTag(tMetaTag::BitsPerSample, bitsPerComponent);
+	if (!tinyInfo.BitsPerSample.empty())
+	{
+		// Join the per-sample values into one string, e.g. "8, 8, 8".
+		tString bitsPerSample;
+		for (size_t i = 0; i < tinyInfo.BitsPerSample.size(); i++)
+		{
+			if (i)
+				bitsPerSample += tString(", ");
+			bitsPerSample += tString(std::to_string((int)tinyInfo.BitsPerSample[i]).c_str());
+		}
+		SetTag(tMetaTag::BitsPerSample, bitsPerSample);
+	}
 
 	uint32 imageWidth = tinyInfo.ImageWidth;
 	if (imageWidth > 0)
@@ -864,7 +873,7 @@ tString tMetaData::GetPrettyValue(tMetaTag tag) const
 		}
 
 		case tMetaTag::BitsPerSample:
-			tsPrintf(value, "%d bits/component", datum.Uint32);
+			tsPrintf(value, "%s bits/component", datum.String.Chr());
 			break;
 
 		case tMetaTag::ImageWidth:

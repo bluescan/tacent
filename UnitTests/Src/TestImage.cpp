@@ -1081,6 +1081,8 @@ tTestUnit(ImageMetaData)
 	tRequire(tiffWithMeta.MetaData.IsValid());
 	tMetaData& tiffMeta = tiffWithMeta.MetaData;
 	PrintMetaDataTag(tiffMeta, tMetaTag::Orientation);
+	tRequire(tiffMeta[tMetaTag::BitsPerSample].IsValid());
+	tRequire(tiffMeta[tMetaTag::BitsPerSample].String == "8, 8, 8");
 	PrintMetaDataTag(tiffMeta, tMetaTag::BitsPerSample);
 	PrintMetaDataTag(tiffMeta, tMetaTag::XPixelsPerUnit);
 	PrintMetaDataTag(tiffMeta, tMetaTag::YPixelsPerUnit);

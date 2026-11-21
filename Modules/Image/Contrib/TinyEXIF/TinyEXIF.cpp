@@ -239,7 +239,15 @@ public:
 	bool Fetch(uint8_t& val) const {
 		if ((format != 1 && format != 2 && format != 6) || length == 0)
 			return false;
-		val = parse8(buf + offs + 8);
+		// TACENT_BEGIN 2026_11_21 Follow out-of-line Byte/Undefined arrays
+		// A Byte (or Undefined byte) fits inline in the 4-byte IFD value field only when count <= 4
+		// (count*1 <= 4). With count >= 5 the field holds an offset pointer; reading it inline returns a
+		// bogus byte of that pointer, so follow the offset and read the first real element instead.
+		if (length > 4)
+			val = parse8(buf + GetSubIFD());
+		else
+			val = parse8(buf + offs + 8);
+		// TACENT_END 2026_11_21 Follow out-of-line Byte/Undefined arrays
 		return true;
 	}
 	bool Fetch(uint16_t& val) const {
@@ -260,19 +268,42 @@ public:
 	bool Fetch(uint16_t& val, uint32_t idx) const {
 		if (!IsShort() || length <= idx)
 			return false;
-		val = parse16(buf + GetSubIFD() + idx*2, alignIntel);
+		// TACENT_BEGIN 2026_11_21 Index inline or out-of-line SHORT arrays
+		// count*2 > 4 (count >= 3) -> the array is out-of-line and the IFD value field holds an offset
+		// pointer (follow GetSubIFD); count <= 2 -> the values sit inline in the 4-byte IFD value field
+		// (e.g. a 1- or 2-sample BitsPerSample).  Both existing callers (SubjectArea, GPS date-stamp)
+		// have count >= 3 so this is backward-compatible; it also makes index 0/1 valid for inline arrays.
+		val = (length * 2 > 4) ? parse16(buf + GetSubIFD() + idx*2, alignIntel)
+		                      : parse16(buf + offs + 8 + idx*2, alignIntel);
+		// TACENT_END 2026_11_21 Index inline or out-of-line SHORT arrays
 		return true;
 	}
 	bool Fetch(uint32_t& val) const {
 		if (!IsLong() || length == 0)
 			return false;
-		val = parse32(buf + offs + 8, alignIntel);
+		// TACENT_BEGIN 2026_11_21 Follow out-of-line LONG arrays
+		// A LONG (4 bytes) is inline only for count == 1 (count*4 <= 4). With count >= 2 the field holds
+		// an offset pointer; reading it inline returns the low 32 bits of that pointer (a bogus value),
+		// so follow the offset and read the first real element instead.
+		if (length * 4 > 4)
+			val = parse32(buf + GetSubIFD(), alignIntel);
+		else
+			val = parse32(buf + offs + 8, alignIntel);
+		// TACENT_END 2026_11_21 Follow out-of-line LONG arrays
 		return true;
 	}
 	bool Fetch(float& val) const {
 		if (!IsFloat() || length == 0)
 			return false;
-		val = parseFloat(buf + offs + 8, alignIntel);
+		// TACENT_BEGIN 2026_11_21 Follow out-of-line FLOAT arrays
+		// A FLOAT (4 bytes) is inline only for count == 1 (count*4 <= 4). With count >= 2 the field holds
+		// an offset pointer; reading it inline returns the raw pointer bytes interpreted as a float, so
+		// follow the offset and read the first real element instead.
+		if (length * 4 > 4)
+			val = parseFloat(buf + GetSubIFD(), alignIntel);
+		else
+			val = parseFloat(buf + offs + 8, alignIntel);
+		// TACENT_END 2026_11_21 Follow out-of-line FLOAT arrays
 		return true;
 	}
 	bool Fetch(double& val) const {
@@ -382,9 +413,22 @@ EXIFInfo::EXIFInfo(const uint8_t* data, unsigned length) {
 void EXIFInfo::parseIFDImage(EntryParser& parser, unsigned& exif_sub_ifd_offset, unsigned& gps_sub_ifd_offset) {
 	switch (parser.GetTag()) {
 	case 0x0102:
-		// Bits per sample
-		parser.Fetch(BitsPerSample);
+	{
+		// Bits per sample: one SHORT per sample/channel (e.g. [8,8,8] for RGB). The value is a SHORT array that may
+		// sit inline (count <= 2) or out-of-line (count >= 3); read every element so the per-channel bit depth is
+		// preserved (EXIF does not require all values to be identical). The indexed Fetch returns false once
+		// index >= count, bounding the loop; the small cap additionally guards a malformed count from driving
+		// an unbounded read (real images carry 1-4 samples).
+		const uint32_t maxSamples = 16;
+		for (uint32_t i = 0; i < maxSamples; i++)
+		{
+			uint16_t bits;
+			if (!parser.Fetch(bits, i))
+				break;
+			BitsPerSample.push_back(bits);
+		}
 		break;
+	}
 
 	case 0x010e:
 		// Image description
@@ -1526,7 +1570,7 @@ void EXIFInfo::clear() {
 	XResolution       = 0;
 	YResolution       = 0;
 	ResolutionUnit    = 0;
-	BitsPerSample     = 0;
+	BitsPerSample.clear();
 	ExposureTime      = 0;
 	FNumber           = 0;
 	ExposureProgram   = 0;
