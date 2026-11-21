@@ -1153,74 +1153,82 @@ tTestUnit(ImageLosslessTransform)
 	bool ok = false;
 
 	trans = tImageJPG::Transform::Rotate90ACW;
-	tImageJPG imgJPG_ACW("TestPattern/TacentTestPattern.jpg", params);
+	tImageJPG imgJPG_ACW("TestPattern/TacentTestPatternRGB.jpg", params);
 	tRequire(imgJPG_ACW.IsValid());
 	tRequire(imgJPG_ACW.CanDoPerfectLosslessTransform(trans));
 	imgJPG_ACW.LosslessTransform(trans);
-	imgJPG_ACW.Save("WrittenLosslessACW90.jpg");
-	tRequire( tSystem::tFileExists("WrittenLosslessACW90.jpg"));
+	SetSaveName("TestPattern/ωLosslessACW90.jpg");
+	imgJPG_ACW.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	trans = tImageJPG::Transform::Rotate90CW;
-	tImageJPG imgJPG_CW("TestPattern/TacentTestPattern.jpg", params);
+	tImageJPG imgJPG_CW("TestPattern/TacentTestPatternRGB.jpg", params);
 	tRequire(imgJPG_CW.IsValid());
 	tRequire(imgJPG_CW.CanDoPerfectLosslessTransform(trans));
 	imgJPG_CW.LosslessTransform(trans);
-	imgJPG_CW.Save("WrittenLosslessCW90.jpg");
-	tRequire( tSystem::tFileExists("WrittenLosslessCW90.jpg"));
+	SetSaveName("TestPattern/ωLosslessCW90.jpg");
+	imgJPG_CW.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	trans = tImageJPG::Transform::FlipH;
-	tImageJPG imgJPG_FH("TestPattern/TacentTestPattern.jpg", params);
+	tImageJPG imgJPG_FH("TestPattern/TacentTestPatternRGB.jpg", params);
 	tRequire(imgJPG_FH.IsValid());
 	tRequire(imgJPG_FH.CanDoPerfectLosslessTransform(trans));
 	imgJPG_FH.LosslessTransform(trans);
-	imgJPG_FH.Save("WrittenLosslessFlipH.jpg");
-	tRequire( tSystem::tFileExists("WrittenLosslessFlipH.jpg"));
+	SetSaveName("TestPattern/ωLosslessFlipH.jpg");
+	imgJPG_FH.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
-	trans = tImageJPG::Transform::FlipH;
-	tImageJPG imgJPG_FV("TestPattern/TacentTestPattern.jpg", params);
+	trans = tImageJPG::Transform::FlipV;
+	tImageJPG imgJPG_FV("TestPattern/TacentTestPatternRGB.jpg", params);
 	tRequire(imgJPG_FV.IsValid());
 	tRequire(imgJPG_FV.CanDoPerfectLosslessTransform(trans));
 	imgJPG_FV.LosslessTransform(trans);
-	imgJPG_FV.Save("WrittenLosslessFlipV.jpg");
-	tRequire( tSystem::tFileExists("WrittenLosslessFlipV.jpg"));
+	SetSaveName("TestPattern/ωLosslessFlipV.jpg");
+	imgJPG_FV.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	// Test an image that can be perfectly ACW rotated or horizontally flipped, but cannot be
 	// CW rotated or vertically flipped perfectly.
 	trans = tImageJPG::Transform::Rotate90ACW;
-	tImageJPG imgJPG_OK_ACW("EXIF_XMP/JPG/Bebop_2_EXIF_XMP.jpg", params);
+	tImageJPG imgJPG_OK_ACW("Type_JPG/DroneBebop2.jpg", params);
 	tRequire(imgJPG_OK_ACW.IsValid());
 	tRequire(imgJPG_OK_ACW.CanDoPerfectLosslessTransform(trans));
 	ok = imgJPG_OK_ACW.LosslessTransform(trans);
 	tRequire(ok);
-	imgJPG_OK_ACW.Save("WrittenLosslessOK_ACW.jpg");
-	tRequire( tSystem::tFileExists("WrittenLosslessOK_ACW.jpg"));
+	SetSaveName("Type_JPG/ωLosslessPerfect_ACW.jpg");
+	imgJPG_OK_ACW.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	trans = tImageJPG::Transform::Rotate90CW;
-	tImageJPG imgJPG_NO_CW("EXIF_XMP/JPG/Bebop_2_EXIF_XMP.jpg", params);
+	tImageJPG imgJPG_NO_CW("Type_JPG/DroneBebop2.jpg", params);
 	tRequire(imgJPG_NO_CW.IsValid());
 	tRequire(!imgJPG_NO_CW.CanDoPerfectLosslessTransform(trans));
 	ok = imgJPG_NO_CW.LosslessTransform(trans);
 	tRequire(ok);
-	imgJPG_NO_CW.Save("WrittenLosslessNO_CW.jpg");
-	tRequire( tSystem::tFileExists("WrittenLosslessNO_CW.jpg"));
+	SetSaveName("Type_JPG/ωLosslessImperfect_CW.jpg");
+	imgJPG_NO_CW.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	trans = tImageJPG::Transform::FlipH;
-	tImageJPG imgJPG_OK_FH("EXIF_XMP/JPG/Bebop_2_EXIF_XMP.jpg", params);
+	tImageJPG imgJPG_OK_FH("Type_JPG/DroneBebop2.jpg", params);
 	tRequire(imgJPG_OK_FH.IsValid());
 	tRequire(imgJPG_OK_FH.CanDoPerfectLosslessTransform(trans));
 	ok = imgJPG_OK_FH.LosslessTransform(trans);
 	tRequire(ok);
-	imgJPG_OK_FH.Save("WrittenLosslessOK_FH.jpg");
-	tRequire( tSystem::tFileExists("WrittenLosslessOK_FH.jpg"));
+	SetSaveName("Type_JPG/ωLosslessPerfect_FH.jpg");
+	imgJPG_OK_FH.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	trans = tImageJPG::Transform::FlipV;
-	tImageJPG imgJPG_NO_FV("EXIF_XMP/JPG/Bebop_2_EXIF_XMP.jpg", params);
+	tImageJPG imgJPG_NO_FV("Type_JPG/DroneBebop2.jpg", params);
 	tRequire(imgJPG_NO_FV.IsValid());
 	tRequire(!imgJPG_NO_FV.CanDoPerfectLosslessTransform(trans));
 	ok = imgJPG_NO_FV.LosslessTransform(trans);
 	tRequire(ok);
-	imgJPG_NO_FV.Save("WrittenLosslessNO_FV.jpg");
-	tRequire( tSystem::tFileExists("WrittenLosslessNO_FV.jpg"));
+	SetSaveName("Type_JPG/ωLosslessImperfect_FV.jpg");
+	imgJPG_NO_FV.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	tImageRestoreDir();
 }
