@@ -1254,12 +1254,12 @@ tTestUnit(ImageRotation)
 		rotPic.RotateCenter(angle, tColour4b::transparent);
 
 		tPrintf("Rotated %05.1f Dimensions: W:%d H:%d\n", tMath::tRadToDeg(angle), rotPic.GetWidth(), rotPic.GetHeight());
-		tString writeFile;
-		tsPrintf(writeFile, "WrittenRightArrow_NoResampRot%03d.tga", int(tMath::tRadToDeg(angle)));
-
 		int w = rotPic.GetWidth(); int h = rotPic.GetHeight();
 		tImageTGA rottga(rotPic.StealPixels(), w, h, true);
-		tImageTGA::tFormat fmt = rottga.Save(writeFile);
+		tString writeFile;
+		tsPrintf(writeFile, "Type_PNG/ωRightArrow_NoResampRot%03d.tga", int(tMath::tRadToDeg(angle)));
+		SetSaveName(writeFile);
+		tImageTGA::tFormat fmt = rottga.Save(saveName);
 		tRequire(fmt != tImageTGA::tFormat::Invalid);
 	}
 
@@ -1271,20 +1271,26 @@ tTestUnit(ImageRotation)
 		rotPic.RotateCenter(angle, tColour4b::transparent, tImage::tResampleFilter::Bilinear, tImage::tResampleFilter::None);
 
 		tPrintf("Rotated %05.1f Dimensions: W:%d H:%d\n", tMath::tRadToDeg(angle), rotPic.GetWidth(), rotPic.GetHeight());
-		tString writeFile;
-		tsPrintf(writeFile, "Data/Images/WrittenRightArrow_BilinearResampleRot%03d.tga", int(tMath::tRadToDeg(angle)));
 		int w = rotPic.GetWidth(); int h = rotPic.GetHeight();
 		tImageTGA rottga(rotPic.StealPixels(), w, h, true);
-		rottga.Save(writeFile);
+		tString writeFile;
+		tsPrintf(writeFile, "Type_PNG/ωRightArrow_BilinearResampleRot%03d.tga", int(tMath::tRadToDeg(angle)));
+		tImageTGA::tFormat fmt = rottga.Save(saveName);
+		tRequire(fmt != tImageTGA::tFormat::Invalid);
 	}
 
 	tPrintf("Test 'plane' rotation.\n");
-	tImagePNG planepng("Data/Images/PNG/plane.png");
+	tImagePNG planepng("Type_PNG/Plane.png");
 	w = planepng.GetWidth(); h = planepng.GetHeight();
+	tPrintf("Unrotated Plane Dimensions: W:%d H:%d\n", w, h);
 	tPicture planePic(w, h, planepng.StealPixels8(), false);
-	w = planePic.GetWidth();
-	h = planePic.GetHeight();
 	planePic.RotateCenter(-tMath::fPiOver4, tColour4b::transparent);
+	w = planePic.GetWidth(); h = planePic.GetHeight();
+	tPrintf("Rotated Plane %05.1f Dimensions: W:%d H:%d\n", tMath::tRadToDeg(-tMath::fPiOver4), w, h);
+	tImageTGA rotPlane(planePic.StealPixels(), w, h, true);
+	SetSaveName("Type_PNG/ωPlane_RotateCenterNeg45.tga");
+	tImageTGA::tFormat fmt = rotPlane.Save(saveName);
+	tRequire(fmt != tImageTGA::tFormat::Invalid);
 
 	tImageRestoreDir();
 }
