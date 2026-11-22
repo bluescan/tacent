@@ -181,8 +181,8 @@ int main(int argc, char** argv)
 //ok	tTest(ImageRotation);
 //ok	tTest(ImageCrop);
 //ok	tTest(ImageCopyRegion);
-	tTest(ImageAdjustment);
-	tTest(ImageDetection);
+//ok	tTest(ImageAdjustment);
+//ok	tTest(ImageDetection);
 	tTest(ImageMipmap);
 	tTest(ImageFilter);
 	tTest(ImageMultiFrame);
@@ -276,10 +276,10 @@ int main(int argc, char** argv)
 //ok	tTest(ImageMetaData);
 //ok	tTest(ImageLosslessTransform);
 //ok	tTest(ImageRotation);
-	tTest(ImageCrop);
-	tTest(ImageCopyRegion);
-	// tTest(ImageAdjustment);
-	// tTest(ImageDetection);
+//ok	tTest(ImageCrop);
+//ok	tTest(ImageCopyRegion);
+	tTest(ImageAdjustment);
+	tTest(ImageDetection);
 	// tTest(ImageMipmap);
 	// tTest(ImageFilter);
 	// tTest(ImageMultiFrame);

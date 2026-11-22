@@ -1396,7 +1396,7 @@ tTestUnit(ImageAdjustment)
 	// Test brightness.
 	for (int level = 0; level <= 10; level++)
 	{
-		tImagePNG png("TacentTestPattern.png");
+		tImagePNG png("TacentTestPatternRGBA.png");
 		tPicture pic(png);
 
 		float brightness = float(level)/10.0f;
@@ -1405,17 +1405,17 @@ tTestUnit(ImageAdjustment)
 		pic.AdjustmentEnd();
 
 		// Save it out.
-		tString file;
-		tsPrintf(file, "WrittenBright%3.1f.png", brightness);
 		png.Set(pic, false);
-		tImagePNG::tFormat fmt = png.Save(file.Chr());
+		tString file; tsPrintf(file, "ωBrightness%3.1f.png", brightness);
+		SetSaveName(file);
+		tImagePNG::tFormat fmt = png.Save(saveName);
 		tRequire(fmt != tImagePNG::tFormat::Invalid);
 	}
 
 	// Test contrast.
 	for (int level = 0; level <= 10; level++)
 	{
-		tImagePNG png("TacentTestPattern.png");
+		tImagePNG png("TacentTestPatternRGBA.png");
 		tPicture pic(png);
 
 		float contrast = float(level)/10.0f;
@@ -1424,17 +1424,17 @@ tTestUnit(ImageAdjustment)
 		pic.AdjustmentEnd();
 
 		// Save it out.
-		tString file;
-		tsPrintf(file, "WrittenContrast%3.1f.png", contrast);
 		png.Set(pic, false);
-		tImagePNG::tFormat fmt = png.Save(file.Chr());
+		tString file; tsPrintf(file, "ωContrast%3.1f.png", contrast);
+		SetSaveName(file);
+		tImagePNG::tFormat fmt = png.Save(saveName);
 		tRequire(fmt != tImagePNG::tFormat::Invalid);
 	}
 
 	// Test levels.
 	for (int level = 0; level <= 10; level++)
 	{
-		tImagePNG png("TacentTestPattern.png");
+		tImagePNG png("TacentTestPatternRGBA.png");
 		tPicture pic(png);
 		float blackPoint = 0.0f;
 		float midPoint = float(level)/10.0f;
@@ -1444,16 +1444,16 @@ tTestUnit(ImageAdjustment)
 		pic.AdjustmentEnd();
 
 		// Save it out.
-		tString file;
-		tsPrintf(file, "WrittenLevels_MidAdjPower_BP%3.1f_MP%3.1f_WP%3.1f.png", blackPoint, midPoint, whitePoint);
 		png.Set(pic, false);
-		tImagePNG::tFormat fmt = png.Save(file.Chr());
+		tString file; tsPrintf(file, "ωLevels_MidAdjPower_BP%3.1f_MP%3.1f_WP%3.1f.png", blackPoint, midPoint, whitePoint);
+		SetSaveName(file);
+		tImagePNG::tFormat fmt = png.Save(saveName);
 		tRequire(fmt != tImagePNG::tFormat::Invalid);
 	}
 
 	for (int level = 0; level <= 10; level++)
 	{
-		tImagePNG png("TacentTestPattern.png");
+		tImagePNG png("TacentTestPatternRGBA.png");
 		tPicture pic(png);
 		float blackPoint = 0.0f;
 		float midPoint = float(level)/10.0f;
@@ -1463,16 +1463,16 @@ tTestUnit(ImageAdjustment)
 		pic.AdjustmentEnd();
 
 		// Save it out.
-		tString file;
-		tsPrintf(file, "WrittenLevels_MidAdjPhoto_BP%3.1f_MP%3.1f_WP%3.1f.png", blackPoint, midPoint, whitePoint);
 		png.Set(pic, false);
-		tImagePNG::tFormat fmt = png.Save(file.Chr());
+		tString file; tsPrintf(file, "ωLevels_MidAdjPhoto_BP%3.1f_MP%3.1f_WP%3.1f.png", blackPoint, midPoint, whitePoint);
+		SetSaveName(file);
+		tImagePNG::tFormat fmt = png.Save(saveName);
 		tRequire(fmt != tImagePNG::tFormat::Invalid);
 	}
 
 	for (int level = 0; level <= 10; level++)
 	{
-		tImagePNG png("TacentTestPattern.png");
+		tImagePNG png("TacentTestPatternRGBA.png");
 		tPicture pic(png);
 		float blackPoint = float(level)/10.0f;
 		float whitePoint = 1.0f;
@@ -1482,10 +1482,10 @@ tTestUnit(ImageAdjustment)
 		pic.AdjustmentEnd();
 
 		// Save it out.
-		tString file;
-		tsPrintf(file, "WrittenLevels_BlkAdjPower_BP%3.1f_MP%3.1f_WP%3.1f.png", blackPoint, midPoint, whitePoint);
 		png.Set(pic, false);
-		tImagePNG::tFormat fmt = png.Save(file.Chr());
+		tString file; tsPrintf(file, "ωLevels_BlkAdjPower_BP%3.1f_MP%3.1f_WP%3.1f.png", blackPoint, midPoint, whitePoint);
+		SetSaveName(file);
+		tImagePNG::tFormat fmt = png.Save(saveName);
 		tRequire(fmt != tImagePNG::tFormat::Invalid);
 	}
 
@@ -1498,13 +1498,13 @@ tTestUnit(ImageDetection)
 	tImageDir();
 
 	// Test APNG detection.
-	bool isAnimA = tImageAPNG::IsAnimatedPNG("TextCursor.png");
+	bool isAnimA = tImageAPNG::IsAnimatedPNG("Type_PNG/TextCursor.png");
 	tRequire(!isAnimA);
 
 	bool isAnimB = tImageAPNG::IsAnimatedPNG("Type_APNG/Icos4D.apng");
 	tRequire(isAnimB);
 
-	bool isAnimC = tImageAPNG::IsAnimatedPNG("Icos4D.png");
+	bool isAnimC = tImageAPNG::IsAnimatedPNG("Type_PNG/Icos4D.png");
 	tRequire(isAnimC);
 
 	int rgbaBPP		= tImage::tGetBitsPerPixel(tPixelFormat::R8G8B8A8);
