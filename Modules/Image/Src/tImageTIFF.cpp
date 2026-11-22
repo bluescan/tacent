@@ -479,13 +479,22 @@ bool tImageTIFF::Save(const tString& tiffFile, const SaveParams& params) const
 	// TIFFClientOpen with FILE*-based callbacks, so a non-ASCII filename is interpreted correctly. Using
 	// libtiff's TIFFOpen here would go through the ANSI CRT fopen, which mis-decodes non-ASCII names on
 	// Windows (e.g. U+03C9 'ω' would be written as U+00CF 'Ï').
-	FILE* out = tSystem::tOpenFile(tiffFile.Chr(), "wb");
+	// Open for BOTH reading and writing. Multi-page TIFF writing in libtiff (TIFFWriteDirectory ->
+	// TIFFLinkDirectory -> PatchDirectory) reads each already-written directory back from the stream to patch
+	// its "next" pointer and to fetch the directory count. A write-only handle makes those reads fail, which is
+	// what produces the "Compression algorithm does not support random access" and "Error fetching directory
+	// count" warnings. (Single-page saves never patch, which is why they didn't show it.)
+	FILE* out = tSystem::tOpenFile(tiffFile.Chr(), "w+b");
 	if (!out)
 		return false;
 
 	TIFF* tiff = TIFFClientOpen
 	(
-		tiffFile.Chr(), "wb",
+		// The mode string is validated by _TIFFCheckOpenFlags and used by libtiff to derive tif->tif_mode from
+		// the first character ('w' -> FILEMODE_WRITE); in the client-open path it does NOT open the OS file (we
+		// opened out via _wfopen above). Say "w+b" for clarity: the handle is genuinely read+write and libtiff
+		// reads each written directory back when linking multi-page TIFFs.
+		tiffFile.Chr(), "w+b",
 		(thandle_t)out,
 		tTIFF::TiffFileRead, tTIFF::TiffFileWrite,		// Read and write.
 		tTIFF::TiffFileSeek, tTIFF::TiffFileClose,
@@ -567,6 +576,10 @@ bool tImageTIFF::Save(const tString& tiffFile, const SaveParams& params) const
 				continue;
 		}
     }
+
+	// The loop commits each directory when the NEXT frame begins, so the final frame's directory has not yet been
+	// flushed. Commit it explicitly (canonical libtiff multi-page idiom) so the last page is not dropped.
+	TIFFWriteDirectory(tiff);
 
 	if (rowBuf)
 		_TIFFfree(rowBuf);

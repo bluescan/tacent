@@ -166,7 +166,7 @@ tTestUnit(ImageLoad)
 	tImageTGA imgTGA("Type_TGA/WhiteBorderRLE.tga");
 	tRequire(imgTGA.IsValid());
 
-	tImageTIFF imgTIFF("Type_TIF/Tiff_NoComp.tif");
+	tImageTIFF imgTIFF("Type_TIF/Wired_Raw.tif");
 	tRequire(imgTIFF.IsValid());
 
 	tImageWEBP imgWEBP("Type_WEBP/RockyBeach.webp");
@@ -207,7 +207,7 @@ tTestUnit(ImageLoad)
 
 	// TIFF (Load &&).
 	tArray<uint8> tiffMove;
-	tRequire(tSystem::tLoadFile("Type_TIF/Tiff_NoComp.tif", tiffMove));
+	tRequire(tSystem::tLoadFile("Type_TIF/Wired_Raw.tif", tiffMove));
 	tImageTIFF imgTIFFMove;
 	tRequire(imgTIFFMove.Load(tStd::rVal(tiffMove)));
 	tRequire(tiffMove.GetNumElements() == 0);
@@ -637,6 +637,7 @@ tTestUnit(ImagePicture)
 	pic.Set(png); tga.Set(pic);
 	SetSaveName("Type_PNG/ωMouse.tga");
 	tga.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	tImageQOI qoi;
 	qoi.Load("TestPattern/TacentTestPatternRGBA.qoi");
@@ -646,6 +647,7 @@ tTestUnit(ImagePicture)
 	pic.Set(qoi); tga.Set(pic);
 	SetSaveName("TestPattern/ωTacentTestPatternRGBA.tga");
 	tga.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	tga.Load("Type_TGA/TacentTestPattern_RLE_RGBA.tga");
 	SetSaveName("Type_TGA/ωTacentTestPattern_RLE_RGBA.tga");
@@ -653,37 +655,41 @@ tTestUnit(ImagePicture)
 	tRequire( tSystem::tFileExists(saveName) );
 
 	tImageTIFF tif;
-	tif.Load("Type_TIF/Tiff_NoComp.tif");
-	SetSaveName("Type_TIF/ωTiff_NoComp.tif");
+	tif.Load("Type_TIF/Wired_Raw.tif");
+	SetSaveName("Type_TIF/ωWired_Raw.tif");
 	tif.Save(saveName);
 	tRequire( tSystem::tFileExists(saveName) );
 	pic.Set(tif); tga.Set(pic);
-	SetSaveName("Type_TIF/ωTiff_NoComp.tga");
+	SetSaveName("Type_TIF/ωWired_Raw.tga");
 	tga.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
-	tif.Load("Type_TIF/Tiff_Pack.tif");
-	SetSaveName("Type_TIF/ωTiff_Pack.tif");
+	tif.Load("Type_TIF/Wired_Pack.tif");
+	SetSaveName("Type_TIF/ωWired_Pack.tif");
 	tif.Save(saveName);
 	tRequire( tSystem::tFileExists(saveName) );
 	pic.Set(tif); tga.Set(pic);
-	SetSaveName("Type_TIF/ωTiff_Pack.tga");
+	SetSaveName("Type_TIF/ωWired_Pack.tga");
 	tga.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
-	tif.Load("Type_TIF/Tiff_LZW.tif");
-	SetSaveName("Type_TIF/ωTiff_LZW.tif");
+	tif.Load("Type_TIF/Wired_LZW.tif");
+	SetSaveName("Type_TIF/ωWired_LZW.tif");
 	tif.Save(saveName);
 	tRequire( tSystem::tFileExists(saveName) );
 	pic.Set(tif); tga.Set(pic);
-	SetSaveName("Type_TIF/ωTiff_LZW.tga");
+	SetSaveName("Type_TIF/ωWired_LZW.tga");
 	tga.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
-	tif.Load("Type_TIF/Tiff_ZIP.tif");
-	SetSaveName("Type_TIF/ωTiff_ZIP.tif");
+	tif.Load("Type_TIF/Wired_ZIP.tif");
+	SetSaveName("Type_TIF/ωWired_ZIP.tif");
 	tif.Save(saveName);
 	tRequire( tSystem::tFileExists(saveName) );
 	pic.Set(tif); tga.Set(pic);
-	SetSaveName("Type_TIF/ωTiff_ZIP.tga");
+	SetSaveName("Type_TIF/ωWired_ZIP.tga");
 	tga.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	tImageWEBP webp;
 	webp.Load("Type_WEBP/RockyBeach.webp");
@@ -693,6 +699,7 @@ tTestUnit(ImagePicture)
 	pic.Set(webp); tga.Set(pic);
 	SetSaveName("Type_WEBP/ωRockyBeach.tga");
 	tga.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	// tImageXPM xpm;
 	// xpm.Load("Type_XPM/Crane.xmp"); pic.Set(xpm); tga.Set(pic);
@@ -1716,86 +1723,78 @@ tTestUnit(ImageMultiFrame)
 {
 	tImageDir();
 
-	#if 0
-	tImageWEBP webpSrc0("Demux_Shy.webp");
-	tImageTIFF tiffDst0(webpSrc0.Frames, true);
-	tiffDst0.Save("Demux_Shy.tiff");
-	tRequire(tSystem::tFileExists("WrittenDemux_Shy.tiff"));
-
-	tImageWEBP webpSrc1("Demux_Confused.webp");
-	tImageTIFF tiffDst1(webpSrc1.Frames, true);
-	tiffDst1.Save("Demux_Confused.tiff");
-	tRequire(tSystem::tFileExists("WrittenDemux_Confused.tiff"));
-	return;
-	#endif
-
 	tImageTIFF tif;
 	tImageTGA tga;
 	tPicture pic;
 
 	// A multipage tiff.
-	tif.Load("Type_TIF/Tiff_Multipage_ZIP.tif");
+	tif.Load("Type_TIF/AzTech_Multipage_ZIP.tif");
 	tRequire(tif.IsValid());
 
 	tFrame* frame0 = tif.GetFrame(0);
 	pic.Set(frame0, false); tga.Set(pic);
-	tga.Save("WrittenTiff_Multipage_ZIP_P1.tga");
-	tRequire( tSystem::tFileExists("WrittenTiff_Multipage_ZIP_P1.tga"));
+	SetSaveName("Type_TIF/ωAzTech_Multipage_ZIP_P1.tga");
+	tga.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	tFrame* frame1 = tif.GetFrame(1);
 	pic.Set(frame1, false); tga.Set(pic);
-	tga.Save("WrittenTiff_Multipage_ZIP_P2.tga");
-	tRequire( tSystem::tFileExists("WrittenTiff_Multipage_ZIP_P2.tga"));
+	SetSaveName("Type_TIF/ωAzTech_Multipage_ZIP_P2.tga");
+	tga.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	tFrame* frame2 = tif.GetFrame(2);
 	pic.Set(frame2, false); tga.Set(pic);
-	tga.Save("WrittenTiff_Multipage_ZIP_P3.tga");
-	tRequire( tSystem::tFileExists("WrittenTiff_Multipage_ZIP_P3.tga"));
+	SetSaveName("Type_TIF/ωAzTech_Multipage_ZIP_P3.tga");
+	tga.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	// tImageWEBP also supports saving multi-frame webp files.
 	tImageAPNG apngSrc("Type_APNG/Flame.apng");
-	tImageWEBP webpDst( apngSrc.Frames, true);
-	webpDst.Save("WrittenFlameManyFrames.webp");
-	tRequire(tSystem::tFileExists("WrittenFlameManyFrames.webp"));
+	tImageWEBP webpDst(apngSrc.Frames, true);
+	SetSaveName("Type_APNG/ωFlame_AllFrames.webp");
+	webpDst.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	tImageAPNG apngSrc2("Type_APNG/Icos4D.apng");
-	tImageWEBP webpDst2( apngSrc2.Frames, true);
-	webpDst2.Save("WrittenIcos4DManyFrames.webp");
-	tRequire(tSystem::tFileExists("WrittenIcos4DManyFrames.webp"));
+	tImageWEBP webpDst2(apngSrc2.Frames, true);
+	SetSaveName("Type_APNG/ωIcos4D_AllFrames.webp");
+	webpDst2.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	// tImageGIF supports saving multi-frame gif files.
 	tImageAPNG apngSrc3("Type_APNG/Icos4D.apng");
 	tImageGIF gifDst(apngSrc3.Frames, true);
-	gifDst.Save("WrittenIcos4DManyFrames.gif");
-	tRequire(tSystem::tFileExists("WrittenIcos4DManyFrames.gif"));
+	SetSaveName("Type_APNG/ωIcos4D_AllFrames.gif");
+	gifDst.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	// tImageAPNG supports saving multi-frame apng files.
 	tImageAPNG apngSrc4("Type_APNG/Icos4D.apng");
 	tImageAPNG apngDst(apngSrc4.Frames, true);
-	apngDst.Save("WrittenIcos4DManyFrames.apng");
-	tRequire(tSystem::tFileExists("WrittenIcos4DManyFrames.apng"));
-
-	// Load a multipage tiff with no page duration info.
-	tPrintf("Test multipage TIFF load.\n");
-	tImageTIFF tiffMultipage("Type_TIF/Tiff_Multipage_ZIP.tif");
-	tRequire(tiffMultipage.IsValid());
+	SetSaveName("Type_APNG/ωIcos4D_AllFrames.apng");
+	apngDst.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	// Create a multipage tiff with page duration info.
 	tImageAPNG apngSrc5("Type_APNG/Icos4D.apng");
 	tImageTIFF tiffDst(apngSrc5.Frames, true);
-	tiffDst.Save("WrittenIcos4DManyFrames.tiff");
-	tRequire(tSystem::tFileExists("WrittenIcos4DManyFrames.tiff"));
+	SetSaveName("Type_APNG/ωIcos4D_AllFrames.tiff");
+	tiffDst.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	// Load a multipage tiff with page duration info since it was saved from Tacent.
-	tImageTIFF tiffWithDur("WrittenIcos4DManyFrames.tiff");
-	tiffWithDur.Save("WrittenIcos4DManyFrames2.tiff");
-	tRequire(tSystem::tFileExists("WrittenIcos4DManyFrames2.tiff"));
+	tImageTIFF tiffWithDur(saveName);
+	SetSaveName("Type_APNG/ωIcos4D_AllFrames_2.tiff");
+	tiffWithDur.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	// Test loading an animated webp and saving as multpage tiff.
-	tImageWEBP webpSrc("Type_WEBP/AnimatedTest.webp");
+	tImageWEBP webpSrc("Type_WEBP/AnimatedCaustics.webp");
 	tImageTIFF tiffDst2(webpSrc.Frames, true);
-	tiffDst2.Save("WrittenAnimatedTestManyFrames.tiff");
-	tRequire(tSystem::tFileExists("WrittenAnimatedTestManyFrames.tiff"));
+	SetSaveName("Type_WEBP/ωAnimatedCaustics_AllFrames.tiff");
+	tiffDst2.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
 
 	tImageRestoreDir();
 }
