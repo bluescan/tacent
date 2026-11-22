@@ -1301,14 +1301,12 @@ tTestUnit(ImageCrop)
 	tImageDir();
 
 	// Crop black pixels ignoring alpha (RGB channels only).
-	tImagePNG png("Type_PNG/plane.png");
+	tImagePNG png("Type_PNG/Plane.png");
 	tPicture planePic(png);
-	int w = planePic.GetWidth();
-	int h = planePic.GetHeight();
 	planePic.Deborder(tColour4b::black, tCompBit_RGB);
-	planePic.Crop(w, h, tPicture::Anchor::MiddleMiddle, tColour4b::transparent);
 	png.Set(planePic);
-	tImagePNG::tFormat fmt = png.Save("Type_PNG/WrittenPlane.png");
+	SetSaveName("Type_PNG/ωPlane_Deborder.png");
+	tImagePNG::tFormat fmt = png.Save(saveName);
 	tRequire(fmt != tImagePNG::tFormat::Invalid);
 
 	tImageRestoreDir();
@@ -1317,16 +1315,16 @@ tTestUnit(ImageCrop)
 
 tTestUnit(ImageCopyRegion)
 {
-	tImageSubDir("TestPattern/");
+	tImageSubDir("Type_TGA/");
 
 	// The canvas is 1280x720. RGBA.
-	tImageTGA tgaCanvas("TacentTestPattern32.tga");
+	tImageTGA tgaCanvas("TacentTestPatternRGBA.tga");
 	tImageTGA tgaWrite;
 	tImageTGA::tFormat fmt = tImageTGA::tFormat::Invalid;
 	tPicture canvas;
 
 	// The region is 640x360. RGB.
-	tImageTGA tgaRegion("Desk640.tga");
+	tImageTGA tgaRegion("Desk_640x360.tga");
 	int regW = tgaRegion.GetWidth();
 	int regH = tgaRegion.GetHeight();
 	tColour4b* regP = tgaRegion.GetPixels();
@@ -1335,49 +1333,56 @@ tTestUnit(ImageCopyRegion)
 	canvas.Set(tgaCanvas, false);
 	canvas.CopyRegion(regW, regH, regP, tPicture::Anchor::LeftBottom);
 	tgaWrite.Set(canvas);
-	fmt = tgaWrite.Save("Written_CopyRegion_LeftBottom.tga", tImageTGA::tFormat::BPP32);
+	SetSaveName("ωLeftBottom.tga");
+	fmt = tgaWrite.Save(saveName, tImageTGA::tFormat::BPP32);
 	tRequire(fmt == tImageTGA::tFormat::BPP32);
 
 	// Left top.
 	canvas.Set(tgaCanvas, false);
 	canvas.CopyRegion(regW, regH, regP, tPicture::Anchor::LeftTop);
 	tgaWrite.Set(canvas);
-	fmt = tgaWrite.Save("Written_CopyRegion_LeftTop.tga", tImageTGA::tFormat::BPP32);
+	SetSaveName("ωLeftTop.tga");
+	fmt = tgaWrite.Save(saveName, tImageTGA::tFormat::BPP32);
 	tRequire(fmt == tImageTGA::tFormat::BPP32);
 
 	// Right top.
 	canvas.Set(tgaCanvas, false);
 	canvas.CopyRegion(regW, regH, regP, tPicture::Anchor::RightTop);
 	tgaWrite.Set(canvas);
-	fmt = tgaWrite.Save("Written_CopyRegion_RightTop.tga", tImageTGA::tFormat::BPP32);
+	SetSaveName("ωRightTop.tga");
+	fmt = tgaWrite.Save(saveName, tImageTGA::tFormat::BPP32);
 	tRequire(fmt == tImageTGA::tFormat::BPP32);
 
 	// Right bottom.
 	canvas.Set(tgaCanvas, false);
 	canvas.CopyRegion(regW, regH, regP, tPicture::Anchor::RightBottom);
 	tgaWrite.Set(canvas);
-	fmt = tgaWrite.Save("Written_CopyRegion_RightBottom.tga", tImageTGA::tFormat::BPP32);
+	SetSaveName("ωRightBottom.tga");
+	fmt = tgaWrite.Save(saveName, tImageTGA::tFormat::BPP32);
 	tRequire(fmt == tImageTGA::tFormat::BPP32);
 
 	// Middle middle.
 	canvas.Set(tgaCanvas, false);
 	canvas.CopyRegion(regW, regH, regP, tPicture::Anchor::MiddleMiddle);
 	tgaWrite.Set(canvas);
-	fmt = tgaWrite.Save("Written_CopyRegion_MiddleMiddle.tga", tImageTGA::tFormat::BPP32);
+	SetSaveName("ωMiddleMiddle.tga");
+	fmt = tgaWrite.Save(saveName, tImageTGA::tFormat::BPP32);
 	tRequire(fmt == tImageTGA::tFormat::BPP32);
 
 	// LeftBottom Negative Half.
 	canvas.Set(tgaCanvas, false);
 	canvas.CopyRegion(regW, regH, regP, -regW/2, -regH/2);
 	tgaWrite.Set(canvas);
-	fmt = tgaWrite.Save("Written_CopyRegion_LeftBottomNegHalf.tga", tImageTGA::tFormat::BPP32);
+	SetSaveName("ωLeftBottomNegHalf.tga");
+	fmt = tgaWrite.Save(saveName, tImageTGA::tFormat::BPP32);
 	tRequire(fmt == tImageTGA::tFormat::BPP32);
 
 	// Left top green only.
 	canvas.Set(tgaCanvas, false);
 	canvas.CopyRegion(regW, regH, regP, tPicture::Anchor::LeftTop, tCompBit_G);
 	tgaWrite.Set(canvas);
-	fmt = tgaWrite.Save("Written_CopyRegion_LeftTopGreenOnly.tga", tImageTGA::tFormat::BPP32);
+	SetSaveName("ωLeftTopGreenOnly.tga");
+	fmt = tgaWrite.Save(saveName, tImageTGA::tFormat::BPP32);
 	tRequire(fmt == tImageTGA::tFormat::BPP32);
 
 	tImageRestoreDir();
