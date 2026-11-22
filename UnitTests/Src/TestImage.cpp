@@ -1620,70 +1620,92 @@ tTestUnit(ImageMipmap)
 
 tTestUnit(ImageFilter)
 {
-	tImageDir();
+	tImageSubDir("Type_PNG/");
 
 	for (int filt = 0; filt < int(tResampleFilter::NumFilters); filt++)
 		tPrintf("Filter Name %d: %s\n", filt, tResampleFilterNames[filt]);
 
 	// Resample tests of 512x256 image.
-	tImagePNG png("Type_PNG/TextCursor.png");
+	tImagePNG png("TextCursor.png");
 	tImageTGA tga;
 	tPicture pic;
 	tImage::tImageTGA::tFormat fmt = tImage::tImageTGA::tFormat::Invalid;
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Nearest);
-	tga.Set(pic); fmt = tga.Save("WrittenResampledNearest.tga");
+	tga.Set(pic);
+	SetSaveName("ωResampledNearest.tga");
+	fmt = tga.Save(saveName);
 	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Box);
-	tga.Set(pic); fmt = tga.Save("WrittenResampledBox.tga");
+	tga.Set(pic);
+	SetSaveName("ωResampledBox.tga");
+	fmt = tga.Save(saveName);
 	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Bilinear);
-	tga.Set(pic); fmt = tga.Save("WrittenResampledBilinear.tga");
+	tga.Set(pic);
+	SetSaveName("ωResampledBilinear.tga");
+	fmt = tga.Save(saveName);
 	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Bicubic_Standard);
-	tga.Set(pic); fmt = tga.Save("WrittenResampledBicubicStandard.tga");
+	tga.Set(pic);
+	SetSaveName("ωResampledBicubicStandard.tga");
+	fmt = tga.Save(saveName);
 	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Bicubic_CatmullRom);
-	tga.Set(pic); fmt = tga.Save("WrittenResampledBicubicCatmullRom.tga");
+	tga.Set(pic);
+	SetSaveName("ωResampledBicubicCatmullRom.tga");
+	fmt = tga.Save(saveName);
 	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Bicubic_Mitchell);
-	tga.Set(pic); fmt = tga.Save("WrittenResampledBicubicMitchell.tga");
+	tga.Set(pic);
+	SetSaveName("ωResampledBicubicMitchell.tga");
+	fmt = tga.Save(saveName);
 	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Bicubic_Cardinal);
-	tga.Set(pic); fmt = tga.Save("WrittenResampledBicubicCardinal.tga");
+	tga.Set(pic);
+	SetSaveName("ωResampledBicubicCardinal.tga");
+	fmt = tga.Save(saveName);
 	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Bicubic_BSpline);
-	tga.Set(pic); fmt = tga.Save("WrittenResampledBicubicBSpline.tga");
+	tga.Set(pic);
+	SetSaveName("ωResampledBicubicBSpline.tga");
+	fmt = tga.Save(saveName);
 	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Lanczos_Narrow);
-	tga.Set(pic); fmt = tga.Save("WrittenResampledLanczosNarrow.tga");
+	tga.Set(pic);
+	SetSaveName("ωResampledLanczosNarrow.tga");
+	fmt = tga.Save(saveName);
 	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Lanczos_Normal);
-	tga.Set(pic); fmt = tga.Save("WrittenResampledLanczosNormal.tga");
+	tga.Set(pic);
+	SetSaveName("ωResampledLanczosNormal.tga");
+	fmt = tga.Save(saveName);
 	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	pic.Set(png, false);
 	pic.Resample(800, 300, tResampleFilter::Lanczos_Wide);
-	tga.Set(pic); fmt = tga.Save("WrittenResampledLanczosWide.tga");
+	tga.Set(pic);
+	SetSaveName("ωResampledLanczosWide.tga");
+	fmt = tga.Save(saveName);
 	tRequire(fmt != tImage::tImageTGA::tFormat::Invalid);
 
 	tImageRestoreDir();
