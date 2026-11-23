@@ -6,7 +6,7 @@ ________________________________________________________________________________
 LibJPeg-Turbo is a fast SIMD jpeg loader that is API-compatible with LibJPeg.
 
 TurboJpeg (TJ) is the name of a simpler API supported by LibJPeg-Turbo to easily
-load JPeg files. This is what Tacent uses for its main tImageJPG loader. It is
-based on [WIP]
+load JPeg files. This is what Tacent uses for its main tImageJPG loader. It
+basically wraps LibJPeg-Turbo calls and provides a simpler interface.
 
 ________________________________________________________________________________

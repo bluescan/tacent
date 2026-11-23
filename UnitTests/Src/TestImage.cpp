@@ -1887,6 +1887,77 @@ tTestUnit(ImageGradient)
 }
 
 
+tTestUnit(ImageTIFF)
+{
+	tImageSubDir("Type_TIF/");
+	tImageTIFF tiff;
+
+	tiff.Load("AzTech_Multipage_ZIP.tif");
+	SetSaveName("ωAzTech_Multipage_ZIP.tif");
+	tiff.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
+	for (int f = 0; f < tiff.GetNumFrames(); f++)
+	{
+		tFrame* frame = tiff.GetFrame(f);
+		tImageTGA tga(frame, false);
+		tString tgaFile;
+		tsPrintf(tgaFile, "ωAzTech_Multipage_Frame%02d.tga", f);
+		SetSaveName(tgaFile);
+		tga.Save(saveName);
+		tRequire(tSystem::tFileExists(saveName));
+	}
+
+	return;
+	
+	tiff.Load("Shapes_Grey_JPG.tif");
+	SetSaveName("ωShapes_Grey_JPG.tif");
+	tiff.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
+	for (int f = 0; f < tiff.GetNumFrames(); f++)
+	{
+		tFrame* frame = tiff.GetFrame(f);
+		tImageTGA tga(frame, false);
+		tString tgaFile;
+		tsPrintf(tgaFile, "ωShapes_Grey_Frame%02d.tga", f);
+		SetSaveName(tgaFile);
+		tga.Save(saveName);
+		tRequire(tSystem::tFileExists(saveName));
+	}
+
+	tiff.Load("Shapes_RGB_JPG.tif");
+	SetSaveName("ωShapes_RGB_JPG.tif");
+	tiff.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
+	for (int f = 0; f < tiff.GetNumFrames(); f++)
+	{
+		tFrame* frame = tiff.GetFrame(f);
+		tImageTGA tga(frame, false);
+		tString tgaFile;
+		tsPrintf(tgaFile, "ωShapes_RGB_Frame%02d.tga", f);
+		SetSaveName(tgaFile);
+		tga.Save(saveName);
+		tRequire(tSystem::tFileExists(saveName));
+	}
+
+	tiff.Load("Shapes_YCbCr_JPG.tif");
+	SetSaveName("ωShapes_YCbCr_JPG.tif");
+	tiff.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
+	for (int f = 0; f < tiff.GetNumFrames(); f++)
+	{
+		tFrame* frame = tiff.GetFrame(f);
+		tImageTGA tga(frame, false);
+		tString tgaFile;
+		tsPrintf(tgaFile, "ωShapes_YCbCr_Frame%02d.tga", f);
+		SetSaveName(tgaFile);
+		tga.Save(saveName);
+		tRequire(tSystem::tFileExists(saveName));
+	}
+
+	tImageRestoreDir();
+}
+
+
 tTestUnit(ImagePNG)
 {
 	tImageSubDir("Type_PNG/");

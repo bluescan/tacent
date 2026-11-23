@@ -35,6 +35,7 @@ namespace tUnitTest
 	tTestUnit(ImageFilter);
 	tTestUnit(ImageMultiFrame);
 	tTestUnit(ImageGradient);
+	tTestUnit(ImageTIFF);
 	tTestUnit(ImagePNG);
 	tTestUnit(ImageHEIC);
 	tTestUnit(ImageHEICRotatePixelVerify);
