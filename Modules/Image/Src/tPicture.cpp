@@ -42,6 +42,7 @@ const char* ASTCENCODER_VERSION_STRING		= VERSION_STRING;
 #include <bcdec.h>
 #include <etcdec.h>
 #include <tiffvers.h>
+#include <turbojpeg.h>
 #include <jconfig.h>						// JpegTurbo
 #include <demux.h>							// WebP
 #include <tinyxml2.h>
@@ -62,16 +63,23 @@ using namespace tImage;
 using namespace tSystem;
 
 
-const char* tImage::Version_LibJpegTurbo	= LIBJPEG_TURBO_VERSION;
 const char* tImage::Version_ASTCEncoder		= ASTCENCODER_VERSION_STRING;
 const char* tImage::Version_OpenEXR			= OPENEXR_VERSION_STRING;
 const char* tImage::Version_ZLIB			= ZLIB_VERSION;
 const char* tImage::Version_LibPNG			= PNG_LIBPNG_VER_STRING;
 const char* tImage::Version_ApngDis			= APNGDIS_VERSION_STRING;
 const char* tImage::Version_ApngAsm			= APNGASM_VERSION_STRING;
-const char* tImage::Version_LibTIFF			= TIFFLIB_STANDARD_VERSION_STR;
 const char* tImage::Version_LibKTX			= LIBKTX_VERSION_STRING;
 const char* tImage::Version_LibDav1d		= DAV1D_VERSION;
+int tImage::Version_LibTIFF_Major			= TIFFLIB_MAJOR_VERSION;
+int tImage::Version_LibTIFF_Minor			= TIFFLIB_MINOR_VERSION;
+int tImage::Version_LibTIFF_Patch			= TIFFLIB_MICRO_VERSION;
+int tImage::Version_LibJpegTurbo_Major		= LIBJPEG_TURBO_VERSION_NUMBER / 1000000;
+int tImage::Version_LibJpegTurbo_Minor		= (LIBJPEG_TURBO_VERSION_NUMBER % 1000000) / 1000;
+int tImage::Version_LibJpegTurbo_Patch		= LIBJPEG_TURBO_VERSION_NUMBER % 1000;
+int tImage::Version_TurboJpeg_Major			= TURBOJPEG_VERSION_NUMBER / 1000000;
+int tImage::Version_TurboJpeg_Minor			= (TURBOJPEG_VERSION_NUMBER % 1000000) / 1000;
+int tImage::Version_TurboJpeg_Patch			= TURBOJPEG_VERSION_NUMBER % 1000;
 int tImage::Version_WEBP_Major				= WEBP_DECODER_ABI_VERSION >> 8;
 int tImage::Version_WEBP_Minor				= WEBP_DECODER_ABI_VERSION & 0xFF;
 int tImage::Version_BCDec_Major				= BCDEC_VERSION_MAJOR;

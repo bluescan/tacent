@@ -1892,6 +1892,7 @@ tTestUnit(ImageTIFF)
 	tImageSubDir("Type_TIF/");
 	tImageTIFF tiff;
 
+	// @todo Make a helper function.
 	tiff.Load("AzTech_Multipage_ZIP.tif");
 	SetSaveName("ωAzTech_Multipage_ZIP.tif");
 	tiff.Save(saveName);
@@ -1907,8 +1908,6 @@ tTestUnit(ImageTIFF)
 		tRequire(tSystem::tFileExists(saveName));
 	}
 
-	return;
-	
 	tiff.Load("Shapes_Grey_JPG.tif");
 	SetSaveName("ωShapes_Grey_JPG.tif");
 	tiff.Save(saveName);
@@ -1953,6 +1952,92 @@ tTestUnit(ImageTIFF)
 		tga.Save(saveName);
 		tRequire(tSystem::tFileExists(saveName));
 	}
+
+	tiff.Load("Wired_Raw.tif");
+	SetSaveName("ωWired_Raw.tif");
+	tiff.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
+	for (int f = 0; f < tiff.GetNumFrames(); f++)
+	{
+		tFrame* frame = tiff.GetFrame(f);
+		tImageTGA tga(frame, false);
+		tString tgaFile;
+		tsPrintf(tgaFile, "ωWired_Raw_Frame%02d.tga", f);
+		SetSaveName(tgaFile);
+		tga.Save(saveName);
+		tRequire(tSystem::tFileExists(saveName));
+	}
+
+	tiff.Load("Wired_ZIP.tif");
+	SetSaveName("ωWired_ZIP.tif");
+	tiff.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
+	for (int f = 0; f < tiff.GetNumFrames(); f++)
+	{
+		tFrame* frame = tiff.GetFrame(f);
+		tImageTGA tga(frame, false);
+		tString tgaFile;
+		tsPrintf(tgaFile, "ωWired_ZIP_Frame%02d.tga", f);
+		SetSaveName(tgaFile);
+		tga.Save(saveName);
+		tRequire(tSystem::tFileExists(saveName));
+	}
+
+	tiff.Load("Wired_LZW.tif");
+	SetSaveName("ωWired_LZW.tif");
+	tiff.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
+	for (int f = 0; f < tiff.GetNumFrames(); f++)
+	{
+		tFrame* frame = tiff.GetFrame(f);
+		tImageTGA tga(frame, false);
+		tString tgaFile;
+		tsPrintf(tgaFile, "ωWired_LZW_Frame%02d.tga", f);
+		SetSaveName(tgaFile);
+		tga.Save(saveName);
+		tRequire(tSystem::tFileExists(saveName));
+	}
+
+	tiff.Load("Wired_Pack.tif");
+	SetSaveName("ωWired_Pack.tif");
+	tiff.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
+	for (int f = 0; f < tiff.GetNumFrames(); f++)
+	{
+		tFrame* frame = tiff.GetFrame(f);
+		tImageTGA tga(frame, false);
+		tString tgaFile;
+		tsPrintf(tgaFile, "ωWired_Pack_Frame%02d.tga", f);
+		SetSaveName(tgaFile);
+		tga.Save(saveName);
+		tRequire(tSystem::tFileExists(saveName));
+	}
+
+	// Compression coverage: the default Save() above uses Deflate. Explicitly exercise the other
+	// two compression options (None and JPEG) on a single RGB frame so the JPEG path and the
+	// uncompressed path are both written and then re-read to prove they round-trip.
+	tImageTIFF one("Wired_Raw.tif");
+	tRequire(one.IsValid());
+	tFrame* oneFrame = one.StealFrame(0);
+	tRequire(oneFrame != nullptr);
+	tImageTIFF rgb(oneFrame, true);
+	tRequire(rgb.IsValid());
+	tImageTIFF::SaveParams sp;
+	sp.Format = tImageTIFF::tFormat::BPP24;
+
+	sp.Compression = tImageTIFF::tCompression::None;
+	SetSaveName("ωWired_Raw_CompressionNone.tif");
+	tRequire(rgb.Save(saveName, sp));
+	tRequire(tSystem::tFileExists(saveName));
+	tImageTIFF noneReload(saveName);
+	tRequire(noneReload.IsValid());
+
+	sp.Compression = tImageTIFF::tCompression::JPEG;
+	SetSaveName("ωWired_Raw_CompressionJPEG.tif");
+	tRequire(rgb.Save(saveName, sp));
+	tRequire(tSystem::tFileExists(saveName));
+	tImageTIFF jpegReload(saveName);
+	tRequire(jpegReload.IsValid());
 
 	tImageRestoreDir();
 }

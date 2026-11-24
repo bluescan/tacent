@@ -105,7 +105,8 @@ add_library(
 	Contrib/QOI/qoi.h
 	Contrib/TinyEXIF/TinyEXIF.h
 	Contrib/TinyEXIF/TinyEXIF.cpp
-	Contrib/TurboJpeg/turbojpeg.h
+	Contrib/LibJpegTurbo/include/jpeglib.h
+	Contrib/LibJpegTurbo/TurboJpeg/include/turbojpeg.h
 	Contrib/WebP/include/mux.h
 	Contrib/WebP/include/demux.h
 	Contrib/WebP/include/encode.h
@@ -143,9 +144,8 @@ target_include_directories(
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/OpenEXR/include/OpenEXR
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TinyEXIF
-		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg
-		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg/Windows>
-		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg/Linux>
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJpegTurbo/include
+		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJpegTurbo/TurboJpeg/include
 		${CMAKE_CURRENT_SOURCE_DIR}/Contrib/WebP/include
 )
 
@@ -280,11 +280,27 @@ target_link_libraries(
 
 		# LibTIFF.
 		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibTIFF/lib/libtiff.a>
-		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibTIFF/lib/tiff.lib>
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibTIFF/lib/tiffd.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibTIFF/lib/tiff.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibTIFF/lib/tiff.lib>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibTIFF/lib/tiff.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibTIFF/lib/tiff.lib>
 
-		# LibTurboJPEG
-		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg/Linux/libturbojpeg.a>
-		$<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/TurboJpeg/Windows/turbojpeg-static.lib>
+		# LibJpegTurbo (base IJG API static library).
+		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJpegTurbo/lib/libjpeg.a>
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJpegTurbo/lib/jpeg-staticd.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJpegTurbo/lib/jpeg-static.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJpegTurbo/lib/jpeg-static.lib>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJpegTurbo/lib/jpeg-static.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJpegTurbo/lib/jpeg-static.lib>
+
+		# LibJpegTurbo (TurboJpeg API static library).
+		$<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJpegTurbo/TurboJpeg/lib/libturbojpeg.a>
+		$<$<AND:$<CONFIG:Debug>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJpegTurbo/TurboJpeg/lib/turbojpeg-staticd.lib>
+		$<$<AND:$<CONFIG:Develop>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJpegTurbo/TurboJpeg/lib/turbojpeg-static.lib>
+		$<$<AND:$<CONFIG:Profile>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJpegTurbo/TurboJpeg/lib/turbojpeg-static.lib>
+		$<$<AND:$<CONFIG:Release>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJpegTurbo/TurboJpeg/lib/turbojpeg-static.lib>
+		$<$<AND:$<CONFIG:Ship>,$<PLATFORM_ID:Windows>>:${CMAKE_CURRENT_SOURCE_DIR}/Contrib/LibJpegTurbo/TurboJpeg/lib/turbojpeg-static.lib>
 
 		# LibHEIF + LibDE265 (HEIC) + dav1d (AVIF); only when HEIF/AVIF support is enabled.
 		# All three are static libraries. libheif references de265_* and dav1d_* symbols that are

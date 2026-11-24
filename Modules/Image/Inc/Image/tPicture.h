@@ -34,16 +34,23 @@ namespace tImage
 
 
 // Verion information for the image loaders and libraries they may use. This is all in the tImage namespace.
-extern const char* Version_LibJpegTurbo;
 extern const char* Version_ASTCEncoder;
 extern const char* Version_OpenEXR;
 extern const char* Version_ZLIB;
 extern const char* Version_LibPNG;
-extern const char* Version_LibTIFF;
 extern const char* Version_LibKTX;
 extern const char* Version_LibDav1d;
 extern const char* Version_ApngDis;
 extern const char* Version_ApngAsm;
+extern int Version_LibTIFF_Major;
+extern int Version_LibTIFF_Minor;
+extern int Version_LibTIFF_Patch;
+extern int Version_LibJpegTurbo_Major;
+extern int Version_LibJpegTurbo_Minor;
+extern int Version_LibJpegTurbo_Patch;
+extern int Version_TurboJpeg_Major;
+extern int Version_TurboJpeg_Minor;
+extern int Version_TurboJpeg_Patch;
 extern int Version_WEBP_Major;
 extern int Version_WEBP_Minor;
 extern int Version_BCDec_Major;

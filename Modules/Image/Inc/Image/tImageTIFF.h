@@ -19,6 +19,14 @@
 #include <Math/tColour.h>
 #include <Image/tPixelFormat.h>
 #include <Image/tFrame.h>
+
+// libtiff 4.7.x still ships the deprecated int8..uint64 type aliases (tiff.h:78). On Linux
+// those typedefs conflict with tacent's tPlatform.h: int64_t/uint64_t are 'long'/'unsigned
+// long' on LP64, but tPlatform.h declares int64/uint64 as 'long long' -> "typedef
+// redefinition with different types". The aliases are marked deprecated by libtiff itself
+// ("please use corresponding C99 stdint.h type"), so disable them and rely on tacent's
+// identical-width types. Windows never conflicted because MSVC's int64_t is already 'long long'.
+#define TIFF_DISABLE_DEPRECATED
 #include <LibTIFF/include/tiffio.h>
 #include <Image/tMetaData.h>
 #include <Image/tBaseImage.h>
@@ -92,23 +100,34 @@ public:
 		Auto		// Save function will decide format. BPP24 if all image pixels are opaque and BPP32 otherwise.
 	};
 
+	// The compression method used when saving. JPEG cannot carry an alpha channel, so a frame that would be BPP32
+	// (has alpha) is stored with Deflate instead. JPEG quality is fixed at libtiff's default of 75.
+	enum class tCompression
+	{
+		Invalid,	// Invalid must be 0.
+		None,		// Uncompressed.
+		Deflate,	// ZLib deflate compression.
+		JPEG		// JPEG compression.
+	};
+
 	struct SaveParams
 	{
 		SaveParams()																									{ Reset(); }
-		SaveParams(const SaveParams& src)																				: Format(src.Format), UseZLibCompression(src.UseZLibCompression), OverrideFrameDuration(src.OverrideFrameDuration) { }
-		void Reset()																									{ Format = tFormat::Auto; UseZLibCompression = true; OverrideFrameDuration = -1; }
-		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; UseZLibCompression = src.UseZLibCompression; OverrideFrameDuration = src.OverrideFrameDuration; return *this; }
+		SaveParams(const SaveParams& src)																				: Format(src.Format), Compression(src.Compression), OverrideFrameDuration(src.OverrideFrameDuration) { }
+		void Reset()																									{ Format = tFormat::Auto; Compression = tCompression::Deflate; OverrideFrameDuration = -1; }
+		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; Compression = src.Compression; OverrideFrameDuration = src.OverrideFrameDuration; return *this; }
 
 		tFormat Format;
-		bool UseZLibCompression;
+		tCompression Compression;
 		int OverrideFrameDuration;
 	};
 
 	// Saves the tImageTIFF to the TIFF file specified. The type of filename must be TIFF (tif or tiff extension).
 	// If tFormat is Auto, this function will decide the format. BPP24 if all image pixels are opaque and BPP32
 	// otherwise. Since each frame (page in tiff parlance) may be stored in a different pixel format, we cannot return
-	// the chosen pixel format as they mey be different between frames. Returns true on success. OverrideframeDuration
-	// is in milliseconds. Set to >= 0 to override all frames.
+	// the chosen pixel format as they mey be different between frames. Compression is set via SaveParams.Compression
+	// (None, Deflate or JPEG; see tCompression). Returns true on success. OverrideframeDuration is in milliseconds. Set
+	// to >= 0 to override all frames.
 	bool Save(const tString& tiffFile, tFormat, bool useZLibComp = true, int overrideFrameDuration = -1) const;
 	bool Save(const tString& tiffFile, const SaveParams& = SaveParams()) const;
 
