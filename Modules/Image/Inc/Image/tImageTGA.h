@@ -116,7 +116,8 @@ public:
 	enum class tCompression
 	{
 		None,		// No compression.
-		RLE			// Run Length Encoding.
+		RLE,		// Run Length Encoding.
+		NumCompTypes
 	};
 
 	struct SaveParams
@@ -133,7 +134,7 @@ public:
 	// Saves the tImageTGA to the Targa file specified. The type of filename must be "tga". If tFormat is Auto, this
 	// function will decide the format. BPP24 if all image pixels are opaque and BPP32 otherwise. Returns the format
 	// that the file was saved in, or tFormat::Invalid if there was a problem. Since Invalid is 0, you can use an 'if'.
-	tFormat Save(const tString& tgaFile, tFormat, tCompression = tCompression::RLE) const;
+	tFormat Save(const tString& tgaFile, tFormat, tCompression = tCompression::None) const;
 	tFormat Save(const tString& tgaFile, const SaveParams& = SaveParams()) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.

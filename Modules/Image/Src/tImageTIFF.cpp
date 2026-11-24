@@ -533,9 +533,10 @@ bool tImageTIFF::Save(const tString& tiffFile, const SaveParams& params) const
 		// identifier" warning on write; all readers still understand both, so prefer the widely-supported id.
 		switch (compression)
 		{
-			case tCompression::None:	TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_NONE);			break;
 			case tCompression::Deflate:	TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_ADOBE_DEFLATE);	break;
 			case tCompression::JPEG:	TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_JPEG);			break;
+			case tCompression::None:
+			default:					TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_NONE);			break;
 		}
 		TIFFSetField(tiff, TIFFTAG_PLANARCONFIG, PLANARCONFIG_CONTIG);
 		TIFFSetField(tiff, TIFFTAG_PHOTOMETRIC, PHOTOMETRIC_RGB);

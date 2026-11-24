@@ -106,7 +106,8 @@ public:
 	{
 		None,		// Uncompressed.
 		Deflate,	// ZLib deflate compression.
-		JPEG		// JPEG compression.
+		JPEG,		// JPEG compression.
+		NumCompTypes
 	};
 
 	struct SaveParams
