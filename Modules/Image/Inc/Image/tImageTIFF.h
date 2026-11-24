@@ -104,7 +104,6 @@ public:
 	// (has alpha) is stored with Deflate instead. JPEG quality is fixed at libtiff's default of 75.
 	enum class tCompression
 	{
-		Invalid,	// Invalid must be 0.
 		None,		// Uncompressed.
 		Deflate,	// ZLib deflate compression.
 		JPEG		// JPEG compression.
@@ -114,7 +113,7 @@ public:
 	{
 		SaveParams()																									{ Reset(); }
 		SaveParams(const SaveParams& src)																				: Format(src.Format), Compression(src.Compression), OverrideFrameDuration(src.OverrideFrameDuration) { }
-		void Reset()																									{ Format = tFormat::Auto; Compression = tCompression::Deflate; OverrideFrameDuration = -1; }
+		void Reset()																									{ Format = tFormat::Auto; Compression = tCompression::None; OverrideFrameDuration = -1; }
 		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; Compression = src.Compression; OverrideFrameDuration = src.OverrideFrameDuration; return *this; }
 
 		tFormat Format;
@@ -127,8 +126,8 @@ public:
 	// otherwise. Since each frame (page in tiff parlance) may be stored in a different pixel format, we cannot return
 	// the chosen pixel format as they mey be different between frames. Compression is set via SaveParams.Compression
 	// (None, Deflate or JPEG; see tCompression). Returns true on success. OverrideframeDuration is in milliseconds. Set
-	// to >= 0 to override all frames.
-	bool Save(const tString& tiffFile, tFormat, bool useZLibComp = true, int overrideFrameDuration = -1) const;
+	// to >= 0 to override all frames. Note if you are saving as 32bit and choose JPG, it falls back to Deflate since
+	// JPG compression does not support an alpha channel.
 	bool Save(const tString& tiffFile, const SaveParams& = SaveParams()) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.
