@@ -516,8 +516,8 @@ bool tImageTIFF::Save(const tString& tiffFile, const SaveParams& params) const
 		tAssert(bytesPerPixel);
 
 		// JPEG cannot carry an alpha channel, so a frame that would be BPP32 (bytesPerPixel == 4) falls back to
-		// Deflate for this frame.
-		tCompression compression = (params.Compression == tCompression::JPEG && bytesPerPixel == 4) ? tCompression::Deflate : params.Compression;
+		// LZW compression for this frame.
+		tCompression compression = (params.Compression == tCompression::JPEG && bytesPerPixel == 4) ? tCompression::LZW : params.Compression;
 
 		int w = frame->Width;
 		int h = frame->Height;
@@ -528,12 +528,14 @@ bool tImageTIFF::Save(const tString& tiffFile, const SaveParams& params) const
 		TIFFSetField(tiff, TIFFTAG_BITSPERSAMPLE, 8);
 		TIFFSetField(tiff, TIFFTAG_ORIENTATION, ORIENTATION_TOPLEFT);
 
-		// Deflate writes COMPRESSION_ADOBE_DEFLATE (codec id 8), the value libtiff 4.7+ recommends. The older
+		// ZLIB writes COMPRESSION_ADOBE_DEFLATE (codec id 8), the value libtiff 4.7+ recommends. The older
 		// COMPRESSION_DEFLATE (32946) is now flagged "legacy" by libtiff and emits a "legacy Deflate codec
 		// identifier" warning on write; all readers still understand both, so prefer the widely-supported id.
 		switch (compression)
 		{
-			case tCompression::Deflate:	TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_ADOBE_DEFLATE);	break;
+			case tCompression::PACK:	TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_PACKBITS);		break;
+			case tCompression::LZW:		TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_LZW);			break;
+			case tCompression::ZLIB:	TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_ADOBE_DEFLATE);	break;
 			case tCompression::JPEG:	TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_JPEG);			break;
 			case tCompression::None:
 			default:					TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_NONE);			break;

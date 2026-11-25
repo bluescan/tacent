@@ -101,11 +101,13 @@ public:
 	};
 
 	// The compression method used when saving. JPEG cannot carry an alpha channel, so a frame that would be BPP32
-	// (has alpha) is stored with Deflate instead. JPEG quality is fixed at libtiff's default of 75.
+	// (has alpha) is stored with LZW instead. JPEG quality is fixed at libtiff's default of 75.
 	enum class tCompression
 	{
 		None,		// Uncompressed.
-		Deflate,	// ZLib deflate compression.
+		PACK,		// PackBits. An algorithm implementing RLE.
+		LZW,		// Lempel-Ziv-Welch. Wide TIFF support. The default.
+		ZLIB,		// ZLib deflate compression. AKA Zip.
 		JPEG,		// JPEG compression.
 		NumCompTypes
 	};
@@ -114,7 +116,7 @@ public:
 	{
 		SaveParams()																									{ Reset(); }
 		SaveParams(const SaveParams& src)																				: Format(src.Format), Compression(src.Compression), OverrideFrameDuration(src.OverrideFrameDuration) { }
-		void Reset()																									{ Format = tFormat::Auto; Compression = tCompression::None; OverrideFrameDuration = -1; }
+		void Reset()																									{ Format = tFormat::Auto; Compression = tCompression::LZW; OverrideFrameDuration = -1; }
 		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; Compression = src.Compression; OverrideFrameDuration = src.OverrideFrameDuration; return *this; }
 
 		tFormat Format;
@@ -126,9 +128,9 @@ public:
 	// If tFormat is Auto, this function will decide the format. BPP24 if all image pixels are opaque and BPP32
 	// otherwise. Since each frame (page in tiff parlance) may be stored in a different pixel format, we cannot return
 	// the chosen pixel format as they mey be different between frames. Compression is set via SaveParams.Compression
-	// (None, Deflate or JPEG; see tCompression). Returns true on success. OverrideframeDuration is in milliseconds. Set
-	// to >= 0 to override all frames. Note if you are saving as 32bit and choose JPG, it falls back to Deflate since
-	// JPG compression does not support an alpha channel.
+	// (see tCompression: None, PACK, LZW, ZLIB or JPEG; the default is LZW). Returns true on success.
+	// OverrideframeDuration is in milliseconds. Set to >= 0 to override all frames. Note if you are saving as 32bit
+	// and choose JPEG, it falls back to LZW since JPEG compression does not support an alpha channel.
 	bool Save(const tString& tiffFile, const SaveParams& = SaveParams()) const;
 
 	// After this call no memory will be consumed by the object and it will be invalid.

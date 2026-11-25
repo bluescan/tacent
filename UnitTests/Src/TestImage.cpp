@@ -272,64 +272,70 @@ tTestUnit(ImageLoad)
 }
 
 
-namespace
+namespace { namespace ImageSaveHelper {
+
+
+int SaveAsGIFCounter = 0;
+tString SaveAsGIFUnitName;
+
+
+void SaveAsGIF(const tString& pngFile, tPixelFormat format, tQuantize::Method method, bool transparency, float dither = -1.0f, bool forceBW = false)
 {
-	int SaveAsGIFCounter = 0;
-	tString SaveAsGIFUnitName;
+	// We're going to save the gif in the same spot as the input png.
+	tString saveDir = tSystem::tGetDir(pngFile);
 
-	void SaveAsGIF(const tString& pngFile, tPixelFormat format, tQuantize::Method method, bool transparency, float dither = -1.0f, bool forceBW = false)
+	tImageAPNG apng(pngFile);
+	tList<tFrame> frames;
+	apng.StealFrames(frames);
+	int numFrames = frames.Count();
+	tImageGIF gif;
+	gif.Set(frames, true);
+	tRequire(frames.IsEmpty());
+
+	tString dithStr;
+	if (method == tQuantize::Method::Spatial)
 	{
-		// We're going to save the gif in the same spot as the input png.
-		tString saveDir = tSystem::tGetDir(pngFile);
-
-		tImageAPNG apng(pngFile);
-		tList<tFrame> frames;
-		apng.StealFrames(frames);
-		int numFrames = frames.Count();
-		tImageGIF gif;
-		gif.Set(frames, true);
-		tRequire(frames.IsEmpty());
-
-		tString dithStr;
-		if (method == tQuantize::Method::Spatial)
-		{
-			if (dither >= 0.0f)
-				tsPrintf(dithStr, "_Dith_%3.2f", dither);
-			else
-				dithStr = "_Dith_Auto";
-		}
-
-		tString bwStr = forceBW ? "_BW" : "";
-		tString gifFile;
-		tsPrintf
-		(
-			gifFile,
-			"ω%s_GIF%02d_%s_%s_%s_%s%s%s.gif",
-			SaveAsGIFUnitName.Chr(),
-			SaveAsGIFCounter++,
-			(numFrames > 1) ? "Animat" : "Single",
-			transparency ? "Transp" : "Opaque",
-			tGetPixelFormatName(format),
-			tQuantize::GetMethodName(method),
-			dithStr.Chr(),
-			bwStr.Chr()
-		);
-		tImageGIF::SaveParams params;
-		params.Format = format;
-		params.Method = method;
-		params.DitherLevel = dither;
-		params.AlphaThreshold = transparency ? 127 : 255;		// 255 means force opaque.
-		params.ForceBlackAndWhite = forceBW;
-
-		gif.Save(saveDir+gifFile, params);
-		tRequire(tSystem::tFileExists(saveDir+gifFile));
+		if (dither >= 0.0f)
+			tsPrintf(dithStr, "_Dith_%3.2f", dither);
+		else
+			dithStr = "_Dith_Auto";
 	}
+
+	tString bwStr = forceBW ? "_BW" : "";
+	tString gifFile;
+	tsPrintf
+	(
+		gifFile,
+		"ω%s_GIF%02d_%s_%s_%s_%s%s%s.gif",
+		SaveAsGIFUnitName.Chr(),
+		SaveAsGIFCounter++,
+		(numFrames > 1) ? "Animat" : "Single",
+		transparency ? "Transp" : "Opaque",
+		tGetPixelFormatName(format),
+		tQuantize::GetMethodName(method),
+		dithStr.Chr(),
+		bwStr.Chr()
+	);
+	tImageGIF::SaveParams params;
+	params.Format = format;
+	params.Method = method;
+	params.DitherLevel = dither;
+	params.AlphaThreshold = transparency ? 127 : 255;		// 255 means force opaque.
+	params.ForceBlackAndWhite = forceBW;
+
+	gif.Save(saveDir+gifFile, params);
+	tRequire(tSystem::tFileExists(saveDir+gifFile));
 }
+
+
+} }
 
 
 tTestUnit(ImageSave)
 {
 	tImageDir();
+	using namespace ImageSaveHelper;
+	
 	SaveAsGIFCounter = 0;
 	SaveAsGIFUnitName = unitNameLocal;
 
@@ -1887,135 +1893,50 @@ tTestUnit(ImageGradient)
 }
 
 
+namespace { namespace ImageTIFFHelper {
+
+
+void LoadTIFSaveAsTGA(const tString& tifFile, const char* unitNameLocal, tString& saveName)
+{
+	tImageTIFF tiff;
+	tiff.Load(tifFile);
+	SetSaveName("ω" + tifFile);
+	tiff.Save(saveName);
+	tRequire(tSystem::tFileExists(saveName));
+	for (int f = 0; f < tiff.GetNumFrames(); f++)
+	{
+		tFrame* frame = tiff.GetFrame(f);
+		tImageTGA tga(frame, false);
+		tString tgaFile;
+		tsPrintf(tgaFile, "ω%s_Frame%02d.tga", tSystem::tGetFileBaseName(tifFile).Chr(), f);
+		SetSaveName(tgaFile);
+		tga.Save(saveName);
+		tRequire(tSystem::tFileExists(saveName));
+	}
+}
+
+
+} }
+
+
 tTestUnit(ImageTIFF)
 {
+	using namespace ImageTIFFHelper;
 	tImageSubDir("Type_TIF/");
 	tImageTIFF tiff;
 
-	// @todo Make a helper function.
-	tiff.Load("AzTech_Multipage_ZIP.tif");
-	SetSaveName("ωAzTech_Multipage_ZIP.tif");
-	tiff.Save(saveName);
-	tRequire(tSystem::tFileExists(saveName));
-	for (int f = 0; f < tiff.GetNumFrames(); f++)
-	{
-		tFrame* frame = tiff.GetFrame(f);
-		tImageTGA tga(frame, false);
-		tString tgaFile;
-		tsPrintf(tgaFile, "ωAzTech_Multipage_Frame%02d.tga", f);
-		SetSaveName(tgaFile);
-		tga.Save(saveName);
-		tRequire(tSystem::tFileExists(saveName));
-	}
+	LoadTIFSaveAsTGA("AzTech_Multipage_ZIP.tif",unitNameLocal, saveName);
+	LoadTIFSaveAsTGA("Shapes_Grey_JPG.tif",		unitNameLocal, saveName);
+	LoadTIFSaveAsTGA("Shapes_RGB_JPG.tif",		unitNameLocal, saveName);
+	LoadTIFSaveAsTGA("Shapes_YCbCr_JPG.tif",	unitNameLocal, saveName);
+	LoadTIFSaveAsTGA("Wired_Raw.tif",			unitNameLocal, saveName);
+	LoadTIFSaveAsTGA("Wired_ZIP.tif",			unitNameLocal, saveName);
+	LoadTIFSaveAsTGA("Wired_LZW.tif",			unitNameLocal, saveName);
+	LoadTIFSaveAsTGA("Wired_Pack.tif",			unitNameLocal, saveName);
 
-	tiff.Load("Shapes_Grey_JPG.tif");
-	SetSaveName("ωShapes_Grey_JPG.tif");
-	tiff.Save(saveName);
-	tRequire(tSystem::tFileExists(saveName));
-	for (int f = 0; f < tiff.GetNumFrames(); f++)
-	{
-		tFrame* frame = tiff.GetFrame(f);
-		tImageTGA tga(frame, false);
-		tString tgaFile;
-		tsPrintf(tgaFile, "ωShapes_Grey_Frame%02d.tga", f);
-		SetSaveName(tgaFile);
-		tga.Save(saveName);
-		tRequire(tSystem::tFileExists(saveName));
-	}
-
-	tiff.Load("Shapes_RGB_JPG.tif");
-	SetSaveName("ωShapes_RGB_JPG.tif");
-	tiff.Save(saveName);
-	tRequire(tSystem::tFileExists(saveName));
-	for (int f = 0; f < tiff.GetNumFrames(); f++)
-	{
-		tFrame* frame = tiff.GetFrame(f);
-		tImageTGA tga(frame, false);
-		tString tgaFile;
-		tsPrintf(tgaFile, "ωShapes_RGB_Frame%02d.tga", f);
-		SetSaveName(tgaFile);
-		tga.Save(saveName);
-		tRequire(tSystem::tFileExists(saveName));
-	}
-
-	tiff.Load("Shapes_YCbCr_JPG.tif");
-	SetSaveName("ωShapes_YCbCr_JPG.tif");
-	tiff.Save(saveName);
-	tRequire(tSystem::tFileExists(saveName));
-	for (int f = 0; f < tiff.GetNumFrames(); f++)
-	{
-		tFrame* frame = tiff.GetFrame(f);
-		tImageTGA tga(frame, false);
-		tString tgaFile;
-		tsPrintf(tgaFile, "ωShapes_YCbCr_Frame%02d.tga", f);
-		SetSaveName(tgaFile);
-		tga.Save(saveName);
-		tRequire(tSystem::tFileExists(saveName));
-	}
-
-	tiff.Load("Wired_Raw.tif");
-	SetSaveName("ωWired_Raw.tif");
-	tiff.Save(saveName);
-	tRequire(tSystem::tFileExists(saveName));
-	for (int f = 0; f < tiff.GetNumFrames(); f++)
-	{
-		tFrame* frame = tiff.GetFrame(f);
-		tImageTGA tga(frame, false);
-		tString tgaFile;
-		tsPrintf(tgaFile, "ωWired_Raw_Frame%02d.tga", f);
-		SetSaveName(tgaFile);
-		tga.Save(saveName);
-		tRequire(tSystem::tFileExists(saveName));
-	}
-
-	tiff.Load("Wired_ZIP.tif");
-	SetSaveName("ωWired_ZIP.tif");
-	tiff.Save(saveName);
-	tRequire(tSystem::tFileExists(saveName));
-	for (int f = 0; f < tiff.GetNumFrames(); f++)
-	{
-		tFrame* frame = tiff.GetFrame(f);
-		tImageTGA tga(frame, false);
-		tString tgaFile;
-		tsPrintf(tgaFile, "ωWired_ZIP_Frame%02d.tga", f);
-		SetSaveName(tgaFile);
-		tga.Save(saveName);
-		tRequire(tSystem::tFileExists(saveName));
-	}
-
-	tiff.Load("Wired_LZW.tif");
-	SetSaveName("ωWired_LZW.tif");
-	tiff.Save(saveName);
-	tRequire(tSystem::tFileExists(saveName));
-	for (int f = 0; f < tiff.GetNumFrames(); f++)
-	{
-		tFrame* frame = tiff.GetFrame(f);
-		tImageTGA tga(frame, false);
-		tString tgaFile;
-		tsPrintf(tgaFile, "ωWired_LZW_Frame%02d.tga", f);
-		SetSaveName(tgaFile);
-		tga.Save(saveName);
-		tRequire(tSystem::tFileExists(saveName));
-	}
-
-	tiff.Load("Wired_Pack.tif");
-	SetSaveName("ωWired_Pack.tif");
-	tiff.Save(saveName);
-	tRequire(tSystem::tFileExists(saveName));
-	for (int f = 0; f < tiff.GetNumFrames(); f++)
-	{
-		tFrame* frame = tiff.GetFrame(f);
-		tImageTGA tga(frame, false);
-		tString tgaFile;
-		tsPrintf(tgaFile, "ωWired_Pack_Frame%02d.tga", f);
-		SetSaveName(tgaFile);
-		tga.Save(saveName);
-		tRequire(tSystem::tFileExists(saveName));
-	}
-
-	// Compression coverage: the default Save() above uses Deflate. Explicitly exercise the other
-	// two compression options (None and JPEG) on a single RGB frame so the JPEG path and the
-	// uncompressed path are both written and then re-read to prove they round-trip.
+	// Compression coverage: the default Save() above uses LZW. Explicitly exercise every compression
+	// option (None, PACK, LZW, ZLIB and JPEG) on a single RGB frame so each codec is written and then
+	// re-read to prove it round-trips.
 	tImageTIFF one("Wired_Raw.tif");
 	tRequire(one.IsValid());
 	tFrame* oneFrame = one.StealFrame(0);
@@ -2031,6 +1952,27 @@ tTestUnit(ImageTIFF)
 	tRequire(tSystem::tFileExists(saveName));
 	tImageTIFF noneReload(saveName);
 	tRequire(noneReload.IsValid());
+
+	sp.Compression = tImageTIFF::tCompression::PACK;
+	SetSaveName("ωWired_Raw_CompressionPack.tif");
+	tRequire(rgb.Save(saveName, sp));
+	tRequire(tSystem::tFileExists(saveName));
+	tImageTIFF packReload(saveName);
+	tRequire(packReload.IsValid());
+
+	sp.Compression = tImageTIFF::tCompression::LZW;
+	SetSaveName("ωWired_Raw_CompressionLZW.tif");
+	tRequire(rgb.Save(saveName, sp));
+	tRequire(tSystem::tFileExists(saveName));
+	tImageTIFF lzwReload(saveName);
+	tRequire(lzwReload.IsValid());
+
+	sp.Compression = tImageTIFF::tCompression::ZLIB;
+	SetSaveName("ωWired_Raw_CompressionZlib.tif");
+	tRequire(rgb.Save(saveName, sp));
+	tRequire(tSystem::tFileExists(saveName));
+	tImageTIFF zlibReload(saveName);
+	tRequire(zlibReload.IsValid());
 
 	sp.Compression = tImageTIFF::tCompression::JPEG;
 	SetSaveName("ωWired_Raw_CompressionJPEG.tif");
