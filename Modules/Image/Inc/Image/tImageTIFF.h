@@ -101,7 +101,7 @@ public:
 	};
 
 	// The compression method used when saving. JPEG cannot carry an alpha channel, so a frame that would be BPP32
-	// (has alpha) is stored with LZW instead. JPEG quality is fixed at libtiff's default of 75.
+	// (has alpha) is stored with LZW instead. JPEG quality is set via SaveParams.JPegQuality (default 75).
 	enum class tCompression
 	{
 		None,		// Uncompressed.
@@ -115,12 +115,14 @@ public:
 	struct SaveParams
 	{
 		SaveParams()																									{ Reset(); }
-		SaveParams(const SaveParams& src)																				: Format(src.Format), Compression(src.Compression), OverrideFrameDuration(src.OverrideFrameDuration) { }
-		void Reset()																									{ Format = tFormat::Auto; Compression = tCompression::LZW; OverrideFrameDuration = -1; }
-		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; Compression = src.Compression; OverrideFrameDuration = src.OverrideFrameDuration; return *this; }
+		SaveParams(const SaveParams& src)																				: Format(src.Format), Compression(src.Compression), JPegQuality(src.JPegQuality), ZLibCompress(src.ZLibCompress), OverrideFrameDuration(src.OverrideFrameDuration) { }
+		void Reset()																									{ Format = tFormat::Auto; Compression = tCompression::LZW; JPegQuality = 75; ZLibCompress = 6; OverrideFrameDuration = -1; }
+		SaveParams& operator=(const SaveParams& src)																	{ Format = src.Format; Compression = src.Compression; JPegQuality = src.JPegQuality; ZLibCompress = src.ZLibCompress; OverrideFrameDuration = src.OverrideFrameDuration; return *this; }
 
 		tFormat Format;
 		tCompression Compression;
+		int JPegQuality;			// E [25, 100]	Default: 75
+		int ZLibCompress;			// E [1, 9]		Default: 6
 		int OverrideFrameDuration;
 	};
 

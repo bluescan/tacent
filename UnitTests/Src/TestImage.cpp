@@ -1974,12 +1974,44 @@ tTestUnit(ImageTIFF)
 	tImageTIFF zlibReload(saveName);
 	tRequire(zlibReload.IsValid());
 
+	sp.Compression = tImageTIFF::tCompression::ZLIB;
+	sp.ZLibCompress = 1;
+	SetSaveName("ωWired_Raw_CompressionZlib1.tif");
+	tRequire(rgb.Save(saveName, sp));
+	tRequire(tSystem::tFileExists(saveName));
+	tImageTIFF zlib1Reload(saveName);
+	tRequire(zlib1Reload.IsValid());
+
+	sp.Compression = tImageTIFF::tCompression::ZLIB;
+	sp.ZLibCompress = 9;
+	SetSaveName("ωWired_Raw_CompressionZlib9.tif");
+	tRequire(rgb.Save(saveName, sp));
+	tRequire(tSystem::tFileExists(saveName));
+	tImageTIFF zlib9Reload(saveName);
+	tRequire(zlib9Reload.IsValid());
+
 	sp.Compression = tImageTIFF::tCompression::JPEG;
 	SetSaveName("ωWired_Raw_CompressionJPEG.tif");
 	tRequire(rgb.Save(saveName, sp));
 	tRequire(tSystem::tFileExists(saveName));
 	tImageTIFF jpegReload(saveName);
 	tRequire(jpegReload.IsValid());
+
+	sp.Compression = tImageTIFF::tCompression::JPEG;
+	sp.JPegQuality = 25;
+	SetSaveName("ωWired_Raw_CompressionJPEG25.tif");
+	tRequire(rgb.Save(saveName, sp));
+	tRequire(tSystem::tFileExists(saveName));
+	tImageTIFF jpeg25Reload(saveName);
+	tRequire(jpeg25Reload.IsValid());
+
+	sp.Compression = tImageTIFF::tCompression::JPEG;
+	sp.JPegQuality = 100;
+	SetSaveName("ωWired_Raw_CompressionJPEG100.tif");
+	tRequire(rgb.Save(saveName, sp));
+	tRequire(tSystem::tFileExists(saveName));
+	tImageTIFF jpeg100Reload(saveName);
+	tRequire(jpeg100Reload.IsValid());
 
 	tImageRestoreDir();
 }

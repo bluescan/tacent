@@ -533,12 +533,28 @@ bool tImageTIFF::Save(const tString& tiffFile, const SaveParams& params) const
 		// identifier" warning on write; all readers still understand both, so prefer the widely-supported id.
 		switch (compression)
 		{
-			case tCompression::PACK:	TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_PACKBITS);		break;
-			case tCompression::LZW:		TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_LZW);			break;
-			case tCompression::ZLIB:	TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_ADOBE_DEFLATE);	break;
-			case tCompression::JPEG:	TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_JPEG);			break;
+			case tCompression::PACK:
+				TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_PACKBITS);
+				break;
+
+			case tCompression::LZW:
+				TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_LZW);
+				break;
+
+			case tCompression::ZLIB:
+				TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_ADOBE_DEFLATE);
+				TIFFSetField(tiff, TIFFTAG_ZIPQUALITY, tMath::tClamp(params.ZLibCompress, 1, 9));
+				break;
+
+			case tCompression::JPEG:
+				TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_JPEG);
+				TIFFSetField(tiff, TIFFTAG_JPEGQUALITY, tMath::tClamp(params.JPegQuality, 25, 100));
+				break;
+
 			case tCompression::None:
-			default:					TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_NONE);			break;
+			default:
+				TIFFSetField(tiff, TIFFTAG_COMPRESSION, COMPRESSION_NONE);
+				break;
 		}
 		TIFFSetField(tiff, TIFFTAG_PLANARCONFIG, PLANARCONFIG_CONTIG);
 		TIFFSetField(tiff, TIFFTAG_PHOTOMETRIC, PHOTOMETRIC_RGB);
