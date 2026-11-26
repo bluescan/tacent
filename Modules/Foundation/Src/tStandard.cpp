@@ -965,7 +965,7 @@ int tUTF::EncodeUtf16(char16_t* dst, char32_t codepoint)
 	// If codepoint in the BMP just write the single char16.
 	if (codepoint <= cCodepoint_LastValidBMP)
 	{
-		dst[0] = codepoint;
+		dst[0] = char16_t(codepoint);
 		return 1;
 	}
 
