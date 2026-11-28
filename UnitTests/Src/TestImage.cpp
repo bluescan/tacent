@@ -1808,7 +1808,7 @@ tTestUnit(ImageMultiFrame)
 
 tTestUnit(ImageGradient)
 {
-	tImageDir();
+	tImageSubDir("Gradient/");
 
 	const int width = 640;
 	const int height = 90;
@@ -1821,7 +1821,8 @@ tTestUnit(ImageGradient)
 			pixels[y*width + x] = tColour4b(256*x / width, 256*x / width, 256*x / width, 255);
 	tImageTGA blackToWhite(pixels, width, height, true);
 	tRequire(blackToWhite.IsValid());
-	blackToWhite.Save("Written_Gradient_BlackToWhite.tga", tImageTGA::tFormat::BPP24, tImageTGA::tCompression::RLE);
+	SetSaveName("ωBlackToWhite.tga");
+	blackToWhite.Save(saveName, tImageTGA::tFormat::BPP24, tImageTGA::tCompression::RLE);
 
 	// Gradient black to transparent.
 	pixels = new tPixel4b[width*height];
@@ -1830,7 +1831,8 @@ tTestUnit(ImageGradient)
 			pixels[y*width + x] = tColour4b(0, 0, 0, 255 - 256*x / width);
 	tImageTGA blackToTrans(pixels, width, height, true);
 	tRequire(blackToTrans.IsValid());
-	blackToTrans.Save("Written_Gradient_BlackToTrans.tga", tImageTGA::tFormat::BPP32, tImageTGA::tCompression::RLE);
+	SetSaveName("ωBlackToTrans.tga");
+	blackToTrans.Save(saveName, tImageTGA::tFormat::BPP32, tImageTGA::tCompression::RLE);
 
 	// Gradient transparent to white.
 	pixels = new tPixel4b[width*height];
@@ -1839,7 +1841,8 @@ tTestUnit(ImageGradient)
 			pixels[y*width + x] = tColour4b(255, 255, 255, 256*x / width);
 	tImageTGA transToWhite(pixels, width, height, true);
 	tRequire(transToWhite.IsValid());
-	transToWhite.Save("Written_Gradient_TransToWhite.tga", tImageTGA::tFormat::BPP32, tImageTGA::tCompression::RLE);
+	SetSaveName("ωTransToWhite.tga");
+	transToWhite.Save(saveName, tImageTGA::tFormat::BPP32, tImageTGA::tCompression::RLE);
 
 	// Gradient red to yellow to green to cyan to blue to magenta to red.
 	const int section = width / 6;
@@ -1872,10 +1875,12 @@ tTestUnit(ImageGradient)
 	}
 	tImageTGA redToRed(pixels, width, height, true);
 	tRequire(redToRed.IsValid());
-	redToRed.Save("Written_Gradient_RedToRed.tga", tImageTGA::tFormat::BPP24, tImageTGA::tCompression::RLE);
+	SetSaveName("ωRedToRed.tga");
+	redToRed.Save(saveName, tImageTGA::tFormat::BPP24, tImageTGA::tCompression::RLE);
 
 	// These gradients are 16-bpc png files that are useful for testing WCG (10 and 12-bit) monitors.
 	// For a 10-bpc display a width of 1024 means we should get different value displayed for every pixel.
+	// WCG = Wide Colour Gamut.
 	const int wcgWidth = 1024;
 	const int wcgHeight = 128;
 	tPixel4s* wcgPixels = new tPixel4s[wcgWidth*wcgHeight];
@@ -1887,7 +1892,8 @@ tTestUnit(ImageGradient)
 
 	tImagePNG::SaveParams saveParams;
 	saveParams.Format = tImagePNG::tFormat::BPP48_RGB_BPC16;
-	wcgGreenGradient.Save("Written_WcgGreenGradient_16BPC.png", saveParams);
+	SetSaveName("ωWCG_GreenGradient_16BPC.png");
+	wcgGreenGradient.Save(saveName, saveParams);
 
 	tImageRestoreDir();
 }

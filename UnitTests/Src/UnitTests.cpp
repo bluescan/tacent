@@ -185,9 +185,9 @@ int main(int argc, char** argv)
 //ok	tTest(ImageDetection);
 //ok	tTest(ImageMipmap);
 //ok	tTest(ImageFilter);
-	tTest(ImageMultiFrame);
+//ok	tTest(ImageMultiFrame);
 	tTest(ImageGradient);
-	tTest(ImageTIFF);
+//ok	tTest(ImageTIFF);
 	tTest(ImagePNG);
 	tTest(ImageAVIF);
 	tTest(ImageHEIC);
@@ -283,10 +283,10 @@ int main(int argc, char** argv)
 //ok	tTest(ImageDetection);
 //ok	tTest(ImageMipmap);
 //ok	tTest(ImageFilter);
-//h	tTest(ImageMultiFrame);
-	// tTest(ImageGradient);
+//ok	tTest(ImageMultiFrame);
+	tTest(ImageGradient);
 
-	tTest(ImageTIFF)
+//ok	tTest(ImageTIFF)
 	// tTest(ImagePNG);
 	// tTest(ImageAVIF);
 	// tTest(ImageHEIC);
