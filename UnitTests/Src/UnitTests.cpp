@@ -284,10 +284,9 @@ int main(int argc, char** argv)
 //ok	tTest(ImageMipmap);
 //ok	tTest(ImageFilter);
 //ok	tTest(ImageMultiFrame);
-	tTest(ImageGradient);
-
+//ok	tTest(ImageGradient);
 //ok	tTest(ImageTIFF)
-	// tTest(ImagePNG);
+	tTest(ImagePNG);
 	// tTest(ImageAVIF);
 	// tTest(ImageHEIC);
 	// tTest(ImageFlipDouble);

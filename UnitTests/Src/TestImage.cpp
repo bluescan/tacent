@@ -2044,10 +2044,12 @@ tTestUnit(ImagePNG)
 	tRequire(whiteHalfAlpha.IsValid());
 
 	saveParams.Format = tImagePNG::tFormat::BPP32_RGBA_BPC8;
-	whiteHalfAlpha.Save("Written_WhiteHalfAlpha_8BPC.png", saveParams);
+	SetSaveName("ωWhiteHalfAlpha_8BPC.png");
+	whiteHalfAlpha.Save(saveName, saveParams);
 
 	saveParams.Format = tImagePNG::tFormat::BPP64_RGBA_BPC16;
-	whiteHalfAlpha.Save("Written_WhiteHalfAlpha_16BPC.png", saveParams);
+	SetSaveName("ωWhiteHalfAlpha_16BPC.png");
+	whiteHalfAlpha.Save(saveName, saveParams);
 #endif
 
 	tPrintf("Test Load RGBA 8-BPC\n");
@@ -2081,19 +2083,23 @@ tTestUnit(ImagePNG)
 
 	tPrintf("Test Save RGBA 8-BPC as RGBA 8-BPC PNG\n");
 	saveParams.Format = tImagePNG::tFormat::BPP32_RGBA_BPC8;
-	png.Save("Written_R8G8B8A8_From_8BPC.png", saveParams);
+	SetSaveName("ωR8G8B8A8_From_8BPC.png");
+	png.Save(saveName, saveParams);
 
 	tPrintf("Test Save RGBA 8-BPC as RGB 8-BPC PNG\n");
 	saveParams.Format = tImagePNG::tFormat::BPP24_RGB_BPC8;
-	png.Save("Written_R8G8B8_From_8BPC.png", saveParams);
+	SetSaveName("ωR8G8B8_From_8BPC.png");
+	png.Save(saveName, saveParams);
 
 	tPrintf("Test Save RGBA 8-BPC as RGBA 16-BPC PNG\n");
 	saveParams.Format = tImagePNG::tFormat::BPP64_RGBA_BPC16;
-	png.Save("Written_R16G16B16A16_From_8BPC.png", saveParams);
+	SetSaveName("ωR16G16B16A16_From_8BPC.png");
+	png.Save(saveName, saveParams);
 
 	tPrintf("Test Save RGBA 8-BPC as RGB 16-BPC PNG\n");
 	saveParams.Format = tImagePNG::tFormat::BPP48_RGB_BPC16;
-	png.Save("Written_R16G16B16_From_8BPC.png", saveParams);
+	SetSaveName("ωR16G16B16_From_8BPC.png");
+	png.Save(saveName, saveParams);
 
 	//
 	// Test saves of 16bpc.
@@ -2104,19 +2110,23 @@ tTestUnit(ImagePNG)
 
 	tPrintf("Test Save RGBA 16-BPC as RGBA 8-BPC PNG\n");
 	saveParams.Format = tImagePNG::tFormat::BPP32_RGBA_BPC8;
-	png.Save("Written_R8G8B8A8_From_16BPC.png", saveParams);
+	SetSaveName("ωR8G8B8A8_From_16BPC.png");
+	png.Save(saveName, saveParams);
 
 	tPrintf("Test Save RGBA 16-BPC as RGB 8-BPC PNG\n");
 	saveParams.Format = tImagePNG::tFormat::BPP24_RGB_BPC8;
-	png.Save("Written_R8G8B8_From_16BPC.png", saveParams);
+	SetSaveName("ωR8G8B8_From_16BPC.png");
+	png.Save(saveName, saveParams);
 
 	tPrintf("Test Save RGBA 16-BPC as RGBA 16-BPC PNG\n");
 	saveParams.Format = tImagePNG::tFormat::BPP64_RGBA_BPC16;
-	png.Save("Written_R16G16B16A16_From_16BPC.png", saveParams);
+	SetSaveName("ωR16G16B16A16_From_16BPC.png");
+	png.Save(saveName, saveParams);
 
 	tPrintf("Test Save RGBA 16-BPC as RGB 16-BPC PNG\n");
 	saveParams.Format = tImagePNG::tFormat::BPP48_RGB_BPC16;
-	png.Save("Written_R16G16B16_From_16BPC.png", saveParams); 
+	SetSaveName("ωR16G16B16_From_16BPC.png");
+	png.Save(saveName, saveParams); 
 
 	// PNG && move-Load: the source array is consumed (cleared) on success. (entry point: Load)
 	tArray<uint8> pngMove;
